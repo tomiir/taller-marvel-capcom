@@ -8,5 +8,5 @@ find_package(SDL2_image REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 include_directories(${SDL2_IMAGE_INCLUDE_DIRS})
 
-add_executable(app WIN32 main.cpp)
+add_executable(app main.cpp Game.cpp Game.h TextureManager.cpp TextureManager.h)
 target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
