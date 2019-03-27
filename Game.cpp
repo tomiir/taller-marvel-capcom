@@ -4,17 +4,15 @@
 
 #include "Game.h"
 #include "TextureManager.h"
-
-SDL_Texture* characterText = nullptr;
-SDL_Texture* skyText = nullptr;
-SDL_Texture* buildingsText = nullptr;
-SDL_Texture* streetText = nullptr;
-
-SDL_Rect charRect;
+#include "GameObject.h"
 
 
 int moveSpeed = 10;
 
+GameObject* character;
+GameObject* sky;
+GameObject* street;
+GameObject* buildings;
 
 Game::Game() = default;
 
@@ -44,19 +42,18 @@ void Game::init(const char *title, int posX, int posY, int width, int height) {
             }
         isRunning = true;
 
-        characterText = TextureManager::LoadTexture("/home/fer/Escritorio/taller-marvel-capcom/macriIzq.png", renderer);
-        if(!characterText) isRunning = false;
-        skyText = TextureManager::LoadTexture("/home/fer/Escritorio/taller-marvel-capcom/Sky.png", renderer);
-        if(!skyText) isRunning = false;
-        buildingsText = TextureManager::LoadTexture("/home/fer/Escritorio/taller-marvel-capcom/Buildings.png", renderer);
-        if(!buildingsText) isRunning = false;
-        streetText = TextureManager::LoadTexture("/home/fer/Escritorio/taller-marvel-capcom/Street.png", renderer);
-        if(!streetText) isRunning = false;
+        character = new GameObject("/home/fer/Escritorio/taller-marvel-capcom/macriIzq.png", renderer, 400, 300, 60, 120);
+        if(!character) isRunning = false;
 
-        charRect.h = 120;
-        charRect.w = 60;
-        charRect.x = 400;
-        charRect.y = 300;
+        sky = new GameObject("/home/fer/Escritorio/taller-marvel-capcom/Sky.png", renderer, 0, 0, 800, 600);
+        if(!sky) isRunning = false;
+
+        buildings = new GameObject("/home/fer/Escritorio/taller-marvel-capcom/Buildings.png", renderer, 0, 0, 800, 600);
+        if(!buildings) isRunning = false;
+
+        street = new GameObject("/home/fer/Escritorio/taller-marvel-capcom/Street.png", renderer, 0, 0, 800, 600);
+        if(!street) isRunning = false;
+
 
     } else
         {
@@ -69,10 +66,10 @@ void Game::render()
 {
     SDL_RenderClear(renderer); //Limpiamos el framebuffer (lo que tengamos en pantalla)
 
-    SDL_RenderCopy(renderer, skyText, nullptr, nullptr);
-    SDL_RenderCopy(renderer, buildingsText, nullptr, nullptr);
-    SDL_RenderCopy(renderer, streetText, nullptr, nullptr);
-    SDL_RenderCopy(renderer, characterText, nullptr, &charRect);
+    sky->render();
+    buildings->render();
+    street->render();
+    character->render();
 
     SDL_RenderPresent(renderer); //presenta las cosas en la pantalla.
 
@@ -91,10 +88,10 @@ void Game::handleEvents()
             switch (event.key.keysym.sym)
             {
                 case SDLK_RIGHT:
-                    charRect.x += moveSpeed;
+                    character->move(moveSpeed);
                     break;
                 case SDLK_LEFT:
-                    charRect.x -= moveSpeed;
+                    character->move(-moveSpeed);
                     break;
                 default:
                     break;
