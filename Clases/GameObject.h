@@ -7,21 +7,20 @@
 class GameObject {
 
 public:
-        GameObject(const char* imagePath, SDL_Renderer* rend, int initialX, int initialY, int width, int heigh);
+        GameObject(const char* folderPath, SDL_Renderer* rend, int initialX, int initialY, int width, int heigh);
         ~GameObject();
 
-        void place(int posX, int posY);
         void move(int increase);
-        void update();
-        void render();
+        void render(SDL_Rect* rect);
 
-private:
+protected:
 
         int posX;
         int posY;
         int width;
         int heigh;
 
+        const char* folder;
         SDL_Texture* objTexture;
         SDL_Renderer* renderer;
         SDL_Rect objRect;

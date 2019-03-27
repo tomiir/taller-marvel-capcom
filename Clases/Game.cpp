@@ -5,11 +5,12 @@
 #include "Game.h"
 #include "TextureManager.h"
 #include "GameObject.h"
+#include "Character.h"
 
 
 int moveSpeed = 10;
 
-GameObject* character;
+Character* character;
 GameObject* sky;
 GameObject* street;
 GameObject* buildings;
@@ -37,21 +38,21 @@ void Game::init(const char *title, int posX, int posY, int width, int height) {
 
                 } else
                     {
-                        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+                        // SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
                     }
             }
         isRunning = true;
 
-        character = new GameObject("/home/fer/Escritorio/taller-marvel-capcom/macriIzq.png", renderer, 400, 300, 60, 120);
+        character = new Character("/home/fer/Escritorio/taller-marvel-capcom/Images/capComSprites/capCom_walk_1.png", renderer, 400, 300, 50, 120);
         if(!character) isRunning = false;
 
-        sky = new GameObject("/home/fer/Escritorio/taller-marvel-capcom/Sky.png", renderer, 0, 0, 800, 600);
+        sky = new GameObject("/home/fer/Escritorio/taller-marvel-capcom/Images/Backgrounds/Sky.png", renderer, 0, 0, 800, 600);
         if(!sky) isRunning = false;
 
-        buildings = new GameObject("/home/fer/Escritorio/taller-marvel-capcom/Buildings.png", renderer, 0, 0, 800, 600);
+        buildings = new GameObject("/home/fer/Escritorio/taller-marvel-capcom/Images/Backgrounds/Buildings.png", renderer, 0, 0, 800, 600);
         if(!buildings) isRunning = false;
 
-        street = new GameObject("/home/fer/Escritorio/taller-marvel-capcom/Street.png", renderer, 0, 0, 800, 600);
+        street = new GameObject("/home/fer/Escritorio/taller-marvel-capcom/Images/Backgrounds/Street.png", renderer, 0, 0, 800, 600);
         if(!street) isRunning = false;
 
 
@@ -79,25 +80,44 @@ void Game::handleEvents()
 {
     SDL_Event event;
     SDL_PollEvent(&event);
-    switch (event.type)
-    {
+    switch (event.type) {
         case SDL_QUIT:
             isRunning = false;
             break;
-        case SDL_KEYDOWN:
-            switch (event.key.keysym.sym)
+    }
+    if(event.type == SDL_KEYDOWN) {
+        switch (event.key.keysym.sym) {
+            case SDLK_RIGHT:
+                character->move(moveSpeed);
+                sky->move(moveSpeed-8);
+                buildings->move(moveSpeed-5);
+                street->move(moveSpeed-2);
+                break;
+            case SDLK_LEFT:
+                character->move(-moveSpeed);
+                break;
+            case SDLK_UP:
+                character->jump();
+                break;
+            case SDLK_DOWN:
+                character->down();
+                break;
+            default:
+                break;
+        }
+    }
+    if(event.type == SDL_KEYUP){
+        switch (event.key.keysym.sym)
             {
-                case SDLK_RIGHT:
-                    character->move(moveSpeed);
+                case SDLK_DOWN:
+                    character->jump();
                     break;
-                case SDLK_LEFT:
-                    character->move(-moveSpeed);
+                case SDLK_UP:
+                    character->down();
                     break;
                 default:
                     break;
             }
-        default:
-            break;
     }
 }
 

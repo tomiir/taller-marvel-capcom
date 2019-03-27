@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 #include <string>
-#include "Game.h"
+#include "Clases/Game.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 800;

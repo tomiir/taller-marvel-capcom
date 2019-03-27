@@ -1,0 +1,14 @@
+//
+// Created by fer on 27/03/19.
+//
+
+#ifndef TRABAJOPRACTICOTALLER_BACKGROUND_H
+#define TRABAJOPRACTICOTALLER_BACKGROUND_H
+
+
+class Background {
+
+};
+
+
+#endif //TRABAJOPRACTICOTALLER_BACKGROUND_H

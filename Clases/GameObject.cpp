@@ -5,10 +5,10 @@
 #include "GameObject.h"
 #include "TextureManager.h"
 
-GameObject::GameObject(const char *imagePath, SDL_Renderer *rend, int initialX, int initialY, int width, int heigh) {
+GameObject::GameObject(const char* folderPath, SDL_Renderer *rend, int initialX, int initialY, int width, int heigh) {
     renderer = rend;
     objRect = SDL_Rect();
-    objTexture = TextureManager::LoadTexture(imagePath, renderer);
+    objTexture = TextureManager::LoadTexture(folderPath, renderer);
 
     objRect.x = initialX;
     objRect.y = initialY;
@@ -23,19 +23,13 @@ GameObject::GameObject(const char *imagePath, SDL_Renderer *rend, int initialX, 
 
 GameObject::~GameObject() = default;
 
-void GameObject::place(int posX, int posY)
-{
-    objRect.x = posX;
-    objRect.y = posY;
-}
-
 void GameObject::move(int increase)
 {
     objRect.x += increase;
 }
 
 
-void GameObject::render()
+void GameObject::render(SDL_Rect* rect)
 {
-    SDL_RenderCopy(renderer, objTexture, nullptr, &objRect);
+    SDL_RenderCopy(renderer, objTexture, rect, &objRect);
 }
