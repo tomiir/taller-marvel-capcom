@@ -44,13 +44,13 @@ void Game::init(const char *title, int posX, int posY, int width, int height) {
         character = new Character("/home/fer/Escritorio/taller-marvel-capcom/Images/capComSprites/capCom_walk_1.png", renderer, 400, 300, 50, 120);
         if(!character) isRunning = false;
 
-        sky = new Background("/home/fer/Escritorio/taller-marvel-capcom/Images/Backgrounds/Sky.png", renderer, 0, 0, 800, 600, 5 );
+        sky = new Background("/home/fer/Escritorio/taller-marvel-capcom/Images/Backgrounds/Sky.png", renderer, 0, 0, 800, 600, 10 );
         if(!sky) isRunning = false;
 
-        buildings = new Background("/home/fer/Escritorio/taller-marvel-capcom/Images/Backgrounds/Buildings.png", renderer, 0, 0, 800, 600, 10);
+        buildings = new Background("/home/fer/Escritorio/taller-marvel-capcom/Images/Backgrounds/Buildings.png", renderer, 0, 0, 800, 600, 20);
         if(!buildings) isRunning = false;
 
-        street = new Background("/home/fer/Escritorio/taller-marvel-capcom/Images/Backgrounds/Street.png", renderer, 0, 0, 800, 600, 15);
+        street = new Background("/home/fer/Escritorio/taller-marvel-capcom/Images/Backgrounds/Street.png", renderer, 0, 0, 800, 600, 25);
         if(!street) isRunning = false;
 
 

@@ -4,6 +4,8 @@
 
 #include "Background.h"
 
+int RIGHT = 1;
+int LEFT = -1;
 
 Background::Background(const char* imagePath, SDL_Renderer* rend, int initialX, int initialY, int width, int heigh, int increaseCamera) :
             GameObject(imagePath, rend, initialX, initialY, width, heigh){
@@ -15,13 +17,17 @@ Background::~Background() = default;
 
 void Background::moveCamera(int moveDirection) {
 
-    if(moveDirection == 1) {
-
+    if(moveDirection == RIGHT) {
         camera.x += increaseCamera;
-    }
-    else if(moveDirection == -1){
+        /*camera = SDL_Rect{ camera.x, 0, CAMERA_WIDTH, CAMERA_HEIGH};
+        render(); */
 
-            camera.x -= increaseCamera;
+    }
+    else if(moveDirection == LEFT){
+
+        camera.x -= increaseCamera;
+        /*camera = SDL_Rect{ camera.x, 0, CAMERA_WIDTH, CAMERA_HEIGH};
+        render();*/ //Probando si esto afecta en algo al efecto parallax.
 
     }
 }

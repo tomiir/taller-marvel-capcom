@@ -4,6 +4,7 @@
 
 #include "GameObject.h"
 
+
 class Background : public GameObject {
 
 public:
@@ -17,7 +18,13 @@ public:
 private:
 
     int increaseCamera;
-    SDL_Rect camera = SDL_Rect{0,0,600,800};
+
+    int CAMERA_WIDTH = 800;
+    int CAMERA_HEIGH = 600;
+    int CAMERA_X_POS = 0;
+    int CAMERA_Y_POS = 0;
+
+    SDL_Rect camera = SDL_Rect{CAMERA_X_POS, CAMERA_Y_POS, CAMERA_HEIGH, CAMERA_WIDTH};
 
 
 };

@@ -9,8 +9,7 @@ int JUMP = 50;
 int DOWN = 50;
 
 Character::Character(const char* imagePath, SDL_Renderer* rend, int initialX, int initialY, int width, int heigh) :
-           GameObject(imagePath, rend, initialX, initialY, width, heigh)
-           { }
+           GameObject(imagePath, rend, initialX, initialY, width, heigh) {}
 
 Character::~Character() = default;
 
