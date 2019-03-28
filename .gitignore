@@ -1,4 +1,5 @@
-idea/
+.idea/
+cmake-build-debug/
 
 # Compiled source #
 ###################
@@ -8,6 +9,8 @@ idea/
 *.exe
 *.o
 *.so
+*.png~
+
 
 # Packages #
 ############

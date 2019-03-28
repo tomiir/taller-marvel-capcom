@@ -1,6 +1,3 @@
-//
-// Created by fer on 25/03/19.
-//
 
 #ifndef TRABAJOPRACTICOTALLER_GAME_H
 #define TRABAJOPRACTICOTALLER_GAME_H
