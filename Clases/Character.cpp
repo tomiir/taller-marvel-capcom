@@ -14,19 +14,12 @@ Character::Character(const char* imagePath, SDL_Renderer* rend, int initialX, in
 
 Character::~Character() = default;
 
-void Character::render(SDL_Rect *rect) : GameObject(rect)
-{
-        SDL_RenderCopy(renderer, objTexture, &rect, &objRect);
-}
-
-void Character::jump()
-{
+void Character::jump(){
 
     objRect.y -= JUMP;
-
 }
 
-void Character::down()
-{
+void Character::down(){
+
     objRect.y += DOWN;
 }

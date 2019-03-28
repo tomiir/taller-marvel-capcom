@@ -10,14 +10,14 @@ const char* title = "Marvel vs Capcom";
 
 Game* game = nullptr;
 
-int main(int argc, const char* argv[])
-{
+int main(int argc, const char* argv[]){
+
        game = new Game();
 
        game->init(title,SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT);
 
-       while(game->running())
-       {
+       while(game->running()){
+
             game->handleEvents();
             game->update();
             game->render();

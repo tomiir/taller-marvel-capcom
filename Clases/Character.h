@@ -1,7 +1,3 @@
-//
-// Created by fer on 26/03/19.
-//
-
 #ifndef TRABAJOPRACTICOTALLER_CHARACTER_H
 #define TRABAJOPRACTICOTALLER_CHARACTER_H
 

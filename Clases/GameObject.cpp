@@ -29,7 +29,8 @@ void GameObject::move(int increase)
 }
 
 
-void GameObject::render(SDL_Rect* rect)
-{
-    SDL_RenderCopy(renderer, objTexture, rect, &objRect);
+void GameObject::render(){
+
+    SDL_RenderCopy(renderer, objTexture, nullptr, &objRect);
+
 }

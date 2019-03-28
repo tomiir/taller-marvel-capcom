@@ -11,7 +11,7 @@ public:
         ~GameObject();
 
         void move(int increase);
-        void render(SDL_Rect* rect);
+        void render();
 
 protected:
 
@@ -20,7 +20,6 @@ protected:
         int width;
         int heigh;
 
-        const char* folder;
         SDL_Texture* objTexture;
         SDL_Renderer* renderer;
         SDL_Rect objRect;
