@@ -5,7 +5,7 @@
 #ifndef TRABAJOPRACTICOTALLER_TEXTUREMANAGER_H
 #define TRABAJOPRACTICOTALLER_TEXTUREMANAGER_H
 
-#include "Game.h"
+#include "../../model/Game/Game.h"
 #include <iostream>
 
 class TextureManager {

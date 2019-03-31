@@ -1,9 +1,7 @@
 #ifndef TRABAJOPRACTICOTALLER_BACKGROUND_H
 #define TRABAJOPRACTICOTALLER_BACKGROUND_H
 
-
-#include "GameObject.h"
-
+#include "../GameObject/GameObject.h"
 
 class Background : public GameObject {
 
@@ -11,7 +9,7 @@ public:
     Background(const char* imagePath, SDL_Renderer* rend, int initialX, int initialY, int width, int heigh, int increaseCamera);
     ~Background();
 
-    void moveCamera(int moveDirection);
+    void move(std::vector<int> &moveDirection);
     void render();
 
 

@@ -15,21 +15,11 @@ Background::Background(const char* imagePath, SDL_Renderer* rend, int initialX, 
 
 Background::~Background() = default;
 
-void Background::moveCamera(int moveDirection) {
-
-    if(moveDirection == RIGHT) {
-        camera.x += increaseCamera;
-        /*camera = SDL_Rect{ camera.x, 0, CAMERA_WIDTH, CAMERA_HEIGH};
-        render(); */
-
-    }
-    else if(moveDirection == LEFT){
-
-        camera.x -= increaseCamera;
-        /*camera = SDL_Rect{ camera.x, 0, CAMERA_WIDTH, CAMERA_HEIGH};
-        render();*/ //Probando si esto afecta en algo al efecto parallax.
-
-    }
+void Background::move(std::vector<int> &moveDirection) {
+    int moveDirectionX = moveDirection[0];
+    camera.x += moveDirectionX;
+    camera = SDL_Rect{ camera.x, 0, CAMERA_WIDTH, CAMERA_HEIGH};
+    render();
 }
 
 void Background::render(){

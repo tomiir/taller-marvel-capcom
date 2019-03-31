@@ -3,6 +3,7 @@
 #define TRABAJOPRACTICOTALLER_GAMEOBJECT_H
 
 #include <SDL2/SDL.h>
+#include <vector>
 
 class GameObject {
 
@@ -10,7 +11,7 @@ public:
         GameObject(const char* folderPath, SDL_Renderer* rend, int initialX, int initialY, int width, int heigh);
         ~GameObject();
 
-        void move(int increase);
+        virtual void move(std::vector<int> &dir);
         void render();
 
 protected:

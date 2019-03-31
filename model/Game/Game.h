@@ -5,6 +5,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
+#include "../../controllers/ViewController/ViewController.h"
 
 class Game {
 
@@ -13,9 +14,8 @@ public:
     ~Game();
 
     void init(const char* title, int posX, int posY, int width, int height);
-    void handleEvents();
+    void tick();
     void update();
-    void render();
     void clean();
     bool running() { return isRunning; }
 
@@ -23,6 +23,8 @@ private:
     bool isRunning;
     SDL_Window* window;
     SDL_Renderer* renderer;
+    ViewController* viewController;
+
 
 };
 

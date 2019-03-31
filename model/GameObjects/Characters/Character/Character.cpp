@@ -3,22 +3,24 @@
 //
 
 #include "Character.h"
-#include "TextureManager.h"
-
-int JUMP = 50;
-int DOWN = 50;
+#include "../../../../utils/TextureManager/TextureManager.h"
+using namespace std;
 
 Character::Character(const char* imagePath, SDL_Renderer* rend, int initialX, int initialY, int width, int heigh) :
-           GameObject(imagePath, rend, initialX, initialY, width, heigh) {}
+           GameObject(imagePath, rend, initialX, initialY, width, heigh) {
+    this->jumpHeight=-20;
+    this->speed=20;
+}
 
 Character::~Character() = default;
 
-void Character::jump(){
+void Character::move(std::vector<int>  &increase)
+{
+    cout << increase[0] << increase[1]<< endl;
+    cout << increase[0]*this->speed << increase[1]*this->jumpHeight<< endl;
+    int x = increase[0];
+    int y = increase[1];
 
-    objRect.y -= JUMP;
-}
-
-void Character::down(){
-
-    objRect.y += DOWN;
+    objRect.x += x*this->speed;
+    objRect.y += y*this->jumpHeight;
 }

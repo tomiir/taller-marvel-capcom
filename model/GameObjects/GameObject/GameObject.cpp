@@ -3,7 +3,9 @@
 //
 
 #include "GameObject.h"
-#include "TextureManager.h"
+#include "../../../utils/TextureManager/TextureManager.h"
+
+using namespace std;
 
 GameObject::GameObject(const char* folderPath, SDL_Renderer *rend, int initialX, int initialY, int width, int heigh) {
     renderer = rend;
@@ -23,10 +25,7 @@ GameObject::GameObject(const char* folderPath, SDL_Renderer *rend, int initialX,
 
 GameObject::~GameObject() = default;
 
-void GameObject::move(int increase)
-{
-    objRect.x += increase;
-}
+void GameObject::move(std::vector<int> &increase){};
 
 
 void GameObject::render(){

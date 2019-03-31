@@ -9,5 +9,15 @@ find_package(SDL2_image REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 include_directories(${SDL2_IMAGE_INCLUDE_DIRS})
 
-add_executable(app main.cpp Clases/Game.cpp Clases/Game.h Clases/TextureManager.cpp Clases/TextureManager.h Clases/GameObject.cpp Clases/GameObject.h Clases/Character.cpp Clases/Character.h Clases/Background.cpp Clases/Background.h Clases/Controller.cpp Clases/Controller.h)
+add_executable(
+        app main.cpp
+        model/Game/Game.cpp model/Game/Game.h
+        Clases/TextureManager.cpp Clases/TextureManager.h
+        model/GameObjects/GameObject/GameObject.cpp model/GameObjects/GameObject/GameObject.h
+        model/GameObjects/Characters/Character/Character.cpp model/GameObjects/Characters/Character/Character.h
+        model/GameObjects/Background/Background.cpp model/GameObjects/Background/Background.h
+        controllers/Controller/Controller.cpp controllers/Controller/Controller.h
+        controllers/ViewController/ViewController.cpp controllers/ViewController/ViewController.h
+        views/View/View.cpp views/View/View.h
+)
 target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
