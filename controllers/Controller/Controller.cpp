@@ -3,3 +3,8 @@
 //
 
 #include "Controller.h"
+
+Controller::Controller(GameObject *gameObject_) {
+    gameObject = gameObject_;
+
+}

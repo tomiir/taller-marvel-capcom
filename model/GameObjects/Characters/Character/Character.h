@@ -2,7 +2,7 @@
 #define TRABAJOPRACTICOTALLER_CHARACTER_H
 
 
-#include "GameObject.h"
+#include "../../GameObject/GameObject.h"
 
 class Character : public GameObject {
 
