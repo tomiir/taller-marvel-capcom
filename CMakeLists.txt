@@ -19,5 +19,9 @@ add_executable(
         controllers/Controller/Controller.cpp controllers/Controller/Controller.h
         controllers/ViewController/ViewController.cpp controllers/ViewController/ViewController.h
         views/View/View.cpp views/View/View.h
+        model/Game/ViewFactory/ViewFactory.cpp model/Game/ViewFactory/ViewFactory.h model/Game/GameObjectControllerFactory/GameObjectControllerFactory.cpp model/Game/GameObjectControllerFactory/GameObjectControllerFactory.h model/Game/GameObjectFactory/GameObjectFactory_fight.cpp model/Game/GameObjectFactory/GameObjectFactory_fight.h
+        model/Game/GameObjectFactory/GameObjectFactory.cpp model/Game/GameObjectFactory/GameObjectFactory.h
+        model/Game/GameObjectControllerFactory/GameObjectControllerFactory_fight.cpp model/Game/GameObjectControllerFactory/GameObjectControllerFactory_fight.h
+        Views/view/View.cpp Views/view/View.h
 )
 target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
