@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.7)
-project(taller-marvel-capcom) #aca pongan el nombre de su carpeta donde esta too
+project(taller-marvel-capcom) #DEJAR COMO ESTA. Si no funca ---> renombrar la carpeta donde está el repo de git a esto
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 SET(CMAKE_CXX_FLAGS "-std=c++11")
