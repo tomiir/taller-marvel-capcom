@@ -38,10 +38,8 @@ std::vector<GameObject*> GameObjectFactory:: getGameObjects_fight() {
         //lanzar excepcion
     }
 
-    gameObjects[0] = character;
-    gameObjects[1] = sky;
-    gameObjects[2] = buildings;
-    gameObjects[3] = street;
+    gameObjects = {sky, buildings, street, character};
+
 
     return gameObjects;
 

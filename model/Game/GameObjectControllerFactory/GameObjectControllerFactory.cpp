@@ -17,12 +17,7 @@ std::vector<Controller*> GameObjectControllerFactory::getGameObjectControllers_f
 
     
     // ¿habría que hacer controllers distintos para background y character? 
-    controllers[0] = new Controller(gameObjects[0]); // character
+    controllers = {new Controller(gameObjects[0]), new Controller(gameObjects[1]) , new Controller(gameObjects[2]),new Controller(gameObjects[3])};  // character
 
-    controllers[1] = new Controller(gameObjects[1]);// background
-    controllers[2] = new Controller(gameObjects[2]);// buildings
-    controllers[3] = new Controller(gameObjects[3]);// street
-    
-    
     return controllers;
 }

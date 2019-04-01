@@ -5,12 +5,7 @@
 #include "EventToValueMapper.h"
 
 
-
-EventToValueMapper::EventToValueMapper() {
-    dir =  {0,0};
-}
-
-std::vector<int> EventToValueMapper::map(SDL_Event event){
+std::vector<int> EventToValueMapper::map(SDL_Event event, std::vector<int> dir){
     switch (event.key.keysym.sym) {
         case SDLK_RIGHT:
             dir[0]++;

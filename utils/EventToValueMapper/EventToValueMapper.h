@@ -10,13 +10,11 @@
 
 class EventToValueMapper {
 
-private:
-    std::vector<int> dir; //
 
 public:
     EventToValueMapper();
     ~EventToValueMapper();
-    std::vector<int> map(SDL_Event event);
+    std::vector<int> map(SDL_Event event,  std::vector<int> dir );
 
 };
 
