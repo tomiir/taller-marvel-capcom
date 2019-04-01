@@ -1,8 +1,10 @@
-#ifndef TRABAJOPRACTICOTALLER_CHARACTER_H
-#define TRABAJOPRACTICOTALLER_CHARACTER_H
+#ifndef TALLER_MARVEL_CAPCOM_CHARACTER_H
+#define TALLER_MARVEL_CAPCOM_CHARACTER_H
 
 
 #include "../../GameObject/GameObject.h"
+#include "../../../../utils/TextureManager/TextureManager.h"
+
 
 class Character : public GameObject {
 
@@ -16,4 +18,4 @@ public:
 };
 
 
-#endif //TRABAJOPRACTICOTALLER_CHARACTER_H
+#endif //TALLER_MARVEL_CAPCOM_CHARACTER_H

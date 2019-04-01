@@ -3,7 +3,7 @@
 //
 
 #include "Character.h"
-#include "../../../../utils/TextureManager/TextureManager.h"
+
 using namespace std;
 
 Character::Character(const char* imagePath, SDL_Renderer* rend, int initialX, int initialY, int width, int heigh) :

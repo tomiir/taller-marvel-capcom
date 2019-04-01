@@ -1,9 +1,10 @@
 
-#ifndef TRABAJOPRACTICOTALLER_GAMEOBJECT_H
-#define TRABAJOPRACTICOTALLER_GAMEOBJECT_H
+#ifndef TALLER_MARVEL_CAPCOM_GAMEOBJECT_H
+#define TALLER_MARVEL_CAPCOM_GAMEOBJECT_H
 
-#include <SDL2/SDL.h>
+
 #include <vector>
+#include "../../../utils/TextureManager/TextureManager.h"
 
 class GameObject {
 
@@ -28,4 +29,4 @@ protected:
 };
 
 
-#endif //TRABAJOPRACTICOTALLER_GAMEOBJECT_H
+#endif //TALLER_MARVEL_CAPCOM_GAMEOBJECT_H

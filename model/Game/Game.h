@@ -2,10 +2,10 @@
 #ifndef TRABAJOPRACTICOTALLER_GAME_H
 #define TRABAJOPRACTICOTALLER_GAME_H
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
+
 #include <iostream>
 #include "../../controllers/ViewController/ViewController.h"
+#include "ViewControllerFactory/ViewControllerFactory.h"
 
 class Game {
 
@@ -24,6 +24,7 @@ private:
     SDL_Window* window;
     SDL_Renderer* renderer;
     ViewController* viewController;
+    ViewControllerFactory * factory; //Lo agrego para crear la primera view
 
 
 };

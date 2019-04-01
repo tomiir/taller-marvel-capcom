@@ -5,9 +5,18 @@
 #include "ViewController.h"
 #include <SDL2/SDL.h>
 
-ViewController::ViewController(char *viewId, SDL_Renderer* renderer) {
-    this->view = new View(viewId, renderer);
+ViewController::ViewController(SDL_Renderer* renderer_) {
+    this->renderer= renderer_;
+    this->view = new View(renderer_);
+    // ¿HAY QUE INICIALIZAR LA LISTA?
+    //this->controllers = new std::list<Controller*>();
 }
+
+
+void ViewController::addController(Controller *controller) {
+    controllers.push_back(controller);
+}
+
 
 void ViewController::handleEvent() {
     SDL_Event event;
@@ -16,11 +25,23 @@ void ViewController::handleEvent() {
         throw -1;
     }
     if(event.type == SDL_KEYDOWN || event.type == SDL_KEYUP) {
-        this->view->handleEvent(event);
+        //this->view->handleEvent(event);
+        for (std::list<Controller*>::iterator controller=controllers.begin(); controller != controllers.end(); ++controller){
+            //Creo que devuelve un puntero al puntero de controller, por eso lo desreferencio.
+            (*controller)->handleEvent(event);
+        }
     }
 }
 
 void ViewController::updateView() {
     //Acá debería chequear si debe cambiar de view
+    // Primero renderizo (limpio) la vista;
     this->view->render();
+    // Luego renderizo los elementos que la componen
+    for (std::list<Controller*>::iterator controller=controllers.begin(); controller != controllers.end(); ++controller){
+        (*controller)->render();
+    }
+    //Actualizo los datos
+    SDL_RenderPresent(renderer);
+
 }

@@ -5,6 +5,47 @@
 #include "GameObjectFactory.h"
 
 
-GameObject** GameObjectFactory::getGameObjects() {
-    return gameObjects;
+
+//GameObjectFactory_fight::~GameObjectFactory_fight() = default;
+
+
+GameObjectFactory::GameObjectFactory(SDL_Renderer *renderer_) {
+
+    renderer = renderer_;
+
 }
+
+std::vector<GameObject*> GameObjectFactory:: getGameObjects_fight() {
+    std::vector<GameObject*>  gameObjects;
+
+    Character* character = new Character("../../Images/capComSprites/capCom_walk_1.png", renderer, 400, 300, 50, 120);
+    if (!character) {
+        std::cout << "Fallo la creacion del render" << std::endl;
+    }
+
+    Background* sky = new Background("../../Images/Backgrounds/Sky.png", renderer, 0, 0, 800, 600, 10);
+    if (!sky) {
+        //lanzar excepcion
+    }
+
+    Background* buildings = new Background("../../Images/Backgrounds/Buildings.png", renderer, 0, 0, 800, 600, 20);
+    if (!buildings) {
+        //lanzar excepcion
+    }
+
+    Background* street = new Background("../../Images/Backgrounds/Street.png", renderer, 0, 0, 800, 600, 25);
+    if (!street) {
+        //lanzar excepcion
+    }
+
+    gameObjects[0] = character;
+    gameObjects[1] = sky;
+    gameObjects[2] = buildings;
+    gameObjects[3] = street;
+
+    return gameObjects;
+
+}
+
+
+

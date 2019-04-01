@@ -7,16 +7,20 @@
 
 #include "../GameObjectFactory/GameObjectFactory.h"
 #include "../../../controllers/Controller/Controller.h"
+#include <vector>
+#include "../../GameObjects/GameObject/GameObject.h"
 
 class GameObjectControllerFactory {
 
-protected:
+private:
     GameObjectFactory* factory;
-    Controller** controllers;
 
 
 public:
-    Controller**  getGameObjectControllers();
+    GameObjectControllerFactory(SDL_Renderer *renderer);
+    ~GameObjectControllerFactory();
+
+    std::vector<Controller*> getGameObjectControllers_fight(); // los controllers de la view fight
 
 
 };

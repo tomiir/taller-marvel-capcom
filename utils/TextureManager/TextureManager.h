@@ -5,8 +5,10 @@
 #ifndef TRABAJOPRACTICOTALLER_TEXTUREMANAGER_H
 #define TRABAJOPRACTICOTALLER_TEXTUREMANAGER_H
 
-#include "../../model/Game/Game.h"
+//#include "../../model/Game/Game.h"
 #include <iostream>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 class TextureManager {
 

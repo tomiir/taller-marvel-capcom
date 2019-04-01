@@ -2,26 +2,29 @@
 // Created by magali on 31/03/19.
 //
 
-#ifndef TALLER_MARVEL_CAPCOM_GAMEOBJECTFACTORY__H
-#define TALLER_MARVEL_CAPCOM_GAMEOBJECTFACTORY__H
+#ifndef TALLER_MARVEL_CAPCOM_GAMEOBJECTFACTORY_H
+#define TALLER_MARVEL_CAPCOM_GAMEOBJECTFACTORY_H
 
+#include "../../GameObjects/Characters/Character/Character.h"
+#include "../../GameObjects/Background/Background.h"
 #include "../../GameObjects/GameObject/GameObject.h"
 
+#include <iostream>
 
-/* Esta es la interfaz de los GameFactory, se implementa con una clase abstracta*/
 
+/* Esta se encarga de crear todos los gameObject del juego. Devuelve una lista de gameObjects */
 
-class GameObjectFactory{
+class GameObjectFactory {
+    SDL_Renderer* renderer;
 
-protected:
-    GameObject** gameObjects;
 public:
+    GameObjectFactory(SDL_Renderer *renderer_);
+    ~GameObjectFactory();
 
-    //~GameObjectFactory_fight();
+    std::vector<GameObject*>  getGameObjects_fight();
 
-    GameObject** getGameObjects();
 
 };
 
 
-#endif //TALLER_MARVEL_CAPCOM_GAMEOBJECTFACTORY__H
+#endif //TALLER_MARVEL_CAPCOM_GAMEOBJECTFACTORY_H

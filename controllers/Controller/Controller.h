@@ -6,13 +6,20 @@
 #define TALLER_MARVEL_CAPCOM_CONTROLLER_H
 
 #include "../../model/GameObjects/GameObject/GameObject.h"
+#include "../../utils/EventToValueMapper/EventToValueMapper.h"
 
-class Controller {
+class Controller{
 
 private:
-    GameObject* gameObject;
+    GameObject * gameObject;
+    EventToValueMapper* mapper;
+
+
 public:
     Controller(GameObject* gameObject_);
+    ~Controller();
+    void render();
+    void handleEvent(SDL_Event event);
 };
 
 

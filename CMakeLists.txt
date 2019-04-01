@@ -12,16 +12,14 @@ include_directories(${SDL2_IMAGE_INCLUDE_DIRS})
 add_executable(
         app main.cpp
         model/Game/Game.cpp model/Game/Game.h
-        Clases/TextureManager.cpp Clases/TextureManager.h
         model/GameObjects/GameObject/GameObject.cpp model/GameObjects/GameObject/GameObject.h
         model/GameObjects/Characters/Character/Character.cpp model/GameObjects/Characters/Character/Character.h
         model/GameObjects/Background/Background.cpp model/GameObjects/Background/Background.h
         controllers/Controller/Controller.cpp controllers/Controller/Controller.h
         controllers/ViewController/ViewController.cpp controllers/ViewController/ViewController.h
         views/View/View.cpp views/View/View.h
-        model/Game/ViewFactory/ViewFactory.cpp model/Game/ViewFactory/ViewFactory.h model/Game/GameObjectControllerFactory/GameObjectControllerFactory.cpp model/Game/GameObjectControllerFactory/GameObjectControllerFactory.h model/Game/GameObjectFactory/GameObjectFactory_fight.cpp model/Game/GameObjectFactory/GameObjectFactory_fight.h
-        model/Game/GameObjectFactory/GameObjectFactory.cpp model/Game/GameObjectFactory/GameObjectFactory.h
-        model/Game/GameObjectControllerFactory/GameObjectControllerFactory_fight.cpp model/Game/GameObjectControllerFactory/GameObjectControllerFactory_fight.h
-        Views/view/View.cpp Views/view/View.h
-)
+        utils/TextureManager/TextureManager.cpp utils/TextureManager/TextureManager.h
+        model/Game/ViewControllerFactory/ViewControllerFactory.cpp model/Game/ViewControllerFactory/ViewControllerFactory.h model/Game/GameObjectControllerFactory/GameObjectControllerFactory.cpp model/Game/GameObjectControllerFactory/GameObjectControllerFactory.h model/Game/GameObjectFactory/GameObjectFactory.cpp model/Game/GameObjectFactory/GameObjectFactory.h
+        model/Viewmanager/ViewManager.cpp model/Viewmanager/ViewManager.h  model/Game/ViewControllerFactory/ViewControllerFactory.cpp model/Game/ViewControllerFactory/ViewControllerFactory.h model/Viewmanager/ViewManager.cpp model/Viewmanager/ViewManager.h utils/EventToValueMapper/EventToValueMapper.cpp utils/EventToValueMapper/EventToValueMapper.h)
 target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
+

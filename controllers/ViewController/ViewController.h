@@ -2,18 +2,25 @@
 // Created by trocchi on 3/31/19.
 //
 #include "../../views/View/View.h"
+#include "../Controller/Controller.h"
+#include <list>
 #ifndef TALLER_MARVEL_CAPCOM_VIEWCONTROLLER_H
 #define TALLER_MARVEL_CAPCOM_VIEWCONTROLLER_H
 
 
+
 class ViewController {
 public:
-    ViewController(char* viewId, SDL_Renderer* renderer);
+    ViewController(SDL_Renderer* renderer_);
     ~ViewController();
     void updateView();
     void handleEvent();
+    void addController(Controller* controller);
+
 private:
     View* view;
+    SDL_Renderer* renderer;
+    std::list<Controller*> controllers;
 };
 
 

@@ -3,10 +3,6 @@
 //
 
 #include "Game.h"
-#include "../../Clases/TextureManager.h"
-#include "../../Clases/GameObject.h"
-#include "../../Clases/Character.h"
-#include "../../Clases/Background.h"
 
 
 int moveSpeed = 20;
@@ -22,11 +18,13 @@ Game::~Game() = default;
 
 void Game::init(const char *title, int posX, int posY, int width, int height) {
 
+
+
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0){
 
         window = SDL_CreateWindow(title, posX, posY, width, height, SDL_WINDOW_SHOWN);
         if (!window) {
-            std::cout << "Fallo la creacion de la ventana" << std::endl;
+            std::cout << "Fallo la creación de la ventana" << std::endl;
         } else {
                 renderer = SDL_CreateRenderer(window, -1, 0);
                 if (!renderer){
@@ -35,7 +33,10 @@ void Game::init(const char *title, int posX, int posY, int width, int height) {
             }
         isRunning = true;
 
-        this -> viewController = new ViewController("stage", renderer); // Aca pegarle a la factory
+        factory= new ViewControllerFactory(renderer);
+        // Mando viewFight pq es la unica que tenemos. Deberiamos mandar la primera, y luego, las view conocerse entre
+        // si para saber quien va luego o implementar el VIEW MANAGER
+       viewController = factory->getViewController_fight();
 
 
     } else{
