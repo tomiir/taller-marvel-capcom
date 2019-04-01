@@ -1,11 +1,13 @@
 //
 // Created by trocchi on 3/31/19.
 //
+
+#ifndef TALLER_MARVEL_CAPCOM_VIEWCONTROLLER_H
+#define TALLER_MARVEL_CAPCOM_VIEWCONTROLLER_H
+
 #include "../../views/View/View.h"
 #include "../Controller/Controller.h"
 #include <list>
-#ifndef TALLER_MARVEL_CAPCOM_VIEWCONTROLLER_H
-#define TALLER_MARVEL_CAPCOM_VIEWCONTROLLER_H
 
 
 

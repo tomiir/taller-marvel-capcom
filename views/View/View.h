@@ -1,12 +1,12 @@
 //
 // Created by trocchi on 3/31/19.
 //
-
+#ifndef TALLER_MARVEL_CAPCOM_VIEW_H
+#define TALLER_MARVEL_CAPCOM_VIEW_H
+#include <iostream>
 #include "../../model/GameObjects/GameObject/GameObject.h"
 #include <vector>
 #include "../../utils/EventToValueMapper/EventToValueMapper.h"
-#ifndef TALLER_MARVEL_CAPCOM_VIEW_H
-#define TALLER_MARVEL_CAPCOM_VIEW_H
 
 
 class View {
