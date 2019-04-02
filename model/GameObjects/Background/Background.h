@@ -1,17 +1,17 @@
-#ifndef TRABAJOPRACTICOTALLER_BACKGROUND_H
-#define TRABAJOPRACTICOTALLER_BACKGROUND_H
+#ifndef TALLER_MARVEL_CAPCOM_BACKGROUND_H
+#define TALLER_MARVEL_CAPCOM_BACKGROUND_H
+
+#include "../GameObject/GameObject.h"
+#include "../../../utils/TextureManager/TextureManager.h"
 
 
-#include "GameObject.h"
-
-
-class Background : public GameObject {
+class Background: public GameObject{
 
 public:
     Background(const char* imagePath, SDL_Renderer* rend, int initialX, int initialY, int width, int heigh, int increaseCamera);
     ~Background();
 
-    void moveCamera(int moveDirection);
+    void move(std::vector<int> &moveDirection);
     void render();
 
 
@@ -30,5 +30,5 @@ private:
 };
 
 
-#endif //TRABAJOPRACTICOTALLER_BACKGROUND_H
+#endif //TALLER_MARVEL_CAPCOM_BACKGROUND_H
 

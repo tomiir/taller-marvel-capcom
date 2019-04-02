@@ -1,8 +1,10 @@
 
-#ifndef TRABAJOPRACTICOTALLER_GAMEOBJECT_H
-#define TRABAJOPRACTICOTALLER_GAMEOBJECT_H
+#ifndef TALLER_MARVEL_CAPCOM_GAMEOBJECT_H
+#define TALLER_MARVEL_CAPCOM_GAMEOBJECT_H
 
-#include <SDL2/SDL.h>
+
+#include <vector>
+#include "../../../utils/TextureManager/TextureManager.h"
 
 class GameObject {
 
@@ -10,7 +12,7 @@ public:
         GameObject(const char* folderPath, SDL_Renderer* rend, int initialX, int initialY, int width, int heigh);
         ~GameObject();
 
-        void move(int increase);
+        virtual void move(std::vector<int> &dir);
         void render();
 
 protected:
@@ -27,4 +29,4 @@ protected:
 };
 
 
-#endif //TRABAJOPRACTICOTALLER_GAMEOBJECT_H
+#endif //TALLER_MARVEL_CAPCOM_GAMEOBJECT_H
