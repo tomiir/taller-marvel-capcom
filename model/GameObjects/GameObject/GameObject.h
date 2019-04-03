@@ -6,6 +6,8 @@
 #include <vector>
 #include "../../../utils/TextureManager/TextureManager.h"
 
+using namespace std;
+
 class GameObject {
 
 public:
@@ -13,14 +15,10 @@ public:
         ~GameObject();
 
         virtual void move(std::vector<int> &dir);
-        void render();
+        virtual void render();
+        virtual vector<int> getInfo();
 
 protected:
-
-        int posX;
-        int posY;
-        int width;
-        int heigh;
 
         SDL_Texture* objTexture;
         SDL_Renderer* renderer;

@@ -10,17 +10,22 @@
 
 class Controller{
 
-private:
+protected:
     GameObject * gameObject;
     EventToValueMapper* mapper;
+
+    int RIGHT = 1;
+    int LEFT = -1;
 
 
 public:
     Controller(GameObject* gameObject_);
     ~Controller();
     void render();
-    void handleEvent(SDL_Event event);
-};
+    virtual void handleEvent(SDL_Event event);
+    std::vector<int> getInfo();
+
+    };
 
 
 #endif //TALLER_MARVEL_CAPCOM__CONTROLLER_H

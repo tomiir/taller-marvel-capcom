@@ -11,13 +11,15 @@ Controller::Controller(GameObject *gameObject_) {
 
 }
 
-void Controller::handleEvent(SDL_Event event) {
-    std::vector<int> dir = {0,0};
-    dir = mapper->map(event, dir);
-    gameObject->move(dir);
-    // habría que hacer algo para que se actualice el modelo o en fn de como se actualice el mismo (el modelo)
-}
+Controller::~Controller() = default;
 
 void Controller::render(){//SDL_Renderer* renderer){
     gameObject->render();
 }
+
+std::vector<int> Controller::getInfo(){
+    std::vector<int> info = gameObject->getInfo();
+    return info;
+}
+
+void Controller::handleEvent(SDL_Event event) {}

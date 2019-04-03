@@ -10,6 +10,8 @@
 #include <vector>
 #include "../../GameObjects/GameObject/GameObject.h"
 
+using namespace std;
+
 class GameObjectControllerFactory {
 
 private:
@@ -20,7 +22,7 @@ public:
     GameObjectControllerFactory(SDL_Renderer *renderer);
     ~GameObjectControllerFactory();
 
-    std::vector<Controller*> getGameObjectControllers_fight(); // los controllers de la view fight
+    vector<Controller*> getGameObjectControllers_fight(); // los controllers de la view fight
 
 
 };

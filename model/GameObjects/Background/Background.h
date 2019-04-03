@@ -4,27 +4,27 @@
 #include "../GameObject/GameObject.h"
 #include "../../../utils/TextureManager/TextureManager.h"
 
+using namespace std;
 
 class Background: public GameObject{
 
 public:
-    Background(const char* imagePath, SDL_Renderer* rend, int initialX, int initialY, int width, int heigh, int increaseCamera);
+    Background(const char* imagePath, SDL_Renderer* rend,  int width_image, int height_image, int screenWidth, int screenHeight);
     ~Background();
 
-    void move(std::vector<int> &moveDirection);
+    void move(vector<int> &moveDirection);
     void render();
+    vector<int> getCameraInfo();
+    vector<int> getInfo();
 
 
 private:
 
-    int increaseCamera;
+    int CAMERA_WIDTH, CAMERA_HEIGH, CAMERA_X_POS, CAMERA_Y_POS;
 
-    int CAMERA_WIDTH = 800;
-    int CAMERA_HEIGH = 600;
-    int CAMERA_X_POS = 0;
-    int CAMERA_Y_POS = 0;
+    int imgWight, imgHeight;
 
-    SDL_Rect camera = SDL_Rect{CAMERA_X_POS, CAMERA_Y_POS, CAMERA_HEIGH, CAMERA_WIDTH};
+    SDL_Rect camera;
 
 
 };

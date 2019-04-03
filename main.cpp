@@ -4,8 +4,8 @@
 #include "model/Game/Game.h"
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 600;
+const int SCREEN_WIDTH = 1200;
+const int SCREEN_HEIGHT = 700;
 const char* title = "Marvel vs Capcom";
 
 int main(int argc, const char* argv[]){

@@ -11,8 +11,7 @@ using namespace std;
 
 View::View(SDL_Renderer* renderer) {
     this->renderer = renderer;
-
-};
+}
 
 View::~View() = default;
 

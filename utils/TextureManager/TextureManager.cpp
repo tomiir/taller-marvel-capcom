@@ -8,11 +8,6 @@ SDL_Texture* TextureManager::LoadTexture(const char *path, SDL_Renderer *rendere
 {
     SDL_Surface* tempSurface = IMG_Load(path);
 
-    std::cout<< path;
-    std::cout<<'\n';
-
-
-
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, tempSurface);
     if(!texture)
     {
@@ -20,8 +15,6 @@ SDL_Texture* TextureManager::LoadTexture(const char *path, SDL_Renderer *rendere
         return nullptr;
     }
     SDL_FreeSurface(tempSurface);
-
-    //std::cout<<'llego hasta aca \n';
 
     return texture;
 

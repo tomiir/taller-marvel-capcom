@@ -3,6 +3,7 @@
 //
 
 #include "GameObjectControllerFactory.h"
+#include "../../../controllers/Controller/ControllerBackground/ControllerBackground.h"
 
 
 GameObjectControllerFactory::GameObjectControllerFactory(SDL_Renderer *renderer){
@@ -11,13 +12,18 @@ GameObjectControllerFactory::GameObjectControllerFactory(SDL_Renderer *renderer)
 
 std::vector<Controller*> GameObjectControllerFactory::getGameObjectControllers_fight(){
 
-    std::vector<GameObject*> gameObjects = factory->getGameObjects_fight();
-    std::vector <Controller*> controllers;
-
-
+    vector<GameObject*> gameObjects = factory->getGameObjects_fight();
+    vector <Controller*> controllers;
     
-    // ¿habría que hacer controllers distintos para background y character? 
-    controllers = {new Controller(gameObjects[0]), new Controller(gameObjects[1]) , new Controller(gameObjects[2]),new Controller(gameObjects[3])};  // character
+    // ¿habría que hacer controllers distintos para background y character?
+
+    ControllerCharacter* controllerCharacter = new ControllerCharacter(gameObjects[3], 1200, 700, 30); //ver tema pasar info size ventana.
+    ControllerBackground* controllerGalaxia = new ControllerBackground(gameObjects[0], controllerCharacter, 8);
+    ControllerBackground* controllerLuna = new ControllerBackground(gameObjects[1], controllerCharacter, 19);
+    ControllerBackground* controllerPiso = new ControllerBackground(gameObjects[2], controllerCharacter, 30);
+
+
+    controllers = { controllerGalaxia, controllerLuna, controllerPiso, controllerCharacter};
 
     return controllers;
 }

@@ -8,19 +8,22 @@ using namespace std;
 
 Character::Character(const char* imagePath, SDL_Renderer* rend, int initialX, int initialY, int width, int heigh) :
            GameObject(imagePath, rend, initialX, initialY, width, heigh) {
-    this->jumpHeight=-20;
-    this->speed=20;
 }
 
 Character::~Character() = default;
 
-void Character::move(std::vector<int>  &increase)
-{
-    cout << increase[0] << increase[1]<< endl;
-    cout << increase[0]*this->speed << increase[1]*this->jumpHeight<< endl;
-    int x = increase[0];
-    int y = increase[1];
+void Character::move(std::vector<int>  &increase){
+    objRect.x += increase[0];
+    objRect.y += increase[1];
+}
 
-    objRect.x += x*this->speed;
-    objRect.y += y*this->jumpHeight;
+void Character::render() {
+    SDL_RenderCopy(renderer, objTexture, nullptr, &objRect);
+
+}
+
+vector<int> Character::getInfo() {
+
+    std::vector<int> info = {objRect.x, objRect.y, objRect.w, objRect.h};
+    return info;
 }

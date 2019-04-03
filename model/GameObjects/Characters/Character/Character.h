@@ -13,8 +13,8 @@ public:
     ~Character();
 
     void move(std::vector<int> &dir);
-    int speed;
-    int jumpHeight;
+    vector<int> getInfo();
+    void render();
 };
 
 
