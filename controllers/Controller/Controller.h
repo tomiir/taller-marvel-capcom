@@ -8,6 +8,8 @@
 #include "../../model/GameObjects/GameObject/GameObject.h"
 #include "../../utils/EventToValueMapper/EventToValueMapper.h"
 
+using namespace std;
+
 class Controller{
 
 protected:
@@ -16,6 +18,14 @@ protected:
 
     int RIGHT = 1;
     int LEFT = -1;
+    int UP = -1;
+    int DOWN = 1;
+    int RIGHT_DIAGONAL = 1;
+    int LEFT_DIAGONAL = -1;
+
+    int distanceBoundaryHorizontal = 25;
+    int distanceBoundaryVertical = 75;
+    int jumpSpeed = 10;
 
 
 public:
@@ -23,7 +33,7 @@ public:
     ~Controller();
     void render();
     virtual void handleEvent(SDL_Event event);
-    std::vector<int> getInfo();
+    vector<int> getInfo();
 
     };
 

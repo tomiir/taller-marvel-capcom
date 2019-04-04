@@ -11,11 +11,11 @@ Background::Background(const char* imagePath, SDL_Renderer* rend, int widthImage
                 imgWight = widthImage;
 
                 CAMERA_WIDTH = screenWidth;
-                CAMERA_HEIGH = screenHeight;
+                CAMERA_HEIGHT = screenHeight;
                 CAMERA_X_POS = (widthImage/2) - screenWidth/2;
                 CAMERA_Y_POS = heightImage - screenHeight;
 
-                camera = SDL_Rect{CAMERA_X_POS, CAMERA_Y_POS, CAMERA_WIDTH, CAMERA_HEIGH};
+                camera = SDL_Rect{CAMERA_X_POS, CAMERA_Y_POS, CAMERA_WIDTH, CAMERA_HEIGHT};
             }
 
 Background::~Background() = default;

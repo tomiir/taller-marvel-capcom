@@ -4,10 +4,6 @@
 
 #include "GameObjectFactory.h"
 
-
-
-
-
 GameObjectFactory::GameObjectFactory(SDL_Renderer *renderer_) {
 
     renderer = renderer_;
@@ -17,11 +13,17 @@ GameObjectFactory::GameObjectFactory(SDL_Renderer *renderer_) {
 GameObjectFactory::~GameObjectFactory() = default;
 
 
-std::vector<GameObject*> GameObjectFactory:: getGameObjects_fight() {
-    std::vector<GameObject*>  gameObjects;
+vector<GameObject*> GameObjectFactory:: getGameObjects_fight() {
 
-    Character* character = new Character("/home/fer/taller-marvel-capcom/Images/capComSprites/capCom_walk_1.png", renderer, 400, 400, 200, 300);
-    if (!character) {
+    vector<GameObject*>  gameObjects;
+
+    Character* character2 = new Character("/home/fer/taller-marvel-capcom/Images/capComSprites/capCom_walk_2.png", renderer, 800, 400, 200, 300);
+    if (!character2) {
+        std::cout << "Fallo la creacion del render" << std::endl;
+    }
+
+    Character* character1 = new Character("/home/fer/taller-marvel-capcom/Images/capComSprites/capCom_walk_1.png", renderer, 200, 400, 200, 300);
+    if (!character1) {
         std::cout << "Fallo la creacion del render" << std::endl;
     }
 
@@ -40,7 +42,7 @@ std::vector<GameObject*> GameObjectFactory:: getGameObjects_fight() {
         //lanzar excepcion
     }
 
-    gameObjects = {B1, B2, B3, character};
+    gameObjects = {B1, B2, B3, character1, character2};
 
 
     return gameObjects;

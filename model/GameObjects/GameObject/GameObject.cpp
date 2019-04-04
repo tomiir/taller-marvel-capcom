@@ -6,19 +6,17 @@
 
 
 
-GameObject::GameObject(const char* folderPath, SDL_Renderer *rend, int initialX, int initialY, int width, int heigh) {
+GameObject::GameObject(const char* folderPath, SDL_Renderer *rend, int initialX, int initialY, int width, int height) {
 
     renderer = rend;
-    objRect = SDL_Rect{initialX, initialY, width, heigh};
+    objRect = SDL_Rect{initialX, initialY, width, height};
     objTexture = TextureManager::LoadTexture(folderPath, renderer);
 
 }
 
 GameObject::~GameObject() = default;
 
-void GameObject::move(std::vector<int> &increase){}
-
-
+void GameObject::move(vector<int> &increase){}
 
 vector<int> GameObject::getInfo() {}
 

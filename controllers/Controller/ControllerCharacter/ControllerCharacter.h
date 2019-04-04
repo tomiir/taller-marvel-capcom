@@ -16,12 +16,14 @@ public:
     ControllerCharacter(GameObject *gameObject, int screenWidth_, int screenHeight_, int speedCharacter_);
     ~ControllerCharacter();
     void handleEvent(SDL_Event event);
+    bool isJumping();
+    bool isJumpingRight();
+    bool isJumpingLeft();
 
 private:
-    int screenWidth;
-    int screenHeight;
-    int distanceBoundary = 20;
-    int speedCharacter;
+    int screenWidth, screenHeight, speedCharacter;
+    int jumpDistance = 10;
+    bool jump, inAir, jumpRight, jumpLeft;
 
 };
 

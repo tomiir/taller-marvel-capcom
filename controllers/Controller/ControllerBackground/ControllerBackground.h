@@ -15,7 +15,7 @@ using namespace std;
 class ControllerBackground : public Controller {
 
     public:
-            ControllerBackground(GameObject* background, ControllerCharacter* controllerCharacter, int speedCam_);
+            ControllerBackground(GameObject* background, ControllerCharacter* controllerCharacter, int speedCam_, double speedPercentageCam_);
             ~ControllerBackground();
             void render();
             void handleEvent(SDL_Event event);
@@ -23,6 +23,7 @@ class ControllerBackground : public Controller {
     private:
             ControllerCharacter* controllerCharacter;
             int speedCam;
+            double speedPercetageCam;
 };
 
 

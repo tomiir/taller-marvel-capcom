@@ -5,24 +5,21 @@
 #include "Game.h"
 
 
-int moveSpeed = 20;
+Game::Game(int screenWidth_, int screenHeight_){
 
-Character* character;
-Background* sky;
-Background* street;
-Background* buildings;
-
-Game::Game() = default;
+    screenHeight = screenHeight_;
+    screenWidth = screenWidth_;
+}
 
 Game::~Game() = default;
 
-void Game::init(const char *title, int posX, int posY, int width, int height) {
+void Game::init(const char *title, int posX, int posY) {
 
 
 
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0){
 
-        window = SDL_CreateWindow(title, posX, posY, width, height, SDL_WINDOW_SHOWN);
+        window = SDL_CreateWindow(title, posX, posY, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
         if (!window) {
             std::cout << "Fallo la creación de la ventana" << std::endl;
         } else {
@@ -33,9 +30,11 @@ void Game::init(const char *title, int posX, int posY, int width, int height) {
             }
         isRunning = true;
 
-        factory= new ViewControllerFactory(renderer);
+        factory= new ViewControllerFactory(renderer, screenWidth, screenHeight);
+
         // Mando viewFight pq es la unica que tenemos. Deberiamos mandar la primera, y luego, las view conocerse entre
         // si para saber quien va luego o implementar el VIEW MANAGER
+
        viewController = factory->getViewController_fight();
 
 

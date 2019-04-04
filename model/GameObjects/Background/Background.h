@@ -20,7 +20,7 @@ public:
 
 private:
 
-    int CAMERA_WIDTH, CAMERA_HEIGH, CAMERA_X_POS, CAMERA_Y_POS;
+    int CAMERA_WIDTH, CAMERA_HEIGHT, CAMERA_X_POS, CAMERA_Y_POS;
 
     int imgWight, imgHeight;
 
