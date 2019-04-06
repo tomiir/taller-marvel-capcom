@@ -7,6 +7,9 @@
 
 
 #include "../Controller.h"
+#include "../../../utils/Vector2D/DirectionVector.h"
+
+
 using namespace std;
 
 class ControllerCharacter : public Controller{

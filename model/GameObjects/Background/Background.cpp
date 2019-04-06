@@ -20,12 +20,10 @@ Background::Background(const char* imagePath, SDL_Renderer* rend, int widthImage
 
 Background::~Background() = default;
 
-void Background::move(std::vector<int> &moveDirection) {
+void Background::move(DirectionVector* moveDirection) {
 
-    int moveDirectionX = moveDirection[0];
-    int moveDirectionY = moveDirection[1];
-    camera.x += moveDirectionX;
-    camera.y += moveDirectionY;
+    camera.x += (int) moveDirection->x;
+    camera.y += (int) moveDirection->y;
     render();
 }
 
@@ -35,6 +33,7 @@ void Background::render(){
 }
 
 vector<int> Background::getCameraInfo() {
+
     vector<int> cameraInfo = {camera.x, camera.y, camera.w, camera.h};
     return cameraInfo;
 }

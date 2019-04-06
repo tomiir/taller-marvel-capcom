@@ -7,6 +7,9 @@
 
 #include <vector>
 #include <SDL_events.h>
+#include "../Vector2D/DirectionVector.h"
+
+
 
 class EventToValueMapper {
 
@@ -14,7 +17,7 @@ class EventToValueMapper {
 public:
     EventToValueMapper();
     ~EventToValueMapper();
-    std::vector<int> map(SDL_Event event,  std::vector<int> dir );
+    DirectionVector* map(SDL_Event event);
 
 };
 

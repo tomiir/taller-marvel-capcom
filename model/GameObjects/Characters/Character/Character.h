@@ -13,7 +13,7 @@ public:
     Character(const char* imagePath, SDL_Renderer* rend, int initialX, int initialY, int width, int height);
     ~Character();
 
-    void move(vector<int> &dir);
+    void move(DirectionVector* direction);
     vector<int> getInfo();
     void render();
 };

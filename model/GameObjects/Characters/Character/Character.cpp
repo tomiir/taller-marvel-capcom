@@ -6,21 +6,19 @@
 
 
 Character::Character(const char* imagePath, SDL_Renderer* rend, int initialX, int initialY, int width, int height) :
-           GameObject(imagePath, rend, initialX, initialY, width, height) {
-}
+           GameObject(imagePath, rend, initialX, initialY, width, height) {}
 
 Character::~Character() = default;
 
-void Character::move(vector<int>  &increase){
+void Character::move(DirectionVector* direction){
 
-    objRect.x += increase[0];
-    objRect.y += increase[1];
+    objRect.x += (int) direction->x;
+    objRect.y += (int) direction->y;
 }
 
 void Character::render() {
 
     SDL_RenderCopy(renderer, objTexture, nullptr, &objRect);
-
 }
 
 vector<int> Character::getInfo() {

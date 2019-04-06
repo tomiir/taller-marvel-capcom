@@ -43,6 +43,6 @@ add_executable(
         controllers/Controller/ControllerCharacter/ControllerCharacter.h
         controllers/Controller/ControllerBackground/ControllerBackground.cpp
         controllers/Controller/ControllerBackground/ControllerBackground.h
-)
+        utils/Vector2D/DirectionVector.cpp utils/Vector2D/DirectionVector.h)
 target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 

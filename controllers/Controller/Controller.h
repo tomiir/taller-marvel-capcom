@@ -16,12 +16,13 @@ protected:
     GameObject * gameObject;
     EventToValueMapper* mapper;
 
-    int RIGHT = 1;
-    int LEFT = -1;
-    int UP = -1;
-    int DOWN = 1;
-    int RIGHT_DIAGONAL = 1;
-    int LEFT_DIAGONAL = -1;
+    DirectionVector* RIGHT = new DirectionVector(1, 0);
+    DirectionVector* LEFT = new DirectionVector(-1, 0);
+    DirectionVector* UP = new DirectionVector(0, -1);
+    DirectionVector* DOWN = new DirectionVector(0, 1);
+
+    DirectionVector* DIAGONAL_UP_RIGHT = new DirectionVector(1, -1);
+    DirectionVector* DIAGONAL_UP_LEFT = new DirectionVector(-1, -1);
 
     int distanceBoundaryHorizontal = 25;
     int distanceBoundaryVertical = 75;
@@ -31,6 +32,7 @@ protected:
 public:
     Controller(GameObject* gameObject_);
     ~Controller();
+
     void render();
     virtual void handleEvent(SDL_Event event);
     vector<int> getInfo();
