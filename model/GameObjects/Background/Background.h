@@ -12,10 +12,10 @@ public:
     Background(const char* imagePath, SDL_Renderer* rend,  int width_image, int height_image, int screenWidth, int screenHeight);
     ~Background();
 
-    void move(vector<int> &moveDirection);
-    void render();
+    void move(DirectionVector* moveDirection) override;
+    void render() override;
     vector<int> getCameraInfo();
-    vector<int> getInfo();
+    vector<int> getInfo() override;
 
 
 private:

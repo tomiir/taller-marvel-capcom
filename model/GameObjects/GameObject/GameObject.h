@@ -5,6 +5,7 @@
 
 #include <vector>
 #include "../../../utils/TextureManager/TextureManager.h"
+#include "../../../utils/Vector2D/DirectionVector.h"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ public:
         GameObject(const char* folderPath, SDL_Renderer* rend, int initialX, int initialY, int width, int height);
         ~GameObject();
 
-        virtual void move(vector<int> &dir);
+        virtual void move(DirectionVector* direction);
         virtual void render();
         virtual vector<int> getInfo();
 

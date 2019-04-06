@@ -10,6 +10,7 @@
 #include "../../../model/GameObjects/Background/Background.h"
 #include "../ControllerCharacter/ControllerCharacter.h"
 
+
 using namespace std;
 
 class ControllerBackground : public Controller {
@@ -17,12 +18,11 @@ class ControllerBackground : public Controller {
     public:
             ControllerBackground(GameObject* background, ControllerCharacter* controllerCharacter, int speedCam_, double speedPercentageCam_);
             ~ControllerBackground();
-            void render();
-            void handleEvent(SDL_Event event);
+            void handleEvent(SDL_Event event) override;
 
     private:
             ControllerCharacter* controllerCharacter;
-            int speedCam;
+            double speedCam;
             double speedPercetageCam;
 };
 

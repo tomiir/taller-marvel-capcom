@@ -5,7 +5,6 @@
 #include "GameObject.h"
 
 
-
 GameObject::GameObject(const char* folderPath, SDL_Renderer *rend, int initialX, int initialY, int width, int height) {
 
     renderer = rend;
@@ -16,7 +15,7 @@ GameObject::GameObject(const char* folderPath, SDL_Renderer *rend, int initialX,
 
 GameObject::~GameObject() = default;
 
-void GameObject::move(vector<int> &increase){}
+void GameObject::move(DirectionVector* direction){}
 
 vector<int> GameObject::getInfo() {}
 

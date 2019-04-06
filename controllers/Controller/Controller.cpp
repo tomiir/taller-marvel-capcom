@@ -15,7 +15,7 @@ Controller::Controller(GameObject *gameObject_) {
 
 Controller::~Controller() = default;
 
-void Controller::render(){//SDL_Renderer* renderer){
+void Controller::render(){
 
     gameObject->render();
 }
