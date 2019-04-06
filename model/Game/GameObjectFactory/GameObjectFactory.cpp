@@ -4,41 +4,45 @@
 
 #include "GameObjectFactory.h"
 
-
-
-//GameObjectFactory_fight::~GameObjectFactory_fight() = default;
-
-
 GameObjectFactory::GameObjectFactory(SDL_Renderer *renderer_) {
 
     renderer = renderer_;
 
 }
 
-std::vector<GameObject*> GameObjectFactory:: getGameObjects_fight() {
-    std::vector<GameObject*>  gameObjects;
+GameObjectFactory::~GameObjectFactory() = default;
 
-    Character* character = new Character("/home/magali/Documents/taller/taller-marvel-capcom/Images/capComSprites/capCom_walk_1.png", renderer, 400, 300, 50, 120);
-    if (!character) {
+
+vector<GameObject*> GameObjectFactory:: getGameObjects_fight() {
+
+    vector<GameObject*>  gameObjects;
+
+    Character* character2 = new Character("/home/fer/taller-marvel-capcom/Images/capComSprites/capCom_walk_2.png", renderer, 800, 400, 200, 300);
+    if (!character2) {
         std::cout << "Fallo la creacion del render" << std::endl;
     }
 
-    Background* sky = new Background("/home/magali/Documents/taller/taller-marvel-capcom/Images/Backgrounds/Sky.png", renderer, 0, 0, 800, 600, 10);
-    if (!sky) {
+    Character* character1 = new Character("/home/fer/taller-marvel-capcom/Images/capComSprites/capCom_walk_1.png", renderer, 200, 400, 200, 300);
+    if (!character1) {
+        std::cout << "Fallo la creacion del render" << std::endl;
+    }
+
+    Background* B1 = new Background("/home/fer/taller-marvel-capcom/Images/Backgrounds/Background1.png", renderer, 1500, 900, 1200, 700);
+    if (!B1) {
         //lanzar excepcion
     }
 
-    Background* buildings = new Background("/home/magali/Documents/taller/taller-marvel-capcom/Images/Backgrounds/Buildings.png", renderer, 0, 0, 800, 600, 20);
-    if (!buildings) {
+    Background* B2 = new Background("/home/fer/taller-marvel-capcom/Images/Backgrounds/Background2.png", renderer, 1900, 900, 1200, 700);
+    if (!B2) {
         //lanzar excepcion
     }
 
-    Background* street = new Background("/home/magali/Documents/taller/taller-marvel-capcom/Images/Backgrounds/Street.png", renderer, 0, 0, 800, 600, 25);
-    if (!street) {
+    Background* B3 = new Background("/home/fer/taller-marvel-capcom/Images/Backgrounds/Background3.png", renderer, 2300, 900, 1200, 700);
+    if (!B3) {
         //lanzar excepcion
     }
 
-    gameObjects = {sky, buildings, street, character};
+    gameObjects = {B1, B2, B3, character1, character2};
 
 
     return gameObjects;

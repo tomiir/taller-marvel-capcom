@@ -12,6 +12,7 @@
 
 
 class ViewController {
+
 public:
     ViewController(SDL_Renderer* renderer_);
     ~ViewController();

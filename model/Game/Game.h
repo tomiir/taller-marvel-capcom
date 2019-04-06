@@ -10,10 +10,10 @@
 class Game {
 
 public:
-    Game();
+    Game(int screenWidth_, int screenHeight_);
     ~Game();
 
-    void init(const char* title, int posX, int posY, int width, int height);
+    void init(const char* title, int posX, int posY);
     void tick();
     void update();
     void clean();
@@ -25,7 +25,7 @@ private:
     SDL_Renderer* renderer;
     ViewController* viewController;
     ViewControllerFactory * factory; //Lo agrego para crear la primera view
-
+    int screenWidth, screenHeight;
 
 };
 

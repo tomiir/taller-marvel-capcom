@@ -3,21 +3,52 @@
 //
 
 #include "GameObjectControllerFactory.h"
+#include "../../../controllers/Controller/ControllerBackground/ControllerBackground.h"
 
 
-GameObjectControllerFactory::GameObjectControllerFactory(SDL_Renderer *renderer){
+GameObjectControllerFactory::GameObjectControllerFactory(SDL_Renderer *renderer, int screenWidth_, int screenHeight_){
+
     factory = new GameObjectFactory(renderer);
+    screenWidth = screenWidth_;
+    screenHeight = screenHeight_;
+}
+
+GameObjectControllerFactory::~GameObjectControllerFactory() = default;
+
+double GameObjectControllerFactory::cameraSpeedPercentage(int widthMax, int widthImg) {
+    double a = widthImg - screenWidth;
+    double b = widthMax - screenWidth;
+    return a/b;
 }
 
 std::vector<Controller*> GameObjectControllerFactory::getGameObjectControllers_fight(){
 
-    std::vector<GameObject*> gameObjects = factory->getGameObjects_fight();
-    std::vector <Controller*> controllers;
+    vector<GameObject*> gameObjects = factory->getGameObjects_fight();
+    vector <Controller*> controllers;
+
+    int speedCharacter = 30;
+    int widthMax = 2300;
+
+    double speedPercentageB1 = cameraSpeedPercentage(widthMax, 1500);
+    double speedPercentageB2 = cameraSpeedPercentage(widthMax, 1900);
+    double speedPercentageB3 = cameraSpeedPercentage(widthMax, 2300);
+
+    int cameraSpeedB1 = speedCharacter * speedPercentageB1;
+    int cameraSpeedB2 = speedCharacter * speedPercentageB2;
+    int cameraSpeedB3 = speedCharacter * speedPercentageB3;
+
+    // ¿habría que hacer controllers distintos para background y character?
+
+    ControllerCharacter* controllerCharacter2 = new ControllerCharacter(gameObjects[4], 1200, 700, 30);
+    ControllerCharacter* controllerCharacter1 = new ControllerCharacter(gameObjects[3], 1200, 700, 30); //ver tema pasar info size ventana.
+
+    ControllerBackground* controllerB1 = new ControllerBackground(gameObjects[0], controllerCharacter1, cameraSpeedB1, speedPercentageB1); //porque solo le paso un unico character?
+    ControllerBackground* controllerB2 = new ControllerBackground(gameObjects[1], controllerCharacter1, cameraSpeedB2, speedPercentageB2);
+    ControllerBackground* controllerB3 = new ControllerBackground(gameObjects[2], controllerCharacter1, cameraSpeedB3, speedPercentageB3);
 
 
-    
-    // ¿habría que hacer controllers distintos para background y character? 
-    controllers = {new Controller(gameObjects[0]), new Controller(gameObjects[1]) , new Controller(gameObjects[2]),new Controller(gameObjects[3])};  // character
+    controllers = { controllerB1, controllerB2, controllerB3, controllerCharacter1, controllerCharacter2 };
 
     return controllers;
 }
+

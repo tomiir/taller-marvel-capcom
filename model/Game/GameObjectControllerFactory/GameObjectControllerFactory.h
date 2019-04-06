@@ -10,18 +10,20 @@
 #include <vector>
 #include "../../GameObjects/GameObject/GameObject.h"
 
+using namespace std;
+
 class GameObjectControllerFactory {
+
+public:
+    GameObjectControllerFactory(SDL_Renderer *renderer, int screenWidth_, int screenHeight_);
+    ~GameObjectControllerFactory();
+
+    vector<Controller*> getGameObjectControllers_fight(); // los controllers de la view fight
 
 private:
     GameObjectFactory* factory;
-
-
-public:
-    GameObjectControllerFactory(SDL_Renderer *renderer);
-    ~GameObjectControllerFactory();
-
-    std::vector<Controller*> getGameObjectControllers_fight(); // los controllers de la view fight
-
+    int screenWidth, screenHeight;
+    double cameraSpeedPercentage(int widthMax, int widthImg);
 
 };
 

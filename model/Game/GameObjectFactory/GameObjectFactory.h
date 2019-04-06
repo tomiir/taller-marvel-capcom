@@ -11,17 +11,20 @@
 
 #include <iostream>
 
+using namespace std;
+
 
 /* Esta se encarga de crear todos los gameObject del juego. Devuelve una lista de gameObjects */
 
 class GameObjectFactory {
+
     SDL_Renderer* renderer;
 
 public:
     GameObjectFactory(SDL_Renderer *renderer_);
     ~GameObjectFactory();
 
-    std::vector<GameObject*>  getGameObjects_fight();
+    vector<GameObject*>  getGameObjects_fight();
 
 
 };
