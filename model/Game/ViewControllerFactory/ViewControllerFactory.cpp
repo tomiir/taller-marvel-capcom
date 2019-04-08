@@ -24,7 +24,7 @@ ViewController* ViewControllerFactory::getViewController_fight(){
 
     vector<Controller*>  controllers = factory->getGameObjectControllers_fight();
 
-    for (int i = 0; i < 5; i++){ //Este for tiene que agarrar automaticamente la cantidad de controllers que le pasen. no tiene que estar hardcdeado ese 5.
+    for (int i = 0; i < controllers.size(); i++){ //Este for tiene que agarrar automaticamente la cantidad de controllers que le pasen. no tiene que estar hardcdeado ese 5.
 
         viewControllerFight->addController(controllers[i]);
     }

@@ -26,7 +26,7 @@ std::vector<Controller*> GameObjectControllerFactory::getGameObjectControllers_f
     vector<GameObject*> gameObjects = factory->getGameObjects_fight();
     vector <Controller*> controllers;
 
-    int speedCharacter = 30;
+    int speedCharacter = 10;
     int widthMax = 2300;
 
     double speedPercentageB1 = cameraSpeedPercentage(widthMax, 1500);
@@ -39,15 +39,15 @@ std::vector<Controller*> GameObjectControllerFactory::getGameObjectControllers_f
 
     // ¿habría que hacer controllers distintos para background y character?
 
-    ControllerCharacter* controllerCharacter2 = new ControllerCharacter(gameObjects[4], 1200, 700, 30);
-    ControllerCharacter* controllerCharacter1 = new ControllerCharacter(gameObjects[3], 1200, 700, 30); //ver tema pasar info size ventana.
+    //ControllerCharacter* controllerCharacter2 = new ControllerCharacter(gameObjects[4], 1200, 700, 30);
+    ControllerCharacter* controllerCharacter1 = new ControllerCharacter(gameObjects[3], 1200, 700, speedCharacter); //ver tema pasar info size ventana.
 
     ControllerBackground* controllerB1 = new ControllerBackground(gameObjects[0], controllerCharacter1, cameraSpeedB1, speedPercentageB1); //porque solo le paso un unico character?
     ControllerBackground* controllerB2 = new ControllerBackground(gameObjects[1], controllerCharacter1, cameraSpeedB2, speedPercentageB2);
     ControllerBackground* controllerB3 = new ControllerBackground(gameObjects[2], controllerCharacter1, cameraSpeedB3, speedPercentageB3);
 
 
-    controllers = { controllerB1, controllerB2, controllerB3, controllerCharacter1, controllerCharacter2 };
+    controllers = { controllerB1, controllerB2, controllerB3, controllerCharacter1};
 
     return controllers;
 }

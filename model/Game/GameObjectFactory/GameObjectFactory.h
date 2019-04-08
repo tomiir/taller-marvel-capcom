@@ -21,6 +21,7 @@ class GameObjectFactory {
     SDL_Renderer* renderer;
 
 public:
+
     GameObjectFactory(SDL_Renderer *renderer_);
     ~GameObjectFactory();
 
