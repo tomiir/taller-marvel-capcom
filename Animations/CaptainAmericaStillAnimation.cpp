@@ -6,6 +6,7 @@
 void CaptainAmericaStillAnimation::init() {
 
     startTime = SDL_GetTicks();
+
     animationRate = 5;
     animationLength = 5;
 

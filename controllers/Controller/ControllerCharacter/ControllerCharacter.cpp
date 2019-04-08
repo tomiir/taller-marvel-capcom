@@ -4,6 +4,9 @@
 
 #include "ControllerCharacter.h"
 #include "../../../model/GameObjects/Characters/Character/Character.h"
+#include <chrono>
+#include <thread>
+
 
 
 ControllerCharacter::ControllerCharacter(GameObject* gameObject, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_,  int speedCharacter_) : Controller(gameObject, mapper_){
@@ -20,11 +23,10 @@ ControllerCharacter::~ControllerCharacter() = default;
 
 void ControllerCharacter::handleEvent(SDL_Event event) {
 
-
     DirectionVector* direction = mapper->map(event);
     vector<int> info = gameObject->getInfo();
 
-    //if(direction->isEqual(STILL)) state = "still";
+    if(event.key.state == SDL_RELEASED) state = "still";
 
     bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal;
     bool characterIsntInLeftBoundary = info[0] >= distanceBoundaryHorizontal;

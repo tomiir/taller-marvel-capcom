@@ -11,7 +11,7 @@ SpriteManager::SpriteManager() {}
 void SpriteManager::setState(string state_) {
 
     if(stateChanges(state_)) {
-        actualAnimation->resetIndex();
+        //actualAnimation->resetIndex();
         state = state_;
         itr = animationMap.find(state);
         actualAnimation = itr->second;

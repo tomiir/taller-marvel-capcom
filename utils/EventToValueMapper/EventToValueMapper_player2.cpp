@@ -19,7 +19,6 @@ DirectionVector *EventToValueMapper_player2::map(SDL_Event event){
 
             case SDLK_d:
                 direction->add(1, 0);
-                printf("presionó la d");
                 break;
             case SDLK_a:
                 direction->add(-1, 0);

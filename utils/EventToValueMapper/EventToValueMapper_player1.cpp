@@ -9,6 +9,9 @@ DirectionVector *EventToValueMapper_player1::map(SDL_Event event) {
 
     const Uint8* keyboardStateArray = SDL_GetKeyboardState(nullptr);
 
+    SDL_KeyboardEvent key = SDL_KeyboardEvent();
+    key.type = event.type;
+
     DirectionVector* direction = new DirectionVector(0,0);
 
     if( event.type == SDL_KEYDOWN) {
