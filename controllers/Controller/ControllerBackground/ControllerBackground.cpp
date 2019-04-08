@@ -1,12 +1,13 @@
 #include "ControllerBackground.h"
 
 
-ControllerBackground::ControllerBackground(GameObject* background_, ControllerCharacter* controllerCharacter_, int speedCam_, double speedPercentageCam_) :
-                      Controller(background_) {
+ControllerBackground::ControllerBackground(GameObject* background_, EventToValueMapper* mapper_, ControllerCharacter* controllerCharacter_, int speedCam_, double speedPercentageCam_) :
+                      Controller(background_, mapper_) {
 
     controllerCharacter = controllerCharacter_;
     speedCam = speedCam_;
     speedPercetageCam = speedPercentageCam_;
+    mapper = mapper_;
 }
 
 ControllerBackground::~ControllerBackground() = default;

@@ -9,6 +9,9 @@
 #include "../../../controllers/Controller/Controller.h"
 #include <vector>
 #include "../../GameObjects/GameObject/GameObject.h"
+#include "../../../utils/EventToValueMapper/EventToValueMapper_player1.h"
+#include "../../../utils/EventToValueMapper/EventToValueMapper_player2.h"
+#include "../../../utils/EventToValueMapper/EventToValueMapper.h"
 
 using namespace std;
 

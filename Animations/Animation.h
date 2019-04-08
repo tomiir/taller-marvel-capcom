@@ -8,7 +8,7 @@
 
 #include <SDL_render.h>
 #include <vector>
-#include <tiff.h>
+//#include <tiff.h>
 
 using namespace std;
 

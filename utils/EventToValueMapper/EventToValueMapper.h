@@ -17,7 +17,7 @@ class EventToValueMapper {
 public:
     EventToValueMapper();
     ~EventToValueMapper();
-    DirectionVector* map(SDL_Event event);
+    virtual DirectionVector* map(SDL_Event event);
 
 };
 

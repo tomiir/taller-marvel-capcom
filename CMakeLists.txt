@@ -43,6 +43,14 @@ add_executable(
         controllers/Controller/ControllerCharacter/ControllerCharacter.h
         controllers/Controller/ControllerBackground/ControllerBackground.cpp
         controllers/Controller/ControllerBackground/ControllerBackground.h
-        utils/Vector2D/DirectionVector.cpp utils/Vector2D/DirectionVector.h Animations/Animation.cpp Animations/Animation.h utils/SpriteManagers/SpriteManager.h utils/SpriteManagers/SpriteManager.cpp utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.cpp utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.h Animations/CaptainAmericaStillAnimation.cpp Animations/CaptainAmericaStillAnimation.h Animations/CaptainAmericaWalkAnimation.cpp Animations/CaptainAmericaWalkAnimation.h)
+        utils/Vector2D/DirectionVector.cpp utils/Vector2D/DirectionVector.h
+        Animations/Animation.cpp Animations/Animation.h utils/SpriteManagers/SpriteManager.h
+        utils/SpriteManagers/SpriteManager.cpp utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.cpp
+        utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.h Animations/CaptainAmericaStillAnimation.cpp
+        Animations/CaptainAmericaStillAnimation.h Animations/CaptainAmericaWalkAnimation.cpp Animations/CaptainAmericaWalkAnimation.h
+        utils/EventToValueMapper/EventToValueMapper_player1.cpp
+        utils/EventToValueMapper/EventToValueMapper_player1.h
+        utils/EventToValueMapper/EventToValueMapper_player2.cpp
+        utils/EventToValueMapper/EventToValueMapper_player2.h)
 target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 

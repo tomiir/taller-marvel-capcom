@@ -8,7 +8,7 @@
 
 #include "../Controller.h"
 #include "../../../utils/Vector2D/DirectionVector.h"
-
+#include "../../../utils/EventToValueMapper/EventToValueMapper.h"
 
 using namespace std;
 
@@ -16,7 +16,7 @@ class ControllerCharacter : public Controller{
 
 
 public:
-    ControllerCharacter(GameObject *gameObject, int screenWidth_, int screenHeight_, int speedCharacter_);
+    ControllerCharacter(GameObject *gameObject, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_, int speedCharacter_);
     ~ControllerCharacter();
     void handleEvent(SDL_Event event);
     bool isJumping();
@@ -24,6 +24,8 @@ public:
     bool isJumpingLeft();
 
 private:
+
+    EventToValueMapper* mapper;
     int screenWidth, screenHeight, speedCharacter;
     int jumpDistance = 10;
     bool jump, inAir, jumpRight, jumpLeft;

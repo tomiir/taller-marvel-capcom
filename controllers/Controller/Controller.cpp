@@ -4,12 +4,13 @@
 
 #include "Controller.h"
 
-Controller::Controller(GameObject *gameObject_) {
+
+Controller::Controller(GameObject *gameObject_, EventToValueMapper* mapper_) {
 
     gameObject = gameObject_;
 
     //habria que asociarle algo del modelo y no de la "vista", ya que el GO es lo que lo representa en la pantalla.
-    //this->mapper =  new EventToValueMapper();
+    this->mapper =  mapper_;
 
 }
 

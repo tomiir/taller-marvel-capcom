@@ -6,11 +6,12 @@
 #include "../../../model/GameObjects/Characters/Character/Character.h"
 
 
-ControllerCharacter::ControllerCharacter(GameObject* gameObject, int screenWidth_, int screenHeight_,  int speedCharacter_) : Controller(gameObject){
+ControllerCharacter::ControllerCharacter(GameObject* gameObject, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_,  int speedCharacter_) : Controller(gameObject, mapper_){
     screenHeight = screenHeight_;
     screenWidth = screenWidth_;
     speedCharacter = speedCharacter_; //Despues hay que separarlo en X e Y
     jump = jumpRight = jumpLeft = inAir = false;
+    mapper = mapper_;
 
 }
 
