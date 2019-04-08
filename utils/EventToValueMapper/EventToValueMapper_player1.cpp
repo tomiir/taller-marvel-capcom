@@ -48,3 +48,4 @@ DirectionVector *EventToValueMapper_player1::map(SDL_Event event) {
     return direction;
 }
 
+bool EventToValueMapper

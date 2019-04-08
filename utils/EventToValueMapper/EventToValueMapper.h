@@ -18,6 +18,7 @@ public:
     EventToValueMapper();
     ~EventToValueMapper();
     virtual DirectionVector* map(SDL_Event event);
+    virtual bool changeCharacter(SDL_Event event);
 
 };
 
