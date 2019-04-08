@@ -17,27 +17,27 @@ vector<GameObject*> GameObjectFactory:: getGameObjects_fight() {
 
     vector<GameObject*>  gameObjects;
 
-    Character* character2 = new Character("/home/fer/taller-marvel-capcom/Images/capComSprites/capCom_walk_2.png", renderer, 800, 400, 200, 300);
+    Character* character2 = new Character("/home/magali/Documents/taller/taller-marvel-capcom/Images/capComSprites/capCom_walk_2.png", renderer, 800, 400, 200, 300);
     if (!character2) {
         std::cout << "Fallo la creacion del render" << std::endl;
     }
 
-    Character* character1 = new Character("/home/fer/taller-marvel-capcom/Images/capComSprites/capCom_walk_1.png", renderer, 200, 400, 200, 300);
+    Character* character1 = new Character("/home/magali/Documents/taller/taller-marvel-capcom/Images/capComSprites/capCom_walk_1.png", renderer, 200, 400, 200, 300);
     if (!character1) {
         std::cout << "Fallo la creacion del render" << std::endl;
     }
 
-    Background* B1 = new Background("/home/fer/taller-marvel-capcom/Images/Backgrounds/Background1.png", renderer, 1500, 900, 1200, 700);
+    Background* B1 = new Background("/home/magali/Documents/taller/taller-marvel-capcom/Images/Backgrounds/Background1.png", renderer, 1500, 900, 1200, 700);
     if (!B1) {
         //lanzar excepcion
     }
 
-    Background* B2 = new Background("/home/fer/taller-marvel-capcom/Images/Backgrounds/Background2.png", renderer, 1900, 900, 1200, 700);
+    Background* B2 = new Background("/home/magali/Documents/taller/taller-marvel-capcom/Images/Backgrounds/Background2.png", renderer, 1900, 900, 1200, 700);
     if (!B2) {
         //lanzar excepcion
     }
 
-    Background* B3 = new Background("/home/fer/taller-marvel-capcom/Images/Backgrounds/Background3.png", renderer, 2300, 900, 1200, 700);
+    Background* B3 = new Background("/home/magali/Documents/taller/taller-marvel-capcom/Images/Backgrounds/Background3.png", renderer, 2300, 900, 1200, 700);
     if (!B3) {
         //lanzar excepcion
     }

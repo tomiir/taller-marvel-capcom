@@ -30,7 +30,7 @@ protected:
 
 
 public:
-    Controller(GameObject* gameObject_);
+    Controller(GameObject* gameObject_, EventToValueMapper* mapper_);
     ~Controller();
 
     void render();

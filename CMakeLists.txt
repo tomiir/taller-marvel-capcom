@@ -43,6 +43,6 @@ add_executable(
         controllers/Controller/ControllerCharacter/ControllerCharacter.h
         controllers/Controller/ControllerBackground/ControllerBackground.cpp
         controllers/Controller/ControllerBackground/ControllerBackground.h
-        utils/Vector2D/DirectionVector.cpp utils/Vector2D/DirectionVector.h)
+        utils/Vector2D/DirectionVector.cpp utils/Vector2D/DirectionVector.h utils/EventToValueMapper/EventToValueMapper_player1.cpp utils/EventToValueMapper/EventToValueMapper_player1.h utils/EventToValueMapper/EventToValueMapper_player2.cpp utils/EventToValueMapper/EventToValueMapper_player2.h)
 target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 
