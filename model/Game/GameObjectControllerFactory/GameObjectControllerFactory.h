@@ -12,6 +12,8 @@
 #include "../../../utils/EventToValueMapper/EventToValueMapper_player1.h"
 #include "../../../utils/EventToValueMapper/EventToValueMapper_player2.h"
 #include "../../../utils/EventToValueMapper/EventToValueMapper.h"
+#include "../../../controllers/BackgroundsController/BackgroundsController.h"¿
+
 
 using namespace std;
 
@@ -21,12 +23,15 @@ public:
     GameObjectControllerFactory(SDL_Renderer *renderer, int screenWidth_, int screenHeight_);
     ~GameObjectControllerFactory();
 
-    vector<Controller*> getGameObjectControllers_fight(); // los controllers de la view fight
+    vector<ControllerCharacter*> getCharacterControllers_fight(); // los controllers de la view fight
+
+    BackgroundsController *getBackgroundsController_fight();
 
 private:
     GameObjectFactory* factory;
     int screenWidth, screenHeight;
     double cameraSpeedPercentage(int widthMax, int widthImg);
+    int speedCharacter = 30;
 
 };
 

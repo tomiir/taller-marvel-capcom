@@ -17,9 +17,9 @@ ViewController::ViewController(SDL_Renderer* renderer_) {
 ViewController::~ViewController() = default;
 
 
-void ViewController::addController(Controller *controller) {
+void ViewController::addControllerCharacter(ControllerCharacter *controllerCharacter) {
 
-    controllers.push_back(controller);
+    controllersCharacter.push_back(controllerCharacter);
 }
 
 
@@ -32,10 +32,11 @@ void ViewController::handleEvent() {
         throw -1;
     }
 
-    for (std::list<Controller*>::iterator controller=controllers.begin(); controller != controllers.end(); ++controller){
+    for (itr; itr != controllersCharacter.end(); ++itr){
             //Creo que devuelve un puntero al puntero de controller, por eso lo desreferencio.
-            (*controller)->handleEvent(event);
+            (*itr)->handleEvent(event);
     }
+    itr = controllersCharacter.begin();
 }
 
 void ViewController::updateView() {
@@ -48,12 +49,20 @@ void ViewController::updateView() {
     // Luego renderizo los elementos que la componen
 
 
-
-    for (std::list<Controller*>::iterator controller=controllers.begin(); controller != controllers.end(); ++controller){
-        (*controller)->render();
+    for (itr; itr != controllersCharacter.end(); ++itr){
+        (*itr)->render();
     }
+    itr = controllersCharacter.begin();
+
+
+
     //Actualizo los datos
     SDL_RenderPresent(renderer);
 
 }
+
+BackgroundsController *ViewController::addBackgroundsController(BackgroundsController *backgroundsController) {
+    return nullptr;
+}
+
 

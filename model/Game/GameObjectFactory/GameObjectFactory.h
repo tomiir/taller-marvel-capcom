@@ -23,11 +23,12 @@ class GameObjectFactory {
 public:
 
     GameObjectFactory(SDL_Renderer *renderer_);
-    ~GameObjectFactory();
+    ~GameObjectFactory() = default;
 
-    vector<GameObject*>  getGameObjects_fight();
+    vector<GameObject*>  getCharacters_fight();
 
 
+    vector<GameObject *> getBackgrounds_fight();
 };
 
 

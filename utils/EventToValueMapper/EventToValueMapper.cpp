@@ -4,5 +4,11 @@
 
 #include "EventToValueMapper.h"
 
-EventToValueMapper::EventToValueMapper() = default;
+EventToValueMapper::EventToValueMapper(){
+    changeCharacter_ = false;
+}
 DirectionVector* EventToValueMapper :: map(SDL_Event event){}
+
+bool EventToValueMapper::canChangeCharacter(SDL_Event event){
+    return changeCharacter_;
+}

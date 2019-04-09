@@ -16,8 +16,12 @@ class EventToValueMapper {
 
 public:
     EventToValueMapper();
-    ~EventToValueMapper();
+    ~EventToValueMapper() = default;
     virtual DirectionVector* map(SDL_Event event);
+    bool canChangeCharacter(SDL_Event event);
+
+protected:
+    bool changeCharacter_;
 
 };
 

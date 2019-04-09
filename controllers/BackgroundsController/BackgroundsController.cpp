@@ -90,3 +90,10 @@ bool BackgroundsController::canMove(DirectionVector *direction, ControllerCharac
 
     return valid;
 }
+
+void BackgroundsController::addTeamsManager(TeamManager* team1, TeamManager* team2) {
+
+    this->team1 = team1;
+    this->team2 = team2;
+
+}

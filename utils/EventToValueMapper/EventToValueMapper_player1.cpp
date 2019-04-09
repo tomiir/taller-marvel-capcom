@@ -6,7 +6,7 @@
 
 DirectionVector *EventToValueMapper_player1::map(SDL_Event event) {
 
-
+    changeCharacter_ = false;
     const Uint8* keyboardStateArray = SDL_GetKeyboardState(nullptr);
 
     SDL_KeyboardEvent key = SDL_KeyboardEvent();
@@ -30,6 +30,9 @@ DirectionVector *EventToValueMapper_player1::map(SDL_Event event) {
             case SDLK_DOWN:
                 direction->add(0, 1);
                 break;
+            case SDLK_m:
+                changeCharacter_= true;
+                break;
             default:
                 break;
         }
@@ -47,4 +50,7 @@ DirectionVector *EventToValueMapper_player1::map(SDL_Event event) {
 
     return direction;
 }
+
+
+
 

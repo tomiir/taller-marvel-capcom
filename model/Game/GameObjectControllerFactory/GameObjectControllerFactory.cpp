@@ -16,17 +16,31 @@ GameObjectControllerFactory::GameObjectControllerFactory(SDL_Renderer *renderer,
 GameObjectControllerFactory::~GameObjectControllerFactory() = default;
 
 double GameObjectControllerFactory::cameraSpeedPercentage(int widthMax, int widthImg) {
+
     double a = widthImg - screenWidth;
     double b = widthMax - screenWidth;
     return a/b;
 }
 
-std::vector<Controller*> GameObjectControllerFactory::getGameObjectControllers_fight(){
+std::vector<ControllerCharacter*> GameObjectControllerFactory::getCharacterControllers_fight(){ //pasar esto a una lista con un fucking ADD
 
-    vector<GameObject*> gameObjects = factory->getGameObjects_fight();
-    vector <Controller*> controllers;
+    std::vector<GameObject*> characters = factory->getCharacters_fight();
 
-    int speedCharacter = 30;
+    //equipo 1
+    ControllerCharacter* controllerCharacter1 = new ControllerCharacter(characters[0], new EventToValueMapper_player1(), 1200, 700, speedCharacter);
+    ControllerCharacter* controllerCharacter2 = new ControllerCharacter(characters[1], new EventToValueMapper_player1() ,1200, 700, speedCharacter);
+    //equipo 2
+    ControllerCharacter* controllerCharacter3 = new ControllerCharacter(characters[2], new EventToValueMapper_player2(), 1200, 700, speedCharacter);
+    ControllerCharacter* controllerCharacter4 = new ControllerCharacter(characters[3], new EventToValueMapper_player2() ,1200, 700, speedCharacter);
+
+
+    std::vector< ControllerCharacter* > controllers = {controllerCharacter1, controllerCharacter2, controllerCharacter3, controllerCharacter4};
+
+    return controllers;
+}
+
+BackgroundsController *GameObjectControllerFactory::getBackgroundsController_fight() {
+
     int widthMax = 2300;
 
     double speedPercentageB1 = cameraSpeedPercentage(widthMax, 1500);
@@ -37,18 +51,18 @@ std::vector<Controller*> GameObjectControllerFactory::getGameObjectControllers_f
     int cameraSpeedB2 = speedCharacter * speedPercentageB2;
     int cameraSpeedB3 = speedCharacter * speedPercentageB3;
 
-    // ¿habría que hacer controllers distintos para background y character?
+    vector<GameObject*> backgrounds = factory->getBackgrounds_fight();
 
-    ControllerCharacter* controllerCharacter2 = new ControllerCharacter(gameObjects[4],new EventToValueMapper_player1(), 1200, 700, 30);
-    ControllerCharacter* controllerCharacter1 = new ControllerCharacter(gameObjects[3],new EventToValueMapper_player2() ,1200, 700, 30); //ver tema pasar info size ventana.
+    BackgroundsController* backgroundsController = new BackgroundsController();
 
-    ControllerBackground* controllerB1 = new ControllerBackground(gameObjects[0],new EventToValueMapper_player1(), controllerCharacter1, cameraSpeedB1, speedPercentageB1); //porque solo le paso un unico character?
-    ControllerBackground* controllerB2 = new ControllerBackground(gameObjects[1],new EventToValueMapper_player1(), controllerCharacter1, cameraSpeedB2, speedPercentageB2);
-    ControllerBackground* controllerB3 = new ControllerBackground(gameObjects[2],new EventToValueMapper_player1(), controllerCharacter1, cameraSpeedB3, speedPercentageB3);
+    ControllerBackground* controllerB1 = new ControllerBackground(backgrounds[0], cameraSpeedB1, speedPercentageB1);
+    ControllerBackground* controllerB2 = new ControllerBackground(backgrounds[1], cameraSpeedB2, speedPercentageB2);
+    ControllerBackground* controllerB3 = new ControllerBackground(backgrounds[2], cameraSpeedB3, speedPercentageB3);
 
+    backgroundsController->addBackgroundController(controllerB1);
+    backgroundsController->addBackgroundController(controllerB2);
+    backgroundsController->addBackgroundController(controllerB3);
 
-    controllers = { controllerB1, controllerB2, controllerB3, controllerCharacter1, controllerCharacter2 };
-
-    return controllers;
+    return backgroundsController;
 }
 

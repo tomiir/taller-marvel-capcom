@@ -11,46 +11,45 @@ GameObjectFactory::GameObjectFactory(SDL_Renderer *renderer_) {
 
 }
 
-GameObjectFactory::~GameObjectFactory() = default;
+vector<GameObject*> GameObjectFactory:: getCharacters_fight() {
 
+    vector<GameObject*>  characters;
 
-vector<GameObject*> GameObjectFactory:: getGameObjects_fight() {
+    Character* captainAmerica1 = new Character("/home/fer/Escritorio/taller-marvel-capcom/Images/CaptainAmerica2.png", renderer, new CaptainAmericaSpriteManager(), 800,400,200,300);
+    Character* wolverine1 = new Character("/home/fer/Escritorio/taller-marvel-capcom/Images/CaptainAmerica2.png", renderer, new CaptainAmericaSpriteManager(), 800,400,200,300);
 
-    vector<GameObject*>  gameObjects;
+    Character* captainAmerica2 = new Character("/home/fer/Escritorio/taller-marvel-capcom/Images/CaptainAmerica2.png", renderer, new CaptainAmericaSpriteManager(), 800,400,200,300);
+    Character* wolverine2 = new Character("/home/fer/Escritorio/taller-marvel-capcom/Images/CaptainAmerica2.png", renderer, new CaptainAmericaSpriteManager(), 800,400,200,300);
 
-    Character* captainAmerica = new Character("/home/fer/Escritorio/taller-marvel-capcom/Images/CaptainAmerica2.png", renderer, new CaptainAmericaSpriteManager(), 800,400,200,300);
-    Character* captainAmerica2= new Character("/home/fer/Escritorio/taller-marvel-capcom/Images/CaptainAmerica2.png", renderer, new CaptainAmericaSpriteManager(), 800,400,200,300);
+    characters = {captainAmerica1, wolverine1, captainAmerica2, wolverine2 };
 
-//    Character* character2 = new Character("r/taller-marvel-capcom/Images/capComSprites/capCom_walk_2.png", renderer, 800, 400, 200, 300);
-//    if (!character2) {
-//        std::cout << "Fallo la creacion del render" << std::endl;
-//    }
-//
-//    Character* character1 = new Character("/home/fer/taller-marvel-capcom/Images/capComSprites/capCom_walk_1.png", renderer, 200, 400, 200, 300);
-//    if (!character1) {
-//        std::cout << "Fallo la creacion del render" << std::endl;
-//    }
+    return characters;
+
+}
+
+vector<GameObject *> GameObjectFactory::getBackgrounds_fight() {
+
+    vector<GameObject*>  backgrounds;
+
 
     Background* B1 = new Background("/home/fer/Escritorio/taller-marvel-capcom/Images/Backgrounds/Background1.png", renderer, 1500, 900, 1200, 700);
     if (!B1) {
-        //lanzar excepcion
+        //usar imagen " ? "
     }
 
     Background* B2 = new Background("/home/fer/Escritorio/taller-marvel-capcom/Images/Backgrounds/Background2.png", renderer, 1900, 900, 1200, 700);
     if (!B2) {
-        //lanzar excepcion
+        //usar imagen " ? "
     }
 
     Background* B3 = new Background("/home/fer/Escritorio/taller-marvel-capcom/Images/Backgrounds/Background3.png", renderer, 2300, 900, 1200, 700);
     if (!B3) {
-        //lanzar excepcion
+        //usar imagen " ? "
     }
 
-    gameObjects = {B1, B2, B3, captainAmerica, captainAmerica2};
+    backgrounds = {B1, B2, B3};
 
-
-    return gameObjects;
-
+    return backgrounds;
 }
 
 

@@ -8,8 +8,7 @@
 #include <thread>
 
 
-
-ControllerCharacter::ControllerCharacter(GameObject* gameObject, BackgroundsController* backgroundsController, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_,  int speedCharacter_) : Controller(gameObject){
+ControllerCharacter::ControllerCharacter(GameObject* gameObject, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_,  int speedCharacter_) : Controller(gameObject){
 
     screenHeight = screenHeight_;
     screenWidth = screenWidth_;
@@ -21,6 +20,7 @@ ControllerCharacter::ControllerCharacter(GameObject* gameObject, BackgroundsCont
 
 ControllerCharacter::~ControllerCharacter() = default;
 
+void ControllerCharacter::render(){}
 
 void ControllerCharacter::handleEvent(SDL_Event event) {
 
@@ -88,4 +88,8 @@ bool ControllerCharacter::isJumpingRight() {
 
 bool ControllerCharacter::isJumpingLeft() {
     return jumpLeft;
+}
+
+EventToValueMapper* ControllerCharacter::getMapper(){
+    return mapper;
 }

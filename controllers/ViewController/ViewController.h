@@ -7,9 +7,10 @@
 
 #include "../../views/View/View.h"
 #include "../Controller/Controller.h"
+#include "../BackgroundsController/BackgroundsController.h"
 #include <list>
 
-
+using namespace std;
 
 class ViewController {
 
@@ -18,12 +19,15 @@ public:
     ~ViewController();
     void updateView();
     void handleEvent();
-    void addController(Controller* controller);
+    void addControllerCharacter(ControllerCharacter *controllerCharacter);
+    BackgroundsController* addBackgroundsController(BackgroundsController* backgroundsController);
 
 private:
     View* view;
     SDL_Renderer* renderer;
-    std::list<Controller*> controllers;
+    list<ControllerCharacter*> controllersCharacter;
+    list<ControllerCharacter*>::iterator itr = controllersCharacter.begin();
+
 };
 
 

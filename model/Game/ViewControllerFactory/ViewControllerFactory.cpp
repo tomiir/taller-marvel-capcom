@@ -3,6 +3,8 @@
 //
 
 #include "ViewControllerFactory.h"
+#include "../../../controllers/BackgroundsController/BackgroundsController.h"
+#include "../../../utils/TeamManager/TeamManager.h"
 
 
 ViewControllerFactory::ViewControllerFactory(SDL_Renderer * renderer_, int screenWidth_, int screenHeight_) {
@@ -17,16 +19,24 @@ ViewControllerFactory::~ViewControllerFactory() = default;
 
 ViewController* ViewControllerFactory::getViewController_fight(){
 
-
     ViewController* viewControllerFight = new ViewController(renderer);
 
     GameObjectControllerFactory* factory = new GameObjectControllerFactory(renderer, screenWidth, screenHeight);
 
-    vector<Controller*>  controllers = factory->getGameObjectControllers_fight();
+    vector<ControllerCharacter*>  controllersCharacters = factory->getCharacterControllers_fight();
 
-    for (int i = 0; i < controllers.size(); i++){ //Este for tiene que agarrar automaticamente la cantidad de controllers que le pasen. no tiene que estar hardcdeado ese 5.
+    BackgroundsController* backgroundsController = factory->getBackgroundsController_fight();
 
-        viewControllerFight->addController(controllers[i]);
+    viewControllerFight->addBackgroundsController(backgroundsController);
+
+    TeamManager* team1 = new TeamManager(controllersCharacters[0], controllersCharacters[1]);
+    TeamManager* team2 = new TeamManager(controllersCharacters[2], controllersCharacters[3]);
+
+    backgroundsController->addTeamsManager(team1, team2);
+
+    for (int i = 0; i < controllersCharacters.size(); i++){
+
+        viewControllerFight->addControllerCharacter(controllersCharacters[i]);
     }
 
     return viewControllerFight;

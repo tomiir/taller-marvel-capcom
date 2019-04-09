@@ -2,6 +2,8 @@
 #define TALLER_MARVEL_CAPCOM_BACKGROUNDSCONTROLLER_H
 
 #include "../Controller/ControllerBackground/ControllerBackground.h"
+#include "../../utils/TeamManager/TeamManager.h"
+
 
 using namespace std;
 
@@ -27,10 +29,16 @@ private:
 
     vector< ControllerBackground* >::iterator itr = backgrounds.begin();
 
+    TeamManager* team1;
+    TeamManager* team2;
+
+
     void widthAndHeightVeluesRefresh(ControllerBackground * background);
 
 
 public:
+
+    void addTeamsManager(TeamManager* team1, TeamManager* team2);
 
     BackgroundsController() = default;
     ~BackgroundsController() = default;
