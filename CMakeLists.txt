@@ -51,6 +51,6 @@ add_executable(
         utils/EventToValueMapper/EventToValueMapper_player1.cpp
         utils/EventToValueMapper/EventToValueMapper_player1.h
         utils/EventToValueMapper/EventToValueMapper_player2.cpp
-        utils/EventToValueMapper/EventToValueMapper_player2.h)
+        utils/EventToValueMapper/EventToValueMapper_player2.h controllers/BackgroundsController/BackgroundsController.cpp controllers/BackgroundsController/BackgroundsController.h)
 target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 

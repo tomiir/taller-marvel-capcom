@@ -47,6 +47,8 @@ void ViewController::updateView() {
 
     // Luego renderizo los elementos que la componen
 
+
+
     for (std::list<Controller*>::iterator controller=controllers.begin(); controller != controllers.end(); ++controller){
         (*controller)->render();
     }
