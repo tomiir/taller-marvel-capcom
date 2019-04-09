@@ -19,7 +19,7 @@ class ControllerBackground : public Controller {
     public:
             ControllerBackground(GameObject* background, int speedCam_, double speedPercentageCam_);
             ~ControllerBackground();
-            void handleEvent(SDL_Event event) override;
+            void handleEvent(SDL_Event event, ControllerCharacter* controllerCharacter);
 
     private:
 

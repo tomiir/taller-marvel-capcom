@@ -7,12 +7,15 @@
 
 #include "../../controllers/Controller/ControllerCharacter/ControllerCharacter.h"
 #include "../EventToValueMapper/EventToValueMapper.h"
+#include "../../controllers/Controller/ControllerBackground/ControllerBackground.h"
+#include <list>
+
 
 class TeamManager {
 public:
     TeamManager(ControllerCharacter* character_1, ControllerCharacter* character_2);
 
-    void handleEvent(SDL_Event event);
+    void handleEvent(SDL_Event event, std::list<ControllerBackground*> backgrounds);
     void render();
 
 private:

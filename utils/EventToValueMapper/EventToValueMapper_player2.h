@@ -10,7 +10,7 @@
 class EventToValueMapper_player2: public EventToValueMapper {
 
 public:
-    DirectionVector* map(SDL_Event event);
+    DirectionVector* map(SDL_Event event) override;
 
 };
 

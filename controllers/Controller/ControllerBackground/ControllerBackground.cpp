@@ -11,9 +11,9 @@ ControllerBackground::ControllerBackground(GameObject* background_, int speedCam
 
 ControllerBackground::~ControllerBackground() = default;
 
-void ControllerBackground::handleEvent(SDL_Event event) {
+void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* controllerCharacter) {
 
-    DirectionVector* dir = mapper->map(event);
+    DirectionVector* dir = controllerCharacter->getMapper()->map(event);
 
     vector<int> cameraInfo = dynamic_cast< Background* >(gameObject)->getCameraInfo();
     vector<int> infoCharacter = controllerCharacter->getInfo();

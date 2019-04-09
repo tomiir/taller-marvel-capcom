@@ -33,13 +33,10 @@ void ViewController::handleEvent() {
         throw -1;
     }
 // MODIFICAR EL HANDLEEVENT!
-    for (std::list<ControllerBackground*>::iterator controllerBackground=backgrounds.begin(); controllerBackground != backgrounds.end(); ++controllerBackground){
-            //Creo que devuelve un puntero al puntero de controller, por eso lo desreferencio.
-            (*controllerBackground)->handleEvent(event);
-    }
+
 
     for (std::list<TeamManager*>::iterator team = teams.begin(); team != teams.end(); ++team){
-        (*team)->handleEvent(event);
+        (*team)->handleEvent(event, backgrounds);
     }
 }
 
