@@ -3,7 +3,8 @@
 //
 
 #include "ControllerCharacter.h"
-
+#include "../../../model/GameObjects/Characters/Character/Character.h"
+#include "../../../utils/Logger/Logger.h"
 
 ControllerCharacter::ControllerCharacter(GameObject* gameObject, int screenWidth_, int screenHeight_,  int speedCharacter_) : Controller(gameObject){
     screenHeight = screenHeight_;
@@ -18,8 +19,14 @@ ControllerCharacter::~ControllerCharacter() = default;
 
 void ControllerCharacter::handleEvent(SDL_Event event) {
 
+
+    CLogger* logger = CLogger::GetLogger();
+    logger -> Log("Handling sth", DEBUG, "");
+
     DirectionVector* direction = mapper->map(event);
     vector<int> info = gameObject->getInfo();
+
+    //if(direction->isEqual(STILL)) state = "still";
 
     bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal;
     bool characterIsntInLeftBoundary = info[0] >= distanceBoundaryHorizontal;
@@ -30,11 +37,15 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
         direction->multiply(speedCharacter);
         gameObject->move(direction);
 
+        state = "walk";
+
     }
 
     if( direction->isDiagonalRight() and !inAir ) jumpRight = true;
     if( direction->isDiagonalLeft() and !inAir ) jumpLeft = true;
     if( direction->isEqual(UP) and !inAir ) jump = true;
+
+    if( direction->isEqual(DOWN)) state = "still";
 
     if(jump){
 
@@ -63,6 +74,9 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
         if ( characterInFloor ) inAir = jumpRight = jumpLeft = false;
 
     }
+
+    dynamic_cast<Character*>(gameObject)->setState(state);
+
 }
 
 bool ControllerCharacter::isJumping() {

@@ -15,14 +15,14 @@ Controller::Controller(GameObject *gameObject_) {
 
 Controller::~Controller() = default;
 
-void Controller::render(){
+void Controller::render(){ //en vez de render tendria que ser "draw"
 
     gameObject->render();
 }
 
 vector<int> Controller::getInfo(){
 
-    std::vector<int> info = gameObject->getInfo();
+    vector<int> info = gameObject->getInfo();
     return info;
 }
 

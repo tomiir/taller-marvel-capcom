@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.7)
 project(taller-marvel-capcom) #DEJAR COMO ESTA. Si no funca ---> renombrar la carpeta donde está el repo de git a esto
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
-SET(CMAKE_CXX_FLAGS "-std=c++11 -I")
+SET(CMAKE_CXX_FLAGS "-std=c++11")
 
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
@@ -44,6 +44,12 @@ add_executable(
         controllers/Controller/ControllerBackground/ControllerBackground.cpp
         controllers/Controller/ControllerBackground/ControllerBackground.h
         utils/Vector2D/DirectionVector.cpp utils/Vector2D/DirectionVector.h
+        Animations/Animation.cpp Animations/Animation.h
+        utils/SpriteManagers/SpriteManager.h utils/SpriteManagers/SpriteManager.cpp
+        utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.cpp
+        utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.h
+        Animations/CaptainAmericaStillAnimation.cpp Animations/CaptainAmericaStillAnimation.h
+        Animations/CaptainAmericaWalkAnimation.cpp Animations/CaptainAmericaWalkAnimation.h
         utils/Logger/Logger.cpp utils/Logger/Logger.h utils/Logger/Utils.h)
 target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 

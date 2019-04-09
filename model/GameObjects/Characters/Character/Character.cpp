@@ -5,8 +5,11 @@
 #include "Character.h"
 
 
-Character::Character(const char* imagePath, SDL_Renderer* rend, int initialX, int initialY, int width, int height) :
-           GameObject(imagePath, rend, initialX, initialY, width, height) {}
+Character::Character(const char* imagePath, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialX, int initialY, int width, int height) :
+           GameObject(imagePath, rend, initialX, initialY, width, height) {
+
+    spriteManager = spriteManager_;
+}
 
 Character::~Character() = default;
 
@@ -18,11 +21,20 @@ void Character::move(DirectionVector* direction){
 
 void Character::render() {
 
-    SDL_RenderCopy(renderer, objTexture, nullptr, &objRect);
+    SDL_Rect sprite = spriteManager->getSprite();
+    objRect.w = (int) (sprite.w * 2.5);
+    objRect.h = (int) (sprite.h * 2.5);
+    SDL_RenderCopy(renderer, objTexture, &sprite, &objRect);
 }
 
 vector<int> Character::getInfo() {
 
-    std::vector<int> info = {objRect.x, objRect.y, objRect.w, objRect.h};
+    vector<int> info = {objRect.x, objRect.y, objRect.w, objRect.h};
     return info;
+}
+
+void Character::setState(string state) {
+
+    spriteManager->setState(state);
+
 }

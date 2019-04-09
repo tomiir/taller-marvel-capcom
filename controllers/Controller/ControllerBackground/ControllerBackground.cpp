@@ -30,8 +30,8 @@ void ControllerBackground::handleEvent(SDL_Event event) {
     bool cameraIsUnderDownLimit = cameraInfo[1] < (infoBackgroundImg[1] - cameraInfo[3]);
 
 
-    if ( (characterIsInRightBoundary and cameraIsUnderRightLimit and !controllerCharacter->isJumping()) or
-        (characterIsInLeftBoundary and cameraIsOverLeftLimit and !controllerCharacter->isJumping()) ) {
+    if ( (dir->isEqual(RIGHT) and characterIsInRightBoundary and cameraIsUnderRightLimit and !controllerCharacter->isJumping()) or
+        (dir->isEqual(LEFT) and characterIsInLeftBoundary and cameraIsOverLeftLimit and !controllerCharacter->isJumping()) ) {
 
         dir->multiply(speedCam);
         gameObject->move(dir);
