@@ -50,6 +50,6 @@ add_executable(
         utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.h
         Animations/CaptainAmericaStillAnimation.cpp Animations/CaptainAmericaStillAnimation.h
         Animations/CaptainAmericaWalkAnimation.cpp Animations/CaptainAmericaWalkAnimation.h
-        utils/Logger/Logger.cpp utils/Logger/Logger.h utils/Logger/Utils.h)
+        utils/Logger/Logger.cpp utils/Logger/Logger.h)
 target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 

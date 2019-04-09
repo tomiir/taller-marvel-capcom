@@ -1,6 +1,5 @@
 #include "Logger.h"
 #include "Logger.h"
-#include "Utils.h"
 
 #include <stdio.h>
 #include <stdarg.h>
