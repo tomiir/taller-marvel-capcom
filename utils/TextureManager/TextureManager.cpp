@@ -8,6 +8,10 @@ SDL_Texture* TextureManager::LoadTexture(const char *path, SDL_Renderer *rendere
 {
     SDL_Surface* tempSurface = IMG_Load(path);
 
+    if(!tempSurface){
+        std::cout << "Fallo carga imagen: %s" << SDL_GetError() << std::endl;
+    }
+
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, tempSurface);
     if(!texture)
     {

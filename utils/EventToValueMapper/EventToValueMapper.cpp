@@ -11,7 +11,7 @@ DirectionVector* EventToValueMapper::map(SDL_Event event){
 
     const Uint8* keyboardStateArray = SDL_GetKeyboardState(nullptr);
 
-    DirectionVector* direction = new DirectionVector(0,0);
+    auto* direction = new DirectionVector(0,0);
 
     if( event.type == SDL_KEYDOWN) {
 
@@ -43,6 +43,7 @@ DirectionVector* EventToValueMapper::map(SDL_Event event){
             direction->setY(-1);
         }
     }
+
 
     return direction;
 }

@@ -27,6 +27,8 @@ private:
     int screenWidth, screenHeight, speedCharacter;
     int jumpDistance = 10;
     bool jump, inAir, jumpRight, jumpLeft;
+    string state = "still";
+
 
 };
 

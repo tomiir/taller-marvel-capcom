@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class Background: public GameObject{
+class Background : public GameObject{
 
 public:
     Background(const char* imagePath, SDL_Renderer* rend,  int width_image, int height_image, int screenWidth, int screenHeight);

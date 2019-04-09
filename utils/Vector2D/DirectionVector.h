@@ -13,7 +13,7 @@ public:
 
     double x;
     double y;
-    int diagonal;
+    int diagonal{};
 
     DirectionVector();
     ~DirectionVector();
