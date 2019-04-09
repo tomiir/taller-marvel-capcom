@@ -7,7 +7,9 @@ ControllerBackground::ControllerBackground(GameObject* background_, int speedCam
     speedPercetageCam = speedPercentageCam_;
 }
 
-ControllerBackground::~ControllerBackground() = default;
+void ControllerBackground::handleEvent() {
+    return NULL;
+}
 
 void ControllerBackground::elevate(DirectionVector *direction) {
 

@@ -9,6 +9,7 @@
 #include "../Controller/Controller.h"
 #include "../BackgroundsController/BackgroundsController.h"
 #include <list>
+#include "../../utils/TeamManager/TeamManager.h"
 
 using namespace std;
 
@@ -19,14 +20,16 @@ public:
     ~ViewController();
     void updateView();
     void handleEvent();
-    void addControllerCharacter(ControllerCharacter *controllerCharacter);
-    BackgroundsController* addBackgroundsController(BackgroundsController* backgroundsController);
+    void addTeamsManager(TeamManager* team1, TeamManager* team2);
+
 
 private:
     View* view;
     SDL_Renderer* renderer;
-    list<ControllerCharacter*> controllersCharacter;
-    list<ControllerCharacter*>::iterator itr = controllersCharacter.begin();
+    TeamManager* team1;
+    TeamManager* team2;
+
+
 
 };
 

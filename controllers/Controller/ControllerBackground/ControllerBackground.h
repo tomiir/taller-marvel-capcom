@@ -18,13 +18,12 @@ class ControllerBackground : public Controller {
 
 public:
     ControllerBackground(GameObject* background, int speedCam_, double speedPercentageCam_);
-    ~ControllerBackground();
     void elevate(DirectionVector* direction);
     void move(DirectionVector* direction);
     void moveAndElevate(DirectionVector* direction);
     int getWidth();
     int getHeight();
-
+    void handleEvent() override;
 private:
     double speedCam;
     double speedPercetageCam;

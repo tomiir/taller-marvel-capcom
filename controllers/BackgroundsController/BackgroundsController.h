@@ -3,6 +3,9 @@
 
 #include "../Controller/ControllerBackground/ControllerBackground.h"
 #include "../../utils/TeamManager/TeamManager.h"
+#include "../../utils/Vector2D/DirectionVector.h"
+#include <vector>
+
 
 
 using namespace std;
@@ -11,7 +14,7 @@ class BackgroundsController {
 
 private:
 
-    vector< ControllerBackground* > backgrounds;
+    vector<ControllerBackground*> backgrounds;
 
     int maxWidth = 0;
     int minWidth = 0;
@@ -29,19 +32,17 @@ private:
 
     vector< ControllerBackground* >::iterator itr = backgrounds.begin();
 
-    TeamManager* team1;
-    TeamManager* team2;
 
 
-    void widthAndHeightVeluesRefresh(ControllerBackground * background);
+    void widthAndHeightValuesRefresh(ControllerBackground *background);
 
 
 public:
 
-    void addTeamsManager(TeamManager* team1, TeamManager* team2);
 
     BackgroundsController() = default;
     ~BackgroundsController() = default;
+
 
     void addBackgroundController( ControllerBackground* background );
 

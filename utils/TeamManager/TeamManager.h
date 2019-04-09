@@ -11,13 +11,14 @@
 class TeamManager {
 public:
     TeamManager(ControllerCharacter* character_1, ControllerCharacter* character_2);
-
     void handleEvent(SDL_Event event);
+    void render();
 
 private:
     ControllerCharacter* currentCharacter;
     ControllerCharacter* supportCharacter;
     void changeCharacter();
+
 };
 
 

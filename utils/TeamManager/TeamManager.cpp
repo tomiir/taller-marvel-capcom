@@ -25,3 +25,7 @@ void TeamManager::handleEvent(SDL_Event event){
         changeCharacter();
     }
 }
+
+void TeamManager::render(){
+    currentCharacter->render();
+}

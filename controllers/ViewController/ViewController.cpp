@@ -9,6 +9,8 @@ ViewController::ViewController(SDL_Renderer* renderer_) {
 
     this->renderer= renderer_;
     this->view = new View(renderer_);
+    this->team1 = NULL;
+    this->team2 = NULL;
 
     // ¿HAY QUE INICIALIZAR LA LISTA?
     //this->controllers = new std::list<Controller*>();
@@ -17,11 +19,11 @@ ViewController::ViewController(SDL_Renderer* renderer_) {
 ViewController::~ViewController() = default;
 
 
-void ViewController::addControllerCharacter(ControllerCharacter *controllerCharacter) {
+void ViewController::addTeamsManager(TeamManager* team1, TeamManager* team2){
+    this->team1 = team1;
+    this->team2 = team2;
 
-    controllersCharacter.push_back(controllerCharacter);
 }
-
 
 void ViewController::handleEvent() {
 
@@ -32,11 +34,8 @@ void ViewController::handleEvent() {
         throw -1;
     }
 
-    for (itr; itr != controllersCharacter.end(); ++itr){
-            //Creo que devuelve un puntero al puntero de controller, por eso lo desreferencio.
-            (*itr)->handleEvent(event);
-    }
-    itr = controllersCharacter.begin();
+    team1->handleEvent(event);
+    team2->handleEvent(event);
 }
 
 void ViewController::updateView() {
@@ -48,11 +47,8 @@ void ViewController::updateView() {
 
     // Luego renderizo los elementos que la componen
 
-
-    for (itr; itr != controllersCharacter.end(); ++itr){
-        (*itr)->render();
-    }
-    itr = controllersCharacter.begin();
+    team1->render();
+    team2->render();
 
 
 
@@ -61,8 +57,5 @@ void ViewController::updateView() {
 
 }
 
-BackgroundsController *ViewController::addBackgroundsController(BackgroundsController *backgroundsController) {
-    return nullptr;
-}
 
 

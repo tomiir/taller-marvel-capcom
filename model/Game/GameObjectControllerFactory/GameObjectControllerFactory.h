@@ -12,7 +12,7 @@
 #include "../../../utils/EventToValueMapper/EventToValueMapper_player1.h"
 #include "../../../utils/EventToValueMapper/EventToValueMapper_player2.h"
 #include "../../../utils/EventToValueMapper/EventToValueMapper.h"
-#include "../../../controllers/BackgroundsController/BackgroundsController.h"¿
+#include "../../../controllers/BackgroundsController/BackgroundsController.h"
 
 
 using namespace std;

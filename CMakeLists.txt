@@ -33,10 +33,6 @@ add_executable(
         model/Game/GameObjectFactory/GameObjectFactory.h
         model/Viewmanager/ViewManager.cpp
         model/Viewmanager/ViewManager.h
-        model/Game/ViewControllerFactory/ViewControllerFactory.cpp
-        model/Game/ViewControllerFactory/ViewControllerFactory.h
-        model/Viewmanager/ViewManager.cpp
-        model/Viewmanager/ViewManager.h
         utils/EventToValueMapper/EventToValueMapper.cpp
         utils/EventToValueMapper/EventToValueMapper.h
         controllers/Controller/ControllerCharacter/ControllerCharacter.cpp

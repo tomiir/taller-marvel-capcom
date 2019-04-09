@@ -3,24 +3,26 @@
 //
 
 #include "ControllerCharacter.h"
-#include "../../../model/GameObjects/Characters/Character/Character.h"
-#include <chrono>
-#include <thread>
+
+
 
 
 ControllerCharacter::ControllerCharacter(GameObject* gameObject, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_,  int speedCharacter_) : Controller(gameObject){
 
     screenHeight = screenHeight_;
     screenWidth = screenWidth_;
-    speedCharacter = speedCharacter_; //Despues hay que separarlo en X e Y
+    speedCharacter = speedCharacter_; //
     jump = jumpRight = jumpLeft = inAir = false;
     mapper = mapper_;
+    backgroundsController = NULL;
 
 }
 
-ControllerCharacter::~ControllerCharacter() = default;
 
-void ControllerCharacter::render(){}
+
+void ControllerCharacter::addBackgroundsController(BackgroundsController *backgroundsController_) {
+    backgroundsController = backgroundsController_;
+}
 
 void ControllerCharacter::handleEvent(SDL_Event event) {
 

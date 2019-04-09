@@ -1,7 +1,7 @@
 
 #include "BackgroundsController.h"
 
-void BackgroundsController::widthAndHeightVeluesRefresh(ControllerBackground * background) {
+void BackgroundsController::widthAndHeightValuesRefresh(ControllerBackground *background) {
 
     int backgroundWidth = background->getWidth();
     int backgroundHeight = background->getHeight();
@@ -19,7 +19,7 @@ void BackgroundsController::addBackgroundController(ControllerBackground *backgr
     if(!background) {}// lanzar excepcion
 
     backgrounds.push_back(background);
-    widthAndHeightVeluesRefresh(background);
+    widthAndHeightValuesRefresh(background);
 }
 
 
@@ -91,9 +91,4 @@ bool BackgroundsController::canMove(DirectionVector *direction, ControllerCharac
     return valid;
 }
 
-void BackgroundsController::addTeamsManager(TeamManager* team1, TeamManager* team2) {
 
-    this->team1 = team1;
-    this->team2 = team2;
-
-}
