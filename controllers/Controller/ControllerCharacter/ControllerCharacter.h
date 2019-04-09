@@ -22,6 +22,7 @@ public:
     bool isJumping();
     bool isJumpingRight();
     bool isJumpingLeft();
+    EventToValueMapper* getMapper();
 
 private:
 

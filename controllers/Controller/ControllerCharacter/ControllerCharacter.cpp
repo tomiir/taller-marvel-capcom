@@ -90,3 +90,7 @@ bool ControllerCharacter::isJumpingRight() {
 bool ControllerCharacter::isJumpingLeft() {
     return jumpLeft;
 }
+
+EventToValueMapper* ControllerCharacter::getMapper(){
+    return mapper;
+}

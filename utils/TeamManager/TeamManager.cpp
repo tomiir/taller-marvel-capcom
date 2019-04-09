@@ -7,22 +7,20 @@
 TeamManager::TeamManager(ControllerCharacter* character_1, ControllerCharacter* character_2, EventToValueMapper* mapper_){
     mapper = mapper_;
     currentCharacter = character_1;
-    postCharacter = character_2;
+    supportCharacter = character_2;
 }
 
 void TeamManager::changeCharacter(){
     ControllerCharacter* aux;
     aux = currentCharacter;
-    currentCharacter = postCharacter;
-    postCharacter = aux;
+    currentCharacter = supportCharacter;
+    supportCharacter = aux;
 }
 
 void TeamManager::handleEvent(SDL_Event event){
 
-    if(mapper->changeCharacter(event)){
+    currentCharacter->handleEvent(event);
+    if (currentCharacter.getMapper()->changeCharacter(event)){
         changeCharacter();
-    }
-    else{
-        currentCharacter->handleEvent(event);
     }
 }

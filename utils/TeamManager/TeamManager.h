@@ -16,7 +16,7 @@ public:
 
 private:
     ControllerCharacter* currentCharacter;
-    ControllerCharacter* postCharacter;
+    ControllerCharacter* supportCharacter;
     EventToValueMapper* mapper; //para solucionar el tema de las teclas, conoce el mapper que comparte su team
     void changeCharacter();
 };
