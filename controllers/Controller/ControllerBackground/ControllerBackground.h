@@ -17,15 +17,15 @@ using namespace std;
 class ControllerBackground : public Controller {
 
     public:
-            ControllerBackground(GameObject* background,EventToValueMapper* mapper_, ControllerCharacter* controllerCharacter, int speedCam_, double speedPercentageCam_);
+            ControllerBackground(GameObject* background, int speedCam_, double speedPercentageCam_);
             ~ControllerBackground();
             void handleEvent(SDL_Event event) override;
 
     private:
-            ControllerCharacter* controllerCharacter;
+
             double speedCam;
             double speedPercetageCam;
-            EventToValueMapper* mapper;
+
 
 };
 

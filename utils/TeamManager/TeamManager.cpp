@@ -4,8 +4,8 @@
 
 #include "TeamManager.h"
 
-TeamManager::TeamManager(ControllerCharacter* character_1, ControllerCharacter* character_2, EventToValueMapper* mapper_){
-    mapper = mapper_;
+TeamManager::TeamManager(ControllerCharacter* character_1, ControllerCharacter* character_2){
+
     currentCharacter = character_1;
     supportCharacter = character_2;
 }
@@ -17,10 +17,13 @@ void TeamManager::changeCharacter(){
     supportCharacter = aux;
 }
 
+void TeamManager::render(){
+    currentCharacter->render();
+}
 void TeamManager::handleEvent(SDL_Event event){
 
     currentCharacter->handleEvent(event);
-    if (currentCharacter.getMapper()->changeCharacter(event)){
+    if (currentCharacter->getMapper()->changeCharacter(event)){
         changeCharacter();
     }
 }

@@ -33,9 +33,13 @@ void ViewController::handleEvent() {
         throw -1;
     }
 // MODIFICAR EL HANDLEEVENT!
-    for (std::list<Controller*>::iterator controller=controllers.begin(); controller != controllers.end(); ++controller){
+    for (std::list<ControllerBackground*>::iterator controllerBackground=backgrounds.begin(); controllerBackground != backgrounds.end(); ++controllerBackground){
             //Creo que devuelve un puntero al puntero de controller, por eso lo desreferencio.
-            (*controller)->handleEvent(event);
+            (*controllerBackground)->handleEvent(event);
+    }
+
+    for (std::list<TeamManager*>::iterator team = teams.begin(); team != teams.end(); ++team){
+        (*team)->handleEvent(event);
     }
 }
 
@@ -48,8 +52,13 @@ void ViewController::updateView() {
 
     // Luego renderizo los elementos que la componen
 
-    for (std::list<Controller*>::iterator controller=controllers.begin(); controller != controllers.end(); ++controller){
-        (*controller)->render();
+    for (std::list<ControllerBackground*>::iterator controllerBackground=backgrounds.begin(); controllerBackground != backgrounds.end(); ++controllerBackground) {
+        //Creo que devuelve un puntero al puntero de controller, por eso lo desreferencio.
+        (*controllerBackground)->render();
+    }
+
+    for (std::list<TeamManager*>::iterator team = teams.begin(); team != teams.end(); ++team) {
+        (*team)->render();
     }
     //Actualizo los datos
     SDL_RenderPresent(renderer);
