@@ -15,7 +15,8 @@ Game::~Game() = default;
 
 void Game::init(const char *title, int posX, int posY) {
 
-
+    CLogger* logger = CLogger::GetLogger();
+    logger ->Log("Inicializando juego");
 
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0){
 
@@ -30,7 +31,7 @@ void Game::init(const char *title, int posX, int posY) {
             }
         isRunning = true;
 
-        factory= new ViewControllerFactory(renderer, screenWidth, screenHeight);
+        factory = new ViewControllerFactory(renderer, screenWidth, screenHeight);
 
         // Mando viewFight pq es la unica que tenemos. Deberiamos mandar la primera, y luego, las view conocerse entre
         // si para saber quien va luego o implementar el VIEW MANAGER
