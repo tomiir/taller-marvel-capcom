@@ -1,22 +1,16 @@
 
 #include "BackgroundsController.h"
 
-void BackgroundsController::widthVeluesRefresh() {
+void BackgroundsController::widthAndHeightVeluesRefresh(ControllerBackground * background) {
 
-    for( itr; itr != backgrounds.end() ; ++itr ){
+    int backgroundWidth = background->getWidth();
+    int backgroundHeight = background->getHeight();
 
-//        if (backgrounds.empty()) break;
+    if (minWidth >= backgroundWidth) minWidth = backgroundWidth;
+    else if (maxWidth < backgroundWidth) maxWidth = backgroundWidth;
 
-        int backgroundWidth = (*itr)->getWidth();
-        int backgroundHeight = (*itr)->getHeight();
-
-        if( minWidth >= backgroundWidth ) minWidth = backgroundWidth;
-        if( maxWidth <= backgroundWidth ) maxWidth = backgroundWidth;
-        if( minWidth <= backgroundHeight ) minHeight = backgroundHeight;
-    }
-
-    itr = backgrounds.begin();
-
+    if (minHeight >= backgroundHeight) minHeight = backgroundHeight;
+    else if (maxHeight < backgroundHeight) maxHeight = backgroundHeight;
 }
 
 
@@ -25,13 +19,13 @@ void BackgroundsController::addBackgroundController(ControllerBackground *backgr
     if(!background) {}// lanzar excepcion
 
     backgrounds.push_back(background);
-    widthVeluesRefresh();
+    widthAndHeightVeluesRefresh(background);
 }
-
 
 
 void BackgroundsController::render() {
 
+    for(itr; itr != backgrounds.end(); ++itr) (*itr)->render();
 }
 
 
@@ -45,7 +39,7 @@ bool BackgroundsController::canMove(DirectionVector *direction, ControllerCharac
     int characterHeight = infoCharacter[3];
 
     bool characterIsInRightBoundary = characterPosX > ( camera.w - characterWidth - distanceBoundaryHorizontal);
-    bool cameraIsUnderRightLimit = characterPosX < (minWidth - camera.w);
+    bool cameraIsUnderRightLimit = camera.x < (maxWidth - camera.w);
     bool characterIsInLeftBoundary = characterPosX < distanceBoundaryHorizontal;
     bool cameraIsOverLeftLimit = camera.x > 0;
 

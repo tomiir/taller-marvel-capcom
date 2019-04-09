@@ -10,11 +10,15 @@ class BackgroundsController {
 private:
 
     vector< ControllerBackground* > backgrounds;
+
     int maxWidth = 0;
     int minWidth = 0;
     int minHeight = 0;
+    int maxHeight = 0;
+
     int distanceBoundaryHorizontal = 25;
     int distanceBoundaryVertical = 75;
+
     double jumpSpeed = 10;
     SDL_Rect camera;
 
@@ -23,7 +27,7 @@ private:
 
     vector< ControllerBackground* >::iterator itr = backgrounds.begin();
 
-    void widthVeluesRefresh();
+    void widthAndHeightVeluesRefresh(ControllerBackground * background);
 
 
 public:

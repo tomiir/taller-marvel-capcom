@@ -9,6 +9,7 @@
 #include "../Controller.h"
 #include "../../../utils/Vector2D/DirectionVector.h"
 #include "../../../utils/EventToValueMapper/EventToValueMapper.h"
+#include "../../BackgroundsController/BackgroundsController.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ class ControllerCharacter : public Controller{
 
 
 public:
-    ControllerCharacter(GameObject *gameObject, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_, int speedCharacter_);
+    ControllerCharacter(GameObject *gameObject, BackgroundsController* backgroundsController, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_, int speedCharacter_);
     ~ControllerCharacter();
     void handleEvent(SDL_Event event);
     EventToValueMapper* mapper;

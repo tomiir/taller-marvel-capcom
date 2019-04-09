@@ -9,7 +9,7 @@
 
 
 
-ControllerCharacter::ControllerCharacter(GameObject* gameObject, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_,  int speedCharacter_) : Controller(gameObject){
+ControllerCharacter::ControllerCharacter(GameObject* gameObject, BackgroundsController* backgroundsController, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_,  int speedCharacter_) : Controller(gameObject){
 
     screenHeight = screenHeight_;
     screenWidth = screenWidth_;
@@ -28,6 +28,9 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
     vector<int> info = gameObject->getInfo();
 
     if(event.key.state == SDL_RELEASED) state = "still";
+    if(direction->isEqual(RIGHT)) state = "walk";
+    if(direction->isEqual(LEFT)) state = "walk";
+
 
     bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal;
     bool characterIsntInLeftBoundary = info[0] >= distanceBoundaryHorizontal;
@@ -37,16 +40,11 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
 
         direction->multiply(speedCharacter);
         gameObject->move(direction);
-
-        state = "walk";
-
     }
 
     if( direction->isDiagonalRight() and !inAir ) jumpRight = true;
     if( direction->isDiagonalLeft() and !inAir ) jumpLeft = true;
     if( direction->isEqual(UP) and !inAir ) jump = true;
-
-    if( direction->isEqual(DOWN)) state = "still";
 
     if(jump){
 
