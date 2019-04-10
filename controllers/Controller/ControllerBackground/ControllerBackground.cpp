@@ -41,6 +41,7 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
 
     DirectionVector* dirLeft = characterOnLeft->getMapper()->map(event);
     DirectionVector* dirRight = characterOnRight->getMapper()->map(event);
+    DirectionVector* dirUp = controllerCharacter1->getMapper()->map(event);
 
     int distanceBetweenCharacters = characterOnRightInfo[0]+characterOnRightInfo[2] - characterOnLeftInfo[0];
 
@@ -56,8 +57,8 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
 
 
     bool characterIsInUpBoundary = infoCharacter1[1] < distanceBoundaryVertical and
-                                   infoCharacter2[1] < distanceBoundaryVertical;
-
+                                   infoCharacter2[1] < distanceBoundaryVertical + 300;//Este 300 es para que se mueva la cam para arriba si los dos estan en el aire
+                                                                                        //y no solo si estan los dos arriba de todo
     bool cameraIsOverUpLimit = cameraInfo[1] > 0;
 
     bool characterIsInDownBoundary = infoCharacter1[1] > (cameraInfo[1] - infoCharacter1[1] - distanceBoundaryHorizontal) and
@@ -70,6 +71,8 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
         dirRight->multiply(speedCam/2);
 
         gameObject->move(dirRight);
+        dirRight->multiply(-1);
+        characterOnLeft->move(dirRight);
     }
 
     if(dirLeft->isEqual(LEFT) and distanceMinorCameraWidth and cameraIsOverLeftLimit and characterOnLeftIsInLeftBoundary and !distanceEqualCameraWidth and !characterOnLeft->isJumping()){
@@ -77,34 +80,43 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
         dirLeft->multiply(speedCam/2);
 
         gameObject->move(dirLeft);
+
+        dirLeft->multiply(-1);
+        characterOnRight->move(dirLeft);
     }
 
 
-//    if (characterIsInUpBoundary and cameraIsOverUpLimit) {
-//
-//        dir1->setY( -jumpSpeed/2 );
-//        gameObject->move(dir1);
-//
-//    }
-//
-//    if( characterIsInDownBoundary and cameraIsUnderDownLimit ){
-//
-//        dir1->setY( jumpSpeed/2 );
-//        gameObject->move(dir1);
-//
-//    }
+    if (characterIsInUpBoundary and cameraIsOverUpLimit) {
 
-    if (characterOnRightIsInRightBoundary and cameraIsUnderRightLimit and controllerCharacter1->isJumpingRight() and distanceMinorCameraWidth) {
+        dirUp->setY( -jumpSpeed/2 );
+        gameObject->move(dirUp);
+
+    }
+
+    if( characterIsInDownBoundary and cameraIsUnderDownLimit ){
+
+        dirUp->setY( jumpSpeed/2 );
+        gameObject->move(dirUp);
+
+    }
+
+    if (characterOnRightIsInRightBoundary and cameraIsUnderRightLimit and controllerCharacter1->isJumpingRight() and distanceMinorCameraWidth and (characterOnRight == controllerCharacter1)) {
 
         dirLeft->setX( (jumpSpeed/2) * speedPercetageCam );
         gameObject->move(dirLeft);
 
+        dirLeft->multiply(-1);
+        characterOnLeft->move(dirLeft);
+
     }
 
-    if (characterOnLeftIsInLeftBoundary and cameraIsOverLeftLimit and controllerCharacter1->isJumpingLeft() and distanceMinorCameraWidth) {
+    if (characterOnLeftIsInLeftBoundary and cameraIsOverLeftLimit and controllerCharacter1->isJumpingLeft() and distanceMinorCameraWidth and (characterOnLeft == controllerCharacter1)) {
 
         dirRight->setX( -(jumpSpeed/2) * speedPercetageCam );
         gameObject->move(dirRight);
+
+        dirRight->multiply(-1);
+        characterOnRight->move(dirRight);
 
     }
 
