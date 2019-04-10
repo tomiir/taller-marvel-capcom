@@ -8,7 +8,7 @@
 void SpiderManJumpAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 16;
+    animationRate = 6;
     animationLength = 15;
 
     vector<int> frame0 = {12, 429, 83, 56};

@@ -48,10 +48,11 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
     if( direction->isDiagonalLeft() and !inAir ) jumpLeft = true;
     if( direction->isEqual(UP) and !inAir ) jump = true;
 
-    if( direction->isEqual(DOWN)) state = "still";
+    if( direction->isEqual(DOWN)) state = "crowchedDown";
 
     if(jump){
 
+        state = "jump";
         inAir = true;
         DirectionVector* step = new DirectionVector(0, -jumpSpeed);
 
@@ -65,6 +66,8 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
     }
 
     if( !jump and inAir ){
+
+        state = "jump";
 
         DirectionVector* step = new DirectionVector(0, jumpSpeed);
         if( jumpRight and characterIsntInRightBoundary ) step->setX( jumpSpeed/2 );

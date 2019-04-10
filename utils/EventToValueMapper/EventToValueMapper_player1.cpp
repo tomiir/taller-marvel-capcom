@@ -18,16 +18,16 @@ DirectionVector *EventToValueMapper_player1::map(SDL_Event event) {
 
         switch (event.key.keysym.sym) {
 
-            case SDLK_RIGHT:
+            case SDLK_l:
                 direction->add(1, 0);
                 break;
-            case SDLK_LEFT:
+            case SDLK_j:
                 direction->add(-1, 0);
                 break;
-            case SDLK_UP:
+            case SDLK_i:
                 direction->add(0, -1);
                 break;
-            case SDLK_DOWN:
+            case SDLK_k:
                 direction->add(0, 1);
                 break;
             case SDLK_m:
@@ -37,12 +37,12 @@ DirectionVector *EventToValueMapper_player1::map(SDL_Event event) {
                 break;
         }
 
-        if ( keyboardStateArray[SDL_SCANCODE_RIGHT] and keyboardStateArray[SDL_SCANCODE_UP] ) {
+        if ( keyboardStateArray[SDL_SCANCODE_L] and keyboardStateArray[SDL_SCANCODE_I] ) {
             direction->setDiagonal(1);
             direction->setY(-1);
         }
 
-        if ( keyboardStateArray[SDL_SCANCODE_LEFT] and keyboardStateArray[SDL_SCANCODE_UP] ) {
+        if ( keyboardStateArray[SDL_SCANCODE_J] and keyboardStateArray[SDL_SCANCODE_I] ) {
             direction->setDiagonal(-1);
             direction->setY(-1);
         }
