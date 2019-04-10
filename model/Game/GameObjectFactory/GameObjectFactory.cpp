@@ -20,6 +20,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
 
     vector<GameObject*>  gameObjects;
 
+
     Character* captainAmerica = new Character("Images/CaptainAmerica.png", renderer, new CaptainAmericaSpriteManager(), 400,400,200,300);
     Character* venom1 = new Character("Images/Venom.png", renderer, new VenomSpriteManager(), 400,400,200,300);
     Character* spiderMan= new Character("Images/SpiderMan.png", renderer, new SpiderManSpriteManager(), 800,400,200,300);
@@ -36,17 +37,23 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsBackgrounds_fight() {
     vector<GameObject *> gameObjects;
 
 
+
     Background *B1 = new Background("Images/Backgrounds/Background1.png", renderer, 1500, 900, 1200, 700);
+
     if (!B1) {
 //lanzar excepcion
     }
 
+
     Background *B2 = new Background("Images/Backgrounds/Background2.png", renderer, 1900, 900, 1200, 700);
+
     if (!B2) {
 //lanzar excepcion
     }
 
+   
     Background *B3 = new Background("Images/Backgrounds/Background3.png", renderer, 2300, 900, 1200, 700);
+
     if (!B3) {
 //lanzar excepcion
     }

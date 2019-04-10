@@ -6,7 +6,7 @@
 #include "../../../model/GameObjects/Characters/Character/Character.h"
 #include <chrono>
 #include <thread>
-
+#include "../../../utils/Logger/Logger.h"
 
 
 ControllerCharacter::ControllerCharacter(GameObject* gameObject, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_,  int speedCharacter_) : Controller(gameObject){
@@ -22,6 +22,9 @@ ControllerCharacter::~ControllerCharacter() = default;
 
 
 void ControllerCharacter::handleEvent(SDL_Event event) {
+
+    CLogger* logger = CLogger::GetLogger();
+    logger -> Log("Handling sth", DEBUG, "");
 
     DirectionVector* direction = mapper->map(event);
     vector<int> info = gameObject->getInfo();

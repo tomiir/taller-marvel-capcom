@@ -87,8 +87,8 @@ add_executable(
         Animations/VenomWalkFowardAnimation.cpp
         utils/SpriteManagers/SpiderManSpriteManager/SpiderManSpriteManager.cpp
         utils/SpriteManagers/SpiderManSpriteManager/SpiderManSpriteManager.h
-
-
+        utils/Logger/Logger.cpp utils/Logger/Logger.h)
         utils/SpriteManagers/VenomSpriteManager/VenomSpriteManager.cpp utils/SpriteManagers/VenomSpriteManager/VenomSpriteManager.h)
+ 
 target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 

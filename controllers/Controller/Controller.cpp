@@ -28,3 +28,6 @@ vector<int> Controller::getInfo(){
 }
 
 void Controller::handleEvent(SDL_Event event) {}
+
+void Controller::writeLog(string content) {
+}
