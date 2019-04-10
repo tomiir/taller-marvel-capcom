@@ -9,7 +9,7 @@
 void VenomWalkFowardAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 5;
+    animationRate = 11;
     animationLength = 10;
 
     vector<int> frame0 = {7, 2918, 148, 112};

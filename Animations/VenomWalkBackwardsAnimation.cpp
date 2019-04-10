@@ -9,7 +9,7 @@
 void VenomWalkBackwardsAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 5;
+    animationRate = 11;
     animationLength = 10;
 
     vector<int> frame0 = {6, 3252, 125, 120};

@@ -94,14 +94,14 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
 //
 //    }
 
-    if (characterOnRightIsInRightBoundary and cameraIsUnderRightLimit and controllerCharacter1->isJumpingRight()) {
+    if (characterOnRightIsInRightBoundary and cameraIsUnderRightLimit and controllerCharacter1->isJumpingRight() and distanceMinorCameraWidth) {
 
         dirLeft->setX( (jumpSpeed/2) * speedPercetageCam );
         gameObject->move(dirLeft);
 
     }
 
-    if (characterOnLeftIsInLeftBoundary and cameraIsOverLeftLimit and controllerCharacter1->isJumpingLeft()) {
+    if (characterOnLeftIsInLeftBoundary and cameraIsOverLeftLimit and controllerCharacter1->isJumpingLeft() and distanceMinorCameraWidth) {
 
         dirRight->setX( -(jumpSpeed/2) * speedPercetageCam );
         gameObject->move(dirRight);

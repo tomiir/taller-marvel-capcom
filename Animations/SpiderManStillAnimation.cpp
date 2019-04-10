@@ -8,7 +8,7 @@
 void SpiderManStillAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 5;
+    animationRate = 11;
     animationLength = 10;
 
     vector<int> frame0 = {16, 14, 103, 94};

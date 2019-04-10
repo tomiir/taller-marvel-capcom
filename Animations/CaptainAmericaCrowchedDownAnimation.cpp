@@ -30,3 +30,4 @@ CaptainAmericaCrowchedDownAnimation::CaptainAmericaCrowchedDownAnimation() : Ani
     this->init();
 
 }
+

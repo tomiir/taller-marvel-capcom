@@ -6,7 +6,7 @@
 void CaptainAmericaWalkBackwardsAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 4;
+    animationRate = 7;
     animationLength = 6;
 
     vector<int> frame0 = {4, 292, 99, 117};

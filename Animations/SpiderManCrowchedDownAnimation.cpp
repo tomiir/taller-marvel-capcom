@@ -8,7 +8,7 @@
 void SpiderManCrowchedDownAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 5;
+    animationRate = 11;
     animationLength = 10;
 
     vector<int> frame0 = {2, 1216, 102, 56};
