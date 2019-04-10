@@ -43,6 +43,13 @@ add_executable(
         controllers/Controller/ControllerCharacter/ControllerCharacter.h
         controllers/Controller/ControllerBackground/ControllerBackground.cpp
         controllers/Controller/ControllerBackground/ControllerBackground.h
-        utils/Vector2D/DirectionVector.cpp utils/Vector2D/DirectionVector.h Animations/Animation.cpp Animations/Animation.h utils/SpriteManagers/SpriteManager.h utils/SpriteManagers/SpriteManager.cpp utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.cpp utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.h Animations/CaptainAmericaStillAnimation.cpp Animations/CaptainAmericaStillAnimation.h Animations/CaptainAmericaWalkAnimation.cpp Animations/CaptainAmericaWalkAnimation.h)
+        utils/Vector2D/DirectionVector.cpp utils/Vector2D/DirectionVector.h
+        Animations/Animation.cpp Animations/Animation.h
+        utils/SpriteManagers/SpriteManager.h utils/SpriteManagers/SpriteManager.cpp
+        utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.cpp
+        utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.h
+        Animations/CaptainAmericaStillAnimation.cpp Animations/CaptainAmericaStillAnimation.h
+        Animations/CaptainAmericaWalkAnimation.cpp Animations/CaptainAmericaWalkAnimation.h
+        utils/Logger/Logger.cpp utils/Logger/Logger.h)
 target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 

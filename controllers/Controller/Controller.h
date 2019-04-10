@@ -7,6 +7,7 @@
 
 #include "../../model/GameObjects/GameObject/GameObject.h"
 #include "../../utils/EventToValueMapper/EventToValueMapper.h"
+#include "../../utils/Logger/Logger.h"
 
 using namespace std;
 
@@ -38,7 +39,9 @@ public:
     virtual void handleEvent(SDL_Event event);
     vector<int> getInfo();
 
-    };
+private:
+    void writeLog(string content);
+};
 
 
 #endif //TALLER_MARVEL_CAPCOM__CONTROLLER_H
