@@ -26,10 +26,20 @@ void TeamManager:: handleEvent(SDL_Event event, std::list<ControllerBackground*>
     if (currentCharacter->getMapper()->changeCharacter(event)){
         changeCharacter();
     }
-    else{
-        for (std::list<ControllerBackground*>::iterator controllerBackground=backgrounds.begin(); controllerBackground != backgrounds.end(); ++controllerBackground) {
-            //Creo que devuelve un puntero al puntero de controller, por eso lo desreferencio.
-            (*controllerBackground)->handleEvent(event,currentCharacter);
-        }
+    for (std::list<ControllerBackground*>::iterator controllerBackground=backgrounds.begin(); controllerBackground != backgrounds.end(); ++controllerBackground) {
+       //Creo que devuelve un puntero al puntero de controller, por eso lo desreferencio.
+        (*controllerBackground)->handleEvent(event,currentCharacter, enemyTeam->getCurrentCharacter() );
     }
+}
+
+void TeamManager::addEnemyTeam(TeamManager *enemyTeam_) {
+
+    enemyTeam = enemyTeam_;
+
+}
+
+ControllerCharacter* TeamManager::getCurrentCharacter() {
+
+    return currentCharacter;
+
 }

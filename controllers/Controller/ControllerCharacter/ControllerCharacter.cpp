@@ -94,3 +94,16 @@ bool ControllerCharacter::isJumpingLeft() {
 EventToValueMapper* ControllerCharacter::getMapper(){
     return mapper;
 }
+
+void ControllerCharacter::move(DirectionVector *direction) {
+
+    //direction->multiply(speedCharacter);
+    gameObject->move(direction);
+
+}
+
+void ControllerCharacter::flip() {
+
+    //hacer que flipee el sprite.
+
+}

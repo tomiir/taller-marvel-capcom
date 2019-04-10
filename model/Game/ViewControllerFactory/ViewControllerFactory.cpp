@@ -34,6 +34,9 @@ ViewController* ViewControllerFactory::getViewController_fight(){
     TeamManager* team1 = new TeamManager(characters[0], characters[1]);
     TeamManager* team2 = new TeamManager(characters[2], characters[3]);
 
+    team1->addEnemyTeam(team2);
+    team2->addEnemyTeam(team1);
+
     viewControllerFight->addTeamManager(team1);
     viewControllerFight->addTeamManager(team2);
 

@@ -18,11 +18,16 @@ public:
     void handleEvent(SDL_Event event, std::list<ControllerBackground*> backgrounds);
     void render();
 
+    void addEnemyTeam(TeamManager* enemyTeam_);
+
 private:
     ControllerCharacter* currentCharacter;
     ControllerCharacter* supportCharacter;
+    TeamManager* enemyTeam;
     EventToValueMapper* mapper; //para solucionar el tema de las teclas, conoce el mapper que comparte su team
     void changeCharacter();
+
+    ControllerCharacter* getCurrentCharacter();
 };
 
 

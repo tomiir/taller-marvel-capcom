@@ -1,9 +1,9 @@
 
 
-#include "CaptainAmericaWalkAnimation.h"
+#include "CaptainAmericaWalkFowardAnimation.h"
 #include <SDL_timer.h>
 
-void CaptainAmericaWalkAnimation::init() {
+void CaptainAmericaWalkFowardAnimation::init() {
 
     startTime = SDL_GetTicks();
     animationRate = 4;
@@ -27,7 +27,7 @@ void CaptainAmericaWalkAnimation::init() {
 
 }
 
-CaptainAmericaWalkAnimation::CaptainAmericaWalkAnimation() : Animation() {
+CaptainAmericaWalkFowardAnimation::CaptainAmericaWalkFowardAnimation() : Animation() {
 
     this->init();
 

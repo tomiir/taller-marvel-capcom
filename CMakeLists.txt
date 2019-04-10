@@ -43,15 +43,35 @@ add_executable(
         controllers/Controller/ControllerCharacter/ControllerCharacter.h
         controllers/Controller/ControllerBackground/ControllerBackground.cpp
         controllers/Controller/ControllerBackground/ControllerBackground.h
-        utils/Vector2D/DirectionVector.cpp utils/Vector2D/DirectionVector.h
-        Animations/Animation.cpp Animations/Animation.h utils/SpriteManagers/SpriteManager.h
-        utils/SpriteManagers/SpriteManager.cpp utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.cpp
-        utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.h Animations/CaptainAmericaStillAnimation.cpp
-        Animations/CaptainAmericaStillAnimation.h Animations/CaptainAmericaWalkAnimation.cpp Animations/CaptainAmericaWalkAnimation.h
+        utils/Vector2D/DirectionVector.cpp
+        utils/Vector2D/DirectionVector.h
+        Animations/Animation.cpp
+        Animations/Animation.h
+        utils/SpriteManagers/SpriteManager.h
+        utils/SpriteManagers/SpriteManager.cpp
+        utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.cpp
+        utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.h
+        Animations/CaptainAmericaStillAnimation.cpp
+        Animations/CaptainAmericaStillAnimation.h
+        Animations/CaptainAmericaWalkFowardAnimation.cpp
+        Animations/CaptainAmericaWalkFowardAnimation.h
         utils/EventToValueMapper/EventToValueMapper_player1.cpp
         utils/EventToValueMapper/EventToValueMapper_player1.h
         utils/EventToValueMapper/EventToValueMapper_player2.cpp
         utils/EventToValueMapper/EventToValueMapper_player2.h
-        utils/TeamManager/TeamManager.cpp utils/TeamManager/TeamManager.h)
+        utils/TeamManager/TeamManager.cpp
+        utils/TeamManager/TeamManager.h
+        Animations/VenomCrowchedDownAnimation.cpp
+        Animations/VenomCrowchedDownAnimation.h
+        Animations/VenomJumpAnimation.cpp
+        Animations/VenomJumpAnimation.h
+        Animations/VenomStillAnimation.cpp
+        Animations/VenomStillAnimation.h
+        Animations/VenomWalkBackwardsAnimation.cpp
+        Animations/VenomWalkBackwardsAnimation.h
+        Animations/VenomWalkFowardAnimation.h
+        Animations/VenomWalkFowardAnimation.cpp
+
+        utils/SpriteManagers/VenomSpriteManager/VenomSpriteManager.cpp utils/SpriteManagers/VenomSpriteManager/VenomSpriteManager.h)
 target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 

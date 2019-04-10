@@ -24,6 +24,10 @@ public:
     bool isJumpingLeft();
     EventToValueMapper* getMapper();
 
+    void move(DirectionVector *pVector);
+
+    void flip();
+
 private:
 
     EventToValueMapper* mapper;
