@@ -25,6 +25,8 @@ public:
     std::vector<ControllerBackground*> getControllersBackground_fight();
 
 private:
+    int speedCharacter = 10;
+
     GameObjectFactory* factory;
     int screenWidth, screenHeight;
     double cameraSpeedPercentage(int widthMax, int widthImg);

@@ -67,15 +67,14 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
 
     if(dirRight->isEqual(RIGHT) and distanceMinorCameraWidth and cameraIsUnderRightLimit and characterOnRightIsInRightBoundary and !distanceEqualCameraWidth and !characterOnRight->isJumping()){
 
-        dirRight->multiply(speedCam);
-
+        dirRight->multiply(speedCam/2);
 
         gameObject->move(dirRight);
     }
 
     if(dirLeft->isEqual(LEFT) and distanceMinorCameraWidth and cameraIsOverLeftLimit and characterOnLeftIsInLeftBoundary and !distanceEqualCameraWidth and !characterOnLeft->isJumping()){
 
-        dirLeft->multiply(speedCam);
+        dirLeft->multiply(speedCam/2);
 
         gameObject->move(dirLeft);
     }

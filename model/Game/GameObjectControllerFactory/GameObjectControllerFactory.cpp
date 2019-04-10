@@ -26,19 +26,6 @@ std::vector<ControllerCharacter*> GameObjectControllerFactory::getControllersCha
     vector<GameObject*> gameObjects = factory->getGameObjectsCharacters_fight();
     vector <ControllerCharacter*> characters;
 
-    int speedCharacter = 30;
-    int widthMax = 2300;
-
-    double speedPercentageB1 = cameraSpeedPercentage(widthMax, 1500);
-    double speedPercentageB2 = cameraSpeedPercentage(widthMax, 1900);
-    double speedPercentageB3 = cameraSpeedPercentage(widthMax, 2300);
-
-    int cameraSpeedB1 = speedCharacter * speedPercentageB1;
-    int cameraSpeedB2 = speedCharacter * speedPercentageB2;
-    int cameraSpeedB3 = speedCharacter * speedPercentageB3;
-
-    // ¿habría que hacer controllers distintos para background y character?
-
     ControllerCharacter* controllerCharacter1 = new ControllerCharacter(gameObjects[0],new EventToValueMapper_player1(), screenWidth, screenHeight, speedCharacter);
     ControllerCharacter* controllerCharacter2 = new ControllerCharacter(gameObjects[1],new EventToValueMapper_player1() ,screenWidth, screenHeight, speedCharacter);
     ControllerCharacter* controllerCharacter3 = new ControllerCharacter(gameObjects[2],new EventToValueMapper_player2(), screenWidth, screenHeight, speedCharacter);
@@ -55,7 +42,6 @@ std::vector<ControllerBackground*> GameObjectControllerFactory::getControllersBa
     vector<GameObject*> gameObjects = factory->getGameObjectsBackgrounds_fight();
     vector <ControllerBackground*> backgrounds;
 
-    int speedCharacter = 30;
     int widthMax = 2300;
 
     double speedPercentageB1 = cameraSpeedPercentage(widthMax, 1500);
