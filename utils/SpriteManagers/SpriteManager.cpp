@@ -33,5 +33,3 @@ bool SpriteManager::stateChanges(string newState) {
 
 void SpriteManager::init() {}
 
-
-

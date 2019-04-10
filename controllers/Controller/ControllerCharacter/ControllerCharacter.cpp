@@ -3,19 +3,20 @@
 //
 
 #include "ControllerCharacter.h"
-#include "../../../model/GameObjects/Characters/Character/Character.h"
+
+#include <stdio.h>
 #include <chrono>
 #include <thread>
 
 
 
-ControllerCharacter::ControllerCharacter(GameObject* gameObject, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_,  int speedCharacter_) : Controller(gameObject){
+ControllerCharacter::ControllerCharacter(Character* gameObject_, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_,  int speedCharacter_){
     screenHeight = screenHeight_;
     screenWidth = screenWidth_;
     speedCharacter = speedCharacter_; //Despues hay que separarlo en X e Y
     jump = jumpRight = jumpLeft = inAir = false;
     mapper = mapper_;
-
+    gameObject = gameObject_;
 }
 
 ControllerCharacter::~ControllerCharacter() = default;
@@ -28,10 +29,12 @@ void ControllerCharacter :: flip(ControllerCharacter* enemy){
 
     if( x < x_enemy){
         gameObject->flipRight();
+        printf("flipea");
     }
 
     else{
         gameObject->flipLeft();
+        printf("flipea");
     }
 
 }
@@ -125,3 +128,7 @@ void ControllerCharacter::move(DirectionVector *direction) {
 }
 
 
+void ControllerCharacter::render(){ //en vez de render tendria que ser "draw"
+
+    gameObject->render();
+}

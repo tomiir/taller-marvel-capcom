@@ -25,8 +25,8 @@ public:
     GameObjectFactory(SDL_Renderer *renderer_);
     ~GameObjectFactory();
 
-    vector<GameObject*> getGameObjectsCharacters_fight();
-    vector<GameObject*> getGameObjectsBackgrounds_fight();
+    vector<Character*> getGameObjectsCharacters_fight();
+    vector<Background*> getGameObjectsBackgrounds_fight();
 
 
 };

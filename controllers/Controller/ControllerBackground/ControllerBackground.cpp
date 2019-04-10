@@ -1,9 +1,8 @@
 #include "ControllerBackground.h"
 
 
-ControllerBackground::ControllerBackground(GameObject* background_, int speedCam_, double speedPercentageCam_) :
-                      Controller(background_) {
-
+ControllerBackground::ControllerBackground(Background* background, int speedCam_, double speedPercentageCam_){
+    gameObject = background;
     speedCam = speedCam_;
     speedPercetageCam = speedPercentageCam_;
 
@@ -110,4 +109,7 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
 
 }
 
+void ControllerBackground::render(){ //en vez de render tendria que ser "draw"
 
+    gameObject->render();
+}

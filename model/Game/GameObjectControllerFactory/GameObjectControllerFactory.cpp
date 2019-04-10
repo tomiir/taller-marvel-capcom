@@ -23,7 +23,7 @@ double GameObjectControllerFactory::cameraSpeedPercentage(int widthMax, int widt
 
 std::vector<ControllerCharacter*> GameObjectControllerFactory::getControllersCharacter_fight(){
 
-    vector<GameObject*> gameObjects = factory->getGameObjectsCharacters_fight();
+    vector<Character*> gameObjects = factory->getGameObjectsCharacters_fight();
     vector <ControllerCharacter*> characters;
 
     ControllerCharacter* controllerCharacter1 = new ControllerCharacter(gameObjects[0],new EventToValueMapper_player1(), screenWidth, screenHeight, speedCharacter);
@@ -39,7 +39,7 @@ std::vector<ControllerCharacter*> GameObjectControllerFactory::getControllersCha
 
 std::vector<ControllerBackground*> GameObjectControllerFactory::getControllersBackground_fight(){
 
-    vector<GameObject*> gameObjects = factory->getGameObjectsBackgrounds_fight();
+    vector<Background*> gameObjects = factory->getGameObjectsBackgrounds_fight();
     vector <ControllerBackground*> backgrounds;
 
     int widthMax = 2300;

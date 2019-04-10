@@ -16,9 +16,9 @@ GameObjectFactory::GameObjectFactory(SDL_Renderer *renderer_) {
 GameObjectFactory::~GameObjectFactory() = default;
 
 
-vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
+vector<Character*> GameObjectFactory:: getGameObjectsCharacters_fight() {
 
-    vector<GameObject*>  gameObjects;
+    vector<Character*>  gameObjects;
 
     Character* captainAmerica = new Character("Images/CaptainAmerica.png", renderer, new CaptainAmericaSpriteManager(), 400,400,200,300);
     Character* venom1 = new Character("Images/Venom.png", renderer, new VenomSpriteManager(), 400,400,200,300);
@@ -31,9 +31,9 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
 
 }
 
-vector<GameObject*> GameObjectFactory:: getGameObjectsBackgrounds_fight() {
+vector<Background*> GameObjectFactory:: getGameObjectsBackgrounds_fight() {
 
-    vector<GameObject *> gameObjects;
+    vector<Background *> gameObjects;
 
 
     Background *B1 = new Background("Images/Backgrounds/Background1.png", renderer, 1500, 900, 1200, 700);

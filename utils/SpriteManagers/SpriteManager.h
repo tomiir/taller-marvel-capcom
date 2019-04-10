@@ -35,5 +35,4 @@ protected:
 
 };
 
-
 #endif //TALLER_MARVEL_CAPCOM_SPRITEMANAGER_H

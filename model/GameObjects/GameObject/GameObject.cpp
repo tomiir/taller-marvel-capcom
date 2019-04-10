@@ -15,8 +15,7 @@ GameObject::GameObject(const char* folderPath, SDL_Renderer *rend, int initialX,
 
 GameObject::~GameObject() = default;
 
-void flipRight(){}
-void flipLeft(){}
+
 
 
 void GameObject::move(DirectionVector* direction){}

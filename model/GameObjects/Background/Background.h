@@ -18,6 +18,7 @@ public:
     vector<int> getInfo() override;
 
 
+
 private:
 
     int CAMERA_WIDTH, CAMERA_HEIGHT, CAMERA_X_POS, CAMERA_Y_POS;

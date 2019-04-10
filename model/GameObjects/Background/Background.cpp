@@ -44,3 +44,4 @@ vector<int> Background::getInfo() {
     std::vector<int> info = {imgWight, imgHeight};
     return info;
 }
+

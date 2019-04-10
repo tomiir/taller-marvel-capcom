@@ -19,11 +19,15 @@ public:
     vector<int> getInfo();
     void render();
     void setState(string state);
-    void flipRight() override;
-    void flipLeft() override;
+    void flipRight() ;
+    void flipLeft() ;
+
 
 private:
     SpriteManager* spriteManager;
+    SDL_RendererFlip flip_status;
+    double flip_angle;
+    SDL_Rect sprite ;
 };
 
 
