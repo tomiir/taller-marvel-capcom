@@ -3,10 +3,10 @@
 #include <SDL_timer.h>
 #include "CaptainAmericaStillAnimation.h"
 
-void ChinaStillAnimation::init() {
+void CaptainAmericaStillAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 5;
+    animationRate = 6;
     animationLength = 5;
 
     vector<int> frame0 = {4, 19, 87, 115};
@@ -24,7 +24,7 @@ void ChinaStillAnimation::init() {
 
 }
 
-ChinaStillAnimation::ChinaStillAnimation() : Animation() {
+CaptainAmericaStillAnimation::CaptainAmericaStillAnimation() : Animation() {
 
     this->init();
 

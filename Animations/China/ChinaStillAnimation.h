@@ -2,20 +2,20 @@
 // Created by fer on 07/04/19.
 //
 
-#ifndef TALLER_MARVEL_CAPCOM_CAPTAINAMERICASTILLANIMATION_H
-#define TALLER_MARVEL_CAPCOM_CAPTAINAMERICASTILLANIMATION_H
+#ifndef TALLER_MARVEL_CAPCOM_ChinaStillAnimation_H
+#define TALLER_MARVEL_CAPCOM_ChinaStillAnimation_H
 
 
 #include "../Animation.h"
 
-class CaptainAmericaStillAnimation : public Animation{
+class ChinaStillAnimation : public Animation{
 
 public:
-    CaptainAmericaStillAnimation();
-    ~CaptainAmericaStillAnimation() = default;
+    ChinaStillAnimation();
+    ~ChinaStillAnimation() = default;
     void init() override ;
 
 };
 
 
-#endif //TALLER_MARVEL_CAPCOM_CAPTAINAMERICASTILLANIMATION_H
+#endif //TALLER_MARVEL_CAPCOM_ChinaStillAnimation_H

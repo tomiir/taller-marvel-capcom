@@ -2,18 +2,18 @@
 // Created by fer on 07/04/19.
 //
 
-#ifndef TALLER_MARVEL_CAPCOM_CAPTAINAMERICAWALKANIMATION_H
-#define TALLER_MARVEL_CAPCOM_CAPTAINAMERICAWALKANIMATION_H
+#ifndef TALLER_MARVEL_CAPCOM_ChinaWALKANIMATION_H
+#define TALLER_MARVEL_CAPCOM_ChinaWALKANIMATION_H
 
 
 #include "../Animation.h"
 
-class CaptainAmericaWalkAnimation : public Animation{
+class ChinaWalkAnimation : public Animation{
 
 public:
-    CaptainAmericaWalkAnimation();
-    ~CaptainAmericaWalkAnimation() = default;
+    ChinaWalkAnimation();
+    ~ChinaWalkAnimation() = default;
     void init() override;
 };
 
-#endif //TALLER_MARVEL_CAPCOM_CAPTAINAMERICAWALKANIMATION_H
+#endif //TALLER_MARVEL_CAPCOM_ChinaWALKANIMATION_H

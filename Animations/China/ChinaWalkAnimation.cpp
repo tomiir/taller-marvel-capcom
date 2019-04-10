@@ -3,31 +3,31 @@
 #include "ChinaWalkAnimation.h"
 #include <SDL_timer.h>
 
-void CaptainAmericaWalkAnimation::init() {
+void ChinaWalkAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 4;
-    animationLength = 6;
+    animationRate = 12;
+    animationLength = 11;
+    vector<vector<int>> frames = {
+            {32, 328, 80, 82},
+            {131, 330, 65, 84},
+            {209, 330, 64, 85},
+            {287, 333, 65, 84},
+            {369, 332, 74, 83},
+            {447, 336, 79, 82},
+            {533, 335, 74, 83},
+            {613, 336, 65, 84},
+            {685, 336, 64, 85},
+            {756, 337, 65, 84},
+            {823, 337, 73, 83}
+    };
 
-    vector<int> frame0 = {4, 292, 99, 117};
-    vector<int> frame1 = {113, 289, 70, 116};
-    vector<int> frame2 = {198, 291, 85, 117};
-    vector<int> frame3 = {296, 293, 103, 117};
-    vector<int> frame4 = {415, 293, 69, 119};
-    vector<int> frame5 = {500, 296, 84, 117};
-
-
-    animation.push_back(frame0);
-    animation.push_back(frame1);
-    animation.push_back(frame2);
-    animation.push_back(frame3);
-    animation.push_back(frame4);
-    animation.push_back(frame5);
-
-
+    for (int i = 0; i< animationLength; i++) {
+        animation.push_back(frames[i]);
+    }
 }
 
-CaptainAmericaWalkAnimation::CaptainAmericaWalkAnimation() : Animation() {
+ChinaWalkAnimation::ChinaWalkAnimation() : Animation() {
 
     this->init();
 

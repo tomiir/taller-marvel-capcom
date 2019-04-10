@@ -12,7 +12,7 @@ using namespace std;
 void CaptainAmericaSpriteManager::init(){
 
 
-    animationMap["still"] = new ChinaStillAnimation();
+    animationMap["still"] = new CaptainAmericaStillAnimation();
     animationMap["walk"] = new CaptainAmericaWalkAnimation();
 //    animationMap.insert("jump", new CaptainAmericaJumpAnimation());
 }

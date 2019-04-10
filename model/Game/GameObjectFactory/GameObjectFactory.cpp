@@ -3,7 +3,8 @@
 //
 
 #include "GameObjectFactory.h"
-#include "../../../utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.h"
+#include "../../../utils/SpriteManagers/CaptainAmerica/CaptainAmericaSpriteManager.h"
+#include "../../../utils/SpriteManagers/China/ChinaSpriteManager.h"
 
 GameObjectFactory::GameObjectFactory(SDL_Renderer *renderer_) {
 
@@ -18,17 +19,9 @@ vector<GameObject*> GameObjectFactory:: getGameObjects_fight() {
 
     vector<GameObject*>  gameObjects;
 
-    Character* captainAmerica = new Character("Images/CaptainAmerica2.png", renderer, new CaptainAmericaSpriteManager(), 800,400,200,300);
+    //Character* character = new Character("Images/CaptainAmerica2.png", renderer, new CaptainAmericaSpriteManager(), 800,400,200,300);
+    Character* character = new Character("Images/ChinaSprites.png", renderer, new ChinaSpriteManager(), 800,450,200,300);
 
-//    Character* character2 = new Character("r/taller-marvel-capcom/Images/capComSprites/capCom_walk_2.png", renderer, 800, 400, 200, 300);
-//    if (!character2) {
-//        std::cout << "Fallo la creacion del render" << std::endl;
-//    }
-//
-//    Character* character1 = new Character("/home/fer/taller-marvel-capcom/Images/capComSprites/capCom_walk_1.png", renderer, 200, 400, 200, 300);
-//    if (!character1) {
-//        std::cout << "Fallo la creacion del render" << std::endl;
-//    }
 
     Background* B1 = new Background("Images/Backgrounds/Background1.png", renderer, 1500, 900, 1200, 700);
     if (!B1) {
@@ -45,7 +38,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjects_fight() {
         //lanzar excepcion
     }
 
-    gameObjects = {B1, B2, B3, captainAmerica };
+    gameObjects = {B1, B2, B3, character };
 
 
     return gameObjects;

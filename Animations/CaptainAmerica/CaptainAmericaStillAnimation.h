@@ -8,11 +8,11 @@
 
 #include "../Animation.h"
 
-class ChinaStillAnimation : public Animation{
+class CaptainAmericaStillAnimation : public Animation{
 
 public:
-    ChinaStillAnimation();
-    ~ChinaStillAnimation() = default;
+    CaptainAmericaStillAnimation();
+    ~CaptainAmericaStillAnimation() = default;
     void init() override ;
 
 };
