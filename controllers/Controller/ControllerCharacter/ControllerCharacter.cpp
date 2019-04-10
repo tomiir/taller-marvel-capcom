@@ -113,6 +113,6 @@ void ControllerCharacter::move(DirectionVector *direction) {
 
 void ControllerCharacter::flip() {
 
-    //hacer que flipee el sprite.
+    dynamic_cast<Character*> (gameObject)->flipSprite();
 
 }

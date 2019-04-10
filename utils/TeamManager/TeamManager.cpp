@@ -20,13 +20,13 @@ void TeamManager::changeCharacter(){
 void TeamManager::render(){
     currentCharacter->render();
 }
-void TeamManager:: handleEvent(SDL_Event event, std::list<ControllerBackground*> backgrounds){
+void TeamManager:: handleEvent(SDL_Event event, std::vector<ControllerBackground*> backgrounds){
 
     currentCharacter->handleEvent(event);
     if (currentCharacter->getMapper()->changeCharacter(event)){
         changeCharacter();
     }
-    for (std::list<ControllerBackground*>::iterator controllerBackground=backgrounds.begin(); controllerBackground != backgrounds.end(); ++controllerBackground) {
+    for (std::vector<ControllerBackground*>::iterator controllerBackground=backgrounds.begin(); controllerBackground != backgrounds.end(); ++controllerBackground) {
        //Creo que devuelve un puntero al puntero de controller, por eso lo desreferencio.
         (*controllerBackground)->handleEvent(event,currentCharacter, enemyTeam->getCurrentCharacter() );
     }

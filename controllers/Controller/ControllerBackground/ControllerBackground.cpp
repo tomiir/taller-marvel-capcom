@@ -1,3 +1,5 @@
+#include <utility>
+
 #include "ControllerBackground.h"
 
 
@@ -14,33 +16,19 @@ ControllerBackground::~ControllerBackground() = default;
 void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* controllerCharacter1, ControllerCharacter* controllerCharacter2) {
 
 
+//    void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* currentCharacter);
+//    void ControllerBackground::update(ControllerCharacter* controllerCharacterOnLeft, ControllerCharacter* controllerCharacterOnRight);
+
+
     vector<int> cameraInfo = dynamic_cast< Background* >(gameObject)->getCameraInfo();
-    vector<int> infoCharacter1 = controllerCharacter1->getInfo();
-    vector<int> infoCharacter2 = controllerCharacter2->getInfo();
     vector<int> infoBackgroundImg = gameObject->getInfo();
 
-    ControllerCharacter* characterOnLeft;
-    ControllerCharacter* characterOnRight;
+    DirectionVector* dirLeft = controllerCharacterOnLeft->getMapper()->map(event);
+    DirectionVector* dirRight = controllerCharacterOnRight->getMapper()->map(event);
 
-    vector<int> characterOnLeftInfo;
-    vector<int> characterOnRightInfo;
+    vector<int> infoCharacter1 = controllerCharacter1->getInfo();
+    vector<int> infoCharacter2 = controllerCharacter2->getInfo();
 
-    if(infoCharacter1[0] <= infoCharacter2[0]){
-        characterOnLeft = controllerCharacter1;
-        characterOnRight = controllerCharacter2;
-        characterOnLeftInfo = infoCharacter1;
-        characterOnRightInfo = infoCharacter2;
-
-    }
-    else {
-        characterOnLeft = controllerCharacter2;
-        characterOnRight = controllerCharacter1;
-        characterOnLeftInfo = infoCharacter2;
-        characterOnRightInfo = infoCharacter1;
-    }
-
-    DirectionVector* dirLeft = characterOnLeft->getMapper()->map(event);
-    DirectionVector* dirRight = characterOnRight->getMapper()->map(event);
     DirectionVector* dirUp = controllerCharacter1->getMapper()->map(event);
 
     int distanceBetweenCharacters = characterOnRightInfo[0]+characterOnRightInfo[2] - characterOnLeftInfo[0];
@@ -66,23 +54,23 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
 
     bool cameraIsUnderDownLimit = cameraInfo[1] < (infoBackgroundImg[1] - cameraInfo[3]);
 
-    if(dirRight->isEqual(RIGHT) and distanceMinorCameraWidth and cameraIsUnderRightLimit and characterOnRightIsInRightBoundary and !distanceEqualCameraWidth and !characterOnRight->isJumping()){
+    if(dirRight->isEqual(RIGHT) and distanceMinorCameraWidth and cameraIsUnderRightLimit and characterOnRightIsInRightBoundary and !distanceEqualCameraWidth and !controllerCharacterOnRight->isJumping()){
 
         dirRight->multiply(speedCam/2);
 
         gameObject->move(dirRight);
         dirRight->multiply(-1);
-        characterOnLeft->move(dirRight);
+        controllerCharacterOnLeft->move(dirRight);
     }
 
-    if(dirLeft->isEqual(LEFT) and distanceMinorCameraWidth and cameraIsOverLeftLimit and characterOnLeftIsInLeftBoundary and !distanceEqualCameraWidth and !characterOnLeft->isJumping()){
+    if(dirLeft->isEqual(LEFT) and distanceMinorCameraWidth and cameraIsOverLeftLimit and characterOnLeftIsInLeftBoundary and !distanceEqualCameraWidth and !controllerCharacterOnLeft->isJumping()){
 
         dirLeft->multiply(speedCam/2);
 
         gameObject->move(dirLeft);
 
         dirLeft->multiply(-1);
-        characterOnRight->move(dirLeft);
+        controllerCharacterOnRight->move(dirLeft);
     }
 
 
@@ -100,25 +88,36 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
 
     }
 
-    if (characterOnRightIsInRightBoundary and cameraIsUnderRightLimit and controllerCharacter1->isJumpingRight() and distanceMinorCameraWidth and (characterOnRight == controllerCharacter1)) {
+    if (characterOnRightIsInRightBoundary and cameraIsUnderRightLimit and controllerCharacter1->isJumpingRight() and distanceMinorCameraWidth and (controllerCharacterOnRight == controllerCharacter1)) {
 
         dirLeft->setX( (jumpSpeed/2) * speedPercetageCam );
         gameObject->move(dirLeft);
 
         dirLeft->multiply(-1);
-        characterOnLeft->move(dirLeft);
+        controllerCharacterOnLeft->move(dirLeft);
 
     }
 
-    if (characterOnLeftIsInLeftBoundary and cameraIsOverLeftLimit and controllerCharacter1->isJumpingLeft() and distanceMinorCameraWidth and (characterOnLeft == controllerCharacter1)) {
+    if (characterOnLeftIsInLeftBoundary and cameraIsOverLeftLimit and controllerCharacter1->isJumpingLeft() and distanceMinorCameraWidth and (controllerCharacterOnLeft == controllerCharacter1)) {
 
         dirRight->setX( -(jumpSpeed/2) * speedPercetageCam );
         gameObject->move(dirRight);
 
         dirRight->multiply(-1);
-        characterOnRight->move(dirRight);
+        controllerCharacterOnRight->move(dirRight);
 
     }
+
+}
+
+void ControllerBackground::update(ControllerCharacter *controllerCharacterOnLeft_,const vector<int>& characterOnLeftInfo_,
+                                  ControllerCharacter *controllerCharacterOnRight_,const vector<int>& characterOnRightInfo_) {
+
+    controllerCharacterOnLeft = controllerCharacterOnLeft_;
+    controllerCharacterOnRight = controllerCharacterOnRight_;
+
+    characterOnLeftInfo = characterOnLeftInfo_;
+    characterOnRightInfo = characterOnRightInfo_;
 
 }
 

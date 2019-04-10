@@ -3,6 +3,7 @@
 //
 
 #include "ViewController.h"
+
 #include <SDL2/SDL.h>
 
 ViewController::ViewController(SDL_Renderer* renderer_) {
@@ -19,10 +20,6 @@ void ViewController::addBackground(ControllerBackground* controller) {
     backgrounds.push_back(controller);
 }
 
-void ViewController::addTeamManager(TeamManager* teamManager) {
-    teams.push_back(teamManager);
-}
-
 
 void ViewController::handleEvent() {
 
@@ -34,10 +31,9 @@ void ViewController::handleEvent() {
     }
 // MODIFICAR EL HANDLEEVENT!
 
-
-    for (std::list<TeamManager*>::iterator team = teams.begin(); team != teams.end(); ++team){
-        (*team)->handleEvent(event, backgrounds);
-    }
+    team1->handleEvent(event, backgrounds);
+    team2->handleEvent(event, backgrounds);
+    flipManager->update();
 }
 
 void ViewController::updateView() {
@@ -49,16 +45,26 @@ void ViewController::updateView() {
 
     // Luego renderizo los elementos que la componen
 
-    for (std::list<ControllerBackground*>::iterator controllerBackground=backgrounds.begin(); controllerBackground != backgrounds.end(); ++controllerBackground) {
+    for (std::vector<ControllerBackground*>::iterator controllerBackground=backgrounds.begin(); controllerBackground != backgrounds.end(); ++controllerBackground) {
         //Creo que devuelve un puntero al puntero de controller, por eso lo desreferencio.
         (*controllerBackground)->render();
     }
 
-    for (std::list<TeamManager*>::iterator team = teams.begin(); team != teams.end(); ++team) {
-        (*team)->render();
-    }
-    //Actualizo los datos
+    team1->render();
+    team2->render();
     SDL_RenderPresent(renderer);
+
+}
+
+void ViewController::addTeams(TeamManager* teamManager1, TeamManager* teamManager2) {
+
+    team1 = teamManager1;
+    team2 = teamManager2;
+}
+
+void ViewController::addFlipManager(FlipManager *flipManager_) {
+
+    flipManager = flipManager_;
 
 }
 

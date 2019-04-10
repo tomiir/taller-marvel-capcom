@@ -1,0 +1,18 @@
+//
+// Created by fer on 10/04/19.
+//
+
+#include <SDL_render.h>
+
+#ifndef TALLER_MARVEL_CAPCOM_BACKGROUNDSCONTROLLER_H
+#define TALLER_MARVEL_CAPCOM_BACKGROUNDSCONTROLLER_H
+
+
+class BackgroundsController {
+
+};
+
+
+#endif //TALLER_MARVEL_CAPCOM_BACKGROUNDSCONTROLLER_H
+
+
