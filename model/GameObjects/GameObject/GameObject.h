@@ -19,6 +19,9 @@ public:
         virtual void render();
         virtual vector<int> getInfo();
 
+        virtual void flipRight();
+        virtual void flipLeft();
+
 protected:
 
         SDL_Texture* objTexture;

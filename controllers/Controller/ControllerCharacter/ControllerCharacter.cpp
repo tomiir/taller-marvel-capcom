@@ -21,6 +21,25 @@ ControllerCharacter::ControllerCharacter(GameObject* gameObject, EventToValueMap
 ControllerCharacter::~ControllerCharacter() = default;
 
 
+
+void ControllerCharacter :: flip(ControllerCharacter* enemy){
+    int x_enemy = (enemy->getInfo())[0];
+    int x = (gameObject->getInfo())[0];
+
+    if( x < x_enemy){
+        gameObject->flipRight();
+    }
+
+    else{
+        gameObject->flipLeft();
+    }
+
+}
+
+vector<int> ControllerCharacter :: getInfo(){
+    return gameObject->getInfo();
+}
+
 void ControllerCharacter::handleEvent(SDL_Event event) {
 
     DirectionVector* direction = mapper->map(event);
@@ -105,8 +124,4 @@ void ControllerCharacter::move(DirectionVector *direction) {
 
 }
 
-void ControllerCharacter::flip() {
 
-    //hacer que flipee el sprite.
-
-}

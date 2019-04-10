@@ -19,6 +19,8 @@ public:
     vector<int> getInfo();
     void render();
     void setState(string state);
+    void flipRight() override;
+    void flipLeft() override;
 
 private:
     SpriteManager* spriteManager;

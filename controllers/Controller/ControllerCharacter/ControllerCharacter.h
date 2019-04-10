@@ -26,7 +26,9 @@ public:
 
     void move(DirectionVector *pVector);
 
-    void flip();
+    void flip(ControllerCharacter* enemy);
+
+    vector<int> getInfo(){}
 
 private:
 

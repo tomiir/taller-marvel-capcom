@@ -30,6 +30,8 @@ void TeamManager:: handleEvent(SDL_Event event, std::list<ControllerBackground*>
        //Creo que devuelve un puntero al puntero de controller, por eso lo desreferencio.
         (*controllerBackground)->handleEvent(event,currentCharacter, enemyTeam->getCurrentCharacter() );
     }
+
+    currentCharacter->flip(enemyTeam->getCurrentCharacter());
 }
 
 void TeamManager::addEnemyTeam(TeamManager *enemyTeam_) {
