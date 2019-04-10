@@ -6,7 +6,7 @@
 #include <stdlib.h>
 using namespace std;
 
-string CLogger::filename = "taller-marvel-capcom-0.log";
+string CLogger::filename = "taller-marvel-capcom-0";
 CLogger* CLogger::m_pThis = NULL;
 fstream CLogger::m_Logfile;
 CLogger::CLogger(){}
@@ -17,12 +17,12 @@ CLogger* CLogger::GetLogger(){
     if (m_pThis == NULL){
         m_pThis = new CLogger();
 
-        m_Logfile.open(filename.c_str());
+        m_Logfile.open((filename + ".log").c_str());
         while(!m_Logfile.fail()) {
             int id = std::atoi (&filename[filename.size()-5]);
             string idString =  to_string(id +1);
-            filename.replace(filename.size() -5,idString.size(), idString);
-
+            filename.replace(filename.size() -1,idString.size(), idString);
+            filename+= ".log";
             m_Logfile.close();
             m_Logfile.open(filename.c_str());
         }
