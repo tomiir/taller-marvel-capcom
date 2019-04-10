@@ -55,6 +55,20 @@ add_executable(
         Animations/CaptainAmericaStillAnimation.h
         Animations/CaptainAmericaWalkFowardAnimation.cpp
         Animations/CaptainAmericaWalkFowardAnimation.h
+        Animations/CaptainAmericaCrowchedDownAnimation.cpp
+        Animations/CaptainAmericaCrowchedDownAnimation.h
+        Animations/CaptainAmericaJumpAnimation.cpp
+        Animations/CaptainAmericaJumpAnimation.h
+        Animations/CaptainAmericaWalkBackwardsAnimation.cpp
+        Animations/CaptainAmericaWalkBackwardsAnimation.h
+        Animations/SpiderManCrowchedDownAnimation.cpp
+        Animations/SpiderManCrowchedDownAnimation.h
+        Animations/SpiderManJumpAnimation.cpp
+        Animations/SpiderManJumpAnimation.h
+        Animations/SpiderManStillAnimation.cpp
+        Animations/SpiderManStillAnimation.h
+        Animations/SpiderManWalkAnimation.cpp
+        Animations/SpiderManWalkAnimation.h
         utils/EventToValueMapper/EventToValueMapper_player1.cpp
         utils/EventToValueMapper/EventToValueMapper_player1.h
         utils/EventToValueMapper/EventToValueMapper_player2.cpp
@@ -71,6 +85,9 @@ add_executable(
         Animations/VenomWalkBackwardsAnimation.h
         Animations/VenomWalkFowardAnimation.h
         Animations/VenomWalkFowardAnimation.cpp
+        utils/SpriteManagers/SpiderManSpriteManager/SpiderManSpriteManager.cpp
+        utils/SpriteManagers/SpiderManSpriteManager/SpiderManSpriteManager.h
+
 
         utils/SpriteManagers/VenomSpriteManager/VenomSpriteManager.cpp utils/SpriteManagers/VenomSpriteManager/VenomSpriteManager.h)
 target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})

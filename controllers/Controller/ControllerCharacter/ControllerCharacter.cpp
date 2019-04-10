@@ -27,6 +27,9 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
     vector<int> info = gameObject->getInfo();
 
     if(event.key.state == SDL_RELEASED) state = "still";
+    if(direction->isEqual(RIGHT)) state = "walk";
+    if(direction->isEqual(LEFT)) state = "walk";
+
 
     bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal;
     bool characterIsntInLeftBoundary = info[0] >= distanceBoundaryHorizontal;

@@ -5,6 +5,7 @@
 #include "GameObjectFactory.h"
 #include "../../../utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.h"
 #include "../../../utils/SpriteManagers/VenomSpriteManager/VenomSpriteManager.h"
+#include "../../../utils/SpriteManagers/SpiderManSpriteManager/SpiderManSpriteManager.h"
 
 GameObjectFactory::GameObjectFactory(SDL_Renderer *renderer_) {
 
@@ -19,12 +20,12 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
 
     vector<GameObject*>  gameObjects;
 
-    Character* captainAmerica = new Character("Images/CaptainAmerica.png", renderer, new CaptainAmericaSpriteManager(), 800,400,200,300);
-    Character* venom1 = new Character("Images/Venom.png", renderer, new VenomSpriteManager(), 800,400,200,300);
-    Character* captainAmerica2= new Character("Images/CaptainAmerica.png", renderer, new CaptainAmericaSpriteManager(), 800,400,200,300);
+    Character* captainAmerica = new Character("Images/CaptainAmerica.png", renderer, new CaptainAmericaSpriteManager(), 400,400,200,300);
+    Character* venom1 = new Character("Images/Venom.png", renderer, new VenomSpriteManager(), 400,400,200,300);
+    Character* spiderMan= new Character("Images/SpiderMan.png", renderer, new SpiderManSpriteManager(), 800,400,200,300);
     Character* venom2 = new Character("Images/Venom.png", renderer, new VenomSpriteManager(), 800,400,200,300);
 
-    gameObjects = {captainAmerica, venom1, captainAmerica2, venom2};
+    gameObjects = {captainAmerica, venom1, spiderMan, venom2};
 
     return gameObjects;
 
