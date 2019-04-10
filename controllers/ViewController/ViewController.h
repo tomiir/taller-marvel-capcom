@@ -8,7 +8,8 @@
 #include "../../views/View/View.h"
 #include "../Controller/Controller.h"
 #include <list>
-
+#include "../Controller/ControllerBackground/ControllerBackground.h"
+#include "../../utils/TeamManager/TeamManager.h"
 
 
 class ViewController {
@@ -18,12 +19,13 @@ public:
     ~ViewController();
     void updateView();
     void handleEvent();
-    void addController(Controller* controller);
-
+    void addBackground(ControllerBackground* controller);
+    void addTeamManager(TeamManager* teamManager);
 private:
     View* view;
     SDL_Renderer* renderer;
-    std::list<Controller*> controllers;
+    std::list<ControllerBackground*> backgrounds;
+    std::list<TeamManager*> teams;
 };
 
 

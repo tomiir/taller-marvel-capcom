@@ -9,17 +9,18 @@ ViewController::ViewController(SDL_Renderer* renderer_) {
 
     this->renderer= renderer_;
     this->view = new View(renderer_);
-
-    // ¿HAY QUE INICIALIZAR LA LISTA?
-    //this->controllers = new std::list<Controller*>();
 }
 
 ViewController::~ViewController() = default;
 
 
-void ViewController::addController(Controller *controller) {
+void ViewController::addBackground(ControllerBackground* controller) {
 
-    controllers.push_back(controller);
+    backgrounds.push_back(controller);
+}
+
+void ViewController::addTeamManager(TeamManager* teamManager) {
+    teams.push_back(teamManager);
 }
 
 
@@ -31,10 +32,11 @@ void ViewController::handleEvent() {
     if (event.type == SDL_QUIT) {
         throw -1;
     }
+// MODIFICAR EL HANDLEEVENT!
 
-    for (std::list<Controller*>::iterator controller=controllers.begin(); controller != controllers.end(); ++controller){
-            //Creo que devuelve un puntero al puntero de controller, por eso lo desreferencio.
-            (*controller)->handleEvent(event);
+
+    for (std::list<TeamManager*>::iterator team = teams.begin(); team != teams.end(); ++team){
+        (*team)->handleEvent(event, backgrounds);
     }
 }
 
@@ -47,8 +49,13 @@ void ViewController::updateView() {
 
     // Luego renderizo los elementos que la componen
 
-    for (std::list<Controller*>::iterator controller=controllers.begin(); controller != controllers.end(); ++controller){
-        (*controller)->render();
+    for (std::list<ControllerBackground*>::iterator controllerBackground=backgrounds.begin(); controllerBackground != backgrounds.end(); ++controllerBackground) {
+        //Creo que devuelve un puntero al puntero de controller, por eso lo desreferencio.
+        (*controllerBackground)->render();
+    }
+
+    for (std::list<TeamManager*>::iterator team = teams.begin(); team != teams.end(); ++team) {
+        (*team)->render();
     }
     //Actualizo los datos
     SDL_RenderPresent(renderer);

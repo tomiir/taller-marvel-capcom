@@ -22,12 +22,24 @@ ViewController* ViewControllerFactory::getViewController_fight(){
 
     GameObjectControllerFactory* factory = new GameObjectControllerFactory(renderer, screenWidth, screenHeight);
 
-    vector<Controller*>  controllers = factory->getGameObjectControllers_fight();
+    vector<ControllerBackground*>  backgrounds = factory->getControllersBackground_fight();
 
-    for (int i = 0; i < controllers.size(); i++){ //Este for tiene que agarrar automaticamente la cantidad de controllers que le pasen. no tiene que estar hardcdeado ese 5.
 
-        viewControllerFight->addController(controllers[i]);
+    for (int i = 0; i < backgrounds.size(); i++){
+        viewControllerFight->addBackground(backgrounds[i]);
     }
+
+    vector<ControllerCharacter*> characters = factory->getControllersCharacter_fight();
+
+    TeamManager* team1 = new TeamManager(characters[0], characters[1]);
+    TeamManager* team2 = new TeamManager(characters[2], characters[3]);
+
+    team1->addEnemyTeam(team2);
+    team2->addEnemyTeam(team1);
+
+    viewControllerFight->addTeamManager(team1);
+    viewControllerFight->addTeamManager(team2);
+
 
     return viewControllerFight;
 

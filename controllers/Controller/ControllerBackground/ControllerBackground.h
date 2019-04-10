@@ -9,6 +9,7 @@
 #include "../Controller.h"
 #include "../../../model/GameObjects/Background/Background.h"
 #include "../ControllerCharacter/ControllerCharacter.h"
+#include "../../../utils/EventToValueMapper/EventToValueMapper.h"
 
 
 using namespace std;
@@ -16,14 +17,16 @@ using namespace std;
 class ControllerBackground : public Controller {
 
     public:
-            ControllerBackground(GameObject* background, ControllerCharacter* controllerCharacter, int speedCam_, double speedPercentageCam_);
+            ControllerBackground(GameObject* background, int speedCam_, double speedPercentageCam_);
             ~ControllerBackground();
-            void handleEvent(SDL_Event event) override;
+            void handleEvent(SDL_Event event, ControllerCharacter* controllerCharacter1, ControllerCharacter* controllerCharacter2);
 
     private:
-            ControllerCharacter* controllerCharacter;
+
             double speedCam;
             double speedPercetageCam;
+
+
 };
 
 

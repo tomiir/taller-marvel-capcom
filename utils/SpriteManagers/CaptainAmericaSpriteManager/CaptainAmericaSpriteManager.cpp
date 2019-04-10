@@ -5,7 +5,10 @@
 #include <iostream>
 #include "CaptainAmericaSpriteManager.h"
 #include "../../../Animations/CaptainAmericaStillAnimation.h"
-#include "../../../Animations/CaptainAmericaWalkAnimation.h"
+#include "../../../Animations/CaptainAmericaWalkFowardAnimation.h"
+#include "../../../Animations/CaptainAmericaJumpAnimation.h"
+#include "../../../Animations/CaptainAmericaCrowchedDownAnimation.h"
+
 
 using namespace std;
 
@@ -13,8 +16,10 @@ void CaptainAmericaSpriteManager::init(){
 
 
     animationMap["still"] = new CaptainAmericaStillAnimation();
-    animationMap["walk"] = new CaptainAmericaWalkAnimation();
-//    animationMap.insert("jump", new CaptainAmericaJumpAnimation());
+    animationMap["walk"] = new CaptainAmericaWalkFowardAnimation();
+    animationMap["jump"] = new CaptainAmericaJumpAnimation();
+    animationMap["crowchedDown"] = new CaptainAmericaCrowchedDownAnimation();
+
 }
 
 CaptainAmericaSpriteManager::CaptainAmericaSpriteManager() : SpriteManager(){

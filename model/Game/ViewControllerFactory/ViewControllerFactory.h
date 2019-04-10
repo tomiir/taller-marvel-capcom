@@ -8,6 +8,7 @@
 #include "../GameObjectControllerFactory/GameObjectControllerFactory.h"
 #include "../../../controllers/ViewController/ViewController.h"
 #include "../../../views/View/View.h"
+#include "../../../utils/TeamManager/TeamManager.h"
 
 using namespace std;
 

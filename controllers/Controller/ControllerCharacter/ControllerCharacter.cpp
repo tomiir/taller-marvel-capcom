@@ -4,13 +4,17 @@
 
 #include "ControllerCharacter.h"
 #include "../../../model/GameObjects/Characters/Character/Character.h"
+#include <chrono>
+#include <thread>
 #include "../../../utils/Logger/Logger.h"
 
-ControllerCharacter::ControllerCharacter(GameObject* gameObject, int screenWidth_, int screenHeight_,  int speedCharacter_) : Controller(gameObject){
+
+ControllerCharacter::ControllerCharacter(GameObject* gameObject, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_,  int speedCharacter_) : Controller(gameObject){
     screenHeight = screenHeight_;
     screenWidth = screenWidth_;
     speedCharacter = speedCharacter_; //Despues hay que separarlo en X e Y
     jump = jumpRight = jumpLeft = inAir = false;
+    mapper = mapper_;
 
 }
 
@@ -19,14 +23,16 @@ ControllerCharacter::~ControllerCharacter() = default;
 
 void ControllerCharacter::handleEvent(SDL_Event event) {
 
-
     CLogger* logger = CLogger::GetLogger();
     logger -> Log("Handling sth", DEBUG, "");
 
     DirectionVector* direction = mapper->map(event);
     vector<int> info = gameObject->getInfo();
 
-    //if(direction->isEqual(STILL)) state = "still";
+    if(event.key.state == SDL_RELEASED) state = "still";
+    if(direction->isEqual(RIGHT)) state = "walk";
+    if(direction->isEqual(LEFT)) state = "walk";
+
 
     bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal;
     bool characterIsntInLeftBoundary = info[0] >= distanceBoundaryHorizontal;
@@ -45,10 +51,11 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
     if( direction->isDiagonalLeft() and !inAir ) jumpLeft = true;
     if( direction->isEqual(UP) and !inAir ) jump = true;
 
-    if( direction->isEqual(DOWN)) state = "still";
+    if( direction->isEqual(DOWN)) state = "crowchedDown";
 
     if(jump){
 
+        state = "jump";
         inAir = true;
         DirectionVector* step = new DirectionVector(0, -jumpSpeed);
 
@@ -62,6 +69,8 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
     }
 
     if( !jump and inAir ){
+
+        state = "jump";
 
         DirectionVector* step = new DirectionVector(0, jumpSpeed);
         if( jumpRight and characterIsntInRightBoundary ) step->setX( jumpSpeed/2 );
@@ -89,4 +98,21 @@ bool ControllerCharacter::isJumpingRight() {
 
 bool ControllerCharacter::isJumpingLeft() {
     return jumpLeft;
+}
+
+EventToValueMapper* ControllerCharacter::getMapper(){
+    return mapper;
+}
+
+void ControllerCharacter::move(DirectionVector *direction) {
+
+    //direction->multiply(speedCharacter);
+    gameObject->move(direction);
+
+}
+
+void ControllerCharacter::flip() {
+
+    //hacer que flipee el sprite.
+
 }

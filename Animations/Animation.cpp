@@ -16,6 +16,7 @@ vector<int> Animation::play() {
     }
 
     int frameToDraw = ((SDL_GetTicks() - startTime) * animationRate / 1000) % animationLength;
+
     vector<int> sprite = animation[frameToDraw];
 
     return sprite;

@@ -21,12 +21,27 @@ double GameObjectControllerFactory::cameraSpeedPercentage(int widthMax, int widt
     return a/b;
 }
 
-std::vector<Controller*> GameObjectControllerFactory::getGameObjectControllers_fight(){
+std::vector<ControllerCharacter*> GameObjectControllerFactory::getControllersCharacter_fight(){
 
-    vector<GameObject*> gameObjects = factory->getGameObjects_fight();
-    vector <Controller*> controllers;
+    vector<GameObject*> gameObjects = factory->getGameObjectsCharacters_fight();
+    vector <ControllerCharacter*> characters;
 
-    int speedCharacter = 10;
+    ControllerCharacter* controllerCharacter1 = new ControllerCharacter(gameObjects[0],new EventToValueMapper_player1(), screenWidth, screenHeight, speedCharacter);
+    ControllerCharacter* controllerCharacter2 = new ControllerCharacter(gameObjects[1],new EventToValueMapper_player1() ,screenWidth, screenHeight, speedCharacter);
+    ControllerCharacter* controllerCharacter3 = new ControllerCharacter(gameObjects[2],new EventToValueMapper_player2(), screenWidth, screenHeight, speedCharacter);
+    ControllerCharacter* controllerCharacter4 = new ControllerCharacter(gameObjects[3],new EventToValueMapper_player2() ,screenWidth, screenHeight, speedCharacter);
+
+
+    characters = { controllerCharacter1, controllerCharacter2,controllerCharacter3,controllerCharacter4 };
+
+    return characters;
+}
+
+std::vector<ControllerBackground*> GameObjectControllerFactory::getControllersBackground_fight(){
+
+    vector<GameObject*> gameObjects = factory->getGameObjectsBackgrounds_fight();
+    vector <ControllerBackground*> backgrounds;
+
     int widthMax = 2300;
 
     double speedPercentageB1 = cameraSpeedPercentage(widthMax, 1500);
@@ -37,18 +52,12 @@ std::vector<Controller*> GameObjectControllerFactory::getGameObjectControllers_f
     int cameraSpeedB2 = speedCharacter * speedPercentageB2;
     int cameraSpeedB3 = speedCharacter * speedPercentageB3;
 
-    // ¿habría que hacer controllers distintos para background y character?
-
-    //ControllerCharacter* controllerCharacter2 = new ControllerCharacter(gameObjects[4], 1200, 700, 30);
-    ControllerCharacter* controllerCharacter1 = new ControllerCharacter(gameObjects[3], 1200, 700, speedCharacter); //ver tema pasar info size ventana.
-
-    ControllerBackground* controllerB1 = new ControllerBackground(gameObjects[0], controllerCharacter1, cameraSpeedB1, speedPercentageB1); //porque solo le paso un unico character?
-    ControllerBackground* controllerB2 = new ControllerBackground(gameObjects[1], controllerCharacter1, cameraSpeedB2, speedPercentageB2);
-    ControllerBackground* controllerB3 = new ControllerBackground(gameObjects[2], controllerCharacter1, cameraSpeedB3, speedPercentageB3);
+    ControllerBackground* controllerB1 = new ControllerBackground(gameObjects[0], cameraSpeedB1, speedPercentageB1);
+    ControllerBackground* controllerB2 = new ControllerBackground(gameObjects[1], cameraSpeedB2, speedPercentageB2);
+    ControllerBackground* controllerB3 = new ControllerBackground(gameObjects[2], cameraSpeedB3, speedPercentageB3);
 
 
-    controllers = { controllerB1, controllerB2, controllerB3, controllerCharacter1};
+    backgrounds = { controllerB1, controllerB2, controllerB3 };
 
-    return controllers;
+    return backgrounds;
 }
-

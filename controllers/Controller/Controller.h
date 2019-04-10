@@ -15,7 +15,6 @@ class Controller{
 
 protected:
     GameObject * gameObject;
-    EventToValueMapper* mapper;
 
     DirectionVector* RIGHT = new DirectionVector(1, 0);
     DirectionVector* LEFT = new DirectionVector(-1, 0);
