@@ -4,15 +4,15 @@
 
 #include <iostream>
 #include "CaptainAmericaSpriteManager.h"
-#include "../../../Animations/CaptainAmericaStillAnimation.h"
-#include "../../../Animations/CaptainAmericaWalkAnimation.h"
+#include "../../../Animations/CaptainAmerica/CaptainAmericaStillAnimation.h"
+#include "../../../Animations/CaptainAmerica/CaptainAmericaWalkAnimation.h"
 
 using namespace std;
 
 void CaptainAmericaSpriteManager::init(){
 
 
-    animationMap["still"] = new CaptainAmericaStillAnimation();
+    animationMap["still"] = new ChinaStillAnimation();
     animationMap["walk"] = new CaptainAmericaWalkAnimation();
 //    animationMap.insert("jump", new CaptainAmericaJumpAnimation());
 }

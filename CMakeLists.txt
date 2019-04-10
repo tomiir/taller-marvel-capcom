@@ -48,8 +48,8 @@ add_executable(
         utils/SpriteManagers/SpriteManager.h utils/SpriteManagers/SpriteManager.cpp
         utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.cpp
         utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.h
-        Animations/CaptainAmericaStillAnimation.cpp Animations/CaptainAmericaStillAnimation.h
-        Animations/CaptainAmericaWalkAnimation.cpp Animations/CaptainAmericaWalkAnimation.h
+        Animations/CaptainAmerica/CaptainAmericaStillAnimation.cpp Animations/CaptainAmerica/CaptainAmericaStillAnimation.h
+        Animations/CaptainAmerica/CaptainAmericaWalkAnimation.cpp Animations/CaptainAmerica/CaptainAmericaWalkAnimation.h
         utils/Logger/Logger.cpp utils/Logger/Logger.h)
 target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 

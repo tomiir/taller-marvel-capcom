@@ -6,13 +6,13 @@
 #define TALLER_MARVEL_CAPCOM_CAPTAINAMERICASTILLANIMATION_H
 
 
-#include "Animation.h"
+#include "../Animation.h"
 
-class CaptainAmericaStillAnimation : public Animation{
+class ChinaStillAnimation : public Animation{
 
 public:
-    CaptainAmericaStillAnimation();
-    ~CaptainAmericaStillAnimation() = default;
+    ChinaStillAnimation();
+    ~ChinaStillAnimation() = default;
     void init() override ;
 
 };

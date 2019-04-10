@@ -1,7 +1,7 @@
 
 
 #include <SDL_timer.h>
-#include "CaptainAmericaStillAnimation.h"
+#include "ChinaStillAnimation.h"
 
 void CaptainAmericaStillAnimation::init() {
 
