@@ -24,7 +24,7 @@ void Character::render() {
     SDL_Rect sprite = spriteManager->getSprite();
     objRect.w = (int) (sprite.w * 2.5);
     objRect.h = (int) (sprite.h * 2.5);
-    SDL_RenderCopy(renderer, objTexture, &sprite, &objRect);
+    SDL_RenderCopyEx(renderer, objTexture, &sprite, &objRect, 0.0, nullptr, flip);
 }
 
 vector<int> Character::getInfo() {
@@ -38,3 +38,10 @@ void Character::setState(string state) {
     spriteManager->setState(state);
 
 }
+
+void Character::flipSprite() {
+
+    if (flip == SDL_FLIP_NONE) flip = SDL_FLIP_HORIZONTAL;
+    else flip = SDL_FLIP_NONE;
+}
+

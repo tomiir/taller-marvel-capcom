@@ -15,13 +15,15 @@ public:
     Character(const char* imagePath, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialX, int initialY, int width, int height);
     ~Character();
 
-    void move(DirectionVector* direction);
-    vector<int> getInfo();
-    void render();
+    void move(DirectionVector* direction) override ;
+    vector<int> getInfo() override ;
+    void render() override ;
     void setState(string state);
+    void flipSprite();
 
 private:
     SpriteManager* spriteManager;
+    SDL_RendererFlip flip = SDL_FLIP_NONE;
 };
 
 

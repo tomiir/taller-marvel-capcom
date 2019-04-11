@@ -3,6 +3,7 @@
 //
 
 #include "ViewControllerFactory.h"
+#include "../../../utils/FlipManager/FlipManager.h"
 
 
 ViewControllerFactory::ViewControllerFactory(SDL_Renderer * renderer_, int screenWidth_, int screenHeight_) {
@@ -24,7 +25,6 @@ ViewController* ViewControllerFactory::getViewController_fight(){
 
     vector<ControllerBackground*>  backgrounds = factory->getControllersBackground_fight();
 
-
     for (int i = 0; i < backgrounds.size(); i++){
         viewControllerFight->addBackground(backgrounds[i]);
     }
@@ -37,8 +37,10 @@ ViewController* ViewControllerFactory::getViewController_fight(){
     team1->addEnemyTeam(team2);
     team2->addEnemyTeam(team1);
 
-    viewControllerFight->addTeamManager(team1);
-    viewControllerFight->addTeamManager(team2);
+    FlipManager* flipManager = new FlipManager(team1, team2, backgrounds);
+
+    viewControllerFight->addFlipManager(flipManager);
+    viewControllerFight->addTeams(team1, team2);
 
 
     return viewControllerFight;
