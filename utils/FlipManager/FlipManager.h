@@ -16,6 +16,7 @@ public:
 
     FlipManager();
     FlipManager(TeamManager* teamManager1_, TeamManager* teamManager2_, vector< ControllerBackground*> backgrounds_);
+
     FlipManager(TeamManager* teamManager1_, TeamManager* teamManager2_, BackgroundsController* backgroundsController_);
     ~FlipManager() = default;
 
@@ -27,6 +28,7 @@ private:
 
     TeamManager* teamManager1;
     TeamManager* teamManager2;
+
     BackgroundsController* backgroundsController;
     vector< ControllerBackground*> backgrounds;
 

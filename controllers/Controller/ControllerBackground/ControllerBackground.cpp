@@ -15,20 +15,13 @@ ControllerBackground::~ControllerBackground() = default;
 
 void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* controllerCharacter1, ControllerCharacter* controllerCharacter2) {
 
-
-//    void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* currentCharacter);
-//    void ControllerBackground::update(ControllerCharacter* controllerCharacterOnLeft, ControllerCharacter* controllerCharacterOnRight);
-
-
     vector<int> cameraInfo = dynamic_cast< Background* >(gameObject)->getCameraInfo();
+    vector<int> infoCharacter1 = controllerCharacter1->getInfo();
+    vector<int> infoCharacter2 = controllerCharacter2->getInfo();
     vector<int> infoBackgroundImg = gameObject->getInfo();
 
     DirectionVector* dirLeft = controllerCharacterOnLeft->getMapper()->map(event);
     DirectionVector* dirRight = controllerCharacterOnRight->getMapper()->map(event);
-
-    vector<int> infoCharacter1 = controllerCharacter1->getInfo();
-    vector<int> infoCharacter2 = controllerCharacter2->getInfo();
-
     DirectionVector* dirUp = controllerCharacter1->getMapper()->map(event);
 
     int distanceBetweenCharacters = characterOnRightInfo[0]+characterOnRightInfo[2] - characterOnLeftInfo[0];
@@ -46,7 +39,7 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
 
     bool characterIsInUpBoundary = infoCharacter1[1] < distanceBoundaryVertical and
                                    infoCharacter2[1] < distanceBoundaryVertical + 300;//Este 300 es para que se mueva la cam para arriba si los dos estan en el aire
-                                                                                        //y no solo si estan los dos arriba de todo
+    //y no solo si estan los dos arriba de todo
     bool cameraIsOverUpLimit = cameraInfo[1] > 0;
 
     bool characterIsInDownBoundary = infoCharacter1[1] > (cameraInfo[1] - infoCharacter1[1] - distanceBoundaryHorizontal) and
@@ -57,7 +50,6 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
     if(dirRight->isEqual(RIGHT) and distanceMinorCameraWidth and cameraIsUnderRightLimit and characterOnRightIsInRightBoundary and !distanceEqualCameraWidth and !controllerCharacterOnRight->isJumping()){
 
         dirRight->multiply(speedCam/2);
-
         gameObject->move(dirRight);
         dirRight->multiply(-1);
         controllerCharacterOnLeft->move(dirRight);
