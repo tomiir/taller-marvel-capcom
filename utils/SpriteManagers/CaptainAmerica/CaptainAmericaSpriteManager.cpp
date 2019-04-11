@@ -4,10 +4,10 @@
 
 #include <iostream>
 #include "CaptainAmericaSpriteManager.h"
-#include "../../../Animations/CaptainAmericaStillAnimation.h"
-#include "../../../Animations/CaptainAmericaWalkFowardAnimation.h"
-#include "../../../Animations/CaptainAmericaJumpAnimation.h"
-#include "../../../Animations/CaptainAmericaCrowchedDownAnimation.h"
+#include "../../../Animations/CaptainAmerica/CaptainAmericaStillAnimation.h"
+#include "../../../Animations/CaptainAmerica/CaptainAmericaWalkFowardAnimation.h"
+#include "../../../Animations/CaptainAmerica/CaptainAmericaJumpAnimation.h"
+#include "../../../Animations/CaptainAmerica/CaptainAmericaCrowchedDownAnimation.h"
 
 
 using namespace std;

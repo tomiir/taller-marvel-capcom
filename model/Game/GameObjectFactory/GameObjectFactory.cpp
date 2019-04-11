@@ -3,9 +3,9 @@
 //
 
 #include "GameObjectFactory.h"
-#include "../../../utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.h"
-#include "../../../utils/SpriteManagers/VenomSpriteManager/VenomSpriteManager.h"
-#include "../../../utils/SpriteManagers/SpiderManSpriteManager/SpiderManSpriteManager.h"
+#include "../../../utils/SpriteManagers/CaptainAmerica/CaptainAmericaSpriteManager.h"
+#include "../../../utils/SpriteManagers/Venom/VenomSpriteManager.h"
+#include "../../../utils/SpriteManagers/SpiderMan/SpiderManSpriteManager.h"
 
 GameObjectFactory::GameObjectFactory(SDL_Renderer *renderer_) {
 

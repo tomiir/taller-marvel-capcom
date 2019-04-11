@@ -49,46 +49,48 @@ add_executable(
         Animations/Animation.h
         utils/SpriteManagers/SpriteManager.h
         utils/SpriteManagers/SpriteManager.cpp
-        utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.cpp
-        utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.h
-        Animations/CaptainAmericaStillAnimation.cpp
-        Animations/CaptainAmericaStillAnimation.h
-        Animations/CaptainAmericaWalkFowardAnimation.cpp
-        Animations/CaptainAmericaWalkFowardAnimation.h
-        Animations/CaptainAmericaCrowchedDownAnimation.cpp
-        Animations/CaptainAmericaCrowchedDownAnimation.h
-        Animations/CaptainAmericaJumpAnimation.cpp
-        Animations/CaptainAmericaJumpAnimation.h
-        Animations/CaptainAmericaWalkBackwardsAnimation.cpp
-        Animations/CaptainAmericaWalkBackwardsAnimation.h
-        Animations/SpiderManCrowchedDownAnimation.cpp
-        Animations/SpiderManCrowchedDownAnimation.h
-        Animations/SpiderManJumpAnimation.cpp
-        Animations/SpiderManJumpAnimation.h
-        Animations/SpiderManStillAnimation.cpp
-        Animations/SpiderManStillAnimation.h
-        Animations/SpiderManWalkAnimation.cpp
-        Animations/SpiderManWalkAnimation.h
+        utils/SpriteManagers/CaptainAmerica/CaptainAmericaSpriteManager.cpp
+        utils/SpriteManagers/CaptainAmerica/CaptainAmericaSpriteManager.h
+        Animations/CaptainAmerica/CaptainAmericaStillAnimation.cpp
+        Animations/CaptainAmerica/CaptainAmericaStillAnimation.h
+        Animations/CaptainAmerica/CaptainAmericaWalkFowardAnimation.cpp
+        Animations/CaptainAmerica/CaptainAmericaWalkFowardAnimation.h
+        Animations/CaptainAmerica/CaptainAmericaCrowchedDownAnimation.cpp
+        Animations/CaptainAmerica/CaptainAmericaCrowchedDownAnimation.h
+        Animations/CaptainAmerica/CaptainAmericaJumpAnimation.cpp
+        Animations/CaptainAmerica/CaptainAmericaJumpAnimation.h
+        Animations/CaptainAmerica/CaptainAmericaWalkBackwardsAnimation.cpp
+        Animations/CaptainAmerica/CaptainAmericaWalkBackwardsAnimation.h
+        Animations/SpiderMan/SpiderManCrowchedDownAnimation.cpp
+        Animations/SpiderMan/SpiderManCrowchedDownAnimation.h
+        Animations/SpiderMan/SpiderManJumpAnimation.cpp
+        Animations/SpiderMan/SpiderManJumpAnimation.h
+        Animations/SpiderMan/SpiderManStillAnimation.cpp
+        Animations/SpiderMan/SpiderManStillAnimation.h
+        Animations/SpiderMan/SpiderManWalkAnimation.cpp
+        Animations/SpiderMan/SpiderManWalkAnimation.h
         utils/EventToValueMapper/EventToValueMapper_player1.cpp
         utils/EventToValueMapper/EventToValueMapper_player1.h
         utils/EventToValueMapper/EventToValueMapper_player2.cpp
         utils/EventToValueMapper/EventToValueMapper_player2.h
         utils/TeamManager/TeamManager.cpp
         utils/TeamManager/TeamManager.h
-        Animations/VenomCrowchedDownAnimation.cpp
-        Animations/VenomCrowchedDownAnimation.h
-        Animations/VenomJumpAnimation.cpp
-        Animations/VenomJumpAnimation.h
-        Animations/VenomStillAnimation.cpp
-        Animations/VenomStillAnimation.h
-        Animations/VenomWalkBackwardsAnimation.cpp
-        Animations/VenomWalkBackwardsAnimation.h
-        Animations/VenomWalkFowardAnimation.h
-        Animations/VenomWalkFowardAnimation.cpp
-        utils/SpriteManagers/SpiderManSpriteManager/SpiderManSpriteManager.cpp
-        utils/SpriteManagers/SpiderManSpriteManager/SpiderManSpriteManager.h
+        Animations/Venom/VenomCrowchedDownAnimation.cpp
+        Animations/Venom/VenomCrowchedDownAnimation.h
+        Animations/Venom/VenomJumpAnimation.cpp
+        Animations/Venom/VenomJumpAnimation.h
+        Animations/Venom/VenomStillAnimation.cpp
+        Animations/Venom/VenomStillAnimation.h
+        Animations/Venom/VenomWalkBackwardsAnimation.cpp
+        Animations/Venom/VenomWalkBackwardsAnimation.h
+        Animations/Venom/VenomWalkFowardAnimation.h
+        Animations/Venom/VenomWalkFowardAnimation.cpp
+        utils/SpriteManagers/SpiderMan/SpiderManSpriteManager.cpp
+        utils/SpriteManagers/SpiderMan/SpiderManSpriteManager.h
+        Animations/China/ChinaStillAnimation.cpp Animations/China/ChinaStillAnimation.h
+        Animations/China/ChinaWalkAnimation.cpp Animations/China/ChinaWalkAnimation.h
+        utils/SpriteManagers/Venom/VenomSpriteManager.cpp utils/SpriteManagers/Venom/VenomSpriteManager.h
         utils/Logger/Logger.cpp utils/Logger/Logger.h)
-        utils/SpriteManagers/VenomSpriteManager/VenomSpriteManager.cpp utils/SpriteManagers/VenomSpriteManager/VenomSpriteManager.h)
- 
+
 target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 

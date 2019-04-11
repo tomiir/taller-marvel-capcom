@@ -3,10 +3,10 @@
 //
 
 #include "VenomSpriteManager.h"
-#include "../../../Animations/VenomStillAnimation.h"
-#include "../../../Animations/VenomWalkFowardAnimation.h"
-#include "../../../Animations/VenomCrowchedDownAnimation.h"
-#include "../../../Animations/VenomJumpAnimation.h"
+#include "../../../Animations/Venom/VenomStillAnimation.h"
+#include "../../../Animations/Venom/VenomWalkFowardAnimation.h"
+#include "../../../Animations/Venom/VenomCrowchedDownAnimation.h"
+#include "../../../Animations/Venom/VenomJumpAnimation.h"
 
 using namespace std;
 
