@@ -113,6 +113,14 @@ add_executable(
         Animations/ChunLiWalkFowardAnimation.h
         utils/SpriteManagers/ChunLiSpriteManager/ChunLiSpriteManager.cpp
         utils/SpriteManagers/ChunLiSpriteManager/ChunLiSpriteManager.h
+        Animations/VenomEnteringAnimation.h
+        Animations/VenomEnteringAnimation.cpp
+        Animations/SpiderManEnteringAnimation.h
+        Animations/SpiderManEnteringAnimation.cpp
+        Animations/ChunLiEnteringAnimation.h
+        Animations/ChunLiEnteringAnimation.cpp
+        Animations/CaptainAmericaEnteringAnimation.h
+        Animations/CaptainAmericaEnteringAnimation.cpp
 
 
 )
