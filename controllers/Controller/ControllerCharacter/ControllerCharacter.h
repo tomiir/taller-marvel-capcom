@@ -28,6 +28,10 @@ public:
 
     void flip(SDL_RendererFlip);
 
+    void changePosition(int changeX);
+
+    bool isInAir();
+
 private:
 
     EventToValueMapper* mapper;

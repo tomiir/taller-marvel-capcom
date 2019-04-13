@@ -2,9 +2,9 @@
 #define TALLER_MARVEL_CAPCOM_CHARACTER_H
 
 
-#include "../../GameObject/GameObject.h"
-#include "../../../../utils/TextureManager/TextureManager.h"
-#include "../../../../utils/SpriteManagers/SpriteManager.h"
+#include "../GameObject/GameObject.h"
+#include "../../../utils/TextureManager/TextureManager.h"
+#include "../../../utils/SpriteManagers/SpriteManager.h"
 
 using namespace std;
 
@@ -22,6 +22,8 @@ public:
     void stayInFloor() override ;
     void crowchDown() override ;
     void flipSprite(SDL_RendererFlip flip);
+
+    void changePosition(int changeX);
 
 private:
     SpriteManager* spriteManager;

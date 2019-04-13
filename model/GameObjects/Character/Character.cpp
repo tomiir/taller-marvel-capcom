@@ -55,3 +55,11 @@ void Character::crowchDown() {
 
     objRect.y = crowchedDownY;
 }
+
+void Character::changePosition(int changeX) {
+
+    objRect.x = changeX;
+    objRect.y = initialY;
+
+}
+

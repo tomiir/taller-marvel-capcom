@@ -30,9 +30,6 @@ private:
     SDL_RendererFlip flip = SDL_FLIP_HORIZONTAL;
 
     void changeCharacter();
-
-
 };
-
 
 #endif //TALLER_MARVEL_CAPCOM_TEAMMANAGER_H

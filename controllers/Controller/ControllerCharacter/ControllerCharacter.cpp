@@ -3,7 +3,7 @@
 //
 
 #include "ControllerCharacter.h"
-#include "../../../model/GameObjects/Characters/Character/Character.h"
+#include "../../../model/GameObjects/Character/Character.h"
 #include <chrono>
 #include <thread>
 #include "../../../utils/Logger/Logger.h"
@@ -115,7 +115,6 @@ EventToValueMapper* ControllerCharacter::getMapper(){
 
 void ControllerCharacter::move(DirectionVector *direction) {
 
-    //direction->multiply(speedCharacter);
     gameObject->move(direction);
 
 }
@@ -124,4 +123,14 @@ void ControllerCharacter::flip(SDL_RendererFlip flip) {
 
     dynamic_cast<Character*> (gameObject)->flipSprite(flip);
 
+}
+
+void ControllerCharacter::changePosition(int changeX) {
+
+    dynamic_cast<Character*> (gameObject)->changePosition(changeX);
+
+}
+
+bool ControllerCharacter::isInAir() {
+    return inAir;
 }

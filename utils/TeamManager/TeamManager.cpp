@@ -17,6 +17,8 @@ void TeamManager::changeCharacter(){
     aux = currentCharacter;
     currentCharacter = supportCharacter;
     supportCharacter = aux;
+
+    currentCharacter->changePosition(supportCharacter->getInfo()[0]);
 }
 
 void TeamManager::render(){
@@ -26,12 +28,12 @@ void TeamManager:: handleEvent(SDL_Event event, std::vector<ControllerBackground
 
     currentCharacter->handleEvent(event);
 
-    if (currentCharacter->getMapper()->changeCharacter(event)){
+    if (currentCharacter->getMapper()->changeCharacter(event) and !currentCharacter->isInAir()){
         changeCharacter();
         currentCharacter->flip(flip);
     }
     for (std::vector<ControllerBackground*>::iterator controllerBackground=backgrounds.begin(); controllerBackground != backgrounds.end(); ++controllerBackground) {
-       //Creo que devuelve un puntero al puntero de controller, por eso lo desreferencio.
+
         (*controllerBackground)->handleEvent(event,currentCharacter, enemyTeam->getCurrentCharacter() );
     }
 }
