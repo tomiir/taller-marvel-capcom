@@ -24,8 +24,8 @@ add_executable(
         model/Game/Game.cpp model/Game/Game.h
         model/GameObjects/GameObject/GameObject.cpp
         model/GameObjects/GameObject/GameObject.h
-        model/GameObjects/Characters/Character/Character.cpp
-        model/GameObjects/Characters/Character/Character.h
+        model/GameObjects/Character/Character.cpp
+        model/GameObjects/Character/Character.h
         model/GameObjects/Background/Background.cpp
         model/GameObjects/Background/Background.h
         controllers/Controller/Controller.cpp

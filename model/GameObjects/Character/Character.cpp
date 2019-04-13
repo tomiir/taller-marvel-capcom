@@ -41,10 +41,9 @@ void Character::setState(string state) {
 
 }
 
-void Character::flipSprite() {
+void Character::flipSprite(SDL_RendererFlip flip_) {
 
-    if (flip == SDL_FLIP_NONE) flip = SDL_FLIP_HORIZONTAL;
-    else flip = SDL_FLIP_NONE;
+    flip = flip_;
 }
 
 void Character::stayInFloor() {
@@ -56,3 +55,11 @@ void Character::crowchDown() {
 
     objRect.y = crowchedDownY;
 }
+
+void Character::changePosition(int changeX) {
+
+    objRect.x = changeX;
+    objRect.y = initialY;
+
+}
+

@@ -26,7 +26,11 @@ public:
 
     void move(DirectionVector *pVector);
 
-    void flip();
+    void flip(SDL_RendererFlip);
+
+    void changePosition(int changeX);
+
+    bool isInAir();
 
 private:
 

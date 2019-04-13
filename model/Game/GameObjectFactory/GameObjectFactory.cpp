@@ -34,6 +34,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
 
     gameObjects = {spiderMan, venom, captainAmerica, chunLi};
 
+
     return gameObjects;
 
 }
