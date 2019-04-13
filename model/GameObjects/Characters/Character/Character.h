@@ -19,11 +19,11 @@ public:
     vector<int> getInfo() override ;
     void render() override ;
     void setState(string state);
-    void flipSprite();
+    void flipSprite(SDL_RendererFlip flip);
 
 private:
     SpriteManager* spriteManager;
-    SDL_RendererFlip flip = SDL_FLIP_NONE;
+    SDL_RendererFlip flip;
 };
 
 

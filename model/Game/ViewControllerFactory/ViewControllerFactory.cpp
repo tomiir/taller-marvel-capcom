@@ -31,13 +31,14 @@ ViewController* ViewControllerFactory::getViewController_fight(){
 
     vector<ControllerCharacter*> characters = factory->getControllersCharacter_fight();
 
-    TeamManager* team1 = new TeamManager(characters[0], characters[1]);
-    TeamManager* team2 = new TeamManager(characters[2], characters[3]);
+    TeamManager* team1 = new TeamManager(characters[0], characters[1], SDL_FLIP_HORIZONTAL);
+    TeamManager* team2 = new TeamManager(characters[2], characters[3], SDL_FLIP_NONE);
 
     team1->addEnemyTeam(team2);
     team2->addEnemyTeam(team1);
 
     FlipManager* flipManager = new FlipManager(team1, team2, backgrounds);
+
 
     viewControllerFight->addFlipManager(flipManager);
     viewControllerFight->addTeams(team1, team2);

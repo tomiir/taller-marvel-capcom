@@ -4,13 +4,15 @@
 
 #include "TeamManager.h"
 
-TeamManager::TeamManager(ControllerCharacter* character_1, ControllerCharacter* character_2){
+TeamManager::TeamManager(ControllerCharacter* character_1, ControllerCharacter* character_2, SDL_RendererFlip initialFlip){
 
     currentCharacter = character_1;
     supportCharacter = character_2;
+    flip = initialFlip;
 }
 
 void TeamManager::changeCharacter(){
+
     ControllerCharacter* aux;
     aux = currentCharacter;
     currentCharacter = supportCharacter;
@@ -23,8 +25,10 @@ void TeamManager::render(){
 void TeamManager:: handleEvent(SDL_Event event, std::vector<ControllerBackground*> backgrounds){
 
     currentCharacter->handleEvent(event);
+
     if (currentCharacter->getMapper()->changeCharacter(event)){
         changeCharacter();
+        currentCharacter->flip(flip);
     }
     for (std::vector<ControllerBackground*>::iterator controllerBackground=backgrounds.begin(); controllerBackground != backgrounds.end(); ++controllerBackground) {
        //Creo que devuelve un puntero al puntero de controller, por eso lo desreferencio.
@@ -41,5 +45,14 @@ void TeamManager::addEnemyTeam(TeamManager *enemyTeam_) {
 ControllerCharacter* TeamManager::getCurrentCharacter() {
 
     return currentCharacter;
+
+}
+
+void TeamManager::flipCurrentCharacter() {
+
+    if (flip == SDL_FLIP_NONE) flip = SDL_FLIP_HORIZONTAL;
+    else flip = SDL_FLIP_NONE;
+
+    currentCharacter->flip(flip);
 
 }

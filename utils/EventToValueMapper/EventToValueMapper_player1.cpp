@@ -7,10 +7,8 @@
 DirectionVector *EventToValueMapper_player1::map(SDL_Event event) {
 
     changeCharacter_ = false;
-    const Uint8* keyboardStateArray = SDL_GetKeyboardState(nullptr);
 
-    SDL_KeyboardEvent key = SDL_KeyboardEvent();
-    key.type = event.type;
+    const Uint8* keyboardStateArray = SDL_GetKeyboardState(nullptr);
 
     DirectionVector* direction = new DirectionVector(0,0);
 

@@ -26,7 +26,7 @@ public:
 
     void move(DirectionVector *pVector);
 
-    void flip();
+    void flip(SDL_RendererFlip);
 
 private:
 

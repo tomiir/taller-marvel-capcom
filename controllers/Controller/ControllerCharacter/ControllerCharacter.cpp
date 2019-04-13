@@ -111,8 +111,8 @@ void ControllerCharacter::move(DirectionVector *direction) {
 
 }
 
-void ControllerCharacter::flip() {
+void ControllerCharacter::flip(SDL_RendererFlip flip) {
 
-    dynamic_cast<Character*> (gameObject)->flipSprite();
+    dynamic_cast<Character*> (gameObject)->flipSprite(flip);
 
 }

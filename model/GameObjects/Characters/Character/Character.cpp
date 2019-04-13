@@ -39,9 +39,8 @@ void Character::setState(string state) {
 
 }
 
-void Character::flipSprite() {
+void Character::flipSprite(SDL_RendererFlip flip_) {
 
-    if (flip == SDL_FLIP_NONE) flip = SDL_FLIP_HORIZONTAL;
-    else flip = SDL_FLIP_NONE;
+    flip = flip_;
 }
 

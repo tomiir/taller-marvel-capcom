@@ -21,6 +21,8 @@ void FlipManager::update() {
     vector<int> infoCharacter2 = currentCharacterTeam2->getInfo();
 
     ControllerCharacter* auxLeft = characterOnLeft;
+    ControllerCharacter* auxRight = characterOnRight;
+
 
     if(infoCharacter1[0] <= infoCharacter2[0]){
 
@@ -30,16 +32,17 @@ void FlipManager::update() {
         characterOnRightInfo = infoCharacter2;
 
     }
-    else{
+    else if (infoCharacter2[0] <= infoCharacter1[0]){
         characterOnLeft = currentCharacterTeam2;
         characterOnRight = currentCharacterTeam1;
         characterOnLeftInfo = infoCharacter2;
         characterOnRightInfo = infoCharacter1;
     }
 
-    if(auxLeft != characterOnLeft){
-        characterOnRight->flip();
-        characterOnLeft->flip();
+    if(auxLeft != characterOnLeft and auxRight != characterOnRight){
+
+        teamManager1->flipCurrentCharacter();
+        teamManager2->flipCurrentCharacter();
     }
 
 
@@ -67,6 +70,7 @@ FlipManager::FlipManager(TeamManager* teamManager1_, TeamManager* teamManager2_,
         (*itr)->update(characterOnLeft, characterOnLeftInfo, characterOnRight, characterOnRightInfo);
     }
     itr = backgrounds.begin();
+
 
 }
 
