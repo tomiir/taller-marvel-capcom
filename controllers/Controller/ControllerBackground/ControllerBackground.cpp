@@ -66,7 +66,7 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
     }
 
 
-    if (characterIsInUpBoundary and cameraIsOverUpLimit) {
+    if (characterIsInUpBoundary and cameraIsOverUpLimit and !controllerCharacter1->isChanging()) {
 
         dirUp->setY( -jumpSpeed/2 );
         gameObject->move(dirUp);

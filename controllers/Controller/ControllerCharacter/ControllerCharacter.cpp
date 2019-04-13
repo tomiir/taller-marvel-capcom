@@ -13,7 +13,7 @@ ControllerCharacter::ControllerCharacter(GameObject* gameObject, EventToValueMap
     screenHeight = screenHeight_;
     screenWidth = screenWidth_;
     speedCharacter = speedCharacter_; //Despues hay que separarlo en X e Y
-    jump = jumpRight = jumpLeft = inAir = false;
+    jump = jumpRight = jumpLeft = inAir = leaving = entering = false;
     mapper = mapper_;
 
 }
@@ -75,7 +75,7 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
         if( characterTopOfJump ) jump = false;
     }
 
-    if( !jump and inAir ){
+    if( !jump and inAir and !leaving){
 
         state = "jump";
 
@@ -88,11 +88,29 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
         bool characterInFloor = info[1] >= (screenHeight - info[3] - jumpDistance);
 
         if ( characterInFloor ) {
-            inAir = jumpRight = jumpLeft = false;
+            inAir = jumpRight = jumpLeft = entering = false;
             gameObject->stayInFloor();
         }
 
     }
+
+    if (mapper->changeCharacter(event) and !inAir) leaving = true;
+
+    if (leaving){
+
+        state = "jump";
+        inAir = true;
+        DirectionVector* step = new DirectionVector(0, -jumpSpeed);
+
+        gameObject->move( step );
+
+    }
+
+    if (entering){
+        state = "jump";
+    }
+
+
 
     dynamic_cast<Character*>(gameObject)->setState(state);
 
@@ -126,12 +144,29 @@ void ControllerCharacter::flip(SDL_RendererFlip flip) {
 
 }
 
-void ControllerCharacter::changePosition(int changeX) {
+void ControllerCharacter::changePosition(int changeX, int changeY) {
 
-    dynamic_cast<Character*> (gameObject)->changePosition(changeX);
+    dynamic_cast<Character*> (gameObject)->changePosition(changeX, changeY);
 
 }
 
 bool ControllerCharacter::isInAir() {
     return inAir;
+}
+
+void ControllerCharacter::gone() {
+
+    leaving = false;
+
+}
+
+void ControllerCharacter::entry() {
+
+    entering = true;
+    inAir = true;
+
+}
+
+bool ControllerCharacter::isChanging() {
+    return (entering or leaving);
 }

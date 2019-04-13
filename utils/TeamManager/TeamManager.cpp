@@ -18,7 +18,7 @@ void TeamManager::changeCharacter(){
     currentCharacter = supportCharacter;
     supportCharacter = aux;
 
-    currentCharacter->changePosition(supportCharacter->getInfo()[0]);
+    currentCharacter->changePosition(supportCharacter->getInfo()[0], supportCharacter->getInfo()[1]);
 }
 
 void TeamManager::render(){
@@ -28,8 +28,10 @@ void TeamManager:: handleEvent(SDL_Event event, std::vector<ControllerBackground
 
     currentCharacter->handleEvent(event);
 
-    if (currentCharacter->getMapper()->changeCharacter(event) and !currentCharacter->isInAir()){
+    if (currentCharacter->getInfo()[1] < -300){
         changeCharacter();
+        supportCharacter->gone();
+        currentCharacter->entry();
         currentCharacter->flip(flip);
     }
     for (std::vector<ControllerBackground*>::iterator controllerBackground=backgrounds.begin(); controllerBackground != backgrounds.end(); ++controllerBackground) {

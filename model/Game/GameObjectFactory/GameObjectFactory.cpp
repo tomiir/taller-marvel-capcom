@@ -9,9 +9,11 @@
 #include "../../../utils/SpriteManagers/ChunLiSpriteManager/ChunLiSpriteManager.h"
 
 
-GameObjectFactory::GameObjectFactory(SDL_Renderer *renderer_) {
+GameObjectFactory::GameObjectFactory(SDL_Renderer *renderer_, int screenWidth_, int screenHeight_) {
 
     renderer = renderer_;
+    screenWidth = screenWidth_;
+    screenHeight = screenHeight_;
 
 }
 
@@ -23,14 +25,12 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
     vector<GameObject*>  gameObjects;
 
 
-    Character* captainAmerica = new Character("Images/CaptainAmerica.png", renderer, new CaptainAmericaSpriteManager(), 200,400,200,300, 475);
-    Character* chunLi = new Character("Images/ChunLi.png", renderer, new ChunLiSpriteManager(), 200,460,200,300, 500);//Este 200 y 300 no nos sirve mas
+    Character* captainAmerica = new Character("Images/CaptainAmerica.png", renderer, new CaptainAmericaSpriteManager(), 200/2, screenHeight - 280, screenHeight - 280 + 75);
+    Character* chunLi = new Character("Images/ChunLi.png", renderer, new ChunLiSpriteManager(), 200/2,screenHeight - 220, screenHeight - 220 + 40);
 
-    Character* spiderMan= new Character("Images/SpiderMan.png", renderer, new SpiderManSpriteManager(), 800,435,200,300, 530);
-    Character* venom = new Character("Images/Venom.png", renderer, new VenomSpriteManager(), 800,400,200,300, 460);
+    Character* spiderMan= new Character("Images/SpiderMan.png", renderer, new SpiderManSpriteManager(), (screenWidth - 200) - (200/2),screenHeight - 245, screenHeight - 245 + 95);
+    Character* venom = new Character("Images/Venom.png", renderer, new VenomSpriteManager(), (screenWidth - 200) - (200/2), screenHeight - 280, screenHeight - 280 + 60);
 
-    captainAmerica->flipSprite();
-    chunLi->flipSprite();
 
     gameObjects = {spiderMan, venom, captainAmerica, chunLi};
 
@@ -45,21 +45,21 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsBackgrounds_fight() {
 
 
 
-    Background *B1 = new Background("Images/Backgrounds/Background1.png", renderer, 1500, 900, 1200, 700);
+    Background *B1 = new Background("Images/Backgrounds/Background1.png", renderer, 1500, 900, screenWidth, screenHeight);
 
     if (!B1) {
 //lanzar excepcion
     }
 
 
-    Background *B2 = new Background("Images/Backgrounds/Background2.png", renderer, 1900, 900, 1200, 700);
+    Background *B2 = new Background("Images/Backgrounds/Background2.png", renderer, 1900, 900, screenWidth, screenHeight);
 
     if (!B2) {
 //lanzar excepcion
     }
 
    
-    Background *B3 = new Background("Images/Backgrounds/Background3.png", renderer, 2300, 900, 1200, 700);
+    Background *B3 = new Background("Images/Backgrounds/Background3.png", renderer, 2300, 900, screenWidth, screenHeight);
 
     if (!B3) {
 //lanzar excepcion

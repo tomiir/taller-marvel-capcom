@@ -8,7 +8,7 @@
 
 GameObjectControllerFactory::GameObjectControllerFactory(SDL_Renderer *renderer, int screenWidth_, int screenHeight_){
 
-    factory = new GameObjectFactory(renderer);
+    factory = new GameObjectFactory(renderer, screenWidth_, screenHeight_);
     screenWidth = screenWidth_;
     screenHeight = screenHeight_;
 }
