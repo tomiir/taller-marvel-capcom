@@ -23,7 +23,6 @@ void FlipManager::update() {
     ControllerCharacter* auxLeft = characterOnLeft;
     ControllerCharacter* auxRight = characterOnRight;
 
-
     if(infoCharacter1[0] <= infoCharacter2[0]){
 
         characterOnLeft = currentCharacterTeam1;

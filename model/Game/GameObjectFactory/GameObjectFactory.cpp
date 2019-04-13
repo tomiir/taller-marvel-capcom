@@ -21,11 +21,11 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
     vector<GameObject*>  gameObjects;
 
 
-    Character* captainAmerica = new Character("Images/CaptainAmerica.png", renderer, new CaptainAmericaSpriteManager(), 400,400,200,300);
-    Character* venom1 = new Character("Images/Venom.png", renderer, new VenomSpriteManager(), 400,400,200,300);
+    Character* captainAmerica = new Character("Images/CaptainAmerica.png", renderer, new CaptainAmericaSpriteManager(), 400,400,200,300, 475);
+    Character* venom1 = new Character("Images/Venom.png", renderer, new VenomSpriteManager(), 400,400,200,300, 460);//Este 200 y 300 no nos sirve mas
 
-    Character* spiderMan= new Character("Images/SpiderMan.png", renderer, new SpiderManSpriteManager(), 800,400,200,300);
-    Character* venom2 = new Character("Images/Venom.png", renderer, new VenomSpriteManager(), 800,400,200,300);
+    Character* spiderMan= new Character("Images/SpiderMan.png", renderer, new SpiderManSpriteManager(), 800,435,200,300, 530);
+    Character* venom2 = new Character("Images/Venom.png", renderer, new VenomSpriteManager(), 800,400,200,300, 460);
 
     gameObjects = {captainAmerica, venom1, spiderMan, venom2};
 

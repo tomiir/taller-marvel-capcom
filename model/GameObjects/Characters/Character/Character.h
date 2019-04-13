@@ -12,18 +12,22 @@ using namespace std;
 class Character : public GameObject {
 
 public:
-    Character(const char* imagePath, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialX, int initialY, int width, int height);
+    Character(const char* imagePath, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialX, int initialY, int width, int height, int crowchedDownY_);
     ~Character();
 
     void move(DirectionVector* direction) override ;
     vector<int> getInfo() override ;
     void render() override ;
     void setState(string state);
+    void stayInFloor() override ;
+    void crowchDown() override ;
     void flipSprite(SDL_RendererFlip flip);
 
 private:
     SpriteManager* spriteManager;
     SDL_RendererFlip flip;
+    int initialY;
+    int crowchedDownY;
 };
 
 

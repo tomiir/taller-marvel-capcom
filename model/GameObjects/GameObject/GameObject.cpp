@@ -20,3 +20,7 @@ void GameObject::move(DirectionVector* direction){}
 vector<int> GameObject::getInfo() {}
 
 void GameObject::render() {}
+
+void GameObject::stayInFloor() {}
+
+void GameObject::crowchDown() {}

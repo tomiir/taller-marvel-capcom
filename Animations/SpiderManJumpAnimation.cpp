@@ -9,7 +9,7 @@ void SpiderManJumpAnimation::init() {
 
     startTime = SDL_GetTicks();
     animationRate = 6;
-    animationLength = 15;
+    animationLength = 13;
 
     vector<int> frame0 = {12, 429, 83, 56};
     vector<int> frame1 = {119, 229, 64, 139};
@@ -24,8 +24,8 @@ void SpiderManJumpAnimation::init() {
     vector<int> frame10 = {1038, 223, 100, 133};
     vector<int> frame11 = {1285, 434, 95, 82};
     vector<int> frame12 = {1395, 459, 83, 55};
-    vector<int> frame13 = {1490, 446, 99, 63};
-    vector<int> frame14 = {1602, 418, 119, 94};
+    //vector<int> frame13 = {1490, 446, 99, 63};
+    //vector<int> frame14 = {1602, 418, 119, 94};
 
 
 
@@ -42,8 +42,8 @@ void SpiderManJumpAnimation::init() {
     animation.push_back(frame10);
     animation.push_back(frame11);
     animation.push_back(frame12);
-    animation.push_back(frame13);
-    animation.push_back(frame14);
+    //animation.push_back(frame13);
+    //animation.push_back(frame14);
 
 
 }
