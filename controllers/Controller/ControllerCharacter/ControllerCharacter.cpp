@@ -34,8 +34,8 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
     if(direction->isEqual(LEFT)) state = "walk";
 
 
-    bool characterIsntInRightBoundary = info[0] < screenWidth - info[2] - distanceBoundaryHorizontal;
-    bool characterIsntInLeftBoundary = info[0] > distanceBoundaryHorizontal;
+    bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal;
+    bool characterIsntInLeftBoundary = info[0] >= distanceBoundaryHorizontal;
 
     if( (direction->isEqual(RIGHT) and characterIsntInRightBoundary and !inAir) or
         (direction->isEqual(LEFT) and characterIsntInLeftBoundary and !inAir) ){
