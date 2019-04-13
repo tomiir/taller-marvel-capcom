@@ -28,16 +28,22 @@ public:
 
     void flip(SDL_RendererFlip);
 
-    void changePosition(int changeX);
+    void changePosition(int changeX, int changeY);
 
     bool isInAir();
+
+    void gone();
+
+    void entry();
+
+    bool isChanging();
 
 private:
 
     EventToValueMapper* mapper;
     int screenWidth, screenHeight, speedCharacter;
     int jumpDistance = 10;
-    bool jump, inAir, jumpRight, jumpLeft;
+    bool jump, inAir, jumpRight, jumpLeft, leaving, entering;
     string state = "still";
 
 

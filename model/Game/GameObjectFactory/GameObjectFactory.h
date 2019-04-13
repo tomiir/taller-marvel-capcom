@@ -22,12 +22,15 @@ class GameObjectFactory {
 
 public:
 
-    GameObjectFactory(SDL_Renderer *renderer_);
+    GameObjectFactory(SDL_Renderer *renderer_, int screenWidth_, int screenHeight_);
     ~GameObjectFactory();
 
     vector<GameObject*> getGameObjectsCharacters_fight();
     vector<GameObject*> getGameObjectsBackgrounds_fight();
 
+private:
+
+    int screenWidth, screenHeight;
 
 };
 

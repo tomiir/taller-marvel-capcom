@@ -5,8 +5,8 @@
 #include "Character.h"
 
 
-Character::Character(const char* imagePath, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialX, int initialY, int width, int height, int crowchedDownY_) :
-           GameObject(imagePath, rend, initialX, initialY, width, height) {
+Character::Character(const char* imagePath, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialX, int initialY, int crowchedDownY_) :
+           GameObject(imagePath, rend, initialX, initialY, 0, 0) {
 
     spriteManager = spriteManager_;
     this->initialY = initialY;
@@ -56,10 +56,10 @@ void Character::crowchDown() {
     objRect.y = crowchedDownY;
 }
 
-void Character::changePosition(int changeX) {
+void Character::changePosition(int changeX, int changeY) {
 
     objRect.x = changeX;
-    objRect.y = initialY;
+    objRect.y = changeY;
 
 }
 
