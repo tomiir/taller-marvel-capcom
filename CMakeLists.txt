@@ -3,14 +3,24 @@ project(taller-marvel-capcom) #DEJAR COMO ESTA. Si no funca ---> renombrar la ca
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 SET(CMAKE_CXX_FLAGS "-std=c++11")
+set(CMAKE_CXX_STANDARD_LIBRARIES -ljsoncpp)
 
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 include_directories(${SDL2_IMAGE_INCLUDE_DIRS})
+include_directories(${JSON_INC_PATH})
 
 add_executable(
         app main.cpp
+        Json/Battlefield.h
+        Json/Battlefield.cpp
+        Json/Character.h
+        Json/Character.cpp
+        Json/JsonParser.h
+        Json/JsonParser.cpp
+        Json/JsonConfigs.h
+        Json/JsonConfigs.cpp
         model/Game/Game.cpp model/Game/Game.h
         model/GameObjects/GameObject/GameObject.cpp
         model/GameObjects/GameObject/GameObject.h
