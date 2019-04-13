@@ -100,7 +100,24 @@ add_executable(
         utils/Logger/Logger.cpp utils/Logger/Logger.h
         utils/SpriteManagers/VenomSpriteManager/VenomSpriteManager.cpp
         utils/SpriteManagers/VenomSpriteManager/VenomSpriteManager.h
-        controllers/Controller/BackgroundsCotroller/BackgroundsController.cpp controllers/Controller/BackgroundsCotroller/BackgroundsController.h utils/FlipManager/FlipManager.cpp utils/FlipManager/FlipManager.h)
- 
+        controllers/Controller/BackgroundsCotroller/BackgroundsController.cpp controllers/Controller/BackgroundsCotroller/BackgroundsController.h utils/FlipManager/FlipManager.cpp utils/FlipManager/FlipManager.h
+        Animations/ChunLiCrowchedDownAnimation.cpp
+        Animations/ChunLiCrowchedDownAnimation.h
+        Animations/ChunLiJumpAnimation.cpp
+        Animations/ChunLiStillAnimation.cpp
+        Animations/ChunLiJumpAnimation.h
+        Animations/ChunLiStillAnimation.h
+        Animations/ChunLiWalkBackwadsAnimation.cpp
+        Animations/ChunLiWalkBackwadsAnimation.h
+        Animations/ChunLiWalkFowardAnimation.cpp
+        Animations/ChunLiWalkFowardAnimation.h
+        utils/SpriteManagers/ChunLiSpriteManager/ChunLiSpriteManager.cpp
+        utils/SpriteManagers/ChunLiSpriteManager/ChunLiSpriteManager.h
+
+
+)
+
+
+
 target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 
