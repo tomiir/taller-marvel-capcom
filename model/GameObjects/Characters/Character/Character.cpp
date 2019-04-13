@@ -5,10 +5,12 @@
 #include "Character.h"
 
 
-Character::Character(const char* imagePath, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialX, int initialY, int width, int height) :
+Character::Character(const char* imagePath, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialX, int initialY, int width, int height, int crowchedDownY_) :
            GameObject(imagePath, rend, initialX, initialY, width, height) {
 
     spriteManager = spriteManager_;
+    this->initialY = initialY;
+    crowchedDownY = crowchedDownY_;
 }
 
 Character::~Character() = default;
@@ -45,3 +47,12 @@ void Character::flipSprite() {
     else flip = SDL_FLIP_NONE;
 }
 
+void Character::stayInFloor() {
+
+    objRect.y = initialY;
+}
+
+void Character::crowchDown() {
+
+    objRect.y = crowchedDownY;
+}

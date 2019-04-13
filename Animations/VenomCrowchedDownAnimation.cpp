@@ -9,10 +9,10 @@
 void VenomCrowchedDownAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 11;
-    animationLength = 10;
+    animationRate = 10;
+    animationLength = 9;
 
-    vector<int> frame0 = {6, 3584, 126, 113};
+    //vector<int> frame0 = {6, 3584, 126, 113};
     vector<int> frame1 = {170, 3618, 112, 82};
     vector<int> frame2 = {5, 3749, 112, 85};
     vector<int> frame3 = {144, 3749, 112, 85};
@@ -24,7 +24,7 @@ void VenomCrowchedDownAnimation::init() {
     vector<int> frame9 = {981, 3749, 112, 85};
 
 
-    animation.push_back(frame0);
+    //animation.push_back(frame0);
     animation.push_back(frame1);
     animation.push_back(frame2);
     animation.push_back(frame3);

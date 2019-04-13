@@ -18,6 +18,8 @@ public:
     virtual void move(DirectionVector* direction);
     virtual void render();
     virtual vector<int> getInfo();
+    virtual void stayInFloor();
+    virtual void crowchDown();
 
 protected:
     SDL_Texture* objTexture;

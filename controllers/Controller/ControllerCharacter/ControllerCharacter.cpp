@@ -29,13 +29,13 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
     DirectionVector* direction = mapper->map(event);
     vector<int> info = gameObject->getInfo();
 
-    if(event.key.state == SDL_RELEASED) state = "still";
+    if(event.key.state == SDL_RELEASED and !inAir) state = "still";
     if(direction->isEqual(RIGHT)) state = "walk";
     if(direction->isEqual(LEFT)) state = "walk";
 
 
-    bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal;
-    bool characterIsntInLeftBoundary = info[0] >= distanceBoundaryHorizontal;
+    bool characterIsntInRightBoundary = info[0] < screenWidth - info[2] - distanceBoundaryHorizontal;
+    bool characterIsntInLeftBoundary = info[0] > distanceBoundaryHorizontal;
 
     if( (direction->isEqual(RIGHT) and characterIsntInRightBoundary and !inAir) or
         (direction->isEqual(LEFT) and characterIsntInLeftBoundary and !inAir) ){
@@ -51,7 +51,13 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
     if( direction->isDiagonalLeft() and !inAir ) jumpLeft = true;
     if( direction->isEqual(UP) and !inAir ) jump = true;
 
-    if( direction->isEqual(DOWN)) state = "crowchedDown";
+    if( direction->isEqual(DOWN) and !inAir) {
+
+        state = "crowchedDown";
+        gameObject->crowchDown();
+    }
+
+    if ( direction->isEqual(GETTINGUP) and !inAir) gameObject->stayInFloor();
 
     if(jump){
 
@@ -80,7 +86,10 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
 
         bool characterInFloor = info[1] >= (screenHeight - info[3] - jumpDistance);
 
-        if ( characterInFloor ) inAir = jumpRight = jumpLeft = false;
+        if ( characterInFloor ) {
+            inAir = jumpRight = jumpLeft = false;
+            gameObject->stayInFloor();
+        }
 
     }
 

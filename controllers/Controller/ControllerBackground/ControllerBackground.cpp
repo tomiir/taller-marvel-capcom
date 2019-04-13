@@ -32,9 +32,9 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
 
 
     bool characterOnRightIsInRightBoundary = characterOnRightInfo[0] > (cameraInfo[2] - characterOnRightInfo[2] - distanceBoundaryHorizontal);
-    bool cameraIsUnderRightLimit = cameraInfo[0] < (infoBackgroundImg[0] - cameraInfo[2]);
+    bool cameraIsUnderRightLimit = cameraInfo[0] < (infoBackgroundImg[0] - cameraInfo[2] - 80);
     bool characterOnLeftIsInLeftBoundary = characterOnLeftInfo[0] < distanceBoundaryHorizontal;
-    bool cameraIsOverLeftLimit = cameraInfo[0] > 0;
+    bool cameraIsOverLeftLimit = cameraInfo[0] > 80;
 
 
     bool characterIsInUpBoundary = infoCharacter1[1] < distanceBoundaryVertical and
@@ -51,7 +51,7 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
 
         dirRight->multiply(speedCam/2);
         gameObject->move(dirRight);
-        dirRight->multiply(-1);
+        dirRight->setX(-speedCam/3);
         controllerCharacterOnLeft->move(dirRight);
     }
 
@@ -61,7 +61,7 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
 
         gameObject->move(dirLeft);
 
-        dirLeft->multiply(-1);
+        dirLeft->setX(speedCam/3);
         controllerCharacterOnRight->move(dirLeft);
     }
 
@@ -85,7 +85,7 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
         dirLeft->setX( (jumpSpeed/2) * speedPercetageCam );
         gameObject->move(dirLeft);
 
-        dirLeft->multiply(-1);
+        dirLeft->setX(-(((jumpSpeed/2) * speedPercetageCam)/2) -1);
         controllerCharacterOnLeft->move(dirLeft);
 
     }
@@ -95,7 +95,7 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
         dirRight->setX( -(jumpSpeed/2) * speedPercetageCam );
         gameObject->move(dirRight);
 
-        dirRight->multiply(-1);
+        dirRight->setX((((jumpSpeed/2) * speedPercetageCam)/2) +1);
         controllerCharacterOnRight->move(dirRight);
 
     }
