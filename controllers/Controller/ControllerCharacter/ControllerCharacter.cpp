@@ -3,7 +3,7 @@
 //
 
 #include "ControllerCharacter.h"
-#include "../../../model/GameObjects/Characters/Character/Character.h"
+#include "../../../model/GameObjects/Character/Character.h"
 #include <chrono>
 #include <thread>
 #include "../../../utils/Logger/Logger.h"
@@ -34,8 +34,8 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
     if(direction->isEqual(LEFT)) state = "walk";
 
 
-    bool characterIsntInRightBoundary = info[0] < screenWidth - info[2] - distanceBoundaryHorizontal;
-    bool characterIsntInLeftBoundary = info[0] > distanceBoundaryHorizontal;
+    bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal;
+    bool characterIsntInLeftBoundary = info[0] >= distanceBoundaryHorizontal;
 
     if( (direction->isEqual(RIGHT) and characterIsntInRightBoundary and !inAir) or
         (direction->isEqual(LEFT) and characterIsntInLeftBoundary and !inAir) ){
@@ -115,13 +115,22 @@ EventToValueMapper* ControllerCharacter::getMapper(){
 
 void ControllerCharacter::move(DirectionVector *direction) {
 
-    //direction->multiply(speedCharacter);
     gameObject->move(direction);
 
 }
 
-void ControllerCharacter::flip() {
+void ControllerCharacter::flip(SDL_RendererFlip flip) {
 
-    dynamic_cast<Character*> (gameObject)->flipSprite();
+    dynamic_cast<Character*> (gameObject)->flipSprite(flip);
 
+}
+
+void ControllerCharacter::changePosition(int changeX) {
+
+    dynamic_cast<Character*> (gameObject)->changePosition(changeX);
+
+}
+
+bool ControllerCharacter::isInAir() {
+    return inAir;
 }

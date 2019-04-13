@@ -5,7 +5,7 @@
 #ifndef TALLER_MARVEL_CAPCOM_GAMEOBJECTFACTORY_H
 #define TALLER_MARVEL_CAPCOM_GAMEOBJECTFACTORY_H
 
-#include "../../GameObjects/Characters/Character/Character.h"
+#include "../../GameObjects/Character/Character.h"
 #include "../../GameObjects/Background/Background.h"
 #include "../../GameObjects/GameObject/GameObject.h"
 

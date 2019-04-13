@@ -27,9 +27,6 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
     Character* spiderMan= new Character("Images/SpiderMan.png", renderer, new SpiderManSpriteManager(), 800,435,200,300, 530);
     Character* venom2 = new Character("Images/Venom.png", renderer, new VenomSpriteManager(), 800,400,200,300, 460);
 
-    captainAmerica->flipSprite();
-    venom1->flipSprite();
-
     gameObjects = {captainAmerica, venom1, spiderMan, venom2};
 
     return gameObjects;
