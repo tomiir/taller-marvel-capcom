@@ -48,6 +48,19 @@ DirectionVector *EventToValueMapper_player2::map(SDL_Event event){
         }
     }
 
+    if( event.type == SDL_KEYUP){
+
+        switch (event.key.keysym.sym) {
+
+            case SDLK_s:
+                direction->add(0, 2);
+                break;
+            default:
+                break;
+        }
+
+    }
+
     return direction;
 }
 

@@ -11,15 +11,15 @@ void CaptainAmericaCrowchedDownAnimation::init() {
 
     startTime = SDL_GetTicks();
     animationRate = 4;
-    animationLength = 3;
+    animationLength = 2;
 
-    vector<int> frame0 = {5, 750, 77, 90};
+    //vector<int> frame0 = {5, 750, 77, 90};
     vector<int> frame1 = {102, 762, 77, 78};
     vector<int> frame2 = {205, 763, 77, 78};
 
 
 
-    animation.push_back(frame0);
+    //animation.push_back(frame0);
     animation.push_back(frame1);
     animation.push_back(frame2);
 
