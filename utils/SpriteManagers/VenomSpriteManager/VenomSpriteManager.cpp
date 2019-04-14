@@ -7,6 +7,7 @@
 #include "../../../Animations/VenomWalkFowardAnimation.h"
 #include "../../../Animations/VenomCrowchedDownAnimation.h"
 #include "../../../Animations/VenomJumpAnimation.h"
+#include "../../../Animations/VenomEnteringAnimation.h"
 
 using namespace std;
 
@@ -16,6 +17,7 @@ void VenomSpriteManager::init(){
     animationMap["walk"] = new VenomWalkFowardAnimation();
     animationMap["jump"] = new VenomJumpAnimation();
     animationMap["crowchedDown"] = new VenomCrowchedDownAnimation();
+    animationMap["entering"] = new VenomEnteringAnimation();
 
 }
 

@@ -8,6 +8,7 @@
 #include "../../../Animations/SpiderManWalkAnimation.h"
 #include "../../../Animations/SpiderManCrowchedDownAnimation.h"
 #include "../../../Animations/SpiderManJumpAnimation.h"
+#include "../../../Animations/SpiderManEnteringAnimation.h"
 
 
 using namespace std;
@@ -19,6 +20,7 @@ void SpiderManSpriteManager::init(){
     animationMap["walk"] = new SpiderManWalkAnimation();
     animationMap["jump"] = new SpiderManJumpAnimation();
     animationMap["crowchedDown"] = new SpiderManCrowchedDownAnimation();
+    animationMap["entering"] = new SpiderManEnteringAnimation();
 }
 
 SpiderManSpriteManager::SpiderManSpriteManager() : SpriteManager(){

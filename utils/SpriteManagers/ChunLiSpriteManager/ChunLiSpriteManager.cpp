@@ -9,6 +9,7 @@
 //#include "../../../Animations/ChunLiWalkBackwardsAnimation.h"
 #include "../../../Animations/ChunLiJumpAnimation.h"
 #include "../../../Animations/ChunLiCrowchedDownAnimation.h"
+#include "../../../Animations/ChunLiEnteringAnimation.h"
 
 
 using namespace std;
@@ -19,6 +20,7 @@ void ChunLiSpriteManager::init(){
     animationMap["walk"] = new ChunLiWalkFowardAnimation();
     animationMap["jump"] = new ChunLiJumpAnimation();
     animationMap["crowchedDown"] = new ChunLiCrowchedDownAnimation();
+    animationMap["entering"] = new ChunLiEnteringAnimation();
 }
 
 ChunLiSpriteManager::ChunLiSpriteManager() : SpriteManager(){

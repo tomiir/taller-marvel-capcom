@@ -107,7 +107,7 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
     }
 
     if (entering){
-        state = "jump";
+        state = "entering";
     }
 
 
