@@ -35,8 +35,8 @@ protected:
 public:
     Controller(GameObject* gameObject_, int z_index);
     ~Controller();
-    int getZIndex();
-    void render();
+    int getZIndex() override;
+    void render() override;
     virtual void handleEvent(SDL_Event event);
     vector<int> getInfo();
 

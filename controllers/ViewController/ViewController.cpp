@@ -3,6 +3,7 @@
 //
 
 #include "ViewController.h"
+#include <algorithm> // for heap operations
 
 #include <SDL2/SDL.h>
 
@@ -54,6 +55,13 @@ void ViewController::updateView() {
     renderables.push_back(team1);
     renderables.push_back(team2);
 
+    std::make_heap(renderables.begin(),renderables.end());
+    for (int i = 0; i <renderables.size(); i++){
+        std::pop_heap(renderables.begin(), renderables.end());
+        Renderable* rend = renderables.back();
+        rend->render();
+        renderables.pop_back();
+    }
 
     SDL_RenderPresent(renderer);
 

@@ -4,3 +4,5 @@
 
 #include "Renderable.h"
 
+//Renderable:: Renderable() = default;
+//Renderable::~Renderable() = default;

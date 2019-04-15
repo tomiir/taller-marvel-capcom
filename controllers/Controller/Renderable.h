@@ -6,12 +6,12 @@
 #define TALLER_MARVEL_CAPCOM_RENDERABLE_H
 
 
-class Renderable {
+class  Renderable{
 
 public:
     virtual void render();
-    Renderable();
-    ~Renderable();
+    Renderable() = default;
+    ~Renderable() = default;
     virtual int getZIndex();
 };
 

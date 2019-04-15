@@ -5,7 +5,7 @@
 #include "Controller.h"
 
 
-Controller::Controller(GameObject *gameObject_, int z_index ): Renderable() {
+Controller::Controller(GameObject *gameObject_, int z_index ): Renderable(){
 
     gameObject = gameObject_;
     this->z_index = z_index;
