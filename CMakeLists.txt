@@ -15,8 +15,8 @@ add_executable(
         app main.cpp
         Json/Battlefield.h
         Json/Battlefield.cpp
-        Json/Character.h
-        Json/Character.cpp
+        Json/JsonCharacter.h
+        Json/JsonCharacter.cpp
         Json/JsonParser.h
         Json/JsonParser.cpp
         Json/JsonConfigs.h
@@ -28,6 +28,7 @@ add_executable(
         model/GameObjects/Character/Character.h
         model/GameObjects/Background/Background.cpp
         model/GameObjects/Background/Background.h
+        controllers/Controller/Renderable.cpp controllers/Controller/Renderable.h
         controllers/Controller/Controller.cpp
         controllers/Controller/Controller.h
         controllers/ViewController/ViewController.cpp
@@ -120,10 +121,7 @@ add_executable(
         Animations/ChunLiEnteringAnimation.h
         Animations/ChunLiEnteringAnimation.cpp
         Animations/CaptainAmericaEnteringAnimation.h
-        Animations/CaptainAmericaEnteringAnimation.cpp
-
-
-)
+        Animations/CaptainAmericaEnteringAnimation.cpp)
 
 
 

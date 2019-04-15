@@ -4,15 +4,26 @@
 
 #include "Battlefield.h"
 
-Battlefield::Battlefield(std::string ruta, int zindex) {
+Battlefield::Battlefield(std::string ruta, int zindex,  int width, int height) {
+
     this->ruta = ruta;
     this->zindex = zindex;
+    this->width = width;
+    this->height = height;
 }
 
-std::string Battlefield::getRuta() {
+std::string Battlefield::getFilePath() {
     return this->ruta;
 }
 
 int Battlefield::getzIndex() {
     return this->zindex;
+}
+
+int Battlefield::getHeight() {
+    return this->height;
+}
+
+int Battlefield::getWidth() {
+    return this->width;
 }

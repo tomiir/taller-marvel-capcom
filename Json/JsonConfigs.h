@@ -14,9 +14,11 @@ public:
 
     std::list<Battlefield> getBattlefields();
 
-    std::list<Character> getCharacters();
+    std::list<JsonCharacter> getCharacters();
 
-    std::list<int> getScreenSize();
+    std::vector<int> getScreenSize();
+
+    int getCharactersSpeed();
 };
 
 

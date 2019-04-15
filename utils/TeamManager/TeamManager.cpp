@@ -4,13 +4,16 @@
 
 #include "TeamManager.h"
 
-TeamManager::TeamManager(ControllerCharacter* character_1, ControllerCharacter* character_2, SDL_RendererFlip initialFlip){
+TeamManager::TeamManager(ControllerCharacter* character_1, ControllerCharacter* character_2, SDL_RendererFlip initialFlip) : Renderable(){
 
     currentCharacter = character_1;
     supportCharacter = character_2;
     flip = initialFlip;
 }
 
+int TeamManager::getZIndex() {
+    return currentCharacter->getZIndex();
+}
 void TeamManager::changeCharacter(){
 
     ControllerCharacter* aux;

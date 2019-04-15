@@ -3,13 +3,12 @@
 #include "ControllerBackground.h"
 
 
-ControllerBackground::ControllerBackground(GameObject* background_, int speedCam_, double speedPercentageCam_) :
-                      Controller(background_) {
-
-    speedCam = speedCam_;
-    speedPercetageCam = speedPercentageCam_;
-
+ControllerBackground::ControllerBackground(GameObject* background_) :
+                      Controller(background_){
+    this->speedCam = dynamic_cast<Background*> (background_)->getSpeedCam();
+    this->speedPercetageCam = dynamic_cast<Background*> (background_) ->getSpeedPercetageCam();
 }
+
 
 ControllerBackground::~ControllerBackground() = default;
 

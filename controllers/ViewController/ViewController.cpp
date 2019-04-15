@@ -3,6 +3,7 @@
 //
 
 #include "ViewController.h"
+#include <algorithm> // for heap operations
 
 #include <SDL2/SDL.h>
 
@@ -36,22 +37,41 @@ void ViewController::handleEvent() {
     flipManager->update();
 }
 
+struct Comp{
+    bool operator()(Renderable*& renderable1, Renderable*& renderable2){
+        return renderable1->getZIndex() >  renderable2->getZIndex();
+    }
+};
+
 void ViewController::updateView() {
 
     //Acá debería chequear si debe cambiar de view
     // Primero renderizo (limpio) la vista;
 
     this->view->render();
+    std::vector<Renderable*> renderables;
 
     // Luego renderizo los elementos que la componen
 
+
     for (std::vector<ControllerBackground*>::iterator controllerBackground=backgrounds.begin(); controllerBackground != backgrounds.end(); ++controllerBackground) {
         //Creo que devuelve un puntero al puntero de controller, por eso lo desreferencio.
-        (*controllerBackground)->render();
+        renderables.push_back((*controllerBackground));
     }
 
-    team1->render();
-    team2->render();
+    renderables.push_back(team1);
+    renderables.push_back(team2);
+
+    Comp comp;
+    std::make_heap(renderables.begin(),renderables.end(), comp);
+    int size = renderables.size();
+    for (int i = 0; i < size; i++){
+        std::pop_heap(renderables.begin(), renderables.end(), comp);
+        Renderable* rend = renderables.back();
+        rend->render();
+        renderables.pop_back();
+    }
+
     SDL_RenderPresent(renderer);
 
 }

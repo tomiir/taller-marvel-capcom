@@ -13,10 +13,14 @@ std::list<Battlefield> JsonConfigs::getBattlefields(){
     return json.getBattlefields();
 }
 
-std::list<Character> JsonConfigs::getCharacters() {
+std::list<JsonCharacter> JsonConfigs::getCharacters() {
     return json.getCharacter();
 }
 
-std::list<int> JsonConfigs::getScreenSize() {
+std::vector<int> JsonConfigs::getScreenSize() {
     return json.getScreenSize();
+}
+
+int JsonConfigs::getCharactersSpeed(){
+    return json.getCharactersSpeed();
 }

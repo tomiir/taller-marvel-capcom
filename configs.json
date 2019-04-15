@@ -4,38 +4,72 @@
 	[
 		{"background":
 			{
-				"filepath":"file11.png",
-				"zindex":3}
+				"filepath":"Images/Backgrounds/Background3.png",
+				"zindex":3,
+				"width": 2300,
+				"height": 900
+			}
 		},
+
 		{"background":
 			{
-				"filepath":"file2.png",
-				"zindex":2}
-			},
+				"filepath":"Images/Backgrounds/Background2.png",
+				"zindex":2,
+				"width": 1900,
+				"height": 900
+			}
+		},
+
 		{"background":
 			{
-				"filepath":"file1.png",
-				"zindex":1
+				"filepath":"Images/Backgrounds/Background1.png",
+				"zindex":1,
+				"width": 1500,
+				"height": 900
 			}
 		}
 	],
 	"characters":
 		[
-			{"name":"ryu",
-			 "filepath":"file55.png",
-			 "height":45,
-			 "width":20,             
-			 "zindex":99
+			{"name":"CaptainAmerica",
+			 "filepath":"Images/CaptainAmerica.png",
+			 "height":280,
+			 "width":200,
+			 "zindex":99,
+			 "crowchedDownY": 75,
+			 "spriteManagerName": "CaptainAmerica"
 			},
-			{"name":"spiderman",
-			 "filepath":"file56.png",
-			 "height":45,
-			 "width":20,
-			 "zindex":99
+			{"name":"ChunLi",
+			 "filepath":"Images/ChunLi.png",
+			 "height":220,
+			 "width":200,
+			 "zindex":99,
+			 "crowchedDownY": 40,
+			 "spriteManagerName": "ChunLi"
+			},
+			{"name":"SpiderMan",
+			 "filepath":"Images/SpiderMan.png",
+			 "height":245,
+			 "width":200,
+			 "zindex":98,
+			 "crowchedDownY": 95,
+			 "spriteManagerName": "SpiderMan"
+			},
+			{"name":"Venom",
+			 "filepath":"Images/Venom.png",
+			 "height":280,
+			 "width":200,
+			 "zindex":98,
+			 "crowchedDownY": 60,
+			 "spriteManagerName": "Venom"
 			}
 		],
-	"window":{
+	"window":
+		{
 			"height":800,
 		 	"width":600
-		 }
+		 },
+	"gameParameters": {
+		"charactersSpeed": 10
+	}
 }

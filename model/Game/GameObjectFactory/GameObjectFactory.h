@@ -29,7 +29,7 @@ public:
     vector<GameObject*> getGameObjectsBackgrounds_fight();
 
 private:
-
+    double cameraSpeedPercentage(int widthMax, int widthImg);
     int screenWidth, screenHeight;
 
 };

@@ -8,10 +8,10 @@
 #include "../../model/GameObjects/GameObject/GameObject.h"
 #include "../../utils/EventToValueMapper/EventToValueMapper.h"
 #include "../../utils/Logger/Logger.h"
-
+#include "Renderable.h"
 using namespace std;
 
-class Controller{
+class Controller: virtual public Renderable{
 
 protected:
     GameObject * gameObject;
@@ -30,11 +30,13 @@ protected:
     int jumpSpeed = 10;
 
 
+
+
 public:
     Controller(GameObject* gameObject_);
     ~Controller();
-
-    void render();
+    int getZIndex() override;
+    void render() override;
     virtual void handleEvent(SDL_Event event);
     vector<int> getInfo();
 
