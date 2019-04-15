@@ -123,7 +123,7 @@ add_executable(
         Animations/CaptainAmericaEnteringAnimation.cpp
 
 
-)
+        controllers/Controller/Renderable.cpp controllers/Controller/Renderable.h)
 
 
 

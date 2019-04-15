@@ -25,6 +25,7 @@ protected:
     SDL_Texture* objTexture;
     SDL_Renderer* renderer;
     SDL_Rect objRect;
+
 };
 
 

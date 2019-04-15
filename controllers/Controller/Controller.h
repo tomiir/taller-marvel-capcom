@@ -8,10 +8,10 @@
 #include "../../model/GameObjects/GameObject/GameObject.h"
 #include "../../utils/EventToValueMapper/EventToValueMapper.h"
 #include "../../utils/Logger/Logger.h"
-
+#include "Renderable.h"
 using namespace std;
 
-class Controller{
+class Controller: virtual public Renderable{
 
 protected:
     GameObject * gameObject;
@@ -28,12 +28,14 @@ protected:
     int distanceBoundaryHorizontal = 25;
     int distanceBoundaryVertical = 75;
     int jumpSpeed = 10;
+    int z_index;
+
 
 
 public:
-    Controller(GameObject* gameObject_);
+    Controller(GameObject* gameObject_, int z_index);
     ~Controller();
-
+    int getZIndex();
     void render();
     virtual void handleEvent(SDL_Event event);
     vector<int> getInfo();

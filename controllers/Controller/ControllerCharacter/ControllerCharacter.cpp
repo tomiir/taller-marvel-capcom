@@ -9,7 +9,7 @@
 #include "../../../utils/Logger/Logger.h"
 
 
-ControllerCharacter::ControllerCharacter(GameObject* gameObject, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_,  int speedCharacter_) : Controller(gameObject){
+ControllerCharacter::ControllerCharacter(GameObject* gameObject,int z_index, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_,  int speedCharacter_) : Controller(gameObject, z_index), Renderable(){
     screenHeight = screenHeight_;
     screenWidth = screenWidth_;
     speedCharacter = speedCharacter_; //Despues hay que separarlo en X e Y

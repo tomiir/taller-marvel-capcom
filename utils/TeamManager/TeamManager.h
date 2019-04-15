@@ -9,9 +9,10 @@
 #include "../EventToValueMapper/EventToValueMapper.h"
 #include "../../controllers/Controller/ControllerBackground/ControllerBackground.h"
 #include <vector>
+#include "../../controllers/Controller/Renderable.h"
 
 
-class TeamManager {
+class TeamManager: public Renderable{
 public:
     TeamManager(ControllerCharacter* character_1, ControllerCharacter* character_2, SDL_RendererFlip initialFlip);
 
@@ -21,8 +22,10 @@ public:
     void addEnemyTeam(TeamManager* enemyTeam_);
 
     void flipCurrentCharacter();
+    int getZIndex();
 
 private:
+
     ControllerCharacter* currentCharacter;
     ControllerCharacter* supportCharacter;
     TeamManager* enemyTeam;

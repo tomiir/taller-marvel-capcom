@@ -42,16 +42,19 @@ void ViewController::updateView() {
     // Primero renderizo (limpio) la vista;
 
     this->view->render();
+    std::vector<Renderable*> renderables;
 
     // Luego renderizo los elementos que la componen
 
     for (std::vector<ControllerBackground*>::iterator controllerBackground=backgrounds.begin(); controllerBackground != backgrounds.end(); ++controllerBackground) {
         //Creo que devuelve un puntero al puntero de controller, por eso lo desreferencio.
-        (*controllerBackground)->render();
+        renderables.push_back((*controllerBackground));
     }
 
-    team1->render();
-    team2->render();
+    renderables.push_back(team1);
+    renderables.push_back(team2);
+
+
     SDL_RenderPresent(renderer);
 
 }

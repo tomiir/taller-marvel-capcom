@@ -11,6 +11,9 @@ TeamManager::TeamManager(ControllerCharacter* character_1, ControllerCharacter* 
     flip = initialFlip;
 }
 
+int TeamManager::getZIndex() {
+    return currentCharacter->getZIndex();
+}
 void TeamManager::changeCharacter(){
 
     ControllerCharacter* aux;
