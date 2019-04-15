@@ -5,7 +5,10 @@
 #include "Game.h"
 #include "../../utils/Logger/Logger.h"
 
-#define DEBUG_LEVEL INFO
+#define DEBUG_LEVEL DEBUG
+
+CLogger* logger = CLogger::GetLogger();
+
 
 Game::Game(int screenWidth_, int screenHeight_){
 
@@ -17,8 +20,6 @@ Game::~Game() = default;
 
 void Game::init(const char *title, int posX, int posY) {
 
-    CLogger* logger = CLogger::GetLogger();
-
     logger -> setLevel(DEBUG_LEVEL);
     logger ->Log("Inicializando juego", INFO, "");
 
@@ -26,11 +27,11 @@ void Game::init(const char *title, int posX, int posY) {
 
         window = SDL_CreateWindow(title, posX, posY, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
         if (!window) {
-            std::cout << "Fallo la creación de la ventana" << std::endl;
+            logger -> Log("Fallo la creación de la ventana", ERROR, "");
         } else {
                 renderer = SDL_CreateRenderer(window, -1, 0);
                 if (!renderer){
-                    std::cout << "Fallo la creacion del render" << std::endl;
+                    logger -> Log("Fallo la creación del renderer", ERROR,"");
                 }
             }
         isRunning = true;
@@ -43,8 +44,8 @@ void Game::init(const char *title, int posX, int posY) {
        viewController = factory->getViewController_fight();
 
 
-    } else{
-            std::cout << "Fallo la inicializacion" << std::endl;
+    } else {
+            logger -> Log("Fallo la creación del renderer", ERROR, "");
             isRunning = false;
         }
 }
@@ -62,6 +63,7 @@ void Game::clean(){
 }
 
 void Game::tick() {
+    logger -> Log("----------------------------TICK-------------------------", DEBUG, "");
     this -> viewController -> handleEvent();
     update(); // Esto se va a usar para reconciliar data con el serve supongo. Tipo le envío el movimiento, espero resp.
     this -> viewController -> updateView();
