@@ -16,10 +16,14 @@ public:
     void render() override;
     vector<int> getCameraInfo();
     vector<int> getInfo() override;
+    void setSpeeds(int speedCam,double speedPercetageCam);
+    int getSpeedCam();
+    double getSpeedPercetageCam();
 
 
 private:
-
+    int speedCam;
+    double speedPercetageCam;
     int CAMERA_WIDTH, CAMERA_HEIGHT, CAMERA_X_POS, CAMERA_Y_POS;
 
     int imgWight, imgHeight;

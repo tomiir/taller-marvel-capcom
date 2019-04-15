@@ -44,3 +44,16 @@ vector<int> Background::getInfo() {
     std::vector<int> info = {imgWight, imgHeight};
     return info;
 }
+
+void Background::setSpeeds(int speedCam, double speedPercetageCam) {
+    this->speedCam = speedCam;
+    this->speedPercetageCam = speedPercetageCam;
+}
+
+int Background::getSpeedCam() {
+    return speedCam;
+}
+
+double Background::getSpeedPercetageCam() {
+    return speedPercetageCam;
+}

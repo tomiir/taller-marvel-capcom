@@ -15,11 +15,6 @@ GameObjectControllerFactory::GameObjectControllerFactory(SDL_Renderer *renderer,
 
 GameObjectControllerFactory::~GameObjectControllerFactory() = default;
 
-double GameObjectControllerFactory::cameraSpeedPercentage(int widthMax, int widthImg) {
-    double a = widthImg - screenWidth;
-    double b = widthMax - screenWidth;
-    return a/b;
-}
 
 std::vector<ControllerCharacter*> GameObjectControllerFactory::getControllersCharacter_fight(){
 
@@ -43,19 +38,10 @@ std::vector<ControllerBackground*> GameObjectControllerFactory::getControllersBa
     vector<GameObject*> gameObjects = factory->getGameObjectsBackgrounds_fight();
     vector <ControllerBackground*> backgrounds;
 
-    int widthMax = 2300;
 
-    double speedPercentageB1 = cameraSpeedPercentage(widthMax, 1500);
-    double speedPercentageB2 = cameraSpeedPercentage(widthMax, 1900);
-    double speedPercentageB3 = cameraSpeedPercentage(widthMax, 2300);
-
-    int cameraSpeedB1 = speedCharacter * speedPercentageB1;
-    int cameraSpeedB2 = speedCharacter * speedPercentageB2;
-    int cameraSpeedB3 = speedCharacter * speedPercentageB3;
-
-    ControllerBackground* controllerB1 = new ControllerBackground(gameObjects[0],cameraSpeedB1, speedPercentageB1);
-    ControllerBackground* controllerB2 = new ControllerBackground(gameObjects[1],cameraSpeedB2, speedPercentageB2);
-    ControllerBackground* controllerB3 = new ControllerBackground(gameObjects[2],cameraSpeedB3, speedPercentageB3);
+    ControllerBackground* controllerB1 = new ControllerBackground(gameObjects[0]);
+    ControllerBackground* controllerB2 = new ControllerBackground(gameObjects[1]);
+    ControllerBackground* controllerB3 = new ControllerBackground(gameObjects[2]);
 
 
     backgrounds = { controllerB1, controllerB2, controllerB3 };
