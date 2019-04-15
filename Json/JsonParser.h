@@ -1,9 +1,10 @@
 
 #include <jsoncpp/json/json.h>
 #include "Battlefield.h"
-#include "Character.h"
+#include "JsonCharacter.h"
 #include <fstream>
 #include <list>
+#include <vector>
 #ifndef JSON_2_JSONPARSER_H
 #define JSON_2_JSONPARSER_H
 
@@ -19,9 +20,11 @@ public:
 
     std::list<Battlefield> getBattlefields();
 
-    std::list<Character> getCharacter();
+    std::list<JsonCharacter> getCharacter();
 
-    std::list<int> getScreenSize();
+    std::vector<int> getScreenSize();
+    
+    int getCharactersSpeed();
 
 };
 

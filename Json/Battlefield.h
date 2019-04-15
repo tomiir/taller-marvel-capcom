@@ -9,13 +9,18 @@
 #include <string>
 
 class Battlefield {
+
     std::string ruta;
     int zindex;
+    int height;
+    int width;
 
 public:
-    Battlefield(std::string ruta,int zindex);
-    std::string getRuta();
+    Battlefield(std::string ruta,int zindex,  int width, int height);
+    std::string getFilePath();
     int getzIndex();
+    int getHeight();
+    int getWidth();
 };
 
 

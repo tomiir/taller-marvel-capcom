@@ -15,8 +15,8 @@ add_executable(
         app main.cpp
         Json/Battlefield.h
         Json/Battlefield.cpp
-        Json/Character.h
-        Json/Character.cpp
+        Json/JsonCharacter.h
+        Json/JsonCharacter.cpp
         Json/JsonParser.h
         Json/JsonParser.cpp
         Json/JsonConfigs.h
