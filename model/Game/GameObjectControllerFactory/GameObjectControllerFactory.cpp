@@ -27,10 +27,10 @@ std::vector<ControllerCharacter*> GameObjectControllerFactory::getControllersCha
     vector <ControllerCharacter*> characters;
 
     //hardcodeo los z indexs
-    ControllerCharacter* controllerCharacter1 = new ControllerCharacter(gameObjects[0],4,new EventToValueMapper_player1(), screenWidth, screenHeight, speedCharacter);
-    ControllerCharacter* controllerCharacter2 = new ControllerCharacter(gameObjects[1],4,new EventToValueMapper_player1() ,screenWidth, screenHeight, speedCharacter);
-    ControllerCharacter* controllerCharacter3 = new ControllerCharacter(gameObjects[2],5,new EventToValueMapper_player2(), screenWidth, screenHeight, speedCharacter);
-    ControllerCharacter* controllerCharacter4 = new ControllerCharacter(gameObjects[3],5,new EventToValueMapper_player2() ,screenWidth, screenHeight, speedCharacter);
+    ControllerCharacter* controllerCharacter1 = new ControllerCharacter(gameObjects[0],new EventToValueMapper_player1(), screenWidth, screenHeight, speedCharacter);
+    ControllerCharacter* controllerCharacter2 = new ControllerCharacter(gameObjects[1],new EventToValueMapper_player1() ,screenWidth, screenHeight, speedCharacter);
+    ControllerCharacter* controllerCharacter3 = new ControllerCharacter(gameObjects[2],new EventToValueMapper_player2(), screenWidth, screenHeight, speedCharacter);
+    ControllerCharacter* controllerCharacter4 = new ControllerCharacter(gameObjects[3],new EventToValueMapper_player2() ,screenWidth, screenHeight, speedCharacter);
 
 
     characters = { controllerCharacter1, controllerCharacter2,controllerCharacter3,controllerCharacter4 };
@@ -53,9 +53,9 @@ std::vector<ControllerBackground*> GameObjectControllerFactory::getControllersBa
     int cameraSpeedB2 = speedCharacter * speedPercentageB2;
     int cameraSpeedB3 = speedCharacter * speedPercentageB3;
 
-    ControllerBackground* controllerB1 = new ControllerBackground(gameObjects[0],1,cameraSpeedB1, speedPercentageB1);
-    ControllerBackground* controllerB2 = new ControllerBackground(gameObjects[1],2,cameraSpeedB2, speedPercentageB2);
-    ControllerBackground* controllerB3 = new ControllerBackground(gameObjects[2],3,cameraSpeedB3, speedPercentageB3);
+    ControllerBackground* controllerB1 = new ControllerBackground(gameObjects[0],cameraSpeedB1, speedPercentageB1);
+    ControllerBackground* controllerB2 = new ControllerBackground(gameObjects[1],cameraSpeedB2, speedPercentageB2);
+    ControllerBackground* controllerB3 = new ControllerBackground(gameObjects[2],cameraSpeedB3, speedPercentageB3);
 
 
     backgrounds = { controllerB1, controllerB2, controllerB3 };

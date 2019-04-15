@@ -25,11 +25,11 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
     vector<GameObject*>  gameObjects;
 
 
-    Character* captainAmerica = new Character("Images/CaptainAmerica.png", renderer, new CaptainAmericaSpriteManager(), 200/2, screenHeight - 280, screenHeight - 280 + 75);
-    Character* chunLi = new Character("Images/ChunLi.png", renderer, new ChunLiSpriteManager(), 200/2,screenHeight - 220, screenHeight - 220 + 40);
+    Character* captainAmerica = new Character("Images/CaptainAmerica.png",5, renderer, new CaptainAmericaSpriteManager(), 200/2, screenHeight - 280, screenHeight - 280 + 75);
+    Character* chunLi = new Character("Images/ChunLi.png",5, renderer, new ChunLiSpriteManager(), 200/2,screenHeight - 220, screenHeight - 220 + 40);
 
-    Character* spiderMan= new Character("Images/SpiderMan.png", renderer, new SpiderManSpriteManager(), (screenWidth - 200) - (200/2),screenHeight - 245, screenHeight - 245 + 95);
-    Character* venom = new Character("Images/Venom.png", renderer, new VenomSpriteManager(), (screenWidth - 200) - (200/2), screenHeight - 280, screenHeight - 280 + 60);
+    Character* spiderMan= new Character("Images/SpiderMan.png",4, renderer, new SpiderManSpriteManager(), (screenWidth - 200) - (200/2),screenHeight - 245, screenHeight - 245 + 95);
+    Character* venom = new Character("Images/Venom.png",4, renderer, new VenomSpriteManager(), (screenWidth - 200) - (200/2), screenHeight - 280, screenHeight - 280 + 60);
 
 
     gameObjects = {spiderMan, venom, captainAmerica, chunLi};
@@ -45,21 +45,21 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsBackgrounds_fight() {
 
 
 
-    Background *B1 = new Background("Images/Backgrounds/Background1.png", renderer, 1500, 900, screenWidth, screenHeight);
+    Background *B1 = new Background("Images/Backgrounds/Background1.png",1, renderer, 1500, 900, screenWidth, screenHeight);
 
     if (!B1) {
 //lanzar excepcion
     }
 
 
-    Background *B2 = new Background("Images/Backgrounds/Background2.png", renderer, 1900, 900, screenWidth, screenHeight);
+    Background *B2 = new Background("Images/Backgrounds/Background2.png",2, renderer, 1900, 900, screenWidth, screenHeight);
 
     if (!B2) {
 //lanzar excepcion
     }
 
    
-    Background *B3 = new Background("Images/Backgrounds/Background3.png", renderer, 2300, 900, screenWidth, screenHeight);
+    Background *B3 = new Background("Images/Backgrounds/Background3.png",3, renderer, 2300, 900, screenWidth, screenHeight);
 
     if (!B3) {
 //lanzar excepcion

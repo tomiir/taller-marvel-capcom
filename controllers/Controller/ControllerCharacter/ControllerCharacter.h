@@ -16,7 +16,7 @@ class ControllerCharacter : public Controller{
 
 
 public:
-    ControllerCharacter(GameObject *gameObject,int z_index, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_, int speedCharacter_);
+    ControllerCharacter(GameObject *gameObject, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_, int speedCharacter_);
     ~ControllerCharacter();
     void handleEvent(SDL_Event event);
     bool isJumping();

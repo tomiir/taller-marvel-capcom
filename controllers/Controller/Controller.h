@@ -28,12 +28,12 @@ protected:
     int distanceBoundaryHorizontal = 25;
     int distanceBoundaryVertical = 75;
     int jumpSpeed = 10;
-    int z_index;
+
 
 
 
 public:
-    Controller(GameObject* gameObject_, int z_index);
+    Controller(GameObject* gameObject_);
     ~Controller();
     int getZIndex() override;
     void render() override;

@@ -5,10 +5,9 @@
 #include "Controller.h"
 
 
-Controller::Controller(GameObject *gameObject_, int z_index ): Renderable(){
+Controller::Controller(GameObject *gameObject_ ): Renderable(){
 
     gameObject = gameObject_;
-    this->z_index = z_index;
 
     //habria que asociarle algo del modelo y no de la "vista", ya que el GO es lo que lo representa en la pantalla.
 
@@ -18,7 +17,7 @@ Controller::Controller(GameObject *gameObject_, int z_index ): Renderable(){
 Controller::~Controller() = default;
 
 int Controller::getZIndex(){
-    return z_index;
+    return gameObject->getZIndex();
 }
 
 void Controller::render(){ //en vez de render tendria que ser "draw"

@@ -5,8 +5,8 @@
 #include "Character.h"
 
 
-Character::Character(const char* imagePath, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialX, int initialY, int crowchedDownY_) :
-           GameObject(imagePath, rend, initialX, initialY, 0, 0) {
+Character::Character(const char* imagePath,int z_index, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialX, int initialY, int crowchedDownY_) :
+           GameObject(imagePath,z_index, rend, initialX, initialY, 0, 0) {
 
     spriteManager = spriteManager_;
     this->initialY = initialY;

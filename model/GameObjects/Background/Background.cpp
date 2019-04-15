@@ -4,8 +4,8 @@
 
 #include "Background.h"
 
-Background::Background(const char* imagePath, SDL_Renderer* rend, int widthImage, int heightImage, int screenWidth, int screenHeight) :
-            GameObject(imagePath, rend, 0, 0, screenWidth, screenHeight){
+Background::Background(const char* imagePath, int z_index, SDL_Renderer* rend, int widthImage, int heightImage, int screenWidth, int screenHeight) :
+            GameObject(imagePath,z_index, rend, 0, 0, screenWidth, screenHeight){
 
                 imgHeight = heightImage;
                 imgWight = widthImage;
