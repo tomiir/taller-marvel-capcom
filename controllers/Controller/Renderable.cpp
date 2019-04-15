@@ -4,5 +4,8 @@
 
 #include "Renderable.h"
 
-//Renderable:: Renderable() = default;
-//Renderable::~Renderable() = default;
+Renderable:: Renderable() {}
+Renderable::~Renderable() = default;
+
+int Renderable::getZIndex() {}
+void Renderable:: render() {}

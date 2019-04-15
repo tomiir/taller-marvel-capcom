@@ -4,7 +4,7 @@
 
 
 ControllerBackground::ControllerBackground(GameObject* background_, int z_index, int speedCam_, double speedPercentageCam_) :
-                      Controller(background_, z_index) , Renderable() {
+                      Controller(background_, z_index){
 
     speedCam = speedCam_;
     speedPercetageCam = speedPercentageCam_;

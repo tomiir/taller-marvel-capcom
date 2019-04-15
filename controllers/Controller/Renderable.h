@@ -10,8 +10,8 @@ class  Renderable{
 
 public:
     virtual void render();
-    Renderable() = default;
-    ~Renderable() = default;
+    Renderable();
+    ~Renderable();
     virtual int getZIndex();
 };
 

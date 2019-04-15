@@ -37,6 +37,12 @@ void ViewController::handleEvent() {
     flipManager->update();
 }
 
+struct Comp{
+    bool operator()(Renderable*& renderable1, Renderable*& renderable2){
+        return renderable1->getZIndex() >  renderable2->getZIndex();
+    }
+};
+
 void ViewController::updateView() {
 
     //Acá debería chequear si debe cambiar de view
@@ -47,6 +53,7 @@ void ViewController::updateView() {
 
     // Luego renderizo los elementos que la componen
 
+
     for (std::vector<ControllerBackground*>::iterator controllerBackground=backgrounds.begin(); controllerBackground != backgrounds.end(); ++controllerBackground) {
         //Creo que devuelve un puntero al puntero de controller, por eso lo desreferencio.
         renderables.push_back((*controllerBackground));
@@ -55,9 +62,11 @@ void ViewController::updateView() {
     renderables.push_back(team1);
     renderables.push_back(team2);
 
-    std::make_heap(renderables.begin(),renderables.end());
-    for (int i = 0; i <renderables.size(); i++){
-        std::pop_heap(renderables.begin(), renderables.end());
+    Comp comp;
+    std::make_heap(renderables.begin(),renderables.end(), comp);
+    int size = renderables.size();
+    for (int i = 0; i < size; i++){
+        std::pop_heap(renderables.begin(), renderables.end(), comp);
         Renderable* rend = renderables.back();
         rend->render();
         renderables.pop_back();
