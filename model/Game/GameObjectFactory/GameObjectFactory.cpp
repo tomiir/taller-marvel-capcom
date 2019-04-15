@@ -33,8 +33,8 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
     for (iter ;iter != charactersTeam1.end();++iter) {
         std::string path = (*iter).getRuta();
         // json: debe dar el spriteManager correcto comparando entre strings!
-        int initialY = screenHeight -(*iter)->getHeight();
-        Character* C = new Character(path.c_str(), (*iter).getzIndex(), renderer, (*iter).getSpriteManager(), (*iter).getWidth()/2, initialY, initialY + (*iter).getCrowchedDownY() );
+        int initialY = screenHeight -(*iter).getHeight();
+        Character* C = new Character(path.c_str(), (*iter).getZIndex(), renderer, (*iter).getSpriteManager(), (*iter).getWidth()/2, initialY, initialY + (*iter).getCrowchedDownY() );
 
         if(!C){
             //lanzar excp
@@ -48,7 +48,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
     for (iter_2 ;iter_2 != charactersTeam2.end();++iter_2) {
         std::string path = (*iter_2).getRuta();
         // json: debe dar el spriteManager correcto comparando entre strings!
-        int initialY = screenHeight -(*iter_2)->getHeight();
+        int initialY = screenHeight -(*iter_2).getHeight();
         int width = (*iter_2).getWidth();
         int height = (*iter_2).getHeight();
         Character* C = new Character(path.c_str(), (*iter_2).getzIndex(), renderer, (*iter_2).getSpriteManager(),(screenWidth - width) - (width/2), initialY, initialY + (*iter_2).getCrowchedDownY()) ;
