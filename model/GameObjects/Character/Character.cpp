@@ -6,13 +6,14 @@
 #include <string.h>
 
 
-Character::Character(const char* imagePath,int z_index, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialX, int initialY, int crowchedDownY_, std::string name) :
+Character::Character(const char* imagePath,int z_index, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialX, int initialY, int crowchedDownY_, std::string name, double size) :
            GameObject(imagePath,z_index, rend, initialX, initialY, 0, 0) {
 
     spriteManager = spriteManager_;
     this->initialY = initialY;
     crowchedDownY = crowchedDownY_;
     logger->Log("Creando personaje: " + name, DEBUG, "");
+    this->size = size;
 
 }
 
@@ -27,8 +28,8 @@ void Character::move(DirectionVector* direction){
 void Character::render() {
 
     SDL_Rect sprite = spriteManager->getSprite();
-    objRect.w = (int) (sprite.w * 2.5);
-    objRect.h = (int) (sprite.h * 2.5);
+    objRect.w = (int) (sprite.w * size);
+    objRect.h = (int) (sprite.h * size);
     SDL_RenderCopyEx(renderer, objTexture, &sprite, &objRect, 0.0, nullptr, flip);
 }
 

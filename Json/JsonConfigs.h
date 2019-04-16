@@ -19,6 +19,10 @@ public:
     std::vector<int> getScreenSize();
 
     int getCharactersSpeed();
+
+    int getFPS();
+
+    std::string getTitle();
 };
 
 

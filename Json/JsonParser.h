@@ -26,6 +26,9 @@ public:
     
     int getCharactersSpeed();
 
+    int getFPS();
+
+    std::string getTitle();
 };
 
 #endif //JSON_2_JSONPARSER_H

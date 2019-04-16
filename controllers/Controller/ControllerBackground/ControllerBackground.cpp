@@ -37,7 +37,7 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
 
 
     bool characterIsInUpBoundary = infoCharacter1[1] < distanceBoundaryVertical and
-                                   infoCharacter2[1] < distanceBoundaryVertical + 300;//Este 300 es para que se mueva la cam para arriba si los dos estan en el aire
+                                   infoCharacter2[1] < distanceBoundaryVertical + cameraInfo[3] - 400;
     //y no solo si estan los dos arriba de todo
     bool cameraIsOverUpLimit = cameraInfo[1] > 0;
 

@@ -37,7 +37,8 @@
 			 "width":200,
 			 "zindex":99,
 			 "crowchedDownY": 75,
-			 "spriteManagerName": "CaptainAmerica"
+			 "spriteManagerName": "CaptainAmerica",
+			 "size": 2.5
 			},
 			{"name":"ChunLi",
 			 "filepath":"Images/ChunLi.png",
@@ -45,7 +46,8 @@
 			 "width":200,
 			 "zindex":99,
 			 "crowchedDownY": 40,
-			 "spriteManagerName": "ChunLi"
+			 "spriteManagerName": "ChunLi",
+			 "size": 2.5
 			},
 			{"name":"SpiderMan",
 			 "filepath":"Images/SpiderMan.png",
@@ -53,7 +55,8 @@
 			 "width":200,
 			 "zindex":98,
 			 "crowchedDownY": 95,
-			 "spriteManagerName": "SpiderMan"
+			 "spriteManagerName": "SpiderMan",
+			 "size": 2.5
 			},
 			{"name":"Venom",
 			 "filepath":"Images/Venom.png",
@@ -61,15 +64,25 @@
 			 "width":200,
 			 "zindex":98,
 			 "crowchedDownY": 60,
-			 "spriteManagerName": "Venom"
+			 "spriteManagerName": "Venom",
+			 "size": 2.5
 			}
 		],
 	"window":
 		{
-			"height":800,
-		 	"width":600
+			"width":1200,
+		 	"height":700
 		 },
 	"gameParameters": {
 		"charactersSpeed": 10
-	}
+		},
+
+	"Graphics": {
+		"FPS": 60
+		},
+	"Title": {
+		"title": "Marvel vs Capcom"
+		}
+
+
 }
