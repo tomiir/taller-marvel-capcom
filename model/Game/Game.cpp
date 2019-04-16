@@ -7,7 +7,6 @@
 
 #define DEBUG_LEVEL DEBUG
 
-CLogger* logger = CLogger::GetLogger();
 
 
 Game::Game(int screenWidth_, int screenHeight_){
@@ -19,6 +18,8 @@ Game::Game(int screenWidth_, int screenHeight_){
 Game::~Game() = default;
 
 void Game::init(const char *title, int posX, int posY) {
+
+    CLogger* logger = CLogger::GetLogger();
 
     logger -> setLevel(DEBUG_LEVEL);
     logger ->Log("Inicializando juego", INFO, "");
@@ -42,7 +43,7 @@ void Game::init(const char *title, int posX, int posY) {
         // si para saber quien va luego o implementar el VIEW MANAGER
 
        viewController = factory->getViewController_fight();
-
+       logger -> Log("Inicialización completa, ventana, renderer y vista creados correctamente", INFO, "");
 
     } else {
             logger -> Log("Fallo la creación del renderer", ERROR, "");
@@ -55,14 +56,20 @@ void Game::update(){
 }
 
 void Game::clean(){
+    CLogger* logger = CLogger::GetLogger();
 
     SDL_DestroyWindow(window);
+    logger -> Log("Ventana destruida", INFO, "");
+
     SDL_DestroyRenderer(renderer);
+    logger -> Log("Renderer destruido", INFO, "");
+
     SDL_Quit();
 
 }
 
 void Game::tick() {
+    CLogger* logger = CLogger::GetLogger();
     logger -> Log("----------------------------TICK-------------------------", DEBUG, "");
     this -> viewController -> handleEvent();
     update(); // Esto se va a usar para reconciliar data con el serve supongo. Tipo le envío el movimiento, espero resp.

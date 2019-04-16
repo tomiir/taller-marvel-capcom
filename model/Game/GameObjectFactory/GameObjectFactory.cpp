@@ -7,6 +7,7 @@
 #include "../../../utils/SpriteManagers/VenomSpriteManager/VenomSpriteManager.h"
 #include "../../../utils/SpriteManagers/SpiderManSpriteManager/SpiderManSpriteManager.h"
 #include "../../../utils/SpriteManagers/ChunLiSpriteManager/ChunLiSpriteManager.h"
+#include "../../../utils/Logger/Logger.h"
 
 
 GameObjectFactory::GameObjectFactory(SDL_Renderer *renderer_, int screenWidth_, int screenHeight_) {
@@ -23,8 +24,10 @@ GameObjectFactory::~GameObjectFactory() = default;
 vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
 
     vector<GameObject*>  gameObjects;
+    CLogger* logger = CLogger::GetLogger();
 
-
+    logger -> Log("Creando personajes", INFO, "");
+    
     Character* captainAmerica = new Character("Images/CaptainAmerica.png", renderer, new CaptainAmericaSpriteManager(), 200/2, screenHeight - 280, screenHeight - 280 + 75);
     Character* chunLi = new Character("Images/ChunLi.png", renderer, new ChunLiSpriteManager(), 200/2,screenHeight - 220, screenHeight - 220 + 40);
 

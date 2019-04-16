@@ -71,9 +71,10 @@ CLogger* CLogger::GetLogger(){
 }
 
 void CLogger::Log(const string& sMessage, int level, string e) {
-
     if(level > this -> level) return;
-    m_Logfile << "[" << levelNames[level] << "] ";
+    m_Logfile << "[" << levelNames[level] << "]\t ";
+    logCurrentDateTime();
+    m_Logfile << ">>>>" << "\t";
     m_Logfile << sMessage << "\n";
 
     if (level == DEBUG && e.size()) {

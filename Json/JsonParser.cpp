@@ -1,6 +1,7 @@
 #include "JsonParser.h"
 #include <fstream>
 #include <iostream>
+#include "../utils/Logger/Logger.h"
 
 JsonParser::JsonParser(std::string ruta){
     this->setJson(ruta);
@@ -9,20 +10,22 @@ JsonParser::JsonParser(std::string ruta){
 
 void JsonParser::setJson(std::string ruta) {
 
+    CLogger* logger = CLogger::GetLogger();
+
     std::ifstream in(ruta);
     Json::Value json;
 
     if(in.is_open()){
-        std::cout << "Archivo abierto\n";
+        logger -> Log("Archivo abierto\n", INFO,"");
     }
     if (in.fail()) {
-        std::cout << "no se abrio archivo\n";
+        logger -> Log("Falló la apertura de archivo\n", INFO,"");
     }
     try {
         in >> json;
     }
     catch (const Json::RuntimeError &error) {
-        std::cout << error.what() << "Esto pasa siempre qque se abre por primera vez.\n";
+        logger -> Log("Esto pasa siempre qque se abre por primera vez.\n", ERROR,error.what());
     }
     this->json = json;
 }

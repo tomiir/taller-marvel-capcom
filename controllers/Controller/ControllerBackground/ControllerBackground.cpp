@@ -3,7 +3,7 @@
 #include "ControllerBackground.h"
 
 
-ControllerBackground::ControllerBackground(GameObject* background_, int speedCam_, double speedPercentageCam_) :
+ControllerBackground::  ControllerBackground(GameObject* background_, int speedCam_, double speedPercentageCam_) :
                       Controller(background_) {
 
     speedCam = speedCam_;
