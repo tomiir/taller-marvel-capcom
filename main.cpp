@@ -15,7 +15,10 @@ int main(int argc, const char* argv[]){
         const int SCREEN_WIDTH = config->getScreenSize()[0];
         const int SCREEN_HEIGHT = config->getScreenSize()[1];
 
-        const char* title = "Marvel vs Capcom";
+        std::string aux = config->getTitle();
+
+        const char* title = aux.c_str();
+
         const int FPS = config->getFPS();
 
 

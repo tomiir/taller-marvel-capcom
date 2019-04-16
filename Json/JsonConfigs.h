@@ -21,6 +21,8 @@ public:
     int getCharactersSpeed();
 
     int getFPS();
+
+    std::string getTitle();
 };
 
 

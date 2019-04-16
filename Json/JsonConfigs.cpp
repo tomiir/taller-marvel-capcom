@@ -28,3 +28,7 @@ int JsonConfigs::getCharactersSpeed(){
 int JsonConfigs::getFPS(){
     return json.getFPS();
 }
+
+std::string JsonConfigs::getTitle(){
+    return json.getTitle();
+}

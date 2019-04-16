@@ -97,6 +97,14 @@ int JsonParser::getFPS(){
 
 }
 
+std::string JsonParser::getTitle() {
+
+    Json::Value json = this->json["Title"];
+
+    return (json["title"]).asString();
+
+}
+
 
 
 

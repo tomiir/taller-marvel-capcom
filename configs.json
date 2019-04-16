@@ -79,6 +79,10 @@
 
 	"Graphics": {
 		"FPS": 60
+		},
+	"Title": {
+		"title": "Marvel vs Capcom"
 		}
+
 
 }
