@@ -8,7 +8,7 @@
 int main(int argc, const char* argv[]){
 
 
-        JsonConfigs* config = new JsonConfigs("configs.json");
+        JsonConfigs* config = new JsonConfigs();
 
 
         //Screen dimension constants

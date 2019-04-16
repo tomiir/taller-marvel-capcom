@@ -5,6 +5,7 @@
 #include "JsonCharacter.h"
 
 JsonCharacter::JsonCharacter(std::string name, std::string filepath, int height, int width, int zindex, int crowchedDownY, std::string spriteManager, double size) {
+
     this->name = name;
     this->filepath = filepath;
     this-> height = height;

@@ -1,0 +1,88 @@
+{
+"debug":"DEBUG",
+"battlefield":
+	[
+		{"background":
+			{
+				"filepath":"Images/Backgrounds/Background3.png",
+				"zindex":3,
+				"width": 2300,
+				"height": 900
+			}
+		},
+
+		{"background":
+			{
+				"filepath":"Images/Backgrounds/Background2.png",
+				"zindex":2,
+				"width": 1900,
+				"height": 900
+			}
+		},
+
+		{"background":
+			{
+				"filepath":"Images/Backgrounds/Background1.png",
+				"zindex":1,
+				"width": 1500,
+				"height": 900
+			}
+		}
+	],
+	"characters":
+		[
+			{"name":"CaptainAmerica",
+			 "filepath":"Images/CaptainAmerica.png",
+			 "height":280,
+			 "width":200,
+			 "zindex":99,
+			 "crowchedDownY": 75,
+			 "spriteManagerName": "CaptainAmerica",
+			 "size": 2.5
+			},
+			{"name":"ChunLi",
+			 "filepath":"Images/ChunLi.png",
+			 "height":220,
+			 "width":200,
+			 "zindex":99,
+			 "crowchedDownY": 40,
+			 "spriteManagerName": "ChunLi",
+			 "size": 2.5
+			},
+			{"name":"SpiderMan",
+			 "filepath":"Images/SpiderMan.png",
+			 "height":245,
+			 "width":200,
+			 "zindex":98,
+			 "crowchedDownY": 95,
+			 "spriteManagerName": "SpiderMan",
+			 "size": 2.5
+			},
+			{"name":"Venom",
+			 "filepath":"Images/Venom.png",
+			 "height":280,
+			 "width":200,
+			 "zindex":98,
+			 "crowchedDownY": 60,
+			 "spriteManagerName": "Venom",
+			 "size": 2.5
+			}
+		],
+	"window":
+		{
+			"width":1200,
+		 	"height":700
+		 },
+	"gameParameters": {
+		"charactersSpeed": 10
+		},
+
+	"Graphics": {
+		"FPS": 60
+		},
+	"Title": {
+		"title": "Marvel vs Capcom"
+		}
+
+
+}
