@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.7)
 project(taller-marvel-capcom) #DEJAR COMO ESTA. Si no funca ---> renombrar la carpeta donde está el repo de git a esto
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
-SET(CMAKE_CXX_FLAGS "-std=c++11")
+SET(CMAKE_CXX_FLAGS "-std=c++11 -pthread -lstdc++ -lm -ldl")
 set(CMAKE_CXX_STANDARD_LIBRARIES -ljsoncpp)
 
 find_package(SDL2 REQUIRED)
@@ -125,5 +125,5 @@ add_executable(
 
 
 
-target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
+target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${CMAKE_DL_LIBS})
 

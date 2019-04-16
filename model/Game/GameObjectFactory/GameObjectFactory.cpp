@@ -7,6 +7,7 @@
 #include "../../../utils/SpriteManagers/VenomSpriteManager/VenomSpriteManager.h"
 #include "../../../utils/SpriteManagers/SpiderManSpriteManager/SpiderManSpriteManager.h"
 #include "../../../utils/SpriteManagers/ChunLiSpriteManager/ChunLiSpriteManager.h"
+#include "../../../utils/Logger/Logger.h"
 #include "../../../Json/JsonConfigs.h"
 #include <map>
 
@@ -24,6 +25,9 @@ GameObjectFactory::~GameObjectFactory() = default;
 vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
 
     vector<GameObject*>  gameObjects;
+    CLogger* logger = CLogger::GetLogger();
+
+    logger -> Log("Creando personajes", INFO, "");
 
     map<string, SpriteManager*> spriteManagers;
 
@@ -51,19 +55,19 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
         int initialY = screenHeight - height;
         int zIndex = (*iter).getzIndex();
         int crowchedDownYParameter = (*iter).getCrowchedDownY();
+        string name = (*iter).getName();
 
         string spriteManagerName = (*iter).getSpriteManager();
         itrSprites = spriteManagers.find(spriteManagerName);
         SpriteManager* spriteManager = itrSprites->second;
 
         Character* C;
-
         if(gameObjects.size() < 2){
 
-            C = new Character(path.c_str(), zIndex, renderer, spriteManager , width/2, initialY, initialY + crowchedDownYParameter);
+            C = new Character(path.c_str(), zIndex, renderer, spriteManager , width/2, initialY, initialY + crowchedDownYParameter, name);
         }
         else{
-            C = new Character(path.c_str(), zIndex, renderer, spriteManager ,(screenWidth - width) - (width/2), initialY, initialY + crowchedDownYParameter) ;
+            C = new Character(path.c_str(), zIndex, renderer, spriteManager ,(screenWidth - width) - (width/2), initialY, initialY + crowchedDownYParameter, name) ;
         }
 
         if(!C){

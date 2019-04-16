@@ -7,6 +7,8 @@
 
 #include <SDL2/SDL.h>
 
+#include "../../utils/Logger/Logger.h"
+
 ViewController::ViewController(SDL_Renderer* renderer_) {
 
     this->renderer= renderer_;
@@ -24,17 +26,28 @@ void ViewController::addBackground(ControllerBackground* controller) {
 
 void ViewController::handleEvent() {
 
+    CLogger* logger = CLogger::GetLogger();
+
     SDL_Event event;
     SDL_PollEvent(&event);
 
     if (event.type == SDL_QUIT) {
+        logger -> Log("Saliendo del juego", INFO, "");
         throw -1;
     }
 // MODIFICAR EL HANDLEEVENT!
-
-    team1->handleEvent(event, backgrounds);
-    team2->handleEvent(event, backgrounds);
-    flipManager->update();
+    try {
+        if(event.key.state != SDL_RELEASED) {
+            //logger -> Log("Manejando el evento: " + to_string(event.type), DEBUG, "");
+        }
+        team1->handleEvent(event, backgrounds);
+        team2->handleEvent(event, backgrounds);
+        flipManager->update();
+    } catch(exception e) {
+        logger -> Log("Falló al querer manejar un evento", ERROR, e.what());
+        logger -> Log("Falló al querer manejar el evento: " + to_string(event.type), DEBUG, e.what());
+        throw -1;
+    }
 }
 
 struct Comp{

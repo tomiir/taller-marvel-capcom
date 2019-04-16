@@ -3,20 +3,23 @@
 //
 
 #include "Character.h"
+#include <string.h>
 
 
-Character::Character(const char* imagePath,int z_index, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialX, int initialY, int crowchedDownY_) :
+Character::Character(const char* imagePath,int z_index, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialX, int initialY, int crowchedDownY_, std::string name) :
            GameObject(imagePath,z_index, rend, initialX, initialY, 0, 0) {
 
     spriteManager = spriteManager_;
     this->initialY = initialY;
     crowchedDownY = crowchedDownY_;
+    logger->Log("Creando personaje: " + name, DEBUG, "");
+
 }
 
 Character::~Character() = default;
 
 void Character::move(DirectionVector* direction){
-
+    logger -> Log("Moviendo a " + name + "X: "+ to_string(direction->x) +"Y: "+ to_string(direction->y), DEBUG, "");
     objRect.x += (int) direction->x;
     objRect.y += (int) direction->y;
 }

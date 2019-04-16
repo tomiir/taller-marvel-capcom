@@ -5,7 +5,6 @@
 #include "GameObjectControllerFactory.h"
 #include "../../../controllers/Controller/ControllerBackground/ControllerBackground.h"
 
-
 GameObjectControllerFactory::GameObjectControllerFactory(SDL_Renderer *renderer, int screenWidth_, int screenHeight_){
 
     factory = new GameObjectFactory(renderer, screenWidth_, screenHeight_);
@@ -45,6 +44,5 @@ std::vector<ControllerBackground*> GameObjectControllerFactory::getControllersBa
 
 
     backgrounds = { controllerB1, controllerB2, controllerB3 };
-
     return backgrounds;
 }

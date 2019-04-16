@@ -5,7 +5,9 @@
 #include "Game.h"
 #include "../../utils/Logger/Logger.h"
 
-#define DEBUG_LEVEL INFO
+#define DEBUG_LEVEL DEBUG
+
+
 
 Game::Game(int screenWidth_, int screenHeight_){
 
@@ -26,11 +28,11 @@ void Game::init(const char *title, int posX, int posY) {
 
         window = SDL_CreateWindow(title, posX, posY, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
         if (!window) {
-            std::cout << "Fallo la creación de la ventana" << std::endl;
+            logger -> Log("Fallo la creación de la ventana", ERROR, "");
         } else {
                 renderer = SDL_CreateRenderer(window, -1, 0);
                 if (!renderer){
-                    std::cout << "Fallo la creacion del render" << std::endl;
+                    logger -> Log("Fallo la creación del renderer", ERROR,"");
                 }
             }
         isRunning = true;
@@ -41,10 +43,10 @@ void Game::init(const char *title, int posX, int posY) {
         // si para saber quien va luego o implementar el VIEW MANAGER
 
        viewController = factory->getViewController_fight();
+       logger -> Log("Inicialización completa, ventana, renderer y vista creados correctamente", INFO, "");
 
-
-    } else{
-            std::cout << "Fallo la inicializacion" << std::endl;
+    } else {
+            logger -> Log("Fallo la creación del renderer", ERROR, "");
             isRunning = false;
         }
 }
@@ -54,9 +56,14 @@ void Game::update(){
 }
 
 void Game::clean(){
+    CLogger* logger = CLogger::GetLogger();
 
     SDL_DestroyWindow(window);
+    logger -> Log("Ventana destruida", INFO, "");
+
     SDL_DestroyRenderer(renderer);
+    logger -> Log("Renderer destruido", INFO, "");
+
     SDL_Quit();
 
 }
