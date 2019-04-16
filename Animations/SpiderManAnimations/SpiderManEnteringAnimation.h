@@ -6,7 +6,7 @@
 #define TALLER_MARVEL_CAPCOM_SPIDERMANENTERINGANIMATION_H
 
 
-#include "Animation.h"
+#include "../Animation.h"
 
 
 class SpiderManEnteringAnimation: public Animation {

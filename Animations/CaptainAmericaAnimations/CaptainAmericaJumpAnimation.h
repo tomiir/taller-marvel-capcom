@@ -5,7 +5,7 @@
 #ifndef TALLER_MARVEL_CAPCOM_CAPTAINAMERICAJUMPANIMATION_H
 #define TALLER_MARVEL_CAPCOM_CAPTAINAMERICAJUMPANIMATION_H
 
-#include "Animation.h"
+#include "../Animation.h"
 
 
 class CaptainAmericaJumpAnimation: public Animation {

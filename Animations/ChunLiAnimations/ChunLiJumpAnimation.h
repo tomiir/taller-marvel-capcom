@@ -5,7 +5,7 @@
 #ifndef TALLER_MARVEL_CAPCOM_CHUNLIJUMPANIMATION_H
 #define TALLER_MARVEL_CAPCOM_CHUNLIJUMPANIMATION_H
 
-#include "Animation.h"
+#include "../Animation.h"
 
 
 class ChunLiJumpAnimation : public Animation{

@@ -6,7 +6,7 @@
 #define TALLER_MARVEL_CAPCOM_CHUNLICROWCHEDDOWNANIMATION_H
 
 
-#include "Animation.h"
+#include "../Animation.h"
 
 class ChunLiCrowchedDownAnimation : public Animation{
 

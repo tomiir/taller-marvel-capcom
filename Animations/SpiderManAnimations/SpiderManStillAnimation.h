@@ -5,7 +5,7 @@
 #ifndef TALLER_MARVEL_CAPCOM_SPIDERMANSTILLANIMATION_H
 #define TALLER_MARVEL_CAPCOM_SPIDERMANSTILLANIMATION_H
 
-#include "Animation.h"
+#include "../Animation.h"
 
 
 class SpiderManStillAnimation: public Animation {

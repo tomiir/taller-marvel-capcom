@@ -7,7 +7,7 @@
 
 
 
-#include "Animation.h"
+#include "../Animation.h"
 
 class ChunLiStillAnimation : public Animation{
 

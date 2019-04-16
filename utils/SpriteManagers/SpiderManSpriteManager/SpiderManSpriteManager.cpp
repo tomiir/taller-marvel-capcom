@@ -4,11 +4,11 @@
 
 #include <iostream>
 #include "SpiderManSpriteManager.h"
-#include "../../../Animations/SpiderManStillAnimation.h"
-#include "../../../Animations/SpiderManWalkAnimation.h"
-#include "../../../Animations/SpiderManCrowchedDownAnimation.h"
-#include "../../../Animations/SpiderManJumpAnimation.h"
-#include "../../../Animations/SpiderManEnteringAnimation.h"
+#include "../../../Animations/SpiderManAnimations/SpiderManStillAnimation.h"
+#include "../../../Animations/SpiderManAnimations/SpiderManWalkAnimation.h"
+#include "../../../Animations/SpiderManAnimations/SpiderManCrowchedDownAnimation.h"
+#include "../../../Animations/SpiderManAnimations/SpiderManJumpAnimation.h"
+#include "../../../Animations/SpiderManAnimations/SpiderManEnteringAnimation.h"
 
 
 using namespace std;

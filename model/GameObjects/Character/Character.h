@@ -23,7 +23,6 @@ public:
     void stayInFloor() override ;
     void crowchDown() override ;
     void flipSprite(SDL_RendererFlip flip);
-
     void changePosition(int changeX, int changeY);
     string name;
 
