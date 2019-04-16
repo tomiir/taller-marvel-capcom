@@ -69,8 +69,6 @@ void Game::clean(){
 }
 
 void Game::tick() {
-    CLogger* logger = CLogger::GetLogger();
-    logger -> Log("----------------------------TICK-------------------------", DEBUG, "");
     this -> viewController -> handleEvent();
     update(); // Esto se va a usar para reconciliar data con el serve supongo. Tipo le envío el movimiento, espero resp.
     this -> viewController -> updateView();

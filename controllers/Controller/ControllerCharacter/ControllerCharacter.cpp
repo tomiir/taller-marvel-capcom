@@ -22,9 +22,6 @@ ControllerCharacter::~ControllerCharacter() = default;
 
 void ControllerCharacter::handleEvent(SDL_Event event) {
 
-    CLogger* logger = CLogger::GetLogger();
-    logger -> Log("Character event", DEBUG, "");
-
     DirectionVector* direction = mapper->map(event);
     vector<int> info = gameObject->getInfo();
 

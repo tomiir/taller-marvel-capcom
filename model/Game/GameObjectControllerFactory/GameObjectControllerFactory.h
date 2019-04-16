@@ -29,7 +29,7 @@ private:
 
     GameObjectFactory* factory;
     int screenWidth, screenHeight;
-    double cameraSpeedPercentage(int widthMax, int widthImg);
+
 
 };
 

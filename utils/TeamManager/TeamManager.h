@@ -9,20 +9,23 @@
 #include "../EventToValueMapper/EventToValueMapper.h"
 #include "../../controllers/Controller/ControllerBackground/ControllerBackground.h"
 #include <vector>
+#include "../../controllers/Controller/Renderable.h"
 
 
-class TeamManager {
+class TeamManager: virtual public Renderable{
 public:
     TeamManager(ControllerCharacter* character_1, ControllerCharacter* character_2, SDL_RendererFlip initialFlip);
 
     void handleEvent(SDL_Event event, std::vector<ControllerBackground*> backgrounds);
-    void render();
+    void render() override;
     ControllerCharacter* getCurrentCharacter();
     void addEnemyTeam(TeamManager* enemyTeam_);
 
     void flipCurrentCharacter();
+    int getZIndex() override;
 
 private:
+
     ControllerCharacter* currentCharacter;
     ControllerCharacter* supportCharacter;
     TeamManager* enemyTeam;

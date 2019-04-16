@@ -72,17 +72,17 @@ CLogger* CLogger::GetLogger(){
 
 void CLogger::Log(const string& sMessage, int level, string e) {
     if(level > this -> level) return;
-    m_Logfile << "[" << levelNames[level] << "]\t ";
+    m_Logfile << "\n[" << levelNames[level] << "]\t ";
     logCurrentDateTime();
-    m_Logfile << ">>>>" << "\t";
     m_Logfile << sMessage << "\n";
 
-    if (level == DEBUG && e.size()) {
+    if (this -> level == DEBUG && !e.empty()) {
         this->logCurrentDateTime();
-        m_Logfile <<  ">>>> \t"<< Backtrace() << endl;
+        cout << Backtrace() << endl;
+        m_Logfile << Backtrace() << endl;
     }
     if (e.size()) {
-        m_Logfile << ">>>> \t" << e << "\n";
+        m_Logfile << e << "\n";
     }
 }
 
