@@ -5,7 +5,7 @@
 #ifndef TALLER_MARVEL_CAPCOM_SPIDERMANCROWCHEDDOWNANIMATION_H
 #define TALLER_MARVEL_CAPCOM_SPIDERMANCROWCHEDDOWNANIMATION_H
 
-#include "Animation.h"
+#include "../Animation.h"
 
 
 class SpiderManCrowchedDownAnimation: public Animation {

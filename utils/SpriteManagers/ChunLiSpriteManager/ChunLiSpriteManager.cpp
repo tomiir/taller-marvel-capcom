@@ -4,12 +4,12 @@
 
 #include "ChunLiSpriteManager.h"
 #include <iostream>
-#include "../../../Animations//ChunLiStillAnimation.h"
-#include "../../../Animations/ChunLiWalkFowardAnimation.h"
+#include "../../../Animations/ChunLiAnimations/ChunLiStillAnimation.h"
+#include "../../../Animations/ChunLiAnimations/ChunLiWalkFowardAnimation.h"
 //#include "../../../Animations/ChunLiWalkBackwardsAnimation.h"
-#include "../../../Animations/ChunLiJumpAnimation.h"
-#include "../../../Animations/ChunLiCrowchedDownAnimation.h"
-#include "../../../Animations/ChunLiEnteringAnimation.h"
+#include "../../../Animations/ChunLiAnimations/ChunLiJumpAnimation.h"
+#include "../../../Animations/ChunLiAnimations/ChunLiCrowchedDownAnimation.h"
+#include "../../../Animations/ChunLiAnimations/ChunLiEnteringAnimation.h"
 
 
 using namespace std;

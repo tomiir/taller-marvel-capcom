@@ -6,7 +6,7 @@
 #define TALLER_MARVEL_CAPCOM_CHUNLIWALKBACKWADSANIMATION_H
 
 
-#include "Animation.h"
+#include "../Animation.h"
 
 class ChunLiWalkBackwardsAnimation : public Animation{
 

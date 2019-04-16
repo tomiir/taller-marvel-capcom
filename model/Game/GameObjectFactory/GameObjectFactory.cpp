@@ -9,6 +9,7 @@
 #include "../../../utils/SpriteManagers/ChunLiSpriteManager/ChunLiSpriteManager.h"
 #include "../../../utils/Logger/Logger.h"
 #include "../../../Json/JsonConfigs.h"
+#include "../../../utils/SpriteManagers/NotFoundSpriteManager.h"
 #include <map>
 
 GameObjectFactory::GameObjectFactory(SDL_Renderer *renderer_, int screenWidth_, int screenHeight_) {
@@ -20,6 +21,18 @@ GameObjectFactory::GameObjectFactory(SDL_Renderer *renderer_, int screenWidth_, 
 }
 
 GameObjectFactory::~GameObjectFactory() = default;
+
+bool GameObjectFactory::existFile(const char* path){
+
+    bool result = false;
+    FILE* file;
+    file = fopen(path, "rb");
+    if(file){
+        result = true;
+        fclose(file);
+    }
+    return result;
+}
 
 
 vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
@@ -35,6 +48,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
     spriteManagers["SpiderMan"] = new SpiderManSpriteManager();
     spriteManagers["Venom"] = new VenomSpriteManager();
     spriteManagers["ChunLi"] = new ChunLiSpriteManager();
+    spriteManagers["NotFound"] = new NotFoundSpriteManager();
 
     map<string, SpriteManager*>::iterator itrSprites = spriteManagers.begin();
 
@@ -55,12 +69,21 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
         int initialY = screenHeight - height;
         int zIndex = (*iter).getzIndex();
         int crowchedDownYParameter = (*iter).getCrowchedDownY();
+        string spriteManagerName = (*iter).getSpriteManager();
         string name = (*iter).getName();
         double size = (*iter).getSize();
 
-        string spriteManagerName = (*iter).getSpriteManager();
+        if(!existFile(path.c_str())){
+            path = "Images/NotFound.png"; //esto se levanta del json default, tambien aca va el tema logger para este error.
+            spriteManagerName = "NotFound";
+        }
+
         itrSprites = spriteManagers.find(spriteManagerName);
         SpriteManager* spriteManager = itrSprites->second;
+
+        if(!spriteManager){
+
+        }
 
         Character* C;
         if(gameObjects.size() < 2){

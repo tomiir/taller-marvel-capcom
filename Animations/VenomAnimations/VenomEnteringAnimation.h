@@ -5,7 +5,7 @@
 #ifndef TALLER_MARVEL_CAPCOM_VENOMENTERINGANIMATION_H
 #define TALLER_MARVEL_CAPCOM_VENOMENTERINGANIMATION_H
 
-#include "Animation.h"
+#include "../Animation.h"
 
 
 class VenomEnteringAnimation : public Animation{

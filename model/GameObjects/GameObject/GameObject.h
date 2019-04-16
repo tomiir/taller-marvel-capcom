@@ -21,13 +21,14 @@ public:
     virtual void stayInFloor();
     virtual void crowchDown();
     int getZIndex();
+    bool problemWithImage();
+
 
 protected:
     SDL_Texture* objTexture;
     SDL_Renderer* renderer;
     SDL_Rect objRect;
     int z_index;
-
 };
 
 

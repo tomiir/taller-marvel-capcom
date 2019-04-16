@@ -5,7 +5,7 @@
 #ifndef TALLER_MARVEL_CAPCOM_CAPTAINAMERICAENTERINGANIMATION_H
 #define TALLER_MARVEL_CAPCOM_CAPTAINAMERICAENTERINGANIMATION_H
 
-#include "Animation.h"
+#include "../Animation.h"
 
 
 class CaptainAmericaEnteringAnimation: public Animation {
