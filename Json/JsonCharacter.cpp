@@ -4,7 +4,7 @@
 
 #include "JsonCharacter.h"
 
-JsonCharacter::JsonCharacter(std::string name, std::string filepath, int height, int width, int zindex, int crowchedDownY, std::string spriteManager) {
+JsonCharacter::JsonCharacter(std::string name, std::string filepath, int height, int width, int zindex, int crowchedDownY, std::string spriteManager, double size) {
     this->name = name;
     this->filepath = filepath;
     this-> height = height;
@@ -12,6 +12,7 @@ JsonCharacter::JsonCharacter(std::string name, std::string filepath, int height,
     this->zindex = zindex;
     this->crowchedDownY = crowchedDownY;
     this->spriteManager = spriteManager;
+    this->size = size;
 }
 
 std::string JsonCharacter::getName() {
@@ -40,4 +41,8 @@ int JsonCharacter::getCrowchedDownY(){
 
 std::string JsonCharacter::getSpriteManager(){
     return spriteManager;
+}
+
+double JsonCharacter::getSize() {
+    return  size;
 }

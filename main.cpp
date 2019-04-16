@@ -1,16 +1,23 @@
-
+#include "Json/JsonConfigs.h"
 #include <stdio.h>
 #include <string>
 #include "model/Game/Game.h"
 
-//Screen dimension constants
-const int SCREEN_WIDTH = 1200;
-const int SCREEN_HEIGHT = 700;
 
-const char* title = "Marvel vs Capcom";
-const int FPS = 60;
 
 int main(int argc, const char* argv[]){
+
+
+        JsonConfigs* config = new JsonConfigs("configs.json");
+
+
+        //Screen dimension constants
+        const int SCREEN_WIDTH = config->getScreenSize()[0];
+        const int SCREEN_HEIGHT = config->getScreenSize()[1];
+
+        const char* title = "Marvel vs Capcom";
+        const int FPS = config->getFPS();
+
 
        Game* game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
 

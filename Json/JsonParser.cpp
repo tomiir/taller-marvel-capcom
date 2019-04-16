@@ -25,7 +25,7 @@ void JsonParser::setJson(std::string ruta) {
         in >> json;
     }
     catch (const Json::RuntimeError &error) {
-        logger -> Log("Esto pasa siempre qque se abre por primera vez.\n", ERROR,error.what());
+        logger -> Log("Esto pasa siempre que se abre por primera vez.\n", ERROR,error.what());
     }
     this->json = json;
 }
@@ -62,7 +62,9 @@ std::list<JsonCharacter> JsonParser::getCharacter() {
                             ((*it)["width"]).asInt(),
                             ((*it)["zindex"]).asInt(),
                             ((*it)["crowchedDownY"]).asInt(),
-                            ((*it)["spriteManagerName"]).asString());
+                            ((*it)["spriteManagerName"]).asString(),
+                            ((*it)["size"]).asDouble());
+
 
         characters.push_back(character);
     }
@@ -75,8 +77,7 @@ std::vector<int> JsonParser::getScreenSize() {
     std::vector<int> screen;
     Json::Value json = this->json["window"];
 
-    screen[0] = (json["width"]).asInt();
-    screen[1] = (json["height"]).asInt();
+    screen = {(json["width"]).asInt(), (json["height"]).asInt()};
 
     return screen;
 }
@@ -86,6 +87,14 @@ int JsonParser::getCharactersSpeed(){
     Json::Value json = this->json["gameParameters"];
 
     return (json["charactersSpeed"]).asInt();
+}
+
+int JsonParser::getFPS(){
+
+    Json::Value json = this->json["Graphics"];
+
+    return (json["FPS"]).asInt();
+
 }
 
 

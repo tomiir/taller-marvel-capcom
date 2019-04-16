@@ -24,3 +24,7 @@ std::vector<int> JsonConfigs::getScreenSize() {
 int JsonConfigs::getCharactersSpeed(){
     return json.getCharactersSpeed();
 }
+
+int JsonConfigs::getFPS(){
+    return json.getFPS();
+}

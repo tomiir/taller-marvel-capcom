@@ -43,8 +43,8 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
 
     std::list<JsonCharacter> characters = config->getCharacters();
 
-    list <JsonCharacter>::iterator iter = characters.begin();
 
+    list <JsonCharacter>::iterator iter = characters.begin();
 
     for (iter ;iter != characters.end();++iter) {
 
@@ -56,6 +56,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
         int zIndex = (*iter).getzIndex();
         int crowchedDownYParameter = (*iter).getCrowchedDownY();
         string name = (*iter).getName();
+        double size = (*iter).getSize();
 
         string spriteManagerName = (*iter).getSpriteManager();
         itrSprites = spriteManagers.find(spriteManagerName);
@@ -64,10 +65,10 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
         Character* C;
         if(gameObjects.size() < 2){
 
-            C = new Character(path.c_str(), zIndex, renderer, spriteManager , width/2, initialY, initialY + crowchedDownYParameter, name);
+            C = new Character(path.c_str(), zIndex, renderer, spriteManager , width/2, initialY, initialY + crowchedDownYParameter, name, size);
         }
         else{
-            C = new Character(path.c_str(), zIndex, renderer, spriteManager ,(screenWidth - width) - (width/2), initialY, initialY + crowchedDownYParameter, name) ;
+            C = new Character(path.c_str(), zIndex, renderer, spriteManager ,(screenWidth - width) - (width/2), initialY, initialY + crowchedDownYParameter, name, size) ;
         }
 
         if(!C){

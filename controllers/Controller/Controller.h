@@ -27,7 +27,7 @@ protected:
 
     int distanceBoundaryHorizontal = 25;
     int distanceBoundaryVertical = 75;
-    int jumpSpeed = 10;
+    int jumpSpeed = 13;
 
 
 

@@ -26,6 +26,7 @@ public:
     
     int getCharactersSpeed();
 
+    int getFPS();
 };
 
 #endif //JSON_2_JSONPARSER_H
