@@ -58,9 +58,10 @@ CLogger* CLogger::GetLogger(){
 
         m_Logfile.open(filename.c_str());
         while(!m_Logfile.fail()) {
-            int id = std::atoi (&filename[filename.size()-5]);
+            filename = filename.substr(0, filename.find("."));
+            int id = std::atoi (filename.substr(filename.find_first_of("1234567890"), filename.size()-1).c_str());
             string idString =  to_string(id +1);
-            filename.replace(filename.size() -5,idString.size(), idString);
+            filename = filename.substr(0,filename.find_first_of("1234567890")) + idString + ".log";
 
             m_Logfile.close();
             m_Logfile.open(filename.c_str());
