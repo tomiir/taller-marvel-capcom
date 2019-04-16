@@ -27,3 +27,8 @@ void GameObject::render() {}
 void GameObject::stayInFloor() {}
 
 void GameObject::crowchDown() {}
+
+bool GameObject::problemWithImage(){
+
+    return !objTexture;
+}

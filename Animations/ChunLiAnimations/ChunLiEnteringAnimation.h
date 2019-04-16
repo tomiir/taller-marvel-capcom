@@ -6,7 +6,7 @@
 #define TALLER_MARVEL_CAPCOM_CHUNLIENTERINGANIMATION_H
 
 
-#include "Animation.h"
+#include "../Animation.h"
 
 
 class ChunLiEnteringAnimation : public Animation{

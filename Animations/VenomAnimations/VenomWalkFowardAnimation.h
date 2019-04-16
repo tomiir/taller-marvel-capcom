@@ -6,7 +6,7 @@
 #ifndef TALLER_MARVEL_CAPCOM_VENOMWALKFOWARDANIMATION_H
 #define TALLER_MARVEL_CAPCOM_VENOMWALKFOWARDANIMATION_H
 
-#include "Animation.h"
+#include "../Animation.h"
 
 
 
