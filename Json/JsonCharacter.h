@@ -19,7 +19,7 @@ class JsonCharacter {
     double size;
 
 public:
-
+    JsonCharacter();
     JsonCharacter(std::string name, std::string filepath, int height, int width, int zindex, int crowchedDownY, std::string spriteManager, double size);
     std::string getName();
     std::string getFilePath();
@@ -29,7 +29,10 @@ public:
     int getCrowchedDownY();
     std::string getSpriteManager();
     double getSize();
+    bool getError();
 
+private:
+    bool error;
 };
 
 

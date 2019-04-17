@@ -49,12 +49,20 @@ std::list<Battlefield> JsonConfigs::getBattlefields() {
 
 std::list<JsonCharacter> JsonConfigs::getCharacters() {
     std::list<JsonCharacter> retVal;
-    try {
-        retVal = json.getCharacter();
-    } catch (std::exception e) {
-        logger  ->Log("Error al querer obtener los campos de personajes, utilizando el fallback", ERROR, e.what());
-        retVal = fallbackJson.getCharacter();
+    std::list<JsonCharacter> fJsonChars = fallbackJson.getCharacter();
+    std::list<JsonCharacter> jsonChars = json.getCharacter();
+    std::list<JsonCharacter>::iterator iter = jsonChars.begin();
+    std::list<JsonCharacter>::iterator fIter = fJsonChars.begin();
+    auto fJsonEnd = fJsonChars.end();
+    auto jsonEnd = jsonChars.end();
+
+    while(iter != jsonEnd && fIter != fJsonEnd) {
+        JsonCharacter character = (*iter).getError() ? (*fIter) : (*iter);
+        retVal.push_back(character);
+        ++iter;
+        ++fIter;
     }
+    iter=jsonChars.begin();
     return retVal;
 }
 
