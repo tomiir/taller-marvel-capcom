@@ -1,19 +1,27 @@
 #include "JsonConfigs.h"
 #include <string.h>
 
+bool existFile(const char* path){
 
+    bool result = false;
+    FILE* file;
+    file = fopen(path, "rb");
+    if(file){
+        result = true;
+        fclose(file);
+    }
+    return result;
+}
 
 JsonConfigs::JsonConfigs() {
-    char baseRoute[] = "configs.json";
-    char defaultJson[] = "defaultConfigs.json";
-    this -> fallbackJson = JsonParser(defaultJson);
-    try {
-        this->json  = JsonParser(baseRoute);
-    } catch(exception e) {
-        logger->Log("Falló la apertura del JSON", ERROR,"");
-        this->json  = fallbackJson;
+    string defaultJson = "defaultConfigs.json";
+    string baseRoute = "configs.json";
+    if(!existFile(baseRoute.c_str())){
+        baseRoute =  defaultJson;
+        logger -> Log("Falló la carga del Json, utilizando el fallback", ERROR, "File " + baseRoute +" does not exist");
     }
-
+    this->fallbackJson  = JsonParser(defaultJson);
+    this->json = JsonParser(baseRoute);
 }
 
 std::string JsonConfigs::getLog() {
