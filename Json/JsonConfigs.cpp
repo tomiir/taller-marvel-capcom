@@ -15,7 +15,7 @@ bool existFile(const char* path){
 
 JsonConfigs::JsonConfigs() {
 
-    string defaultJson = "defaultConfigs.json";
+    string defaultJson = "DefaultConfigs/defaultConfigs.json";
     string baseRoute = "configs.json";
     if(!existFile(baseRoute.c_str())) {
         baseRoute =  defaultJson;
@@ -69,9 +69,9 @@ std::list<JsonCharacter> JsonConfigs::getCharacters() {
 
 
         JsonCharacter character;
-        if((*iter).getError() || (*iter).getName() != (*fIter).getName()){
+        if((*iter).getError() || (*iter).getName() != (*fIter).getName() || (*iter).getFilePath() != (*fIter).getFilePath()){
             character = (*fIter);
-            logger -> Log("Parametros del Character " + (*fIter).getFilePath() + " mal cargados", ERROR, "");
+            logger -> Log("Parametros del Character " + (*fIter).getName() + " mal cargados", ERROR, "");
 
         }
         else character = (*iter);

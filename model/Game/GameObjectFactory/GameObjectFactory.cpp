@@ -76,7 +76,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
 
         if(!existFile(path.c_str())){
             logger -> Log("No se encontró " + path + ", se utilizara la imagen NotFound", ERROR, "");
-            path = "Images/NotFound.png";
+            path = "DefaultConfigs/NotFound.png";
             spriteManagerName = "NotFound";
         }
 
@@ -130,7 +130,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsBackgrounds_fight() {
 
         if(!existFile(path.c_str())){
             logger -> Log("No se encontró " + path + ", se utilizara la imagen NotFound", ERROR, "");
-            path = "Images/Backgrounds/BackgroundNotFound.png";
+            path = "DefaultConfigs/BackgroundNotFound.png";
         }
 
         int width = (*iter).getWidth();
