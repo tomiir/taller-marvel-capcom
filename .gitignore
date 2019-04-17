@@ -38,3 +38,5 @@ cmake-build-debug/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+.vscode/

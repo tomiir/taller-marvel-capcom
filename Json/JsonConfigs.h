@@ -2,13 +2,13 @@
 #define JSON_2_JSONCONFIGS_H
 #include <jsoncpp/json/json.h>
 #include "JsonParser.h"
-
+#include "../utils/Logger/Logger.h"
 
 class JsonConfigs {
     JsonParser json = JsonParser(std::string());
 
 public:
-    JsonConfigs(std::string ruta);
+    JsonConfigs();
 
     std::string getLog();
 
@@ -23,6 +23,11 @@ public:
     int getFPS();
 
     std::string getTitle();
+
+    CLogger* logger = CLogger::GetLogger();
+private:
+    JsonParser fallbackJson = JsonParser(std::string());
+
 };
 
 

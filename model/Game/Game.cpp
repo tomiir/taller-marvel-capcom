@@ -5,7 +5,7 @@
 #include "Game.h"
 #include "../../utils/Logger/Logger.h"
 
-#define DEBUG_LEVEL DEBUG
+#define DEBUG_LEVEL ERROR
 
 
 

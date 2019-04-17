@@ -4,6 +4,10 @@
 
 #include "Battlefield.h"
 
+Battlefield::Battlefield(){
+    this -> error = true;
+}
+
 Battlefield::Battlefield(std::string ruta, int zindex,  int width, int height) {
 
     this->ruta = ruta;
@@ -26,4 +30,8 @@ int Battlefield::getHeight() {
 
 int Battlefield::getWidth() {
     return this->width;
+}
+
+bool Battlefield::getError() {
+    return this->error;
 }

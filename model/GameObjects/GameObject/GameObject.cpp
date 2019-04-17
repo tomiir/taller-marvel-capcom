@@ -11,6 +11,7 @@ GameObject::GameObject(const char* folderPath, int z_index, SDL_Renderer *rend, 
     objRect = SDL_Rect{initialX, initialY, width, height};
     objTexture = TextureManager::LoadTexture(folderPath, renderer);
     this->z_index = z_index;
+    this->error = false;
 }
 
 GameObject::~GameObject() = default;

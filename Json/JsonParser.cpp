@@ -8,25 +8,31 @@ JsonParser::JsonParser(std::string ruta){
 }
 
 
-void JsonParser::setJson(std::string ruta) {
+void JsonParser::setJson(std::string ruta) throw (int) {
 
+    if(ruta.empty()) return;
     CLogger* logger = CLogger::GetLogger();
 
     std::ifstream in(ruta);
     Json::Value json;
 
+
+
     if(in.is_open()){
         logger -> Log("Archivo abierto\n", INFO,"");
     }
     if (in.fail()) {
+
         logger -> Log("Falló la apertura de archivo\n", INFO,"");
+        in.clear();
     }
     try {
         in >> json;
+    } catch (const Json::RuntimeError &error) {
+            logger -> Log("Esto pasa siempre que se abre por primera vez.\n", ERROR,error.what());
+            in.clear();
     }
-    catch (const Json::RuntimeError &error) {
-        logger -> Log("Esto pasa siempre que se abre por primera vez.\n", ERROR,error.what());
-    }
+
     this->json = json;
 }
 
@@ -39,7 +45,14 @@ std::list<Battlefield> JsonParser::getBattlefields() {
     std::list<Battlefield> battlefields;
     Json::Value json = this->json["battlefield"];
 
+
     for(Json::Value::iterator it=json.begin(); it!=json.end(); ++it) {
+        if((((*it)["background"]["filepath"]).asString() == "null") || !((*it)["background"]["zindex"]).asInt() ||
+               ! ((*it)["background"]["width"]).asInt() ||
+                !((*it)["background"]["height"]).asInt()) {
+
+            battlefields.push_back(Battlefield());
+        }
         Battlefield battlefield(((*it)["background"]["filepath"]).asString(),
                                 ((*it)["background"]["zindex"]).asInt(),
                                 ((*it)["background"]["width"]).asInt(),

@@ -53,7 +53,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
     map<string, SpriteManager*>::iterator itrSprites = spriteManagers.begin();
 
 
-    JsonConfigs* config = new JsonConfigs("configs.json");
+    JsonConfigs* config = new JsonConfigs();
 
     std::list<JsonCharacter> characters = config->getCharacters();
 
@@ -74,6 +74,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
         double size = (*iter).getSize();
 
         if(!existFile(path.c_str())){
+            logger -> Log("No se encontró " + path + ". Utilizando imagen default", ERROR, "");
             path = "Images/NotFound.png"; //esto se levanta del json default, tambien aca va el tema logger para este error.
             spriteManagerName = "NotFound";
         }
@@ -116,7 +117,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsBackgrounds_fight() {
 
     vector<GameObject *> gameObjects;
 
-    JsonConfigs* config = new JsonConfigs("configs.json");
+    JsonConfigs* config = new JsonConfigs();
 
     list <Battlefield> battlefields = config->getBattlefields();
 
