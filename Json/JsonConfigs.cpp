@@ -2,14 +2,15 @@
 #include <string.h>
 
 
+
 JsonConfigs::JsonConfigs() {
-    std::string defaultJson = "./defaultConfigs";
+    char baseRoute[] = "configs.json";
+    char defaultJson[] = "defaultConfigs.json";
     this -> fallbackJson = JsonParser(defaultJson);
     try {
-        JsonParser json = JsonParser("configs.json");
-        this->json  = json;
-    } catch(std::exception* e) {
-        logger->Log("Falló la apertura del JSON", ERROR, e->what());
+        this->json  = JsonParser(baseRoute);
+    } catch(exception e) {
+        logger->Log("Falló la apertura del JSON", ERROR,"");
         this->json  = fallbackJson;
     }
 

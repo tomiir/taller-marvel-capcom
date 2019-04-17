@@ -26,6 +26,7 @@ void JsonParser::setJson(std::string ruta) {
     }
     catch (const Json::RuntimeError &error) {
         logger -> Log("Esto pasa siempre que se abre por primera vez.\n", ERROR,error.what());
+        throw std::exception();
     }
     this->json = json;
 }
@@ -38,6 +39,7 @@ std::list<Battlefield> JsonParser::getBattlefields() {
 
     std::list<Battlefield> battlefields;
     Json::Value json = this->json["battlefield"];
+
 
     for(Json::Value::iterator it=json.begin(); it!=json.end(); ++it) {
         Battlefield battlefield(((*it)["background"]["filepath"]).asString(),
