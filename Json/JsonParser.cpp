@@ -53,12 +53,14 @@ std::list<Battlefield> JsonParser::getBattlefields() {
 
             battlefields.push_back(Battlefield());
         }
-        Battlefield battlefield(((*it)["background"]["filepath"]).asString(),
+        else {
+            Battlefield battlefield(((*it)["background"]["filepath"]).asString(),
                                 ((*it)["background"]["zindex"]).asInt(),
                                 ((*it)["background"]["width"]).asInt(),
                                 ((*it)["background"]["height"]).asInt() );
 
-        battlefields.push_back(battlefield);
+            battlefields.push_back(battlefield);
+        }
     }
     return battlefields;
     }
@@ -68,8 +70,23 @@ std::list<JsonCharacter> JsonParser::getCharacter() {
     std::list<JsonCharacter> characters;
     Json::Value json = this->json["characters"];
 
+
     for(Json::Value::iterator it=json.begin();it!=json.end();++it){
-        JsonCharacter character(((*it)["name"]).asString(),
+        if(
+            ((*it)["name"]).asString() == "null" ||
+            ((*it)["filepath"]).asString() == "null" ||
+            !((*it)["height"]).asInt() ||
+            !((*it)["width"]).asInt() ||
+            !((*it)["zindex"]).asInt() ||
+            !((*it)["crowchedDownY"]).asInt() ||
+            ((*it)["spriteManagerName"]).asString() == "null" ||
+            !((*it)["size"]).asDouble()) {
+                    characters.push_back(JsonCharacter());
+        }
+
+        else
+            {
+                JsonCharacter character(((*it)["name"]).asString(),
                             ((*it)["filepath"]).asString(),
                             ((*it)["height"]).asInt(),
                             ((*it)["width"]).asInt(),
@@ -79,7 +96,9 @@ std::list<JsonCharacter> JsonParser::getCharacter() {
                             ((*it)["size"]).asDouble());
 
 
+
         characters.push_back(character);
+        }
     }
     return characters;
 
@@ -98,6 +117,7 @@ std::vector<int> JsonParser::getScreenSize() {
 int JsonParser::getCharactersSpeed(){
 
     Json::Value json = this->json["gameParameters"];
+
 
     return (json["charactersSpeed"]).asInt();
 }

@@ -4,6 +4,10 @@
 
 #include "JsonCharacter.h"
 
+JsonCharacter::JsonCharacter(){
+    this->error = true;
+}
+
 JsonCharacter::JsonCharacter(std::string name, std::string filepath, int height, int width, int zindex, int crowchedDownY, std::string spriteManager, double size) {
 
     this->name = name;
@@ -46,4 +50,8 @@ std::string JsonCharacter::getSpriteManager(){
 
 double JsonCharacter::getSize() {
     return  size;
+}
+
+bool JsonCharacter::getError(){
+    return error;
 }
