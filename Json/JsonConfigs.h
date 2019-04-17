@@ -25,6 +25,9 @@ public:
     std::string getTitle();
 
     CLogger* logger = CLogger::GetLogger();
+
+    int getJumpSpeed();
+
 private:
     JsonParser fallbackJson = JsonParser(std::string());
 

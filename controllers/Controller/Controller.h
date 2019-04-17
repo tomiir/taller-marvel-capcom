@@ -27,13 +27,13 @@ protected:
 
     int distanceBoundaryHorizontal = 25;
     int distanceBoundaryVertical = 75;
-    int jumpSpeed = 13;
+    int jumpSpeed;
 
 
 
 
 public:
-    Controller(GameObject* gameObject_);
+    Controller(GameObject* gameObject_, int jumpSpeed);
     ~Controller();
     int getZIndex() override;
     void render() override;
