@@ -49,7 +49,7 @@ std::list<Battlefield> JsonParser::getBattlefields() {
     for(Json::Value::iterator it=json.begin(); it!=json.end(); ++it) {
         if(
                 ((*it)["background"]["filepath"]).asString() == "null" ||
-                !((*it)["background"]["zindex"]).asInt() ||
+                !((*it)["background"]["zindex"]).asInt() || ((*it)["background"]["zindex"]).asInt() <= 0 ||
                 !((*it)["background"]["width"]).asInt() || ((*it)["background"]["width"]).asInt() <= 0 ||
                 !((*it)["background"]["height"]).asInt() || ((*it)["background"]["height"]).asInt() <= 0 )
         {
@@ -83,7 +83,7 @@ std::list<JsonCharacter> JsonParser::getCharacter() {
             ((*it)["filepath"]).asString() == "null" ||
             !((*it)["height"]).asInt()  || ((*it)["height"]).asInt() <= 0||
             !((*it)["width"]).asInt()  || ((*it)["width"]).asInt() <= 0 ||
-            !((*it)["zindex"]).asInt() ||
+            !((*it)["zindex"]).asInt() || ((*it)["zindex"]).asInt() <= 0 ||
             !((*it)["crowchedDownY"]).asInt() || ((*it)["crowchedDownY"]).asInt() < 0 ||
             ((*it)["spriteManagerName"]).asString() == "null" ||
             !((*it)["size"]).asDouble() )
@@ -118,7 +118,7 @@ std::vector<int> JsonParser::getScreenSize() {
     std::vector<int> screen;
     Json::Value json = this->json["window"];
 
-    if( !(json["width"]).asInt() || !(json["height"]).asInt() ) screen = {-1,-1};
+    if( !(json["width"]).asInt() || !(json["height"]).asInt() || (json["width"]).asInt() <= 0 || (json["height"]).asInt() <= 0) screen = {-1,-1};
     else screen = {(json["width"]).asInt(), (json["height"]).asInt()};
 
     return screen;
@@ -128,7 +128,7 @@ int JsonParser::getCharactersSpeed(){
 
     Json::Value json = this->json["gameParameters"];
 
-    if( !(json["charactersSpeed"]).asInt() ) return -1;
+    if( !(json["charactersSpeed"]).asInt() || (json["charactersSpeed"]).asInt() <= 0) return -1;
     return (json["charactersSpeed"]).asInt();
 }
 
@@ -136,7 +136,7 @@ int JsonParser::getFPS(){
 
     Json::Value json = this->json["Graphics"];
 
-    if( !(json["FPS"]).asInt() ) return -1;
+    if( !(json["FPS"]).asInt() || (json["FPS"]).asInt() <= 0) return -1;
     return (json["FPS"]).asInt();
 
 }
@@ -147,6 +147,15 @@ std::string JsonParser::getTitle() {
 
     if( (json["title"]).asString() == "null" ) return "null";
     return (json["title"]).asString();
+
+}
+
+int JsonParser::getJumpSpeed() {
+
+    Json::Value json = this->json["gameParameters"];
+
+    if( !(json["jumpSpeed"]).asInt() || (json["jumpSpeed"]).asInt() <= 0) return -1;
+    return (json["jumpSpeed"]).asInt();
 
 }
 

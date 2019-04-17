@@ -4,6 +4,8 @@
 
 #include "ViewControllerFactory.h"
 #include "../../../utils/FlipManager/FlipManager.h"
+#include "../../../Json/JsonConfigs.h"
+
 
 
 ViewControllerFactory::ViewControllerFactory(SDL_Renderer * renderer_, int screenWidth_, int screenHeight_) {
@@ -21,7 +23,11 @@ ViewController* ViewControllerFactory::getViewController_fight(){
 
     ViewController* viewControllerFight = new ViewController(renderer);
 
-    GameObjectControllerFactory* factory = new GameObjectControllerFactory(renderer, screenWidth, screenHeight);
+    JsonConfigs* config = new JsonConfigs();
+    int speedCharacter = config->getCharactersSpeed();
+    int jumpSpeed = config->getJumpSpeed();
+
+    GameObjectControllerFactory* factory = new GameObjectControllerFactory(renderer, screenWidth, screenHeight, speedCharacter, jumpSpeed);
 
     vector<ControllerBackground*>  backgrounds = factory->getControllersBackground_fight();
 

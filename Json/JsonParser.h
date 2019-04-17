@@ -30,6 +30,7 @@ public:
 
     std::string getTitle();
 
+    int getJumpSpeed();
 };
 
 #endif //JSON_2_JSONPARSER_H

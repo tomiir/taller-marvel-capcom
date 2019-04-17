@@ -16,7 +16,7 @@ using namespace std;
 class ControllerBackground : public Controller {
 
     public:
-            ControllerBackground(GameObject* background);
+            ControllerBackground(GameObject* background, int jumpSpeed);
             ~ControllerBackground();
             void handleEvent(SDL_Event event, ControllerCharacter* controllerCharacter1, ControllerCharacter* controllerCharacter2);
             void update(ControllerCharacter* controllerCharacterOnLeft,const vector<int>& characterOnLeftInfo, ControllerCharacter* controllerCharacterOnRight,const vector<int>& characterOnRightInfo);

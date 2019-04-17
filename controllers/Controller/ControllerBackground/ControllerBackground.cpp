@@ -3,8 +3,8 @@
 #include "ControllerBackground.h"
 
 
-ControllerBackground::ControllerBackground(GameObject* background_) :
-                      Controller(background_){
+ControllerBackground::ControllerBackground(GameObject* background_, int jumpSpeed) :
+                      Controller(background_, jumpSpeed){
     this->speedCam = dynamic_cast<Background*> (background_)->getSpeedCam();
     this->speedPercetageCam = dynamic_cast<Background*> (background_) ->getSpeedPercetageCam();
 }

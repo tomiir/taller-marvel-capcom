@@ -5,9 +5,10 @@
 #include "Controller.h"
 
 
-Controller::Controller(GameObject *gameObject_ ): Renderable(){
+Controller::Controller(GameObject *gameObject_, int jumpSpeed): Renderable(){
 
     gameObject = gameObject_;
+    this->jumpSpeed = jumpSpeed;
 
     //habria que asociarle algo del modelo y no de la "vista", ya que el GO es lo que lo representa en la pantalla.
 

@@ -127,3 +127,14 @@ std::string JsonConfigs::getTitle(){
     }
     return retVal;
 }
+
+int JsonConfigs::getJumpSpeed() {
+
+    int retVal = json.getJumpSpeed();
+
+    if (retVal == -1) {
+        logger->Log("Error al querer obtener la velocidad de salto, utilizando el fallback", ERROR, "");
+        retVal = fallbackJson.getJumpSpeed();
+    }
+    return retVal;
+}

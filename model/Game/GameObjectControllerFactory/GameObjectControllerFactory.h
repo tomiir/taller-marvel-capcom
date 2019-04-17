@@ -17,7 +17,7 @@
 class GameObjectControllerFactory {
 
 public:
-    GameObjectControllerFactory(SDL_Renderer *renderer, int screenWidth_, int screenHeight_);
+    GameObjectControllerFactory(SDL_Renderer *renderer, int screenWidth_, int screenHeight_, int speedCharacter_, int jumpSpeed_);
     ~GameObjectControllerFactory();
 
     vector<Controller*> getGameObjectControllers_fight(); // los controllers de la view fight
@@ -25,7 +25,8 @@ public:
     std::vector<ControllerBackground*> getControllersBackground_fight();
 
 private:
-    int speedCharacter = 10;
+
+    int speedCharacter, jumpSpeed;
 
     GameObjectFactory* factory;
     int screenWidth, screenHeight;

@@ -74,7 +74,8 @@
 		 	"height":600
 		 },
 	"gameParameters": {
-		"charactersSpeed": 10
+		"charactersSpeed": 10,
+		"jumpSpeed": 13
 		},
 
 	"Graphics": {
