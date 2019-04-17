@@ -14,6 +14,7 @@ Battlefield::Battlefield(std::string ruta, int zindex,  int width, int height) {
     this->zindex = zindex;
     this->width = width;
     this->height = height;
+    this->error = false;
 }
 
 std::string Battlefield::getFilePath() {

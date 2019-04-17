@@ -60,7 +60,7 @@
 			},
 			{"name":"Venom",
 			 "filepath":"Images/Venom.png",
-			 "height":280,
+			 "height":300,
 			 "width":200,
 			 "zindex":98,
 			 "crowchedDownY": 60,
@@ -70,8 +70,8 @@
 		],
 	"window":
 		{
-			"width":1200,
-		 	"height":700
+			"width":800,
+		 	"height":600
 		 },
 	"gameParameters": {
 		"charactersSpeed": 10

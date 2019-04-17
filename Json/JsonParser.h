@@ -11,7 +11,7 @@
 class JsonParser {
     Json::Value json;
 
-    void setJson(std::string ruta) throw (int);
+    void setJson(std::string ruta);
 
 public:
     JsonParser(std::string ruta);

@@ -73,18 +73,19 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
         string name = (*iter).getName();
         double size = (*iter).getSize();
 
+
         if(!existFile(path.c_str())){
-            logger -> Log("No se encontró " + path + ". Utilizando imagen default", ERROR, "");
-            path = "Images/NotFound.png"; //esto se levanta del json default, tambien aca va el tema logger para este error.
+            logger -> Log("No se encontró " + path + ", se utilizara la imagen NotFound", ERROR, "");
+            path = "Images/NotFound.png";
             spriteManagerName = "NotFound";
         }
 
+        if(!spriteManagers.count(spriteManagerName)){
+            spriteManagerName = name;
+            logger -> Log("No se encontró el sprite manager " + spriteManagerName + ", se utilizara el default", ERROR, "");
+        }
         itrSprites = spriteManagers.find(spriteManagerName);
         SpriteManager* spriteManager = itrSprites->second;
-
-        if(!spriteManager){
-
-        }
 
         Character* C;
         if(gameObjects.size() < 2){
@@ -93,10 +94,6 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
         }
         else{
             C = new Character(path.c_str(), zIndex, renderer, spriteManager ,(screenWidth - width) - (width/2), initialY, initialY + crowchedDownYParameter, name, size) ;
-        }
-
-        if(!C){
-            //lanzar excp
         }
 
         gameObjects.push_back((C));
@@ -115,6 +112,8 @@ double GameObjectFactory::cameraSpeedPercentage(int widthMax, int widthImg) {
 
 vector<GameObject*> GameObjectFactory:: getGameObjectsBackgrounds_fight() {
 
+    CLogger* logger = CLogger::GetLogger();
+
     vector<GameObject *> gameObjects;
 
     JsonConfigs* config = new JsonConfigs();
@@ -128,6 +127,12 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsBackgrounds_fight() {
     for (iter ;iter != battlefields.end();++iter){
 
         std::string path = (*iter).getFilePath();
+
+        if(!existFile(path.c_str())){
+            logger -> Log("No se encontró " + path + ", se utilizara la imagen NotFound", ERROR, "");
+            path = "Images/Backgrounds/BackgroundNotFound.png";
+        }
+
         int width = (*iter).getWidth();
         int height = (*iter).getHeight();
         int zIndex = (*iter).getzIndex();

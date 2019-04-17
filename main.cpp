@@ -11,7 +11,6 @@ int main(int argc, const char* argv[]){
         JsonConfigs* config = new JsonConfigs();
 
 
-        //Screen dimension constants
         const int SCREEN_WIDTH = config->getScreenSize()[0];
         const int SCREEN_HEIGHT = config->getScreenSize()[1];
 

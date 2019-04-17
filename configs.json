@@ -60,7 +60,7 @@
 			},
 			{"name":"Venom",
 			 "filepath":"Images/Venom.png",
-			 "height":280,
+			 "height":300,
 			 "width":200,
 			 "zindex":98,
 			 "crowchedDownY": 60,

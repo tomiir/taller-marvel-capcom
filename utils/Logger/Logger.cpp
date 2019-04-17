@@ -79,7 +79,7 @@ void CLogger::Log(const string& sMessage, int level, string e) {
 
     if (this -> level == DEBUG && !e.empty()) {
         this->logCurrentDateTime();
-        cout << Backtrace() << endl;
+        //cout << Backtrace() << endl;
         m_Logfile << Backtrace() << endl;
     }
     if (e.size()) {
