@@ -34,9 +34,10 @@ std::list<Battlefield> JsonConfigs::getBattlefields() {
     std::list<Battlefield> jsonBFs = json.getBattlefields();
     std::list<Battlefield>::iterator iter = jsonBFs.begin();
     std::list<Battlefield>::iterator fIter = fJsonBFs.begin();
+    auto fJsonEnd = fJsonBFs.end();
     auto jsonEnd = jsonBFs.end();
 
-    for(;iter != jsonEnd; ) {
+    for(;iter != jsonEnd && fIter != fJsonEnd; ) {
         Battlefield battlefield = (*iter).getError() ? (*fIter) : (*iter);
         retVal.push_back(battlefield);
         ++iter;
