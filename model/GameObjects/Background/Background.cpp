@@ -18,7 +18,6 @@ Background::Background(const char* imagePath, int z_index, SDL_Renderer* rend, i
                 camera = SDL_Rect{CAMERA_X_POS, CAMERA_Y_POS, CAMERA_WIDTH, CAMERA_HEIGHT};
             }
 
-//Background::~Background() = default;
 
 void Background::move(DirectionVector* moveDirection) {
 

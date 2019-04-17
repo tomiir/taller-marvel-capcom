@@ -11,7 +11,6 @@
 #include <vector>
 #include "../Controller/ControllerBackground/ControllerBackground.h"
 #include "../../utils/TeamManager/TeamManager.h"
-#include "../Controller/BackgroundsCotroller/BackgroundsController.h"
 #include "../../utils/FlipManager/FlipManager.h"
 
 
@@ -34,7 +33,6 @@ private:
     std::vector<ControllerBackground*> backgrounds;
     TeamManager* team1;
     TeamManager* team2;
-    BackgroundsController* backgroundsController;
     FlipManager* flipManager;
 };
 

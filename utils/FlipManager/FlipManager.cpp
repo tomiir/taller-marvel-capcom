@@ -4,14 +4,6 @@
 
 #include "FlipManager.h"
 
-FlipManager::FlipManager(TeamManager *teamManager1_, TeamManager *teamManager2_, BackgroundsController* backgroundsController_) {
-
-    teamManager1 = teamManager1_;
-    teamManager2 = teamManager2_;
-    backgroundsController = backgroundsController_;
-
-}
-
 void FlipManager::update() {
 
     ControllerCharacter* currentCharacterTeam1 = teamManager1->getCurrentCharacter();

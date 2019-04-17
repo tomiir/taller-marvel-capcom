@@ -101,7 +101,8 @@ add_executable(
         utils/Logger/Logger.cpp utils/Logger/Logger.h
         utils/SpriteManagers/VenomSpriteManager/VenomSpriteManager.cpp
         utils/SpriteManagers/VenomSpriteManager/VenomSpriteManager.h
-        controllers/Controller/BackgroundsCotroller/BackgroundsController.cpp controllers/Controller/BackgroundsCotroller/BackgroundsController.h utils/FlipManager/FlipManager.cpp utils/FlipManager/FlipManager.h
+        utils/FlipManager/FlipManager.cpp
+        utils/FlipManager/FlipManager.h
         Animations/ChunLiAnimations/ChunLiCrowchedDownAnimation.cpp
         Animations/ChunLiAnimations/ChunLiCrowchedDownAnimation.h
         Animations/ChunLiAnimations/ChunLiJumpAnimation.cpp

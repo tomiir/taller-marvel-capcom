@@ -18,6 +18,7 @@ JsonCharacter::JsonCharacter(std::string name, std::string filepath, int height,
     this->crowchedDownY = crowchedDownY;
     this->spriteManager = spriteManager;
     this->size = size;
+    this->error = false;
 }
 
 std::string JsonCharacter::getName() {

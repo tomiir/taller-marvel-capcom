@@ -32,7 +32,7 @@
 	"characters":
 		[
 			{"name":"CaptainAmerica",
-			 "filepath":"Images/CaptainAmerica.png",
+			 "filepath":"Images/Characters/CaptainAmerica.png",
 			 "height":280,
 			 "width":200,
 			 "zindex":99,
@@ -41,7 +41,7 @@
 			 "size": 2.5
 			},
 			{"name":"ChunLi",
-			 "filepath":"Images/ChunLi.png",
+			 "filepath":"Images/Characters/ChunLi.png",
 			 "height":220,
 			 "width":200,
 			 "zindex":99,
@@ -50,7 +50,7 @@
 			 "size": 2.5
 			},
 			{"name":"SpiderMan",
-			 "filepath":"Images/SpiderMan.png",
+			 "filepath":"Images/Characters/SpiderMan.png",
 			 "height":245,
 			 "width":200,
 			 "zindex":98,
@@ -59,8 +59,8 @@
 			 "size": 2.5
 			},
 			{"name":"Venom",
-			 "filepath":"Images/Venom.png",
-			 "height":280,
+			 "filepath":"Images/Characters/Venom.png",
+			 "height":300,
 			 "width":200,
 			 "zindex":98,
 			 "crowchedDownY": 60,
@@ -70,8 +70,8 @@
 		],
 	"window":
 		{
-			"width":1200,
-		 	"height":700
+			"width":800,
+		 	"height":600
 		 },
 	"gameParameters": {
 		"charactersSpeed": 10
