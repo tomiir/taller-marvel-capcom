@@ -118,6 +118,7 @@ int JsonParser::getCharactersSpeed(){
 
     Json::Value json = this->json["gameParameters"];
 
+
     return (json["charactersSpeed"]).asInt();
 }
 
