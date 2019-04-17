@@ -16,7 +16,7 @@ bool existFile(const char* path){
 JsonConfigs::JsonConfigs() {
     string defaultJson = "defaultConfigs.json";
     string baseRoute = "configs.json";
-    if(!existFile(baseRoute.c_str())){
+    if(!existFile(baseRoute.c_str())) {
         baseRoute =  defaultJson;
         logger -> Log("Falló la carga del Json, utilizando el fallback", ERROR, "File " + baseRoute +" does not exist");
     }
@@ -30,12 +30,19 @@ std::string JsonConfigs::getLog() {
 
 std::list<Battlefield> JsonConfigs::getBattlefields() {
     std::list<Battlefield> retVal;
-    try {
-        retVal = json.getBattlefields();
-    } catch (std::exception e) {
-        logger  ->Log("Error al querer obtener los campos de batalla, utilizando el fallback", ERROR, e.what());
-        retVal = fallbackJson.getBattlefields();
+    std::list<Battlefield> fJsonBFs = fallbackJson.getBattlefields();
+    std::list<Battlefield> jsonBFs = json.getBattlefields();
+    std::list<Battlefield>::iterator iter = jsonBFs.begin();
+    std::list<Battlefield>::iterator fIter = fJsonBFs.begin();
+    auto jsonEnd = jsonBFs.end();
+
+    for(;iter != jsonEnd; ) {
+        Battlefield battlefield = (*iter).getError() ? (*fIter) : (*iter);
+        retVal.push_back(battlefield);
+        ++iter;
+        ++fIter;
     }
+    iter=jsonBFs.begin();
     return retVal;
 }
 

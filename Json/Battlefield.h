@@ -14,13 +14,16 @@ class Battlefield {
     int zindex;
     int height;
     int width;
+    bool error;
 
 public:
+    Battlefield();
     Battlefield(std::string ruta,int zindex,  int width, int height);
     std::string getFilePath();
     int getzIndex();
     int getHeight();
     int getWidth();
+    bool getError();
 };
 
 

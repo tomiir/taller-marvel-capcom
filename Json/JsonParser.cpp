@@ -47,6 +47,12 @@ std::list<Battlefield> JsonParser::getBattlefields() {
 
 
     for(Json::Value::iterator it=json.begin(); it!=json.end(); ++it) {
+        if((((*it)["background"]["filepath"]).asString() == "null") || !((*it)["background"]["zindex"]).asInt() ||
+               ! ((*it)["background"]["width"]).asInt() ||
+                !((*it)["background"]["height"]).asInt()) {
+
+            battlefields.push_back(Battlefield());
+        }
         Battlefield battlefield(((*it)["background"]["filepath"]).asString(),
                                 ((*it)["background"]["zindex"]).asInt(),
                                 ((*it)["background"]["width"]).asInt(),
