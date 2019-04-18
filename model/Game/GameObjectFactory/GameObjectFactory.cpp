@@ -68,7 +68,6 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
         int height = (*iter).getHeight();
         int initialY = screenHeight - height;
         int zIndex = (*iter).getzIndex();
-        int crowchedDownYParameter = (*iter).getCrowchedDownY();
         string spriteManagerName = (*iter).getSpriteManager();
         string name = (*iter).getName();
         double size = (*iter).getSize();
@@ -90,10 +89,10 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
         Character* C;
         if(gameObjects.size() < 2){
 
-            C = new Character(path.c_str(), zIndex, renderer, spriteManager , width/2, initialY, initialY + crowchedDownYParameter, name, size);
+            C = new Character(path.c_str(), zIndex, renderer, spriteManager , width/2, initialY, name, size);
         }
         else{
-            C = new Character(path.c_str(), zIndex, renderer, spriteManager ,(screenWidth - width) - (width/2), initialY, initialY + crowchedDownYParameter, name, size) ;
+            C = new Character(path.c_str(), zIndex, renderer, spriteManager ,(screenWidth - width) - (width/2), initialY, name, size) ;
         }
 
         gameObjects.push_back((C));

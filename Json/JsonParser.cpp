@@ -84,7 +84,6 @@ std::list<JsonCharacter> JsonParser::getCharacter() {
             !((*it)["height"]).asInt()  || ((*it)["height"]).asInt() <= 0||
             !((*it)["width"]).asInt()  || ((*it)["width"]).asInt() <= 0 ||
             !((*it)["zindex"]).asInt() || ((*it)["zindex"]).asInt() <= 0 ||
-            !((*it)["crowchedDownY"]).asInt() || ((*it)["crowchedDownY"]).asInt() < 0 ||
             ((*it)["spriteManagerName"]).asString() == "null" ||
             !((*it)["size"]).asDouble() )
         {

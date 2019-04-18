@@ -14,8 +14,8 @@ void CaptainAmericaCrowchedDownAnimation::init() {
     animationLength = 2;
 
     //vector<int> frame0 = {5, 750, 77, 90};
-    vector<int> frame1 = {102, 762, 77, 78};
-    vector<int> frame2 = {205, 763, 77, 78};
+    vector<int> frame1 = {102, 732, 77, 108};
+    vector<int> frame2 = {205, 733, 77, 108};
 
 
 
