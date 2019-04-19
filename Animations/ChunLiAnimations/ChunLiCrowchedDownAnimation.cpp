@@ -11,8 +11,8 @@ void ChunLiCrowchedDownAnimation::init() {
     animationRate = 3;
     animationLength = 2;
 
-    vector<int> frame0 = {799, 250, 86, 72};
-    vector<int> frame1 = {898, 254, 86, 70};
+    vector<int> frame0 = {799, 237, 86, 85};
+    vector<int> frame1 = {898, 239, 86, 85};
 
 
     animation.push_back(frame0);

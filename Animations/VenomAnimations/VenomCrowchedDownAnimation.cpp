@@ -9,23 +9,23 @@
 void VenomCrowchedDownAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 10;
-    animationLength = 9;
+    animationRate = 9;
+    animationLength = 8;
 
     //vector<int> frame0 = {6, 3584, 126, 113};
-    vector<int> frame1 = {170, 3618, 112, 82};
-    vector<int> frame2 = {5, 3749, 112, 85};
-    vector<int> frame3 = {144, 3749, 112, 85};
-    vector<int> frame4 = {284, 3749, 112, 85};
-    vector<int> frame5 = {428, 3749, 112, 85};
-    vector<int> frame6 = {570, 3749, 112, 85};
-    vector<int> frame7 = {705, 3749, 112, 85};
-    vector<int> frame8 = {842, 3749, 112, 85};
-    vector<int> frame9 = {981, 3749, 112, 85};
+    //vector<int> frame1 = {170, 3585, 112, 115};
+    vector<int> frame2 = {5, 3719, 112, 115};
+    vector<int> frame3 = {144, 3719, 112, 115};
+    vector<int> frame4 = {284, 3719, 112, 115};
+    vector<int> frame5 = {428, 3719, 112, 115};
+    vector<int> frame6 = {570, 3719, 112, 115};
+    vector<int> frame7 = {705, 3719, 112, 115};
+    vector<int> frame8 = {842, 3719, 112, 115};
+    vector<int> frame9 = {981, 3719, 112, 115};
 
 
     //animation.push_back(frame0);
-    animation.push_back(frame1);
+    //animation.push_back(frame1);
     animation.push_back(frame2);
     animation.push_back(frame3);
     animation.push_back(frame4);

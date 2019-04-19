@@ -40,8 +40,6 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
         direction->multiply(speedCharacter);
         gameObject->move(direction);
 
-        state = "walk";
-
     }
 
     if( direction->isDiagonalRight() and !inAir ) jumpRight = true;
@@ -51,7 +49,6 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
     if( direction->isEqual(DOWN) and !inAir) {
 
         state = "crowchedDown";
-        gameObject->crowchDown();
     }
 
     if ( direction->isEqual(GETTINGUP) and !inAir) gameObject->stayInFloor();

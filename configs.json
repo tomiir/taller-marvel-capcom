@@ -36,7 +36,6 @@
 			 "height":280,
 			 "width":200,
 			 "zindex":99,
-			 "crowchedDownY": 75,
 			 "spriteManagerName": "CaptainAmerica",
 			 "size": 2.5
 			},
@@ -45,7 +44,6 @@
 			 "height":220,
 			 "width":200,
 			 "zindex":99,
-			 "crowchedDownY": 40,
 			 "spriteManagerName": "ChunLi",
 			 "size": 2.5
 			},
@@ -54,7 +52,6 @@
 			 "height":245,
 			 "width":200,
 			 "zindex":98,
-			 "crowchedDownY": 95,
 			 "spriteManagerName": "SpiderMan",
 			 "size": 2.5
 			},
@@ -63,7 +60,6 @@
 			 "height":300,
 			 "width":200,
 			 "zindex":98,
-			 "crowchedDownY": 60,
 			 "spriteManagerName": "Venom",
 			 "size": 2.5
 			}

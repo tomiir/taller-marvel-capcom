@@ -11,16 +11,16 @@ void SpiderManCrowchedDownAnimation::init() {
     animationRate = 11;
     animationLength = 10;
 
-    vector<int> frame0 = {2, 1216, 102, 56};
-    vector<int> frame1 = {108, 1218, 99, 52};
-    vector<int> frame2 = {227, 1220, 100, 50};
-    vector<int> frame3 = {331, 1220, 100, 50};
-    vector<int> frame4 = {434, 1220, 100, 50};
-    vector<int> frame5 = {537, 1219, 100, 51};
-    vector<int> frame6 = {640, 1219, 100, 51};
-    vector<int> frame7 = {743, 1219, 100, 51};
-    vector<int> frame8 = {1177, 1223, 100, 47};
-    vector<int> frame9 = {1282, 1214, 102, 56};
+    vector<int> frame0 = {2, 1178, 102, 94};
+    vector<int> frame1 = {108, 1176, 99, 94};
+    vector<int> frame2 = {227, 1176, 100, 94};
+    vector<int> frame3 = {331, 1176, 100, 94};
+    vector<int> frame4 = {434, 1176, 100, 94};
+    vector<int> frame5 = {537, 1176, 100, 94};
+    vector<int> frame6 = {640, 1176, 100, 94};
+    vector<int> frame7 = {743, 1176, 100, 94};
+    vector<int> frame8 = {1177, 1176, 100, 94};
+    vector<int> frame9 = {1282, 1176, 102, 94};
 
 
     animation.push_back(frame0);

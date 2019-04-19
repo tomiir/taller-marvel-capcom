@@ -12,19 +12,19 @@ void VenomStillAnimation::init() {
     animationRate = 12;
     animationLength = 13;
 
-    vector<int> frame0 = {3, 519, 134, 118};
-    vector<int> frame1 = {149, 519, 142, 118};
-    vector<int> frame2 = {312, 519, 152, 118};
-    vector<int> frame3 = {490, 520, 153, 118};
+    vector<int> frame0 = {702, 367, 154, 118};
+    vector<int> frame1 = {149, 519, 154, 118};
+    vector<int> frame2 = {312, 519, 154, 118};
+    vector<int> frame3 = {490, 520, 154, 118};
     vector<int> frame4 = {674, 520, 154, 118};
-    vector<int> frame5 = {858, 519, 152, 118};
-    vector<int> frame6 = {1042, 520, 141, 118};
-    vector<int> frame7 = {5, 653, 136, 118};
-    vector<int> frame8 = {172, 652, 129, 118};
-    vector<int> frame9 = {340, 653, 123, 118};
-    vector<int> frame10 = {521, 653, 118, 118};
-    vector<int> frame11 = {698, 652, 123, 118};
-    vector<int> frame12 = {879, 652, 129, 118};
+    vector<int> frame5 = {858, 519, 154, 118};
+    vector<int> frame6 = {1042, 520, 154, 118};
+    vector<int> frame7 = {909, 366, 154, 118};
+    vector<int> frame8 = {172, 652, 154, 118};
+    vector<int> frame9 = {340, 653, 154, 118};
+    vector<int> frame10 = {521, 653, 154, 118};
+    vector<int> frame11 = {698, 652, 154, 118};
+    vector<int> frame12 = {879, 652, 154, 118};
 
 
     animation.push_back(frame0);
