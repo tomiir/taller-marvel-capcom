@@ -53,6 +53,12 @@ DirectionVector *EventToValueMapper_player1::map(SDL_Event event) {
             case SDLK_k:
                 direction->add(0, 2);
                 break;
+            case SDLK_j:
+                direction->add(-2, 0);
+                break;
+            case SDLK_l:
+                direction->add(2, 0);
+                break;
             default:
                 break;
         }

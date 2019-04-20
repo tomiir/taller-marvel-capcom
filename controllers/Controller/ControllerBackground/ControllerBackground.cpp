@@ -46,21 +46,21 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
 
     bool cameraIsUnderDownLimit = cameraInfo[1] < (infoBackgroundImg[1] - cameraInfo[3]);
 
-    if(dirRight->isEqual(RIGHT) and distanceMinorCameraWidth and cameraIsUnderRightLimit and characterOnRightIsInRightBoundary and !distanceEqualCameraWidth and !controllerCharacterOnRight->isJumping()){
+    if(controllerCharacterOnRight->isMovingRight() and distanceMinorCameraWidth and cameraIsUnderRightLimit and characterOnRightIsInRightBoundary and !distanceEqualCameraWidth and !controllerCharacterOnRight->isJumping()){
 
-        dirRight->multiply(speedCam/2);
+        dirRight->setX((speedCam/2) - 0.01);
         gameObject->move(dirRight);
-        dirRight->setX(-speedCam/3);
+
+        dirRight->setX(-(speedCam/5) - 0.4);
         controllerCharacterOnLeft->move(dirRight);
     }
 
-    if(dirLeft->isEqual(LEFT) and distanceMinorCameraWidth and cameraIsOverLeftLimit and characterOnLeftIsInLeftBoundary and !distanceEqualCameraWidth and !controllerCharacterOnLeft->isJumping()){
+    if(controllerCharacterOnLeft->isMovingLeft() and distanceMinorCameraWidth and cameraIsOverLeftLimit and characterOnLeftIsInLeftBoundary and !distanceEqualCameraWidth and !controllerCharacterOnLeft->isJumping()){
 
-        dirLeft->multiply(speedCam/2);
-
+        dirLeft->setX((-speedCam/2) + 0.01);
         gameObject->move(dirLeft);
 
-        dirLeft->setX(speedCam/3);
+        dirLeft->setX((speedCam/5) + 0.4);
         controllerCharacterOnRight->move(dirLeft);
     }
 
@@ -84,7 +84,7 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
         dirLeft->setX( (jumpSpeed/2) * speedPercetageCam );
         gameObject->move(dirLeft);
 
-        dirLeft->setX(-(((jumpSpeed/2) * speedPercetageCam)/2) -1);
+        dirLeft->setX(-(((jumpSpeed/2) * speedPercetageCam)/2) -0.7);
         controllerCharacterOnLeft->move(dirLeft);
 
     }
@@ -94,7 +94,7 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
         dirRight->setX( -(jumpSpeed/2) * speedPercetageCam );
         gameObject->move(dirRight);
 
-        dirRight->setX((((jumpSpeed/2) * speedPercetageCam)/2) +1);
+        dirRight->setX((((jumpSpeed/2) * speedPercetageCam)/2) +0.7);
         controllerCharacterOnRight->move(dirRight);
 
     }

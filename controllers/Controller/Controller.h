@@ -21,6 +21,9 @@ protected:
     DirectionVector* UP = new DirectionVector(0, -1);
     DirectionVector* DOWN = new DirectionVector(0, 1);
     DirectionVector* GETTINGUP = new DirectionVector(0, 2);
+    DirectionVector* STOPRIGHT = new DirectionVector(2, 0);
+    DirectionVector* STOPLEFT = new DirectionVector(-2, 0);
+
 
     DirectionVector* DIAGONAL_UP_RIGHT = new DirectionVector(1, -1);
     DirectionVector* DIAGONAL_UP_LEFT = new DirectionVector(-1, -1);
