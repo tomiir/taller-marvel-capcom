@@ -12,7 +12,7 @@ ControllerCharacter::ControllerCharacter(GameObject* gameObject, EventToValueMap
     screenHeight = screenHeight_;
     screenWidth = screenWidth_;
     speedCharacter = speedCharacter_; //Despues hay que separarlo en X e Y
-    jump = jumpRight = jumpLeft = inAir = leaving = entering = false;
+    jump = jumpRight = jumpLeft = inAir = leaving = entering = crowchedDown = movingRight = movingLeft = moving = false;
     mapper = mapper_;
 
 }
@@ -25,26 +25,46 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
     DirectionVector* direction = mapper->map(event);
     vector<int> info = gameObject->getInfo();
 
-    if(event.key.state == SDL_RELEASED and !inAir) state = "still";
-    if(direction->isEqual(RIGHT)) state = "walk";
-    if(direction->isEqual(LEFT)) state = "walk";
 
+    if(direction->isEqual(RIGHT) and !inAir and !crowchedDown) {
+        state = "walk";
+        movingRight = true;
+    }
+    if(direction->isEqual(LEFT) and !inAir and !crowchedDown) {
+        state = "walk";
+        movingLeft = true;
+    }
+    if( direction->isEqual(DOWN) and !inAir) {
+        state = "crowchedDown";
+        crowchedDown = true;
+    }
+
+    if (direction->isEqual(GETTINGUP)) crowchedDown = false;
+    if (direction->isEqual(STOPRIGHT) || inAir) movingRight = false;
+    if (direction->isEqual(STOPLEFT)  || inAir) movingLeft = false;
+    if(event.key.state == SDL_RELEASED and !inAir and !crowchedDown and !movingLeft and !movingRight) state = "still";
 
     bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal;
     bool characterIsntInLeftBoundary = info[0] >= 0;
 
 
-    if( (direction->isEqual(RIGHT) and characterIsntInRightBoundary and !inAir) or
-        (direction->isEqual(LEFT) and characterIsntInLeftBoundary and !inAir) ){
+    if (movingRight and characterIsntInRightBoundary and !inAir and !crowchedDown and !direction->isEqual(UP) and !direction->isEqual(GETTINGUP)){
 
-        direction->multiply(speedCharacter);
+        direction->setX(speedCharacter);
         gameObject->move(direction);
 
     }
 
-    if( direction->isDiagonalRight() and !inAir ) jumpRight = true;
-    if( direction->isDiagonalLeft() and !inAir ) jumpLeft = true;
-    if( direction->isEqual(UP) and !inAir ) jump = true;
+    if (movingLeft and characterIsntInLeftBoundary and !inAir and !crowchedDown and !direction->isEqual(UP) and !direction->isEqual(GETTINGUP)){
+
+        direction->setX(-speedCharacter);
+        gameObject->move(direction);
+
+    }
+
+    if( direction->isDiagonalRight() and !inAir  and !crowchedDown) jumpRight = true;
+    if( direction->isDiagonalLeft() and !inAir  and !crowchedDown) jumpLeft = true;
+    if( direction->isEqual(UP) and !inAir  and !crowchedDown) jump = true;
 
     if( direction->isEqual(DOWN) and !inAir) {
 
@@ -162,4 +182,12 @@ void ControllerCharacter::entry() {
 
 bool ControllerCharacter::isChanging() {
     return (entering or leaving);
+}
+
+bool ControllerCharacter::isMovingRight() {
+    return movingRight;
+}
+
+bool ControllerCharacter::isMovingLeft() {
+    return movingLeft;
 }

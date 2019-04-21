@@ -38,12 +38,16 @@ public:
 
     bool isChanging();
 
+    bool isMovingRight();
+
+    bool isMovingLeft();
+
 private:
 
     EventToValueMapper* mapper;
     int screenWidth, screenHeight, speedCharacter;
     int jumpDistance = 10;
-    bool jump, inAir, jumpRight, jumpLeft, leaving, entering;
+    bool jump, inAir, jumpRight, jumpLeft, leaving, entering, crowchedDown, movingRight, movingLeft, moving;
     string state = "still";
 
 

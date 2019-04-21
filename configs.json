@@ -6,7 +6,7 @@
 			{
 				"filepath":"Images/Backgrounds/Background3.png",
 				"zindex":3,
-				"width": 2300,
+				"width": 3000,
 				"height": 900
 			}
 		},
@@ -15,7 +15,7 @@
 			{
 				"filepath":"Images/Backgrounds/Background2.png",
 				"zindex":2,
-				"width": 1900,
+				"width": 2200,
 				"height": 900
 			}
 		},
@@ -24,7 +24,7 @@
 			{
 				"filepath":"Images/Backgrounds/Background1.png",
 				"zindex":1,
-				"width": 1500,
+				"width": 1900,
 				"height": 900
 			}
 		}
@@ -70,7 +70,7 @@
 		 	"height":700
 		 },
 	"gameParameters": {
-		"charactersSpeed": 10,
+		"charactersSpeed": 6,
 		"jumpSpeed":13
 		},
 
