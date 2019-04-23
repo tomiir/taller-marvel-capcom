@@ -5,9 +5,6 @@
 #include "Game.h"
 #include "../../utils/Logger/Logger.h"
 
-#define DEBUG_LEVEL DEBUG
-
-
 
 Game::Game(int screenWidth_, int screenHeight_){
 
@@ -20,9 +17,6 @@ Game::~Game() = default;
 void Game::init(const char *title, int posX, int posY) {
 
     CLogger* logger = CLogger::GetLogger();
-
-    logger -> setLevel(DEBUG_LEVEL);
-    logger ->Log("Inicializando juego", INFO, "");
 
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0){
 

@@ -1,6 +1,8 @@
 #include "JsonConfigs.h"
 #include <string.h>
 
+JsonConfigs* JsonConfigs::this_json = NULL;
+
 bool existFile(const char* path){
 
     bool result = false;
@@ -25,9 +27,6 @@ JsonConfigs::JsonConfigs() {
     this->json = JsonParser(baseRoute);
 }
 
-std::string JsonConfigs::getLog() {
-    return json.getLog();
-}
 
 std::list<Battlefield> JsonConfigs::getBattlefields() {
 
@@ -137,4 +136,11 @@ int JsonConfigs::getJumpSpeed() {
         retVal = fallbackJson.getJumpSpeed();
     }
     return retVal;
+}
+
+JsonConfigs* JsonConfigs::getJson() {
+    if (this_json == NULL) {
+        this_json = new JsonConfigs();
+    }
+    return this_json;
 }

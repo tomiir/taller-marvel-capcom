@@ -3,12 +3,15 @@
 #include <string>
 #include "model/Game/Game.h"
 
-
+#define DEBUG_LEVEL DEBUG
 
 int main(int argc, const char* argv[]){
 
+        CLogger* logger = CLogger::GetLogger();
+        logger -> setLevel(DEBUG_LEVEL);
+        logger ->Log("Inicializando juego", INFO, "");
 
-        JsonConfigs* config = new JsonConfigs();
+        JsonConfigs* config = JsonConfigs::getJson();
 
 
         const int SCREEN_WIDTH = config->getScreenSize()[0];

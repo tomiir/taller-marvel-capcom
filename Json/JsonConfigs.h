@@ -8,9 +8,8 @@ class JsonConfigs {
     JsonParser json = JsonParser(std::string());
 
 public:
-    JsonConfigs();
 
-    std::string getLog();
+    static JsonConfigs* getJson();
 
     std::list<Battlefield> getBattlefields();
 
@@ -29,7 +28,10 @@ public:
     int getJumpSpeed();
 
 private:
+    JsonConfigs();
+    JsonConfigs(const JsonConfigs&) = default;
     JsonParser fallbackJson = JsonParser(std::string());
+    static JsonConfigs* this_json;
 
 };
 
