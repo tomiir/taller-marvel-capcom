@@ -19,11 +19,11 @@ void JsonParser::setJson(std::string ruta){
 
 
     if(in.is_open()){
-        logger -> Log("Archivo abierto\n", INFO,"");
+        logger -> Log("Archivo abierto: " + ruta + "\n", INFO,"");
     }
     if (in.fail()) {
 
-        logger -> Log("Falló la apertura de archivo\n", INFO,"");
+        logger -> Log("Falló la apertura de archivo: " + ruta  + "\n", INFO,"");
         in.clear();
     }
     try {

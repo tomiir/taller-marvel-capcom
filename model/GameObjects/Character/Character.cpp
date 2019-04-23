@@ -13,13 +13,14 @@ Character::Character(const char* imagePath,int z_index, SDL_Renderer* rend, Spri
     this->initialY = initialY;
     logger->Log("Creando personaje: " + name, DEBUG, "");
     this->size = size;
+    this -> name = name;
 
 }
 
 Character::~Character() = default;
 
 void Character::move(DirectionVector* direction){
-    logger -> Log("Moviendo a " + name + "X: "+ to_string(direction->x) +"Y: "+ to_string(direction->y), DEBUG, "");
+    logger -> LogMovement(this -> name, direction, objRect.x, objRect.y);
     objRect.x += (int) direction->x;
     objRect.y += (int) direction->y;
 }
