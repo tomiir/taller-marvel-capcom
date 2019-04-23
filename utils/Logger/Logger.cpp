@@ -79,7 +79,6 @@ void CLogger::Log(const string& sMessage, int level, string e) {
 
     if (this -> level == DEBUG && !e.empty()) {
         this->logCurrentDateTime();
-        //cout << Backtrace() << endl;
         m_Logfile << Backtrace() << endl;
     }
     if (e.size()) {
@@ -94,4 +93,13 @@ void CLogger:: logCurrentDateTime() {
 
     strftime(timeStr,200,"[ %c ]", now);
     m_Logfile << timeStr << "\n";
+}
+
+void CLogger::LogMovement(string cName, DirectionVector* dir, int x, int y) {
+    string message;
+    message = "Moviendo a " + cName +
+            "\n Posición anterior: [" + to_string(x) + " , " + to_string(y) + "]" +
+            "\n Direccion: ["+ to_string(dir->x) + to_string(dir->y) + "]" +
+            "\n Posicion nueva: " + "[" + to_string(x+dir->x) + " , " + to_string(y+dir->y) + "]";
+    this -> Log(message, DEBUG, "");
 }

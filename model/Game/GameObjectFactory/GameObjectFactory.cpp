@@ -53,7 +53,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
     map<string, SpriteManager*>::iterator itrSprites = spriteManagers.begin();
 
 
-    JsonConfigs* config = new JsonConfigs();
+    JsonConfigs* config = JsonConfigs::getJson();
 
     std::list<JsonCharacter> characters = config->getCharacters();
 
@@ -115,7 +115,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsBackgrounds_fight() {
 
     vector<GameObject *> gameObjects;
 
-    JsonConfigs* config = new JsonConfigs();
+    JsonConfigs* config = JsonConfigs::getJson();
 
     list <Battlefield> battlefields = config->getBattlefields();
 

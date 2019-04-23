@@ -23,7 +23,7 @@ ViewController* ViewControllerFactory::getViewController_fight(){
 
     ViewController* viewControllerFight = new ViewController(renderer);
 
-    JsonConfigs* config = new JsonConfigs();
+    JsonConfigs* config = JsonConfigs::getJson();
     int speedCharacter = config->getCharactersSpeed();
     int jumpSpeed = config->getJumpSpeed();
 
