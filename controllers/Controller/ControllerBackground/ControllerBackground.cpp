@@ -48,19 +48,21 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
 
     if(controllerCharacterOnRight->isMovingRight() and distanceMinorCameraWidth and cameraIsUnderRightLimit and characterOnRightIsInRightBoundary and !distanceEqualCameraWidth and !controllerCharacterOnRight->isJumping()){
 
-        dirRight->setX((speedCam/2) - 0.01);
+        int speed = (int) ((speedCam/2) - 0.01) + 1;
+        dirRight->setX(speed);
         gameObject->move(dirRight);
 
-        dirRight->setX(-(speedCam/5) - 0.4);
+        dirRight->setX(-(speedCam/5) - 0.6);
         controllerCharacterOnLeft->move(dirRight);
     }
 
     if(controllerCharacterOnLeft->isMovingLeft() and distanceMinorCameraWidth and cameraIsOverLeftLimit and characterOnLeftIsInLeftBoundary and !distanceEqualCameraWidth and !controllerCharacterOnLeft->isJumping()){
 
-        dirLeft->setX((-speedCam/2) + 0.01);
+        int speed = (int) ((-speedCam/2) + 0.01) - 1;
+        dirLeft->setX(speed);
         gameObject->move(dirLeft);
 
-        dirLeft->setX((speedCam/5) + 0.4);
+        dirLeft->setX((speedCam/5) + 0.6);
         controllerCharacterOnRight->move(dirLeft);
     }
 

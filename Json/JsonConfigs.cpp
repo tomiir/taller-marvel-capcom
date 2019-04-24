@@ -40,10 +40,12 @@ std::list<JsonBackground> JsonConfigs::getJsonBackgrounds() {
 
     while(iter != jsonEnd && fIter != fJsonEnd) {
         JsonBackground battlefield;
-        if((*iter).getError() ){
+        if((*iter).getError() || (*iter).getName() != (*fIter).getName() || (*iter).getFilePath() != (*fIter).getFilePath()){
 
             std::list<std::string> errorsList = (*iter).getErrorList();
             std::list<std::string>::iterator errorIter = errorsList.begin();
+
+            if( (*iter).getFilePath() != (*fIter).getFilePath() ) logger->LogError("filepath", (*fIter).getName());
 
             for(; errorIter != errorsList.end(); ++errorIter){
                 logger->LogError( (*errorIter), (*fIter).getName());
