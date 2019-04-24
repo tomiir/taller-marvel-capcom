@@ -1,6 +1,6 @@
 
 #include <jsoncpp/json/json.h>
-#include "Battlefield.h"
+#include "JsonBackground.h"
 #include "JsonCharacter.h"
 #include "../utils/Logger/Logger.h"
 #include <fstream>
@@ -19,7 +19,7 @@ public:
 
     std::string getLog();
 
-    std::list<Battlefield> getBattlefields();
+    std::list<JsonBackground> getJsonBackgrounds();
 
     std::list<JsonCharacter> getCharacter();
 

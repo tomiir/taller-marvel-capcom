@@ -38,9 +38,9 @@ std::string JsonParser::getLog() {   //DESPUES USARLO, DE MOMENTO ESTA HARCODEAD
     return json["debug"].asString();
 }
 
-std::list<Battlefield> JsonParser::getBattlefields() {
+std::list<JsonBackground> JsonParser::getJsonBackgrounds() {
 
-    std::list<Battlefield> battlefields;
+    std::list<JsonBackground> backgrounds;
     Json::Value json = this->json["battlefield"];
 
 
@@ -71,11 +71,11 @@ std::list<Battlefield> JsonParser::getBattlefields() {
             errors.push_back("height");
         }
         if(error){
-            battlefields.push_back(Battlefield(errors));
+            backgrounds.push_back(JsonBackground(errors));
         }
 
         else {
-            Battlefield battlefield(
+            JsonBackground battlefield(
                     ((*it)["background"]["name"]).asString(),
                     ((*it)["background"]["filepath"]).asString(),
                     ((*it)["background"]["zindex"]).asInt(),
@@ -83,11 +83,11 @@ std::list<Battlefield> JsonParser::getBattlefields() {
                     ((*it)["background"]["height"]).asInt()
                     );
 
-            battlefields.push_back(battlefield);
+            backgrounds.push_back(battlefield);
         }
     }
 
-    return battlefields;
+    return backgrounds;
 }
 
 std::list<JsonCharacter> JsonParser::getCharacter() {

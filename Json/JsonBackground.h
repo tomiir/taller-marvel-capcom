@@ -2,13 +2,13 @@
 // Created by fede on 07/04/19.
 //
 
-#ifndef JSON_2_BATTLEFIELD_H
-#define JSON_2_BATTLEFIELD_H
+#ifndef JSON_2_JSONBACKGROUND_H
+#define JSON_2_JSONBACKGROUND_H
 
 #include <list>
 #include <string>
 
-class Battlefield {
+class JsonBackground {
 
     std::string path;
     int zindex;
@@ -20,10 +20,10 @@ class Battlefield {
 
 
 public:
-    Battlefield() = default;
-    ~Battlefield() = default;
-    Battlefield(std::list<std::string> errors);
-    Battlefield(std::string name, std::string path,int zindex,  int width, int height);
+    JsonBackground() = default;
+    ~JsonBackground() = default;
+    JsonBackground(std::list<std::string> errors);
+    JsonBackground(std::string name, std::string path,int zindex,  int width, int height);
     std::string getFilePath();
     std::string getName();
     int getzIndex();
@@ -35,4 +35,4 @@ public:
 
 
 
-#endif //JSON_2_BATTLEFIELD_H
+#endif //JSON_2_JSONBACKGROUND_H

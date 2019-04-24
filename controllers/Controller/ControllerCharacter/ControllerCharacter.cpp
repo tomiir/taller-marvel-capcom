@@ -111,7 +111,10 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
 
     }
 
-    if (mapper->changeCharacter(event) and !inAir) leaving = true;
+    if (mapper->changeCharacter(event) and !inAir){
+        leaving = true;
+        logger->Log(character->getName() + " cambio de personaje", DEBUG, "");
+    }
 
     if (leaving){
 

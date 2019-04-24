@@ -28,18 +28,18 @@ JsonConfigs::JsonConfigs() {
 }
 
 
-std::list<Battlefield> JsonConfigs::getBattlefields() {
+std::list<JsonBackground> JsonConfigs::getJsonBackgrounds() {
 
-    std::list<Battlefield> retVal;
-    std::list<Battlefield> fJsonBFs = fallbackJson.getBattlefields();
-    std::list<Battlefield> jsonBFs = json.getBattlefields();
-    std::list<Battlefield>::iterator iter = jsonBFs.begin();
-    std::list<Battlefield>::iterator fIter = fJsonBFs.begin();
+    std::list<JsonBackground> retVal;
+    std::list<JsonBackground> fJsonBFs = fallbackJson.getJsonBackgrounds();
+    std::list<JsonBackground> jsonBFs = json.getJsonBackgrounds();
+    std::list<JsonBackground>::iterator iter = jsonBFs.begin();
+    std::list<JsonBackground>::iterator fIter = fJsonBFs.begin();
     auto fJsonEnd = fJsonBFs.end();
     auto jsonEnd = jsonBFs.end();
 
     while(iter != jsonEnd && fIter != fJsonEnd) {
-        Battlefield battlefield;
+        JsonBackground battlefield;
         if((*iter).getError() ){
 
             std::list<std::string> errorsList = (*iter).getErrorList();
