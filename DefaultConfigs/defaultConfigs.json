@@ -4,7 +4,7 @@
 	[
 		{"background":
 			{
-				"name" : "Floor",
+				"name": "Floor",
 				"filepath":"Images/Backgrounds/Background3.png",
 				"zindex":3,
 				"width": 3000,
@@ -69,12 +69,12 @@
 		],
 	"window":
 		{
-			"width":1200,
-		 	"height":700
+			"width":800,
+		 	"height":600
 		 },
 	"gameParameters": {
 		"charactersSpeed": 6,
-		"jumpSpeed":13
+		"jumpSpeed": 13
 		},
 
 	"Graphics": {
