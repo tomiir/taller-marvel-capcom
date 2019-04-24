@@ -9,6 +9,7 @@
 #include "../Controller.h"
 #include "../../../utils/Vector2D/DirectionVector.h"
 #include "../../../utils/EventToValueMapper/EventToValueMapper.h"
+#include "../../../model/GameObjects/Character/Character.h"
 
 using namespace std;
 
@@ -49,6 +50,8 @@ private:
     int jumpDistance = 10;
     bool jump, inAir, jumpRight, jumpLeft, leaving, entering, crowchedDown, movingRight, movingLeft, moving;
     string state = "still";
+    CLogger* logger = CLogger::GetLogger();
+    Character* character = dynamic_cast<Character*>(gameObject);
 
 
 };

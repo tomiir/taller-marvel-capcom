@@ -4,13 +4,15 @@
 
 #include "Battlefield.h"
 
-Battlefield::Battlefield(){
-    this -> error = true;
+Battlefield::Battlefield(std::list<std::string> errors){
+    this->error = true;
+    this->errorsList = errors;
 }
 
-Battlefield::Battlefield(std::string ruta, int zindex,  int width, int height) {
+Battlefield::Battlefield(std::string name, std::string path, int zindex,  int width, int height) {
 
-    this->ruta = ruta;
+    this->name = name;
+    this->path = path;
     this->zindex = zindex;
     this->width = width;
     this->height = height;
@@ -18,7 +20,7 @@ Battlefield::Battlefield(std::string ruta, int zindex,  int width, int height) {
 }
 
 std::string Battlefield::getFilePath() {
-    return this->ruta;
+    return this->path;
 }
 
 int Battlefield::getzIndex() {
@@ -35,4 +37,12 @@ int Battlefield::getWidth() {
 
 bool Battlefield::getError() {
     return this->error;
+}
+
+std::list<std::string> Battlefield::getErrorList(){
+    return this->errorsList;
+}
+
+std::string Battlefield::getName() {
+    return this->name;
 }

@@ -3,7 +3,6 @@
 //
 
 #include "ControllerCharacter.h"
-#include "../../../model/GameObjects/Character/Character.h"
 #include <chrono>
 #include <thread>
 #include "../../../utils/Logger/Logger.h"
@@ -11,7 +10,7 @@
 ControllerCharacter::ControllerCharacter(GameObject* gameObject, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_,  int speedCharacter_, int jumpSpeed) : Controller(gameObject, jumpSpeed){
     screenHeight = screenHeight_;
     screenWidth = screenWidth_;
-    speedCharacter = speedCharacter_; //Despues hay que separarlo en X e Y
+    speedCharacter = speedCharacter_;
     jump = jumpRight = jumpLeft = inAir = leaving = entering = crowchedDown = movingRight = movingLeft = moving = false;
     mapper = mapper_;
 
@@ -35,6 +34,7 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
         movingLeft = true;
     }
     if( direction->isEqual(DOWN) and !inAir) {
+        if(state != "crowchedDown") logger->Log("El personaje " + character->getName() + " se agacho.", DEBUG, "" );
         state = "crowchedDown";
         crowchedDown = true;
     }
@@ -51,6 +51,7 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
     if (movingRight and characterIsntInRightBoundary and !inAir and !crowchedDown and !direction->isEqual(UP) and !direction->isEqual(GETTINGUP)){
 
         direction->setX(speedCharacter);
+        logger -> LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
         gameObject->move(direction);
 
     }
@@ -58,16 +59,19 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
     if (movingLeft and characterIsntInLeftBoundary and !inAir and !crowchedDown and !direction->isEqual(UP) and !direction->isEqual(GETTINGUP)){
 
         direction->setX(-speedCharacter);
+        logger -> LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
         gameObject->move(direction);
 
     }
 
     if( direction->isDiagonalRight() and !inAir  and !crowchedDown) jumpRight = true;
     if( direction->isDiagonalLeft() and !inAir  and !crowchedDown) jumpLeft = true;
-    if( direction->isEqual(UP) and !inAir  and !crowchedDown) jump = true;
+    if( direction->isEqual(UP) and !inAir  and !crowchedDown){
+        logger->Log("El personaje " + character->getName() + " salto.", DEBUG, "" );
+        jump = true;
+    }
 
     if( direction->isEqual(DOWN) and !inAir) {
-
         state = "crowchedDown";
     }
 

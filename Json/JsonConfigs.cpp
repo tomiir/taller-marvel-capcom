@@ -40,9 +40,16 @@ std::list<Battlefield> JsonConfigs::getBattlefields() {
 
     while(iter != jsonEnd && fIter != fJsonEnd) {
         Battlefield battlefield;
-        if((*iter).getError()){
+        if((*iter).getError() ){
+
+            std::list<std::string> errorsList = (*iter).getErrorList();
+            std::list<std::string>::iterator errorIter = errorsList.begin();
+
+            for(; errorIter != errorsList.end(); ++errorIter){
+                logger->LogError( (*errorIter), (*fIter).getName());
+            }
+
             battlefield = (*fIter);
-            logger -> Log("Parametros del Background " + (*fIter).getFilePath() + " mal cargados", ERROR, "");
         }
         else battlefield = (*iter);
         retVal.push_back(battlefield);
@@ -66,12 +73,19 @@ std::list<JsonCharacter> JsonConfigs::getCharacters() {
 
     while(iter != jsonEnd && fIter != fJsonEnd) {
 
-
         JsonCharacter character;
         if((*iter).getError() || (*iter).getName() != (*fIter).getName() || (*iter).getFilePath() != (*fIter).getFilePath()){
-            character = (*fIter);
-            logger -> Log("Parametros del Character " + (*fIter).getName() + " mal cargados", ERROR, "");
 
+
+            std::list<std::string> errorsList = (*iter).getErrorList();
+            std::list<std::string>::iterator errorIter = errorsList.begin();
+
+            if( (*iter).getFilePath() != (*fIter).getFilePath() ) logger->LogError("filepath", (*fIter).getName());
+
+            for(; errorIter != errorsList.end(); ++errorIter){
+                logger->LogError( (*errorIter), (*fIter).getName());
+            }
+            character = (*fIter);
         }
         else character = (*iter);
 

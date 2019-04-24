@@ -23,13 +23,14 @@ public:
     void stayInFloor() override ;
     void flipSprite(SDL_RendererFlip flip);
     void changePosition(int changeX, int changeY);
-    string name;
+    string getName();
 
 private:
     SpriteManager* spriteManager;
     SDL_RendererFlip flip;
     int initialY;
     CLogger* logger = CLogger::GetLogger();
+    string name;
     double size;
 };
 

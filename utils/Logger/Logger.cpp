@@ -103,3 +103,9 @@ void CLogger::LogMovement(string cName, DirectionVector* dir, int x, int y) {
             "\n Posicion nueva: " + "[" + to_string(x+dir->x) + " , " + to_string(y+dir->y) + "]";
     this -> Log(message, DEBUG, "");
 }
+
+void CLogger::LogError(string parameter, string object) {
+    string message = "Hubo un error al cargar el parametro: " + parameter + " de  " + object + " , se levantara el parametro del default";
+    this -> Log(message, ERROR, "");
+
+}

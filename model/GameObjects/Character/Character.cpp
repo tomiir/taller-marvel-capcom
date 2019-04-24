@@ -20,7 +20,6 @@ Character::Character(const char* imagePath,int z_index, SDL_Renderer* rend, Spri
 Character::~Character() = default;
 
 void Character::move(DirectionVector* direction){
-    logger -> LogMovement(this -> name, direction, objRect.x, objRect.y);
     objRect.x += (int) direction->x;
     objRect.y += (int) direction->y;
 }
@@ -61,5 +60,9 @@ void Character::changePosition(int changeX, int changeY) {
     objRect.x = changeX;
     objRect.y = changeY;
 
+}
+
+string Character::getName() {
+    return name;
 }
 
