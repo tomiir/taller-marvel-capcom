@@ -4,12 +4,12 @@
 
 #include "Background.h"
 
-Background::Background(const char* imagePath, int z_index, SDL_Renderer* rend, int widthImage, int heightImage, int screenWidth, int screenHeight) :
+Background::Background(const char* imagePath, int z_index, SDL_Renderer* rend, string name,  int widthImage, int heightImage, int screenWidth, int screenHeight) :
             GameObject(imagePath,z_index, rend, 0, 0, screenWidth, screenHeight){
 
                 imgHeight = heightImage;
                 imgWight = widthImage;
-
+                this->name = name;
                 CAMERA_WIDTH = screenWidth;
                 CAMERA_HEIGHT = screenHeight;
                 CAMERA_X_POS = (widthImage/2) - screenWidth/2;

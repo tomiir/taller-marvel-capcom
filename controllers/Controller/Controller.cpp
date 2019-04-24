@@ -21,7 +21,7 @@ int Controller::getZIndex(){
     return gameObject->getZIndex();
 }
 
-void Controller::render(){ //en vez de render tendria que ser "draw"
+void Controller::render(){
 
     gameObject->render();
 }

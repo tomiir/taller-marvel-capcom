@@ -1,7 +1,8 @@
 
 #include <jsoncpp/json/json.h>
-#include "Battlefield.h"
+#include "JsonBackground.h"
 #include "JsonCharacter.h"
+#include "../utils/Logger/Logger.h"
 #include <fstream>
 #include <list>
 #include <vector>
@@ -18,7 +19,7 @@ public:
 
     std::string getLog();
 
-    std::list<Battlefield> getBattlefields();
+    std::list<JsonBackground> getJsonBackgrounds();
 
     std::list<JsonCharacter> getCharacter();
 
@@ -31,6 +32,9 @@ public:
     std::string getTitle();
 
     int getJumpSpeed();
+
+    CLogger* logger = CLogger::GetLogger();
+
 };
 
 #endif //JSON_2_JSONPARSER_H
