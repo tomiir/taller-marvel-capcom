@@ -128,7 +128,7 @@ add_executable(
         Animations/NotFoundAnimation.h
         Animations/NotFoundAnimation.cpp
 
-)
+        Server/Server.cpp Server/Server.h Client/Client.cpp Client/Client.h)
 
 
 
