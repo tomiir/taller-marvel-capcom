@@ -14,6 +14,7 @@
 #include <string.h>
 #include <string>
 #include <pthread.h>
+#include <sys/time.h>
 
 using namespace std;
 
@@ -23,12 +24,18 @@ public:
     Server();
     ~Server() = default;
     void Listen();
+    static void* serverThread(void *clientSock_);
 
 
 private:
-    void* recivingClient(void* clientSocket);
-    int listening, serverSock;
+
+    int serverSock, clientSock;
     struct sockaddr_in serverAddr;
+    struct sockaddr_storage clientAddr;
+    socklen_t clientSize;
+    int clients[4];
+
+    socklen_t serverSize;
 };
 
 

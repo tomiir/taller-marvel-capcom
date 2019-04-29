@@ -21,24 +21,21 @@ class Client {
 
 public:
     Client() = default;
-    Client(const char *ip, int port);
+    Client(const char *ip, uint16_t port);
     ~Client() = default;
     void Connect();
     void Disconnect();
-    void send();
+    void Send();
     void update();
     void hearthBeat();
 
 private:
 
-    int serverSock = 0;
-    int clientSock = 0;
-
     struct sockaddr_in clientAddr;
-    struct sockaddr_in serverAddr;
 
     socklen_t clientSize;
-    socklen_t serverSize;
+
+    static void* clientThread(void* arg);
 
 
 

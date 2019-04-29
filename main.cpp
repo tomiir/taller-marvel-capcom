@@ -24,6 +24,7 @@ int main(int argc, const char* argv[]){
         const char* ip = argv[2];
         int port = atoi(argv[3]);
         Client* client = new Client(ip, port);
+        client->Connect();
 
     }
     else{
