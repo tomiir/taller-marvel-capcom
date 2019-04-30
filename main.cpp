@@ -9,27 +9,73 @@
 
 int main(int argc, const char* argv[]){
 
-    if(argc < 2 and argc > 4) {
-        cout << "Falta el modo de inicializacion de la aplicacion serverAddr o cliente\n" << endl;
-        exit(1);
-    }
+    int debug = 2;
 
-    if( argc == 2 and string(argv[1]) == "server"){
+    /* 0 = debug server
+     * 1 = debug client
+     * 2 = no debug, por consola
+     */
+
+
+    // debug modo server
+    if(debug == 0){
         Server* server = new Server();
         server->Listen();
-
     }
-    else if( argc == 4 and string(argv[1]) == "client"){
-        //chequear si es una ip
-        const char* ip = argv[2];
-        int port = atoi(argv[3]);
-        Client* client = new Client(ip, port);
+
+    //debug modo cliente
+    if(debug == 1){
+
+        Client* client = new Client("127.0.0.1", 54000);
         client->Connect();
 
+        while (true) {
+
+            cout << "bucleando" << endl;
+            client->Send();
+            client->update();
+            if (!client->isBeating()) break;
+        }
+
     }
-    else{
-        cout << "error al mandar el parametro mode" << endl;
+
+    if(debug == 2){
+
+        if(argc < 2 and argc > 4) {
+            cout << "Falta el modo de inicializacion de la aplicacion serverAddr o cliente\n" << endl;
+            exit(1);
+        }
+
+        if( argc == 2 and string(argv[1]) == "server"){
+            Server* server = new Server();
+            server->Listen();
+
+        }
+        else if( argc == 4 and string(argv[1]) == "client"){
+            //chequear si es una ip
+            const char* ip = argv[2];
+            int port = atoi(argv[3]);
+
+            Client* client = new Client(ip, port);
+            client->Connect();
+
+            while (true) {
+                client->Send();
+                client->update();
+                if (!client->isBeating()) break;
+            }
+
+        }
+        else{
+            cout << "error al mandar el parametro mode" << endl;
+        }
+
     }
+
+
+
+
+
 
 
 //        CLogger* logger = CLogger::GetLogger();

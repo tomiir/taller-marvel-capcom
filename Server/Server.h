@@ -14,7 +14,6 @@
 #include <string.h>
 #include <string>
 #include <pthread.h>
-#include <sys/time.h>
 
 using namespace std;
 
@@ -29,13 +28,8 @@ public:
 
 private:
 
-    int serverSock, clientSock;
-    struct sockaddr_in serverAddr;
-    struct sockaddr_storage clientAddr;
-    socklen_t clientSize;
     int clients[4];
 
-    socklen_t serverSize;
 };
 
 

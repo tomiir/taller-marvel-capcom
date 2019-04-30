@@ -13,6 +13,8 @@
 #include <arpa/inet.h>
 #include <string.h>
 #include <string>
+#include <pthread.h>
+
 
 using namespace std;
 
@@ -27,15 +29,14 @@ public:
     void Disconnect();
     void Send();
     void update();
-    void hearthBeat();
+    bool isBeating();
 
 private:
 
-    struct sockaddr_in clientAddr;
+    pthread_t clientThread;
+    bool hearthBeat;
 
-    socklen_t clientSize;
-
-    static void* clientThread(void* arg);
+    static void* connectClientToServer(void* arg);
 
 
 
