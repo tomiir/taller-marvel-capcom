@@ -12,7 +12,6 @@ socklen_t  serverSize_c;
 //----CLIENT VARIABLES----
 struct sockaddr_in clientAddr_c;
 socklen_t clientSize_c;
-int clientSocket_c;
 
 
 
@@ -34,7 +33,6 @@ Client::Client(const char *ip, uint16_t port) {
 //    }
 
     //--------- CONFIG CLIENT --------------
-    clientSocket_c = socket(PF_INET, SOCK_STREAM, 0);
 
     hearthBeat = true;
 
@@ -44,20 +42,14 @@ void Client::Disconnect() {
 
     cout << "Desconectando..." << endl;
     close(serverSocket_c);
-    pthread_exit(nullptr);
 }
 
-void* Client::connectClientToServer(void* arg) {
-
-    int connection = connect(clientSocket_c, (struct sockaddr*) &serverAddr_c, serverSize_c);
-    if(connection < 0 ) cout << "Fallo la conexion con el servidor " << endl;
-
-}
 
 void Client::Connect() {
 
-    int canCreateThread = pthread_create(&clientThread, nullptr, connectClientToServer, nullptr);
-    if(canCreateThread != 0) printf("Fallo al crear el thread");
+    int connection = connect(serverSocket_c, (struct sockaddr*) &serverAddr_c, serverSize_c);
+    if(connection < 0 ) cout << "Fallo la conexion con el servidor " << endl;
+
 }
 
 void Client::Send() {
@@ -69,6 +61,7 @@ void Client::Send() {
     if(strcmp(message, "quit") == 0) {
         hearthBeat = false;
         this->Disconnect();
+        return;
     }
 
     ssize_t bytesSent = send(serverSocket_c, message, strlen(message), 0);
@@ -78,6 +71,18 @@ void Client::Send() {
 
 void Client::update() {
 
+    char message[4096];
+    memset(message, 0, 4096);
+
+    int bytesReceived = recv(serverSocket_c, message, 4096, 0);
+    if(bytesReceived == -1){
+
+        cout << "Error recibiendo la respuesta del server" << endl;
+    }
+    else{
+
+        cout << "SERVER: " << string(message, bytesReceived) << endl;
+    }
 }
 
 bool Client::isBeating() {

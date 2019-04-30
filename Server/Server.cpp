@@ -11,7 +11,7 @@ socklen_t serverSize_s;
 //----CLIENT VARIABLES----
 int clientSocket_s;
 struct sockaddr_in clientAddr_s;
-socklen_t clientSize_s;
+socklen_t clientSize_s = sizeof(clientAddr_s);
 
 
 Server::Server() {
@@ -23,8 +23,7 @@ Server::Server() {
 
     serverAddr_s.sin_family = AF_INET;
     serverAddr_s.sin_port = htons(54000);
-    serverAddr_s.sin_addr.s_addr = INADDR_ANY;
-//    inet_pton(AF_INET, "127.0.0.1", &serverAddr_s.sin_addr);
+    inet_pton(AF_INET, "0.0.0.0", &serverAddr_s.sin_addr);
 
     if (bind(serverSocket_s, (sockaddr*)&serverAddr_s, sizeof(serverAddr_s)) < 0 ){
         cerr << "Can't bind to IP/port";
@@ -44,10 +43,10 @@ void* Server::serverThread(void *clientSock_) {
     int canGetInfo = getnameinfo((sockaddr *) &clientAddr_s, sizeof(clientAddr_s),
                                  clientIp, NI_MAXHOST, server, NI_MAXSERV, 0);
 
-    if (canGetInfo) {
+    if (canGetInfo == 0) {
         cout << "El cliente " << clientIp << " se conecto al server: " << server << endl;
     } else {
-        inet_ntop(AF_INET, &clientAddr_s, clientIp, NI_MAXHOST);
+        inet_ntop(AF_INET, &clientAddr_s.sin_addr, clientIp, NI_MAXHOST);
         cout << "El cliente " << clientIp << " se conecto al server(cheat): " << ntohs(clientAddr_s.sin_port) << endl;
     }
 
@@ -65,6 +64,7 @@ void* Server::serverThread(void *clientSock_) {
 
         else if (bytesReceived == 0) {
             cout << "Client disconnected " << endl;
+            break;
         }
 
         cout << "Recived: " << string(messageFromClient, 0, bytesReceived) << endl;

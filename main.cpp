@@ -61,8 +61,8 @@ int main(int argc, const char* argv[]){
 
             while (true) {
                 client->Send();
-                client->update();
-                if (!client->isBeating()) break;
+                if (client->isBeating()) client->update();
+                else break;
             }
 
         }
