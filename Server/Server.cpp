@@ -1,6 +1,3 @@
-//
-// Created by fer on 27/04/19.
-//
 
 #include "Server.h"
 //----SERVER VARIABLES----
@@ -9,22 +6,10 @@ struct sockaddr_in serverAddr_s;
 socklen_t serverSize_s;
 
 //----CLIENT VARIABLES----
-int clientSocket_s;
-struct sockaddr_in clientAddr_s;
-socklen_t clientSize_s = sizeof(clientAddr_s);
 
-int clientSocket_s2;
-struct sockaddr_in clientAddr_s2;
-socklen_t clientSize_s2 = sizeof(clientAddr_s2);
-
-int clientSocket_s3;
-struct sockaddr_in clientAddr_s3;
-socklen_t clientSize_s3 = sizeof(clientAddr_s3);
-
-int clientSocket_s4;
-struct sockaddr_in clientAddr_s4;
-socklen_t clientSize_s4 = sizeof(clientAddr_s4);
-
+int clientSocket[MAXCLIENTS];
+struct sockaddr_in clientAddr[MAXCLIENTS];
+socklen_t clientSize[MAXCLIENTS];
 
 Server::Server() {
 
@@ -46,88 +31,86 @@ void* Server::serverThread(void *clientSock_) {
 
     int clientSocket = *(int *) clientSock_;
 
-    char clientIp[NI_MAXHOST];
-    char server[NI_MAXSERV];
-    memset(clientIp, 0, NI_MAXHOST);
-    memset(server, 0, NI_MAXSERV);
-
-
-    int canGetInfo = getnameinfo((sockaddr *) &clientAddr_s, sizeof(clientAddr_s),
-                                 clientIp, NI_MAXHOST, server, NI_MAXSERV, 0);
-
-    if (canGetInfo == 0) {
-        cout << "El cliente " << clientIp << " se conecto al server: " << server << endl;
-    } else {
-        inet_ntop(AF_INET, &clientAddr_s.sin_addr, clientIp, NI_MAXHOST);
-        cout << "El cliente " << clientIp << " se conecto al server(cheat): " << ntohs(clientAddr_s.sin_port) << endl;
-    }
-
     char messageFromClient[4096];
     char messageToClient[4096];
+    bool connected = true;
 
     while(true){
+
         memset(messageFromClient, 0, 4096);
-        int bytesReceived = recv(clientSocket, messageFromClient, 4096, 0);
+        int bytesReceived = recv(clientSocket, messageFromClient, 4096,0);
 
         if (bytesReceived == -1) {
             cerr << "Error in recv(). Quitting" << endl;
             break;
         }
+        if ( bytesReceived < 0 ) cerr << "Error al recibir el mensaje por parte del cliente " << clientSocket << endl;
 
-        else if (bytesReceived == 0) {
-            cout << "Client disconnected " << endl;
-            break;
+        string aux = string(messageFromClient, 0, bytesReceived);
+        char* received = &aux[0u];
+        cout << "Se recibio de " << clientSocket << ": " << received << endl;
+
+        if( strcmp(received, "0") == 0) {
+            connected = false;
+            cout << "El cliente no esta latiendo mas, llamado de emergencia a todas las unidades" << endl;
         }
 
-        cout << "Recived: " << string(messageFromClient, 0, bytesReceived) << endl;
+        if ( strcmp(received, "1") == 0){
+            cout << "El cliente " << clientSocket<< " esta latiendo" << endl;
+        }
 
-        memset(messageToClient, 0, 4096);
-        strcpy(messageToClient, "Se recibio el mensaje correctamente");
+        if(connected and strcmp(received, "1") != 0) { //ese cmp es bastante trucho,
 
-        send(clientSocket, messageToClient, strlen(messageToClient), 0 );
+            memset(messageToClient, 0, 4096);
+            strcpy(messageToClient, "Se recibio el mensaje correctamente");
+
+            send(clientSocket, messageToClient, strlen(messageToClient), 0);
+        }
     }
 }
 
+
+void clientConnected(sockaddr_in clientAddr_){
+
+    char clientIp[NI_MAXHOST];
+    char server[NI_MAXSERV];
+    memset(clientIp, 0, NI_MAXHOST);
+    memset(server, 0, NI_MAXSERV);
+
+    int canGetInfo = getnameinfo((sockaddr *) &clientAddr_, sizeof(clientAddr_),
+                                 clientIp, NI_MAXHOST, server, NI_MAXSERV, 0);
+
+    if (canGetInfo == 0) {
+        inet_ntop(AF_INET, &clientAddr_.sin_addr, clientIp, NI_MAXHOST);
+        cout << "El cliente " << clientIp << " se conecto al server: " << server << endl;
+    }
+}
 void Server::Listen() {
 
-    if(listen(serverSocket_s, 4) < 0 ) {
+    if(listen(serverSocket_s, MAXCLIENTS) < 0 ) {
         cerr << "No se puede escuchar";
     }
 
     int clientsIter = 0;
     pthread_t clientThreads[4];
 
-    clientSocket_s = accept(serverSocket_s, (struct sockaddr*)&clientAddr_s, &clientSize_s);
-    clientSocket_s2 = accept(serverSocket_s, (struct sockaddr*)&clientAddr_s2, &clientSize_s2);
-    clientSocket_s3 = accept(serverSocket_s, (struct sockaddr*)&clientAddr_s3, &clientSize_s3);
-    clientSocket_s4 = accept(serverSocket_s, (struct sockaddr*)&clientAddr_s4, &clientSize_s4);
-
-    cout << "Ya se conectaron los 4 clientes" << endl;
-
-    int canCreateThread = pthread_create(&clientThreads[0], nullptr, serverThread, &clientSocket_s);
-    if(canCreateThread != 0) {
-        printf("Fallo al crear el thread");
+    for(; clientsIter < MAXCLIENTS; clientsIter++){
+        clientSize[clientsIter] = sizeof(clientAddr[clientsIter]);
+        clientSocket[clientsIter] = accept(serverSocket_s, (struct sockaddr*)&clientAddr[clientsIter], &clientSize[clientsIter]);
+        clientConnected(clientAddr[clientsIter]);
     }
+    cout << "Ya se conectaron los clientes" << endl;
+    clientsIter = 0;
 
-    int canCreateThread2 = pthread_create(&clientThreads[1], nullptr, serverThread, &clientSocket_s2);
-    if(canCreateThread2 != 0) {
-        printf("Fallo al crear el thread");
+    for(; clientsIter < MAXCLIENTS; clientsIter++){
+        int canCreateThread = pthread_create(&clientThreads[clientsIter], nullptr, serverThread, &clientSocket[clientsIter]);
+        if(canCreateThread != 0) {
+            printf("Fallo al crear el thread");
+        }
     }
+    clientsIter = 0;
 
-    int canCreateThread3 = pthread_create(&clientThreads[2], nullptr, serverThread, &clientSocket_s3);
-    if(canCreateThread3 != 0) {
-        printf("Fallo al crear el thread");
-    }
-
-    int canCreateThread4 = pthread_create(&clientThreads[3], nullptr, serverThread, &clientSocket_s4);
-    if(canCreateThread4 != 0) {
-        printf("Fallo al crear el thread");
-    }
-
-    pthread_join(clientThreads[0], nullptr);
-    pthread_join(clientThreads[1], nullptr);
-    pthread_join(clientThreads[2], nullptr);
-    pthread_join(clientThreads[3], nullptr);
+    for(; clientsIter < MAXCLIENTS; clientsIter++) pthread_join(clientThreads[clientsIter], nullptr);
 
 
 //    while (clientsIter <= 3) {

@@ -14,6 +14,10 @@
 #include <string.h>
 #include <string>
 #include <pthread.h>
+#include <future>
+#include <chrono>
+
+#define MAXCLIENTS 2
 
 using namespace std;
 
@@ -24,11 +28,6 @@ public:
     ~Server() = default;
     void Listen();
     static void* serverThread(void *clientSock_);
-
-
-private:
-
-    int clients[4];
 
 };
 

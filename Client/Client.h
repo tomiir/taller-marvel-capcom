@@ -14,6 +14,8 @@
 #include <string.h>
 #include <string>
 #include <pthread.h>
+#include <future>
+#include <chrono>
 
 
 using namespace std;
@@ -27,14 +29,15 @@ public:
     ~Client() = default;
     void Connect();
     void Disconnect();
-    void Send();
-    void update();
+    void Send(char* message);
+    char* update();
     bool isBeating();
+    void hearthBeat();
 
 private:
 
     pthread_t clientThread;
-    bool hearthBeat;
+    bool beating;
 
     static void* connectClientToServer(void* arg);
 

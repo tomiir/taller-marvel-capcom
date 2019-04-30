@@ -32,7 +32,7 @@ int main(int argc, const char* argv[]){
         while (true) {
 
             cout << "bucleando" << endl;
-            client->Send();
+            client->hearthBeat();
             client->update();
             if (!client->isBeating()) break;
         }
@@ -60,7 +60,7 @@ int main(int argc, const char* argv[]){
             client->Connect();
 
             while (true) {
-                client->Send();
+                client->hearthBeat();
                 if (client->isBeating()) client->update();
                 else break;
             }
