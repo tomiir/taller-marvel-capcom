@@ -13,6 +13,18 @@ int clientSocket_s;
 struct sockaddr_in clientAddr_s;
 socklen_t clientSize_s = sizeof(clientAddr_s);
 
+int clientSocket_s2;
+struct sockaddr_in clientAddr_s2;
+socklen_t clientSize_s2 = sizeof(clientAddr_s2);
+
+int clientSocket_s3;
+struct sockaddr_in clientAddr_s3;
+socklen_t clientSize_s3 = sizeof(clientAddr_s3);
+
+int clientSocket_s4;
+struct sockaddr_in clientAddr_s4;
+socklen_t clientSize_s4 = sizeof(clientAddr_s4);
+
 
 Server::Server() {
 
@@ -86,13 +98,36 @@ void Server::Listen() {
     pthread_t clientThreads[4];
 
     clientSocket_s = accept(serverSocket_s, (struct sockaddr*)&clientAddr_s, &clientSize_s);
+    clientSocket_s2 = accept(serverSocket_s, (struct sockaddr*)&clientAddr_s2, &clientSize_s2);
+    clientSocket_s3 = accept(serverSocket_s, (struct sockaddr*)&clientAddr_s3, &clientSize_s3);
+    clientSocket_s4 = accept(serverSocket_s, (struct sockaddr*)&clientAddr_s4, &clientSize_s4);
+
+    cout << "Ya se conectaron los 4 clientes" << endl;
 
     int canCreateThread = pthread_create(&clientThreads[0], nullptr, serverThread, &clientSocket_s);
     if(canCreateThread != 0) {
         printf("Fallo al crear el thread");
     }
 
+    int canCreateThread2 = pthread_create(&clientThreads[1], nullptr, serverThread, &clientSocket_s2);
+    if(canCreateThread2 != 0) {
+        printf("Fallo al crear el thread");
+    }
+
+    int canCreateThread3 = pthread_create(&clientThreads[2], nullptr, serverThread, &clientSocket_s3);
+    if(canCreateThread3 != 0) {
+        printf("Fallo al crear el thread");
+    }
+
+    int canCreateThread4 = pthread_create(&clientThreads[3], nullptr, serverThread, &clientSocket_s4);
+    if(canCreateThread4 != 0) {
+        printf("Fallo al crear el thread");
+    }
+
     pthread_join(clientThreads[0], nullptr);
+    pthread_join(clientThreads[1], nullptr);
+    pthread_join(clientThreads[2], nullptr);
+    pthread_join(clientThreads[3], nullptr);
 
 
 //    while (clientsIter <= 3) {
