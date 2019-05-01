@@ -18,6 +18,7 @@
 #include <chrono>
 
 #define MAXCLIENTS 2
+#define PORT 54000
 
 using namespace std;
 
@@ -29,6 +30,7 @@ public:
     void Listen();
     static void* serverThread(void *clientSock_);
 
+    static void handler(int num);
 };
 
 

@@ -39,10 +39,7 @@ private:
     pthread_t clientThread;
     bool beating;
 
-    static void* connectClientToServer(void* arg);
-
-
-
+    static void handler(int num);
 };
 
 

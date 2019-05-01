@@ -1,4 +1,5 @@
 
+#include <csignal>
 #include "Server.h"
 //----SERVER VARIABLES----
 int serverSocket_s;
@@ -19,12 +20,25 @@ Server::Server() {
     }
 
     serverAddr_s.sin_family = AF_INET;
-    serverAddr_s.sin_port = htons(54000);
+    serverAddr_s.sin_port = htons(PORT);
     inet_pton(AF_INET, "0.0.0.0", &serverAddr_s.sin_addr);
 
-    if (bind(serverSocket_s, (sockaddr*)&serverAddr_s, sizeof(serverAddr_s)) < 0 ){
-        cerr << "Can't bind to IP/port";
+    int option = 1;
+    if (setsockopt(serverSocket_s,SOL_SOCKET,SO_REUSEADDR,&option,sizeof(int)) == -1) {
+        perror("setsockopt");
+        exit(1);
     }
+
+    if (bind(serverSocket_s, (sockaddr*)&serverAddr_s, sizeof(serverAddr_s)) < 0 ){
+        cout << "Can't bind to IP/port" << endl;
+        exit(1);
+
+    }
+}
+sig_atomic_t term_server = 0;
+
+void Server::handler(int num){
+    term_server = 1;
 }
 
 void* Server::serverThread(void *clientSock_) {
@@ -36,6 +50,20 @@ void* Server::serverThread(void *clientSock_) {
     bool connected = true;
 
     while(true){
+
+//
+//        signal(SIGINT, handler);
+//        signal(SIGQUIT, handler);
+//
+//        if(term_server){
+//            memset(messageToClient,0, 4096);
+//            strcpy(messageToClient, "El servidor se desconecto");
+//
+//            if (send(clientSocket, messageToClient, strlen(messageToClient),0) < 0 ){
+//                cout << "NO FUNCA BROH" << endl;
+//            }
+//            return nullptr;
+//        }
 
         memset(messageFromClient, 0, 4096);
         int bytesReceived = recv(clientSocket, messageFromClient, 4096,0);
@@ -119,6 +147,8 @@ void Server::Listen() {
     }
 
     cout << "Se desconectaron todos los clientes, saliendo del juego." << endl;
+    close(serverSocket_s);
+
 }
 
 

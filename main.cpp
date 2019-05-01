@@ -27,14 +27,13 @@ int main(int argc, const char* argv[]){
     if(debug == 1){
 
         Client* client = new Client("127.0.0.1", 54000);
-        client->Connect();
+        bool connected = client->Connect();
 
+        if(!connected) return -1;
         while (true) {
-
-            cout << "bucleando" << endl;
             client->hearthBeat();
-            client->update();
-            if (!client->isBeating()) break;
+            if (client->isBeating()) client->update();
+            else break;
         }
 
     }
@@ -53,6 +52,7 @@ int main(int argc, const char* argv[]){
         }
         else if( argc == 4 and string(argv[1]) == "client"){
             //chequear si es una ip
+
             const char* ip = argv[2];
             int port = atoi(argv[3]);
 

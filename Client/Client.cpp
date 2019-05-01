@@ -2,6 +2,7 @@
 // Created by fer on 27/04/19.
 //
 
+#include <csignal>
 #include "Client.h"
 
 //----SERVER VARIABLES----
@@ -69,14 +70,45 @@ char* Client::update() {
     return &received[0u]; //SI TIRA SEGSEV ES POR ESTA COSA RARA
 }
 
+sig_atomic_t term_client = 0;
+
+void Client::handler(int num){
+    term_client = 1;
+}
+
+
 void Client::hearthBeat(){
+
+    signal(SIGINT, handler);
+    signal(SIGQUIT, handler);
 
     char message[4096];
     future<int> scanning = async(scanf,"%s",message);
-    chrono::seconds temp (10);
+    chrono::milliseconds temp (1000);
+
     char hearthbeat[1];
 
+//    char messageDisconnectServer[1];
+//    chrono::milliseconds s(100);
+//    future<ssize_t > serverConection = async(recv,serverSocket_c, messageDisconnectServer, strlen(messageDisconnectServer), 0);
+//    while(serverConection.wait_for(s) == future_status::timeout){}
+//
+//    int i = recv(serverSocket_c,messageDisconnectServer, strlen(messageDisconnectServer), 0);
+//    if( i > 0){
+//        string aux = string(messageDisconnectServer,i);
+//        cout << aux << endl;
+//        close(serverSocket_c);
+//        exit(0);
+//    }
+
+
     while(scanning.wait_for(temp) == future_status::timeout){
+
+        if(term_client){
+            beating = false;
+            this->Disconnect();
+            exit(0);
+        }
 
         memset(hearthbeat, 0, 1);
         Send((char *) "1");
