@@ -4,7 +4,7 @@
 
 
 #include <iostream>
-#include "../../controllers/ViewController/ViewController.h"
+#include "../../controllers/ViewController/ViewController_fight.h"
 #include "ViewControllerFactory/ViewControllerFactory.h"
 
 class Game {
@@ -22,8 +22,8 @@ private:
     bool isRunning;
     SDL_Window* window;
     SDL_Renderer* renderer;
-    ViewController* viewController;
-    ViewControllerFactory * factory; //Lo agrego para crear la primera view
+    ViewController_fight* viewController;
+    ViewControllerFactory * factory; //Lo agrego para crear la primera ViewController
     int screenWidth, screenHeight;
 
 };

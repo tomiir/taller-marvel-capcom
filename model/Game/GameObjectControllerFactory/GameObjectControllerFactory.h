@@ -20,7 +20,7 @@ public:
     GameObjectControllerFactory(SDL_Renderer *renderer, int screenWidth_, int screenHeight_);
     ~GameObjectControllerFactory();
 
-    vector<Controller*> getGameObjectControllers_fight(); // los controllers de la view fight
+    vector<Controller*> getGameObjectControllers_fight(); // los controllers de la ViewController fight
     std::vector<ControllerCharacter*> getControllersCharacter_fight();
     std::vector<ControllerBackground*> getControllersBackground_fight();
 

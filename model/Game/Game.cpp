@@ -39,7 +39,7 @@ void Game::init(const char *title, int posX, int posY) {
 
         factory = new ViewControllerFactory(renderer, screenWidth, screenHeight);
 
-        // Mando viewFight pq es la unica que tenemos. Deberiamos mandar la primera, y luego, las view conocerse entre
+        // Mando viewFight pq es la unica que tenemos. Deberiamos mandar la primera, y luego, las ViewController conocerse entre
         // si para saber quien va luego o implementar el VIEW MANAGER
 
        viewController = factory->getViewController_fight();

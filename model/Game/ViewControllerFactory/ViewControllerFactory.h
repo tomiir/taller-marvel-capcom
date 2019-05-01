@@ -6,7 +6,7 @@
 #define TALLER_MARVEL_CAPCOM_VIEWCONTROLLERFACTORY_H
 
 #include "../GameObjectControllerFactory/GameObjectControllerFactory.h"
-#include "../../../controllers/ViewController/ViewController.h"
+#include "../../../controllers/ViewController/ViewController_fight.h"
 #include "../../../views/View/View.h"
 #include "../../../utils/TeamManager/TeamManager.h"
 
@@ -19,7 +19,7 @@ class ViewControllerFactory{
 public:
     ViewControllerFactory(SDL_Renderer * renderer_, int screenWidth_, int screenHeight_);
     ~ViewControllerFactory();
-    ViewController * getViewController_fight();
+    ViewController_fight * getViewController_fight();
 
 private:
 

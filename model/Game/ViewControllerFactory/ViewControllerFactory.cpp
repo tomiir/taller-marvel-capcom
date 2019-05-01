@@ -16,10 +16,10 @@ ViewControllerFactory::ViewControllerFactory(SDL_Renderer * renderer_, int scree
 ViewControllerFactory::~ViewControllerFactory() = default;
 
 
-ViewController* ViewControllerFactory::getViewController_fight(){
+ViewController_fight* ViewControllerFactory::getViewController_fight(){
 
 
-    ViewController* viewControllerFight = new ViewController(renderer);
+    ViewController_fight* viewControllerFight = new ViewController_fight(renderer);
 
     GameObjectControllerFactory* factory = new GameObjectControllerFactory(renderer, screenWidth, screenHeight);
 

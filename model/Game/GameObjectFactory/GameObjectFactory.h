@@ -11,7 +11,6 @@
 
 #include <iostream>
 
-using namespace std;
 
 
 /* Esta se encarga de crear todos los gameObject del juego. Devuelve una lista de gameObjects */

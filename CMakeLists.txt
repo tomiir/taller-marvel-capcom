@@ -31,9 +31,11 @@ add_executable(
         controllers/Controller/Renderable.cpp controllers/Controller/Renderable.h
         controllers/Controller/Controller.cpp
         controllers/Controller/Controller.h
+        views/View/View.cpp views/View/View.h
         controllers/ViewController/ViewController.cpp
         controllers/ViewController/ViewController.h
-        views/View/View.cpp views/View/View.h
+        controllers/ViewController/ViewController_fight.cpp
+        controllers/ViewController/ViewController_fight.h
         utils/TextureManager/TextureManager.cpp
         utils/TextureManager/TextureManager.h
         model/Game/ViewControllerFactory/ViewControllerFactory.cpp
@@ -127,7 +129,7 @@ add_executable(
         Animations/NotFoundAnimation.h
         Animations/NotFoundAnimation.cpp
 
-)
+        controllers/ViewController/ViewController.cpp controllers/ViewController/ViewController.h controllers/ViewController/ViewController_charSelect.cpp controllers/ViewController/ViewController_charSelect.h utils/EventToValueMapper/EventToValueMapper_charSelect_1.cpp utils/EventToValueMapper/EventToValueMapper_charSelect_1.h utils/EventToValueMapper/EventToValueMapper_charSelect_2.cpp utils/EventToValueMapper/EventToValueMapper_charSelect_2.h utils/EventToValueMapper/EventToValueMapper_charSelect.cpp utils/EventToValueMapper/EventToValueMapper_charSelect.h)
 
 
 

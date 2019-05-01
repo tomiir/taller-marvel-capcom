@@ -11,7 +11,7 @@
 
 class View {
 public:
-    View(SDL_Renderer* renderer); //Saco el id que es para el jason, pq no se si debería estar en ViewController!
+    View(SDL_Renderer* renderer); //Saco el id que es para el jason, pq no se si debería estar en ViewController_fight!
     ~View();
     void render();
     void handleEvent(SDL_Event event);
@@ -21,4 +21,4 @@ private:
 };
 
 
-#endif //TALLER_MARVEL_CAPCOM_VIEW_H
+#endif //TALLER_MARVEL_CAPCOM_VIEWCONTROLLER_H
