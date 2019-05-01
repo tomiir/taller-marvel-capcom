@@ -48,11 +48,12 @@ void* Server::serverThread(void *clientSock_) {
 
         string aux = string(messageFromClient, 0, bytesReceived);
         char* received = &aux[0u];
-        cout << "Se recibio de " << clientSocket << ": " << received << endl;
 
         if( strcmp(received, "0") == 0) {
             connected = false;
-            cout << "El cliente no esta latiendo mas, llamado de emergencia a todas las unidades" << endl;
+            cout << "El cliente: " << clientSocket << " se desconecto" << endl;
+            close(clientSocket);
+            break;
         }
 
         if ( strcmp(received, "1") == 0){
@@ -60,6 +61,8 @@ void* Server::serverThread(void *clientSock_) {
         }
 
         if(connected and strcmp(received, "1") != 0) { //ese cmp es bastante trucho,
+
+            cout << "Se recibio de " << clientSocket << ": " << received << endl;
 
             memset(messageToClient, 0, 4096);
             strcpy(messageToClient, "Se recibio el mensaje correctamente");
@@ -108,33 +111,15 @@ void Server::Listen() {
             printf("Fallo al crear el thread");
         }
     }
+
     clientsIter = 0;
 
-    for(; clientsIter < MAXCLIENTS; clientsIter++) pthread_join(clientThreads[clientsIter], nullptr);
+    for(; clientsIter < 2; clientsIter++){
+
+        pthread_join(clientThreads[clientsIter], nullptr);
+    }
 
 
-//    while (clientsIter <= 3) {
-//
-//        clientSize_s = sizeof(clientAddr_s);
-//
-//        clientSocket_s = accept(serverSocket_s, (struct sockaddr*)&clientAddr_s, &clientSize_s);
-//
-//        if (clientSocket_s < 0){
-//            cerr << "La conexion no se acepto" << endl;
-//            break;
-//        }
-//
-//        int canCreateThread = pthread_create(&clientThreads[clientsIter], nullptr, serverThread, &clientSocket_s);
-//
-//        if(canCreateThread != 0) {
-//            printf("Fallo al crear el thread");
-//            break;
-//        }
-//
-//        clientsIter++;
-//
-//        for( int i = 0; i < 3; i++) pthread_join(clientThreads[i], nullptr);
-//    }
 
 }
 

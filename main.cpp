@@ -57,8 +57,8 @@ int main(int argc, const char* argv[]){
             int port = atoi(argv[3]);
 
             Client* client = new Client(ip, port);
-            client->Connect();
-
+            bool connected = client->Connect();
+            if(!connected) return -1;
             while (true) {
                 client->hearthBeat();
                 if (client->isBeating()) client->update();

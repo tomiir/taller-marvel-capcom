@@ -26,24 +26,25 @@ Client::Client(const char *ip, uint16_t port) {
 
 void Client::Disconnect() {
 
+    Send( (char*) "0");
     cout << "Desconectando..." << endl;
     close(serverSocket_c);
 }
 
 
-void Client::Connect() {
+bool Client::Connect() {
 
     int connection = connect(serverSocket_c, (struct sockaddr*) &serverAddr_c, serverSize_c);
-    if(connection < 0 ) cout << "Fallo la conexion con el servidor " << endl;
+    if(connection < 0 ){
+        cout << "Fallo la conexion con el servidor " << endl;
+        close(serverSocket_c);
+        return false;
+    }
+    return true;
+
 }
 
 void Client::Send(char* message) {
-
-    if(strcmp(message, "quit") == 0) {
-        beating = false;
-        this->Disconnect();
-        return;
-    }
 
     ssize_t bytesSent = send(serverSocket_c, message, strlen(message), 0);
     if(bytesSent == -1) cerr << "Error al enviar el mensaje";
@@ -68,6 +69,37 @@ char* Client::update() {
     return &received[0u]; //SI TIRA SEGSEV ES POR ESTA COSA RARA
 }
 
+void Client::hearthBeat(){
+
+    char message[4096];
+    future<int> scanning = async(scanf,"%s",message);
+    chrono::seconds temp (10);
+    char hearthbeat[1];
+
+    while(scanning.wait_for(temp) == future_status::timeout){
+
+        memset(hearthbeat, 0, 1);
+
+        Send((char *) "1");
+    }
+
+    if(strcmp(message, "quit") == 0) {
+        beating = false;
+        this->Disconnect();
+        return;
+    }
+
+    Send(message);
+}
+
+bool Client::isBeating() {
+
+    return beating;
+
+}
+
+
+
 /*
  * void Client::Send() {
 
@@ -86,27 +118,3 @@ char* Client::update() {
 
 }
  */
-
-void Client::hearthBeat(){
-
-    char message[4096];
-    future<int> scanning = async(scanf,"%s",message);
-    chrono::seconds temp (10);
-    char hearthbeat[1];
-
-    while(scanning.wait_for(temp) == future_status::timeout){
-
-        memset(hearthbeat, 0, 1);
-
-        if(beating) Send( (char*) "1");
-        else Send( (char*) "0");
-    }
-
-    Send(message);
-}
-
-bool Client::isBeating() {
-
-    return beating;
-
-}

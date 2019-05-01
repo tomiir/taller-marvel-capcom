@@ -27,7 +27,7 @@ public:
     Client() = default;
     Client(const char *ip, uint16_t port);
     ~Client() = default;
-    void Connect();
+    bool Connect();
     void Disconnect();
     void Send(char* message);
     char* update();
