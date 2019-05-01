@@ -114,13 +114,11 @@ void Server::Listen() {
 
     clientsIter = 0;
 
-    for(; clientsIter < 2; clientsIter++){
-
+    for(; clientsIter < MAXCLIENTS; clientsIter++){
         pthread_join(clientThreads[clientsIter], nullptr);
     }
 
-
-
+    cout << "Se desconectaron todos los clientes, saliendo del juego." << endl;
 }
 
 

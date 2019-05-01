@@ -79,7 +79,6 @@ void Client::hearthBeat(){
     while(scanning.wait_for(temp) == future_status::timeout){
 
         memset(hearthbeat, 0, 1);
-
         Send((char *) "1");
     }
 
@@ -95,26 +94,4 @@ void Client::hearthBeat(){
 bool Client::isBeating() {
 
     return beating;
-
 }
-
-
-
-/*
- * void Client::Send() {
-
-    char message[4096];
-    memset(message, 0, 4096);
-    scanf("%s", message);
-
-    if(strcmp(message, "quit") == 0) {
-        beating = false;
-        this->Disconnect();
-        return;
-    }
-
-    ssize_t bytesSent = send(serverSocket_c, message, strlen(message), 0);
-    if(bytesSent == -1) cerr << "Error al enviar el mensaje";
-
-}
- */
