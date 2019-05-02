@@ -16,16 +16,30 @@ class ViewController_charSelect: public ViewController {
 
 public:
 
-    ViewController_charSelect(SDL_Renderer *renderer_);
-    ~ViewController_charSelect() = default;
+    explicit ViewController_charSelect(SDL_Renderer *renderer_);
+    ~ViewController_charSelect() override;
     void updateView() override;
     void handleEvent() override;
     void addBackground(ControllerBackground *controller) override;
     void setTeam1(string character);
     void setTeam2(string character);
+
+    bool end() override;
+    string getNextView() override;
+
+    // fotos laterales para cada TEAM
     void addGameObject_character(GameObject_charSelect* gameObject, int team);
+
+    // fondo
     void addGameObject_background(GameObject_charSelect* background);
+
+    //el cuadrado de cada team
     void addGameObject_square(GameObject_charSelect* square, int team);
+
+    //agregar 4 cuadrados grises
+    void addGameObject_square_gray(GameObject_charSelect* square);
+
+
 
 private:
     int getTeam(SDL_Event event);
@@ -60,12 +74,18 @@ private:
     std::map<string, vector<int> > squarePosition;
     map<string, vector<int> >::iterator itr_squarePosition = squarePosition.begin();
 
+    //DICCIONARIO DE CUADRATITOS GRISES
+    std::map<string, GameObject_charSelect* > greySquare;
+    map<string, GameObject_charSelect*>::iterator itr_greySquare =greySquare.begin();
+
     //FONDO
     GameObject_charSelect* background;
 
     //MAPEADORES DE TECLAS
     EventToValueMapper_charSelect_1* mapper_1;
     EventToValueMapper_charSelect_2* mapper_2;
+
+
 };
 
 #endif //TALLER_MARVEL_CAPCOM_VIEWCONTROLLER_CHARSELECT_H

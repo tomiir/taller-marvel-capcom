@@ -22,7 +22,7 @@ private:
     bool isRunning;
     SDL_Window* window;
     SDL_Renderer* renderer;
-    ViewController_fight* viewController;
+    ViewController* viewController;
     ViewControllerFactory * factory; //Lo agrego para crear la primera ViewController
     int screenWidth, screenHeight;
 

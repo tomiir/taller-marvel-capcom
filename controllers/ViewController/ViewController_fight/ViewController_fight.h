@@ -27,6 +27,8 @@ public:
     void addFlipManager(FlipManager* flipManager_);
     void addBackground(ControllerBackground* controller) override;
     void addTeams(TeamManager* teamManager1, TeamManager* teamManager2);
+    bool end()override;
+    string getNextView()override;
 
 private:
 

@@ -12,7 +12,7 @@ class EventToValueMapper_charSelect_1: public EventToValueMapper_charSelect {
 
 public:
     EventToValueMapper_charSelect_1();
-    ~EventToValueMapper_charSelect_1();
+
     string map( SDL_Event event) override;
 
 };

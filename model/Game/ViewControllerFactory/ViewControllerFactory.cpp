@@ -48,3 +48,44 @@ ViewController_fight* ViewControllerFactory::getViewController_fight(){
 
 }
 
+ViewController_charSelect * ViewControllerFactory:: getViewController_charSelect(){
+
+    GameObjectFactory* factory = new GameObjectFactory(renderer, screenWidth, screenHeight);
+    vector <GameObject_charSelect*> gameObjects = factory->getgameobjectChar_select_fight();
+
+    ViewController_charSelect* viewController = new ViewController_charSelect(renderer);
+    viewController->addGameObject_background(gameObjects[0]);
+
+
+    // LOS SIDES DE CADA TEAM
+    viewController->addGameObject_character(gameObjects[1],1);
+    viewController->addGameObject_character(gameObjects[2],2);
+
+    viewController->addGameObject_character(gameObjects[3],1);
+    viewController->addGameObject_character(gameObjects[4],2);
+
+    viewController->addGameObject_character(gameObjects[5],1);
+    viewController->addGameObject_character(gameObjects[6],2);
+
+    viewController->addGameObject_character(gameObjects[7],1);
+    viewController->addGameObject_character(gameObjects[8],2);
+
+
+    // LOS CUADRADITOS DE CADA TEAM
+    viewController->addGameObject_square(gameObjects[9],1);
+    viewController->addGameObject_square(gameObjects[10],2);
+
+    // LOS CUADRADITOS GRISES
+    viewController->addGameObject_square_gray(gameObjects[11]);
+    viewController->addGameObject_square_gray(gameObjects[12]);
+    viewController->addGameObject_square_gray(gameObjects[13]);
+    viewController->addGameObject_square_gray(gameObjects[14]);
+
+    return viewController;
+
+
+
+
+}
+
+

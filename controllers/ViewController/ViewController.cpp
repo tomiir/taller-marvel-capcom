@@ -14,3 +14,27 @@ ViewController::ViewController (SDL_Renderer* renderer_) {
     this->view = new View(renderer_);
 }
 
+ViewController::~ViewController() {
+
+}
+
+void ViewController::handleEvent() {
+
+}
+
+void ViewController::updateView() {
+
+}
+
+void ViewController::addBackground(ControllerBackground *controller) {
+
+}
+
+bool ViewController::end() {
+    return false;
+}
+
+string ViewController::getNextView() {
+    return std::__cxx11::string();
+}
+

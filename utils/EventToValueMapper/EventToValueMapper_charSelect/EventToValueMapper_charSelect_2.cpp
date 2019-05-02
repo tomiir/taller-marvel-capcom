@@ -42,6 +42,6 @@ string EventToValueMapper_charSelect_2:: map( SDL_Event event) {
         }
         map_preselected = map_map[preselected];
     }
-        return "no_selecciono";
+        return NULL;
 
 }

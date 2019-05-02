@@ -8,8 +8,16 @@ GameObject_charSelect::GameObject_charSelect(const char* folderPath, std::string
     renderer = rend;
     this->posc = posc;
     // posc =  initialX, initialY, width, height
-    objRect_source = SDL_Rect{posc[0], posc[1], posc[2], posc[3]};
-    objRect_dest = SDL_Rect{posc[0], posc[1], posc[2], posc[3]};
+    if (strcmp(name.c_str(), "background")){
+        objRect_source = SDL_Rect{posc[0], posc[1], posc[2], posc[3]};
+        objRect_dest = SDL_Rect{0, 0, posc[2], posc[3]};
+    }
+    else{
+        objRect_source = SDL_Rect{0, 0, posc[2], posc[3]};
+        objRect_dest = SDL_Rect{posc[0], posc[1], posc[2], posc[3]};
+    }
+
+
     objTexture = TextureManager::LoadTexture(folderPath, renderer);
     this->z_index = z_index;
     this->name = name;
@@ -18,6 +26,8 @@ GameObject_charSelect::GameObject_charSelect(const char* folderPath, std::string
 
 void GameObject_charSelect::setPosc(std::vector<int> posc){
     this->posc = posc;
+    objRect_dest = SDL_Rect{posc[0], posc[1], posc[2], posc[3]};
+
 }
 
 int GameObject_charSelect:: getZIndex(){
@@ -28,5 +38,6 @@ std::string GameObject_charSelect:: getName(){
     return name;
 }
 void GameObject_charSelect::render() {
+
     SDL_RenderCopy(renderer, objTexture, &objRect_source, &objRect_dest);
 }

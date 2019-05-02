@@ -98,3 +98,12 @@ void ViewController_fight::addFlipManager(FlipManager *flipManager_) {
 
 }
 
+bool ViewController_fight::end() {
+    //lo hardcodeo pq no tenemos otra view
+    return false;
+}
+
+string ViewController_fight::getNextView() {
+    return "todavia_no_existe";
+}
+

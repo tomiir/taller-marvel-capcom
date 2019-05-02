@@ -43,3 +43,11 @@ string EventToValueMapper_charSelect::getPreselected() {
     return preselected;
 
 }
+
+EventToValueMapper_charSelect::~EventToValueMapper_charSelect() {
+
+}
+
+string EventToValueMapper_charSelect::map(SDL_Event event) {
+    return std::__cxx11::string();
+}

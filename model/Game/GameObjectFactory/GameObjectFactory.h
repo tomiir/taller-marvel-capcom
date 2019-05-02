@@ -8,6 +8,7 @@
 #include "../../GameObjects/Character/Character.h"
 #include "../../GameObjects/Background/Background.h"
 #include "../../GameObjects/GameObject/GameObject.h"
+#include "../../GameObject_charSelect/GameObject_charSelect.h"
 
 #include <iostream>
 
@@ -26,6 +27,8 @@ public:
 
     vector<GameObject*> getGameObjectsCharacters_fight();
     vector<GameObject*> getGameObjectsBackgrounds_fight();
+    vector<GameObject_charSelect*> getgameobjectChar_select_fight();
+
 
 private:
     double cameraSpeedPercentage(int widthMax, int widthImg);

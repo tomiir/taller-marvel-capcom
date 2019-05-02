@@ -42,7 +42,7 @@ void Game::init(const char *title, int posX, int posY) {
         // Mando viewFight pq es la unica que tenemos. Deberiamos mandar la primera, y luego, las ViewController conocerse entre
         // si para saber quien va luego o implementar el VIEW MANAGER
 
-       viewController = factory->getViewController_fight();
+       viewController = factory->getViewController_charSelect();
        logger -> Log("Inicialización completa, ventana, renderer y vista creados correctamente", INFO, "");
 
     } else {
@@ -70,6 +70,13 @@ void Game::clean(){
 
 void Game::tick() {
     this -> viewController -> handleEvent();
+
+    if(this->viewController->end()){
+        string nextView = (this->viewController)->getNextView();
+        //bla bla lo hardcodeo para probar, puedo usar un diccionario aca
+        viewController = factory->getViewController_fight();
+    }
+
     update(); // Esto se va a usar para reconciliar data con el serve supongo. Tipo le envío el movimiento, espero resp.
     this -> viewController -> updateView();
 }

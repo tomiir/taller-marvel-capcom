@@ -21,6 +21,8 @@ add_executable(
         Json/JsonParser.cpp
         Json/JsonConfigs.h
         Json/JsonConfigs.cpp
+        utils/TextureManager/TextureManager.cpp
+        utils/TextureManager/TextureManager.h
         model/Game/Game.cpp model/Game/Game.h
         model/GameObjects/GameObject/GameObject.cpp
         model/GameObjects/GameObject/GameObject.h
@@ -35,20 +37,12 @@ add_executable(
         controllers/Controller/Controller.cpp
         controllers/Controller/Controller.h
         views/View/View.cpp views/View/View.h
-        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect.cpp
-        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect.h
-        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect_1.cpp
-        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect_1.h
-        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect_2.cpp
-        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect_2.h
         controllers/ViewController/ViewController.cpp
         controllers/ViewController/ViewController.h
         controllers/ViewController/ViewController_fight/ViewController_fight.cpp
         controllers/ViewController/ViewController_fight/ViewController_fight.h
         controllers/ViewController/ViewController_charSelect/ViewController_charSelect.cpp
         controllers/ViewController/ViewController_charSelect/ViewController_charSelect.h
-        utils/TextureManager/TextureManager.cpp
-        utils/TextureManager/TextureManager.h
         model/Game/ViewControllerFactory/ViewControllerFactory.cpp
         model/Game/ViewControllerFactory/ViewControllerFactory.h
         model/Game/GameObjectControllerFactory/GameObjectControllerFactory.cpp
@@ -59,8 +53,6 @@ add_executable(
         model/Viewmanager/ViewManager.h
         model/Game/ViewControllerFactory/ViewControllerFactory.cpp
         model/Game/ViewControllerFactory/ViewControllerFactory.h
-        model/Viewmanager/ViewManager.cpp
-        model/Viewmanager/ViewManager.h
         utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.cpp
         utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.h
         controllers/Controller/ControllerCharacter/ControllerCharacter.cpp
@@ -141,6 +133,12 @@ add_executable(
         utils/SpriteManagers/NotFoundSpriteManager.cpp
         Animations/NotFoundAnimation.h
         Animations/NotFoundAnimation.cpp
+        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect.cpp
+        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect.h
+        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect_1.cpp
+        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect_1.h
+        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect_2.cpp
+        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect_2.h
 )
 
 

@@ -17,7 +17,7 @@ class EventToValueMapper_charSelect {
 
 public:
     EventToValueMapper_charSelect();
-    ~EventToValueMapper_charSelect() = default;
+    virtual ~EventToValueMapper_charSelect();
     virtual string map(SDL_Event event);
     string getPreselected();
 
