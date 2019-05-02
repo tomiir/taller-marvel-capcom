@@ -121,8 +121,6 @@ void ViewController_charSelect::updateView() {
 
 
     background->render();
-    square_team1->render();
-    square_team2->render();
 
     std::vector<GameObject_charSelect*>::iterator itr_to_render = to_render.begin();
 
@@ -136,7 +134,10 @@ void ViewController_charSelect::updateView() {
         (*itr_to_render_2)->render();
     }
 
-    // FALTAN RENDERIZAR CUADRADOS GRISES
+    square_team1->render();
+    square_team2->render();
+
+
     SDL_RenderPresent(renderer);
 
 
@@ -157,42 +158,54 @@ void ViewController_charSelect:: addGameObject_character(GameObject_charSelect* 
 }
 
 
-void ViewController_charSelect:: handleEvent(){
+void ViewController_charSelect:: handleEvent() {
 
     SDL_Event event;
     SDL_PollEvent(&event);
-    string respuesta_1 = mapper_1->map(event);
-    if (strcmp(respuesta_1.c_str(),"no_selecciono") != 0 ) setTeam1(respuesta_1);
-    string respuesta_2 = mapper_2->map(event);
-    if (strcmp(respuesta_2.c_str(),"no_selecciono") != 0 ) setTeam2(respuesta_2);
 
+    if (selected_1.size() < 2) {
+        string respuesta_1 = mapper_1->map(event);
+        if (strcmp(respuesta_1.c_str(), "no_selecciono") != 0) setTeam1(respuesta_1);
+    }
+
+    if (selected_1.size() < 2) {
+    string respuesta_2 = mapper_2->map(event);
+    if (strcmp(respuesta_2.c_str(), "no_selecciono") != 0) setTeam2(respuesta_2);
+    }
 }
 
 void ViewController_charSelect::setTeam1(string character){
-    if (selected.size() == 0) {
-        selected_1.push_back(character);
+
+    bool posible = true;
+
+    std::vector<string>::iterator itr = selected.begin();
+
+    for (itr; itr != selected.end(); ++itr){
+        if (strcmp((*itr).c_str(),(character).c_str()) == 0){
+            posible = false;
+        }
     }
-    bool val = false;
-    for (int i = 0; i < selected.size(); i++){
-        if (selected[i] == character) val = true;
-    }
-    if(!val) {
+
+    if(posible) {
         selected.push_back(character);
         selected_1.push_back(character);
     }
 }
 
 void ViewController_charSelect::setTeam2(string character) {
-    if (selected.size() == 0) {
-        selected_2.push_back(character);
+    bool posible = true;
+
+    std::vector<string>::iterator itr = selected.begin();
+
+    for (itr; itr != selected.end(); ++itr){
+        if (strcmp((*itr).c_str(),(character).c_str()) == 0){
+            posible = false;
+        }
     }
-    bool val = false;
-    for (int i = 0; i < selected.size(); i++) {
-        if (selected[i] == character) val = true;
-    }
-    if (!val) {
-        selected_2.push_back(character);
+
+    if(posible) {
         selected.push_back(character);
+        selected_2.push_back(character);
     }
 
 }
@@ -215,9 +228,6 @@ ViewController_charSelect::~ViewController_charSelect() {
 }
 
 string ViewController_charSelect::getNextView() {
-    return ViewController::getNextView();
+    return "fight";
 }
 
-string getNextView(){
-    return "figth";
-}

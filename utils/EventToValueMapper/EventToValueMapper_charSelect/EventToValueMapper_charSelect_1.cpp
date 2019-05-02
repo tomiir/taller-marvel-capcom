@@ -20,19 +20,15 @@ string EventToValueMapper_charSelect_1:: map( SDL_Event event) {
 
             case SDLK_l:
                 preselected = map_preselected["right"];
-                map_preselected = map_map[preselected];
                 break;
             case SDLK_j:
                 preselected = map_preselected["left"];
-                map_preselected = map_map[preselected];
                 break;
             case SDLK_i:
                 preselected = map_preselected["up"];
-                map_preselected = map_map[preselected];
                 break;
             case SDLK_k:
                 preselected = map_preselected["down"];
-                map_preselected = map_map[preselected];
                 break;
             case SDLK_m:
                  return preselected;

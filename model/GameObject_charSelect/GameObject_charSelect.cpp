@@ -38,6 +38,5 @@ std::string GameObject_charSelect:: getName(){
     return name;
 }
 void GameObject_charSelect::render() {
-
     SDL_RenderCopy(renderer, objTexture, &objRect_source, &objRect_dest);
 }
