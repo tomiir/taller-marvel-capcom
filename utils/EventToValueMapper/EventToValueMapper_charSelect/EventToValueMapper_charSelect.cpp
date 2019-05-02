@@ -34,7 +34,7 @@ EventToValueMapper_charSelect::EventToValueMapper_charSelect(){
     map_map["cap_america"] = cap_america;
     map_map["chun_li"] = chun_li;
     map_map["venom"] = venom;
-    map_map["spiderman"] = spider_man;
+    map_map["spider_man"] = spider_man;
 
 
 }

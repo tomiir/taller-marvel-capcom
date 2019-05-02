@@ -201,7 +201,7 @@ vector<GameObject_charSelect *> GameObjectFactory::getgameobjectChar_select_figh
     gameObjects.push_back(cap_america_team_1);
 
     aux = {200,0,800,600};
-    GameObject_charSelect* cap_america_team_2 =  new GameObject_charSelect("Images/menu_seleccion/CA.png","capa_america", 0, renderer, aux );
+    GameObject_charSelect* cap_america_team_2 =  new GameObject_charSelect("Images/menu_seleccion/CA.png","cap_america", 0, renderer, aux );
     gameObjects.push_back(cap_america_team_2);
 
 

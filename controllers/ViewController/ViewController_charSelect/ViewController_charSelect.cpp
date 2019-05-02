@@ -12,7 +12,7 @@ ViewController_charSelect::ViewController_charSelect(SDL_Renderer *renderer_): V
     squarePosition["chun_li"] = {234,417,165,127}; // FALTA AGREGAR LAS POSICIONES
     squarePosition["venom"] = {399,417,165,127}; // FALTA AGREGAR LAS POSICIONES
 
-    std::vector<int> aux_1 = {497,0,303,300};// arriba a la derecha
+    std::vector<int> aux_1 = {497,296,303,300};// arriba a la derecha
     std::vector<int> aux_2 = {497,300,303,300};// abajo a la derecha
     std::vector<int> aux_3 = {0,0,303,300};// arriba a la izquierda
     std::vector<int> aux_4 = {0,300,303,300};// abajo a la izquierda
@@ -41,7 +41,7 @@ void ViewController_charSelect::updateView() {
     this->view->render();
 
 
-    std::vector<string>::iterator itr = selected_1.begin();
+    //std::vector<string>::iterator itr = selected_1.begin();
 
 
     // MODIFICAR ESTA LOGICA DE LATERALES

@@ -20,7 +20,7 @@ string EventToValueMapper_charSelect_2:: map( SDL_Event event) {
         switch (event.key.keysym.sym) {
 
             case SDLK_d:
-                preselected = map_preselected["up"];
+                preselected = map_preselected["right"];
                 map_preselected = map_map[preselected];
                 break;
             case SDLK_a:
@@ -32,7 +32,7 @@ string EventToValueMapper_charSelect_2:: map( SDL_Event event) {
                 map_preselected = map_map[preselected];
                 break;
             case SDLK_s:
-                preselected = map_preselected["up"];
+                preselected = map_preselected["down"];
                 map_preselected = map_map[preselected];
                 break;
             case SDLK_c:
@@ -42,6 +42,6 @@ string EventToValueMapper_charSelect_2:: map( SDL_Event event) {
         }
         map_preselected = map_map[preselected];
     }
-        return NULL;
+        return "no_selecciono";
 
 }
