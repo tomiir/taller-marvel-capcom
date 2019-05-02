@@ -69,14 +69,16 @@ void Game::clean(){
 }
 
 void Game::tick() {
-    this -> viewController -> handleEvent();
+    this->viewController->handleEvent();
 
-    if(this->viewController->end()){
-        string nextView = (this->viewController)->getNextView();
-        //bla bla lo hardcodeo para probar, puedo usar un diccionario aca
-        viewController = factory->getViewController_fight();
-    }
 
     update(); // Esto se va a usar para reconciliar data con el serve supongo. Tipo le envío el movimiento, espero resp.
-    this -> viewController -> updateView();
+    this->viewController->updateView();
+
+    if (this->viewController->end()) {
+        string nextView = (this->viewController)->getNextView();
+        //bla bla lo hardcodeo para probar, puedo usar un diccionario aca
+        this->viewController = factory->getViewController_fight();
+    }
+
 }
