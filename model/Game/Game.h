@@ -4,7 +4,7 @@
 
 
 #include <iostream>
-#include "../../controllers/ViewController/ViewController_fight.h"
+#include "../../controllers/ViewController/ViewController_fight/ViewController_fight.h"
 #include "ViewControllerFactory/ViewControllerFactory.h"
 
 class Game {

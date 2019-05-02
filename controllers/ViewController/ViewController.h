@@ -18,7 +18,7 @@ public:
     virtual void handleEvent();
     virtual void addBackground(ControllerBackground* controller);
 
-private:
+protected:
     View* view;
     SDL_Renderer* renderer;
     std::vector<ControllerBackground*> backgrounds;

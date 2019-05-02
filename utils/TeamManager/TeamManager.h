@@ -6,7 +6,7 @@
 #define TALLER_MARVEL_CAPCOM_TEAMMANAGER_H
 
 #include "../../controllers/Controller/ControllerCharacter/ControllerCharacter.h"
-#include "../EventToValueMapper/EventToValueMapper.h"
+#include "../EventToValueMapper/EventToValueMapper_player/EventToValueMapper.h"
 #include "../../controllers/Controller/ControllerBackground/ControllerBackground.h"
 #include <vector>
 #include "../../controllers/Controller/Renderable.h"

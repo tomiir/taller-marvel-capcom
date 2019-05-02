@@ -7,7 +7,7 @@
 
 #include <vector>
 #include <SDL_events.h>
-#include "../Vector2D/DirectionVector.h"
+#include "../../Vector2D/DirectionVector.h"
 
 
 

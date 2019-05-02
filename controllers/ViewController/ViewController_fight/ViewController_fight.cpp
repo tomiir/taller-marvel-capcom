@@ -7,7 +7,7 @@
 
 #include <SDL2/SDL.h>
 
-#include "../../utils/Logger/Logger.h"
+#include "../../../utils/Logger/Logger.h"
 
 ViewController_fight::ViewController_fight(SDL_Renderer* renderer_):ViewController(renderer_) {
 }

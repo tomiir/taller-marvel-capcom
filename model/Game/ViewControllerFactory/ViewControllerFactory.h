@@ -6,7 +6,7 @@
 #define TALLER_MARVEL_CAPCOM_VIEWCONTROLLERFACTORY_H
 
 #include "../GameObjectControllerFactory/GameObjectControllerFactory.h"
-#include "../../../controllers/ViewController/ViewController_fight.h"
+#include "../../../controllers/ViewController/ViewController_fight/ViewController_fight.h"
 #include "../../../views/View/View.h"
 #include "../../../utils/TeamManager/TeamManager.h"
 

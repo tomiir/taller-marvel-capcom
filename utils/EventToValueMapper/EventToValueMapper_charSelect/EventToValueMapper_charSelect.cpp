@@ -38,3 +38,8 @@ EventToValueMapper_charSelect::EventToValueMapper_charSelect(){
 
 
 }
+
+string EventToValueMapper_charSelect::getPreselected() {
+    return preselected;
+
+}

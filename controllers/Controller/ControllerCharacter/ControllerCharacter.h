@@ -8,7 +8,7 @@
 
 #include "../Controller.h"
 #include "../../../utils/Vector2D/DirectionVector.h"
-#include "../../../utils/EventToValueMapper/EventToValueMapper.h"
+#include "../../../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.h"
 
 using namespace std;
 

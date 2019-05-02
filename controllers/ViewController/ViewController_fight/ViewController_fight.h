@@ -5,15 +5,15 @@
 #ifndef TALLER_MARVEL_CAPCOM_VIEWCONTROLLER_FIGHT_H
 #define TALLER_MARVEL_CAPCOM_VIEWCONTROLLER_FIGHT_H
 
-#include "../../views/View/View.h"
-#include "../Controller/Controller.h"
-#include "../Controller/Renderable.h"
-#include "ViewController.h"
+#include "../../../views/View/View.h"
+#include "../../Controller/Controller.h"
+#include "../../Controller/Renderable.h"
+#include "../ViewController.h"
 #include <vector>
-#include "../Controller/ControllerBackground/ControllerBackground.h"
-#include "../../utils/TeamManager/TeamManager.h"
-#include "../Controller/BackgroundsCotroller/BackgroundsController.h"
-#include "../../utils/FlipManager/FlipManager.h"
+#include "../../Controller/ControllerBackground/ControllerBackground.h"
+#include "../../../utils/TeamManager/TeamManager.h"
+#include "../../Controller/BackgroundsCotroller/BackgroundsController.h"
+#include "../../../utils/FlipManager/FlipManager.h"
 
 
 class ViewController_fight: public ViewController {

@@ -8,14 +8,12 @@
 #include "EventToValueMapper_charSelect.h"
 #include <map>
 
-class EventToValueMapper_charSelect_1: EventToValueMapper_charSelect {
+class EventToValueMapper_charSelect_1: public EventToValueMapper_charSelect {
 
+public:
     EventToValueMapper_charSelect_1();
     ~EventToValueMapper_charSelect_1();
-    void map(ViewController_charSelect* viewController, SDL_Event event) override;
-
-private:
-    //
+    string map( SDL_Event event) override;
 
 };
 

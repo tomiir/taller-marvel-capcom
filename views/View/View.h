@@ -6,7 +6,7 @@
 #include <iostream>
 #include "../../model/GameObjects/GameObject/GameObject.h"
 #include <vector>
-#include "../../utils/EventToValueMapper/EventToValueMapper.h"
+#include "../../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.h"
 
 
 class View {

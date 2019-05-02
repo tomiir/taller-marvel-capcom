@@ -7,26 +7,25 @@
 
 #include <vector>
 #include <SDL_events.h>
-#include "../../controllers/ViewController/ViewController_charSelect.h"
 #include <iostream>
 #include <map>
 #include <string.h>
 
+using namespace std;
 class EventToValueMapper_charSelect {
 
 
 public:
     EventToValueMapper_charSelect();
     ~EventToValueMapper_charSelect() = default;
-    virtual void map(ViewController_charSelect* viewController,SDL_Event event);
+    virtual string map(SDL_Event event);
+    string getPreselected();
 
 protected:
     string preselected;
 
     std::map<string, string> map_preselected;
-
     std::map<string, std::map<string,string> > map_map;
-
     std::map<string, string> cap_america;
     std::map<string, string> chun_li;
     std::map<string, string> spider_man;

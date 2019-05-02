@@ -2,45 +2,46 @@
 // Created by magali on 01/05/19.
 //
 
-#include "EventToValueMapper_charSelect_1.h"
+#include "EventToValueMapper_charSelect_2.h"
 
-EventToValueMapper_charSelect_1::EventToValueMapper_charSelect_1():EventToValueMapper_charSelect(){
-    preselected = "captain_america";
-    map_preselected = cap_america;
+
+EventToValueMapper_charSelect_2::EventToValueMapper_charSelect_2():EventToValueMapper_charSelect(){
+    preselected = "spider_man";
+    map_preselected = spider_man;
 }
 
 
 
-void EventToValueMapper_charSelect_1:: map(ViewController_charSelect* viewController, SDL_Event event){
+string EventToValueMapper_charSelect_2:: map( SDL_Event event) {
 
 
-    if( event.type == SDL_KEYDOWN) {
+    if (event.type == SDL_KEYDOWN) {
 
         switch (event.key.keysym.sym) {
 
-            case SDLK_l:
+            case SDLK_d:
                 preselected = map_preselected["up"];
                 map_preselected = map_map[preselected];
                 break;
-            case SDLK_j:
+            case SDLK_a:
                 preselected = map_preselected["left"];
                 map_preselected = map_map[preselected];
                 break;
-            case SDLK_i:
+            case SDLK_w:
                 preselected = map_preselected["up"];
                 map_preselected = map_map[preselected];
                 break;
-            case SDLK_k:
+            case SDLK_s:
                 preselected = map_preselected["up"];
                 map_preselected = map_map[preselected];
                 break;
-            case SDLK_m:
-                viewController->setTeam1(preselected);
-                break;
+            case SDLK_c:
+               return preselected;
             default:
                 break;
         }
         map_preselected = map_map[preselected];
+    }
+        return "no_selecciono";
+
 }
-
-
