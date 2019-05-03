@@ -38,109 +38,18 @@ void ViewController_charSelect::addGameObject_square_gray(GameObject_charSelect*
 }
 
 void ViewController_charSelect::updateView() {
+
+    //LIMPIO LA PANTALLA
     this->view->render();
 
-
-    //std::vector<string>::iterator itr = selected_1.begin();
-
-
-    // MODIFICAR ESTA LOGICA DE LATERALES
-    std::vector<GameObject_charSelect *> to_render;
-
-    if (selected_1.size() == 0) {
-        itr_team_1 = team_1.find((mapper_1->getPreselected()));
-        (itr_team_1->second)->setPosc(posc_side_1[0]);
-        to_render.push_back(itr_team_1->second);
-    }
-
-    if (selected_2.size() == 0) {
-        itr_team_2 = team_2.find((mapper_2->getPreselected()));
-        (itr_team_2->second)->setPosc(posc_side_2[0]);
-        to_render.push_back(itr_team_2->second);
-    }
-
-    if (selected_1.size() == 1) {
-        itr_team_1 = team_1.find(selected_1[0]);
-        (itr_team_1->second)->setPosc(posc_side_1[0]);
-        to_render.push_back(itr_team_1->second);
-
-        itr_team_1 = team_1.find(mapper_1->getPreselected());
-        (itr_team_1->second)->setPosc(posc_side_1[1]);
-        to_render.push_back(itr_team_1->second);
-    }
-
-    if (selected_2.size() == 1) {
-        itr_team_2 = team_2.find(selected_2[0]);
-        (itr_team_2->second)->setPosc(posc_side_2[0]);
-        to_render.push_back(itr_team_2->second);
-
-        itr_team_2 = team_2.find(mapper_2->getPreselected());
-        (itr_team_2->second)->setPosc(posc_side_2[1]);
-        to_render.push_back(itr_team_2->second);
-
-    }
-
-    if (selected_1.size() == 2) {
-        itr_team_1 = team_1.find(selected_1[0]);
-        (itr_team_1->second)->setPosc(posc_side_1[0]);
-        to_render.push_back(itr_team_1->second);
-
-        itr_team_1 = team_1.find(selected_1[1]);
-        (itr_team_1->second)->setPosc(posc_side_1[1]);
-        to_render.push_back(itr_team_1->second);
-    }
-
-    if (selected_2.size() == 2) {
-        itr_team_2 = team_2.find(selected_2[0]);
-        (itr_team_2->second)->setPosc(posc_side_2[0]);
-        to_render.push_back(itr_team_2->second);
-
-        itr_team_2 = team_2.find(selected_2[1]);
-        (itr_team_2->second)->setPosc(posc_side_2[1]);
-        to_render.push_back(itr_team_2->second);
-
-    }
-
-    std::vector<GameObject_charSelect *> to_render_2;
-
-    std::vector<string>::iterator itr_selected = selected.begin();
-
-    for (itr_selected; itr_selected != selected.end(); ++itr_selected){
-        itr_greySquare= greySquare.find(*itr_selected);
-        to_render_2.push_back(itr_greySquare->second);
-    }
-
-    //LÓGICA DE LATERALES
-
-    itr_squarePosition = squarePosition.find(mapper_1->getPreselected());
-    square_team1->setPosc((itr_squarePosition->second));
-
-
-    itr_squarePosition = squarePosition.find(mapper_2->getPreselected());
-    square_team2->setPosc((itr_squarePosition->second));
-
-
+    //RENDERIZO, EL ORDEN ES IMPORTANTE
     background->render();
+    renderVector(this->getSides());
+    renderVector(this->getGreysSquares());
+    renderVector(this->getSelectionSquares());
 
-    std::vector<GameObject_charSelect*>::iterator itr_to_render = to_render.begin();
-
-    for (itr_to_render; itr_to_render != to_render.end(); ++itr_to_render){
-        (*itr_to_render)->render();
-    }
-
-    std::vector<GameObject_charSelect*>::iterator itr_to_render_2 = to_render_2.begin();
-
-    for (itr_to_render_2; itr_to_render_2 != to_render_2.end(); ++itr_to_render_2){
-        (*itr_to_render_2)->render();
-    }
-
-    square_team1->render();
-    square_team2->render();
-
-
+    //LO PRESENTO EN EL RENDER
     SDL_RenderPresent(renderer);
-
-
 
 }
 
@@ -157,6 +66,14 @@ void ViewController_charSelect:: addGameObject_character(GameObject_charSelect* 
     }
 }
 
+void ViewController_charSelect:: addGameObject_character_selected(GameObject_charSelect* gameObject, int team){
+    if (team == 1 ){
+        team_1_selected[gameObject->getName()] = gameObject;
+    }
+    else{
+        team_2_selected[gameObject->getName()] = gameObject;
+    }
+}
 
 void ViewController_charSelect:: handleEvent() {
 
@@ -229,5 +146,106 @@ ViewController_charSelect::~ViewController_charSelect() {
 
 string ViewController_charSelect::getNextView() {
     return "fight";
+}
+
+std::vector<GameObject_charSelect *> ViewController_charSelect::getSides() {
+
+    // LOGICA DE LATERALES. to_render es un vector que tiene los laterales a renderizar.
+    std::vector<GameObject_charSelect *> to_render;
+
+    if (selected_1.size() == 0) {
+        itr_team_1 = team_1.find((mapper_1->getPreselected()));
+        (itr_team_1->second)->setPosc(posc_side_1[0]);
+        to_render.push_back(itr_team_1->second);
+    }
+
+    if (selected_2.size() == 0) {
+        itr_team_2 = team_2.find((mapper_2->getPreselected()));
+        (itr_team_2->second)->setPosc(posc_side_2[0]);
+        to_render.push_back(itr_team_2->second);
+    }
+
+    if (selected_1.size() == 1) {
+        itr_team_1_selected = team_1_selected.find(selected_1[0]);
+        (itr_team_1_selected->second)->setPosc(posc_side_1[0]);
+        to_render.push_back(itr_team_1_selected->second);
+
+        itr_team_1 = team_1.find(mapper_1->getPreselected());
+        (itr_team_1->second)->setPosc(posc_side_1[1]);
+        to_render.push_back(itr_team_1->second);
+    }
+
+    if (selected_2.size() == 1) {
+        itr_team_2_selected = team_2_selected.find(selected_2[0]);
+        (itr_team_2_selected->second)->setPosc(posc_side_2[0]);
+        to_render.push_back(itr_team_2_selected->second);
+
+        itr_team_2 = team_2.find(mapper_2->getPreselected());
+        (itr_team_2->second)->setPosc(posc_side_2[1]);
+        to_render.push_back(itr_team_2->second);
+
+    }
+
+    if (selected_1.size() == 2) {
+
+        itr_team_1_selected = team_1_selected.find(selected_1[0]);
+        (itr_team_1_selected->second)->setPosc(posc_side_1[0]);
+        to_render.push_back(itr_team_1_selected->second);
+
+        itr_team_1_selected = team_1_selected.find(selected_1[1]);
+        (itr_team_1_selected->second)->setPosc(posc_side_1[1]);
+        to_render.push_back(itr_team_1_selected->second);
+    }
+
+    if (selected_2.size() == 2) {
+        itr_team_2_selected = team_2_selected.find(selected_2[0]);
+        (itr_team_2_selected->second)->setPosc(posc_side_2[0]);
+        to_render.push_back(itr_team_2_selected->second);
+
+        itr_team_2_selected = team_2_selected.find(selected_2[1]);
+        (itr_team_2_selected->second)->setPosc(posc_side_2[1]);
+        to_render.push_back(itr_team_2_selected->second);
+
+    }
+    return to_render;
+}
+
+std::vector<GameObject_charSelect *> ViewController_charSelect::getGreysSquares() {
+
+    std::vector<GameObject_charSelect *> to_render;
+
+    std::vector<string>::iterator itr_selected = selected.begin();
+
+    for (itr_selected; itr_selected != selected.end(); ++itr_selected){
+        itr_greySquare= greySquare.find(*itr_selected);
+        to_render.push_back(itr_greySquare->second);
+    }
+    return to_render;
+}
+
+std::vector<GameObject_charSelect *> ViewController_charSelect::getSelectionSquares() {
+
+    std::vector<GameObject_charSelect*> to_render;
+
+    itr_squarePosition = squarePosition.find(mapper_1->getPreselected());
+    square_team1->setPosc((itr_squarePosition->second));
+
+    to_render.push_back(square_team1);
+
+    itr_squarePosition = squarePosition.find(mapper_2->getPreselected());
+    square_team2->setPosc((itr_squarePosition->second));
+
+    to_render.push_back(square_team2);
+
+    return to_render;
+}
+
+void ViewController_charSelect::renderVector(std::vector<GameObject_charSelect*> to_render) {
+
+    std::vector<GameObject_charSelect*>::iterator itr_to_render = to_render.begin();
+
+    for (itr_to_render; itr_to_render != to_render.end(); ++itr_to_render){
+        (*itr_to_render)->render();
+    }
 }
 

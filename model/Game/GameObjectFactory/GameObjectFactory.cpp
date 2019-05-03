@@ -204,6 +204,38 @@ vector<GameObject_charSelect *> GameObjectFactory::getgameobjectChar_select_figh
     GameObject_charSelect* cap_america_team_2 =  new GameObject_charSelect("Images/menu_seleccion/CA.png","cap_america", 0, renderer, aux );
     gameObjects.push_back(cap_america_team_2);
 
+    //IMAGENES LATERALES seleccionadas
+    aux = {200,0,800,600};
+    GameObject_charSelect* spider_man_team1_selected =  new GameObject_charSelect("Images/menu_seleccion/SM2.png","spider_man", 0, renderer, aux );
+    gameObjects.push_back(spider_man_team1_selected);
+
+    aux = {200,0,800,600};
+    GameObject_charSelect* spider_man_team2_selected =  new GameObject_charSelect("Images/menu_seleccion/SM.png","spider_man", 0, renderer, aux );
+    gameObjects.push_back(spider_man_team2_selected);
+
+    aux = {200,0,800,600};
+    GameObject_charSelect* venom_team_1_selected =  new GameObject_charSelect("Images/menu_seleccion/V2.png","venom", 0, renderer, aux );
+    gameObjects.push_back(venom_team_1_selected);
+
+    aux = {200,0,800,600};
+    GameObject_charSelect* venom_team_2_selected =  new GameObject_charSelect("Images/menu_seleccion/V.png","venom", 0, renderer, aux );
+    gameObjects.push_back(venom_team_2_selected);
+
+    aux = {200,0,800,600};
+    GameObject_charSelect* chun_li_team_1_selected =  new GameObject_charSelect("Images/menu_seleccion/CL2.png","chun_li", 0, renderer, aux );
+    gameObjects.push_back(chun_li_team_1_selected);
+
+    aux = {200,0,800,600};
+    GameObject_charSelect* chun_li_team_2_selected =  new GameObject_charSelect("Images/menu_seleccion/CL.png","chun_li", 0, renderer, aux );
+    gameObjects.push_back(chun_li_team_2_selected);
+
+    aux = {200,0,800,600};
+    GameObject_charSelect* cap_america_team_1_selected =  new GameObject_charSelect("Images/menu_seleccion/CA2.png","cap_america", 0, renderer, aux );
+    gameObjects.push_back(cap_america_team_1_selected);
+
+    aux = {200,0,800,600};
+    GameObject_charSelect* cap_america_team_2_selected =  new GameObject_charSelect("Images/menu_seleccion/CA.png","cap_america", 0, renderer, aux );
+    gameObjects.push_back(cap_america_team_2_selected);
 
     //CUADRADITOS
     aux = {200,0,800,600};

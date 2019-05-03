@@ -39,12 +39,19 @@ public:
     //agregar 4 cuadrados grises
     void addGameObject_square_gray(GameObject_charSelect* square);
 
+    //fotos laterales de seleccionados para cada TEAM
+    void addGameObject_character_selected(GameObject_charSelect *gameObject, int team);
+
 
 
 private:
     int getTeam(SDL_Event event);
 
+    std::vector <GameObject_charSelect*> getSides();
+    std::vector <GameObject_charSelect*> getGreysSquares();
+    std::vector <GameObject_charSelect*> getSelectionSquares();
 
+    void renderVector(std::vector<GameObject_charSelect*> to_render);
 
     // PERSONAJES SELECCIONADOS POR CADA TEAM
     std::vector<string> selected_1;
@@ -60,11 +67,20 @@ private:
     //En la posc 1 de este vector esta la posicion del team 2 para su primera foto lateral
     std::vector<std::vector<int>> posc_side_2;
 
-    // DICCIONARIOS POR TEAM DE FOTOS LATERALES
+    // DICCIONARIOS POR TEAM DE FOTOS LATERALES, PRESELECCIONADOS
+
     std::map<string, GameObject_charSelect* > team_1;
     map<string, GameObject_charSelect*>::iterator itr_team_1= team_1.begin();
     std::map<string, GameObject_charSelect* > team_2;
     map<string, GameObject_charSelect*>::iterator itr_team_2= team_2.begin();
+
+    // DICCIONARIOS POR TEAM DE FOTOS LATERALES, SELECCIONADOS
+
+    std::map<string, GameObject_charSelect* > team_1_selected;
+    map<string, GameObject_charSelect*>::iterator itr_team_1_selected= team_1_selected.begin();
+    std::map<string, GameObject_charSelect* > team_2_selected;
+    map<string, GameObject_charSelect*>::iterator itr_team_2_selected= team_2_selected.begin();
+
 
     // CUADRADITOS
     GameObject_charSelect* square_team1;
@@ -84,6 +100,7 @@ private:
     //MAPEADORES DE TECLAS
     EventToValueMapper_charSelect_1* mapper_1;
     EventToValueMapper_charSelect_2* mapper_2;
+
 
 
 };
