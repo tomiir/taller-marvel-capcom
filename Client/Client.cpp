@@ -14,13 +14,12 @@ Client::Client(const char *ip, uint16_t port) {
 
 
     //--------- CONFIG SERVER --------------
-    serverSocket_c = socket(AF_INET, SOCK_STREAM, 0);
+    serverSocket_c = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 
     serverAddr_c.sin_family = AF_INET;
     serverAddr_c.sin_port = htons(port);
     inet_pton(AF_INET, ip, &serverAddr_c.sin_addr);
     serverSize_c = sizeof(serverAddr_c);
-
     beating = true;
 
 }
@@ -48,6 +47,7 @@ bool Client::Connect() {
 void Client::Send(char* message) {
 
     ssize_t bytesSent = send(serverSocket_c, message, strlen(message), 0);
+
     if(bytesSent == -1) cerr << "Error al enviar el mensaje";
 
 }
@@ -84,25 +84,23 @@ void Client::hearthBeat(){
 
     char message[4096];
     future<int> scanning = async(scanf,"%s",message);
-    chrono::milliseconds temp (1000);
+    chrono::milliseconds temp (1500);
 
     char hearthbeat[1];
 
-//    char messageDisconnectServer[1];
-//    chrono::milliseconds s(100);
-//    future<ssize_t > serverConection = async(recv,serverSocket_c, messageDisconnectServer, strlen(messageDisconnectServer), 0);
-//    while(serverConection.wait_for(s) == future_status::timeout){}
-//
-//    int i = recv(serverSocket_c,messageDisconnectServer, strlen(messageDisconnectServer), 0);
-//    if( i > 0){
-//        string aux = string(messageDisconnectServer,i);
-//        cout << aux << endl;
-//        close(serverSocket_c);
-//        exit(0);
-//    }
-
-
     while(scanning.wait_for(temp) == future_status::timeout){
+
+        signal(SIGPIPE, SIG_IGN);
+
+        int error_code;
+        socklen_t error_code_size = sizeof(error_code);
+        getsockopt(serverSocket_c, SOL_SOCKET, SO_ERROR, &error_code, &error_code_size);
+
+        if(error_code){
+            cout << "el server se desconecto" << endl;
+            close(serverSocket_c);
+            exit(0);
+        }
 
         if(term_client){
             beating = false;

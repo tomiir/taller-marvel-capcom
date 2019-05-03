@@ -14,8 +14,8 @@ socklen_t clientSize[MAXCLIENTS];
 
 Server::Server() {
 
-    serverSocket_s = socket(AF_INET, SOCK_STREAM, 0);
-    if( serverSocket_s == -1 ){
+    serverSocket_s = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+    if (serverSocket_s == -1) {
         cerr << "No se pudo crear el socket del servidor, saliento" << endl;
     }
 
@@ -51,19 +51,19 @@ void* Server::serverThread(void *clientSock_) {
 
     while(true){
 
-//
-//        signal(SIGINT, handler);
-//        signal(SIGQUIT, handler);
-//
-//        if(term_server){
-//            memset(messageToClient,0, 4096);
-//            strcpy(messageToClient, "El servidor se desconecto");
-//
-//            if (send(clientSocket, messageToClient, strlen(messageToClient),0) < 0 ){
-//                cout << "NO FUNCA BROH" << endl;
-//            }
-//            return nullptr;
-//        }
+        signal(SIGINT, handler);
+        signal(SIGQUIT, handler);
+
+        if(term_server == 1){
+            memset(messageToClient,0, 4096);
+            strcpy(messageToClient, "El servidor se desconecto");
+
+            if (send(clientSocket, messageToClient, strlen(messageToClient),0) < 0 ){
+                cout << "NO FUNCA BROH" << endl;
+            }
+            close(serverSocket_s);
+            return nullptr;
+        }
 
         memset(messageFromClient, 0, 4096);
         int bytesReceived = recv(clientSocket, messageFromClient, 4096,0);
