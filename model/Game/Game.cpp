@@ -69,6 +69,7 @@ void Game::clean(){
 }
 
 void Game::tick() {
+
     this->viewController->handleEvent();
 
 
@@ -76,7 +77,7 @@ void Game::tick() {
     this->viewController->updateView();
 
     if (this->viewController->end()) {
-        string nextView = (this->viewController)->getNextView();
+   //     string nextView = (this->viewController)->getNextView();
         //bla bla lo hardcodeo para probar, puedo usar un diccionario aca
         this->viewController = factory->getViewController_fight();
     }

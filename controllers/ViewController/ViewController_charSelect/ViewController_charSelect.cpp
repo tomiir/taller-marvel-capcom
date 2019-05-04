@@ -85,7 +85,7 @@ void ViewController_charSelect:: handleEvent() {
         if (strcmp(respuesta_1.c_str(), "no_selecciono") != 0) setTeam1(respuesta_1);
     }
 
-    if (selected_1.size() < 2) {
+    if (selected_2.size() < 2) {
     string respuesta_2 = mapper_2->map(event);
     if (strcmp(respuesta_2.c_str(), "no_selecciono") != 0) setTeam2(respuesta_2);
     }

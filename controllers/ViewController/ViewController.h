@@ -12,7 +12,8 @@
 
 class ViewController{
 public:
-     explicit ViewController(SDL_Renderer* renderer_);
+
+    ViewController(SDL_Renderer* renderer_);
     virtual ~ViewController();
     virtual void updateView();
     virtual void handleEvent();

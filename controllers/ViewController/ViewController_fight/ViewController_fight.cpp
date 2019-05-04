@@ -9,7 +9,7 @@
 
 #include "../../../utils/Logger/Logger.h"
 
-ViewController_fight::ViewController_fight(SDL_Renderer* renderer_):ViewController(renderer_) {
+ViewController_fight::ViewController_fight(SDL_Renderer* renderer_):.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,l(renderer_) {
 }
 
 ViewController_fight::~ViewController_fight() = default;

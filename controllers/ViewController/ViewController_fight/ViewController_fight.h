@@ -31,10 +31,6 @@ public:
     string getNextView()override;
 
 private:
-
-    View* view;
-    SDL_Renderer* renderer;
-    std::vector<ControllerBackground*> backgrounds;
     TeamManager* team1;
     TeamManager* team2;
     BackgroundsController* backgroundsController;
