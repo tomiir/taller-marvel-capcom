@@ -30,12 +30,15 @@ public:
     bool end()override;
     string getNextView()override;
     void setTeam(vector<ControllerCharacter*> characters, int team);
+    void createFlipManager();
 
 private:
     TeamManager* team1;
     TeamManager* team2;
     BackgroundsController* backgroundsController;
     FlipManager* flipManager;
+
+
 };
 
 

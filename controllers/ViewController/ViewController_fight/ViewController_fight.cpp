@@ -114,3 +114,7 @@ void ViewController_fight::setTeam(vector<ControllerCharacter *> characters, int
 
 }
 
+
+void ViewController_fight:: createFlipManager(){
+    flipManager->create();
+}

@@ -22,6 +22,9 @@ public:
 
     void update();
 
+    void create();
+
+
     //AGREGAR ESTO EN VIEWCONTROLLERFACTORY
 
 private:

@@ -97,6 +97,8 @@ void Game::tick() {
 
             aux =  {(characters.find(team2[0])->second), (characters.find(team2[1])->second)};
             ((ViewController_fight*)nextView)->setTeam(aux,2);
+
+            ((ViewController_fight*)nextView)->createFlipManager();
         }
         this->viewController = nextView;
     }
