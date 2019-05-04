@@ -43,6 +43,7 @@ Server::Server() {
 void Server::checkSendToClientError(int clientSock) {
 
     switch(errno) {
+
         case ECONNRESET:
             cout << "El cliente cerro la conexion" << endl;
             close(clientSock);
@@ -62,7 +63,6 @@ void Server::checkSendToClientError(int clientSock) {
             close(clientSock);
             exit(0);
     }
-
 }
 
 void Server::checkRecvFromClientError(int clientSock) {
