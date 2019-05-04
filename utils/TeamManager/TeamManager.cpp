@@ -69,3 +69,9 @@ void TeamManager::flipCurrentCharacter() {
     currentCharacter->flip(flip);
 
 }
+
+void TeamManager::setInitialPos(bool left) {
+
+    currentCharacter->setInitialPos(left);
+
+}

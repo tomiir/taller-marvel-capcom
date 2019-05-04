@@ -14,7 +14,7 @@ using namespace std;
 class Character : public GameObject {
 
 public:
-    Character(const char* imagePath,string name_, int z_index, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialX, int initialY, int crowchedDownY_, string name, double size);
+    Character(const char* imagePath,string name_, int z_index, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialY, string name, double size);
     ~Character();
 
     void move(DirectionVector* direction) override ;
@@ -24,6 +24,8 @@ public:
     void stayInFloor() override ;
     void flipSprite(SDL_RendererFlip flip);
     void changePosition(int changeX, int changeY);
+    void setInitialXPositions(int positionLeft, int positionRight);
+    void setInitialPos(bool left);
     string name;
 
 private:
@@ -32,6 +34,9 @@ private:
     int initialY;
     CLogger* logger = CLogger::GetLogger();
     double size;
+    int posInitialLeft;
+    int posInitialRight;
+
 };
 
 

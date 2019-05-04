@@ -110,14 +110,17 @@ string ViewController_fight::getNextView() {
 }
 
 void ViewController_fight::setTeam(vector<ControllerCharacter *> characters, int team) {
+
     if (team == 1) {
         EventToValueMapper* mapperTeam1 = new EventToValueMapper_player1();
         team1->setCharacters(characters, mapperTeam1);
+        team1->setInitialPos(true);
     }
     else {
 
         EventToValueMapper* mapperTeam2 = new EventToValueMapper_player2();
         team2->setCharacters(characters, mapperTeam2);
+        team2->setInitialPos(false);
     }
 
 }

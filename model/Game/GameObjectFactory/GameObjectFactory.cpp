@@ -84,13 +84,16 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
         SpriteManager* spriteManager = itrSprites->second;
 
         Character* C;
-        if(gameObjects.size() < 2){
 
-            C = new Character(path.c_str(), spriteManagerName,  zIndex, renderer, spriteManager , width/2, initialY, initialY , name, size);
+
+        if(gameObjects.size() < 2){
+            C = new Character(path.c_str(), spriteManagerName,  zIndex, renderer, spriteManager , initialY, name, size);
         }
         else{
-            C = new Character(path.c_str(), spriteManagerName, zIndex, renderer, spriteManager ,(screenWidth - width) - (width/2), initialY, initialY , name, size) ;
+            C = new Character(path.c_str(), spriteManagerName, zIndex, renderer, spriteManager , initialY, name, size) ;
         }
+
+        C->setInitialXPositions(width/2, (screenWidth - width) - (width/2));
 
         gameObjects.push_back((C));
     }
@@ -99,6 +102,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
 }
 
 double GameObjectFactory::cameraSpeedPercentage(int widthMax, int widthImg) {
+
     double a = widthImg - screenWidth;
     double b = widthMax - screenWidth;
     return a/b;
@@ -108,11 +112,8 @@ double GameObjectFactory::cameraSpeedPercentage(int widthMax, int widthImg) {
 vector<GameObject*> GameObjectFactory:: getGameObjectsBackgrounds_fight() {
 
     CLogger* logger = CLogger::GetLogger();
-
     vector<GameObject *> gameObjects;
-
     JsonConfigs* config = JsonConfigs::getJson();
-
     list <JsonBackground> battlefields = config->getJsonBackgrounds();
 
     int maxWidth = 0;

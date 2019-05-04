@@ -13,6 +13,7 @@
 
 
 class TeamManager: virtual public Renderable{
+
 public:
     TeamManager(SDL_RendererFlip initialFlip);
 
@@ -24,6 +25,8 @@ public:
     void flipCurrentCharacter();
     int getZIndex() override;
     void setCharacters(std::vector<ControllerCharacter*> characters, EventToValueMapper* mapper);
+    void setInitialPos(bool left);
+
 
 private:
 

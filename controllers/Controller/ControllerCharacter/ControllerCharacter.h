@@ -24,25 +24,16 @@ public:
     bool isJumpingRight();
     bool isJumpingLeft();
     EventToValueMapper* getMapper();
-
+    void setInitialPos(bool left);
     void move(DirectionVector *pVector);
-
     void flip(SDL_RendererFlip);
-
     void changePosition(int changeX, int changeY);
-
     bool isInAir();
-
     void gone();
-
     void entry();
-
     bool isChanging();
-
     bool isMovingRight();
-
     bool isMovingLeft();
-
     void setMapper(EventToValueMapper* mapper);
 
 private:
@@ -54,8 +45,6 @@ private:
     string state = "still";
     CLogger* logger = CLogger::GetLogger();
     Character* character = dynamic_cast<Character*>(gameObject);
-
-
 };
 
 

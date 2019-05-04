@@ -203,3 +203,9 @@ void ControllerCharacter::setMapper(EventToValueMapper* mapper) {
 
     this->mapper = mapper;
 }
+
+void ControllerCharacter::setInitialPos(bool left) {
+
+    dynamic_cast<Character*>(gameObject)->setInitialPos(left);
+
+}
