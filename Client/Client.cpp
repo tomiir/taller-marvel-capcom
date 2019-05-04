@@ -4,29 +4,40 @@
 
 #include <csignal>
 #include "Client.h"
+#define NOBEAT (char*)"0"
+#define BEAT (char*)"1"
 
 //----SERVER VARIABLES----
 int serverSocket_c;
 struct sockaddr_in serverAddr_c;
 socklen_t  serverSize_c;
 
-Client::Client(const char *ip, uint16_t port) {
+char messageFromServer[4096];
+char messageToSever[4096];
+char messageFromInput[4096];
 
 
-    //--------- CONFIG SERVER --------------
+
+
+void Client::configServer(const char* serverIp, uint16_t serverPort){
+
     serverSocket_c = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-
     serverAddr_c.sin_family = AF_INET;
-    serverAddr_c.sin_port = htons(port);
-    inet_pton(AF_INET, ip, &serverAddr_c.sin_addr);
+    serverAddr_c.sin_port = htons(serverPort);
+    inet_pton(AF_INET, serverIp, &serverAddr_c.sin_addr);
     serverSize_c = sizeof(serverAddr_c);
-    beating = true;
+}
 
+
+Client::Client(const char* serverIp, uint16_t serverPort) {
+
+    configServer(serverIp, serverPort);
+    beating = true;
 }
 
 void Client::Disconnect() {
 
-    Send( (char*) "0");
+    Send( NOBEAT );
     cout << "Desconectando..." << endl;
     close(serverSocket_c);
 }
@@ -35,12 +46,38 @@ void Client::Disconnect() {
 bool Client::Connect() {
 
     int connection = connect(serverSocket_c, (struct sockaddr*) &serverAddr_c, serverSize_c);
+
     if(connection < 0 ){
         cout << "Fallo la conexion con el servidor " << endl;
-        close(serverSocket_c);
         return false;
     }
     return true;
+
+}
+
+void Client::checkSendToServerError(){
+
+    switch(errno) {
+        case ECONNRESET:
+            cout << "El server cerro la conexion" << endl;
+            close(serverSocket_c);
+            break;
+        case EINTR:
+            cout << "Una señal interrumpio el send antes de enviar el mensaje" << endl;
+            break;
+        case EIO:
+            cout << "Hubo un problema en la red o en el transporte" << endl;
+            break;
+        case ENOTCONN:
+            cout << "El server no esta conectado" << endl;
+            close(serverSocket_c);
+            break;
+        case EPIPE:
+            cout << "Se recibio un SIGPIPE" << endl;
+            close(serverSocket_c);
+            //aca tendria que seguir intentando reconectarse al server
+            exit(0);
+    }
 
 }
 
@@ -48,77 +85,63 @@ void Client::Send(char* message) {
 
     ssize_t bytesSent = send(serverSocket_c, message, strlen(message), 0);
 
-    if(bytesSent == -1) cerr << "Error al enviar el mensaje";
+    if(bytesSent == -1){
+        checkSendToServerError();
+    }
 
 }
 
 char* Client::update() {
 
-    char message[4096];
-    memset(message, 0, 4096);
+    memset(messageFromServer, 0, 4096);
+    int bytesReceived = recv(serverSocket_c, messageFromServer, 4096, 0);
 
-    int bytesReceived = recv(serverSocket_c, message, 4096, 0);
-    if(bytesReceived == -1){
-
-        cout << "Error recibiendo la respuesta del server" << endl;
+    if(bytesReceived < 0){
+        cout << "Se produjo un error al recibir el mensaje proveniente del servidor" << endl;
     }
     else{
-
-        cout << "SERVER: " << string(message, bytesReceived) << endl;
+        cout << "SERVER: " << string(messageFromServer, bytesReceived) << endl;
     }
-    string received = string(message, bytesReceived);
-    return &received[0u]; //SI TIRA SEGSEV ES POR ESTA COSA RARA
+
+    string messageReceived = string(messageFromServer, bytesReceived);
+    return &messageReceived[0u]; //SI TIRA SEGSEV ES POR ESTA COSA RARA
 }
 
-sig_atomic_t term_client = 0;
+sig_atomic_t clientBrokeConnection = 0;
 
-void Client::handler(int num){
-    term_client = 1;
+void Client::brokeConnetion(int arg){
+    clientBrokeConnection = 1;
 }
 
 
 void Client::hearthBeat(){
 
-    signal(SIGINT, handler);
-    signal(SIGQUIT, handler);
+    signal(SIGINT, brokeConnetion);
+    signal(SIGQUIT, brokeConnetion);
+    signal(SIGPIPE, SIG_IGN);
 
-    char message[4096];
-    future<int> scanning = async(scanf,"%s",message);
-    chrono::milliseconds temp (1500);
 
-    char hearthbeat[1];
+    memset(messageFromInput, 0, 4096);
+    future<int> scanning = async(scanf,"%s",messageFromInput);
+    chrono::milliseconds waitTime (1500);
 
-    while(scanning.wait_for(temp) == future_status::timeout){
+    while(scanning.wait_for(waitTime) == future_status::timeout){
 
-        signal(SIGPIPE, SIG_IGN);
-
-        int error_code;
-        socklen_t error_code_size = sizeof(error_code);
-        getsockopt(serverSocket_c, SOL_SOCKET, SO_ERROR, &error_code, &error_code_size);
-
-        if(error_code){
-            cout << "el server se desconecto" << endl;
-            close(serverSocket_c);
-            exit(0);
-        }
-
-        if(term_client){
+        if(clientBrokeConnection){
             beating = false;
             this->Disconnect();
             exit(0);
         }
-
-        memset(hearthbeat, 0, 1);
-        Send((char *) "1");
+        Send(BEAT);
     }
 
-    if(strcmp(message, "quit") == 0) {
+    if(strcmp(messageFromInput, "quit") == 0) {
         beating = false;
         this->Disconnect();
         return;
     }
 
-    Send(message);
+    Send(messageFromInput);
 }
 
 bool Client::isBeating() {

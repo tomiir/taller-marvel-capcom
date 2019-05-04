@@ -30,7 +30,7 @@ public:
     void Listen();
     static void* serverThread(void *clientSock_);
 
-    static void handler(int num);
+    static void brokeConnection(int arg);
 };
 
 

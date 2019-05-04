@@ -16,7 +16,7 @@
 #include <pthread.h>
 #include <future>
 #include <chrono>
-
+#include <netinet/tcp.h>
 
 using namespace std;
 
@@ -25,7 +25,7 @@ class Client {
 
 public:
     Client() = default;
-    Client(const char *ip, uint16_t port);
+    Client(const char* serverIp, uint16_t serverPort);
     ~Client() = default;
     bool Connect();
     void Disconnect();
@@ -36,10 +36,17 @@ public:
 
 private:
 
+
     pthread_t clientThread;
     bool beating;
 
-    static void handler(int num);
+    static void brokeConnetion(int num);
+
+    void configServer(const char* serverIp, uint16_t serverPort);
+
+    bool enable_keepalive();
+
+    void checkSendToServerError();
 };
 
 

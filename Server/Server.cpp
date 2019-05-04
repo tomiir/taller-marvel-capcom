@@ -12,6 +12,9 @@ int clientSocket[MAXCLIENTS];
 struct sockaddr_in clientAddr[MAXCLIENTS];
 socklen_t clientSize[MAXCLIENTS];
 
+char messageFromClient[4096];
+char messageToClient[4096];
+
 Server::Server() {
 
     serverSocket_s = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
@@ -35,67 +38,65 @@ Server::Server() {
 
     }
 }
-sig_atomic_t term_server = 0;
+sig_atomic_t serverBrokeConnection = 0;
 
-void Server::handler(int num){
-    term_server = 1;
+void Server::brokeConnection(int arg){
+    serverBrokeConnection = 1;
 }
+
 
 void* Server::serverThread(void *clientSock_) {
 
-    int clientSocket = *(int *) clientSock_;
-
-    char messageFromClient[4096];
-    char messageToClient[4096];
+    int clientSock = *(int *) clientSock_;
     bool connected = true;
 
     while(true){
 
-        signal(SIGINT, handler);
-        signal(SIGQUIT, handler);
+        signal(SIGINT, brokeConnection);
+        signal(SIGQUIT, brokeConnection);
 
-        if(term_server == 1){
+        if(serverBrokeConnection == 1){
+
             memset(messageToClient,0, 4096);
             strcpy(messageToClient, "El servidor se desconecto");
 
-            if (send(clientSocket, messageToClient, strlen(messageToClient),0) < 0 ){
-                cout << "NO FUNCA BROH" << endl;
+            if (send(clientSock, messageToClient, strlen(messageToClient),0) < 0 ){
             }
             close(serverSocket_s);
             return nullptr;
         }
 
         memset(messageFromClient, 0, 4096);
-        int bytesReceived = recv(clientSocket, messageFromClient, 4096,0);
+        int bytesReceived = recv(clientSock, messageFromClient, 4096,0);
 
         if (bytesReceived == -1) {
             cerr << "Error in recv(). Quitting" << endl;
             break;
         }
-        if ( bytesReceived < 0 ) cerr << "Error al recibir el mensaje por parte del cliente " << clientSocket << endl;
+        if ( bytesReceived < 0 ) cerr << "Error al recibir el mensaje por parte del cliente " << clientSock << endl;
 
         string aux = string(messageFromClient, 0, bytesReceived);
         char* received = &aux[0u];
 
         if( strcmp(received, "0") == 0) {
             connected = false;
-            cout << "El cliente: " << clientSocket << " se desconecto" << endl;
-            close(clientSocket);
+            cout << "El cliente: " << clientSock << " se desconecto" << endl;
+            close(clientSock);
             break;
         }
 
         if ( strcmp(received, "1") == 0){
-            cout << "El cliente " << clientSocket<< " esta latiendo" << endl;
+            cout << "El cliente " << clientSock<< " esta latiendo" << endl;
         }
 
         if(connected and strcmp(received, "1") != 0) { //ese cmp es bastante trucho,
 
-            cout << "Se recibio de " << clientSocket << ": " << received << endl;
+            cout << "Se recibio de " << clientSock << ": " << received << endl;
 
             memset(messageToClient, 0, 4096);
             strcpy(messageToClient, "Se recibio el mensaje correctamente");
 
-            send(clientSocket, messageToClient, strlen(messageToClient), 0);
+            send(clientSock, messageToClient, strlen(messageToClient), 0);
         }
     }
 }
