@@ -4,18 +4,19 @@
 
 #include "JsonCharacter.h"
 
-JsonCharacter::JsonCharacter(){
+JsonCharacter::JsonCharacter(std::list<std::string> errors){
     this->error = true;
+    this->errorsList = errors;
+
 }
 
-JsonCharacter::JsonCharacter(std::string name, std::string filepath, int height, int width, int zindex, int crowchedDownY, std::string spriteManager, double size) {
+JsonCharacter::JsonCharacter(std::string name, std::string filepath, int height, int width, int zindex, std::string spriteManager, double size) {
 
     this->name = name;
     this->filepath = filepath;
     this-> height = height;
     this->width = width;
     this->zindex = zindex;
-    this->crowchedDownY = crowchedDownY;
     this->spriteManager = spriteManager;
     this->size = size;
     this->error = false;
@@ -23,6 +24,10 @@ JsonCharacter::JsonCharacter(std::string name, std::string filepath, int height,
 
 std::string JsonCharacter::getName() {
     return this->name;
+}
+
+std::list<std::string> JsonCharacter::getErrorList(){
+    return this->errorsList;
 }
 
 std::string JsonCharacter::getFilePath() {
@@ -39,10 +44,6 @@ int JsonCharacter::getWidth() {
 
 int JsonCharacter::getzIndex() {
     return this->zindex;
-}
-
-int JsonCharacter::getCrowchedDownY(){
-    return crowchedDownY;
 }
 
 std::string JsonCharacter::getSpriteManager(){

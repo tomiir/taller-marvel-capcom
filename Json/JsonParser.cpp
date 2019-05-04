@@ -34,39 +34,61 @@ void JsonParser::setJson(std::string ruta){
     this->json = json;
 }
 
-std::string JsonParser::getLog() {
+std::string JsonParser::getLog() {   //DESPUES USARLO, DE MOMENTO ESTA HARCODEADO
     return json["debug"].asString();
 }
 
-std::list<Battlefield> JsonParser::getBattlefields() {
+std::list<JsonBackground> JsonParser::getJsonBackgrounds() {
 
-    std::list<Battlefield> battlefields;
+    std::list<JsonBackground> backgrounds;
     Json::Value json = this->json["battlefield"];
 
 
     for(Json::Value::iterator it=json.begin(); it!=json.end(); ++it) {
-        if(
-                ((*it)["background"]["filepath"]).asString() == "null" ||
-                !((*it)["background"]["zindex"]).asInt() || ((*it)["background"]["zindex"]).asInt() <= 0 ||
-                !((*it)["background"]["width"]).asInt() || ((*it)["background"]["width"]).asInt() <= 0 ||
-                !((*it)["background"]["height"]).asInt() || ((*it)["background"]["height"]).asInt() <= 0 )
-        {
 
-            battlefields.push_back(Battlefield());
+        std::list<std::string> errors;
+        bool error = false;
+
+
+        if( !((*it)["background"]["name"]).isString() || ((*it)["background"]["name"]).asString() == "null"){
+            error = true;
+            errors.push_back("name");
         }
+        if( !((*it)["background"]["filepath"]).isString() || ((*it)["background"]["filepath"]).asString() == "null"){
+            error = true;
+            errors.push_back("filepath");
+        }
+        if( !((*it)["background"]["zindex"]).isInt() || ((*it)["background"]["zindex"]).asInt() <= 0 ){
+            error = true;
+            errors.push_back("zindex");
+        }
+        if( !((*it)["background"]["width"]).isInt() || ((*it)["background"]["width"]).asInt() <= 0 ){
+            error = true;
+            errors.push_back("width");
+        }
+        if( !((*it)["background"]["height"]).isInt() || ((*it)["background"]["height"]).asInt() <= 0 ){
+            error = true;
+            errors.push_back("height");
+        }
+        if(error){
+            backgrounds.push_back(JsonBackground(errors));
+        }
+
         else {
-            Battlefield battlefield(
+            JsonBackground battlefield(
+                    ((*it)["background"]["name"]).asString(),
                     ((*it)["background"]["filepath"]).asString(),
                     ((*it)["background"]["zindex"]).asInt(),
                     ((*it)["background"]["width"]).asInt(),
                     ((*it)["background"]["height"]).asInt()
                     );
 
-            battlefields.push_back(battlefield);
+            backgrounds.push_back(battlefield);
         }
     }
-    return battlefields;
-    }
+
+    return backgrounds;
+}
 
 std::list<JsonCharacter> JsonParser::getCharacter() {
 
@@ -75,18 +97,38 @@ std::list<JsonCharacter> JsonParser::getCharacter() {
 
 
     for(Json::Value::iterator it=json.begin();it!=json.end();++it){
+        std::list<std::string> errors;
+        bool error = false;
 
-        if(
-            ((*it)["name"]).asString() == "null" ||
-            ((*it)["filepath"]).asString() == "null" ||
-            !((*it)["height"]).asInt()  || ((*it)["height"]).asInt() <= 0||
-            !((*it)["width"]).asInt()  || ((*it)["width"]).asInt() <= 0 ||
-            !((*it)["zindex"]).asInt() || ((*it)["zindex"]).asInt() <= 0 ||
-            ((*it)["spriteManagerName"]).asString() == "null" ||
-            !((*it)["size"]).asDouble() )
-        {
-                    characters.push_back(JsonCharacter());
+        if( !((*it)["name"]).isString() || ((*it)["name"]).asString() == "null"){
+            error = true;
+            errors.push_back("name");
         }
+        if( !((*it)["filepath"]).isString() || ((*it)["filepath"]).asString() == "null"){
+            error = true;
+            errors.push_back("filepath");
+        }
+        if( !((*it)["height"]).isInt()  || ((*it)["height"]).asInt() <= 0){
+            error = true;
+            errors.push_back("height");
+        }
+        if( !((*it)["width"]).isInt()  || ((*it)["width"]).asInt() <= 0){
+            error = true;
+            errors.push_back("width");
+        }
+        if( !((*it)["zindex"]).isInt() || ((*it)["zindex"]).asInt() <= 0){
+            error = true;
+            errors.push_back("zindex");
+        }
+        if( !((*it)["spriteManagerName"]).isString() || ((*it)["spriteManagerName"]).asString() == "null"){
+            error = true;
+            errors.push_back("spriteManagerName");
+        }
+        if( !((*it)["size"]).isDouble()){
+            error = true;
+            errors.push_back("size");
+        }
+        if(error) characters.push_back(JsonCharacter(errors));
 
         else
             {
@@ -96,7 +138,6 @@ std::list<JsonCharacter> JsonParser::getCharacter() {
                         ((*it)["height"]).asInt(),
                         ((*it)["width"]).asInt(),
                         ((*it)["zindex"]).asInt(),
-                        ((*it)["crowchedDownY"]).asInt(),
                         ((*it)["spriteManagerName"]).asString(),
                         ((*it)["size"]).asDouble()
                         );

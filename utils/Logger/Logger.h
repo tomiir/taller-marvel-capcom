@@ -23,7 +23,7 @@ class CLogger
 public:
     void Log(const std::string& sMessage, int level, string e);
     void LogMovement(string cName, DirectionVector* dir, int x, int y);
-
+    void LogError(string parameter, string object);
 
     void setLevel(int level) {
         this -> level = level;

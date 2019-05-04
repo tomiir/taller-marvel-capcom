@@ -14,8 +14,8 @@ include_directories(${JSON_INC_PATH})
 
 add_executable(
         app main.cpp
-        Json/Battlefield.h
-        Json/Battlefield.cpp
+        Json/JsonBackground.h
+        Json/JsonBackground.cpp
         Json/JsonCharacter.h
         Json/JsonCharacter.cpp
         Json/JsonParser.h

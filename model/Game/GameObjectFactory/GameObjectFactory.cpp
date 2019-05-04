@@ -117,12 +117,12 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsBackgrounds_fight() {
 
     JsonConfigs* config = JsonConfigs::getJson();
 
-    list <Battlefield> battlefields = config->getBattlefields();
+    list <JsonBackground> battlefields = config->getJsonBackgrounds();
 
     int maxWidth = 0;
     int speedCharacter = config->getCharactersSpeed();
 
-    list <Battlefield>::iterator iter = battlefields.begin();
+    list <JsonBackground>::iterator iter = battlefields.begin();
     for (iter ;iter != battlefields.end();++iter){
 
         std::string path = (*iter).getFilePath();
@@ -135,8 +135,9 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsBackgrounds_fight() {
         int width = (*iter).getWidth();
         int height = (*iter).getHeight();
         int zIndex = (*iter).getzIndex();
+        string name = (*iter).getName();
 
-        Background *B = new Background(path.c_str(), zIndex, renderer, width, height, screenWidth, screenHeight);
+        Background *B = new Background(path.c_str(), zIndex, renderer, name, width, height, screenWidth, screenHeight);
 
         if (!B){
             //excepción

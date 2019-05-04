@@ -5,7 +5,7 @@
 #include "Server/Server.h"
 #include "Client/Client.h"
 
-#define DEBUG_LEVEL DEBUG
+#define DEBUG_LEVEL ERROR //VER COMO SACARLO DEL JSON CONFIGS
 
 int main(int argc, const char* argv[]){
 
@@ -15,9 +15,8 @@ int main(int argc, const char* argv[]){
      * 1 = debug client
      * 2 = no debug, por consola
      */
-
-
     // debug modo server
+  
     if(debug == 0){
         Server* server = new Server();
         server->Listen();
@@ -112,4 +111,5 @@ int main(int argc, const char* argv[]){
 //
 //       game->clean();
 //       return 0;
+
 }

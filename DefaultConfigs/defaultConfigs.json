@@ -4,6 +4,7 @@
 	[
 		{"background":
 			{
+				"name": "Floor",
 				"filepath":"Images/Backgrounds/Background3.png",
 				"zindex":3,
 				"width": 3000,
@@ -13,15 +14,17 @@
 
 		{"background":
 			{
+				"name": "Moon",
 				"filepath":"Images/Backgrounds/Background2.png",
 				"zindex":2,
-				"width": 2200,
+				"width": 2450,
 				"height": 900
 			}
 		},
 
 		{"background":
 			{
+				"name": "Galaxy",
 				"filepath":"Images/Backgrounds/Background1.png",
 				"zindex":1,
 				"width": 1900,

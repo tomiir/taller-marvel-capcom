@@ -11,7 +11,7 @@ public:
 
     static JsonConfigs* getJson();
 
-    std::list<Battlefield> getBattlefields();
+    std::list<JsonBackground> getJsonBackgrounds();
 
     std::list<JsonCharacter> getCharacters();
 
