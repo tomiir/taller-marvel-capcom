@@ -47,6 +47,7 @@ private:
     bool enable_keepalive();
 
     void checkSendToServerError();
+    void checkRecvFromServerError();
 };
 
 

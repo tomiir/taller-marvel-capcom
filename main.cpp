@@ -59,12 +59,15 @@ int main(int argc, const char* argv[]){
             Client* client = new Client(ip, port);
             bool connected = client->Connect();
             if(!connected) return -1;
-            while (true) {
-                client->hearthBeat();
-                if (client->isBeating()) client->update();
-                else break;
-            }
 
+            if(strcmp(client->update(), "connected") == 0){
+                cout << "Conectado al servidor" << endl;
+                while (true) {
+                    client->hearthBeat();
+                    if (client->isBeating()) client->update();
+                    else break;
+                }
+            }
         }
         else{
             cout << "error al mandar el parametro mode" << endl;

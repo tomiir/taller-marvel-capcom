@@ -46,18 +46,42 @@ void Client::Disconnect() {
 bool Client::Connect() {
 
     int connection = connect(serverSocket_c, (struct sockaddr*) &serverAddr_c, serverSize_c);
-
     if(connection < 0 ){
         cout << "Fallo la conexion con el servidor " << endl;
         return false;
     }
+    cout << "Conectando con el servidor..." << endl;
     return true;
-
 }
 
+
+void Client::checkRecvFromServerError(){
+
+    switch(errno) {
+
+        case ECONNREFUSED:
+            cout << "El server rechazo la conexion" << endl;
+            close(serverSocket_c);
+            break;
+        case EINTR:
+            cout << "Una señal interrumpio el recv antes de recibir el mensaje" << endl;
+            break;
+        case ENOMEM:
+            cout << "No se pudo alocar memoria para el mensaje" << endl;
+            break;
+        case ENOTCONN:
+            cout << "El server no esta conectado" << endl;
+            close(serverSocket_c);
+            break;
+        case ENOTSOCK:
+            cout << "Problema con el socket del server, mal configurado" << endl;
+            break;
+    }
+}
 void Client::checkSendToServerError(){
 
     switch(errno) {
+
         case ECONNRESET:
             cout << "El server cerro la conexion" << endl;
             close(serverSocket_c);
@@ -78,10 +102,10 @@ void Client::checkSendToServerError(){
             //aca tendria que seguir intentando reconectarse al server
             exit(0);
     }
-
 }
 
 void Client::Send(char* message) {
+
 
     ssize_t bytesSent = send(serverSocket_c, message, strlen(message), 0);
 
@@ -96,14 +120,12 @@ char* Client::update() {
     memset(messageFromServer, 0, 4096);
     int bytesReceived = recv(serverSocket_c, messageFromServer, 4096, 0);
 
-    if(bytesReceived < 0){
-        cout << "Se produjo un error al recibir el mensaje proveniente del servidor" << endl;
-    }
-    else{
-        cout << "SERVER: " << string(messageFromServer, bytesReceived) << endl;
+    if(bytesReceived == -1){
+        checkRecvFromServerError();
     }
 
     string messageReceived = string(messageFromServer, bytesReceived);
+    cout << "SERVER: " << messageReceived << endl;
     return &messageReceived[0u]; //SI TIRA SEGSEV ES POR ESTA COSA RARA
 }
 
@@ -124,7 +146,7 @@ void Client::hearthBeat(){
 
     memset(messageFromInput, 0, 4096);
     future<int> scanning = async(scanf,"%s",messageFromInput);
-    chrono::milliseconds waitTime (1500);
+    chrono::milliseconds waitTime (2000);
 
     while(scanning.wait_for(waitTime) == future_status::timeout){
 

@@ -66,6 +66,26 @@ void Server::checkSendToClientError(int clientSock) {
 }
 
 void Server::checkRecvFromClientError(int clientSock) {
+
+    switch(errno) {
+        case ECONNREFUSED:
+            cout << "El cliente rechazo la conexion" << endl;
+            close(clientSock);
+            break;
+        case EINTR:
+            cout << "Una señal interrumpio el recv antes de recibir el mensaje" << endl;
+            break;
+        case ENOMEM:
+            cout << "No se pudo alocar memoria para el mensaje" << endl;
+            break;
+        case ENOTCONN:
+            cout << "El cliente no esta conectado" << endl;
+            close(clientSock);
+            break;
+        case ENOTSOCK:
+            cout << "Problema con el socket del cliente, mal configurado" << endl;
+            break;
+    }
 }
 
 sig_atomic_t serverBrokeConnection = 0;
@@ -169,6 +189,14 @@ void Server::Listen() {
         clientConnected(clientAddr[clientsIter]);
     }
     cout << "Ya se conectaron los clientes" << endl;
+    clientsIter = 0;
+
+    for(; clientsIter < MAXCLIENTS; clientsIter++) {
+        memset(messageToClient,0, 4096);
+        strcpy(messageToClient, "connected");
+        Send(clientSocket[clientsIter]);
+    }
+
     clientsIter = 0;
 
     for(; clientsIter < MAXCLIENTS; clientsIter++){
