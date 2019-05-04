@@ -10,9 +10,11 @@ TeamManager::TeamManager(SDL_RendererFlip initialFlip) : Renderable(){
 
 }
 
-void TeamManager:: setCharacters(std::vector<ControllerCharacter*> characters){
+void TeamManager:: setCharacters(std::vector<ControllerCharacter*> characters, EventToValueMapper* mapper){
     currentCharacter = characters[0];
     supportCharacter = characters[1];
+    currentCharacter->setMapper(mapper);
+    supportCharacter->setMapper(mapper);
 }
 
 int TeamManager::getZIndex() {

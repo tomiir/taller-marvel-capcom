@@ -31,14 +31,14 @@ ViewController_fight* ViewControllerFactory::getViewController_fight() {
 
     vector<ControllerBackground *> backgrounds = factory->getControllersBackground_fight();
 
-    for (int i = 0; i < backgrounds.size(); i++){
-        viewControllerFight->addBackground(backgrounds[i]);
+    for (auto & background : backgrounds){
+        viewControllerFight->addBackground(background);
     }
 
     vector<ControllerCharacter*> characters_ = factory->getControllersCharacter_fight();
 
-    vector<ControllerCharacter*> :: iterator  itr_character_ = characters_.begin();
-    for (itr_character_; itr_character_ != characters_.end(); ++itr_character_) {
+    auto itr_character_ = characters_.begin();
+    for (; itr_character_ != characters_.end(); ++itr_character_) {
         characters[(*itr_character_)->getName()] = (*itr_character_);
     }
 
@@ -49,7 +49,6 @@ ViewController_fight* ViewControllerFactory::getViewController_fight() {
     team2->addEnemyTeam(team1);
 
     FlipManager* flipManager = new FlipManager(team1, team2, backgrounds);
-
 
     viewControllerFight->addFlipManager(flipManager);
     viewControllerFight->addTeams(team1, team2);
@@ -110,9 +109,6 @@ ViewController_charSelect * ViewControllerFactory:: getViewController_charSelect
     viewController->addGameObject_square_gray(gameObjects[22]);
 
     return viewController;
-
-
-
 
 }
 

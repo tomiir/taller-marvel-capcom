@@ -8,6 +8,8 @@
 #include <SDL2/SDL.h>
 
 #include "../../../utils/Logger/Logger.h"
+#include "../../../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper_player1.h"
+#include "../../../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper_player2.h"
 
 ViewController_fight::ViewController_fight(SDL_Renderer* renderer_):ViewController(renderer_) {
 }
@@ -108,9 +110,15 @@ string ViewController_fight::getNextView() {
 }
 
 void ViewController_fight::setTeam(vector<ControllerCharacter *> characters, int team) {
-    if (team == 1) team1->setCharacters(characters);
+    if (team == 1) {
+        EventToValueMapper* mapperTeam1 = new EventToValueMapper_player1();
+        team1->setCharacters(characters, mapperTeam1);
+    }
+    else {
 
-    else team2->setCharacters(characters);
+        EventToValueMapper* mapperTeam2 = new EventToValueMapper_player2();
+        team2->setCharacters(characters, mapperTeam2);
+    }
 
 }
 

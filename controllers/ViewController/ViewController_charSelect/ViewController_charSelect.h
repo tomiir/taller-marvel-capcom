@@ -48,7 +48,6 @@ public:
 
 
 private:
-    int getTeam(SDL_Event event);
 
     std::vector <GameObject_charSelect*> getSides();
     std::vector <GameObject_charSelect*> getGreysSquares();

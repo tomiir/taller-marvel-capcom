@@ -3,7 +3,7 @@
 #include <string>
 #include "model/Game/Game.h"
 
-#define DEBUG_LEVEL ERROR //VER COMO SACARLO DEL JSON CONFIGS
+#define DEBUG_LEVEL DEBUG //VER COMO SACARLO DEL JSON CONFIGS
 
 int main(int argc, const char* argv[]){
 

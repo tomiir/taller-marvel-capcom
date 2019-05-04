@@ -50,16 +50,13 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
     spriteManagers["ChunLi"] = new ChunLiSpriteManager();
     spriteManagers["NotFound"] = new NotFoundSpriteManager();
 
-    map<string, SpriteManager*>::iterator itrSprites = spriteManagers.begin();
-
-
+    map<string, SpriteManager*>::iterator itrSprites;
     JsonConfigs* config = JsonConfigs::getJson();
-
     std::list<JsonCharacter> characters = config->getCharacters();
-
 
     list <JsonCharacter>::iterator iter = characters.begin();
 
+    //CARGA DE DATOS DE LOS PERSONAJES DESDE JSON Y CREACION DE LOS MISMOS
     for (iter ;iter != characters.end();++iter) {
 
         std::string path = (*iter).getFilePath();
@@ -99,7 +96,6 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
     }
 
     return gameObjects;
-
 }
 
 double GameObjectFactory::cameraSpeedPercentage(int widthMax, int widthImg) {

@@ -17,7 +17,7 @@ class ControllerCharacter : public Controller{
 
 
 public:
-    ControllerCharacter(GameObject *gameObject, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_, int speedCharacter_, int speedCharacter);
+    ControllerCharacter(GameObject *gameObject, int screenWidth_, int screenHeight_, int speedCharacter_, int speedCharacter);
     ~ControllerCharacter();
     void handleEvent(SDL_Event event);
     bool isJumping();
@@ -42,6 +42,8 @@ public:
     bool isMovingRight();
 
     bool isMovingLeft();
+
+    void setMapper(EventToValueMapper* mapper);
 
 private:
 

@@ -23,7 +23,7 @@ public:
 
     void flipCurrentCharacter();
     int getZIndex() override;
-    void setCharacters(std::vector<ControllerCharacter*> characters);
+    void setCharacters(std::vector<ControllerCharacter*> characters, EventToValueMapper* mapper);
 
 private:
 
