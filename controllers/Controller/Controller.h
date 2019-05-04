@@ -13,6 +13,9 @@ using namespace std;
 
 class Controller: virtual public Renderable{
 
+public:
+    string getName();
+
 protected:
     GameObject * gameObject;
 

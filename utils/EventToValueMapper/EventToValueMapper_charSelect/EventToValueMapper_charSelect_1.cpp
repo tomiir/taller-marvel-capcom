@@ -5,7 +5,7 @@
 #include "EventToValueMapper_charSelect_1.h"
 
 EventToValueMapper_charSelect_1::EventToValueMapper_charSelect_1():EventToValueMapper_charSelect(){
-    preselected = "cap_america";
+    preselected = "CaptainAmerica";
     map_preselected = cap_america;
 }
 

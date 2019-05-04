@@ -6,7 +6,7 @@
 
 
 EventToValueMapper_charSelect_2::EventToValueMapper_charSelect_2():EventToValueMapper_charSelect(){
-    preselected = "spider_man";
+    preselected = "SpiderMan";
     map_preselected = spider_man;
 }
 

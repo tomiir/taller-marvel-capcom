@@ -9,7 +9,7 @@
 
 #include "../../../utils/Logger/Logger.h"
 
-ViewController_fight::ViewController_fight(SDL_Renderer* renderer_):.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,l(renderer_) {
+ViewController_fight::ViewController_fight(SDL_Renderer* renderer_):ViewController(renderer_) {
 }
 
 ViewController_fight::~ViewController_fight() = default;
@@ -105,5 +105,12 @@ bool ViewController_fight::end() {
 
 string ViewController_fight::getNextView() {
     return "todavia_no_existe";
+}
+
+void ViewController_fight::setTeam(vector<ControllerCharacter *> characters, int team) {
+    if (team == 1) team1->setCharacters(characters);
+
+    else team2->setCharacters(characters);
+
 }
 

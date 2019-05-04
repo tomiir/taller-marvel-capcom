@@ -16,28 +16,34 @@ ViewControllerFactory::ViewControllerFactory(SDL_Renderer * renderer_, int scree
 ViewControllerFactory::~ViewControllerFactory() = default;
 
 
-ViewController_fight* ViewControllerFactory::getViewController_fight(){
+ViewController_fight* ViewControllerFactory::getViewController_fight() {
 
 
-    ViewController_fight* viewControllerFight = new ViewController_fight(renderer);
+    ViewController_fight *viewControllerFight = new ViewController_fight(renderer);
 
-    GameObjectControllerFactory* factory = new GameObjectControllerFactory(renderer, screenWidth, screenHeight);
+    GameObjectControllerFactory *factory = new GameObjectControllerFactory(renderer, screenWidth, screenHeight);
 
-    vector<ControllerBackground*>  backgrounds = factory->getControllersBackground_fight();
+    vector<ControllerBackground *> backgrounds = factory->getControllersBackground_fight();
 
-    for (int i = 0; i < backgrounds.size(); i++){
+    for (int i = 0; i < backgrounds.size(); i++) {
         viewControllerFight->addBackground(backgrounds[i]);
     }
 
-    vector<ControllerCharacter*> characters = factory->getControllersCharacter_fight();
+    vector<ControllerCharacter *> characters_ = factory->getControllersCharacter_fight();
 
-    TeamManager* team1 = new TeamManager(characters[0], characters[1], SDL_FLIP_HORIZONTAL);
-    TeamManager* team2 = new TeamManager(characters[2], characters[3], SDL_FLIP_NONE);
+    std::vector<ControllerCharacter *>::iterator itr_character = characters_.begin();
+
+    for (itr_character; itr_character != characters_.end(); ++itr_character) {
+        characters[(*itr_character)->getName()] = (*itr_character);
+    }
+
+    TeamManager *team1 = new TeamManager(SDL_FLIP_HORIZONTAL);
+    TeamManager *team2 = new TeamManager(SDL_FLIP_NONE);
 
     team1->addEnemyTeam(team2);
     team2->addEnemyTeam(team1);
 
-    FlipManager* flipManager = new FlipManager(team1, team2, backgrounds);
+    FlipManager *flipManager = new FlipManager(team1, team2, backgrounds);
 
 
     viewControllerFight->addFlipManager(flipManager);
@@ -45,7 +51,10 @@ ViewController_fight* ViewControllerFactory::getViewController_fight(){
 
 
     return viewControllerFight;
+}
 
+map<string, ControllerCharacter*> ViewControllerFactory::getControllerCharacter(){
+    return characters;
 }
 
 ViewController_charSelect * ViewControllerFactory:: getViewController_charSelect(){

@@ -35,3 +35,7 @@ void Controller::handleEvent(SDL_Event event) {}
 
 void Controller::writeLog(string content) {
 }
+
+string Controller::getName() {
+    return gameObject->getName();
+}

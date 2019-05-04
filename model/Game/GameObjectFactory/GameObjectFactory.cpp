@@ -88,10 +88,10 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
         Character* C;
         if(gameObjects.size() < 2){
 
-            C = new Character(path.c_str(), zIndex, renderer, spriteManager , width/2, initialY, initialY + crowchedDownYParameter, name, size);
+            C = new Character(path.c_str(), spriteManagerName,  zIndex, renderer, spriteManager , width/2, initialY, initialY + crowchedDownYParameter, name, size);
         }
         else{
-            C = new Character(path.c_str(), zIndex, renderer, spriteManager ,(screenWidth - width) - (width/2), initialY, initialY + crowchedDownYParameter, name, size) ;
+            C = new Character(path.c_str(), spriteManagerName, zIndex, renderer, spriteManager ,(screenWidth - width) - (width/2), initialY, initialY + crowchedDownYParameter, name, size) ;
         }
 
         if(!C){
@@ -131,7 +131,8 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsBackgrounds_fight() {
         int height = (*iter).getHeight();
         int zIndex = (*iter).getzIndex();
 
-        Background *B = new Background(path.c_str(), zIndex, renderer, width, height, screenWidth, screenHeight);
+        //HARCODEO EL NOMBRE, PQ NO LO USAMOS, ¿ES UNA MALA DECISIÓN? SI, LO ES, PERO ASÍ ES LA VIDA.
+        Background *B = new Background(path.c_str(),"background", zIndex, renderer, width, height, screenWidth, screenHeight);
 
         if (!B){
             //excepción

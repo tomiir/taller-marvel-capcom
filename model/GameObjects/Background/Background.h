@@ -9,7 +9,7 @@ using namespace std;
 class Background : public GameObject{
 
 public:
-    Background(const char* imagePath,int z_index,SDL_Renderer* rend,  int width_image, int height_image, int screenWidth, int screenHeight);
+    Background(const char* imagePath, string name_, int z_index,SDL_Renderer* rend,  int width_image, int height_image, int screenWidth, int screenHeight);
     ~Background();
 
     void move(DirectionVector* moveDirection) override;

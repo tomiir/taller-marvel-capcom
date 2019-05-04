@@ -29,6 +29,7 @@ public:
     void addTeams(TeamManager* teamManager1, TeamManager* teamManager2);
     bool end()override;
     string getNextView()override;
+    void setTeam(vector<ControllerCharacter*> characters, int team);
 
 private:
     TeamManager* team1;

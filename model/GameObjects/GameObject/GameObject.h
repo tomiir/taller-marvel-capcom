@@ -6,13 +6,14 @@
 #include <vector>
 #include "../../../utils/TextureManager/TextureManager.h"
 #include "../../../utils/Vector2D/DirectionVector.h"
+#include <string>
 
 using namespace std;
 
 class GameObject {
 
 public:
-    GameObject(const char* folderPath, int z_index, SDL_Renderer* rend, int initialX, int initialY, int width, int height);
+    GameObject(const char* folderPath, string name, int z_index, SDL_Renderer* rend, int initialX, int initialY, int width, int height);
     ~GameObject();
 
     virtual void move(DirectionVector* direction);
@@ -22,9 +23,11 @@ public:
     virtual void crowchDown();
     int getZIndex();
     bool problemWithImage();
+    string getName();
 
 
 protected:
+    string name;
     SDL_Texture* objTexture;
     SDL_Renderer* renderer;
     SDL_Rect objRect;

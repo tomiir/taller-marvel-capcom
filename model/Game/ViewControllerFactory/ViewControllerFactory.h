@@ -15,17 +15,21 @@ using namespace std;
 
 class ViewControllerFactory{
 
-    SDL_Renderer * renderer;
+
 
 public:
     ViewControllerFactory(SDL_Renderer * renderer_, int screenWidth_, int screenHeight_);
     ~ViewControllerFactory();
     ViewController_fight * getViewController_fight();
     ViewController_charSelect * getViewController_charSelect();
+    map<string, ControllerCharacter *> getControllerCharacter();
 
 private:
-
+    SDL_Renderer * renderer;
+    map<string, ControllerCharacter*> characters;
+    map<string, ControllerCharacter*>::iterator itr_characters= characters.begin();
     int screenWidth, screenHeight;
+
 
 };
 

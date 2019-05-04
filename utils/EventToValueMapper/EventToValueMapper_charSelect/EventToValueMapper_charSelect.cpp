@@ -11,30 +11,30 @@ EventToValueMapper_charSelect::EventToValueMapper_charSelect(){
      * [chun_li] [venom] */
 
 
-    cap_america["up"] = "chun_li" ;
-    cap_america["down"] = "chun_li";
-    cap_america["right"] = "spider_man" ;
-    cap_america["left"] = "spider_man";
+    cap_america["up"] = "ChunLi" ;
+    cap_america["down"] = "ChunLi";
+    cap_america["right"] = "SpiderMan" ;
+    cap_america["left"] = "SpiderMan";
 
-    chun_li["up"] = "cap_america";
-    chun_li["down"] = "cap_america" ;
-    chun_li["right"] = "venom";
-    chun_li["left"] = "venom";
+    chun_li["up"] = "CaptainAmerica";
+    chun_li["down"] = "CaptainAmerica" ;
+    chun_li["right"] = "Venom";
+    chun_li["left"] = "Venom";
 
-    spider_man["up"] = "venom";
-    spider_man["down"] = "venom";
-    spider_man["right"] =  "cap_america";
-    spider_man["left"] = "cap_america";
+    spider_man["up"] = "Venom";
+    spider_man["down"] = "Venom";
+    spider_man["right"] =  "CaptainAmerica";
+    spider_man["left"] = "CaptainAmerica";
 
-    venom["up"] = "spider_man";
-    venom["down"] = "spider_man" ;
-    venom["right"] = "chun_li" ;
-    venom["left"] = "chun_li" ;
+    venom["up"] = "SpiderMan";
+    venom["down"] = "SpiderMan" ;
+    venom["right"] = "ChunLi" ;
+    venom["left"] = "ChunLi" ;
 
-    map_map["cap_america"] = cap_america;
-    map_map["chun_li"] = chun_li;
-    map_map["venom"] = venom;
-    map_map["spider_man"] = spider_man;
+    map_map["CaptainAmerica"] = cap_america;
+    map_map["ChunLi"] = chun_li;
+    map_map["Venom"] = venom;
+    map_map["SpiderMan"] = spider_man;
 
 
 }

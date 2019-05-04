@@ -14,7 +14,7 @@
 
 class TeamManager: virtual public Renderable{
 public:
-    TeamManager(ControllerCharacter* character_1, ControllerCharacter* character_2, SDL_RendererFlip initialFlip);
+    TeamManager(SDL_RendererFlip initialFlip);
 
     void handleEvent(SDL_Event event, std::vector<ControllerBackground*> backgrounds);
     void render() override;
@@ -23,8 +23,10 @@ public:
 
     void flipCurrentCharacter();
     int getZIndex() override;
+    void setCharacters(std::vector<ControllerCharacter*> characters);
 
 private:
+
 
     ControllerCharacter* currentCharacter;
     ControllerCharacter* supportCharacter;

@@ -7,10 +7,10 @@
 
 ViewController_charSelect::ViewController_charSelect(SDL_Renderer *renderer_): ViewController(renderer_){
 
-    squarePosition["cap_america"] = {233,291,165,127}; // FALTA AGREGAR LAS POSICIONES
-    squarePosition["spider_man"] = {400,291,165,127}; // FALTA AGREGAR LAS POSICIONES
-    squarePosition["chun_li"] = {234,417,165,127}; // FALTA AGREGAR LAS POSICIONES
-    squarePosition["venom"] = {399,417,165,127}; // FALTA AGREGAR LAS POSICIONES
+    squarePosition["CaptainAmerica"] = {233,291,165,127}; // FALTA AGREGAR LAS POSICIONES
+    squarePosition["SpiderMan"] = {400,291,165,127}; // FALTA AGREGAR LAS POSICIONES
+    squarePosition["ChunLi"] = {234,417,165,127}; // FALTA AGREGAR LAS POSICIONES
+    squarePosition["Venom"] = {399,417,165,127}; // FALTA AGREGAR LAS POSICIONES
 
     std::vector<int> aux_1 = {497,0,303,300};// arriba a la derecha
     std::vector<int> aux_2 = {497,300,303,300};// abajo a la derecha
@@ -247,5 +247,13 @@ void ViewController_charSelect::renderVector(std::vector<GameObject_charSelect*>
     for (itr_to_render; itr_to_render != to_render.end(); ++itr_to_render){
         (*itr_to_render)->render();
     }
+}
+
+std::vector<string> ViewController_charSelect::getTeam1() {
+    return selected_1;
+}
+
+std::vector<string> ViewController_charSelect::getTeam2() {
+    return selected_2;
 }
 

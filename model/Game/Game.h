@@ -19,12 +19,18 @@ public:
     void clean();
 
 private:
+    std::map<string, ViewController* > views;
+    std::map<string, ViewController*>::iterator itr_views= views.begin();
+
+    std::map<string, ControllerCharacter*> characters;
+
     bool isRunning;
     SDL_Window* window;
     SDL_Renderer* renderer;
     ViewController* viewController;
     ViewControllerFactory * factory; //Lo agrego para crear la primera ViewController
     int screenWidth, screenHeight;
+    void setControllerCharacters(ViewController_fight *view, map<string, ControllerCharacter *> controllers);
 
 };
 

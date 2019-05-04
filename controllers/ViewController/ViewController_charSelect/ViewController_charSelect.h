@@ -42,6 +42,9 @@ public:
     //fotos laterales de seleccionados para cada TEAM
     void addGameObject_character_selected(GameObject_charSelect *gameObject, int team);
 
+    std::vector<string> getTeam1();
+    std::vector<string> getTeam2();
+
 
 
 private:
