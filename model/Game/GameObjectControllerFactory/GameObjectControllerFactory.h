@@ -10,9 +10,9 @@
 #include "../../../controllers/Controller/ControllerCharacter/ControllerCharacter.h"
 #include "../../../controllers/Controller/ControllerBackground/ControllerBackground.h"
 #include "../../GameObjects/GameObject/GameObject.h"
-#include "../../../utils/EventToValueMapper/EventToValueMapper_player1.h"
-#include "../../../utils/EventToValueMapper/EventToValueMapper_player2.h"
-#include "../../../utils/EventToValueMapper/EventToValueMapper.h"
+#include "../../../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper_player1.h"
+#include "../../../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper_player2.h"
+#include "../../../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.h"
 
 class GameObjectControllerFactory {
 
@@ -20,7 +20,7 @@ public:
     GameObjectControllerFactory(SDL_Renderer *renderer, int screenWidth_, int screenHeight_, int speedCharacter_, int jumpSpeed_);
     ~GameObjectControllerFactory();
 
-    vector<Controller*> getGameObjectControllers_fight(); // los controllers de la view fight
+    vector<Controller*> getGameObjectControllers_fight(); // los controllers de la ViewController fight
     std::vector<ControllerCharacter*> getControllersCharacter_fight();
     std::vector<ControllerBackground*> getControllersBackground_fight();
 

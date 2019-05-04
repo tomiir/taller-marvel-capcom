@@ -6,12 +6,15 @@
 #define TALLER_MARVEL_CAPCOM_CONTROLLER_H
 
 #include "../../model/GameObjects/GameObject/GameObject.h"
-#include "../../utils/EventToValueMapper/EventToValueMapper.h"
+#include "../../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.h"
 #include "../../utils/Logger/Logger.h"
 #include "Renderable.h"
 using namespace std;
 
 class Controller: virtual public Renderable{
+
+public:
+    string getName();
 
 protected:
     GameObject * gameObject;

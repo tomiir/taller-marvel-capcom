@@ -48,12 +48,17 @@ void FlipManager::update() {
 
 }
 
-FlipManager::FlipManager(TeamManager* teamManager1_, TeamManager* teamManager2_, vector< ControllerBackground*> backgrounds_) {
 
+
+FlipManager::FlipManager(TeamManager* teamManager1_, TeamManager* teamManager2_, vector< ControllerBackground*> backgrounds_) {
     teamManager1 = teamManager1_;
     teamManager2 = teamManager2_;
     backgrounds = backgrounds_;
 
+}
+
+
+void FlipManager::create(){
     this->update();
 
     vector<ControllerBackground*>::iterator itr = backgrounds.begin();
@@ -62,6 +67,7 @@ FlipManager::FlipManager(TeamManager* teamManager1_, TeamManager* teamManager2_,
     }
     itr = backgrounds.begin();
 
-
 }
+
+
 

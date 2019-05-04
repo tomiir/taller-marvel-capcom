@@ -33,11 +33,17 @@ void Game::init(const char *title, int posX, int posY) {
 
         factory = new ViewControllerFactory(renderer, screenWidth, screenHeight);
 
-        // Mando viewFight pq es la unica que tenemos. Deberiamos mandar la primera, y luego, las view conocerse entre
+
+        // Mando viewFight pq es la unica que tenemos. Deberiamos mandar la primera, y luego, las ViewController conocerse entre
         // si para saber quien va luego o implementar el VIEW MANAGER
 
-       viewController = factory->getViewController_fight();
-       logger -> Log("Inicialización completa, ventana, renderer y vista creados correctamente", INFO, "");
+        views["fight"] = factory -> getViewController_fight();
+        characters = factory -> getControllerCharacter();
+        views["char_select"] = factory -> getViewController_charSelect();
+
+        viewController = (views.find("char_select"))->second;
+
+        logger -> Log("Inicialización completa, ventana, renderer y vista creados correctamente", INFO, "");
 
     } else {
             logger -> Log("Fallo la creación del renderer", ERROR, "");
@@ -63,7 +69,33 @@ void Game::clean(){
 }
 
 void Game::tick() {
-    this -> viewController -> handleEvent();
+
+    this->viewController->handleEvent();
+
+
     update(); // Esto se va a usar para reconciliar data con el serve supongo. Tipo le envío el movimiento, espero resp.
-    this -> viewController -> updateView();
+    this->viewController->updateView();
+
+    if (this->viewController->end()) {
+
+        string nextViewName = (this->viewController)->getNextView();
+        ViewController* nextView = views.find(nextViewName)->second;
+
+        if (strcmp(nextViewName.c_str(), "fight") == 0){
+            // esto significa que la anterior fue la de selección de personajes;
+            vector<string> team1 = ((ViewController_charSelect*) viewController)-> getTeam1();
+            vector<string> team2 = ((ViewController_charSelect*) viewController) -> getTeam2();
+
+            vector<ControllerCharacter*> aux = {(characters.find(team1[0])->second), (characters.find(team1[1])->second)};
+            ((ViewController_fight*)nextView)->setTeam(aux,1);
+
+            aux =  {(characters.find(team2[0])->second), (characters.find(team2[1])->second)};
+            ((ViewController_fight*)nextView)->setTeam(aux,2);
+
+            ((ViewController_fight*)nextView)->createFlipManager();
+        }
+        this->viewController = nextView;
+    }
+
 }
+

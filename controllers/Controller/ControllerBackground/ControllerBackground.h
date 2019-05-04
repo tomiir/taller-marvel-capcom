@@ -8,7 +8,7 @@
 #include "../Controller.h"
 #include "../../../model/GameObjects/Background/Background.h"
 #include "../ControllerCharacter/ControllerCharacter.h"
-#include "../../../utils/EventToValueMapper/EventToValueMapper.h"
+#include "../../../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.h"
 
 
 using namespace std;
