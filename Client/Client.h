@@ -40,7 +40,7 @@ private:
     pthread_t clientThread;
     bool beating;
 
-    static void brokeConnetion(int num);
+    static void brokeConnection(int num);
 
     void configServer(const char* serverIp, uint16_t serverPort);
 

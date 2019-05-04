@@ -73,7 +73,7 @@ void Client::checkSendToServerError(){
             close(serverSocket_c);
             break;
         case EPIPE:
-            cout << "Se recibio un SIGPIPE" << endl;
+            cout << "Se recibio un SIGPIPE del server" << endl;
             close(serverSocket_c);
             //aca tendria que seguir intentando reconectarse al server
             exit(0);
@@ -109,15 +109,16 @@ char* Client::update() {
 
 sig_atomic_t clientBrokeConnection = 0;
 
-void Client::brokeConnetion(int arg){
+void Client::brokeConnection(int arg){
     clientBrokeConnection = 1;
 }
 
 
 void Client::hearthBeat(){
 
-    signal(SIGINT, brokeConnetion);
-    signal(SIGQUIT, brokeConnetion);
+    signal(SIGINT, brokeConnection);
+    signal(SIGQUIT, brokeConnection);
+    signal(SIGTSTP, brokeConnection);
     signal(SIGPIPE, SIG_IGN);
 
 

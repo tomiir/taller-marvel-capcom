@@ -31,7 +31,15 @@ public:
     static void* serverThread(void *clientSock_);
 
     static void brokeConnection(int arg);
-};
+
+    static void Send(int clientSock);
+
+    static string update(int clientSock);
+
+    static void checkSendToClientError(int clientSock);
+    static void checkRecvFromClientError(int clientSock);
+
+    };
 
 
 #endif //TALLER_MARVEL_CAPCOM_SERVER_H
