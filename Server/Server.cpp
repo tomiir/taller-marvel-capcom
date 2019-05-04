@@ -24,7 +24,7 @@ Server::Server() {
 
     serverAddr_s.sin_family = AF_INET;
     serverAddr_s.sin_port = htons(PORT);
-    inet_pton(AF_INET, "0.0.0.0", &serverAddr_s.sin_addr);
+    inet_pton(AF_INET, "25.1.107.243", &serverAddr_s.sin_addr);
 
     int option = 1;
     if (setsockopt(serverSocket_s,SOL_SOCKET,SO_REUSEADDR,&option,sizeof(int)) == -1) {
@@ -47,7 +47,7 @@ void Server::brokeConnection(int arg){
 
 void* Server::serverThread(void *clientSock_) {
 
-    int clientSock = *(int *) clientSock_;
+    int clientSocket = *(int *) clientSock_;
     bool connected = true;
 
     while(true){
@@ -60,43 +60,43 @@ void* Server::serverThread(void *clientSock_) {
             memset(messageToClient,0, 4096);
             strcpy(messageToClient, "El servidor se desconecto");
 
-            if (send(clientSock, messageToClient, strlen(messageToClient),0) < 0 ){
+            if (send(clientSocket, messageToClient, strlen(messageToClient),0) < 0 ){
             }
             close(serverSocket_s);
             return nullptr;
         }
 
         memset(messageFromClient, 0, 4096);
-        int bytesReceived = recv(clientSock, messageFromClient, 4096,0);
+        int bytesReceived = recv(clientSocket, messageFromClient, 4096,0);
 
         if (bytesReceived == -1) {
             cerr << "Error in recv(). Quitting" << endl;
             break;
         }
-        if ( bytesReceived < 0 ) cerr << "Error al recibir el mensaje por parte del cliente " << clientSock << endl;
+        if ( bytesReceived < 0 ) cerr << "Error al recibir el mensaje por parte del cliente " << clientSocket << endl;
 
         string aux = string(messageFromClient, 0, bytesReceived);
         char* received = &aux[0u];
 
         if( strcmp(received, "0") == 0) {
             connected = false;
-            cout << "El cliente: " << clientSock << " se desconecto" << endl;
-            close(clientSock);
+            cout << "El cliente: " << clientSocket << " se desconecto" << endl;
+            close(clientSocket);
             break;
         }
 
         if ( strcmp(received, "1") == 0){
-            cout << "El cliente " << clientSock<< " esta latiendo" << endl;
+            cout << "El cliente " << clientSocket << " esta latiendo" << endl;
         }
 
         if(connected and strcmp(received, "1") != 0) { //ese cmp es bastante trucho,
 
-            cout << "Se recibio de " << clientSock << ": " << received << endl;
+            cout << "Se recibio de " << clientSocket << ": " << received << endl;
 
             memset(messageToClient, 0, 4096);
             strcpy(messageToClient, "Se recibio el mensaje correctamente");
 
-            send(clientSock, messageToClient, strlen(messageToClient), 0);
+            send(clientSocket, messageToClient, strlen(messageToClient), 0);
         }
     }
 }

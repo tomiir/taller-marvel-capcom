@@ -73,11 +73,6 @@ int main(int argc, const char* argv[]){
     }
 
 
-
-
-
-
-
 //        CLogger* logger = CLogger::GetLogger();
 //        logger -> setLevel(DEBUG_LEVEL);
 //        logger ->Log("Inicializando juego", INFO, "");
