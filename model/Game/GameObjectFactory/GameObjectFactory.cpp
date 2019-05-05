@@ -72,7 +72,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
 
         if(!existFile(path.c_str())){
             logger -> Log("No se encontró " + path + ", se utilizara la imagen NotFound", ERROR, "");
-            path = "DefaultConfigs/NotFound.png";
+            path = "../DefaultConfigs/NotFound.png";
             spriteManagerName = "NotFound";
         }
 
@@ -126,7 +126,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsBackgrounds_fight() {
 
         if(!existFile(path.c_str())){
             logger -> Log("No se encontró " + path + ", se utilizara la imagen NotFound", ERROR, "");
-            path = "DefaultConfigs/BackgroundNotFound.png";
+            path = "../DefaultConfigs/BackgroundNotFound.png";
         }
 
         int width = (*iter).getWidth();
@@ -171,101 +171,101 @@ vector<GameObject_charSelect *> GameObjectFactory::getgameobjectChar_select_figh
 
     //FONDO
     aux = {200,0,800,600};
-    GameObject_charSelect* background =  new GameObject_charSelect("Images/menu_seleccion/Menu personajes.png","background", 0, renderer, aux );
+    GameObject_charSelect* background =  new GameObject_charSelect("../Images/menu_seleccion/Menu personajes.png","background", 0, renderer, aux );
     gameObjects.push_back(background);
 
 
     //IMAGENES LATERALES
     aux = {200,0,800,600};
-    GameObject_charSelect* spider_man_team1 =  new GameObject_charSelect("Images/menu_seleccion/SM2.png","SpiderMan", 0, renderer, aux );
+    GameObject_charSelect* spider_man_team1 =  new GameObject_charSelect("../Images/menu_seleccion/SM2.png","SpiderMan", 0, renderer, aux );
     gameObjects.push_back(spider_man_team1);
 
     aux = {200,0,800,600};
-    GameObject_charSelect* spider_man_team2 =  new GameObject_charSelect("Images/menu_seleccion/SM.png","SpiderMan", 0, renderer, aux );
+    GameObject_charSelect* spider_man_team2 =  new GameObject_charSelect("../Images/menu_seleccion/SM.png","SpiderMan", 0, renderer, aux );
     gameObjects.push_back(spider_man_team2);
 
     aux = {200,0,800,600};
-    GameObject_charSelect* venom_team_1 =  new GameObject_charSelect("Images/menu_seleccion/V2.png","Venom", 0, renderer, aux );
+    GameObject_charSelect* venom_team_1 =  new GameObject_charSelect("../Images/menu_seleccion/V2.png","Venom", 0, renderer, aux );
     gameObjects.push_back(venom_team_1);
 
     aux = {200,0,800,600};
-    GameObject_charSelect* venom_team_2 =  new GameObject_charSelect("Images/menu_seleccion/V.png","Venom", 0, renderer, aux );
+    GameObject_charSelect* venom_team_2 =  new GameObject_charSelect("../Images/menu_seleccion/V.png","Venom", 0, renderer, aux );
     gameObjects.push_back(venom_team_2);
 
     aux = {200,0,800,600};
-    GameObject_charSelect* chun_li_team_1 =  new GameObject_charSelect("Images/menu_seleccion/CL2.png","ChunLi", 0, renderer, aux );
+    GameObject_charSelect* chun_li_team_1 =  new GameObject_charSelect("../Images/menu_seleccion/CL2.png","ChunLi", 0, renderer, aux );
     gameObjects.push_back(chun_li_team_1);
 
     aux = {200,0,800,600};
-    GameObject_charSelect* chun_li_team_2 =  new GameObject_charSelect("Images/menu_seleccion/CL.png","ChunLi", 0, renderer, aux );
+    GameObject_charSelect* chun_li_team_2 =  new GameObject_charSelect("../Images/menu_seleccion/CL.png","ChunLi", 0, renderer, aux );
     gameObjects.push_back(chun_li_team_2);
 
     aux = {200,0,800,600};
-    GameObject_charSelect* cap_america_team_1 =  new GameObject_charSelect("Images/menu_seleccion/CA2.png","CaptainAmerica", 0, renderer, aux );
+    GameObject_charSelect* cap_america_team_1 =  new GameObject_charSelect("../Images/menu_seleccion/CA2.png","CaptainAmerica", 0, renderer, aux );
     gameObjects.push_back(cap_america_team_1);
 
     aux = {200,0,800,600};
-    GameObject_charSelect* cap_america_team_2 =  new GameObject_charSelect("Images/menu_seleccion/CA.png","CaptainAmerica", 0, renderer, aux );
+    GameObject_charSelect* cap_america_team_2 =  new GameObject_charSelect("../Images/menu_seleccion/CA.png","CaptainAmerica", 0, renderer, aux );
     gameObjects.push_back(cap_america_team_2);
 
     //IMAGENES LATERALES seleccionadas
     aux = {200,0,800,600};
-    GameObject_charSelect* spider_man_team1_selected =  new GameObject_charSelect("Images/menu_seleccion/SM2.png","SpiderMan", 0, renderer, aux );
+    GameObject_charSelect* spider_man_team1_selected =  new GameObject_charSelect("../Images/menu_seleccion/SM2.png","SpiderMan", 0, renderer, aux );
     gameObjects.push_back(spider_man_team1_selected);
 
     aux = {200,0,800,600};
-    GameObject_charSelect* spider_man_team2_selected =  new GameObject_charSelect("Images/menu_seleccion/SM.png","SpiderMan", 0, renderer, aux );
+    GameObject_charSelect* spider_man_team2_selected =  new GameObject_charSelect("../Images/menu_seleccion/SM.png","SpiderMan", 0, renderer, aux );
     gameObjects.push_back(spider_man_team2_selected);
 
     aux = {200,0,800,600};
-    GameObject_charSelect* venom_team_1_selected =  new GameObject_charSelect("Images/menu_seleccion/V2.png","Venom", 0, renderer, aux );
+    GameObject_charSelect* venom_team_1_selected =  new GameObject_charSelect("../Images/menu_seleccion/V2.png","Venom", 0, renderer, aux );
     gameObjects.push_back(venom_team_1_selected);
 
     aux = {200,0,800,600};
-    GameObject_charSelect* venom_team_2_selected =  new GameObject_charSelect("Images/menu_seleccion/V.png","Venom", 0, renderer, aux );
+    GameObject_charSelect* venom_team_2_selected =  new GameObject_charSelect("../Images/menu_seleccion/V.png","Venom", 0, renderer, aux );
     gameObjects.push_back(venom_team_2_selected);
 
     aux = {200,0,800,600};
-    GameObject_charSelect* chun_li_team_1_selected =  new GameObject_charSelect("Images/menu_seleccion/CL2.png","ChunLi", 0, renderer, aux );
+    GameObject_charSelect* chun_li_team_1_selected =  new GameObject_charSelect("../Images/menu_seleccion/CL2.png","ChunLi", 0, renderer, aux );
     gameObjects.push_back(chun_li_team_1_selected);
 
     aux = {200,0,800,600};
-    GameObject_charSelect* chun_li_team_2_selected =  new GameObject_charSelect("Images/menu_seleccion/CL.png","ChunLi", 0, renderer, aux );
+    GameObject_charSelect* chun_li_team_2_selected =  new GameObject_charSelect("../Images/menu_seleccion/CL.png","ChunLi", 0, renderer, aux );
     gameObjects.push_back(chun_li_team_2_selected);
 
     aux = {200,0,800,600};
-    GameObject_charSelect* cap_america_team_1_selected =  new GameObject_charSelect("Images/menu_seleccion/CA2.png","CaptainAmerica", 0, renderer, aux );
+    GameObject_charSelect* cap_america_team_1_selected =  new GameObject_charSelect("../Images/menu_seleccion/CA2.png","CaptainAmerica", 0, renderer, aux );
     gameObjects.push_back(cap_america_team_1_selected);
 
     aux = {200,0,800,600};
-    GameObject_charSelect* cap_america_team_2_selected =  new GameObject_charSelect("Images/menu_seleccion/CA.png","CaptainAmerica", 0, renderer, aux );
+    GameObject_charSelect* cap_america_team_2_selected =  new GameObject_charSelect("../Images/menu_seleccion/CA.png","CaptainAmerica", 0, renderer, aux );
     gameObjects.push_back(cap_america_team_2_selected);
 
     //CUADRADITOS
     aux = {200,0,800,600};
-    GameObject_charSelect* square_team_1 =  new GameObject_charSelect("Images/menu_seleccion/Team1 select.png","square_1", 0, renderer, aux );
+    GameObject_charSelect* square_team_1 =  new GameObject_charSelect("../Images/menu_seleccion/Team1 select.png","square_1", 0, renderer, aux );
     gameObjects.push_back(square_team_1);
 
     aux = {200,0,800,600};
-    GameObject_charSelect* square_team_2 =  new GameObject_charSelect("Images/menu_seleccion/Team2 select.png","square_2", 0, renderer, aux );
+    GameObject_charSelect* square_team_2 =  new GameObject_charSelect("../Images/menu_seleccion/Team2 select.png","square_2", 0, renderer, aux );
     gameObjects.push_back(square_team_2);
 
 
     //CUADRADITOS GRISES
     aux = {240,296,153,117};
-    GameObject_charSelect* square_grey_1=  new GameObject_charSelect("Images/menu_seleccion/Seleccionado.png","CaptainAmerica", 0, renderer, aux );
+    GameObject_charSelect* square_grey_1=  new GameObject_charSelect("../Images/menu_seleccion/Seleccionado.png","CaptainAmerica", 0, renderer, aux );
     gameObjects.push_back(square_grey_1);
 
     aux = {403, 296,153,117};
-    GameObject_charSelect* square_grey_2=  new GameObject_charSelect("Images/menu_seleccion/Seleccionado.png","SpiderMan", 0, renderer, aux );
+    GameObject_charSelect* square_grey_2=  new GameObject_charSelect("../Images/menu_seleccion/Seleccionado.png","SpiderMan", 0, renderer, aux );
     gameObjects.push_back(square_grey_2);
 
     aux = {242,422,153,117};
-    GameObject_charSelect* square_grey_3 =  new GameObject_charSelect("Images/menu_seleccion/Seleccionado.png","ChunLi", 0, renderer, aux );
+    GameObject_charSelect* square_grey_3 =  new GameObject_charSelect("../Images/menu_seleccion/Seleccionado.png","ChunLi", 0, renderer, aux );
     gameObjects.push_back(square_grey_3);
 
     aux = {404,422,153,117};
-    GameObject_charSelect* square_grey_4=  new GameObject_charSelect("Images/menu_seleccion/Seleccionado.png","Venom", 0, renderer, aux );
+    GameObject_charSelect* square_grey_4=  new GameObject_charSelect("../Images/menu_seleccion/Seleccionado.png","Venom", 0, renderer, aux );
     gameObjects.push_back(square_grey_4);
 
     return gameObjects;

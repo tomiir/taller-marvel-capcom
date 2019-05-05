@@ -26,7 +26,6 @@ ViewController_fight* ViewControllerFactory::getViewController_fight() {
     JsonConfigs* config = JsonConfigs::getJson();
     int speedCharacter = config->getCharactersSpeed();
     int jumpSpeed = config->getJumpSpeed();
-
     GameObjectControllerFactory* factory = new GameObjectControllerFactory(renderer, screenWidth, screenHeight, speedCharacter, jumpSpeed);
 
     vector<ControllerBackground *> backgrounds = factory->getControllersBackground_fight();

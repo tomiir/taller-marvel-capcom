@@ -24,6 +24,7 @@ void Game::init(const char *title, int posX, int posY) {
         if (!window) {
             logger -> Log("Fallo la creación de la ventana", ERROR, "");
         } else {
+
                 renderer = SDL_CreateRenderer(window, -1, 0);
                 if (!renderer){
                     logger -> Log("Fallo la creación del renderer", ERROR,"");

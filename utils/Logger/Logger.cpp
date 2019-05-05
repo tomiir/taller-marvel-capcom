@@ -11,7 +11,7 @@
 #include <sstream>
 using namespace std;
 
-string CLogger::filename = "taller-marvel-capcom-0.log";
+string CLogger::filename = "../taller-marvel-capcom-0.log";
 CLogger* CLogger::m_pThis = NULL;
 fstream CLogger::m_Logfile;
 CLogger::CLogger(){}
