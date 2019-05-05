@@ -1,5 +1,6 @@
 
 #include <csignal>
+#include <queue>
 #include "Server.h"
 
 //----SERVER VARIABLES----
@@ -15,6 +16,8 @@ socklen_t clientSize[MAXCLIENTS];
 
 char messageFromClient[4096];
 char messageToClient[4096];
+
+queue<string> serverQueue;
 
 
 
@@ -53,16 +56,20 @@ void Server::checkSendToClientError(int clientSock) {
             logger->Log( "El cliente cerro la conexion" , NETWORK, strerror(errno));
             close(clientSock);
             break;
+
         case EINTR:
             logger->Log( "Una señal interrumpio el send antes de enviar el mensaje" , ERROR, strerror(errno));
             break;
+
         case EIO:
             logger->Log( "Hubo un problema en la red o en el transporte" , ERROR, strerror(errno));
             break;
+
         case ENOTCONN:
             logger->Log( "El cliente no esta conectado" , NETWORK, strerror(errno));
             close(clientSock);
             break;
+
         case EPIPE:
             logger->Log( "Se recibio un SIGPIPE del cliente" , ERROR, strerror(errno));
             close(clientSock);
@@ -75,20 +82,25 @@ void Server::checkRecvFromClientError(int clientSock) {
 
     CLogger* logger = CLogger::GetLogger();
     switch(errno) {
+
         case ECONNREFUSED:
             logger->Log( "El cliente rechazo la conexion" , ERROR, strerror(errno));
             close(clientSock);
             break;
+
         case EINTR:
             logger->Log( "Una señal interrumpio el recv antes de recibir el mensaje" , ERROR, strerror(errno));
             break;
+
         case ENOMEM:
             logger->Log( "No se pudo alocar memoria para el mensaje" , ERROR, strerror(errno));
             break;
+
         case ENOTCONN:
             logger->Log( "El cliente no esta conectado" , NETWORK, strerror(errno));
             close(clientSock);
             break;
+
         case ENOTSOCK:
             logger->Log( "Problema con el socket del cliente, mal configurado" , ERROR, strerror(errno));
             break;
@@ -103,6 +115,7 @@ void Server::brokeConnection(int arg){
 
 
 void Server::Send(int clientSock){
+
     if (send(clientSock, messageToClient, strlen(messageToClient),0) == -1 ){
         checkSendToClientError(clientSock);
     }
@@ -125,7 +138,6 @@ string Server::update(int clientSock){
 void* Server::serverThread(void *clientSock_) {
 
     int clientSock = *(int *) clientSock_;
-
     CLogger* logger = CLogger::GetLogger();
 
     while(true){
@@ -146,20 +158,21 @@ void* Server::serverThread(void *clientSock_) {
         string received = update(clientSock);
 
         if( strcmp(received.c_str(), "0") == 0) {
-            logger->Log( "El cliente: " + to_string(clientSock) + " se desconecto" , NETWORK, strerror(errno));
+            logger->Log( "El cliente: " + to_string(clientSock) + " se desconecto" , NETWORK, "");
             close(clientSock);
             break;
         }
 
         if ( strcmp(received.c_str(), "1") == 0){
-            logger->Log( "El cliente " + to_string(clientSock) + " esta latiendo" , NETWORK, strerror(errno));
+            logger->Log( "El cliente " + to_string(clientSock) + " esta latiendo" , NETWORK, "");
             memset(messageFromClient,0,4096);
         }
 
 
         if(strcmp(received.c_str(), "1") != 0) { //ese cmp es bastante trucho,
 
-            logger->Log( "Se recibio de " + to_string(clientSock) + ": " + received , NETWORK, strerror(errno));
+            serverQueue.push(received);
+            logger->Log( "Se recibio de " + to_string(clientSock) + ": " + received , NETWORK, "");
             memset(messageToClient,0, 4096);
             strcpy(messageToClient, "Se recibio el mensaje correctamente");
             Send(clientSock);
@@ -181,10 +194,11 @@ void Server::clientConnected(sockaddr_in clientAddr_){
 
     if (canGetInfo == 0) {
         inet_ntop(AF_INET, &clientAddr_.sin_addr, clientIp, NI_MAXHOST);
-        logger->Log( "El cliente " + string(clientIp) + " se conecto al server: " + server , NETWORK, strerror(errno));
+        logger->Log( "El cliente " + string(clientIp) + " se conecto al server: " + server , NETWORK, "");
     }
 }
-void Server::Listen() {
+
+void Server::connect() {
 
     CLogger* logger = CLogger::GetLogger();
 
@@ -212,8 +226,8 @@ void Server::Listen() {
     clientsIter = 0;
 
     for(; clientsIter < MAXCLIENTS; clientsIter++){
-        int canCreateThread = pthread_create(&clientThreads[clientsIter], nullptr, serverThread, &clientSocket[clientsIter]);
-        if(canCreateThread != 0) {
+        int readThread = pthread_create(&clientThreads[clientsIter], nullptr, serverThread, &clientSocket[clientsIter]);
+        if(readThread != 0) {
             logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
         }
     }
@@ -223,10 +237,18 @@ void Server::Listen() {
     for(; clientsIter < MAXCLIENTS; clientsIter++){
         pthread_join(clientThreads[clientsIter], nullptr);
     }
-    logger->Log( "Se desconectaron todos los clientes, saliendo del juego." , INFO, strerror(errno));
+    logger->Log( "Se desconectaron todos los clientes, saliendo del juego." , INFO, "");
     logger->closeLogger();
     close(serverSocket_s);
 
+}
+
+void* Server::popQueue(void* arg){
+    CLogger* logger = CLogger::GetLogger();
+    string messagePop = serverQueue.front();
+    logger->Log("Se desencolo el mensaje: " + messagePop, INFO, "");
+    cout << "Se desencolo el mensaje: " + messagePop << endl;
+    serverQueue.pop();
 }
 
 

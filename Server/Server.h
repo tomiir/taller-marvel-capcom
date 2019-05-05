@@ -28,7 +28,7 @@ class Server {
 public:
     Server();
     ~Server() = default;
-    void Listen();
+    void connect();
     static void* serverThread(void *clientSock_);
 
     static void brokeConnection(int arg);
@@ -42,6 +42,7 @@ public:
 
 private:
     static void clientConnected(sockaddr_in clientAddr_);
+    static void* popQueue(void* arg);
 };
 
 

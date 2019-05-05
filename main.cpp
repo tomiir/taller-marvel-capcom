@@ -9,11 +9,12 @@
 
 int main(int argc, const char* argv[]){
 
-    int modo = 1;
+    int modo = 0;
     CLogger *logger = CLogger::GetLogger();
     logger->setLevel(DEBUG_LEVEL);
 
     if(modo == 1) {
+
         if (argc < 2 and argc > 4) {
             logger->Log("Falta el modo de inicializacion de la aplicacion serverAddr o cliente\n", ERROR, "");
             logger ->closeLogger();
@@ -21,12 +22,14 @@ int main(int argc, const char* argv[]){
         }
 
         if (argc == 2 and string(argv[1]) == "server") {
+            logger->Log("------------------------Logger del server --------------------------", DEBUG, "");
             logger ->Log("Escuchando con el server", INFO, "");
             Server *server = new Server();
-            server->Listen();
+            server->connect();
 
         } else if (argc == 4 and string(argv[1]) == "client") {
             //chequear si es una ip
+            logger->Log("------------------------Logger del cliente --------------------------", DEBUG, "");
 
             const char *ip = argv[2];
             int port = atoi(argv[3]);
@@ -51,24 +54,17 @@ int main(int argc, const char* argv[]){
     else {
 
         logger->Log("Inicializando juego", INFO, "");
-
         JsonConfigs *config = JsonConfigs::getJson();
-
 
         const int SCREEN_WIDTH = config->getScreenSize()[0];
         const int SCREEN_HEIGHT = config->getScreenSize()[1];
 
         std::string aux = config->getTitle();
-
         const char *title = aux.c_str();
-
         const int FPS = config->getFPS();
 
-
         Game *game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
-
         game->init(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
-
         Uint32 start;
 
         while (true) {
