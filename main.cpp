@@ -9,7 +9,7 @@
 
 int main(int argc, const char* argv[]){
 
-    int modo = 0;
+    int modo = 1;
     CLogger *logger = CLogger::GetLogger();
     logger->setLevel(DEBUG_LEVEL);
 
@@ -49,8 +49,6 @@ int main(int argc, const char* argv[]){
     }
 
     else {
-
-
 
         logger->Log("Inicializando juego", INFO, "");
 
