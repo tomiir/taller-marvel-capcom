@@ -161,7 +161,7 @@ void Client::hearthBeat(){
     if(strcmp(messageFromInput, "quit") == 0) {
         beating = false;
         this->Disconnect();
-        return;
+        exit(0);
     }
 
     Send(messageFromInput);

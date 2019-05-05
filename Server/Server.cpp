@@ -23,7 +23,7 @@ Server::Server() {
     CLogger* logger = CLogger::GetLogger();
     serverSocket_s = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (serverSocket_s == -1) {
-        logger->Log( "No se pudo crear el socket del servidor, saliento" , ERROR, strerror(errno));
+        logger->Log( "No se pudo crear el socket del servidor, saliendo..." , ERROR, strerror(errno));
     }
 
     serverAddr_s.sin_family = AF_INET;
