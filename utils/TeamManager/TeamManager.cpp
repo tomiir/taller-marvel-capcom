@@ -4,11 +4,17 @@
 
 #include "TeamManager.h"
 
-TeamManager::TeamManager(ControllerCharacter* character_1, ControllerCharacter* character_2, SDL_RendererFlip initialFlip) : Renderable(){
+TeamManager::TeamManager(SDL_RendererFlip initialFlip) : Renderable(){
 
-    currentCharacter = character_1;
-    supportCharacter = character_2;
     flip = initialFlip;
+
+}
+
+void TeamManager:: setCharacters(std::vector<ControllerCharacter*> characters, EventToValueMapper* mapper){
+    currentCharacter = characters[0];
+    supportCharacter = characters[1];
+    currentCharacter->setMapper(mapper);
+    supportCharacter->setMapper(mapper);
 }
 
 int TeamManager::getZIndex() {
@@ -61,5 +67,11 @@ void TeamManager::flipCurrentCharacter() {
     else flip = SDL_FLIP_NONE;
 
     currentCharacter->flip(flip);
+
+}
+
+void TeamManager::setInitialPos(bool left) {
+
+    currentCharacter->setInitialPos(left);
 
 }

@@ -7,12 +7,11 @@
 #include <thread>
 #include "../../../utils/Logger/Logger.h"
 
-ControllerCharacter::ControllerCharacter(GameObject* gameObject, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_,  int speedCharacter_, int jumpSpeed) : Controller(gameObject, jumpSpeed){
+ControllerCharacter::ControllerCharacter(GameObject* gameObject, int screenWidth_, int screenHeight_,  int speedCharacter_, int jumpSpeed) : Controller(gameObject, jumpSpeed){
     screenHeight = screenHeight_;
     screenWidth = screenWidth_;
     speedCharacter = speedCharacter_;
     jump = jumpRight = jumpLeft = inAir = leaving = entering = crowchedDown = movingRight = movingLeft = moving = false;
-    mapper = mapper_;
 
 }
 
@@ -107,6 +106,7 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
         if ( characterInFloor ) {
             inAir = jumpRight = jumpLeft = entering = false;
             gameObject->stayInFloor();
+            state = "still";
         }
 
     }
@@ -197,4 +197,15 @@ bool ControllerCharacter::isMovingRight() {
 
 bool ControllerCharacter::isMovingLeft() {
     return movingLeft;
+}
+
+void ControllerCharacter::setMapper(EventToValueMapper* mapper) {
+
+    this->mapper = mapper;
+}
+
+void ControllerCharacter::setInitialPos(bool left) {
+
+    dynamic_cast<Character*>(gameObject)->setInitialPos(left);
+
 }

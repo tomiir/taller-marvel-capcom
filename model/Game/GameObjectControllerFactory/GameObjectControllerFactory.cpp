@@ -23,10 +23,10 @@ std::vector<ControllerCharacter*> GameObjectControllerFactory::getControllersCha
     vector <ControllerCharacter*> characters;
 
     //hardcodeo los z indexs
-    ControllerCharacter* controllerCharacter1 = new ControllerCharacter(gameObjects[0],new EventToValueMapper_player1(), screenWidth, screenHeight, speedCharacter, jumpSpeed);
-    ControllerCharacter* controllerCharacter2 = new ControllerCharacter(gameObjects[1],new EventToValueMapper_player1() ,screenWidth, screenHeight, speedCharacter, jumpSpeed);
-    ControllerCharacter* controllerCharacter3 = new ControllerCharacter(gameObjects[2],new EventToValueMapper_player2(), screenWidth, screenHeight, speedCharacter, jumpSpeed);
-    ControllerCharacter* controllerCharacter4 = new ControllerCharacter(gameObjects[3],new EventToValueMapper_player2() ,screenWidth, screenHeight, speedCharacter, jumpSpeed);
+    ControllerCharacter* controllerCharacter1 = new ControllerCharacter(gameObjects[0], screenWidth, screenHeight, speedCharacter, jumpSpeed);
+    ControllerCharacter* controllerCharacter2 = new ControllerCharacter(gameObjects[1], screenWidth, screenHeight, speedCharacter, jumpSpeed);
+    ControllerCharacter* controllerCharacter3 = new ControllerCharacter(gameObjects[2], screenWidth, screenHeight, speedCharacter, jumpSpeed);
+    ControllerCharacter* controllerCharacter4 = new ControllerCharacter(gameObjects[3], screenWidth, screenHeight, speedCharacter, jumpSpeed);
 
 
     characters = { controllerCharacter1, controllerCharacter2,controllerCharacter3,controllerCharacter4 };
