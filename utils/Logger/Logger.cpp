@@ -15,7 +15,7 @@ string CLogger::filename = "taller-marvel-capcom-0.log";
 CLogger* CLogger::m_pThis = NULL;
 fstream CLogger::m_Logfile;
 CLogger::CLogger(){}
-vector<string> CLogger::levelNames = {"ERROR", "INFO", "DEBUG"};
+vector<string> CLogger::levelNames = {"ERROR", "INFO", "NETWORK", "DEBUG"};
 
 std::string Backtrace(int skip = 1)
 {
@@ -108,4 +108,9 @@ void CLogger::LogError(string parameter, string object) {
     string message = "Hubo un error al cargar el parametro: " + parameter + " de  " + object + " , se levantara el parametro del default";
     this -> Log(message, ERROR, "");
 
+}
+
+void CLogger::closeLogger() {
+    Log("Ha ocurrido un error de network, cerrando logger", ERROR, "");
+    this -> m_Logfile.close();
 }

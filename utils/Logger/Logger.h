@@ -9,7 +9,8 @@
 
 const int ERROR = 0;
 const int INFO = 1;
-const int DEBUG = 2;
+const int NETWORK = 2;
+const int DEBUG = 3;
 
 
 
@@ -24,6 +25,7 @@ public:
     void Log(const std::string& sMessage, int level, string e);
     void LogMovement(string cName, DirectionVector* dir, int x, int y);
     void LogError(string parameter, string object);
+    void closeLogger();
 
     void setLevel(int level) {
         this -> level = level;
