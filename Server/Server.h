@@ -14,8 +14,7 @@
 #include <string.h>
 #include <string>
 #include <pthread.h>
-#include <future>
-#include <chrono>
+#include <queue>
 #include "../utils/Logger/Logger.h"
 
 #define MAXCLIENTS 2

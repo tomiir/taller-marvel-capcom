@@ -19,6 +19,7 @@ char messageToSever[4096];
 char messageFromInput[4096];
 bool connect2 = true;
 
+queue<string> queueRecv;
 
 Mapper* currentMapper;
 Mapper* notCurrentMapper;
@@ -177,7 +178,7 @@ bool Client::isBeating() {
 }
 
 
-void* Client::update(void* arg) {
+void* Client::recvFromServer(void* arg) {
 
     CLogger* logger = CLogger::GetLogger();
 
@@ -189,7 +190,18 @@ void* Client::update(void* arg) {
     }
     string messageReceived = string(messageFromServer, 0, bytesReceived);
 
+    queueRecv.push(messageReceived);
+
+    logger->Log("Se recibio correctamente del server el mensaje: " + messageReceived, NETWORK, "");
+
+    return messageFromServer;
+}
+
+void* Client::render(void *arg) {
+
+    string messageReceived = queueRecv.front();
     string view = messageReceived.substr(0,2);
+
     if(view == "00"){ //view selected
 
         //zIndex
@@ -198,10 +210,14 @@ void* Client::update(void* arg) {
         string greySquaredSelectedt21 = messageReceived.substr(4,5);
         string greySquaredSelectedt22 = messageReceived.substr(5,6);
 
+        viewSelectCharacter->updateGreySquares(greySquaredSelectedt11, greySquaredSelectedt12, greySquaredSelectedt21, greySquaredSelectedt22 );
+
         //0  1
         //2  3
         string selectT1 = messageReceived.substr(6,8);
         string selectT2 = messageReceived.substr(8,10);
+
+        viewSelectCharacter->updateSelects(selectT1, selectT2);
 
         //personaje,zIndex
         string characterUpRight = messageReceived.substr(10,14);
@@ -209,18 +225,19 @@ void* Client::update(void* arg) {
         string characterUpLeft = messageReceived.substr(18,22);
         string characterDownLeft = messageReceived.substr(22,26);
 
+        viewSelectCharacter->updateCharactersImages(characterUpRight, characterDownRight, characterUpLeft, characterDownLeft);
+
         //selected or not
         string selected = messageReceived.substr(26,27);
+        viewSelectCharacter->updateSelected(selected);
+        viewSelectCharacter->render();
+        queueRecv.pop();
+
     }
     if(view == "01") { //view fight
 
 
-
     }
-
-    logger->Log("Se recibio correctamente del server el mensaje: " + messageReceived, NETWORK, "");
-
-    return &messageReceived[0u]; //SI TIRA SEGSEV ES POR ESTA COSA RARA
 }
 
 void* Client::sendEventToServer(void* arg){
@@ -246,10 +263,13 @@ void Client::Initialice() {
 
     pthread_t sendEventThread;
     pthread_t recvFromServerThread;
+    pthread_t renderThread;
 
     pthread_create(&sendEventThread, nullptr, &sendEventToServer, nullptr);
         //Si el send finaliza, esto finaliza.
-    pthread_create(&recvFromServerThread, nullptr, &update, nullptr);
+    pthread_create(&recvFromServerThread, nullptr, &recvFromServer, nullptr);
+    pthread_create(&renderThread, nullptr, &render, nullptr);
+
 
     pthread_join(sendEventThread, nullptr);
     pthread_cancel(recvFromServerThread);

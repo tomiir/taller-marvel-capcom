@@ -17,6 +17,7 @@
 #include <future>
 #include <chrono>
 #include <netinet/tcp.h>
+#include <queue>
 #include "../utils/Logger/Logger.h"
 #include "../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.h"
 #include "../utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect.h"
@@ -59,7 +60,8 @@ private:
     void configServer(const char* serverIp, uint16_t serverPort);
 
     static void* sendEventToServer(void* arg);
-    static void* update(void* arg);
+    static void* recvFromServer(void* arg);
+    static void* render(void* arg);
 
 
 

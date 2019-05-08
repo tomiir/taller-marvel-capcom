@@ -1,6 +1,5 @@
 
 #include <csignal>
-#include <queue>
 #include "Server.h"
 
 //----SERVER VARIABLES----
