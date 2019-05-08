@@ -10,7 +10,7 @@ TeamManager::TeamManager(SDL_RendererFlip initialFlip) : Renderable(){
 
 }
 
-void TeamManager:: setCharacters(std::vector<ControllerCharacter*> characters, EventToValueMapper* mapper){
+void TeamManager:: setCharacters(std::vector<ControllerCharacter*> characters, Mapper_fight* mapper){
     currentCharacter = characters[0];
     supportCharacter = characters[1];
     currentCharacter->setMapper(mapper);

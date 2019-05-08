@@ -6,7 +6,7 @@
 #define TALLER_MARVEL_CAPCOM_CONTROLLER_H
 
 #include "../../model/GameObjects/GameObject/GameObject.h"
-#include "../../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.h"
+#include "../../utils/Mapper/Mapper_fight/Mapper_fight.h"
 #include "../../utils/Logger/Logger.h"
 #include "Renderable.h"
 using namespace std;

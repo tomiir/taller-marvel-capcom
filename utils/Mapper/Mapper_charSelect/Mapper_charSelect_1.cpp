@@ -2,16 +2,16 @@
 // Created by magali on 01/05/19.
 //
 
-#include "EventToValueMapper_charSelect_1.h"
+#include "Mapper_charSelect_1.h"
 
-EventToValueMapper_charSelect_1::EventToValueMapper_charSelect_1():EventToValueMapper_charSelect(){
+Mapper_charSelect_1::Mapper_charSelect_1():Mapper_charSelect(){
     preselected = "CaptainAmerica";
     map_preselected = cap_america;
 }
 
 
 
-string EventToValueMapper_charSelect_1:: map( SDL_Event event) {
+string Mapper_charSelect_1:: map( SDL_Event event) {
 
 
     if (event.type == SDL_KEYDOWN) {

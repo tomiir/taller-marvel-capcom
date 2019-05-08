@@ -2,9 +2,11 @@
 // Created by magali on 08/04/19.
 //
 
-#include "EventToValueMapper_player1.h"
+#include "Mapper_fight_2.h"
+#include <stdio.h>
 
-DirectionVector *EventToValueMapper_player1::map(SDL_Event event) {
+
+DirectionVector *Mapper_fight_2::map(SDL_Event event){
 
     changeCharacter_ = false;
 
@@ -16,31 +18,31 @@ DirectionVector *EventToValueMapper_player1::map(SDL_Event event) {
 
         switch (event.key.keysym.sym) {
 
-            case SDLK_l:
+            case SDLK_d:
                 direction->add(1, 0);
                 break;
-            case SDLK_j:
+            case SDLK_a:
                 direction->add(-1, 0);
                 break;
-            case SDLK_i:
+            case SDLK_w:
                 direction->add(0, -1);
                 break;
-            case SDLK_k:
+            case SDLK_s:
                 direction->add(0, 1);
                 break;
-            case SDLK_m:
-                changeCharacter_= true;
+            case SDLK_c:
+                changeCharacter_ = true;
                 break;
             default:
                 break;
         }
 
-        if ( keyboardStateArray[SDL_SCANCODE_L] and keyboardStateArray[SDL_SCANCODE_I] ) {
+    if ( keyboardStateArray[SDL_SCANCODE_D] and keyboardStateArray[SDL_SCANCODE_W] ) {
             direction->setDiagonal(1);
             direction->setY(-1);
         }
 
-        if ( keyboardStateArray[SDL_SCANCODE_J] and keyboardStateArray[SDL_SCANCODE_I] ) {
+        if ( keyboardStateArray[SDL_SCANCODE_A] and keyboardStateArray[SDL_SCANCODE_W] ) {
             direction->setDiagonal(-1);
             direction->setY(-1);
         }
@@ -50,13 +52,13 @@ DirectionVector *EventToValueMapper_player1::map(SDL_Event event) {
 
         switch (event.key.keysym.sym) {
 
-            case SDLK_k:
+            case SDLK_s:
                 direction->add(0, 2);
                 break;
-            case SDLK_j:
+            case SDLK_a:
                 direction->add(-2, 0);
                 break;
-            case SDLK_l:
+            case SDLK_d:
                 direction->add(2, 0);
                 break;
             default:
@@ -67,7 +69,4 @@ DirectionVector *EventToValueMapper_player1::map(SDL_Event event) {
 
     return direction;
 }
-
-
-
 

@@ -10,9 +10,9 @@
 #include "../../../controllers/Controller/ControllerCharacter/ControllerCharacter.h"
 #include "../../../controllers/Controller/ControllerBackground/ControllerBackground.h"
 #include "../../GameObjects/GameObject/GameObject.h"
-#include "../../../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper_player1.h"
-#include "../../../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper_player2.h"
-#include "../../../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.h"
+#include "../../../utils/Mapper/Mapper_fight/Mapper_fight_1.h"
+#include "../../../utils/Mapper/Mapper_fight/Mapper_fight_2.h"
+#include "../../../utils/Mapper/Mapper_fight/Mapper_fight.h"
 
 class GameObjectControllerFactory {
 

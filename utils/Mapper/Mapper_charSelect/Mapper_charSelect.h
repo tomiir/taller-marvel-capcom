@@ -2,22 +2,23 @@
 // Created by magali on 01/05/19.
 //
 
-#ifndef TALLER_MARVEL_CAPCOM_EVENTTOVALUEMAPPER_CHARSELECT_H
-#define TALLER_MARVEL_CAPCOM_EVENTTOVALUEMAPPER_CHARSELECT_H
+#ifndef TALLER_MARVEL_CAPCOM_MAPPER_CHARSELECT_H
+#define TALLER_MARVEL_CAPCOM_MAPPER_CHARSELECT_H
 
 #include <vector>
 #include <SDL_events.h>
 #include <iostream>
 #include <map>
 #include <string.h>
+#include "../Mapper.h"
 
 using namespace std;
-class EventToValueMapper_charSelect {
 
+class Mapper_charSelect: public Mapper{
 
 public:
-    EventToValueMapper_charSelect();
-    virtual ~EventToValueMapper_charSelect();
+    Mapper_charSelect();
+    virtual ~Mapper_charSelect();
     virtual string map(SDL_Event event);
     string getPreselected();
 
@@ -35,4 +36,4 @@ protected:
 };
 
 
-#endif //TALLER_MARVEL_CAPCOM_EVENTTOVALUEMAPPER_CHARSELECT_H
+#endif //TALLER_MARVEL_CAPCOM_MAPPER_CHARSELECT_H

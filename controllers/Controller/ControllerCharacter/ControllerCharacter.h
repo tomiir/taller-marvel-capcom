@@ -8,7 +8,7 @@
 
 #include "../Controller.h"
 #include "../../../utils/Vector2D/DirectionVector.h"
-#include "../../../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.h"
+#include "../../../utils/Mapper/Mapper_fight/Mapper_fight.h"
 #include "../../../model/GameObjects/Character/Character.h"
 
 using namespace std;
@@ -23,7 +23,7 @@ public:
     bool isJumping();
     bool isJumpingRight();
     bool isJumpingLeft();
-    EventToValueMapper* getMapper();
+    Mapper_fight* getMapper();
     void setInitialPos(bool left);
     void move(DirectionVector *pVector);
     void flip(SDL_RendererFlip);
@@ -34,11 +34,11 @@ public:
     bool isChanging();
     bool isMovingRight();
     bool isMovingLeft();
-    void setMapper(EventToValueMapper* mapper);
+    void setMapper(Mapper_fight* mapper);
 
 private:
 
-    EventToValueMapper* mapper;
+    Mapper_fight* mapper;
     int screenWidth, screenHeight, speedCharacter;
     int jumpDistance = 10;
     bool jump, inAir, jumpRight, jumpLeft, leaving, entering, crowchedDown, movingRight, movingLeft, moving;

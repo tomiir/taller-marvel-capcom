@@ -17,8 +17,8 @@ ViewController_charSelect::ViewController_charSelect(SDL_Renderer *renderer_): V
     std::vector<int> aux_3 = {0,0,303,300};// arriba a la izquierda
     std::vector<int> aux_4 = {0,300,303,300};// abajo a la izquierda
 
-    mapper_1 = new  EventToValueMapper_charSelect_1() ;
-    mapper_2 = new  EventToValueMapper_charSelect_2() ;
+    mapper_1 = new  Mapper_charSelect_1() ;
+    mapper_2 = new  Mapper_charSelect_2() ;
 
     posc_side_1 = {aux_1 , aux_2};
     posc_side_2 = {aux_3, aux_4};

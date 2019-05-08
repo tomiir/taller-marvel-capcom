@@ -2,21 +2,22 @@
 // Created by magali on 01/04/19.
 //
 
-#ifndef TALLER_MARVEL_CAPCOM_EVENTTOVALUEMAPPER_H
-#define TALLER_MARVEL_CAPCOM_EVENTTOVALUEMAPPER_H
+#ifndef TALLER_MARVEL_CAPCOM_MAPPER_FIGHT_H
+#define TALLER_MARVEL_CAPCOM_MAPPER_FIGHT_H
 
 #include <vector>
 #include <SDL_events.h>
 #include "../../Vector2D/DirectionVector.h"
+#include "../Mapper.h"
 
 
 
-class EventToValueMapper{
+class Mapper_fight: public Mapper{
 
 
 public:
-    EventToValueMapper();
-    ~EventToValueMapper();
+    Mapper_fight();
+    ~Mapper_fight();
     virtual DirectionVector* map(SDL_Event event);
     bool changeCharacter(SDL_Event event);
 
@@ -26,4 +27,4 @@ protected:
 };
 
 
-#endif //TALLER_MARVEL_CAPCOM_EVENTTOVALUEMAPPER_H
+#endif //TALLER_MARVEL_CAPCOM_MAPPER_FIGHT_H
