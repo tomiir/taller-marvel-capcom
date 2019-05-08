@@ -9,8 +9,22 @@
 
 int main(int argc, const char* argv[]){
 
-    int modo = 0;
+
     CLogger *logger = CLogger::GetLogger();
+    logger->Log("Inicializando juego", INFO, "");
+    JsonConfigs *config = JsonConfigs::getJson();
+
+    const int SCREEN_WIDTH = config->getScreenSize()[0];
+    const int SCREEN_HEIGHT = config->getScreenSize()[1];
+
+    Game *game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+    std::string aux = config->getTitle();
+    const char *title = aux.c_str();
+
+    game->init(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+
+    int modo = 1;
     logger->setLevel(DEBUG_LEVEL);
 
     if(modo == 1) {
@@ -31,6 +45,8 @@ int main(int argc, const char* argv[]){
             //chequear si es una ip
             logger->Log("------------------------Logger del cliente --------------------------", DEBUG, "");
 
+
+
             const char *ip = argv[2];
             int port = atoi(argv[3]);
 
@@ -38,14 +54,22 @@ int main(int argc, const char* argv[]){
             bool connected = client->Connect();
             if (!connected) return -1;
 
+            if(strcmp(client->update(), "team1-1") == 0 or strcmp(client->update(), "team2-1") == 0){
+                client->setMappers(new EventToValueMapper_charSelect_1, new EventToValueMapper_player1 );
+            }
+            else if(strcmp(client->update(), "team1-2") == 0 or strcmp(client->update(), "team2-2") == 0 ){
+                client->setMappers(new EventToValueMapper_charSelect_2, new EventToValueMapper_player2 );
+            }
+            else{
+                cout << "Error al setear los mappers" << endl;
+                exit(0);
+            }
+
             if (strcmp(client->update(), "connected") == 0) {
                 logger->Log( "Conectado al servidor", INFO, "");
-                while (true) {
-                    client->hearthBeat();
-                    if (client->isBeating()) client->update();
-                    else break;
-                }
+                client->Initialice();
             }
+
         } else {
             logger->Log( "error al mandar el parametro mode", ERROR, "");
         }

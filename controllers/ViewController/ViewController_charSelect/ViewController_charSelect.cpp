@@ -80,6 +80,9 @@ void ViewController_charSelect:: handleEvent() {
     SDL_Event event;
     SDL_PollEvent(&event);
 
+    if (event.type == SDL_QUIT) {
+        throw -1;
+    }
     if (selected_1.size() < 2) {
         string respuesta_1 = mapper_1->map(event);
         if (strcmp(respuesta_1.c_str(), "no_selecciono") != 0) setTeam1(respuesta_1);

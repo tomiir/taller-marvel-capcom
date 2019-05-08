@@ -17,13 +17,14 @@ socklen_t  serverSize_c;
 char messageFromServer[4096];
 char messageToSever[4096];
 char messageFromInput[4096];
+bool connect2 = true;
 
 
+Mapper* currentMapper;
+Mapper* notCurrentMapper;
 
 
 void Client::configServer(const char* serverIp, uint16_t serverPort){
-
-
 
     serverSocket_c = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     serverAddr_c.sin_family = AF_INET;
@@ -60,6 +61,7 @@ bool Client::Connect() {
 
 
 void Client::checkRecvFromServerError(){
+    CLogger* logger = CLogger::GetLogger();
 
     switch(errno) {
 
@@ -88,6 +90,7 @@ void Client::checkRecvFromServerError(){
 }
 
 void Client::checkSendToServerError(){
+    CLogger* logger = CLogger::GetLogger();
 
     switch(errno) {
 
@@ -128,21 +131,6 @@ void Client::Send(char* message) {
     logger->Log("Se envio correctamente el mensaje: " + string(message) , NETWORK, "");
 
 
-}
-
-char* Client::update() {
-
-    memset(messageFromServer, 0, 4096);
-    int bytesReceived = recv(serverSocket_c, messageFromServer, 4096, 0);
-
-    if(bytesReceived == -1){
-        checkRecvFromServerError();
-    }
-
-    string messageReceived = string(messageFromServer, bytesReceived);
-    logger->Log("Se recibio correctamente del server el mensaje: " + messageReceived, NETWORK, "");
-
-    return &messageReceived[0u]; //SI TIRA SEGSEV ES POR ESTA COSA RARA
 }
 
 sig_atomic_t clientBrokeConnection = 0;
@@ -186,4 +174,90 @@ void Client::hearthBeat(){
 bool Client::isBeating() {
 
     return beating;
+}
+
+
+void* Client::update(void* arg) {
+
+    CLogger* logger = CLogger::GetLogger();
+
+    memset(messageFromServer, 0, 4096);
+    int bytesReceived = recv(serverSocket_c, messageFromServer, 4096, 0);
+
+    if(bytesReceived == -1){
+        checkRecvFromServerError();
+    }
+    string messageReceived = string(messageFromServer, 0, bytesReceived);
+
+    string view = messageReceived.substr(0,2);
+    if(view == "00"){ //view selected
+
+        //zIndex
+        string greySquaredSelectedt11 = messageReceived.substr(2,3);
+        string greySquaredSelectedt12 = messageReceived.substr(3,4);
+        string greySquaredSelectedt21 = messageReceived.substr(4,5);
+        string greySquaredSelectedt22 = messageReceived.substr(5,6);
+
+        //0  1
+        //2  3
+        string selectT1 = messageReceived.substr(6,8);
+        string selectT2 = messageReceived.substr(8,10);
+
+        //personaje,zIndex
+        string characterUpRight = messageReceived.substr(10,14);
+        string characterDownRight = messageReceived.substr(14,18);
+        string characterUpLeft = messageReceived.substr(18,22);
+        string characterDownLeft = messageReceived.substr(22,26);
+
+        //selected or not
+        string selected = messageReceived.substr(26,27);
+    }
+    if(view == "01") { //view fight
+
+
+
+    }
+
+    logger->Log("Se recibio correctamente del server el mensaje: " + messageReceived, NETWORK, "");
+
+    return &messageReceived[0u]; //SI TIRA SEGSEV ES POR ESTA COSA RARA
+}
+
+void* Client::sendEventToServer(void* arg){
+
+    CLogger* logger = CLogger::GetLogger();
+
+    while(true){
+        SDL_Event event;
+        SDL_PollEvent(&event);
+        //timmer para no enviar tantos eventos
+        char* mapEvent = currentMapper()->map(event);
+        if (event.type == SDL_QUIT) {
+            logger -> Log("Saliendo del juego", INFO, "");
+            connect2 = false;
+            break;
+        }
+        ssize_t bytesSent = send(serverSocket_c, mapEvent, sizeof(mapEvent), 0);
+        if(bytesSent < 0) checkSendToServerError();
+    }
+}
+
+void Client::Initialice() {
+
+    pthread_t sendEventThread;
+    pthread_t recvFromServerThread;
+
+    pthread_create(&sendEventThread, nullptr, &sendEventToServer, nullptr);
+        //Si el send finaliza, esto finaliza.
+    pthread_create(&recvFromServerThread, nullptr, &update, nullptr);
+
+    pthread_join(sendEventThread, nullptr);
+    pthread_cancel(recvFromServerThread);
+    Disconnect();
+}
+
+void Client::setMappers(Mapper* mapperSelect_, Mapper* mapperFight_){
+
+    currentMapper = mapperSelect_;
+    notCurrentMapper = mapperFight_;
 }

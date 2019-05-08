@@ -18,6 +18,8 @@
 #include <chrono>
 #include <netinet/tcp.h>
 #include "../utils/Logger/Logger.h"
+#include "../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.h"
+#include "../utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect.h"
 
 using namespace std;
 
@@ -37,11 +39,13 @@ public:
 
     void Send(char *message);
 
-    char *update();
-
     bool isBeating();
 
     void hearthBeat();
+
+    void Initialice();
+
+    void setMappers(EventToValueMapper_charSelect* mapperSelect_, EventToValueMapper* mapperFight_);
 
 private:
 
@@ -54,10 +58,13 @@ private:
 
     void configServer(const char* serverIp, uint16_t serverPort);
 
-    bool enable_keepalive();
+    static void* sendEventToServer(void* arg);
+    static void* update(void* arg);
 
-    void checkSendToServerError();
-    void checkRecvFromServerError();
+
+
+    static void checkSendToServerError();
+    static void checkRecvFromServerError();
 };
 
 
