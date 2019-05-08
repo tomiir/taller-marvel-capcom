@@ -14,27 +14,23 @@
 #include "../../utils/FlipManager/FlipManager.h"
 
 
-class ViewController {
-
+class ViewController{
 public:
 
     ViewController(SDL_Renderer* renderer_);
-    ~ViewController();
-    void updateView();
-    void handleEvent();
-    void addFlipManager(FlipManager* flipManager_);
-    void addBackground(ControllerBackground* controller);
-    void addTeams(TeamManager* teamManager1, TeamManager* teamManager2);
+    virtual ~ViewController();
+    virtual void updateView();
+    virtual void handleEvent();
+    virtual void addBackground(ControllerBackground* controller);
+    virtual bool end();
+    virtual string getNextView();
 
-private:
-
+protected:
     View* view;
     SDL_Renderer* renderer;
     std::vector<ControllerBackground*> backgrounds;
-    TeamManager* team1;
-    TeamManager* team2;
-    FlipManager* flipManager;
 };
+
 
 
 #endif //TALLER_MARVEL_CAPCOM_VIEWCONTROLLER_H

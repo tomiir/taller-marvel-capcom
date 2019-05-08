@@ -11,11 +11,11 @@
 #include <sstream>
 using namespace std;
 
-string CLogger::filename = "taller-marvel-capcom-0.log";
+string CLogger::filename = "../taller-marvel-capcom-0.log";
 CLogger* CLogger::m_pThis = NULL;
 fstream CLogger::m_Logfile;
 CLogger::CLogger(){}
-vector<string> CLogger::levelNames = {"ERROR", "INFO", "DEBUG"};
+vector<string> CLogger::levelNames = {"ERROR", "INFO", "NETWORK", "DEBUG"};
 
 std::string Backtrace(int skip = 1)
 {
@@ -57,12 +57,15 @@ CLogger* CLogger::GetLogger(){
         m_pThis = new CLogger();
 
         m_Logfile.open(filename.c_str());
+
         while(!m_Logfile.fail()) {
+
+            filename = filename.substr(filename.find("/"), filename.size());
             filename = filename.substr(0, filename.find("."));
             int id = std::atoi (filename.substr(filename.find_first_of("1234567890"), filename.size()-1).c_str());
             string idString =  to_string(id +1);
             filename = filename.substr(0,filename.find_first_of("1234567890")) + idString + ".log";
-
+            filename = ".." + filename;
             m_Logfile.close();
             m_Logfile.open(filename.c_str());
         }
@@ -108,4 +111,9 @@ void CLogger::LogError(string parameter, string object) {
     string message = "Hubo un error al cargar el parametro: " + parameter + " de  " + object + " , se levantara el parametro del default";
     this -> Log(message, ERROR, "");
 
+}
+
+void CLogger::closeLogger() {
+    Log("Ha ocurrido un error de network, cerrando logger", ERROR, "");
+    this -> m_Logfile.close();
 }

@@ -17,6 +17,7 @@
 #include <future>
 #include <chrono>
 #include <netinet/tcp.h>
+#include "../utils/Logger/Logger.h"
 
 using namespace std;
 
@@ -25,17 +26,26 @@ class Client {
 
 public:
     Client() = default;
-    Client(const char* serverIp, uint16_t serverPort);
+
+    Client(const char *serverIp, uint16_t serverPort);
+
     ~Client() = default;
+
     bool Connect();
+
     void Disconnect();
-    void Send(char* message);
-    char* update();
+
+    void Send(char *message);
+
+    char *update();
+
     bool isBeating();
+
     void hearthBeat();
 
 private:
 
+    CLogger* logger = CLogger::GetLogger();
 
     pthread_t clientThread;
     bool beating;

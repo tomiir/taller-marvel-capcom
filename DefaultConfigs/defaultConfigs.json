@@ -5,7 +5,7 @@
 		{"background":
 			{
 				"name": "Floor",
-				"filepath":"Images/Backgrounds/Background3.png",
+				"filepath":"../Images/Backgrounds/Background3.png",
 				"zindex":3,
 				"width": 3000,
 				"height": 900
@@ -15,7 +15,7 @@
 		{"background":
 			{
 				"name": "Moon",
-				"filepath":"Images/Backgrounds/Background2.png",
+				"filepath":"../Images/Backgrounds/Background2.png",
 				"zindex":2,
 				"width": 2450,
 				"height": 900
@@ -25,7 +25,7 @@
 		{"background":
 			{
 				"name": "Galaxy",
-				"filepath":"Images/Backgrounds/Background1.png",
+				"filepath":"../Images/Backgrounds/Background1.png",
 				"zindex":1,
 				"width": 1900,
 				"height": 900
@@ -35,7 +35,7 @@
 	"characters":
 		[
 			{"name":"CaptainAmerica",
-			 "filepath":"Images/Characters/CaptainAmerica.png",
+			 "filepath":"../Images/Characters/CaptainAmerica.png",
 			 "height":280,
 			 "width":200,
 			 "zindex":99,
@@ -43,7 +43,7 @@
 			 "size": 2.5
 			},
 			{"name":"ChunLi",
-			 "filepath":"Images/Characters/ChunLi.png",
+			 "filepath":"../Images/Characters/ChunLi.png",
 			 "height":220,
 			 "width":200,
 			 "zindex":99,
@@ -51,7 +51,7 @@
 			 "size": 2.5
 			},
 			{"name":"SpiderMan",
-			 "filepath":"Images/Characters/SpiderMan.png",
+			 "filepath":"../Images/Characters/SpiderMan.png",
 			 "height":245,
 			 "width":200,
 			 "zindex":98,
@@ -59,7 +59,7 @@
 			 "size": 2.5
 			},
 			{"name":"Venom",
-			 "filepath":"Images/Characters/Venom.png",
+			 "filepath":"../Images/Characters/Venom.png",
 			 "height":300,
 			 "width":200,
 			 "zindex":98,

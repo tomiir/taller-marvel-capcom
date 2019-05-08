@@ -6,14 +6,13 @@
 #include <string.h>
 
 
-Character::Character(const char* imagePath,int z_index, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialX, int initialY, std::string name, double size) :
-           GameObject(imagePath,z_index, rend, initialX, initialY, 0, 0) {
+Character::Character(const char* imagePath,string name_,int z_index, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialY, std::string name, double size) :
+           GameObject(imagePath, name_, z_index, rend, 0, initialY, 0, 0) {
 
     spriteManager = spriteManager_;
     this->initialY = initialY;
     logger->Log("Creando personaje: " + name, DEBUG, "");
     this->size = size;
-    this -> name = name;
 
 }
 
@@ -62,7 +61,12 @@ void Character::changePosition(int changeX, int changeY) {
 
 }
 
-string Character::getName() {
-    return name;
+void Character::setInitialXPositions(int positionLeft, int positionRight){
+    posInitialLeft = positionLeft;
+    posInitialRight = positionRight;
 }
 
+void Character::setInitialPos(bool left){
+
+    objRect.x = left ? posInitialLeft : posInitialRight;
+}

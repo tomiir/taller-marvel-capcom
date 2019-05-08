@@ -5,8 +5,9 @@
 #include "GameObject.h"
 
 
-GameObject::GameObject(const char* folderPath, int z_index, SDL_Renderer *rend, int initialX, int initialY, int width, int height) {
+GameObject::GameObject(const char* folderPath, string name_, int z_index, SDL_Renderer *rend, int initialX, int initialY, int width, int height) {
 
+    name = name_;
     renderer = rend;
     objRect = SDL_Rect{initialX, initialY, width, height};
     objTexture = TextureManager::LoadTexture(folderPath, renderer);
@@ -26,9 +27,8 @@ void GameObject::render() {}
 
 void GameObject::stayInFloor() {}
 
-void GameObject::crowchDown() {}
 
-bool GameObject::problemWithImage(){
 
-    return !objTexture;
+string GameObject::getName() {
+    return name;
 }

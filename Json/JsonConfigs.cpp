@@ -17,8 +17,8 @@ bool existFile(const char* path){
 
 JsonConfigs::JsonConfigs() {
 
-    string defaultJson = "DefaultConfigs/defaultConfigs.json";
-    string baseRoute = "configs.json";
+    string defaultJson = "../DefaultConfigs/defaultConfigs.json";
+    string baseRoute = "../configs.json";
     if(!existFile(baseRoute.c_str())) {
         baseRoute =  defaultJson;
         logger -> Log("Falló la carga del Json, utilizando el fallback", ERROR, "File " + baseRoute +" does not exist");
@@ -41,7 +41,6 @@ std::list<JsonBackground> JsonConfigs::getJsonBackgrounds() {
     while(iter != jsonEnd && fIter != fJsonEnd) {
         JsonBackground battlefield;
         if((*iter).getError() || (*iter).getName() != (*fIter).getName() || (*iter).getFilePath() != (*fIter).getFilePath()){
-
             std::list<std::string> errorsList = (*iter).getErrorList();
             std::list<std::string>::iterator errorIter = errorsList.begin();
 

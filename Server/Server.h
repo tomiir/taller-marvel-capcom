@@ -16,6 +16,7 @@
 #include <pthread.h>
 #include <future>
 #include <chrono>
+#include "../utils/Logger/Logger.h"
 
 #define MAXCLIENTS 2
 #define PORT 54000
@@ -27,7 +28,7 @@ class Server {
 public:
     Server();
     ~Server() = default;
-    void Listen();
+    void connect();
     static void* serverThread(void *clientSock_);
 
     static void brokeConnection(int arg);
@@ -39,7 +40,10 @@ public:
     static void checkSendToClientError(int clientSock);
     static void checkRecvFromClientError(int clientSock);
 
-    };
+private:
+    static void clientConnected(sockaddr_in clientAddr_);
+    static void* popQueue(void* arg);
+};
 
 
 #endif //TALLER_MARVEL_CAPCOM_SERVER_H

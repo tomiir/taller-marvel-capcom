@@ -8,7 +8,7 @@
 
 #include "../Controller.h"
 #include "../../../utils/Vector2D/DirectionVector.h"
-#include "../../../utils/EventToValueMapper/EventToValueMapper.h"
+#include "../../../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.h"
 #include "../../../model/GameObjects/Character/Character.h"
 
 using namespace std;
@@ -17,31 +17,24 @@ class ControllerCharacter : public Controller{
 
 
 public:
-    ControllerCharacter(GameObject *gameObject, EventToValueMapper* mapper_, int screenWidth_, int screenHeight_, int speedCharacter_, int speedCharacter);
+    ControllerCharacter(GameObject *gameObject, int screenWidth_, int screenHeight_, int speedCharacter_, int speedCharacter);
     ~ControllerCharacter();
     void handleEvent(SDL_Event event);
     bool isJumping();
     bool isJumpingRight();
     bool isJumpingLeft();
     EventToValueMapper* getMapper();
-
+    void setInitialPos(bool left);
     void move(DirectionVector *pVector);
-
     void flip(SDL_RendererFlip);
-
     void changePosition(int changeX, int changeY);
-
     bool isInAir();
-
     void gone();
-
     void entry();
-
     bool isChanging();
-
     bool isMovingRight();
-
     bool isMovingLeft();
+    void setMapper(EventToValueMapper* mapper);
 
 private:
 
@@ -52,8 +45,6 @@ private:
     string state = "still";
     CLogger* logger = CLogger::GetLogger();
     Character* character = dynamic_cast<Character*>(gameObject);
-
-
 };
 
 

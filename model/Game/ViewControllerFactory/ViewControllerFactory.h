@@ -6,7 +6,8 @@
 #define TALLER_MARVEL_CAPCOM_VIEWCONTROLLERFACTORY_H
 
 #include "../GameObjectControllerFactory/GameObjectControllerFactory.h"
-#include "../../../controllers/ViewController/ViewController.h"
+#include "../../../controllers/ViewController/ViewController_fight/ViewController_fight.h"
+#include "../../../controllers/ViewController/ViewController_charSelect/ViewController_charSelect.h"
 #include "../../../views/View/View.h"
 #include "../../../utils/TeamManager/TeamManager.h"
 
@@ -14,16 +15,21 @@ using namespace std;
 
 class ViewControllerFactory{
 
-    SDL_Renderer * renderer;
+
 
 public:
     ViewControllerFactory(SDL_Renderer * renderer_, int screenWidth_, int screenHeight_);
     ~ViewControllerFactory();
-    ViewController * getViewController_fight();
+    ViewController_fight * getViewController_fight();
+    ViewController_charSelect * getViewController_charSelect();
+    map<string, ControllerCharacter *> getControllerCharacter();
 
 private:
-
+    SDL_Renderer * renderer;
+    map<string, ControllerCharacter*> characters;
+    map<string, ControllerCharacter*>::iterator itr_characters= characters.begin();
     int screenWidth, screenHeight;
+
 
 };
 
