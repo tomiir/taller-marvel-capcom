@@ -16,7 +16,7 @@ socklen_t clientSize[MAXCLIENTS];
 char messageFromClient[4096];
 char messageToClient[4096];
 
-queue<string> serverQueue;
+queue<char*> serverQueue;
 
 
 
@@ -121,7 +121,7 @@ void Server::Send(int clientSock){
     memset(messageToClient,0, 4096);
 }
 
-string Server::update(int clientSock){
+char* Server::update(int clientSock){
 
     memset(messageFromClient, 0, 4096);
     int bytesReceived = recv(clientSock, messageFromClient, 4096,0);
@@ -130,11 +130,11 @@ string Server::update(int clientSock){
         checkRecvFromClientError(clientSock);
     }
 
-    string received = string(messageFromClient, 0, bytesReceived);
-    return received;
+    //string received = string(messageFromClient, 0, bytesReceived);
+    return messageFromClient;
 }
 
-void* Server::serverThread(void *clientSock_) {
+void* Server::receivingEventsFromClient(void *clientSock_) {
 
     int clientSock = *(int *) clientSock_;
     CLogger* logger = CLogger::GetLogger();
@@ -153,30 +153,40 @@ void* Server::serverThread(void *clientSock_) {
             close(serverSocket_s);
             return nullptr;
         }
+        //Aca habria que analizar lo de si no recibe por un tiempo nada darlo por muerto(seria el heartbeat)
+        //
+        char* received = update(clientSock);
 
-        string received = update(clientSock);
-
-        if( strcmp(received.c_str(), "0") == 0) {
+        if( strcmp(received, "0") == 0) {
             logger->Log( "El cliente: " + to_string(clientSock) + " se desconecto" , NETWORK, "");
             close(clientSock);
             break;
         }
+//Este if creo que no serviria
+//        if ( strcmp(received.c_str(), "1") == 0){
+//            logger->Log( "El cliente " + to_string(clientSock) + " esta latiendo" , NETWORK, "");
+//            memset(messageFromClient,0,4096);
+//        }
 
-        if ( strcmp(received.c_str(), "1") == 0){
-            logger->Log( "El cliente " + to_string(clientSock) + " esta latiendo" , NETWORK, "");
-            memset(messageFromClient,0,4096);
-        }
 
-
-        if(strcmp(received.c_str(), "1") != 0) { //ese cmp es bastante trucho,
+        //if(strcmp(received.c_str(), "1") != 0) { //ese cmp es bastante trucho,
 
             serverQueue.push(received);
-            logger->Log( "Se recibio de " + to_string(clientSock) + ": " + received , NETWORK, "");
+            logger->Log( "Se recibio de " + to_string(clientSock) + ": " + string(received) , NETWORK, "");
             memset(messageToClient,0, 4096);
             strcpy(messageToClient, "Se recibio el mensaje correctamente");
-            Send(clientSock);
-        }
+            //Send(clientSock);
+        //}
     }
+}
+
+
+//esta funcion se encarga de desencolar las cosas que le llegan de los clientes, actualizar el
+// modelo y enviar los nuevos parametros a todos los clientes.
+void* Server::updateModel(void* arg){
+
+
+
 }
 
 
@@ -208,7 +218,7 @@ void Server::connect() {
     }
 
     int clientsIter = 0;
-    pthread_t clientThreads[4];
+    pthread_t clientThreads[MAXCLIENTS];
 
     for(; clientsIter < MAXCLIENTS; clientsIter++){
         clientSize[clientsIter] = sizeof(clientAddr[clientsIter]);
@@ -237,10 +247,18 @@ void Server::connect() {
     clientsIter = 0;
 
     for(; clientsIter < MAXCLIENTS; clientsIter++){
-        int readThread = pthread_create(&clientThreads[clientsIter], nullptr, serverThread, &clientSocket[clientsIter]);
+        int readThread = pthread_create(&clientThreads[clientsIter], nullptr, receivingEventsFromClient,
+                                        &clientSocket[clientsIter]);
         if(readThread != 0) {
             logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
         }
+    }
+
+    pthread_t updateModelThread;
+
+    int readThread = pthread_create(&updateModelThread, nullptr, updateModel, nullptr);
+    if(readThread !=0){
+        logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
     }
 
     clientsIter = 0;
@@ -248,6 +266,10 @@ void Server::connect() {
     for(; clientsIter < MAXCLIENTS; clientsIter++){
         pthread_join(clientThreads[clientsIter], nullptr);
     }
+
+    //aca lo cancelo porque si se fueron los clientes ya que joinearon todos los hilos no tendria que seguir updateando el modelo
+    pthread_cancel(updateModelThread);
+
     logger->Log( "Se desconectaron todos los clientes, saliendo del juego." , INFO, "");
     logger->closeLogger();
     close(serverSocket_s);

@@ -71,6 +71,8 @@ private:
 
     static void checkSendToServerError();
     static void checkRecvFromServerError();
+
+    void changeCurrentMapper();
 };
 
 

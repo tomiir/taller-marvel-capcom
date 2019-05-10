@@ -28,13 +28,14 @@ public:
     Server();
     ~Server() = default;
     void connect();
-    static void* serverThread(void *clientSock_);
+    static void* receivingEventsFromClient(void *clientSock_);
+    static void *updateModel(void* arg);
 
     static void brokeConnection(int arg);
 
     static void Send(int clientSock);
 
-    static string update(int clientSock);
+    static char * update(int clientSock);
 
     static void checkSendToClientError(int clientSock);
     static void checkRecvFromClientError(int clientSock);
@@ -42,6 +43,8 @@ public:
 private:
     static void clientConnected(sockaddr_in clientAddr_);
     static void* popQueue(void* arg);
+
+
 };
 
 

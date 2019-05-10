@@ -54,10 +54,10 @@ int main(int argc, const char* argv[]){
             if (!connected) return -1;
 
             if(strcmp((char*)(client->recvFromServer(nullptr)), "team1") == 0){
-                client->setMappers(new EventToValueMapper_charSelect_1, new EventToValueMapper_player1 );
+                client->setMappers(new Mapper_charSelect_1, new Mapper_fight_1 );
             }
             else if(strcmp((char*)(client->recvFromServer(nullptr)), "team2") == 0){
-                client->setMappers(new EventToValueMapper_charSelect_2, new EventToValueMapper_player2 );
+                client->setMappers(new Mapper_charSelect_2, new Mapper_fight_2 );
             }
             else{
                 cout << "Error al setear los mappers" << endl;

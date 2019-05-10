@@ -17,7 +17,7 @@ char messageToSever[4096];
 char messageFromInput[4096];
 bool connect2 = true;
 
-queue<string> queueRecv;
+queue<char*> queueRecv;
 
 Mapper* currentMapper;
 Mapper* notCurrentMapper;
@@ -185,17 +185,19 @@ void* Client::recvFromServer(void* arg) {
 
     while(connect2){
         memset(messageFromServer, 0, 4096);
+
+        //Aca habrai que chequear que si no recibe por un tiempo se da por uerto el server(seria como el heartbeat)
         int bytesReceived = recv(serverSocket_c, messageFromServer, 4096, 0);
 
         if(bytesReceived == -1){
             checkRecvFromServerError();
             break;  //No estoy seguro si habria que hacer este break.
         }
-        string messageReceived = string(messageFromServer, 0, bytesReceived);
+        //string messageReceived = string(messageFromServer, 0, bytesReceived);
 
-        queueRecv.push(messageReceived);
+        queueRecv.push(messageFromServer);
 
-        logger->Log("Se recibio correctamente del server el mensaje: " + messageReceived, NETWORK, "");
+        logger->Log("Se recibio correctamente del server el mensaje: " + string(messageFromServer), NETWORK, "");
     }
 
 }
@@ -208,42 +210,45 @@ void* Client::render(void *arg) {
 
     while(connect2){
 
-        string messageReceived = queueRecv.front();
-        string view = messageReceived.substr(0,2);
+        char* messageReceived = queueRecv.front();
+        char view[] = {messageReceived[0], messageReceived[1], '\0'};
 
-        if(view == "00"){ //view selected
+        if(strcmp(view, "00") == 0){ //view selected
 
             //zIndex
-            string greySquaredSelectedt11 = messageReceived.substr(2,3);
-            string greySquaredSelectedt12 = messageReceived.substr(3,4);
-            string greySquaredSelectedt21 = messageReceived.substr(4,5);
-            string greySquaredSelectedt22 = messageReceived.substr(5,6);
+            char greySquaredSelectedt11 = messageReceived[2];
+            char greySquaredSelectedt12 = messageReceived[3];
+            char greySquaredSelectedt21 = messageReceived[4];
+            char greySquaredSelectedt22 = messageReceived[5];
 
             viewSelectCharacter->updateGreySquares(greySquaredSelectedt11, greySquaredSelectedt12, greySquaredSelectedt21, greySquaredSelectedt22 );
 
             //0  1
             //2  3
-            string selectT1 = messageReceived.substr(6,8);
-            string selectT2 = messageReceived.substr(8,10);
+            char[] selectT1 = {messageReceived[6], messageReceived[7], '\0'};
+            char[] selectT2 = {messageReceived[8], messageReceived[9], '\0'};
 
             viewSelectCharacter->updateSelects(selectT1, selectT2);
 
             //personaje,zIndex
-            string characterUpRight = messageReceived.substr(10,14);
-            string characterDownRight = messageReceived.substr(14,18);
-            string characterUpLeft = messageReceived.substr(18,22);
-            string characterDownLeft = messageReceived.substr(22,26);
+            char[] characterUpRight = {messageReceived[10], messageReceived[11], messageReceived[12], '\0'};
+            char[] characterDownRight = {messageReceived[13], messageReceived[14], messageReceived[15], '\0'};
+            char[] characterUpLeft = {messageReceived[16], messageReceived[17], messageReceived[18], '\0'};
+            char[] characterDownLeft = {messageReceived[19], messageReceived[20], messageReceived[21], '\0'};
 
             viewSelectCharacter->updateCharactersImages(characterUpRight, characterDownRight, characterUpLeft, characterDownLeft);
 
             //selected or not
-            string selected = messageReceived.substr(26,27);
+            char selected = messageReceived[22];
+
             viewSelectCharacter->updateSelected(selected);
+
+
             viewSelectCharacter->render();
             queueRecv.pop();
 
         }
-        if(view == "01") { //view fight
+        if(strcmp(view, "01") == 0) { //view fight
 
 
         }
@@ -259,12 +264,14 @@ void* Client::sendEventToServer(void* arg){
         SDL_Event event;
         SDL_PollEvent(&event);
         //timmer para no enviar tantos eventos
+        //Habria que ver como saber que hay que cambiar el mapper y hacerlo. Tambien se podria usar un solo mapper y fue.
         char* mapEvent = currentMapper->map(event);
         if (event.type == SDL_QUIT) {
             logger -> Log("Saliendo del juego", INFO, "");
             connect2 = false;
             break;
         }
+        //Esto no se tendria que mandar a penas cae un evento. Cada tantos milisegundos e tendria que llenar una cola y enviarse
         ssize_t bytesSent = send(serverSocket_c, mapEvent, sizeof(mapEvent), 0);
         if(bytesSent < 0) checkSendToServerError();
     }
@@ -292,4 +299,12 @@ void Client::setMappers(Mapper* mapperSelect_, Mapper* mapperFight_){
 
     currentMapper = mapperSelect_;
     notCurrentMapper = mapperFight_;
+}
+
+void Client::changeCurrentMapper(){
+
+    Mapper* aux = currentMapper;
+    currentMapper = notCurrentMapper;
+    notCurrentMapper = aux;
+
 }
