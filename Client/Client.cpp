@@ -185,62 +185,72 @@ void* Client::recvFromServer(void* arg) {
 
     CLogger* logger = CLogger::GetLogger();
 
-    memset(messageFromServer, 0, 4096);
-    int bytesReceived = recv(serverSocket_c, messageFromServer, 4096, 0);
+    while(connect2){
+        memset(messageFromServer, 0, 4096);
+        int bytesReceived = recv(serverSocket_c, messageFromServer, 4096, 0);
 
-    if(bytesReceived == -1){
-        checkRecvFromServerError();
+        if(bytesReceived == -1){
+            checkRecvFromServerError();
+            break;  //No estoy seguro si habria que hacer este break.
+        }
+        string messageReceived = string(messageFromServer, 0, bytesReceived);
+
+        queueRecv.push(messageReceived);
+
+        logger->Log("Se recibio correctamente del server el mensaje: " + messageReceived, NETWORK, "");
     }
-    string messageReceived = string(messageFromServer, 0, bytesReceived);
 
-    queueRecv.push(messageReceived);
-
-    logger->Log("Se recibio correctamente del server el mensaje: " + messageReceived, NETWORK, "");
-
-    return messageFromServer;
 }
 
 void* Client::render(void *arg) {
 
-    string messageReceived = queueRecv.front();
-    string view = messageReceived.substr(0,2);
+    //Aca habria antes que cargar las views
 
-    if(view == "00"){ //view selected
+    //Aca empieza el loop que va a ir renderizando. Las view ay deberian estar cargadas y se renderiza lo que se tenga que renderizar
 
-        //zIndex
-        string greySquaredSelectedt11 = messageReceived.substr(2,3);
-        string greySquaredSelectedt12 = messageReceived.substr(3,4);
-        string greySquaredSelectedt21 = messageReceived.substr(4,5);
-        string greySquaredSelectedt22 = messageReceived.substr(5,6);
+    while(connect2){
 
-        viewSelectCharacter->updateGreySquares(greySquaredSelectedt11, greySquaredSelectedt12, greySquaredSelectedt21, greySquaredSelectedt22 );
+        string messageReceived = queueRecv.front();
+        string view = messageReceived.substr(0,2);
 
-        //0  1
-        //2  3
-        string selectT1 = messageReceived.substr(6,8);
-        string selectT2 = messageReceived.substr(8,10);
+        if(view == "00"){ //view selected
 
-        viewSelectCharacter->updateSelects(selectT1, selectT2);
+            //zIndex
+            string greySquaredSelectedt11 = messageReceived.substr(2,3);
+            string greySquaredSelectedt12 = messageReceived.substr(3,4);
+            string greySquaredSelectedt21 = messageReceived.substr(4,5);
+            string greySquaredSelectedt22 = messageReceived.substr(5,6);
 
-        //personaje,zIndex
-        string characterUpRight = messageReceived.substr(10,14);
-        string characterDownRight = messageReceived.substr(14,18);
-        string characterUpLeft = messageReceived.substr(18,22);
-        string characterDownLeft = messageReceived.substr(22,26);
+            viewSelectCharacter->updateGreySquares(greySquaredSelectedt11, greySquaredSelectedt12, greySquaredSelectedt21, greySquaredSelectedt22 );
 
-        viewSelectCharacter->updateCharactersImages(characterUpRight, characterDownRight, characterUpLeft, characterDownLeft);
+            //0  1
+            //2  3
+            string selectT1 = messageReceived.substr(6,8);
+            string selectT2 = messageReceived.substr(8,10);
 
-        //selected or not
-        string selected = messageReceived.substr(26,27);
-        viewSelectCharacter->updateSelected(selected);
-        viewSelectCharacter->render();
-        queueRecv.pop();
+            viewSelectCharacter->updateSelects(selectT1, selectT2);
 
+            //personaje,zIndex
+            string characterUpRight = messageReceived.substr(10,14);
+            string characterDownRight = messageReceived.substr(14,18);
+            string characterUpLeft = messageReceived.substr(18,22);
+            string characterDownLeft = messageReceived.substr(22,26);
+
+            viewSelectCharacter->updateCharactersImages(characterUpRight, characterDownRight, characterUpLeft, characterDownLeft);
+
+            //selected or not
+            string selected = messageReceived.substr(26,27);
+            viewSelectCharacter->updateSelected(selected);
+            viewSelectCharacter->render();
+            queueRecv.pop();
+
+        }
+        if(view == "01") { //view fight
+
+
+        }
     }
-    if(view == "01") { //view fight
 
-
-    }
 }
 
 void* Client::sendEventToServer(void* arg){
