@@ -4,13 +4,13 @@
 
 #include "Mapper_fight_1.h"
 
-DirectionVector *Mapper_fight_1::map(SDL_Event event) {
+char *Mapper_fight_1::map(SDL_Event event) {
 
     //changeCharacter_ = false;
 
     const Uint8* keyboardStateArray = SDL_GetKeyboardState(nullptr);
 
-    DirectionVector* direction = new DirectionVector(0,0);
+    //DirectionVector* direction = new DirectionVector(0,0);
     char keys[6] = "00000";
 
 
@@ -58,36 +58,35 @@ DirectionVector *Mapper_fight_1::map(SDL_Event event) {
         }
     }
 
-    if( event.type == SDL_KEYUP){
+//    if( event.type == SDL_KEYUP){
+//
+//        switch (event.key.keysym.sym) {
+//
+//            case SDLK_l:
+//                //direction->add(2, 0);
+//                keys[0] = 0;
+//                break;
+//            case SDLK_j:
+//                //direction->add(-2, 0);
+//                keys[1] = 0;
+//                break;
+//            case SDLK_i:
+//                keys[2] = 0;
+//                break;
+//            case SDLK_k:
+//                //direction->add(0, 2);
+//                keys[3] = 0;
+//                break;
+//            case SDLK_m:
+//                keys[4] = 0;
+//                break;
+//            default:
+//                break;
+//        }
+//
+//    }
 
-        switch (event.key.keysym.sym) {
-
-            case SDLK_l:
-                //direction->add(2, 0);
-                keys[0] = 0;
-                break;
-            case SDLK_j:
-                //direction->add(-2, 0);
-                keys[1] = 0;
-                break;
-            case SDLK_i:
-                keys[2] = 0;
-                break;
-            case SDLK_k:
-                //direction->add(0, 2);
-                keys[3] = 0;
-                break;
-            case SDLK_m:
-                //direction->add(-2, 0);
-                keys[4] = 0;
-                break;
-            default:
-                break;
-        }
-
-    }
-
-    return direction;
+    return keys;
 }
 
 

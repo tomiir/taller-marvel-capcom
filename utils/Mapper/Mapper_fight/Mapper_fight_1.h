@@ -10,7 +10,7 @@
 class Mapper_fight_1: public Mapper_fight {
 
 public:
-    DirectionVector* map(SDL_Event event) override;
+    char * map(SDL_Event event) override;
 
 };
 

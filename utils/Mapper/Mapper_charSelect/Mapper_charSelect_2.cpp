@@ -6,38 +6,63 @@
 
 
 Mapper_charSelect_2::Mapper_charSelect_2():Mapper_charSelect(){
-    preselected = "SpiderMan";
-    map_preselected = spider_man;
+    //preselected = "SpiderMan";
+    //map_preselected = spider_man;
 }
 
 
 
-string Mapper_charSelect_2:: map( SDL_Event event) {
+char *Mapper_charSelect_2:: map( SDL_Event event) {
 
+    char keys[6] = "00000";
 
     if (event.type == SDL_KEYDOWN) {
 
         switch (event.key.keysym.sym) {
 
             case SDLK_d:
-                preselected = map_preselected["right"];
+                keys[0] = 1;
                 break;
             case SDLK_a:
-                preselected = map_preselected["left"];
+                keys[1] = 1;
                 break;
             case SDLK_w:
-                preselected = map_preselected["up"];
+                keys[2] = 1;
                 break;
             case SDLK_s:
-                preselected = map_preselected["down"];
+                keys[3] = 1;
                 break;
             case SDLK_c:
-               return preselected;
+                keys[4] = 1;
             default:
                 break;
         }
-        map_preselected = map_map[preselected];
     }
         return "no_selecciono";
+
+//    if (event.type == SDL_KEYDOWN) {
+//
+//        switch (event.key.keysym.sym) {
+//
+//            case SDLK_d:
+//                preselected = map_preselected["right"];
+//                break;
+//            case SDLK_a:
+//                preselected = map_preselected["left"];
+//                break;
+//            case SDLK_w:
+//                preselected = map_preselected["up"];
+//                break;
+//            case SDLK_s:
+//                preselected = map_preselected["down"];
+//                break;
+//            case SDLK_c:
+//                return preselected;
+//            default:
+//                break;
+//        }
+//        map_preselected = map_map[preselected];
+//    }
+//    return "no_selecciono";
 
 }

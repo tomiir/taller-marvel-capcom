@@ -7,7 +7,7 @@
 Mapper_fight::Mapper_fight(){
     changeCharacter_ = false;
 }
-DirectionVector* Mapper_fight :: map(SDL_Event event){}
+char* Mapper_fight :: map(SDL_Event event){}
 
 bool Mapper_fight::changeCharacter(SDL_Event event){
     return changeCharacter_;
