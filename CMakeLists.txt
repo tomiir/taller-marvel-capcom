@@ -50,8 +50,8 @@ add_executable(
         model/Viewmanager/ViewManager.h
         model/Game/ViewControllerFactory/ViewControllerFactory.cpp
         model/Game/ViewControllerFactory/ViewControllerFactory.h
-        utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.cpp
-        utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.h
+        utils/Mapper/Mapper_fight/Mapper_fight.cpp
+        utils/Mapper/Mapper_fight/Mapper_fight.h
         controllers/Controller/ControllerCharacter/ControllerCharacter.cpp
         controllers/Controller/ControllerCharacter/ControllerCharacter.h
         controllers/Controller/ControllerBackground/ControllerBackground.cpp
@@ -82,10 +82,10 @@ add_executable(
         Animations/SpiderManAnimations/SpiderManStillAnimation.h
         Animations/SpiderManAnimations/SpiderManWalkAnimation.cpp
         Animations/SpiderManAnimations/SpiderManWalkAnimation.h
-        utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper_player1.cpp
-        utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper_player1.h
-        utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper_player2.cpp
-        utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper_player2.h
+        utils/Mapper/Mapper_fight/Mapper_fight_1.cpp
+        utils/Mapper/Mapper_fight/Mapper_fight_1.h
+        utils/Mapper/Mapper_fight/Mapper_fight_2.cpp
+        utils/Mapper/Mapper_fight/Mapper_fight_2.h
         utils/TeamManager/TeamManager.cpp
         utils/TeamManager/TeamManager.h
         Animations/VenomAnimations/VenomCrowchedDownAnimation.cpp
@@ -130,17 +130,17 @@ add_executable(
         utils/SpriteManagers/NotFoundSpriteManager.cpp
         Animations/NotFoundAnimation.h
         Animations/NotFoundAnimation.cpp
-        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect.cpp
-        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect.h
-        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect_1.cpp
-        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect_1.h
-        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect_2.cpp
-        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect_2.h
+        utils/Mapper/Mapper_charSelect/Mapper_charSelect.cpp
+        utils/Mapper/Mapper_charSelect/Mapper_charSelect.h
+        utils/Mapper/Mapper_charSelect/Mapper_charSelect_1.cpp
+        utils/Mapper/Mapper_charSelect/Mapper_charSelect_1.h
+        utils/Mapper/Mapper_charSelect/Mapper_charSelect_2.cpp
+        utils/Mapper/Mapper_charSelect/Mapper_charSelect_2.h
         utils/TextureManager/TextureManager.cpp
         utils/TextureManager/TextureManager.h
         views/View/View.cpp
         views/View/View.h
-        Server/Server.cpp Server/Server.h Client/Client.cpp Client/Client.h)
+        Server/Server.cpp Server/Server.h Client/Client.cpp Client/Client.h utils/Mapper/Mapper.cpp utils/Mapper/Mapper.h)
 
 
 

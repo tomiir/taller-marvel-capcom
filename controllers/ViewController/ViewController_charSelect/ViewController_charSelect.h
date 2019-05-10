@@ -6,8 +6,8 @@
 #define TALLER_MARVEL_CAPCOM_VIEWCONTROLLER_CHARSELECT_H
 
 #include "../ViewController.h"
-#include "../../../utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect_1.h"
-#include "../../../utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect_2.h"
+#include "../../../utils/Mapper/Mapper_charSelect/Mapper_charSelect_1.h"
+#include "../../../utils/Mapper/Mapper_charSelect/Mapper_charSelect_2.h"
 #include <string>
 #include "../../../model/GameObject_charSelect/GameObject_charSelect.h"
 #include <stdio.h>
@@ -100,8 +100,8 @@ private:
     GameObject_charSelect* background;
 
     //MAPEADORES DE TECLAS
-    EventToValueMapper_charSelect_1* mapper_1;
-    EventToValueMapper_charSelect_2* mapper_2;
+    Mapper_charSelect_1* mapper_1;
+    Mapper_charSelect_2* mapper_2;
 
 
 

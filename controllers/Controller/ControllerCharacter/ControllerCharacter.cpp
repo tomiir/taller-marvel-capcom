@@ -148,7 +148,7 @@ bool ControllerCharacter::isJumpingLeft() {
     return jumpLeft;
 }
 
-EventToValueMapper* ControllerCharacter::getMapper(){
+Mapper_fight* ControllerCharacter::getMapper(){
     return mapper;
 }
 
@@ -199,7 +199,7 @@ bool ControllerCharacter::isMovingLeft() {
     return movingLeft;
 }
 
-void ControllerCharacter::setMapper(EventToValueMapper* mapper) {
+void ControllerCharacter::setMapper(Mapper_fight* mapper) {
 
     this->mapper = mapper;
 }

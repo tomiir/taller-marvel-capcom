@@ -2,10 +2,10 @@
 // Created by magali on 01/05/19.
 //
 
-#include "EventToValueMapper_charSelect.h"
+#include "Mapper_charSelect.h"
 
 
-EventToValueMapper_charSelect::EventToValueMapper_charSelect(){
+Mapper_charSelect::Mapper_charSelect(){
 
     /* [cap_america] [spiderman]
      * [chun_li] [venom] */
@@ -39,15 +39,15 @@ EventToValueMapper_charSelect::EventToValueMapper_charSelect(){
 
 }
 
-string EventToValueMapper_charSelect::getPreselected() {
+string Mapper_charSelect::getPreselected() {
     return preselected;
 
 }
 
-EventToValueMapper_charSelect::~EventToValueMapper_charSelect() {
+Mapper_charSelect::~Mapper_charSelect() {
 
 }
 
-string EventToValueMapper_charSelect::map(SDL_Event event) {
+string Mapper_charSelect::map(SDL_Event event) {
     return std::__cxx11::string();
 }
