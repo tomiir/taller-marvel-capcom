@@ -48,6 +48,9 @@ public:
 
     void setMappers(EventToValueMapper_charSelect* mapperSelect_, EventToValueMapper* mapperFight_);
 
+    static void* recvFromServer(void* arg);
+
+
 private:
 
     CLogger* logger = CLogger::GetLogger();
@@ -60,7 +63,6 @@ private:
     void configServer(const char* serverIp, uint16_t serverPort);
 
     static void* sendEventToServer(void* arg);
-    static void* recvFromServer(void* arg);
     static void* render(void* arg);
 
 

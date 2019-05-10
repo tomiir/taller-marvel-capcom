@@ -46,7 +46,6 @@ int main(int argc, const char* argv[]){
             logger->Log("------------------------Logger del cliente --------------------------", DEBUG, "");
 
 
-
             const char *ip = argv[2];
             int port = atoi(argv[3]);
 
@@ -54,10 +53,10 @@ int main(int argc, const char* argv[]){
             bool connected = client->Connect();
             if (!connected) return -1;
 
-            if(strcmp(client->update(), "team1-1") == 0 or strcmp(client->update(), "team2-1") == 0){
+            if(strcmp((char*)(client->recvFromServer(nullptr)), "team1") == 0){
                 client->setMappers(new EventToValueMapper_charSelect_1, new EventToValueMapper_player1 );
             }
-            else if(strcmp(client->update(), "team1-2") == 0 or strcmp(client->update(), "team2-2") == 0 ){
+            else if(strcmp((char*)(client->recvFromServer(nullptr)), "team2") == 0){
                 client->setMappers(new EventToValueMapper_charSelect_2, new EventToValueMapper_player2 );
             }
             else{
@@ -65,7 +64,7 @@ int main(int argc, const char* argv[]){
                 exit(0);
             }
 
-            if (strcmp(client->update(), "connected") == 0) {
+            if (strcmp((char*)(client->recvFromServer(nullptr)), "connected") == 0) {
                 logger->Log( "Conectado al servidor", INFO, "");
                 client->Initialice();
             }

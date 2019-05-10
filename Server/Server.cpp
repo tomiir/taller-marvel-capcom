@@ -195,6 +195,8 @@ void Server::clientConnected(sockaddr_in clientAddr_){
         inet_ntop(AF_INET, &clientAddr_.sin_addr, clientIp, NI_MAXHOST);
         logger->Log( "El cliente " + string(clientIp) + " se conecto al server: " + server , NETWORK, "");
     }
+
+
 }
 
 void Server::connect() {
@@ -217,6 +219,16 @@ void Server::connect() {
     clientsIter = 0;
 
     for(; clientsIter < MAXCLIENTS; clientsIter++) {
+        memset(messageToClient,0, 4096);
+        if (clientsIter == 0 or clientsIter == 2) {
+            strcpy(messageToClient, "team1");
+            Send(clientSocket[clientsIter]);
+        }
+        else{
+            strcpy(messageToClient, "team2");
+            Send(clientSocket[clientsIter]);
+        }
+
         memset(messageToClient,0, 4096);
         strcpy(messageToClient, "connected");
         Send(clientSocket[clientsIter]);

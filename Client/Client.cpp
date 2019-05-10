@@ -51,12 +51,13 @@ void Client::Disconnect() {
 
 bool Client::Connect() {
 
+    cout << "Conectando con el servidor..." << endl;
     int connection = connect(serverSocket_c, (struct sockaddr*) &serverAddr_c, serverSize_c);
     if(connection < 0 ){
         logger->Log("Fallo la conexion con el servidor", ERROR, strerror(errno));
         return false;
     }
-    cout << "Conectando con el servidor..." << endl;
+    cout << "Se ha establecido la conexion" << endl;
     return true;
 }
 
@@ -150,18 +151,20 @@ void Client::hearthBeat(){
 
 
     memset(messageFromInput, 0, 4096);
-    future<int> scanning = async(scanf,"%s",messageFromInput);
-    chrono::milliseconds waitTime (2000);
+    //future<int> scanning = async(scanf,"%s",messageFromInput);
+    //chrono::milliseconds waitTime (2000);
 
-    while(scanning.wait_for(waitTime) == future_status::timeout){
+    scanf("%s", messageFromInput);
+
+    //while(scanning.wait_for(waitTime) == future_status::timeout){
 
         if(clientBrokeConnection){
             beating = false;
             this->Disconnect();
             exit(0);
         }
-        Send(BEAT);
-    }
+        //Send(BEAT);
+    //}
 
     if(strcmp(messageFromInput, "quit") == 0) {
         beating = false;
@@ -273,6 +276,7 @@ void Client::Initialice() {
 
     pthread_join(sendEventThread, nullptr);
     pthread_cancel(recvFromServerThread);
+    pthread_cancel(renderThread);    //igual si se cierra en realidad habria que tomar mas medidas como limpiar el render que por ahi se pueden tomar en disconnect
     Disconnect();
 }
 
