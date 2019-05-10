@@ -48,6 +48,8 @@ Mapper_charSelect::~Mapper_charSelect() {
 
 }
 
-string Mapper_charSelect::map(SDL_Event event) {
-    return std::__cxx11::string();
+char *Mapper_charSelect::map(SDL_Event event) {
+    return nullptr;
 }
+
+

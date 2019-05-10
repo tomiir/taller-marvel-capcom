@@ -19,7 +19,7 @@ class Mapper_charSelect: public Mapper{
 public:
     Mapper_charSelect();
     virtual ~Mapper_charSelect();
-    virtual string map(SDL_Event event);
+    virtual char* map(SDL_Event event);
     string getPreselected();
 
 protected:

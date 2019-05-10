@@ -32,7 +32,6 @@ string Mapper_charSelect_1:: map( SDL_Event event) {
                 break;
             case SDLK_m:
                  return preselected;
-                break;
             default:
                 break;
         }

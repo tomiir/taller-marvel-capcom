@@ -2,9 +2,7 @@
 // Created by fer on 27/04/19.
 //
 
-#include <csignal>
 #include "Client.h"
-#include "../utils/Logger/Logger.h"
 
 #define NOBEAT (char*)"0"
 #define BEAT (char*)"1"
@@ -261,7 +259,7 @@ void* Client::sendEventToServer(void* arg){
         SDL_Event event;
         SDL_PollEvent(&event);
         //timmer para no enviar tantos eventos
-        char* mapEvent = currentMapper()->map(event);
+        char* mapEvent = currentMapper->map(event);
         if (event.type == SDL_QUIT) {
             logger -> Log("Saliendo del juego", INFO, "");
             connect2 = false;

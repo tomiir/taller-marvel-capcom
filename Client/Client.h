@@ -18,9 +18,11 @@
 #include <chrono>
 #include <netinet/tcp.h>
 #include <queue>
+#include <csignal>
 #include "../utils/Logger/Logger.h"
-#include "../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.h"
-#include "../utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect.h"
+#include "../utils/Mapper/Mapper.h"
+#include <SDL_events.h>
+
 
 using namespace std;
 
@@ -46,7 +48,7 @@ public:
 
     void Initialice();
 
-    void setMappers(EventToValueMapper_charSelect* mapperSelect_, EventToValueMapper* mapperFight_);
+    void setMappers(Mapper* mapperSelect_, Mapper* mapperFight_);
 
     static void* recvFromServer(void* arg);
 
