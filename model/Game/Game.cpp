@@ -113,3 +113,7 @@ void Game::updateSelects(char *selectT1, char *selectT2) {
     this->viewController->updateSelects(selectT1, selectT2);
 }
 
+void Game::updateCharactersImages(char *selected_1, char *selected_2) {
+    this->viewController->updateCharacterImages(selected_1, selected_2);
+}
+

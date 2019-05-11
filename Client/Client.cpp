@@ -257,12 +257,10 @@ void* Client::render(void *arg) {
             game->updateSelects(selectT1, selectT2);
 
             //personaje,zIndex
-            char characterUpRight[] = {messageReceived[10], messageReceived[11], messageReceived[12], '\0'};
-            char characterDownRight[] = {messageReceived[13], messageReceived[14], messageReceived[15], '\0'};
-            char characterUpLeft[] = {messageReceived[16], messageReceived[17], messageReceived[18], '\0'};
-            char characterDownLeft[] = {messageReceived[19], messageReceived[20], messageReceived[21], '\0'};
+            char selected_1[] = {messageReceived[10], messageReceived[11], messageReceived[12], '\0'};
+            char selected_2[] = {messageReceived[13], messageReceived[14], messageReceived[15], '\0'};
 
-            game->updateCharactersImages(characterUpRight, characterDownRight, characterUpLeft, characterDownLeft);
+            game->updateCharactersImages(selected_1, selected_2);
 
 
             game->render();

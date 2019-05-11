@@ -22,6 +22,7 @@ public:
     void handleEvent() override;
     void updateGreySquares(char* greySquares ) override;
     void updateSelects(char *selectT1, char *selectT2) override;
+    void updateCharacterImages(char* selected_1, char* selected_2) override;
     void addBackground(ControllerBackground *controller) override;
     void setTeam1(string character);
     void setTeam2(string character);

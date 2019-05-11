@@ -29,6 +29,8 @@ public:
 
     virtual void updateSelects(char *string, char *string1);
 
+    virtual void updateCharacterImages(char *string, char *string1);
+
 protected:
     View* view;
     SDL_Renderer* renderer;

@@ -46,5 +46,9 @@ void ViewController::updateSelects(char *string, char *string1) {
 
 }
 
+void ViewController::updateCharacterImages(char *string, char *string1) {
+
+}
+
 
 
