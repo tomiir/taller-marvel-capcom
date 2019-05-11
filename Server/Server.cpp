@@ -18,6 +18,8 @@ char messageToClient[4096];
 
 queue<char*> serverQueue;
 
+bool on = true;
+
 
 
 Server::Server() {
@@ -118,6 +120,7 @@ void Server::Send(int clientSock){
     if (send(clientSock, messageToClient, strlen(messageToClient),0) == -1 ){
         checkSendToClientError(clientSock);
     }
+
     memset(messageToClient,0, 4096);
 }
 
@@ -183,9 +186,29 @@ void* Server::receivingEventsFromClient(void *clientSock_) {
 
 //esta funcion se encarga de desencolar las cosas que le llegan de los clientes, actualizar el
 // modelo y enviar los nuevos parametros a todos los clientes.
-void* Server::updateModel(void* arg){
+void* Server::updateModel(void *clientSock_){
+
+    int clientSock = *(int *) clientSock_;
+    CLogger* logger = CLogger::GetLogger();
 
 
+    while(on){
+        //En este caso cada elemneto de la cola es una serie de eventos de 5 chars cada uno(y cada elemento es de un cleinte solo)
+        //Habria que evaluar cauntas veces habria que desencolar o si simplemente procesando lo de un cleinte solo a la vez serviria.
+        char* updates = serverQueue.front();
+
+        //aca se decodificaria lo que se recibio en la cola
+
+        serverQueue.pop();
+
+        //aca se realizaría todos los cambios al modelo segun las teclas que le llegaron
+
+        //aca se pide despues de hacer todos los cambios los parametros que se necesitan para enviarles a los clientes y que estos renderisen
+        char* newParamenters = curerntView->giveNewParametes();
+        memset(messageToClient,0, 4096);
+        strcpy(messageToClient, newParamenters);
+        Send(clientSock);
+    }
 
 }
 
@@ -256,7 +279,7 @@ void Server::connect() {
 
     pthread_t updateModelThread;
 
-    int readThread = pthread_create(&updateModelThread, nullptr, updateModel, nullptr);
+    int readThread = pthread_create(&updateModelThread, nullptr, updateModel, &clientSocket[clientsIter]);
     if(readThread !=0){
         logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
     }
@@ -269,6 +292,7 @@ void Server::connect() {
 
     //aca lo cancelo porque si se fueron los clientes ya que joinearon todos los hilos no tendria que seguir updateando el modelo
     pthread_cancel(updateModelThread);
+    on = false;
 
     logger->Log( "Se desconectaron todos los clientes, saliendo del juego." , INFO, "");
     logger->closeLogger();

@@ -271,7 +271,7 @@ void* Client::sendEventToServer(void* arg){
             connect2 = false;
             break;
         }
-        //Esto no se tendria que mandar a penas cae un evento. Cada tantos milisegundos e tendria que llenar una cola y enviarse
+        //Esto no se tendria que mandar a penas cae un evento. Cada tantos milisegundos tendria que crearse un char* mas grande unido por varias events y enviarse
         ssize_t bytesSent = send(serverSocket_c, mapEvent, sizeof(mapEvent), 0);
         if(bytesSent < 0) checkSendToServerError();
     }
