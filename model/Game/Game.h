@@ -21,6 +21,8 @@ public:
 
     void updateGreySquares(char* greySquares);
 
+    void updateSelects(char string[3], char string1[3]);
+
 private:
     std::map<string, ViewController* > views;
     std::map<string, ViewController*>::iterator itr_views= views.begin();

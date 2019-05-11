@@ -27,6 +27,8 @@ public:
 
     virtual void updateGreySquares(char* greySquares);
 
+    virtual void updateSelects(char *string, char *string1);
+
 protected:
     View* view;
     SDL_Renderer* renderer;

@@ -109,3 +109,7 @@ void Game::updateGreySquares(char* greySquares) {
     this->viewController->updateGreySquares(greySquares);
 }
 
+void Game::updateSelects(char *selectT1, char *selectT2) {
+    this->viewController->updateSelects(selectT1, selectT2);
+}
+

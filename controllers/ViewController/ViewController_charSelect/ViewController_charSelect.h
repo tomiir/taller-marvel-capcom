@@ -21,6 +21,7 @@ public:
     void updateView() override;
     void handleEvent() override;
     void updateGreySquares(char* greySquares ) override;
+    void updateSelects(char *selectT1, char *selectT2) override;
     void addBackground(ControllerBackground *controller) override;
     void setTeam1(string character);
     void setTeam2(string character);
@@ -105,7 +106,8 @@ private:
     Mapper_charSelect_1* mapper_1;
     Mapper_charSelect_2* mapper_2;
 
-
+    string preselectedT1 = "CaptainAmerica";
+    string preselectedT2 = "SpiderMan";
 
 };
 

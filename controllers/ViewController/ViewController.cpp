@@ -42,5 +42,9 @@ void ViewController::updateGreySquares(char* greySquares) {
 
 }
 
+void ViewController::updateSelects(char *string, char *string1) {
+
+}
+
 
 

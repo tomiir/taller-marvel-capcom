@@ -231,12 +231,12 @@ std::vector<GameObject_charSelect *> ViewController_charSelect::getSelectionSqua
 
     std::vector<GameObject_charSelect*> to_render;
 
-    itr_squarePosition = squarePosition.find(mapper_1->getPreselected());
+    itr_squarePosition = squarePosition.find(preselectedT1);
     square_team1->setPosc((itr_squarePosition->second));
 
     to_render.push_back(square_team1);
 
-    itr_squarePosition = squarePosition.find(mapper_2->getPreselected());
+    itr_squarePosition = squarePosition.find(preselectedT2);
     square_team2->setPosc((itr_squarePosition->second));
 
     to_render.push_back(square_team2);
@@ -263,10 +263,31 @@ std::vector<string> ViewController_charSelect::getTeam2() {
 
 void ViewController_charSelect::updateGreySquares(char* greySquares ) {
 
-    for (int i = 0; i<4;){
-        if(greySquares[i] == '1'){
-            selected.push_back("capitan america");
-        }
-    }
+    if (greySquares[0] == '1') selected.push_back("CaptainAmerica");
+    if (greySquares[1] == '1') selected.push_back("SpiderMan");
+    if (greySquares[2] == '1') selected.push_back("ChunLi");
+    if (greySquares[3] == '1') selected.push_back("Venom");
+
+
 }
+
+void ViewController_charSelect::updateSelects(char *selectT1, char *selectT2) {
+
+    if (strcmp(selectT1, "00") == 0){
+        preselectedT1 = "CaptainAmerica";
+    } else if(strcmp(selectT1, "01") == 0){
+        preselectedT1 = "SpiderMan";
+    } else if(strcmp(selectT1, "10") == 0) {
+        preselectedT1 = "ChunLi";
+    } else preselectedT1 = "Venom";
+
+    if (strcmp(selectT2, "00") == 0){
+        preselectedT2 = "CaptainAmerica";
+    } else if(strcmp(selectT2, "01") == 0){
+        preselectedT2 = "SpiderMan";
+    } else if(strcmp(selectT2, "10") == 0) {
+        preselectedT2 = "ChunLi";
+    } else preselectedT2 = "Venom";
+}
+
 
