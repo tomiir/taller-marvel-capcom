@@ -225,16 +225,16 @@ void* Client::render(void *arg) {
 
             //0  1
             //2  3
-            char[] selectT1 = {messageReceived[6], messageReceived[7], '\0'};
-            char[] selectT2 = {messageReceived[8], messageReceived[9], '\0'};
+            char selectT1[] = {messageReceived[6], messageReceived[7], '\0'};
+            char selectT2[] = {messageReceived[8], messageReceived[9], '\0'};
 
             viewSelectCharacter->updateSelects(selectT1, selectT2);
 
             //personaje,zIndex
-            char[] characterUpRight = {messageReceived[10], messageReceived[11], messageReceived[12], '\0'};
-            char[] characterDownRight = {messageReceived[13], messageReceived[14], messageReceived[15], '\0'};
-            char[] characterUpLeft = {messageReceived[16], messageReceived[17], messageReceived[18], '\0'};
-            char[] characterDownLeft = {messageReceived[19], messageReceived[20], messageReceived[21], '\0'};
+            char characterUpRight[] = {messageReceived[10], messageReceived[11], messageReceived[12], '\0'};
+            char characterDownRight[] = {messageReceived[13], messageReceived[14], messageReceived[15], '\0'};
+            char characterUpLeft[] = {messageReceived[16], messageReceived[17], messageReceived[18], '\0'};
+            char characterDownLeft[] = {messageReceived[19], messageReceived[20], messageReceived[21], '\0'};
 
             viewSelectCharacter->updateCharactersImages(characterUpRight, characterDownRight, characterUpLeft, characterDownLeft);
 
