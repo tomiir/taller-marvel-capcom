@@ -17,6 +17,9 @@ public:
     void tick();
     void update();
     void clean();
+    ViewController* getViewContoller();
+
+    void updateGreySquares(char* greySquares);
 
 private:
     std::map<string, ViewController* > views;

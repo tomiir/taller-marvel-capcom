@@ -20,6 +20,7 @@ public:
     ~ViewController_charSelect() override;
     void updateView() override;
     void handleEvent() override;
+    void updateGreySquares(char* greySquares ) override;
     void addBackground(ControllerBackground *controller) override;
     void setTeam1(string character);
     void setTeam2(string character);
@@ -41,6 +42,7 @@ public:
 
     //fotos laterales de seleccionados para cada TEAM
     void addGameObject_character_selected(GameObject_charSelect *gameObject, int team);
+
 
     std::vector<string> getTeam1();
     std::vector<string> getTeam2();

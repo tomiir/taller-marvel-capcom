@@ -25,6 +25,8 @@ public:
     virtual bool end();
     virtual string getNextView();
 
+    virtual void updateGreySquares(char* greySquares);
+
 protected:
     View* view;
     SDL_Renderer* renderer;

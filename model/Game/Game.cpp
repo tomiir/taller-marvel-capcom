@@ -100,3 +100,12 @@ void Game::tick() {
 
 }
 
+ViewController *Game::getViewContoller() {
+    return this->viewController;
+}
+
+void Game::updateGreySquares(char* greySquares) {
+
+    this->viewController->updateGreySquares(greySquares);
+}
+

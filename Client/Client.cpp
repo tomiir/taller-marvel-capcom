@@ -3,6 +3,8 @@
 //
 
 #include "Client.h"
+#include "../Json/JsonConfigs.h"
+#include "../model/Game/Game.h"
 
 #define NOBEAT (char*)"0"
 #define BEAT (char*)"1"
@@ -205,10 +207,37 @@ void* Client::recvFromServer(void* arg) {
 void* Client::render(void *arg) {
 
     //Aca habria antes que cargar las views
+    CLogger *logger = CLogger::GetLogger();
+    logger->Log("Inicializando juego", INFO, "");
+    JsonConfigs *config = JsonConfigs::getJson();
+
+    const int SCREEN_WIDTH = config->getScreenSize()[0];
+    const int SCREEN_HEIGHT = config->getScreenSize()[1];
+
+    std::string aux = config->getTitle();
+    const char *title = aux.c_str();
+    const int FPS = config->getFPS();
+
+    Game *game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
+    game->init(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+//        Uint32 start;
+
+//        start = SDL_GetTicks();
+//        try { game->tick(); }
+//        catch (int e) { break; }
+//
+//        if ((1000 / FPS) > (SDL_GetTicks() - start)) {
+//            SDL_Delay((1000 / FPS) - (SDL_GetTicks() - start));
+//        }
+
+
+
+
+
 
     //Aca empieza el loop que va a ir renderizando. Las view ay deberian estar cargadas y se renderiza lo que se tenga que renderizar
-
     while(connect2){
+
 
         char* messageReceived = queueRecv.front();
         char view[] = {messageReceived[0], messageReceived[1], '\0'};
@@ -216,19 +245,16 @@ void* Client::render(void *arg) {
         if(strcmp(view, "00") == 0){ //view selected
 
             //zIndex
-            char greySquaredSelectedt11 = messageReceived[2];
-            char greySquaredSelectedt12 = messageReceived[3];
-            char greySquaredSelectedt21 = messageReceived[4];
-            char greySquaredSelectedt22 = messageReceived[5];
+            char greySquaresSelected[] = {messageReceived[2], messageReceived[3], messageReceived[4], messageReceived[5], '\0'};
 
-            viewSelectCharacter->updateGreySquares(greySquaredSelectedt11, greySquaredSelectedt12, greySquaredSelectedt21, greySquaredSelectedt22 );
+            game->updateGreySquares(greySquaresSelected);
 
             //0  1
             //2  3
             char selectT1[] = {messageReceived[6], messageReceived[7], '\0'};
             char selectT2[] = {messageReceived[8], messageReceived[9], '\0'};
 
-            viewSelectCharacter->updateSelects(selectT1, selectT2);
+            game->updateSelects(selectT1, selectT2);
 
             //personaje,zIndex
             char characterUpRight[] = {messageReceived[10], messageReceived[11], messageReceived[12], '\0'};
@@ -236,15 +262,10 @@ void* Client::render(void *arg) {
             char characterUpLeft[] = {messageReceived[16], messageReceived[17], messageReceived[18], '\0'};
             char characterDownLeft[] = {messageReceived[19], messageReceived[20], messageReceived[21], '\0'};
 
-            viewSelectCharacter->updateCharactersImages(characterUpRight, characterDownRight, characterUpLeft, characterDownLeft);
-
-            //selected or not
-            char selected = messageReceived[22];
-
-            viewSelectCharacter->updateSelected(selected);
+            game->updateCharactersImages(characterUpRight, characterDownRight, characterUpLeft, characterDownLeft);
 
 
-            viewSelectCharacter->render();
+            game->render();
             queueRecv.pop();
 
         }
@@ -253,6 +274,8 @@ void* Client::render(void *arg) {
 
         }
     }
+
+    game->clean();
 
 }
 

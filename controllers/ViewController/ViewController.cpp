@@ -38,5 +38,9 @@ string ViewController::getNextView() {
     return std::__cxx11::string();
 }
 
+void ViewController::updateGreySquares(char* greySquares) {
+
+}
+
 
 

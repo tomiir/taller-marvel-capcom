@@ -44,9 +44,10 @@ void ViewController_charSelect::updateView() {
 
     //RENDERIZO, EL ORDEN ES IMPORTANTE
     background->render();
-    renderVector(this->getSides());
     renderVector(this->getGreysSquares());
     renderVector(this->getSelectionSquares());
+    renderVector(this->getSides());
+
 
     //LO PRESENTO EN EL RENDER
     SDL_RenderPresent(renderer);
@@ -258,5 +259,14 @@ std::vector<string> ViewController_charSelect::getTeam1() {
 
 std::vector<string> ViewController_charSelect::getTeam2() {
     return selected_2;
+}
+
+void ViewController_charSelect::updateGreySquares(char* greySquares ) {
+
+    for (int i = 0; i<4;){
+        if(greySquares[i] == '1'){
+            selected.push_back("capitan america");
+        }
+    }
 }
 
