@@ -25,6 +25,8 @@ public:
 
     void updateCharactersImages(char selected_1[3], char selected_2[3]);
 
+    void render();
+
 private:
     std::map<string, ViewController* > views;
     std::map<string, ViewController*>::iterator itr_views= views.begin();

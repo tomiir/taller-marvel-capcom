@@ -117,3 +117,7 @@ void Game::updateCharactersImages(char *selected_1, char *selected_2) {
     this->viewController->updateCharacterImages(selected_1, selected_2);
 }
 
+void Game::render() {
+    this->viewController->updateView();
+}
+
