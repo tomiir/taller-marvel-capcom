@@ -308,9 +308,9 @@ void ViewController_charSelect::updateCharacterImages(char *selected_1, char *se
         this->selected_2.push_back("SpiderMan");
     } else if (strcmp(selected_2, "110")){
         this->selected_2.push_back("ChunLi");
-    } else if (strcmp(selected_2, "111")){
+    } else if (strcmp(selected_2, "111")) {
         this->selected_2.push_back("Venom");
-
+    }
 
 
 }

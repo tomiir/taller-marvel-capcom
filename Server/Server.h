@@ -33,7 +33,7 @@ public:
 
     static void brokeConnection(int arg);
 
-    static void Send(int clientSock);
+    static void *Send(void *clientSock_);
 
     static char * update(int clientSock);
 

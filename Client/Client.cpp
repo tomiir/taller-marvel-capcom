@@ -244,7 +244,7 @@ void* Client::render(void *arg) {
 
         if(strcmp(view, "00") == 0){ //view selected
 
-            //zIndex
+            //Te devuelve 1 en el cuadrado gris que si se tenga que renderizar
             char greySquaresSelected[] = {messageReceived[2], messageReceived[3], messageReceived[4], messageReceived[5], '\0'};
 
             game->updateGreySquares(greySquaresSelected);
@@ -256,7 +256,7 @@ void* Client::render(void *arg) {
 
             game->updateSelects(selectT1, selectT2);
 
-            //personaje,zIndex
+            //Esto setea los selected de ambos equipos para saber que imagenes de los cosados renderizar
             char selected_1[] = {messageReceived[10], messageReceived[11], messageReceived[12], '\0'};
             char selected_2[] = {messageReceived[13], messageReceived[14], messageReceived[15], '\0'};
 

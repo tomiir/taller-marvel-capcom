@@ -48,6 +48,10 @@ Server::Server() {
     }
 }
 
+
+
+
+
 void Server::checkSendToClientError(int clientSock) {
 
     CLogger* logger = CLogger::GetLogger();
@@ -78,6 +82,10 @@ void Server::checkSendToClientError(int clientSock) {
             exit(0);
     }
 }
+
+
+
+
 
 void Server::checkRecvFromClientError(int clientSock) {
 
@@ -110,19 +118,30 @@ void Server::checkRecvFromClientError(int clientSock) {
 
 sig_atomic_t serverBrokeConnection = 0;
 
+
+
+
 void Server::brokeConnection(int arg){
     serverBrokeConnection = 1;
 }
 
 
-void Server::Send(int clientSock){
 
-    if (send(clientSock, messageToClient, strlen(messageToClient),0) == -1 ){
-        checkSendToClientError(clientSock);
+
+
+void *Server::Send(void *clientIter_){
+
+    int clientIter = *(int *) clientIter_;
+
+    if (send(clientSocket[clientIter], messageToClient, strlen(messageToClient),0) == -1 ){
+        checkSendToClientError(clientSocket[clientIter]);
     }
-
-    memset(messageToClient,0, 4096);
 }
+
+
+
+
+
 
 char* Server::update(int clientSock){
 
@@ -133,14 +152,21 @@ char* Server::update(int clientSock){
         checkRecvFromClientError(clientSock);
     }
 
-    //string received = string(messageFromClient, 0, bytesReceived);
     return messageFromClient;
 }
 
-void* Server::receivingEventsFromClient(void *clientSock_) {
 
-    int clientSock = *(int *) clientSock_;
+
+
+
+
+void* Server::receivingEventsFromClient(void *clientIter_) {
+
+    int clientIter = *(int *) clientIter_;
+
     CLogger* logger = CLogger::GetLogger();
+
+
 
     while(true){
 
@@ -152,43 +178,59 @@ void* Server::receivingEventsFromClient(void *clientSock_) {
 
             memset(messageToClient,0, 4096);
             strcpy(messageToClient, "El servidor se desconecto");
-            Send(clientSock);
+            Send(clientIter_);
             close(serverSocket_s);
             return nullptr;
         }
         //Aca habria que analizar lo de si no recibe por un tiempo nada darlo por muerto(seria el heartbeat)
         //
-        char* received = update(clientSock);
+        char* received = update(clientSocket[clientIter]);
 
         if( strcmp(received, "0") == 0) {
-            logger->Log( "El cliente: " + to_string(clientSock) + " se desconecto" , NETWORK, "");
-            close(clientSock);
+            logger->Log( "El cliente: " + to_string(clientSocket[clientIter]) + " se desconecto" , NETWORK, "");
+            close(clientSocket[clientIter]);
             break;
         }
-//Este if creo que no serviria
-//        if ( strcmp(received.c_str(), "1") == 0){
-//            logger->Log( "El cliente " + to_string(clientSock) + " esta latiendo" , NETWORK, "");
-//            memset(messageFromClient,0,4096);
-//        }
 
+        int aux = strlen(received);
 
-        //if(strcmp(received.c_str(), "1") != 0) { //ese cmp es bastante trucho,
+        switch (clientIter){
 
-            serverQueue.push(received);
-            logger->Log( "Se recibio de " + to_string(clientSock) + ": " + string(received) , NETWORK, "");
-            memset(messageToClient,0, 4096);
-            strcpy(messageToClient, "Se recibio el mensaje correctamente");
-            //Send(clientSock);
-        //}
+            case 0:
+                received[aux] = '0';
+                received[aux + 1] = '0';
+                break;
+            case 1:
+                received[aux] = '0';
+                received[aux + 1] = '1';
+                break;
+            case 2:
+                received[aux] = '1';
+                received[aux + 1] = '0';
+                break;
+            case 3:
+                received[aux] = '1';
+                received[aux + 1] = '1';
+                break;
+            default:
+                cout << "ERROR AGREGANDO CHARS PARA DISTINGUIR CLIENTES" << endl;
+                break;
+        }
+
+        serverQueue.push(received);
+
     }
 }
 
 
+
+
+
+
 //esta funcion se encarga de desencolar las cosas que le llegan de los clientes, actualizar el
 // modelo y enviar los nuevos parametros a todos los clientes.
-void* Server::updateModel(void *clientSock_){
+void* Server::updateModel(void *arg){
 
-    int clientSock = *(int *) clientSock_;
     CLogger* logger = CLogger::GetLogger();
 
 
@@ -199,18 +241,44 @@ void* Server::updateModel(void *clientSock_){
 
         //aca se decodificaria lo que se recibio en la cola
 
-        serverQueue.pop();
-
         //aca se realizaría todos los cambios al modelo segun las teclas que le llegaron
 
+        serverQueue.pop();
+
         //aca se pide despues de hacer todos los cambios los parametros que se necesitan para enviarles a los clientes y que estos renderisen
-        char* newParamenters = curerntView->giveNewParametes();
+        char* newParamenters = curerntControllerView->giveNewParametes();
+        //mutex lock
         memset(messageToClient,0, 4096);
         strcpy(messageToClient, newParamenters);
-        Send(clientSock);
+
+
+
+        int clientsIter = 0;
+        pthread_t clientUpdateThreads[MAXCLIENTS];
+
+
+
+        for(; clientsIter < MAXCLIENTS; clientsIter++){
+            int readThread = pthread_create(&clientUpdateThreads[clientsIter], nullptr, Send,
+                                            &clientSocket[clientsIter]);
+            if(readThread != 0) {
+                logger->Log( "Falló al crear un thread de UPDATE, saliendo del juego." , ERROR, strerror(errno));
+            }
+        }
+
+        clientsIter = 0;
+
+        for(; clientsIter < MAXCLIENTS; clientsIter++){
+            pthread_join(clientUpdateThreads[clientsIter], nullptr);
+        }
+
+        //mutex unlock
     }
 
 }
+
+
+
 
 
 void Server::clientConnected(sockaddr_in clientAddr_){
@@ -232,6 +300,11 @@ void Server::clientConnected(sockaddr_in clientAddr_){
 
 }
 
+
+
+
+
+
 void Server::connect() {
 
     CLogger* logger = CLogger::GetLogger();
@@ -251,35 +324,40 @@ void Server::connect() {
     logger->Log( "Ya se conectaron los clientes" , INFO, "");
     clientsIter = 0;
 
+
+    //ACA SE DEBERIA INICIALIZAR TODOO EL MODELO
+
+
     for(; clientsIter < MAXCLIENTS; clientsIter++) {
         memset(messageToClient,0, 4096);
         if (clientsIter == 0 or clientsIter == 2) {
             strcpy(messageToClient, "team1");
-            Send(clientSocket[clientsIter]);
+            Send((void*)(clientSocket[clientsIter]));
         }
         else{
             strcpy(messageToClient, "team2");
-            Send(clientSocket[clientsIter]);
+            Send((void*)(clientSocket[clientsIter]));
         }
 
         memset(messageToClient,0, 4096);
         strcpy(messageToClient, "connected");
-        Send(clientSocket[clientsIter]);
+        Send((void*)(clientSocket[clientsIter]));
     }
 
     clientsIter = 0;
 
     for(; clientsIter < MAXCLIENTS; clientsIter++){
         int readThread = pthread_create(&clientThreads[clientsIter], nullptr, receivingEventsFromClient,
-                                        &clientSocket[clientsIter]);
+                                        &clientsIter);
         if(readThread != 0) {
             logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
         }
     }
 
+
     pthread_t updateModelThread;
 
-    int readThread = pthread_create(&updateModelThread, nullptr, updateModel, &clientSocket[clientsIter]);
+    int readThread = pthread_create(&updateModelThread, nullptr, updateModel, nullptr);
     if(readThread !=0){
         logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
     }
@@ -299,6 +377,10 @@ void Server::connect() {
     close(serverSocket_s);
 
 }
+
+
+
+
 
 void* Server::popQueue(void* arg){
     CLogger* logger = CLogger::GetLogger();
