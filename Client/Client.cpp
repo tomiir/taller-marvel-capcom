@@ -17,6 +17,8 @@ socklen_t  serverSize_c;
 char messageFromServer[4096];
 char messageToSever[4096];
 char messageFromInput[4096];
+char aux[5];
+
 bool connect2 = true;
 
 queue<char*> queueRecv;
@@ -179,6 +181,28 @@ bool Client::isBeating() {
 
     return beating;
 }
+
+
+
+
+
+
+char *Client::messageFromServerReceived(){
+
+    memset(aux, 0, 5);
+
+    int bytesReceived = recv(serverSocket_c, aux, 5, 0);
+
+    if(bytesReceived == -1){
+        checkRecvFromServerError();
+    }
+
+    return aux;
+}
+
+
+
+
 
 
 void* Client::recvFromServer(void* arg) {

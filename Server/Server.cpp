@@ -20,6 +20,8 @@ queue<char*> serverQueue;
 
 bool on = true;
 
+bool permit = false;
+
 ViewController_charSelect* currentViewController = new ViewController_charSelect();
 
 
@@ -188,7 +190,6 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
         //Aca habria que analizar lo de si no recibe por un tiempo nada darlo por muerto(seria el heartbeat)
         //
         char* received = update(clientSocket[clientIter]);
-        cout << received << endl;
 
         if( strcmp(received, "0") == 0) {
             logger->Log( "El cliente: " + to_string(clientSocket[clientIter]) + " se desconecto" , NETWORK, "");
@@ -222,7 +223,7 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
         }
 
         serverQueue.push(received);
-
+        permit = true;
     }
 }
 
@@ -238,43 +239,48 @@ void* Server::updateModel(void *arg){
     CLogger* logger = CLogger::GetLogger();
 
     while(on){
-        //En este caso cada elemneto de la cola es una serie de eventos de 5 chars cada uno(y cada elemento es de un cleinte solo)
-        //Habria que evaluar cauntas veces habria que desencolar o si simplemente procesando lo de un cleinte solo a la vez serviria.
-        char* event = serverQueue.front();
+        if (permit){
+            //En este caso cada elemneto de la cola es una serie de eventos de 5 chars cada uno(y cada elemento es de un cleinte solo)
+            //Habria que evaluar cauntas veces habria que desencolar o si simplemente procesando lo de un cleinte solo a la vez serviria.
+            char* event = serverQueue.front();
 
-        //aca se realizaría todos los cambios al modelo segun las teclas que le llegaron
-        currentViewController->handleEvent(event);
+            //aca se realizaría todos los cambios al modelo segun las teclas que le llegaron
+            currentViewController->handleEvent(event);
 
-        serverQueue.pop();
+            serverQueue.pop();
+            permit = false;
 
-        //aca se pide despues de hacer todos los cambios los parametros que se necesitan para enviarles a los clientes y que estos renderisen
-        char* newParamenters = currentViewController->giveNewParametes();
-        //mutex lock
-        memset(messageToClient,0, 4096);
-        strcpy(messageToClient, newParamenters);
-
-
-
-        int clientsIter = 0;
-        pthread_t clientUpdateThreads[MAXCLIENTS];
+            //aca se pide despues de hacer todos los cambios los parametros que se necesitan para enviarles a los clientes y que estos renderisen
+            char* newParamenters = currentViewController->giveNewParametes();
+            //mutex lock
+            memset(messageToClient,0, 4096);
+            strcpy(messageToClient, newParamenters);
 
 
 
-        for(; clientsIter < MAXCLIENTS; clientsIter++){
-            int readThread = pthread_create(&clientUpdateThreads[clientsIter], nullptr, Send,
-                                            &clientSocket[clientsIter]);
-            if(readThread != 0) {
-                logger->Log( "Falló al crear un thread de UPDATE, saliendo del juego." , ERROR, strerror(errno));
+            int clientsIter = 0;
+            pthread_t clientUpdateThreads[MAXCLIENTS];
+
+
+
+            for(; clientsIter < MAXCLIENTS; clientsIter++){
+                int readThread = pthread_create(&clientUpdateThreads[clientsIter], nullptr, Send,
+                                                &clientSocket[clientsIter]);
+                if(readThread != 0) {
+                    logger->Log( "Falló al crear un thread de UPDATE, saliendo del juego." , ERROR, strerror(errno));
+                }
             }
+
+            clientsIter = 0;
+
+            for(; clientsIter < MAXCLIENTS; clientsIter++){
+                pthread_join(clientUpdateThreads[clientsIter], nullptr);
+            }
+
+            //mutex unlock
         }
 
-        clientsIter = 0;
 
-        for(; clientsIter < MAXCLIENTS; clientsIter++){
-            pthread_join(clientUpdateThreads[clientsIter], nullptr);
-        }
-
-        //mutex unlock
     }
 
 }
@@ -322,16 +328,7 @@ void Server::connect() {
         clientSize[clientsIter] = sizeof(clientAddr[clientsIter]);
         clientSocket[clientsIter] = accept(serverSocket_s, (struct sockaddr*)&clientAddr[clientsIter], &clientSize[clientsIter]);
         clientConnected(clientAddr[clientsIter]);
-    }
-    logger->Log( "Ya se conectaron los clientes" , INFO, "");
-    clientsIter = 0;
 
-
-    //ACA SE DEBERIA INICIALIZAR TODOO EL MODELO
-
-
-    //Se arranca a enviar el conectado y el team a los clientes
-    for(; clientsIter < MAXCLIENTS; clientsIter++) {
         memset(messageToClient,0, 4096);
         if (clientsIter == 0 or clientsIter == 2) {
             strcpy(messageToClient, "team1");
@@ -341,17 +338,42 @@ void Server::connect() {
             strcpy(messageToClient, "team2");
             Send(&clientsIter);
         }
-
-    }
-
-
-    clientsIter = 0;
-    for(; clientsIter < MAXCLIENTS; clientsIter++) {
         memset(messageToClient,0, 4096);
         strcpy(messageToClient, "connected");
         Send(&clientsIter);
     }
 
+
+    clientsIter = 0;
+    for(; clientsIter < MAXCLIENTS; clientsIter++){
+
+        memset(messageToClient,0, 4096);
+        if (clientsIter == 0 or clientsIter == 2) {
+            strcpy(messageToClient, "team1");
+            Send(&clientsIter);
+        }
+        else{
+            strcpy(messageToClient, "team2");
+            Send(&clientsIter);
+        }
+    }
+
+    clientsIter = 0;
+
+    for(; clientsIter < MAXCLIENTS; clientsIter++){
+        memset(messageToClient,0, 4096);
+        strcpy(messageToClient, "cnect");
+        Send(&clientsIter);
+    }
+
+
+    logger->Log( "Ya se conectaron los clientes" , INFO, "");
+
+
+    //ACA SE DEBERIA INICIALIZAR TODOO EL MODELO
+
+
+    //Se arranca a enviar el conectado y el team a los clientes
 
 
     clientsIter = 0;

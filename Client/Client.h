@@ -52,6 +52,7 @@ public:
 
     static void* recvFromServer(void* arg);
 
+    char *messageFromServerReceived();
 
 private:
 
@@ -73,6 +74,7 @@ private:
     static void checkRecvFromServerError();
 
     void changeCurrentMapper();
+
 };
 
 
