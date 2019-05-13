@@ -188,6 +188,7 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
         //Aca habria que analizar lo de si no recibe por un tiempo nada darlo por muerto(seria el heartbeat)
         //
         char* received = update(clientSocket[clientIter]);
+        cout << received << endl;
 
         if( strcmp(received, "0") == 0) {
             logger->Log( "El cliente: " + to_string(clientSocket[clientIter]) + " se desconecto" , NETWORK, "");
@@ -341,10 +342,17 @@ void Server::connect() {
             Send(&clientsIter);
         }
 
+    }
+
+
+    clientsIter = 0;
+    for(; clientsIter < MAXCLIENTS; clientsIter++) {
         memset(messageToClient,0, 4096);
         strcpy(messageToClient, "connected");
         Send(&clientsIter);
     }
+
+
 
     clientsIter = 0;
 

@@ -23,6 +23,7 @@ public:
 
 protected:
 
+    char keys[6];
 
 };
 

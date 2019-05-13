@@ -130,7 +130,7 @@ void Client::Send(char* message) {
         checkSendToServerError();
     }
 
-    logger->Log("Se envio correctamente el mensaje: " + string(message) , NETWORK, "");
+    //logger->Log("Se envio correctamente el mensaje: " + string(message) , NETWORK, "");
 
 
 }
