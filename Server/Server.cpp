@@ -20,6 +20,9 @@ queue<char*> serverQueue;
 
 bool on = true;
 
+ViewController_charSelect* currentViewController = new ViewController_charSelect();
+
+
 
 
 Server::Server() {
@@ -233,20 +236,18 @@ void* Server::updateModel(void *arg){
 
     CLogger* logger = CLogger::GetLogger();
 
-
     while(on){
         //En este caso cada elemneto de la cola es una serie de eventos de 5 chars cada uno(y cada elemento es de un cleinte solo)
         //Habria que evaluar cauntas veces habria que desencolar o si simplemente procesando lo de un cleinte solo a la vez serviria.
-        char* updates = serverQueue.front();
-
-        //aca se decodificaria lo que se recibio en la cola
+        char* event = serverQueue.front();
 
         //aca se realizaría todos los cambios al modelo segun las teclas que le llegaron
+        currentViewController->handleEvent(event);
 
         serverQueue.pop();
 
         //aca se pide despues de hacer todos los cambios los parametros que se necesitan para enviarles a los clientes y que estos renderisen
-        char* newParamenters = curerntControllerView->giveNewParametes();
+        char* newParamenters = currentViewController->giveNewParametes();
         //mutex lock
         memset(messageToClient,0, 4096);
         strcpy(messageToClient, newParamenters);
@@ -328,20 +329,21 @@ void Server::connect() {
     //ACA SE DEBERIA INICIALIZAR TODOO EL MODELO
 
 
+    //Se arranca a enviar el conectado y el team a los clientes
     for(; clientsIter < MAXCLIENTS; clientsIter++) {
         memset(messageToClient,0, 4096);
         if (clientsIter == 0 or clientsIter == 2) {
             strcpy(messageToClient, "team1");
-            Send((void*)(clientSocket[clientsIter]));
+            Send(reinterpret_cast<void *>(clientsIter));
         }
         else{
             strcpy(messageToClient, "team2");
-            Send((void*)(clientSocket[clientsIter]));
+            Send(reinterpret_cast<void *>(clientsIter));
         }
 
         memset(messageToClient,0, 4096);
         strcpy(messageToClient, "connected");
-        Send((void*)(clientSocket[clientsIter]));
+        Send(reinterpret_cast<void *>(clientsIter));
     }
 
     clientsIter = 0;

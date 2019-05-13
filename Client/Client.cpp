@@ -256,7 +256,7 @@ void* Client::render(void *arg) {
 
             game->updateSelects(selectT1, selectT2);
 
-            //Esto setea los selected de ambos equipos para saber que imagenes de los cosados renderizar
+            //Esto setea los selected de ambos equipos para saber que imagenes de los costados renderizar
             char selected_1[] = {messageReceived[10], messageReceived[11], messageReceived[12], '\0'};
             char selected_2[] = {messageReceived[13], messageReceived[14], messageReceived[15], '\0'};
 

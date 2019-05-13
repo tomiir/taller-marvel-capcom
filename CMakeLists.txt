@@ -140,7 +140,13 @@ add_executable(
         utils/TextureManager/TextureManager.h
         views/View/View.cpp
         views/View/View.h
-        Server/Server.cpp Server/Server.h Client/Client.cpp Client/Client.h utils/Mapper/Mapper.cpp utils/Mapper/Mapper.h)
+        Server/Server.cpp Server/Server.h Client/Client.cpp Client/Client.h utils/Mapper/Mapper.cpp utils/Mapper/Mapper.h
+        views/View/View_charSelect.cpp
+        views/View/View_charSelect.h
+
+
+
+)
 
 
 

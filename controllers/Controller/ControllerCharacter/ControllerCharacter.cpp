@@ -20,7 +20,9 @@ ControllerCharacter::~ControllerCharacter() = default;
 
 void ControllerCharacter::handleEvent(SDL_Event event) {
 
-    DirectionVector* direction = mapper->map(event);
+    //DirectionVector* direction = mapper->map(event);
+    DirectionVector* direction = new DirectionVector();
+
     vector<int> info = gameObject->getInfo();
 
 

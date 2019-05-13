@@ -60,54 +60,54 @@ map<string, ControllerCharacter*> ViewControllerFactory::getControllerCharacter(
     return characters;
 }
 
-ViewController_charSelect * ViewControllerFactory:: getViewController_charSelect(){
+View_charSelect * ViewControllerFactory:: getView_charSelect(){
 
     GameObjectFactory* factory = new GameObjectFactory(renderer, screenWidth, screenHeight);
     vector <GameObject_charSelect*> gameObjects = factory->getgameobjectChar_select_fight();
 
-    ViewController_charSelect* viewController = new ViewController_charSelect(renderer);
-    viewController->addGameObject_background(gameObjects[0]);
+    View_charSelect* viewCharSelect = new View_charSelect(renderer);
+    viewCharSelect->addGameObject_background(gameObjects[0]);
 
 
     // LOS SIDES DE CADA TEAM
-    viewController->addGameObject_character(gameObjects[1],1);
-    viewController->addGameObject_character(gameObjects[2],2);
+    viewCharSelect->addGameObject_character(gameObjects[1],1);
+    viewCharSelect->addGameObject_character(gameObjects[2],2);
 
-    viewController->addGameObject_character(gameObjects[3],1);
-    viewController->addGameObject_character(gameObjects[4],2);
+    viewCharSelect->addGameObject_character(gameObjects[3],1);
+    viewCharSelect->addGameObject_character(gameObjects[4],2);
 
-    viewController->addGameObject_character(gameObjects[5],1);
-    viewController->addGameObject_character(gameObjects[6],2);
+    viewCharSelect->addGameObject_character(gameObjects[5],1);
+    viewCharSelect->addGameObject_character(gameObjects[6],2);
 
-    viewController->addGameObject_character(gameObjects[7],1);
-    viewController->addGameObject_character(gameObjects[8],2);
+    viewCharSelect->addGameObject_character(gameObjects[7],1);
+    viewCharSelect->addGameObject_character(gameObjects[8],2);
 
     // LOS SIDES DE CADA TEAM selected
-    viewController->addGameObject_character_selected(gameObjects[9],1);
-    viewController->addGameObject_character_selected(gameObjects[10],2);
+    viewCharSelect->addGameObject_character_selected(gameObjects[9],1);
+    viewCharSelect->addGameObject_character_selected(gameObjects[10],2);
 
-    viewController->addGameObject_character_selected(gameObjects[11],1);
-    viewController->addGameObject_character_selected(gameObjects[12],2);
+    viewCharSelect->addGameObject_character_selected(gameObjects[11],1);
+    viewCharSelect->addGameObject_character_selected(gameObjects[12],2);
 
-    viewController->addGameObject_character_selected(gameObjects[13],1);
-    viewController->addGameObject_character_selected(gameObjects[14],2);
+    viewCharSelect->addGameObject_character_selected(gameObjects[13],1);
+    viewCharSelect->addGameObject_character_selected(gameObjects[14],2);
 
-    viewController->addGameObject_character_selected(gameObjects[15],1);
-    viewController->addGameObject_character_selected(gameObjects[16],2);
+    viewCharSelect->addGameObject_character_selected(gameObjects[15],1);
+    viewCharSelect->addGameObject_character_selected(gameObjects[16],2);
 
 
 
     // LOS CUADRADITOS DE CADA TEAM
-    viewController->addGameObject_square(gameObjects[17],1);
-    viewController->addGameObject_square(gameObjects[18],2);
+    viewCharSelect->addGameObject_square(gameObjects[17],1);
+    viewCharSelect->addGameObject_square(gameObjects[18],2);
 
     // LOS CUADRADITOS GRISES
-    viewController->addGameObject_square_gray(gameObjects[19]);
-    viewController->addGameObject_square_gray(gameObjects[20]);
-    viewController->addGameObject_square_gray(gameObjects[21]);
-    viewController->addGameObject_square_gray(gameObjects[22]);
+    viewCharSelect->addGameObject_square_gray(gameObjects[19]);
+    viewCharSelect->addGameObject_square_gray(gameObjects[20]);
+    viewCharSelect->addGameObject_square_gray(gameObjects[21]);
+    viewCharSelect->addGameObject_square_gray(gameObjects[22]);
 
-    return viewController;
+    return viewCharSelect;
 
 }
 

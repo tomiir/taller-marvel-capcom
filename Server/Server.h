@@ -16,6 +16,7 @@
 #include <pthread.h>
 #include <queue>
 #include "../utils/Logger/Logger.h"
+#include "../controllers/ViewController/ViewController_charSelect/ViewController_charSelect.h"
 
 #define MAXCLIENTS 2
 #define PORT 54000
@@ -44,6 +45,8 @@ private:
     static void clientConnected(sockaddr_in clientAddr_);
     static void* popQueue(void* arg);
 
+    //Despeus va a tener que ser del tipo viewController y cambiar cuando tnega que pasar a figth
+    //Al usarlo en una funcion estatica me obligo a que sea estatico
 
 };
 

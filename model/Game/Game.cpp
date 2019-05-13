@@ -40,7 +40,7 @@ void Game::init(const char *title, int posX, int posY) {
 
         views["fight"] = factory -> getViewController_fight();
         characters = factory -> getControllerCharacter();
-        views["char_select"] = factory -> getViewController_charSelect();
+        views["char_select"] = factory -> getView_charSelect();
 
         viewController = (views.find("char_select"))->second;
 
@@ -84,8 +84,8 @@ void Game::tick() {
 
         if (strcmp(nextViewName.c_str(), "fight") == 0){
             // esto significa que la anterior fue la de selección de personajes;
-            vector<string> team1 = ((ViewController_charSelect*) viewController)-> getTeam1();
-            vector<string> team2 = ((ViewController_charSelect*) viewController) -> getTeam2();
+            vector<string> team1 = ((View_charSelect*) viewController)-> getTeam1();
+            vector<string> team2 = ((View_charSelect*) viewController) -> getTeam2();
 
             vector<ControllerCharacter*> aux = {(characters.find(team1[0])->second), (characters.find(team1[1])->second)};
             ((ViewController_fight*)nextView)->setTeam(aux,1);

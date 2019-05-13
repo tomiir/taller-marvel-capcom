@@ -7,9 +7,9 @@
 
 #include "../GameObjectControllerFactory/GameObjectControllerFactory.h"
 #include "../../../controllers/ViewController/ViewController_fight/ViewController_fight.h"
-#include "../../../controllers/ViewController/ViewController_charSelect/ViewController_charSelect.h"
 #include "../../../views/View/View.h"
 #include "../../../utils/TeamManager/TeamManager.h"
+#include "../../../views/View/View_charSelect.h"
 
 using namespace std;
 
@@ -21,7 +21,7 @@ public:
     ViewControllerFactory(SDL_Renderer * renderer_, int screenWidth_, int screenHeight_);
     ~ViewControllerFactory();
     ViewController_fight * getViewController_fight();
-    ViewController_charSelect * getViewController_charSelect();
+    View_charSelect * getView_charSelect();
     map<string, ControllerCharacter *> getControllerCharacter();
 
 private:

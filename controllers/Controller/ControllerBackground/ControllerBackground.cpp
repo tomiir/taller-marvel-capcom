@@ -19,9 +19,14 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
     vector<int> infoCharacter2 = controllerCharacter2->getInfo();
     vector<int> infoBackgroundImg = gameObject->getInfo();
 
-    DirectionVector* dirLeft = controllerCharacterOnLeft->getMapper()->map(event);
-    DirectionVector* dirRight = controllerCharacterOnRight->getMapper()->map(event);
-    DirectionVector* dirUp = controllerCharacter1->getMapper()->map(event);
+    //DirectionVector* dirLeft = controllerCharacterOnLeft->getMapper()->map(event);
+    //DirectionVector* dirRight = controllerCharacterOnRight->getMapper()->map(event);
+    //DirectionVector* dirUp = controllerCharacter1->getMapper()->map(event);
+
+    DirectionVector* dirLeft = new DirectionVector();
+    DirectionVector* dirRight = new DirectionVector();
+    DirectionVector* dirUp = new DirectionVector();
+
 
     int distanceBetweenCharacters = characterOnRightInfo[0]+characterOnRightInfo[2] - characterOnLeftInfo[0];
 
