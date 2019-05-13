@@ -24,7 +24,7 @@ bool permit = false;
 
 ViewController_charSelect* currentViewController = new ViewController_charSelect();
 
-
+pthread_mutex_t mutex;
 
 
 Server::Server() {
@@ -137,10 +137,11 @@ void Server::brokeConnection(int arg){
 void *Server::Send(void *clientIter_){
 
     int clientIter = *(int *) clientIter_;
-
+//    pthread_mutex_lock(&mutex);
     if (send(clientSocket[clientIter], messageToClient, strlen(messageToClient),0) == -1 ){
         checkSendToClientError(clientSocket[clientIter]);
     }
+//    pthread_mutex_unlock(&mutex);
 }
 
 
@@ -317,6 +318,8 @@ void Server::connect() {
 
     CLogger* logger = CLogger::GetLogger();
 
+    pthread_mutex_init(&mutex,NULL);
+
     if(listen(serverSocket_s, MAXCLIENTS) < 0 ) {
         logger->Log( "No se puede escuchar", ERROR, strerror(errno));
     }
@@ -328,19 +331,6 @@ void Server::connect() {
         clientSize[clientsIter] = sizeof(clientAddr[clientsIter]);
         clientSocket[clientsIter] = accept(serverSocket_s, (struct sockaddr*)&clientAddr[clientsIter], &clientSize[clientsIter]);
         clientConnected(clientAddr[clientsIter]);
-
-        memset(messageToClient,0, 4096);
-        if (clientsIter == 0 or clientsIter == 2) {
-            strcpy(messageToClient, "team1");
-            Send(&clientsIter);
-        }
-        else{
-            strcpy(messageToClient, "team2");
-            Send(&clientsIter);
-        }
-        memset(messageToClient,0, 4096);
-        strcpy(messageToClient, "connected");
-        Send(&clientsIter);
     }
 
 

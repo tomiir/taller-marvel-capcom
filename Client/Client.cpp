@@ -197,6 +197,8 @@ char *Client::messageFromServerReceived(){
         checkRecvFromServerError();
     }
 
+    cout << aux << endl;
+
     return aux;
 }
 
