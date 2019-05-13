@@ -181,7 +181,7 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
 
             memset(messageToClient,0, 4096);
             strcpy(messageToClient, "El servidor se desconecto");
-            Send(clientIter_);
+            Send(&clientIter);
             close(serverSocket_s);
             return nullptr;
         }
@@ -334,16 +334,16 @@ void Server::connect() {
         memset(messageToClient,0, 4096);
         if (clientsIter == 0 or clientsIter == 2) {
             strcpy(messageToClient, "team1");
-            Send(reinterpret_cast<void *>(clientsIter));
+            Send(&clientsIter);
         }
         else{
             strcpy(messageToClient, "team2");
-            Send(reinterpret_cast<void *>(clientsIter));
+            Send(&clientsIter);
         }
 
         memset(messageToClient,0, 4096);
         strcpy(messageToClient, "connected");
-        Send(reinterpret_cast<void *>(clientsIter));
+        Send(&clientsIter);
     }
 
     clientsIter = 0;

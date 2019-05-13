@@ -20,12 +20,6 @@ int main(int argc, const char* argv[]){
     const int SCREEN_WIDTH = config->getScreenSize()[0];
     const int SCREEN_HEIGHT = config->getScreenSize()[1];
 
-    Game *game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
-
-    std::string aux = config->getTitle();
-    const char *title = aux.c_str();
-
-    game->init(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 
     int modo = 1;
     logger->setLevel(DEBUG_LEVEL);
@@ -69,6 +63,14 @@ int main(int argc, const char* argv[]){
 
             if (strcmp((char*)(client->recvFromServer(nullptr)), "connected") == 0) {
                 logger->Log( "Conectado al servidor", INFO, "");
+
+                Game *game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+                std::string aux = config->getTitle();
+                const char *title = aux.c_str();
+
+                game->init(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+
                 client->Initialice();
             }
 

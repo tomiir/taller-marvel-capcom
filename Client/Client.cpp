@@ -199,7 +199,6 @@ void* Client::recvFromServer(void* arg) {
 
         queueRecv.push(messageFromServer);
 
-        logger->Log("Se recibio correctamente del server el mensaje: " + string(messageFromServer), NETWORK, "");
     }
 
 }
