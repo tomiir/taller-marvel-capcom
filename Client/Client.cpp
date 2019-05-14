@@ -210,7 +210,6 @@ char *Client::messageFromServerReceived(){
 
 void* Client::recvFromServer(void* arg) {
 
-    CLogger* logger = CLogger::GetLogger();
 
     while(connect2){
         memset(messageFromServer, 0, 16);
@@ -314,15 +313,14 @@ void* Client::sendEventToServer(void* arg){
 void Client::Initialice() {
 
     //Aca habria antes que cargar las views
-    CLogger *logger = CLogger::GetLogger();
     logger->Log("Inicializando juego", INFO, "");
     JsonConfigs *config = JsonConfigs::getJson();
 
     const int SCREEN_WIDTH = config->getScreenSize()[0];
     const int SCREEN_HEIGHT = config->getScreenSize()[1];
 
-    std::string aux = config->getTitle();
-    const char *title = aux.c_str();
+    std::string aux2 = config->getTitle();
+    const char *title = aux2.c_str();
     const int FPS = config->getFPS();
 
     game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -364,8 +362,8 @@ void Client::setMappers(Mapper* mapperSelect_, Mapper* mapperFight_){
 
 void Client::changeCurrentMapper(){
 
-    Mapper* aux = currentMapper;
+    Mapper* aux2 = currentMapper;
     currentMapper = notCurrentMapper;
-    notCurrentMapper = aux;
+    notCurrentMapper = aux2;
 
 }
