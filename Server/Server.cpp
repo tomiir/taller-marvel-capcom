@@ -14,10 +14,9 @@ struct sockaddr_in clientAddr[MAXCLIENTS];
 socklen_t clientSize[MAXCLIENTS];
 
 char messageFromClient[4096];
-char messageToClient[4096];
 char messageFromClient2[4096];
-char messageFromClient3[4096];
-char messageFromClient4[4096];
+
+char messageToClient[4096];
 
 queue<string> serverQueue;
 
@@ -28,6 +27,7 @@ ViewController_charSelect* currentViewController = new ViewController_charSelect
 pthread_mutex_t lock;
 
 pthread_mutex_t mutex;
+
 
 
 Server::Server() {
@@ -139,12 +139,12 @@ void Server::brokeConnection(int arg){
 
 void *Server::Send(void *clientIter_){
 
+
     int clientIter = *(int *) clientIter_;
-//    pthread_mutex_lock(&mutex);
+
     if (send(clientSocket[clientIter], messageToClient, strlen(messageToClient),0) == -1 ){
         checkSendToClientError(clientSocket[clientIter]);
     }
-//    pthread_mutex_unlock(&mutex);
 }
 
 
@@ -156,30 +156,29 @@ char* Server::update(int clientIter){
 
     //pthread_mutex_lock(&mutex);
 
-    if(clientIter == 0 or clientIter == 2){
-        memset(messageFromClient, 0, 4096);
-        int bytesReceived = recv(clientSocket[clientIter], messageFromClient, 4096,0);
+   if (clientIter == 0){
+       memset(messageFromClient, 0, 4096);
+       int bytesReceived = recv(clientSocket[clientIter], messageFromClient, 4096,0);
 
-        if (bytesReceived == -1) {
-            checkRecvFromClientError(clientSocket[clientIter]);
-        }
+       if (bytesReceived == -1) {
+           checkRecvFromClientError(clientSocket[clientIter]);
+       }
 
-        return messageFromClient;
-    }
+       //pthread_mutex_unlock(&mutex);
 
+       return messageFromClient;
+   }else {
+       memset(messageFromClient2, 0, 4096);
+       int bytesReceived = recv(clientSocket[clientIter], messageFromClient2, 4096,0);
 
-    if(clientIter == 1 or clientIter == 3){
-        memset(messageFromClient2, 0, 4096);
-        int bytesReceived = recv(clientSocket[clientIter], messageFromClient2, 4096,0);
+       if (bytesReceived == -1) {
+           checkRecvFromClientError(clientSocket[clientIter]);
+       }
 
-        if (bytesReceived == -1) {
-            checkRecvFromClientError(clientSocket[clientIter]);
-        }
+       //pthread_mutex_unlock(&mutex);
 
-        return messageFromClient2;
-    }
-
-    //pthread_mutex_unlock(&mutex);
+       return messageFromClient2;
+   }
 
 }
 
@@ -212,6 +211,7 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
         }
         //Aca habria que analizar lo de si no recibe por un tiempo nada darlo por muerto(seria el heartbeat)
         //
+        pthread_mutex_lock(&mutex);
         char* received = update(clientIter);
 
         if( strcmp(received, "0") == 0) {
@@ -244,13 +244,14 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
                 cout << "ERROR AGREGANDO CHARS PARA DISTINGUIR CLIENTES" << endl;
                 break;
         }
-        pthread_mutex_lock(&lock);
 
         cout << received << endl;
 
         string recv = (string)(received);
         serverQueue.push(recv);
-        pthread_mutex_unlock(&lock);
+
+        pthread_mutex_unlock(&mutex);
+
 
     }
 }
@@ -270,7 +271,7 @@ void* Server::updateModel(void *arg){
         //En este caso cada elemneto de la cola es una serie de eventos de 5 chars cada uno(y cada elemento es de un cleinte solo)
         //Habria que evaluar cauntas veces habria que desencolar o si simplemente procesando lo de un cleinte solo a la vez serviria.
         if(serverQueue.empty()) continue;
-        pthread_mutex_lock(&lock);
+        //pthread_mutex_lock(&lock);
 
         string event = serverQueue.front();
 
@@ -281,7 +282,7 @@ void* Server::updateModel(void *arg){
         //aca se pide despues de hacer todos los cambios los parametros que se necesitan para enviarles a los clientes y que estos renderisen
 
         string updates = currentViewController->giveNewParametes();
-        //mutex lock
+
         memset(messageToClient,0, 4096);
         strcpy(messageToClient, updates.c_str());
 
@@ -303,7 +304,8 @@ void* Server::updateModel(void *arg){
             pthread_join(clientUpdateThreads[clientsIter], nullptr);
         }
 
-        pthread_mutex_unlock(&lock);
+        //pthread_mutex_unlock(&lock);
+
     }
 }
 
@@ -334,9 +336,6 @@ void Server::connect() {
 
     CLogger* logger = CLogger::GetLogger();
 
-    pthread_mutex_init(&lock,NULL);
-
-    pthread_mutex_init(&mutex,NULL);
 
     if(listen(serverSocket_s, MAXCLIENTS) < 0 ) {
         logger->Log( "No se puede escuchar", ERROR, strerror(errno));
@@ -384,11 +383,17 @@ void Server::connect() {
     //Se arranca a enviar el conectado y el team a los clientes
 
 
+    pthread_mutex_init(&lock,NULL);
+
+    pthread_mutex_init(&mutex,NULL);
+
     clientsIter = 0;
 
     for(; clientsIter < MAXCLIENTS; clientsIter++){
         int readThread = pthread_create(&clientThreads[clientsIter], nullptr, receivingEventsFromClient,
                                         &clientsIter);
+
+        cout << clientsIter << endl;
         if(readThread != 0) {
             logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
         }
