@@ -101,13 +101,13 @@ std::vector<GameObject_charSelect *> View_charSelect::getSides() {
     // LOGICA DE LATERALES. to_render es un vector que tiene los laterales a renderizar.
     std::vector<GameObject_charSelect *> to_render;
 
-    if (selected_1.size() == 0) {
+    if (selected_1.empty()) {
         itr_team_1 = team_1.find((preselectedT1));
         (itr_team_1->second)->setPosc(posc_side_1[0]);
         to_render.push_back(itr_team_1->second);
     }
 
-    if (selected_2.size() == 0) {
+    if (selected_2.empty()) {
         itr_team_2 = team_2.find((preselectedT2));
         (itr_team_2->second)->setPosc(posc_side_2[0]);
         to_render.push_back(itr_team_2->second);
@@ -234,25 +234,25 @@ void View_charSelect::updateSelects(char *selectT1, char *selectT2) {
     } else preselectedT2 = "Venom";
 }
 
-void View_charSelect::updateCharacterImages(char *selected_1, char *selected_2) {
+void View_charSelect::updateCharacterImages(char *selected_1_, char *selected_2_) {
 
-    if (strcmp(selected_1, "100")){
+    if (strcmp(selected_1_, "100") == 0){
         this->selected_1.push_back("CaptainAmerica");
-    } else if (strcmp(selected_1, "101")){
+    } else if (strcmp(selected_1_, "101") == 0){
         this->selected_1.push_back("SpiderMan");
-    } else if (strcmp(selected_1, "110")){
+    } else if (strcmp(selected_1_, "110") == 0){
         this->selected_1.push_back("ChunLi");
-    } else if (strcmp(selected_1, "111")) {
+    } else if (strcmp(selected_1_, "111") == 0) {
         this->selected_1.push_back("Venom");
     }
 
-    if (strcmp(selected_2, "100")){
+    if (strcmp(selected_2_, "100") == 0){
         this->selected_2.push_back("CaptainAmerica");
-    } else if (strcmp(selected_2, "101")){
+    } else if (strcmp(selected_2_, "101") == 0){
         this->selected_2.push_back("SpiderMan");
-    } else if (strcmp(selected_2, "110")){
+    } else if (strcmp(selected_2_, "110") == 0){
         this->selected_2.push_back("ChunLi");
-    } else if (strcmp(selected_2, "111")) {
+    } else if (strcmp(selected_2_, "111") == 0){
         this->selected_2.push_back("Venom");
     }
 
