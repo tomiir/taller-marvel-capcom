@@ -13,7 +13,7 @@ class Mapper_charSelect_1: public Mapper_charSelect {
 public:
     Mapper_charSelect_1();
 
-    char *map( SDL_Event event) override;
+    string map( SDL_Event event) override;
 
 };
 

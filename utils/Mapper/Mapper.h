@@ -5,6 +5,10 @@
 #ifndef TALLER_MARVEL_CAPCOM_MAPPER_H
 #define TALLER_MARVEL_CAPCOM_MAPPER_H
 #include <SDL_events.h>
+#include <string.h>
+#include <string>
+
+using namespace std;
 
 class Mapper {
 
@@ -12,7 +16,7 @@ public:
     Mapper();
    ~Mapper();
 
-    virtual char *map( SDL_Event event);
+    virtual string map( SDL_Event event);
 };
 
 

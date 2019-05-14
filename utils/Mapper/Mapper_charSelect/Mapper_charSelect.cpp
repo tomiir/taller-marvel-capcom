@@ -14,7 +14,7 @@ Mapper_charSelect::~Mapper_charSelect() {
 
 }
 
-char *Mapper_charSelect::map(SDL_Event event) {
+string Mapper_charSelect::map(SDL_Event event) {
     return nullptr;
 }
 

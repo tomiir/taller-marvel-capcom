@@ -11,13 +11,9 @@ Mapper_charSelect_2::Mapper_charSelect_2():Mapper_charSelect(){
 
 
 
-char *Mapper_charSelect_2:: map( SDL_Event event) {
+string Mapper_charSelect_2:: map( SDL_Event event) {
 
-    keys[0] = '0';
-    keys[1] = '0';
-    keys[2] = '0';
-    keys[3] = '0';
-    keys[4] = '0';
+    string keys = "00000";
 
     if (event.type == SDL_KEYDOWN) {
 
@@ -41,6 +37,6 @@ char *Mapper_charSelect_2:: map( SDL_Event event) {
                 break;
         }
     }
-        return keys;
 
+    return keys;
 }

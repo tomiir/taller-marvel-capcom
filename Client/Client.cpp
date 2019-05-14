@@ -21,7 +21,9 @@ char aux[5];
 
 bool connect2 = true;
 
-queue<char*> queueRecv;
+queue<string> queueRecv;
+
+Game *game;
 
 Mapper* currentMapper;
 Mapper* notCurrentMapper;
@@ -223,7 +225,8 @@ void* Client::recvFromServer(void* arg) {
         }
         //string messageReceived = string(messageFromServer, 0, bytesReceived);
 
-        queueRecv.push(messageFromServer);
+        string message = (string)(messageFromServer);
+        queueRecv.push(message);
 
     }
 
@@ -231,40 +234,13 @@ void* Client::recvFromServer(void* arg) {
 
 void* Client::render(void *arg) {
 
-    //Aca habria antes que cargar las views
-    CLogger *logger = CLogger::GetLogger();
-    logger->Log("Inicializando juego", INFO, "");
-    JsonConfigs *config = JsonConfigs::getJson();
-
-    const int SCREEN_WIDTH = config->getScreenSize()[0];
-    const int SCREEN_HEIGHT = config->getScreenSize()[1];
-
-    std::string aux = config->getTitle();
-    const char *title = aux.c_str();
-    const int FPS = config->getFPS();
-
-    Game *game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
-    game->init(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
-//        Uint32 start;
-
-//        start = SDL_GetTicks();
-//        try { game->tick(); }
-//        catch (int e) { break; }
-//
-//        if ((1000 / FPS) > (SDL_GetTicks() - start)) {
-//            SDL_Delay((1000 / FPS) - (SDL_GetTicks() - start));
-//        }
-
-
-
-
-
-
-    //Aca empieza el loop que va a ir renderizando. Las view ay deberian estar cargadas y se renderiza lo que se tenga que renderizar
+   //Aca empieza el loop que va a ir renderizando. Las view ay deberian estar cargadas y se renderiza lo que se tenga que renderizar
     while(connect2){
 
+        if(queueRecv.empty()) continue;
 
-        char* messageReceived = queueRecv.front();
+        string message = queueRecv.front();
+        const char* messageReceived = message.c_str();
         char view[] = {messageReceived[0], messageReceived[1], '\0'};
 
         if(strcmp(view, "00") == 0){ //view selected
@@ -287,20 +263,19 @@ void* Client::render(void *arg) {
 
             game->updateCharactersImages(selected_1, selected_2);
 
-
             game->render();
             queueRecv.pop();
 
         }
         if(strcmp(view, "01") == 0) { //view fight
 
-
         }
     }
-
     game->clean();
-
 }
+
+
+
 
 void* Client::sendEventToServer(void* arg){
 
@@ -311,25 +286,53 @@ void* Client::sendEventToServer(void* arg){
         SDL_PollEvent(&event);
         //timmer para no enviar tantos eventos
         //Habria que ver como saber que hay que cambiar el mapper y hacerlo. Tambien se podria usar un solo mapper y fue.
-        char* mapEvent = currentMapper->map(event);
+        string mapEvent = currentMapper->map(event);
         if (event.type == SDL_QUIT) {
             logger -> Log("Saliendo del juego", INFO, "");
             connect2 = false;
             break;
         }
         //Esto no se tendria que mandar a penas cae un evento. Cada tantos milisegundos tendria que crearse un char* mas grande unido por varias events y enviarse
-        ssize_t bytesSent = send(serverSocket_c, mapEvent, sizeof(mapEvent), 0);
+        ssize_t bytesSent = send(serverSocket_c, mapEvent.c_str(), sizeof(mapEvent.c_str()), 0);
         if(bytesSent < 0) checkSendToServerError();
     }
 }
 
 void Client::Initialice() {
 
+    //Aca habria antes que cargar las views
+    CLogger *logger = CLogger::GetLogger();
+    logger->Log("Inicializando juego", INFO, "");
+    JsonConfigs *config = JsonConfigs::getJson();
+
+    const int SCREEN_WIDTH = config->getScreenSize()[0];
+    const int SCREEN_HEIGHT = config->getScreenSize()[1];
+
+    std::string aux = config->getTitle();
+    const char *title = aux.c_str();
+    const int FPS = config->getFPS();
+
+    Game *game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
+    game->init(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+    game->render();
+
+//        Uint32 start;
+
+//        start = SDL_GetTicks();
+//        try { game->tick(); }
+//        catch (int e) { break; }
+//
+//        if ((1000 / FPS) > (SDL_GetTicks() - start)) {
+//            SDL_Delay((1000 / FPS) - (SDL_GetTicks() - start));
+//        }
+
+
     pthread_t sendEventThread;
     pthread_t recvFromServerThread;
     pthread_t renderThread;
 
-    pthread_create(&sendEventThread, nullptr, &sendEventToServer, nullptr);
+    int error = pthread_create(&sendEventThread, nullptr, &sendEventToServer, nullptr);
+    if(error == -1) cout << "SE ROMPIO " << endl;
         //Si el send finaliza, esto finaliza.
     pthread_create(&recvFromServerThread, nullptr, &recvFromServer, nullptr);
     pthread_create(&renderThread, nullptr, &render, nullptr);

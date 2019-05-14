@@ -50,10 +50,11 @@ int main(int argc, const char* argv[]){
             bool connected = client->Connect();
             if (!connected) return -1;
 
-            if(strcmp(client->messageFromServerReceived(), "team1") == 0){
+            char* received = client->messageFromServerReceived();
+            if(strcmp(received, "team1") == 0){
                 client->setMappers(new Mapper_charSelect_1, new Mapper_fight_1 );
             }
-            else if(strcmp(client->messageFromServerReceived(), "team2") == 0){
+            else if(strcmp(received, "team2") == 0){
                 client->setMappers(new Mapper_charSelect_2, new Mapper_fight_2 );
             }
             else{
@@ -61,7 +62,8 @@ int main(int argc, const char* argv[]){
                 exit(0);
             }
 
-            if (strcmp(client->messageFromServerReceived(), "cnect") == 0) {
+            char* aux = client->messageFromServerReceived();
+            if (strcmp(aux, "cnect") == 0) {
                 logger->Log( "Conectado al servidor", INFO, "");
 
                 client->Initialice();

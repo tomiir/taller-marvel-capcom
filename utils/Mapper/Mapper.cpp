@@ -12,6 +12,6 @@ Mapper::~Mapper() {
 
 }
 
-char *Mapper::map(SDL_Event event) {
+string Mapper::map(SDL_Event event) {
     return nullptr;
 }

@@ -18,7 +18,7 @@ class Mapper_fight: public Mapper{
 public:
     Mapper_fight();
     ~Mapper_fight();
-    virtual char* map(SDL_Event event);
+    virtual string map(SDL_Event event);
     bool changeCharacter(SDL_Event event);
 
 protected:

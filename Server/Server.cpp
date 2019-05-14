@@ -16,15 +16,13 @@ socklen_t clientSize[MAXCLIENTS];
 char messageFromClient[4096];
 char messageToClient[4096];
 
-queue<char*> serverQueue;
+queue<string> serverQueue;
 
 bool on = true;
 
-bool permit = false;
-
 ViewController_charSelect* currentViewController = new ViewController_charSelect();
 
-pthread_mutex_t mutex;
+pthread_mutex_t lock;
 
 
 Server::Server() {
@@ -222,9 +220,12 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
                 cout << "ERROR AGREGANDO CHARS PARA DISTINGUIR CLIENTES" << endl;
                 break;
         }
+        pthread_mutex_lock(&lock);
 
-        serverQueue.push(received);
-        permit = true;
+        string recv = (string)(received);
+        serverQueue.push(recv);
+        pthread_mutex_unlock(&lock);
+
     }
 }
 
@@ -240,50 +241,44 @@ void* Server::updateModel(void *arg){
     CLogger* logger = CLogger::GetLogger();
 
     while(on){
-        if (permit){
-            //En este caso cada elemneto de la cola es una serie de eventos de 5 chars cada uno(y cada elemento es de un cleinte solo)
-            //Habria que evaluar cauntas veces habria que desencolar o si simplemente procesando lo de un cleinte solo a la vez serviria.
-            char* event = serverQueue.front();
+        //En este caso cada elemneto de la cola es una serie de eventos de 5 chars cada uno(y cada elemento es de un cleinte solo)
+        //Habria que evaluar cauntas veces habria que desencolar o si simplemente procesando lo de un cleinte solo a la vez serviria.
+        if(serverQueue.empty()) continue;
+        pthread_mutex_lock(&lock);
 
-            //aca se realizaría todos los cambios al modelo segun las teclas que le llegaron
-            currentViewController->handleEvent(event);
+        string event = serverQueue.front();
 
-            serverQueue.pop();
-            permit = false;
+        //aca se realizaría todos los cambios al modelo segun las teclas que le llegaron
+        currentViewController->handleEvent(event);
+        serverQueue.pop();
 
-            //aca se pide despues de hacer todos los cambios los parametros que se necesitan para enviarles a los clientes y que estos renderisen
-            char* newParamenters = currentViewController->giveNewParametes();
-            //mutex lock
-            memset(messageToClient,0, 4096);
-            strcpy(messageToClient, newParamenters);
+        //aca se pide despues de hacer todos los cambios los parametros que se necesitan para enviarles a los clientes y que estos renderisen
 
+        string updates = currentViewController->giveNewParametes();
+        //mutex lock
+        memset(messageToClient,0, 4096);
+        strcpy(messageToClient, updates.c_str());
 
-
-            int clientsIter = 0;
-            pthread_t clientUpdateThreads[MAXCLIENTS];
-
+        int clientsIter = 0;
+        pthread_t clientUpdateThreads[MAXCLIENTS];
 
 
-            for(; clientsIter < MAXCLIENTS; clientsIter++){
-                int readThread = pthread_create(&clientUpdateThreads[clientsIter], nullptr, Send,
+        for(; clientsIter < MAXCLIENTS; clientsIter++){
+            int readThread = pthread_create(&clientUpdateThreads[clientsIter], nullptr, Send,
                                                 &clientSocket[clientsIter]);
-                if(readThread != 0) {
-                    logger->Log( "Falló al crear un thread de UPDATE, saliendo del juego." , ERROR, strerror(errno));
-                }
+            if(readThread != 0) {
+                logger->Log( "Falló al crear un thread de UPDATE, saliendo del juego." , ERROR, strerror(errno));
             }
-
-            clientsIter = 0;
-
-            for(; clientsIter < MAXCLIENTS; clientsIter++){
-                pthread_join(clientUpdateThreads[clientsIter], nullptr);
-            }
-
-            //mutex unlock
         }
 
+        clientsIter = 0;
 
+        for(; clientsIter < MAXCLIENTS; clientsIter++){
+            pthread_join(clientUpdateThreads[clientsIter], nullptr);
+        }
+
+        pthread_mutex_unlock(&lock);
     }
-
 }
 
 
@@ -305,12 +300,7 @@ void Server::clientConnected(sockaddr_in clientAddr_){
         inet_ntop(AF_INET, &clientAddr_.sin_addr, clientIp, NI_MAXHOST);
         logger->Log( "El cliente " + string(clientIp) + " se conecto al server: " + server , NETWORK, "");
     }
-
-
 }
-
-
-
 
 
 
@@ -318,7 +308,7 @@ void Server::connect() {
 
     CLogger* logger = CLogger::GetLogger();
 
-    pthread_mutex_init(&mutex,NULL);
+    pthread_mutex_init(&lock,NULL);
 
     if(listen(serverSocket_s, MAXCLIENTS) < 0 ) {
         logger->Log( "No se puede escuchar", ERROR, strerror(errno));
@@ -392,6 +382,7 @@ void Server::connect() {
 
     //aca lo cancelo porque si se fueron los clientes ya que joinearon todos los hilos no tendria que seguir updateando el modelo
     pthread_cancel(updateModelThread);
+    pthread_mutex_destroy(&lock);
     on = false;
 
     logger->Log( "Se desconectaron todos los clientes, saliendo del juego." , INFO, "");

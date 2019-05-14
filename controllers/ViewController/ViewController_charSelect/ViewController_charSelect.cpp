@@ -39,11 +39,13 @@ ViewController_charSelect::ViewController_charSelect(){
 
 
 
-void ViewController_charSelect:: handleEvent(char* event) {
+void ViewController_charSelect:: handleEvent(string event_) {
 
+    const char* event = event_.c_str();
     recentlySelected = "";
     recentlySelected2 = "";
 
+    //pasar los strcmp a ==
     if (strcmp(event, "0000000") == 0 or strcmp(event, "0000010") == 0
         or strcmp(event, "0000001") == 0 or strcmp(event, "0000011") == 0)
         return;
@@ -128,9 +130,9 @@ string ViewController_charSelect::getNextView() {
     return "fight";
 }
 
-char *ViewController_charSelect::giveNewParametes() {
+string ViewController_charSelect::giveNewParametes() {
 
-    char updates[17] = "0000000000000000";
+    string updates = "0000000000000000";
 
     if(recentlySelected == "CaptainAmerica" or recentlySelected2 == "CaptainAmerica") updates[2] = '1';
     else if(recentlySelected == "SpiderMan" or recentlySelected2 == "SpiderMan") updates[3] = '1';

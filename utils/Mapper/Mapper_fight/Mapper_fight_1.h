@@ -10,7 +10,7 @@
 class Mapper_fight_1: public Mapper_fight {
 
 public:
-    char * map(SDL_Event event) override;
+    string map(SDL_Event event) override;
 
 };
 

@@ -22,7 +22,7 @@ public:
 
     explicit ViewController_charSelect();
     ~ViewController_charSelect();
-    void handleEvent(char* event);
+    void handleEvent(string event);
     void setTeam1(string character);
     void setTeam2(string character);
 
@@ -33,7 +33,7 @@ public:
     std::vector<string> getTeam2();
 
 
-    char *giveNewParametes();
+    string giveNewParametes();
 
 private:
 
