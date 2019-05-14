@@ -14,7 +14,7 @@ int serverSocket_c;
 struct sockaddr_in serverAddr_c;
 socklen_t  serverSize_c;
 
-char messageFromServer[4096];
+char messageFromServer[16];
 char messageToSever[4096];
 char messageFromInput[4096];
 char aux[5];
@@ -50,6 +50,7 @@ void Client::Disconnect() {
     Send( NOBEAT );
     logger->Log("Desconectando al cliente", NETWORK, "");
     close(serverSocket_c);
+    connect2 = false;
 }
 
 
@@ -199,8 +200,6 @@ char *Client::messageFromServerReceived(){
         checkRecvFromServerError();
     }
 
-    cout << aux << endl;
-
     return aux;
 }
 
@@ -214,10 +213,10 @@ void* Client::recvFromServer(void* arg) {
     CLogger* logger = CLogger::GetLogger();
 
     while(connect2){
-        memset(messageFromServer, 0, 4096);
+        memset(messageFromServer, 0, 16);
 
         //Aca habrai que chequear que si no recibe por un tiempo se da por uerto el server(seria como el heartbeat)
-        int bytesReceived = recv(serverSocket_c, messageFromServer, 4096, 0);
+        int bytesReceived = recv(serverSocket_c, messageFromServer, 16, 0);
 
         if(bytesReceived == -1){
             checkRecvFromServerError();
@@ -233,6 +232,7 @@ void* Client::recvFromServer(void* arg) {
 }
 
 void* Client::render(void *arg) {
+
 
    //Aca empieza el loop que va a ir renderizando. Las view ay deberian estar cargadas y se renderiza lo que se tenga que renderizar
     while(connect2){
@@ -281,7 +281,15 @@ void* Client::sendEventToServer(void* arg){
 
     CLogger* logger = CLogger::GetLogger();
 
+
+    int speed = 60;
+    Uint32 start;
+
     while(true){
+
+        start = SDL_GetTicks();
+
+
         SDL_Event event;
         SDL_PollEvent(&event);
         //timmer para no enviar tantos eventos
@@ -292,9 +300,14 @@ void* Client::sendEventToServer(void* arg){
             connect2 = false;
             break;
         }
+
         //Esto no se tendria que mandar a penas cae un evento. Cada tantos milisegundos tendria que crearse un char* mas grande unido por varias events y enviarse
         ssize_t bytesSent = send(serverSocket_c, mapEvent.c_str(), sizeof(mapEvent.c_str()), 0);
         if(bytesSent < 0) checkSendToServerError();
+
+        if ((1000 / speed) > (SDL_GetTicks() - start)) {
+            SDL_Delay((1000 / speed) - (SDL_GetTicks() - start));
+        }
     }
 }
 
@@ -312,9 +325,8 @@ void Client::Initialice() {
     const char *title = aux.c_str();
     const int FPS = config->getFPS();
 
-    Game *game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
+    game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
     game->init(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
-    game->render();
 
 //        Uint32 start;
 

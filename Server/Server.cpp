@@ -265,7 +265,7 @@ void* Server::updateModel(void *arg){
 
         for(; clientsIter < MAXCLIENTS; clientsIter++){
             int readThread = pthread_create(&clientUpdateThreads[clientsIter], nullptr, Send,
-                                                &clientSocket[clientsIter]);
+                                                &clientsIter);
             if(readThread != 0) {
                 logger->Log( "Falló al crear un thread de UPDATE, saliendo del juego." , ERROR, strerror(errno));
             }
