@@ -284,6 +284,8 @@ void* Client::sendEventToServer(void* arg){
     int speed = 60;
     Uint32 start;
 
+    string mapEvent;
+
     while(true){
 
         start = SDL_GetTicks();
@@ -293,20 +295,24 @@ void* Client::sendEventToServer(void* arg){
         SDL_PollEvent(&event);
         //timmer para no enviar tantos eventos
         //Habria que ver como saber que hay que cambiar el mapper y hacerlo. Tambien se podria usar un solo mapper y fue.
-        string mapEvent = currentMapper->map(event);
+        mapEvent = currentMapper->map(event);
         if (event.type == SDL_QUIT) {
             logger -> Log("Saliendo del juego", INFO, "");
             connect2 = false;
             break;
         }
 
-        //Esto no se tendria que mandar a penas cae un evento. Cada tantos milisegundos tendria que crearse un char* mas grande unido por varias events y enviarse
-        ssize_t bytesSent = send(serverSocket_c, mapEvent.c_str(), sizeof(mapEvent.c_str()), 0);
-        if(bytesSent < 0) checkSendToServerError();
 
         if ((1000 / speed) > (SDL_GetTicks() - start)) {
             SDL_Delay((1000 / speed) - (SDL_GetTicks() - start));
         }
+
+
+        //Esto no se tendria que mandar a penas cae un evento. Cada tantos milisegundos tendria que crearse un char* mas grande unido por varias events y enviarse
+        ssize_t bytesSent = send(serverSocket_c, mapEvent.c_str(), sizeof(mapEvent.c_str()), 0);
+        if(bytesSent < 0) checkSendToServerError();
+
+
     }
 }
 

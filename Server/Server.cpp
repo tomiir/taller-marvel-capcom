@@ -15,6 +15,9 @@ socklen_t clientSize[MAXCLIENTS];
 
 char messageFromClient[4096];
 char messageToClient[4096];
+char messageFromClient2[4096];
+char messageFromClient3[4096];
+char messageFromClient4[4096];
 
 queue<string> serverQueue;
 
@@ -23,6 +26,8 @@ bool on = true;
 ViewController_charSelect* currentViewController = new ViewController_charSelect();
 
 pthread_mutex_t lock;
+
+pthread_mutex_t mutex;
 
 
 Server::Server() {
@@ -147,16 +152,35 @@ void *Server::Send(void *clientIter_){
 
 
 
-char* Server::update(int clientSock){
+char* Server::update(int clientIter){
 
-    memset(messageFromClient, 0, 4096);
-    int bytesReceived = recv(clientSock, messageFromClient, 4096,0);
+    //pthread_mutex_lock(&mutex);
 
-    if (bytesReceived == -1) {
-        checkRecvFromClientError(clientSock);
+    if(clientIter == 0 or clientIter == 2){
+        memset(messageFromClient, 0, 4096);
+        int bytesReceived = recv(clientSocket[clientIter], messageFromClient, 4096,0);
+
+        if (bytesReceived == -1) {
+            checkRecvFromClientError(clientSocket[clientIter]);
+        }
+
+        return messageFromClient;
     }
 
-    return messageFromClient;
+
+    if(clientIter == 1 or clientIter == 3){
+        memset(messageFromClient2, 0, 4096);
+        int bytesReceived = recv(clientSocket[clientIter], messageFromClient2, 4096,0);
+
+        if (bytesReceived == -1) {
+            checkRecvFromClientError(clientSocket[clientIter]);
+        }
+
+        return messageFromClient2;
+    }
+
+    //pthread_mutex_unlock(&mutex);
+
 }
 
 
@@ -188,7 +212,7 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
         }
         //Aca habria que analizar lo de si no recibe por un tiempo nada darlo por muerto(seria el heartbeat)
         //
-        char* received = update(clientSocket[clientIter]);
+        char* received = update(clientIter);
 
         if( strcmp(received, "0") == 0) {
             logger->Log( "El cliente: " + to_string(clientSocket[clientIter]) + " se desconecto" , NETWORK, "");
@@ -221,6 +245,8 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
                 break;
         }
         pthread_mutex_lock(&lock);
+
+        cout << received << endl;
 
         string recv = (string)(received);
         serverQueue.push(recv);
@@ -309,6 +335,8 @@ void Server::connect() {
     CLogger* logger = CLogger::GetLogger();
 
     pthread_mutex_init(&lock,NULL);
+
+    pthread_mutex_init(&mutex,NULL);
 
     if(listen(serverSocket_s, MAXCLIENTS) < 0 ) {
         logger->Log( "No se puede escuchar", ERROR, strerror(errno));
