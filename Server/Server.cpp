@@ -156,7 +156,6 @@ char* Server::update(int clientIter){
 
     //pthread_mutex_lock(&mutex);
 
-   if (clientIter == 0){
        memset(messageFromClient, 0, 4096);
        int bytesReceived = recv(clientSocket[clientIter], messageFromClient, 4096,0);
 
@@ -167,18 +166,6 @@ char* Server::update(int clientIter){
        //pthread_mutex_unlock(&mutex);
 
        return messageFromClient;
-   }else {
-       memset(messageFromClient2, 0, 4096);
-       int bytesReceived = recv(clientSocket[clientIter], messageFromClient2, 4096,0);
-
-       if (bytesReceived == -1) {
-           checkRecvFromClientError(clientSocket[clientIter]);
-       }
-
-       //pthread_mutex_unlock(&mutex);
-
-       return messageFromClient2;
-   }
 
 }
 
@@ -388,10 +375,12 @@ void Server::connect() {
     pthread_mutex_init(&mutex,NULL);
 
     clientsIter = 0;
+    int i = 0;
 
     for(; clientsIter < MAXCLIENTS; clientsIter++){
-        int readThread = pthread_create(&clientThreads[clientsIter], nullptr, receivingEventsFromClient,
-                                        &clientsIter);
+        i = clientsIter;
+        int readThread = pthread_create(&clientThreads[i], nullptr, receivingEventsFromClient,
+                                        &i);
 
         cout << clientsIter << endl;
         if(readThread != 0) {
@@ -416,6 +405,7 @@ void Server::connect() {
     //aca lo cancelo porque si se fueron los clientes ya que joinearon todos los hilos no tendria que seguir updateando el modelo
     pthread_cancel(updateModelThread);
     pthread_mutex_destroy(&lock);
+    pthread_mutex_destroy(&mutex);
     on = false;
 
     logger->Log( "Se desconectaron todos los clientes, saliendo del juego." , INFO, "");
