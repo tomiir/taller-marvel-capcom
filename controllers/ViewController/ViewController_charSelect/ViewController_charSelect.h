@@ -55,8 +55,8 @@ private:
     std::map<string, string> spider_man;
     std::map<string, string> venom;
 
-    std::map<string, string> map_preselectedT1 = cap_america;
-    std::map<string, string> map_preselectedT2 = spider_man;
+    std::map<string, string> map_preselectedT1;
+    std::map<string, string> map_preselectedT2;
 
     string recentlySelected = "";
     string recentlySelected2 = "";

@@ -20,6 +20,7 @@ char messageFromClient4[4096];
 
 char messageToClient[4096];
 
+
 queue<string> serverQueue;
 
 bool on = true;
@@ -207,7 +208,6 @@ char* Server::update(int clientIter){
 void* Server::receivingEventsFromClient(void *clientIter_) {
 
     int clientIter = *(int *) clientIter_;
-    cout << clientIter << endl;
 
 
     CLogger* logger = CLogger::GetLogger();
@@ -271,7 +271,6 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
 
         string recv = (string)(received);
 
-        cout<< recv << endl;
         serverQueue.push(recv);
 
         if ((1000 / speed) > (SDL_GetTicks() - start)) {
@@ -295,6 +294,11 @@ void* Server::updateModel(void *arg){
     int speed = 60;
     Uint32 start;
 
+    int client1 = 0;
+    int client2 = 1;
+    int client3 = 2;
+    int client4 = 3;
+
     while(on){
 
         start = SDL_GetTicks();
@@ -302,19 +306,19 @@ void* Server::updateModel(void *arg){
         //En este caso cada elemneto de la cola es una serie de eventos de 5 chars cada uno(y cada elemento es de un cleinte solo)
         //Habria que evaluar cauntas veces habria que desencolar o si simplemente procesando lo de un cleinte solo a la vez serviria.
         if(serverQueue.empty()) continue;
-        //pthread_mutex_lock(&lock);
 
         string event = serverQueue.front();
 
-        //cout << event << endl;
-
         //aca se realizaría todos los cambios al modelo segun las teclas que le llegaron
         currentViewController->handleEvent(event);
+
         serverQueue.pop();
 
         //aca se pide despues de hacer todos los cambios los parametros que se necesitan para enviarles a los clientes y que estos renderisen
 
         string updates = currentViewController->giveNewParametes();
+
+        //cout << updates << endl;
 
         memset(messageToClient,0, 4096);
         strcpy(messageToClient, updates.c_str());
@@ -324,10 +328,28 @@ void* Server::updateModel(void *arg){
 
 
         for(; clientsIter < MAXCLIENTS; clientsIter++){
-            int readThread = pthread_create(&clientUpdateThreads[clientsIter], nullptr, Send,
-                                                &clientsIter);
+
+            int readThread;
+            if (clientsIter == client1){
+                readThread = pthread_create(&clientUpdateThreads[client1], nullptr, Send,
+                                            &client1);
+            }
+            if (clientsIter == client2){
+                readThread = pthread_create(&clientUpdateThreads[client2], nullptr, Send,
+                                            &client2);
+            }
+            if (clientsIter == client3){
+                readThread = pthread_create(&clientUpdateThreads[client3], nullptr, Send,
+                                            &client3);
+            }if (clientsIter == client4){
+                readThread = pthread_create(&clientUpdateThreads[client4], nullptr, Send,
+                                            &client4);
+            }
+
+
+
             if(readThread != 0) {
-                logger->Log( "Falló al crear un thread de UPDATE, saliendo del juego." , ERROR, strerror(errno));
+                logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
             }
         }
 
@@ -337,7 +359,6 @@ void* Server::updateModel(void *arg){
             pthread_join(clientUpdateThreads[clientsIter], nullptr);
         }
 
-        //pthread_mutex_unlock(&lock);
 //        if ((1000 / speed) > (SDL_GetTicks() - start)) {
 //            SDL_Delay((1000 / speed) - (SDL_GetTicks() - start));
 //        }

@@ -35,45 +35,47 @@ ViewController_charSelect::ViewController_charSelect(){
     map_map["ChunLi"] = chun_li;
     map_map["Venom"] = venom;
     map_map["SpiderMan"] = spider_man;
+
+    map_preselectedT1 = cap_america;
+    map_preselectedT2 = spider_man;
 }
 
 
 
-void ViewController_charSelect:: handleEvent(string event_) {
+void ViewController_charSelect:: handleEvent(string event) {
 
-    const char* event = event_.c_str();
     recentlySelected = "";
     recentlySelected2 = "";
 
     //pasar los strcmp a ==
-    if (strcmp(event, "0000000") == 0 or strcmp(event, "0000010") == 0
-        or strcmp(event, "0000001") == 0 or strcmp(event, "0000011") == 0)
+    if (event == "0000000" or event == "0000010"
+        or event == "0000001" or event == "0000011")
         return;
 
 
-    if (strcmp(event, "1000000") == 0 or strcmp(event, "1000010") == 0) preselectedT1 = map_preselectedT1["right"];
-    if (strcmp(event, "0100000") == 0 or strcmp(event, "0100010") == 0) preselectedT1 = map_preselectedT1["left"];
-    if (strcmp(event, "0010000") == 0 or strcmp(event, "0010010") == 0) preselectedT1 = map_preselectedT1["up"];
-    if (strcmp(event, "0001000") == 0 or strcmp(event, "0001010") == 0) preselectedT1 = map_preselectedT1["down"];
+    if (event == "1000000" or event == "1000010") preselectedT1 = map_preselectedT1["right"];
+    if (event == "0100000" or event == "0100010") preselectedT1 = map_preselectedT1["left"];
+    if (event == "0010000" or event == "0010010") preselectedT1 = map_preselectedT1["up"];
+    if (event == "0001000" or event == "0001010") preselectedT1 = map_preselectedT1["down"];
 
     map_preselectedT1 = map_map[preselectedT1];
 
     if (selected_1.size() < 2){
 
-        if (strcmp(event, "0000100") == 0 or strcmp(event, "0000110") == 0) setTeam1(preselectedT1);
+        if (event == "0000100" or event == "0000110") setTeam1(preselectedT1);
     }
 
 
-    if (strcmp(event, "1000001") == 0 or strcmp(event, "1000011") == 0) preselectedT2 = map_preselectedT2["right"];
-    if (strcmp(event, "0100001") == 0 or strcmp(event, "0100011") == 0) preselectedT2 = map_preselectedT2["left"];
-    if (strcmp(event, "0010001") == 0 or strcmp(event, "0010011") == 0) preselectedT2 = map_preselectedT2["up"];
-    if (strcmp(event, "0001001") == 0 or strcmp(event, "0001011") == 0) preselectedT2 = map_preselectedT2["down"];
+    if (event == "1000001" or event == "1000011") preselectedT2 = map_preselectedT2["right"];
+    if (event == "0100001" or event == "0100011") preselectedT2 = map_preselectedT2["left"];
+    if (event == "0010001" or event == "0010011") preselectedT2 = map_preselectedT2["up"];
+    if (event == "0001001" or event == "0001011") preselectedT2 = map_preselectedT2["down"];
 
     map_preselectedT2 = map_map[preselectedT2];
 
     if(selected_2.size() < 2){
 
-        if (strcmp(event, "0000101") == 0 or strcmp(event, "0000111") == 0) setTeam2(preselectedT2);
+        if (event == "0000101" or event == "0000111") setTeam2(preselectedT2);
     }
 
 }
