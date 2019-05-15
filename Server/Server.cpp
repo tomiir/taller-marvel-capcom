@@ -200,6 +200,7 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
         //
         pthread_mutex_lock(&mutex);
         char* received = update(clientIter);
+        pthread_mutex_unlock(&mutex);
 
         if( strcmp(received, "0") == 0) {
             logger->Log( "El cliente: " + to_string(clientSocket[clientIter]) + " se desconecto" , NETWORK, "");
@@ -235,11 +236,9 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
         cout << received << endl;
 
         string recv = (string)(received);
-        serverQueue.push(recv);
-
         pthread_mutex_unlock(&mutex);
-
-
+        serverQueue.push(recv);
+        pthread_mutex_unlock(&mutex);
     }
 }
 
