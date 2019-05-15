@@ -166,6 +166,7 @@ char* Server::update(int clientIter){
         }
 
         return messageFromClient;
+
     }else if(clientIter == 1){
         memset(messageFromClient2, 0, 4096);
         int bytesReceived = recv(clientSocket[clientIter], messageFromClient2, 4096,0);
@@ -175,6 +176,7 @@ char* Server::update(int clientIter){
         }
 
         return messageFromClient2;
+
     }else if(clientIter == 2){
         memset(messageFromClient3, 0, 4096);
         int bytesReceived = recv(clientSocket[clientIter], messageFromClient3, 4096,0);
@@ -184,6 +186,7 @@ char* Server::update(int clientIter){
         }
 
         return messageFromClient3;
+
     }else if(clientIter == 3){
         memset(messageFromClient4, 0, 4096);
         int bytesReceived = recv(clientSocket[clientIter], messageFromClient4, 4096,0);
@@ -234,8 +237,9 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
         //Aca habria que analizar lo de si no recibe por un tiempo nada darlo por muerto(seria el heartbeat)
         //
 
-
+        pthread_mutex_lock(&lock);
         char* received = update(clientIter);
+        pthread_mutex_unlock(&lock);
 
         if( strcmp(received, "0") == 0) {
             logger->Log( "El cliente: " + to_string(clientSocket[clientIter]) + " se desconecto" , NETWORK, "");
@@ -270,7 +274,6 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
         }
 
         string recv = (string)(received);
-
         serverQueue.push(recv);
 
         if ((1000 / speed) > (SDL_GetTicks() - start)) {
@@ -393,6 +396,11 @@ void Server::connect() {
 
     CLogger* logger = CLogger::GetLogger();
 
+    int client1 = 0;
+    int client2 = 1;
+    int client3 = 2;
+    int client4 = 3;
+
 
     if(listen(serverSocket_s, MAXCLIENTS) < 0 ) {
         logger->Log( "No se puede escuchar", ERROR, strerror(errno));
@@ -412,13 +420,21 @@ void Server::connect() {
     for(; clientsIter < MAXCLIENTS; clientsIter++){
 
         memset(messageToClient,0, 4096);
-        if (clientsIter == 0 or clientsIter == 2) {
+        if (clientsIter == client1){
             strcpy(messageToClient, "team1");
-            Send(&clientsIter);
+            Send(&client1);
         }
-        else{
+        if (clientsIter == client2){
             strcpy(messageToClient, "team2");
-            Send(&clientsIter);
+            Send(&client2);
+        }
+        if (clientsIter == client3){
+            strcpy(messageToClient, "team1");
+            Send(&client3);
+        }
+        if (clientsIter == client4){
+            strcpy(messageToClient, "team2");
+            Send(&client4);
         }
     }
 
@@ -426,8 +442,22 @@ void Server::connect() {
 
     for(; clientsIter < MAXCLIENTS; clientsIter++){
         memset(messageToClient,0, 4096);
-        strcpy(messageToClient, "cnect");
-        Send(&clientsIter);
+        if (clientsIter == client1){
+            strcpy(messageToClient, "cnect");
+            Send(&client1);
+        }
+        if (clientsIter == client2){
+            strcpy(messageToClient, "cnect");
+            Send(&client2);
+        }
+        if (clientsIter == client3){
+            strcpy(messageToClient, "cnect");
+            Send(&client3);
+        }
+        if (clientsIter == client4){
+            strcpy(messageToClient, "cnect");
+            Send(&client4);
+        }
     }
 
 
@@ -441,14 +471,10 @@ void Server::connect() {
 
 
     pthread_mutex_init(&lock,NULL);
-
-    pthread_mutex_init(&mutex,NULL);
+//
+//    pthread_mutex_init(&mutex,NULL);
 
     clientsIter = 0;
-    int client1 = 0;
-    int client2 = 1;
-    int client3 = 2;
-    int client4 = 3;
 
     for(; clientsIter < MAXCLIENTS; clientsIter++){
         int readThread;
@@ -492,7 +518,7 @@ void Server::connect() {
     //aca lo cancelo porque si se fueron los clientes ya que joinearon todos los hilos no tendria que seguir updateando el modelo
     pthread_cancel(updateModelThread);
     pthread_mutex_destroy(&lock);
-    pthread_mutex_destroy(&mutex);
+//    pthread_mutex_destroy(&mutex);
     on = false;
 
     logger->Log( "Se desconectaron todos los clientes, saliendo del juego." , INFO, "");
