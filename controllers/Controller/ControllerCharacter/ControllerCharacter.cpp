@@ -7,7 +7,7 @@
 #include <thread>
 #include "../../../utils/Logger/Logger.h"
 
-ControllerCharacter::ControllerCharacter(GameObject* gameObject, int screenWidth_, int screenHeight_,  int speedCharacter_, int jumpSpeed) : Controller(gameObject, jumpSpeed){
+ControllerCharacter::ControllerCharacter(GameObject_server* gameObject, int screenWidth_, int screenHeight_,  int speedCharacter_, int jumpSpeed) : Controller(gameObject, jumpSpeed){
     screenHeight = screenHeight_;
     screenWidth = screenWidth_;
     speedCharacter = speedCharacter_;
@@ -18,7 +18,7 @@ ControllerCharacter::ControllerCharacter(GameObject* gameObject, int screenWidth
 ControllerCharacter::~ControllerCharacter() = default;
 
 
-void ControllerCharacter::handleEvent(SDL_Event event) {
+void ControllerCharacter::handleEvent(string event) {
 
     //DirectionVector* direction = mapper->map(event);
     DirectionVector* direction = new DirectionVector();

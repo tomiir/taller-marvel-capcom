@@ -32,7 +32,7 @@ private:
     CLogger* logger = CLogger::GetLogger();
     int posInitialLeft;
     int posInitialRight;
-    sting state;
+    string state;
 
 };
 

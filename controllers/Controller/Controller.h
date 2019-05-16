@@ -9,15 +9,21 @@
 #include "../../utils/Mapper/Mapper_fight/Mapper_fight.h"
 #include "../../utils/Logger/Logger.h"
 #include "Renderable.h"
+#include "../../Server/GameObject_server/GameObject_server.h"
+
 using namespace std;
 
-class Controller: virtual public Renderable{
+class Controller{
 
 public:
     string getName();
+    Controller(GameObject_server* gameObject_, int jumpSpeed);
+    ~Controller();
+    virtual void handleEvent(string event);
+    vector<int> getInfo();
 
 protected:
-    GameObject * gameObject;
+    GameObject_server * gameObject;
 
     DirectionVector* RIGHT = new DirectionVector(1, 0);
     DirectionVector* LEFT = new DirectionVector(-1, 0);
@@ -34,17 +40,6 @@ protected:
     int distanceBoundaryHorizontal = 25;
     int distanceBoundaryVertical = 75;
     int jumpSpeed;
-
-
-
-
-public:
-    Controller(GameObject* gameObject_, int jumpSpeed);
-    ~Controller();
-    int getZIndex() override;
-    void render() override;
-    virtual void handleEvent(SDL_Event event);
-    vector<int> getInfo();
 
 private:
     void writeLog(string content);

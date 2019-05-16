@@ -3,7 +3,7 @@
 #include "ControllerBackground.h"
 
 
-ControllerBackground::ControllerBackground(GameObject* background_, int jumpSpeed) :
+ControllerBackground::ControllerBackground(GameObject_server* background_, int jumpSpeed) :
                       Controller(background_, jumpSpeed){
     this->speedCam = dynamic_cast<Background*> (background_)->getSpeedCam();
     this->speedPercetageCam = dynamic_cast<Background*> (background_) ->getSpeedPercetageCam();
@@ -12,7 +12,7 @@ ControllerBackground::ControllerBackground(GameObject* background_, int jumpSpee
 
 ControllerBackground::~ControllerBackground() = default;
 
-void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* controllerCharacter1, ControllerCharacter* controllerCharacter2) {
+void ControllerBackground::handleEvent(string event, ControllerCharacter* controllerCharacter1, ControllerCharacter* controllerCharacter2) {
 
     vector<int> cameraInfo = dynamic_cast< Background* >(gameObject)->getCameraInfo();
     vector<int> infoCharacter1 = controllerCharacter1->getInfo();

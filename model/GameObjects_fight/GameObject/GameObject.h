@@ -6,11 +6,12 @@
 #include <vector>
 #include "../../../utils/TextureManager/TextureManager.h"
 #include "../../../utils/Vector2D/DirectionVector.h"
+#include "../../../controllers/Controller/Renderable.h"
 #include <string>
 
 using namespace std;
 
-class GameObject {
+class GameObject: virtual public Renderable{
 
 public:
     GameObject(const char* folderPath, string name, int z_index, SDL_Renderer* rend, int initialX, int initialY, int width, int height);

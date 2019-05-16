@@ -5,7 +5,7 @@
 #include "GameObject.h"
 
 
-GameObject::GameObject(const char* folderPath, string name_, int z_index, SDL_Renderer *rend, int initialX, int initialY, int width, int height) {
+GameObject::GameObject(const char* folderPath, string name_, int z_index, SDL_Renderer *rend, int initialX, int initialY, int width, int height): Renderable() {
 
     name = name_;
     renderer = rend;
