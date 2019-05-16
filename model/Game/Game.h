@@ -27,6 +27,10 @@ public:
 
     void render();
 
+    bool haveToChangeView();
+
+    void changeView();
+
 private:
     std::map<string, ViewController* > views;
     std::map<string, ViewController*>::iterator itr_views= views.begin();

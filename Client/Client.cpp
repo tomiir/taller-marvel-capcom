@@ -289,7 +289,10 @@ void* Client::sendEventToServer(void* arg){
     while(true){
 
         start = SDL_GetTicks();
-
+        if (game->haveToChangeView()){
+            changeCurrentMapper();
+            game->changeView();
+        }
 
         SDL_Event event;
         SDL_PollEvent(&event);

@@ -121,3 +121,27 @@ void Game::render() {
     this->viewController->updateView();
 }
 
+bool Game::haveToChangeView() {
+    return this->viewController->end();
+}
+
+void Game::changeView() {
+    string nextViewName = (this->viewController)->getNextView();
+    ViewController* nextView = views.find(nextViewName)->second;
+
+    if (strcmp(nextViewName.c_str(), "fight") == 0){
+        // esto significa que la anterior fue la de selección de personajes;
+        vector<string> team1 = ((View_charSelect*) viewController)-> getTeam1();
+        vector<string> team2 = ((View_charSelect*) viewController) -> getTeam2();
+
+        vector<ControllerCharacter*> aux = {(characters.find(team1[0])->second), (characters.find(team1[1])->second)};
+        ((ViewController_fight*)nextView)->setTeam(aux,1);
+
+        aux =  {(characters.find(team2[0])->second), (characters.find(team2[1])->second)};
+        ((ViewController_fight*)nextView)->setTeam(aux,2);
+
+        ((ViewController_fight*)nextView)->createFlipManager();
+    }
+    this->viewController = nextView;
+}
+

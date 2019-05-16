@@ -73,7 +73,7 @@ private:
     static void checkSendToServerError();
     static void checkRecvFromServerError();
 
-    void changeCurrentMapper();
+    static void changeCurrentMapper();
 };
 
 
