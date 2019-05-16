@@ -14,7 +14,7 @@ int serverSocket_c;
 struct sockaddr_in serverAddr_c;
 socklen_t  serverSize_c;
 
-char messageFromServer[16];
+char messageFromServer[39];
 char messageToSever[4096];
 char messageFromInput[4096];
 char aux[5];
@@ -212,10 +212,10 @@ void* Client::recvFromServer(void* arg) {
 
 
     while(connect2){
-        memset(messageFromServer, 0, 16);
+        memset(messageFromServer, 0, 39);
 
         //Aca habrai que chequear que si no recibe por un tiempo se da por uerto el server(seria como el heartbeat)
-        int bytesReceived = recv(serverSocket_c, messageFromServer, 16, 0);
+        int bytesReceived = recv(serverSocket_c, messageFromServer, 39, 0);
 
         if(bytesReceived == -1){
             checkRecvFromServerError();
@@ -268,6 +268,35 @@ void* Client::render(void *arg) {
         }
         if(strcmp(view, "01") == 0) { //view fight
 
+            //Recibo las nuevas posiciones de los backgrounds y los actaulizo
+            char posFloor_x[] = {messageReceived[2], messageReceived[3], messageReceived[4], messageReceived[5], '\0'};
+            char posFloor_y[] = {messageReceived[6], messageReceived[7], messageReceived[8], '\0'};
+
+
+            char posMoon_x[] = {messageReceived[9], messageReceived[10], messageReceived[11], messageReceived[12], '\0'};
+            char posMoon_y[] = {messageReceived[13], messageReceived[14], messageReceived[15], '\0'};
+
+            char posGalaxy_x[] = {messageReceived[16], messageReceived[17], messageReceived[18], messageReceived[19], '\0'};
+            char posGalaxy_y[] = {messageReceived[20], messageReceived[21], messageReceived[22], '\0'};
+
+            game->UpdateBackgrounds(posFloor_x, posFloor_y, posMoon_x, posMoon_y, posGalaxy_x, posGalaxy_y);
+
+            //Recibo las nuevas posiciones de los characters y sus estados y lo actualizo
+            char posCharTeam1_x[] = {messageReceived[23], messageReceived[24], messageReceived[25], messageReceived[26], '\0'};
+            char posCharTeam1_y[] = {messageReceived[27], messageReceived[28], messageReceived[29], '\0'};
+            char stateCharTeam1 = messageReceived[30];
+
+            char posCharTeam2_x[] = {messageReceived[31], messageReceived[32], messageReceived[33], messageReceived[34], '\0'};
+            char posCharTeam2_y[] = {messageReceived[35], messageReceived[36], messageReceived[37], '\0'};
+            char stateCharTeam2 = messageReceived[38];
+
+            game->updateCharacters(posCharTeam1_x, posCharTeam1_y, stateCharTeam1, posCharTeam2_x, posCharTeam2_y, stateCharTeam2);
+
+            //Actualizo el flip para que queden las imagenes mirando para el lado correcto
+            game->updateFlip();
+
+            game->render();
+            queueRecv.pop();
         }
     }
     game->clean();

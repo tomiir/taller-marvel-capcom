@@ -18,13 +18,13 @@ Background::Background(const char* imagePath, string name_, int z_index, SDL_Ren
                 camera = SDL_Rect{CAMERA_X_POS, CAMERA_Y_POS, CAMERA_WIDTH, CAMERA_HEIGHT};
             }
 
-//Background::~Background() = default;
+Background::~Background() = default;
 
 void Background::move(DirectionVector* moveDirection) {
 
     camera.x += (int) moveDirection->x;
     camera.y += (int) moveDirection->y;
-    render();
+    //render();  NO SE PORQUE ESTABA ACA ESTE RENDER (SOY ARI HACIENDO LA SEGUNDA PARTE DEL TP)
 }
 
 void Background::render(){
