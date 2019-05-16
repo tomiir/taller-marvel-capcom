@@ -55,8 +55,8 @@ void View_fight::addFlipManager(FlipManager *flipManager_) {
 
 }
 
-void View_fight::addBackground(ControllerBackground *controller) {
-    backgrounds.push_back(controller);
+void View_fight::addBackground(Background *background) {
+    backgrounds.push_back(background);
 }
 
 void View_fight::addTeams(TeamManager *teamManager1, TeamManager *teamManager2) {
@@ -72,7 +72,7 @@ string View_fight::getNextView() {
     return "todavia_no_existe";
 }
 
-void View_fight::setTeam(vector<ControllerCharacter *> characters, int team) {
+void View_fight::setTeam(vector<Character *> characters, int team) {
     if (team == 1) {
         team1->setCharacters(characters);
         team1->setInitialPos(true);
@@ -86,4 +86,8 @@ void View_fight::setTeam(vector<ControllerCharacter *> characters, int team) {
 
 void View_fight::createFlipManager() {
     flipManager->create();
+}
+
+void View_fight::addCharacter(Character * character) {
+    characters.push_back(character);
 }

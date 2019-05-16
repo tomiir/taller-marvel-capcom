@@ -134,7 +134,7 @@ string ViewController_charSelect::getNextView() {
 
 string ViewController_charSelect::giveNewParametes() {
 
-    string updates = "000000000000000000000000000000000000000";
+    string updates = "00000000000000000000000000000000000000000";
 
     if(recentlySelected == "CaptainAmerica" or recentlySelected2 == "CaptainAmerica") updates[2] = '1';
     else if(recentlySelected == "SpiderMan" or recentlySelected2 == "SpiderMan") updates[3] = '1';

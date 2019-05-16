@@ -17,7 +17,7 @@ public:
     void render();
     virtual void updateView();
     virtual void handleEvent();
-    virtual void addBackground(ControllerBackground* controller);
+    virtual void addBackground(Background* background);
     virtual bool end();
     virtual string getNextView();
 
@@ -29,7 +29,8 @@ public:
 
 protected:
     SDL_Renderer* renderer;
-    std::vector<ControllerBackground*> backgrounds;
+    std::vector<Background*> backgrounds;
+    std::vector<Character*> characters;
 };
 
 

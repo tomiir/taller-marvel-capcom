@@ -19,19 +19,19 @@ public:
     ~View_fight();
     void updateView() override;
     void addFlipManager(FlipManager* flipManager_);
-    void addBackground(ControllerBackground* controller) override;
+    void addBackground(Background* background) override;
     void addTeams(TeamManager* teamManager1, TeamManager* teamManager2);
     bool end()override;
     string getNextView()override;
-    void setTeam(vector<ControllerCharacter*> characters, int team);
+    void setTeam(vector<Character*> characters, int team);
     void createFlipManager();
+
+    void addCharacter(Character *pCharacter);
 
 private:
     TeamManager* team1;
     TeamManager* team2;
     FlipManager* flipManager;
-
-
 };
 
 

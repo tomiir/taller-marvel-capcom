@@ -151,6 +151,8 @@ add_executable(
         Server/Character_server/Character_server.cpp
         Server/Background_server/Background_server.h
         Server/Background_server/Background_server.cpp
+        model/Game/ViewControllerFactory/ViewControllerFactory.cpp
+        model/Game/ViewControllerFactory/ViewControllerFactory.h
 
 
 

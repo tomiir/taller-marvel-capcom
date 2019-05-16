@@ -39,7 +39,7 @@ void Game::init(const char *title, int posX, int posY) {
         // si para saber quien va luego o implementar el VIEW MANAGER
 
         views["fight"] = factory -> getView_fight();
-        characters = factory -> getControllerCharacter();
+        characters = factory -> getCharacter();
         views["char_select"] = factory -> getView_charSelect();
 
         view = (views.find("char_select"))->second;
@@ -128,20 +128,11 @@ bool Game::haveToChangeView() {
 void Game::changeView() {
     string nextViewName = (this->view)->getNextView();
     View* nextView = views.find(nextViewName)->second;
-
-    if (strcmp(nextViewName.c_str(), "fight") == 0){
-        // esto significa que la anterior fue la de selección de personajes;
-        vector<string> team1 = ((View_charSelect*) view)-> getTeam1();
-        vector<string> team2 = ((View_charSelect*) view) -> getTeam2();
-
-        vector<ControllerCharacter*> aux = {(characters.find(team1[0])->second), (characters.find(team1[1])->second)};
-        ((View_fight*)nextView)->setTeam(aux,1);
-
-        aux =  {(characters.find(team2[0])->second), (characters.find(team2[1])->second)};
-        ((View_fight*)nextView)->setTeam(aux,2);
-
-        ((View_fight*)nextView)->createFlipManager();
-    }
     this->view = nextView;
+}
+
+void Game::UpdateBackgrounds(char *posFloor_x, char *PosFloor_y, char *posMoon_x, char *posMoon_y, char *posGalaxy_x,
+                             char *posGalaxy_y) {
+
 }
 

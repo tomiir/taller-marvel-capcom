@@ -31,11 +31,15 @@ public:
 
     void changeView();
 
+    void
+    UpdateBackgrounds(char posFloor_x[5], char PosFloor_y[4], char posMoon_x[5], char posMoon_y[4], char posGalaxy_x[5],
+                      char posGalaxy_y[4]);
+
 private:
     std::map<string, View* > views;
     std::map<string, View*>::iterator itr_views= views.begin();
 
-    std::map<string, ControllerCharacter*> characters;
+    std::map<string, Character*> characters;
 
     bool isRunning;
     SDL_Window* window;

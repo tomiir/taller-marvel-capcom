@@ -14,7 +14,7 @@ int serverSocket_c;
 struct sockaddr_in serverAddr_c;
 socklen_t  serverSize_c;
 
-char messageFromServer[39];
+char messageFromServer[41];
 char messageToSever[4096];
 char messageFromInput[4096];
 char aux[5];
@@ -212,10 +212,10 @@ void* Client::recvFromServer(void* arg) {
 
 
     while(connect2){
-        memset(messageFromServer, 0, 39);
+        memset(messageFromServer, 0, 41);
 
         //Aca habrai que chequear que si no recibe por un tiempo se da por uerto el server(seria como el heartbeat)
-        int bytesReceived = recv(serverSocket_c, messageFromServer, 39, 0);
+        int bytesReceived = recv(serverSocket_c, messageFromServer, 41, 0);
 
         if(bytesReceived == -1){
             checkRecvFromServerError();
@@ -272,7 +272,6 @@ void* Client::render(void *arg) {
             char posFloor_x[] = {messageReceived[2], messageReceived[3], messageReceived[4], messageReceived[5], '\0'};
             char posFloor_y[] = {messageReceived[6], messageReceived[7], messageReceived[8], '\0'};
 
-
             char posMoon_x[] = {messageReceived[9], messageReceived[10], messageReceived[11], messageReceived[12], '\0'};
             char posMoon_y[] = {messageReceived[13], messageReceived[14], messageReceived[15], '\0'};
 
@@ -290,7 +289,10 @@ void* Client::render(void *arg) {
             char posCharTeam2_y[] = {messageReceived[35], messageReceived[36], messageReceived[37], '\0'};
             char stateCharTeam2 = messageReceived[38];
 
-            game->updateCharacters(posCharTeam1_x, posCharTeam1_y, stateCharTeam1, posCharTeam2_x, posCharTeam2_y, stateCharTeam2);
+            char flipChar1 = messageReceived[39];
+            char flipChar2 = messageReceived[40];
+
+            game->updateCharacters(posCharTeam1_x, posCharTeam1_y, stateCharTeam1, flipChar1, posCharTeam2_x, posCharTeam2_y, stateCharTeam2, flipChar2);
 
             //Actualizo el flip para que queden las imagenes mirando para el lado correcto
             game->updateFlip();

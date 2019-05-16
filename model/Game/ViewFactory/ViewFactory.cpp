@@ -23,22 +23,23 @@ View_fight* ViewFactory::getView_fight() {
 
     View_fight *viewFight = new View_fight(renderer);
 
-    JsonConfigs* config = JsonConfigs::getJson();
-    int speedCharacter = config->getCharactersSpeed();
-    int jumpSpeed = config->getJumpSpeed();
-    GameObjectControllerFactory* factory = new GameObjectControllerFactory(renderer, screenWidth, screenHeight, speedCharacter, jumpSpeed);
+    GameObjectFactory* factory = new GameObjectFactory(renderer, screenWidth, screenHeight);
 
-    vector<ControllerBackground *> backgrounds = factory->getControllersBackground_fight();
+    vector<GameObject *> backgrounds = factory->getGameObjectsBackgrounds_fight();
 
     for (auto & background : backgrounds){
-        viewFight->addBackground(background);
+        viewFight->addBackground(dynamic_cast<Background*>(background));
     }
 
-    vector<ControllerCharacter*> characters_ = factory->getControllersCharacter_fight();
+    vector<GameObject*> characters = factory->getGameObjectsCharacters_fight();
 
-    auto itr_character_ = characters_.begin();
-    for (; itr_character_ != characters_.end(); ++itr_character_) {
-        characters[(*itr_character_)->getName()] = (*itr_character_);
+    for (auto & character : characters){
+        viewFight->addCharacter(dynamic_cast<Character*>(character));
+    }
+
+    auto itr_character_ = characters.begin();
+    for (; itr_character_ != characters.end(); ++itr_character_) {
+        characters_map[(*itr_character_)->getName()] = (dynamic_cast<Character*>(*itr_character_));
     }
 
     TeamManager *team1 = new TeamManager(SDL_FLIP_HORIZONTAL);
@@ -47,17 +48,13 @@ View_fight* ViewFactory::getView_fight() {
     team1->addEnemyTeam(team2);
     team2->addEnemyTeam(team1);
 
-    FlipManager* flipManager = new FlipManager(team1, team2, backgrounds);
-
-    viewFight->addFlipManager(flipManager);
     viewFight->addTeams(team1, team2);
-
 
     return viewFight;
 }
 
-map<string, ControllerCharacter*> ViewFactory::getControllerCharacter(){
-    return characters;
+map<string, Character*> ViewFactory::getCharacter(){
+    return characters_map;
 }
 
 View_charSelect * ViewFactory:: getView_charSelect(){

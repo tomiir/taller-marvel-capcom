@@ -23,12 +23,12 @@ public:
     ~ViewFactory();
     View_fight * getView_fight();
     View_charSelect * getView_charSelect();
-    map<string, ControllerCharacter *> getControllerCharacter();
+    map<string, Character *> getCharacter();
 
 private:
     SDL_Renderer * renderer;
-    map<string, ControllerCharacter*> characters;
-    map<string, ControllerCharacter*>::iterator itr_characters= characters.begin();
+    map<string, Character*> characters_map;
+    map<string, Character*>::iterator itr_characters= characters_map.begin();
     int screenWidth, screenHeight;
 
 
