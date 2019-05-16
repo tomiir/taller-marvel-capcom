@@ -5,7 +5,7 @@
 
 #include <iostream>
 #include "../../controllers/ViewController/ViewController_fight/ViewController_fight.h"
-#include "ViewControllerFactory/ViewControllerFactory.h"
+#include "ViewFactory/ViewFactory.h"
 
 class Game {
 
@@ -17,7 +17,7 @@ public:
     void tick();
     void update();
     void clean();
-    ViewController* getViewContoller();
+    View* getView();
 
     void updateGreySquares(char* greySquares);
 
@@ -32,18 +32,18 @@ public:
     void changeView();
 
 private:
-    std::map<string, ViewController* > views;
-    std::map<string, ViewController*>::iterator itr_views= views.begin();
+    std::map<string, View* > views;
+    std::map<string, View*>::iterator itr_views= views.begin();
 
     std::map<string, ControllerCharacter*> characters;
 
     bool isRunning;
     SDL_Window* window;
     SDL_Renderer* renderer;
-    ViewController* viewController;
-    ViewControllerFactory * factory; //Lo agrego para crear la primera ViewController
+    View* view;
+    ViewFactory * factory; //Lo agrego para crear la primera ViewController
     int screenWidth, screenHeight;
-    void setControllerCharacters(ViewController_fight *view, map<string, ControllerCharacter *> controllers);
+    void setControllerCharacters(View_fight *view, map<string, ControllerCharacter *> controllers);
 
 };
 

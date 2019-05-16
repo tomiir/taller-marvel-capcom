@@ -2,26 +2,26 @@
 // Created by magali on 31/03/19.
 //
 
-#include "ViewControllerFactory.h"
+#include "ViewFactory.h"
 #include "../../../utils/FlipManager/FlipManager.h"
 #include "../../../Json/JsonConfigs.h"
 
 
 
-ViewControllerFactory::ViewControllerFactory(SDL_Renderer * renderer_, int screenWidth_, int screenHeight_) {
+ViewFactory::ViewFactory(SDL_Renderer * renderer_, int screenWidth_, int screenHeight_) {
 
     renderer = renderer_;
     screenHeight = screenHeight_;
     screenWidth = screenWidth_;
 }
 
-ViewControllerFactory::~ViewControllerFactory() = default;
+ViewFactory::~ViewFactory() = default;
 
 
-ViewController_fight* ViewControllerFactory::getViewController_fight() {
+View_fight* ViewFactory::getView_fight() {
 
 
-    ViewController_fight *viewControllerFight = new ViewController_fight(renderer);
+    View_fight *viewFight = new View_fight(renderer);
 
     JsonConfigs* config = JsonConfigs::getJson();
     int speedCharacter = config->getCharactersSpeed();
@@ -31,7 +31,7 @@ ViewController_fight* ViewControllerFactory::getViewController_fight() {
     vector<ControllerBackground *> backgrounds = factory->getControllersBackground_fight();
 
     for (auto & background : backgrounds){
-        viewControllerFight->addBackground(background);
+        viewFight->addBackground(background);
     }
 
     vector<ControllerCharacter*> characters_ = factory->getControllersCharacter_fight();
@@ -49,18 +49,18 @@ ViewController_fight* ViewControllerFactory::getViewController_fight() {
 
     FlipManager* flipManager = new FlipManager(team1, team2, backgrounds);
 
-    viewControllerFight->addFlipManager(flipManager);
-    viewControllerFight->addTeams(team1, team2);
+    viewFight->addFlipManager(flipManager);
+    viewFight->addTeams(team1, team2);
 
 
-    return viewControllerFight;
+    return viewFight;
 }
 
-map<string, ControllerCharacter*> ViewControllerFactory::getControllerCharacter(){
+map<string, ControllerCharacter*> ViewFactory::getControllerCharacter(){
     return characters;
 }
 
-View_charSelect * ViewControllerFactory:: getView_charSelect(){
+View_charSelect * ViewFactory:: getView_charSelect(){
 
     GameObjectFactory* factory = new GameObjectFactory(renderer, screenWidth, screenHeight);
     vector <GameObject_charSelect*> gameObjects = factory->getgameobjectChar_select_fight();

@@ -48,6 +48,7 @@ private:
     //Despeus va a tener que ser del tipo viewController y cambiar cuando tnega que pasar a figth
     //Al usarlo en una funcion estatica me obligo a que sea estatico
 
+    static void changeView();
 };
 
 

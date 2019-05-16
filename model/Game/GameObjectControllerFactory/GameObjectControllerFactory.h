@@ -9,7 +9,7 @@
 #include <vector>
 #include "../../../controllers/Controller/ControllerCharacter/ControllerCharacter.h"
 #include "../../../controllers/Controller/ControllerBackground/ControllerBackground.h"
-#include "../../GameObjects/GameObject/GameObject.h"
+#include "../../GameObjects_fight/GameObject/GameObject.h"
 #include "../../../utils/Mapper/Mapper_fight/Mapper_fight_1.h"
 #include "../../../utils/Mapper/Mapper_fight/Mapper_fight_2.h"
 #include "../../../utils/Mapper/Mapper_fight/Mapper_fight.h"

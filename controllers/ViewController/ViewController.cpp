@@ -9,24 +9,14 @@
 #include "../../utils/Logger/Logger.h"
 #include "../../views/View/View.h"
 
-ViewController::ViewController (SDL_Renderer* renderer_) {
-    this->renderer= renderer_;
-    this->view = new View(renderer_);
+ViewController::ViewController () {
 }
 
 ViewController::~ViewController() {
 
 }
 
-void ViewController::handleEvent() {
-
-}
-
-void ViewController::updateView() {
-
-}
-
-void ViewController::addBackground(ControllerBackground *controller) {
+void ViewController::handleEvent(string event) {
 
 }
 
@@ -36,18 +26,6 @@ bool ViewController::end() {
 
 string ViewController::getNextView() {
     return std::__cxx11::string();
-}
-
-void ViewController::updateGreySquares(char* greySquares) {
-
-}
-
-void ViewController::updateSelects(char *string, char *string1) {
-
-}
-
-void ViewController::updateCharacterImages(char *string, char *string1) {
-
 }
 
 

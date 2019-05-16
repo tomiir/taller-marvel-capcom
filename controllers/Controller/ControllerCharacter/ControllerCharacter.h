@@ -9,7 +9,7 @@
 #include "../Controller.h"
 #include "../../../utils/Vector2D/DirectionVector.h"
 #include "../../../utils/Mapper/Mapper_fight/Mapper_fight.h"
-#include "../../../model/GameObjects/Character/Character.h"
+#include "../../../model/GameObjects_fight/Character/Character.h"
 
 using namespace std;
 

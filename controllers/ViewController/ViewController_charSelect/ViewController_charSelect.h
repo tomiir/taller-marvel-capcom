@@ -8,6 +8,7 @@
 
 #include <string>
 #include "../../../model/GameObject_charSelect/GameObject_charSelect.h"
+#include "../ViewController.h"
 #include <stdio.h>
 #include <vector>
 #include <iostream>
@@ -16,13 +17,13 @@
 
 using namespace std;
 
-class ViewController_charSelect {
+class ViewController_charSelect : public ViewController {
 
 public:
 
     explicit ViewController_charSelect();
     ~ViewController_charSelect();
-    void handleEvent(string event);
+    void handleEvent(string event) override ;
     void setTeam1(string character);
     void setTeam2(string character);
 
@@ -34,6 +35,8 @@ public:
 
 
     string giveNewParametes();
+
+    bool haveToChangeView();
 
 private:
 

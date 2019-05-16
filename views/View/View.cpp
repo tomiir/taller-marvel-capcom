@@ -19,3 +19,30 @@ void View::render() {
     SDL_RenderClear(renderer);
 }
 
+void View::updateView() {
+
+}
+
+void View::addBackground(ControllerBackground *controller) {
+
+}
+
+bool View::end() {
+    return false;
+}
+
+string View::getNextView() {
+    return std::__cxx11::string();
+}
+
+void View::updateGreySquares(char* greySquares) {
+
+}
+
+void View::updateSelects(char *string, char *string1) {
+
+}
+
+void View::updateCharacterImages(char *string, char *string1) {
+}
+

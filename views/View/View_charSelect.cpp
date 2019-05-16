@@ -5,7 +5,7 @@
 #include "View_charSelect.h"
 #include <algorithm>
 
-View_charSelect::View_charSelect(SDL_Renderer *renderer_): ViewController(renderer_){
+View_charSelect::View_charSelect(SDL_Renderer *renderer_): View(renderer_){
 
     squarePosition["CaptainAmerica"] = {233,291,165,127}; // FALTA AGREGAR LAS POSICIONES
     squarePosition["SpiderMan"] = {400,291,165,127}; // FALTA AGREGAR LAS POSICIONES

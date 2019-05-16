@@ -24,7 +24,7 @@ public:
 
     void flipCurrentCharacter();
     int getZIndex() override;
-    void setCharacters(std::vector<ControllerCharacter*> characters, Mapper_fight* mapper);
+    void setCharacters(std::vector<ControllerCharacter*> characters);
     void setInitialPos(bool left);
 
 

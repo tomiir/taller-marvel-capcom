@@ -5,7 +5,7 @@
 #ifndef TALLER_MARVEL_CAPCOM_CONTROLLER_H
 #define TALLER_MARVEL_CAPCOM_CONTROLLER_H
 
-#include "../../model/GameObjects/GameObject/GameObject.h"
+#include "../../model/GameObjects_fight/GameObject/GameObject.h"
 #include "../../utils/Mapper/Mapper_fight/Mapper_fight.h"
 #include "../../utils/Logger/Logger.h"
 #include "Renderable.h"

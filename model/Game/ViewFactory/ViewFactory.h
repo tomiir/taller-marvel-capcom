@@ -10,17 +10,18 @@
 #include "../../../views/View/View.h"
 #include "../../../utils/TeamManager/TeamManager.h"
 #include "../../../views/View/View_charSelect.h"
+#include "../../../views/View/View_fight.h"
 
 using namespace std;
 
-class ViewControllerFactory{
+class ViewFactory{
 
 
 
 public:
-    ViewControllerFactory(SDL_Renderer * renderer_, int screenWidth_, int screenHeight_);
-    ~ViewControllerFactory();
-    ViewController_fight * getViewController_fight();
+    ViewFactory(SDL_Renderer * renderer_, int screenWidth_, int screenHeight_);
+    ~ViewFactory();
+    View_fight * getView_fight();
     View_charSelect * getView_charSelect();
     map<string, ControllerCharacter *> getControllerCharacter();
 

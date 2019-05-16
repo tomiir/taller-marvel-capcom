@@ -32,17 +32,17 @@ void Game::init(const char *title, int posX, int posY) {
             }
         isRunning = true;
 
-        factory = new ViewControllerFactory(renderer, screenWidth, screenHeight);
+        factory = new ViewFactory(renderer, screenWidth, screenHeight);
 
 
         // Mando viewFight pq es la unica que tenemos. Deberiamos mandar la primera, y luego, las ViewController conocerse entre
         // si para saber quien va luego o implementar el VIEW MANAGER
 
-        views["fight"] = factory -> getViewController_fight();
+        views["fight"] = factory -> getView_fight();
         characters = factory -> getControllerCharacter();
         views["char_select"] = factory -> getView_charSelect();
 
-        viewController = (views.find("char_select"))->second;
+        view = (views.find("char_select"))->second;
 
         logger -> Log("Inicialización completa, ventana, renderer y vista creados correctamente", INFO, "");
 
@@ -69,79 +69,79 @@ void Game::clean(){
 
 }
 
-void Game::tick() {
+//void Game::tick() {
+//
+//    this->view->handleEvent();
+//
+//
+//    update(); // Esto se va a usar para reconciliar data con el serve supongo. Tipo le envío el movimiento, espero resp.
+//    this->view->updateView();
+//
+//    if (this->view->end()) {
+//
+//        string nextViewName = (this->view)->getNextView();
+//        View* nextView = views.find(nextViewName)->second;
+//
+//        if (strcmp(nextViewName.c_str(), "fight") == 0){
+//            // esto significa que la anterior fue la de selección de personajes;
+//            vector<string> team1 = ((View_charSelect*) view)-> getTeam1();
+//            vector<string> team2 = ((View_charSelect*) view) -> getTeam2();
+//
+//            vector<ControllerCharacter*> aux = {(characters.find(team1[0])->second), (characters.find(team1[1])->second)};
+//            ((ViewController_fight*)nextView)->setTeam(aux,1);
+//
+//            aux =  {(characters.find(team2[0])->second), (characters.find(team2[1])->second)};
+//            ((ViewController_fight*)nextView)->setTeam(aux,2);
+//
+//            ((ViewController_fight*)nextView)->createFlipManager();
+//        }
+//        this->view = nextView;
+//    }
+//
+//}
 
-    this->viewController->handleEvent();
-
-
-    update(); // Esto se va a usar para reconciliar data con el serve supongo. Tipo le envío el movimiento, espero resp.
-    this->viewController->updateView();
-
-    if (this->viewController->end()) {
-
-        string nextViewName = (this->viewController)->getNextView();
-        ViewController* nextView = views.find(nextViewName)->second;
-
-        if (strcmp(nextViewName.c_str(), "fight") == 0){
-            // esto significa que la anterior fue la de selección de personajes;
-            vector<string> team1 = ((View_charSelect*) viewController)-> getTeam1();
-            vector<string> team2 = ((View_charSelect*) viewController) -> getTeam2();
-
-            vector<ControllerCharacter*> aux = {(characters.find(team1[0])->second), (characters.find(team1[1])->second)};
-            ((ViewController_fight*)nextView)->setTeam(aux,1);
-
-            aux =  {(characters.find(team2[0])->second), (characters.find(team2[1])->second)};
-            ((ViewController_fight*)nextView)->setTeam(aux,2);
-
-            ((ViewController_fight*)nextView)->createFlipManager();
-        }
-        this->viewController = nextView;
-    }
-
-}
-
-ViewController *Game::getViewContoller() {
-    return this->viewController;
+View *Game::getView() {
+    return this->view;
 }
 
 void Game::updateGreySquares(char* greySquares) {
 
-    this->viewController->updateGreySquares(greySquares);
+    this->view->updateGreySquares(greySquares);
 }
 
 void Game::updateSelects(char *selectT1, char *selectT2) {
-    this->viewController->updateSelects(selectT1, selectT2);
+    this->view->updateSelects(selectT1, selectT2);
 }
 
 void Game::updateCharactersImages(char *selected_1, char *selected_2) {
-    this->viewController->updateCharacterImages(selected_1, selected_2);
+    this->view->updateCharacterImages(selected_1, selected_2);
 }
 
 void Game::render() {
-    this->viewController->updateView();
+    this->view->updateView();
 }
 
 bool Game::haveToChangeView() {
-    return this->viewController->end();
+    return this->view->end();
 }
 
 void Game::changeView() {
-    string nextViewName = (this->viewController)->getNextView();
-    ViewController* nextView = views.find(nextViewName)->second;
+    string nextViewName = (this->view)->getNextView();
+    View* nextView = views.find(nextViewName)->second;
 
     if (strcmp(nextViewName.c_str(), "fight") == 0){
         // esto significa que la anterior fue la de selección de personajes;
-        vector<string> team1 = ((View_charSelect*) viewController)-> getTeam1();
-        vector<string> team2 = ((View_charSelect*) viewController) -> getTeam2();
+        vector<string> team1 = ((View_charSelect*) view)-> getTeam1();
+        vector<string> team2 = ((View_charSelect*) view) -> getTeam2();
 
         vector<ControllerCharacter*> aux = {(characters.find(team1[0])->second), (characters.find(team1[1])->second)};
-        ((ViewController_fight*)nextView)->setTeam(aux,1);
+        ((View_fight*)nextView)->setTeam(aux,1);
 
         aux =  {(characters.find(team2[0])->second), (characters.find(team2[1])->second)};
-        ((ViewController_fight*)nextView)->setTeam(aux,2);
+        ((View_fight*)nextView)->setTeam(aux,2);
 
-        ((ViewController_fight*)nextView)->createFlipManager();
+        ((View_fight*)nextView)->createFlipManager();
     }
-    this->viewController = nextView;
+    this->view = nextView;
 }
 

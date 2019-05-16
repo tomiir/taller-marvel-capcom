@@ -22,12 +22,12 @@ add_executable(
         Json/JsonConfigs.h
         Json/JsonConfigs.cpp
         model/Game/Game.cpp model/Game/Game.h
-        model/GameObjects/GameObject/GameObject.cpp
-        model/GameObjects/GameObject/GameObject.h
-        model/GameObjects/Character/Character.cpp
-        model/GameObjects/Character/Character.h
-        model/GameObjects/Background/Background.cpp
-        model/GameObjects/Background/Background.h
+        model/GameObjects_fight/GameObject/GameObject.cpp
+        model/GameObjects_fight/GameObject/GameObject.h
+        model/GameObjects_fight/Character/Character.cpp
+        model/GameObjects_fight/Character/Character.h
+        model/GameObjects_fight/Background/Background.cpp
+        model/GameObjects_fight/Background/Background.h
         model/GameObject_charSelect/GameObject_charSelect.cpp
         model/GameObject_charSelect/GameObject_charSelect.h
         controllers/Controller/Renderable.cpp
@@ -40,16 +40,16 @@ add_executable(
         controllers/ViewController/ViewController_fight/ViewController_fight.h
         controllers/ViewController/ViewController_charSelect/ViewController_charSelect.cpp
         controllers/ViewController/ViewController_charSelect/ViewController_charSelect.h
-        model/Game/ViewControllerFactory/ViewControllerFactory.cpp
-        model/Game/ViewControllerFactory/ViewControllerFactory.h
+        model/Game/ViewFactory/ViewFactory.cpp
+        model/Game/ViewFactory/ViewFactory.h
         model/Game/GameObjectControllerFactory/GameObjectControllerFactory.cpp
         model/Game/GameObjectControllerFactory/GameObjectControllerFactory.h
         model/Game/GameObjectFactory/GameObjectFactory.cpp
         model/Game/GameObjectFactory/GameObjectFactory.h
         model/Viewmanager/ViewManager.cpp
         model/Viewmanager/ViewManager.h
-        model/Game/ViewControllerFactory/ViewControllerFactory.cpp
-        model/Game/ViewControllerFactory/ViewControllerFactory.h
+        model/Game/ViewFactory/ViewFactory.cpp
+        model/Game/ViewFactory/ViewFactory.h
         utils/Mapper/Mapper_fight/Mapper_fight.cpp
         utils/Mapper/Mapper_fight/Mapper_fight.h
         controllers/Controller/ControllerCharacter/ControllerCharacter.cpp
@@ -143,6 +143,14 @@ add_executable(
         Server/Server.cpp Server/Server.h Client/Client.cpp Client/Client.h utils/Mapper/Mapper.cpp utils/Mapper/Mapper.h
         views/View/View_charSelect.cpp
         views/View/View_charSelect.h
+        views/View/View_fight.cpp
+        views/View/View_fight.h
+        Server/GameObject_server/GameObject_server.h
+        Server/GameObject_server/GameObject_server.cpp
+        Server/Character_server/Character_server.h
+        Server/Character_server/Character_server.cpp
+        Server/Background_server/Background_server.h
+        Server/Background_server/Background_server.cpp
 
 
 

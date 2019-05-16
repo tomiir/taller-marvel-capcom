@@ -19,22 +19,17 @@ class ViewController_fight: public ViewController {
 
 public:
 
-    ViewController_fight(SDL_Renderer* renderer_);
+    ViewController_fight();
     ~ViewController_fight();
-    void updateView() override;
-    void handleEvent() override;
-    void addFlipManager(FlipManager* flipManager_);
-    void addBackground(ControllerBackground* controller) override;
+    void handleEvent(string event) override;
     void addTeams(TeamManager* teamManager1, TeamManager* teamManager2);
     bool end()override;
     string getNextView()override;
     void setTeam(vector<ControllerCharacter*> characters, int team);
-    void createFlipManager();
 
 private:
     TeamManager* team1;
     TeamManager* team2;
-    FlipManager* flipManager;
 
 
 };

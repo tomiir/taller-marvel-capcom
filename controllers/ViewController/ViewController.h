@@ -17,23 +17,13 @@
 class ViewController{
 public:
 
-    ViewController(SDL_Renderer* renderer_);
+    ViewController();
     virtual ~ViewController();
-    virtual void updateView();
-    virtual void handleEvent();
-    virtual void addBackground(ControllerBackground* controller);
+    virtual void handleEvent(string event);
     virtual bool end();
     virtual string getNextView();
 
-    virtual void updateGreySquares(char* greySquares);
-
-    virtual void updateSelects(char *string, char *string1);
-
-    virtual void updateCharacterImages(char *string, char *string1);
-
 protected:
-    View* view;
-    SDL_Renderer* renderer;
     std::vector<ControllerBackground*> backgrounds;
 };
 

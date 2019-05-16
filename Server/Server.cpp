@@ -1,6 +1,7 @@
 
 #include <csignal>
 #include "Server.h"
+#include "../controllers/ViewController/ViewController_fight/ViewController_fight.h"
 
 //----SERVER VARIABLES----
 int serverSocket_s;
@@ -25,7 +26,10 @@ queue<string> serverQueue;
 
 bool on = true;
 
-ViewController_charSelect* currentViewController = new ViewController_charSelect();
+ViewController* currentViewController = new ViewController_charSelect();
+ViewController* nextView = new ViewController_fight();
+
+
 
 pthread_mutex_t lock;
 
@@ -219,6 +223,8 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
     Uint32 start;
 
     while(true){
+
+        if (currentViewController->end()) changeView();
 
         start = SDL_GetTicks();
 
@@ -537,6 +543,13 @@ void* Server::popQueue(void* arg){
     logger->Log("Se desencolo el mensaje: " + messagePop, INFO, "");
     cout << "Se desencolo el mensaje: " + messagePop << endl;
     serverQueue.pop();
+}
+
+void Server::changeView() {
+
+    ViewController* aux2 = currentViewController;
+    currentViewController = nextView;
+    nextView = aux2;
 }
 
 

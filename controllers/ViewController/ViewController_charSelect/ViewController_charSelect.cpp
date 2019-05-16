@@ -5,7 +5,7 @@
 #include "ViewController_charSelect.h"
 #include <algorithm>
 
-ViewController_charSelect::ViewController_charSelect(){
+ViewController_charSelect::ViewController_charSelect():ViewController(){
 
     /* [cap_america] [spiderman]
      * [chun_li] [venom] */
@@ -209,6 +209,10 @@ string ViewController_charSelect::giveNewParametes() {
 
     return updates;
 
+}
+
+bool ViewController_charSelect::haveToChangeView() {
+    return selected.size() == 4;
 }
 
 

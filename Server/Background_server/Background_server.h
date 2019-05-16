@@ -1,0 +1,14 @@
+//
+// Created by arielpm on 16/05/19.
+//
+
+#ifndef TALLER_MARVEL_CAPCOM_BACKGROUND_SERVER_H
+#define TALLER_MARVEL_CAPCOM_BACKGROUND_SERVER_H
+
+
+class Background_server {
+
+};
+
+
+#endif //TALLER_MARVEL_CAPCOM_BACKGROUND_SERVER_H

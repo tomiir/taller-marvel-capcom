@@ -10,7 +10,7 @@
 #include "../../controllers/ViewController/ViewController.h"
 #include "../../model/GameObject_charSelect/GameObject_charSelect.h"
 
-class View_charSelect: public ViewController {
+class View_charSelect: public View {
 
 public:
 

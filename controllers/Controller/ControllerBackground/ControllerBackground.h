@@ -6,7 +6,7 @@
 #define TALLER_MARVEL_CAPCOM_CONTROLLERBACKGROUND_H
 
 #include "../Controller.h"
-#include "../../../model/GameObjects/Background/Background.h"
+#include "../../../model/GameObjects_fight/Background/Background.h"
 #include "../ControllerCharacter/ControllerCharacter.h"
 #include "../../../utils/Mapper/Mapper_fight/Mapper_fight.h"
 
