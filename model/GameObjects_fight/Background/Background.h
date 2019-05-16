@@ -29,8 +29,6 @@ private:
     int imgWight, imgHeight;
 
     SDL_Rect camera;
-
-
 };
 
 
