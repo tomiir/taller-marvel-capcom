@@ -34,7 +34,6 @@ private:
     ControllerCharacter* currentCharacter;
     ControllerCharacter* supportCharacter;
     TeamManager* enemyTeam;
-    Mapper_fight* mapper; //para solucionar el tema de las teclas, conoce el mapper que comparte su team
     SDL_RendererFlip flip = SDL_FLIP_HORIZONTAL;
 
     void changeCharacter();

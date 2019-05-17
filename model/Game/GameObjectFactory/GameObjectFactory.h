@@ -31,7 +31,6 @@ public:
 
 
 private:
-    double cameraSpeedPercentage(int widthMax, int widthImg);
     bool existFile(const char* path);
     int screenWidth, screenHeight;
 

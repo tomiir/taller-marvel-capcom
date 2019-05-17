@@ -9,7 +9,6 @@
 #include <string.h>
 #include "../../controllers/ViewController/ViewController.h"
 #include "../../model/Game/ViewControllerFactory/ViewControllerFactory.h"
-#include "../../controllers/ViewController/ViewController_charSelect/ViewController_charSelect.h"
 
 
 using namespace std;

@@ -95,13 +95,6 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
     return gameObjects;
 }
 
-double GameObjectFactory::cameraSpeedPercentage(int widthMax, int widthImg) {
-
-    double a = widthImg - screenWidth;
-    double b = widthMax - screenWidth;
-    return a/b;
-}
-
 
 vector<GameObject*> GameObjectFactory:: getGameObjectsBackgrounds_fight() {
 
@@ -129,26 +122,23 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsBackgrounds_fight() {
         string name = (*iter).getName();
 
         //HARCODEO EL NOMBRE, PQ NO LO USAMOS, ¿ES UNA MALA DECISIÓN? SI, LO ES, PERO ASÍ ES LA VIDA.
-        Background *B = new Background(path.c_str(),"background", zIndex, renderer, width, height, screenWidth, screenHeight);
-
-        if (!B){
-            //excepción
-        }
+        Background *B = new Background(path.c_str(),name, zIndex, renderer, width, height, screenWidth, screenHeight);
+        
 
         if (width > maxWidth) maxWidth = width;
 
         gameObjects.push_back(B);
     }
 
-    vector <GameObject*>::iterator itr = gameObjects.begin();
-
-    for (itr; itr != gameObjects.end(); ++itr){
-
-        vector<int> info = (*itr)->getInfo();
-        double speedPercentageB = cameraSpeedPercentage(maxWidth, info[0]);
-        int cameraSpeedB = speedCharacter * speedPercentageB;
-        dynamic_cast<Background*>(*itr)->setSpeeds(cameraSpeedB,speedPercentageB);
-    }
+//    vector <GameObject*>::iterator itr = gameObjects.begin();
+//
+//    for (itr; itr != gameObjects.end(); ++itr){
+//
+//        vector<int> info = (*itr)->getInfo();
+//        double speedPercentageB = cameraSpeedPercentage(maxWidth, info[0]);
+//        int cameraSpeedB = speedCharacter * speedPercentageB;
+//        dynamic_cast<Background*>(*itr)->setSpeeds(cameraSpeedB,speedPercentageB);
+//    }
 
 
     return gameObjects;
