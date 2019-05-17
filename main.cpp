@@ -6,6 +6,8 @@
 #include "Client/Client.h"
 #include "utils/Mapper/Mapper_charSelect/Mapper_charSelect_1.h"
 #include "utils/Mapper/Mapper_charSelect/Mapper_charSelect_2.h"
+#include "utils/Mapper/Mapper_fight/Mapper_fight_1.h"
+#include "utils/Mapper/Mapper_fight/Mapper_fight_2.h"
 
 
 #define DEBUG_LEVEL DEBUG //VER COMO SACARLO DEL JSON CONFIGS

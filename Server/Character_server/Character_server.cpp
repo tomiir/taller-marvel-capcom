@@ -4,8 +4,8 @@
 
 #include "Character_server.h"
 
-Character_server::Character_server(string name_, int initialY, std::string name) :
-        GameObject_server(name_, 0, initialY, 0, 0) {
+Character_server::Character_server(int initialY, std::string name) :
+        GameObject_server(name, 0, initialY, 0, 0) {
 
     this->initialY = initialY;
     logger->Log("Creando personaje: " + name, DEBUG, "");
@@ -53,4 +53,9 @@ void Character_server::setInitialXPositions(int positionLeft, int positionRight)
 void Character_server::setInitialPos(bool left){
 
     objRect.x = left ? posInitialLeft : posInitialRight;
+}
+
+void Character_server::flipSprite(SDL_RendererFlip flip_) {
+
+    flip = flip_;
 }

@@ -69,37 +69,6 @@ void Game::clean(){
 
 }
 
-//void Game::tick() {
-//
-//    this->view->handleEvent();
-//
-//
-//    update(); // Esto se va a usar para reconciliar data con el serve supongo. Tipo le envío el movimiento, espero resp.
-//    this->view->updateView();
-//
-//    if (this->view->end()) {
-//
-//        string nextViewName = (this->view)->getNextView();
-//        View* nextView = views.find(nextViewName)->second;
-//
-//        if (strcmp(nextViewName.c_str(), "fight") == 0){
-//            // esto significa que la anterior fue la de selección de personajes;
-//            vector<string> team1 = ((View_charSelect*) view)-> getTeam1();
-//            vector<string> team2 = ((View_charSelect*) view) -> getTeam2();
-//
-//            vector<ControllerCharacter*> aux = {(characters.find(team1[0])->second), (characters.find(team1[1])->second)};
-//            ((ViewController_fight*)nextView)->setTeam(aux,1);
-//
-//            aux =  {(characters.find(team2[0])->second), (characters.find(team2[1])->second)};
-//            ((ViewController_fight*)nextView)->setTeam(aux,2);
-//
-//            ((ViewController_fight*)nextView)->createFlipManager();
-//        }
-//        this->view = nextView;
-//    }
-//
-//}
-
 View *Game::getView() {
     return this->view;
 }

@@ -11,32 +11,9 @@
 
 ViewController_fight::ViewController_fight():ViewController() {
 
-
-
-
-
 }
 
 ViewController_fight::~ViewController_fight() = default;
-
-
-
-void ViewController_fight::handleEvent(string event) {
-
-    CLogger* logger = CLogger::GetLogger();
-
-// MODIFICAR EL HANDLEEVENT!
-    try {
-
-        team1->handleEvent(event, backgrounds);
-        team2->handleEvent(event, backgrounds);
-        //flipManager->update();
-    } catch(exception e) {
-        logger -> Log("Falló al querer manejar un evento", ERROR, e.what());
-        logger -> Log("Falló al querer manejar el evento: " + to_string(event.type), DEBUG, e.what());
-        throw -1;
-    }
-}
 
 
 void ViewController_fight::addTeams(TeamManager* teamManager1, TeamManager* teamManager2) {
@@ -69,6 +46,47 @@ void ViewController_fight::setTeam(vector<ControllerCharacter *> characters, int
 
 }
 
+void ViewController_fight::addBackground(ControllerBackground *controller) {
+
+    backgrounds.push_back(controller);
+}
+
+void ViewController_fight::addFlipManager(FlipManager *flipManager_) {
+
+    flipManager = flipManager_;
+}
+
+void ViewController_fight::createFlipManager() {
+
+    flipManager->create();
+}
+
+
+void ViewController_fight::handleEvent(string event) {
+
+    CLogger* logger = CLogger::GetLogger();
+
+// MODIFICAR EL HANDLEEVENT!
+    try {
+        if ((event[5] == '0' and event[6] == '0') or (event[5] == '1' and event[6] == '0')){
+            team1->handleEvent(event.substr(0, 4), backgrounds);
+        }
+        else if ((event[5] == '0' and event[6] == '1') or (event[5] == '1' and event[6] == '1')){
+            team2->handleEvent(event.substr(0, 4), backgrounds);
+        }
+
+        flipManager->update();
+
+    } catch(exception e) {
+        logger -> Log("Falló al querer manejar un evento", ERROR, e.what());
+        logger -> Log("Falló al querer manejar el evento: " + event, DEBUG, e.what());
+        throw -1;
+    }
+}
+
+
 string ViewController_fight::giveNewParameters() {
 
 }
+
+

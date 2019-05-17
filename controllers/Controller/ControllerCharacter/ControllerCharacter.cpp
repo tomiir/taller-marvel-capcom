@@ -18,10 +18,62 @@ ControllerCharacter::ControllerCharacter(GameObject_server* gameObject, int scre
 ControllerCharacter::~ControllerCharacter() = default;
 
 
+DirectionVector* giveDirectionVect(string event){
+
+    DirectionVector* direction = new DirectionVector();
+
+    if (event == "00000") return direction;
+    else if (event == "10000") {
+        direction->add(1, 0);
+        return direction;
+    }
+    else if (event == "01000") {
+        direction->add(-1, 0);
+        return direction;
+    }
+    else if (event == "00100") {
+        direction->add(0, -1);
+        return direction;
+    }
+    else if (event == "00010") {
+        direction->add(0, 1);
+        return direction;
+    }
+    else if (event == "00001") {
+        direction->add(4, 0);
+        return direction;
+    }
+    else if (event == "10100") {
+        direction->setDiagonal(1);
+        direction->setY(-1);
+        return direction;
+    }
+    else if (event == "01100"){
+        direction->setDiagonal(-1);
+        direction->setY(-1);
+        return direction;
+    }
+    else if (event[3] == '2'){
+        direction->add(0, 2);
+        return direction;
+    }
+    else if (event[1] == '2'){
+        direction->add(-2, 0);
+        return direction;
+    }
+    else if (event[0] == '2'){
+        direction->add(2, 0);
+        return direction;
+    }
+}
+
+
+
+
+
 void ControllerCharacter::handleEvent(string event) {
 
-    //DirectionVector* direction = mapper->map(event);
-    DirectionVector* direction = new DirectionVector();
+    DirectionVector* direction = giveDirectionVect(event);
 
     vector<int> info = gameObject->getInfo();
 
@@ -43,7 +95,7 @@ void ControllerCharacter::handleEvent(string event) {
     if (direction->isEqual(GETTINGUP)) crowchedDown = false;
     if (direction->isEqual(STOPRIGHT) || inAir) movingRight = false;
     if (direction->isEqual(STOPLEFT)  || inAir) movingLeft = false;
-    if(event.key.state == SDL_RELEASED and !inAir and !crowchedDown and !movingLeft and !movingRight) state = "still";
+    if(direction->isEqual(KEYSRELEASED) and !inAir and !crowchedDown and !movingLeft and !movingRight) state = "still";
 
     bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal;
     bool characterIsntInLeftBoundary = info[0] >= 0;
@@ -113,7 +165,7 @@ void ControllerCharacter::handleEvent(string event) {
 
     }
 
-    if (mapper->changeCharacter(event) and !inAir){
+    if (direction->isEqual(CHANGECHARACTER) and !inAir){
         leaving = true;
         logger->Log(character->getName() + " cambio de personaje", DEBUG, "");
     }
@@ -150,9 +202,6 @@ bool ControllerCharacter::isJumpingLeft() {
     return jumpLeft;
 }
 
-Mapper_fight* ControllerCharacter::getMapper(){
-    return mapper;
-}
 
 void ControllerCharacter::move(DirectionVector *direction) {
 
@@ -162,7 +211,7 @@ void ControllerCharacter::move(DirectionVector *direction) {
 
 void ControllerCharacter::flip(SDL_RendererFlip flip) {
 
-    dynamic_cast<Character*> (gameObject)->flipSprite(flip);
+    dynamic_cast<Character_server*> (gameObject)->flipSprite(flip);
 
 }
 
@@ -199,11 +248,6 @@ bool ControllerCharacter::isMovingRight() {
 
 bool ControllerCharacter::isMovingLeft() {
     return movingLeft;
-}
-
-void ControllerCharacter::setMapper(Mapper_fight* mapper) {
-
-    this->mapper = mapper;
 }
 
 void ControllerCharacter::setInitialPos(bool left) {

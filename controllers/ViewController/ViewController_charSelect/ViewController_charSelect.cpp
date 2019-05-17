@@ -215,5 +215,13 @@ bool ViewController_charSelect::haveToChangeView() {
     return selected.size() == 4;
 }
 
+std::vector<string> ViewController_charSelect::getTeam1() {
+    return selected_1;
+}
+
+std::vector<string> ViewController_charSelect::getTeam2() {
+    return selected_2;
+}
+
 
 

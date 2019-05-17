@@ -2,6 +2,8 @@
 #include <csignal>
 #include "Server.h"
 #include "../controllers/ViewController/ViewController_fight/ViewController_fight.h"
+#include "../Json/JsonConfigs.h"
+#include "Game_server/Game_server.h"
 
 //----SERVER VARIABLES----
 int serverSocket_s;
@@ -26,10 +28,7 @@ queue<string> serverQueue;
 
 bool on = true;
 
-ViewController* selectCharViewController = new ViewController_charSelect();
-ViewController* fightViewController = new ViewController_fight();
-ViewController* currentViewController = selectCharViewController;
-
+Game_server* game;
 
 pthread_mutex_t lock;
 
@@ -203,8 +202,6 @@ char* Server::update(int clientIter){
     }
 
 
-
-
 }
 
 
@@ -224,7 +221,7 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
 
     while(true){
 
-        if (currentViewController->end()) changeView();
+        if (game->haveToChangeViewController()) game->changeViewController();
 
         start = SDL_GetTicks();
 
@@ -319,13 +316,13 @@ void* Server::updateModel(void *arg){
         string event = serverQueue.front();
 
         //aca se realizaría todos los cambios al modelo segun las teclas que le llegaron
-        currentViewController->handleEvent(event);
+        game->handleEvent(event);
 
         serverQueue.pop();
 
         //aca se pide despues de hacer todos los cambios los parametros que se necesitan para enviarles a los clientes y que estos renderisen
 
-        string updates = currentViewController->giveNewParameters();
+        string updates = game->giveNewParameters();
 
         //cout << updates << endl;
 
@@ -472,6 +469,14 @@ void Server::connect() {
 
     //ACA SE DEBERIA INICIALIZAR TODOO EL MODELO
 
+    logger->Log("Inicializando juego", INFO, "");
+    JsonConfigs *config = JsonConfigs::getJson();
+
+    const int SCREEN_WIDTH = config->getScreenSize()[0];
+    const int SCREEN_HEIGHT = config->getScreenSize()[1];
+
+    game = new Game_server(SCREEN_WIDTH, SCREEN_HEIGHT);
+    game->init();
 
     //Se arranca a enviar el conectado y el team a los clientes
 
@@ -545,10 +550,5 @@ void* Server::popQueue(void* arg){
     serverQueue.pop();
 }
 
-void Server::changeView() {
-    //Por ahora es asi, pero si hay mas views se le puede agregar mas cosas
-    fightViewController->setTeams
-
-}
 
 

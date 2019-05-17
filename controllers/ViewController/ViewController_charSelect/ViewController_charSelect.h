@@ -27,14 +27,13 @@ public:
     void setTeam1(string character);
     void setTeam2(string character);
 
-    bool end();
-    string getNextView();
+    bool end() override ;
+    string getNextView() override ;
 
     std::vector<string> getTeam1();
     std::vector<string> getTeam2();
 
-
-    string giveNewParameters();
+    string giveNewParameters() override ;
 
     bool haveToChangeView();
 

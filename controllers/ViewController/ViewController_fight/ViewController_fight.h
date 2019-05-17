@@ -28,11 +28,19 @@ public:
     void setTeam(vector<ControllerCharacter*> characters, int team);
     string giveNewParameters() override ;
 
+    void addBackground(ControllerBackground *controller);
+
+    void addFlipManager(FlipManager *flipManager_);
+
+    void createFlipManager();
+
 private:
     TeamManager* team1;
     TeamManager* team2;
 
     FlipManager* flipManager;
+
+    std::vector<ControllerBackground*> backgrounds;
 
 
 };

@@ -17,7 +17,7 @@ class TeamManager: virtual public Renderable{
 public:
     TeamManager(SDL_RendererFlip initialFlip);
 
-    void handleEvent(SDL_Event event, std::vector<ControllerBackground*> backgrounds);
+    void handleEvent(string event, std::vector<ControllerBackground*> backgrounds);
     void render() override;
     ControllerCharacter* getCurrentCharacter();
     void addEnemyTeam(TeamManager* enemyTeam_);

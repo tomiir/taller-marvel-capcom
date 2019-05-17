@@ -20,43 +20,13 @@ Background::Background(const char* imagePath, string name_, int z_index, SDL_Ren
 
 Background::~Background() = default;
 
-void Background::move(DirectionVector* moveDirection) {
-
-    camera.x += (int) moveDirection->x;
-    camera.y += (int) moveDirection->y;
-    //render();  NO SE PORQUE ESTABA ACA ESTE RENDER (SOY ARI HACIENDO LA SEGUNDA PARTE DEL TP)
-}
 
 void Background::render(){
 
     SDL_RenderCopy(renderer, objTexture, &camera, &objRect);
 }
 
-vector<int> Background::getCameraInfo() {
 
-    vector<int> cameraInfo = {camera.x, camera.y, camera.w, camera.h};
-    return cameraInfo;
-}
-
-
-vector<int> Background::getInfo() {
-
-    std::vector<int> info = {imgWight, imgHeight};
-    return info;
-}
-
-void Background::setSpeeds(int speedCam, double speedPercetageCam) {
-    this->speedCam = speedCam;
-    this->speedPercetageCam = speedPercetageCam;
-}
-
-int Background::getSpeedCam() {
-    return speedCam;
-}
-
-double Background::getSpeedPercetageCam() {
-    return speedPercetageCam;
-}
 
 void Background::updatePos(int posX, int posY) {
 

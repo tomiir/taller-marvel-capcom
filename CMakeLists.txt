@@ -153,8 +153,10 @@ add_executable(
         Server/Background_server/Background_server.cpp
         model/Game/ViewControllerFactory/ViewControllerFactory.cpp
         model/Game/ViewControllerFactory/ViewControllerFactory.h
-
-
+        Server/Game_server/Game_server.h
+        Server/Game_server/Game_server.cpp
+        model/Game/GameObjectServerFactory/GameObjectServerFactory.cpp
+        model/Game/GameObjectServerFactory/GameObjectServerFactory.h
 
 )
 

@@ -5,7 +5,7 @@
 #ifndef TALLER_MARVEL_CAPCOM_GAMEOBJECTCONTROLLERFACTORY_H
 #define TALLER_MARVEL_CAPCOM_GAMEOBJECTCONTROLLERFACTORY_H
 
-#include "../GameObjectFactory/GameObjectFactory.h"
+#include "../GameObjectServerFactory/GameObjectServerFactory.h"
 #include <vector>
 #include "../../../controllers/Controller/ControllerCharacter/ControllerCharacter.h"
 #include "../../../controllers/Controller/ControllerBackground/ControllerBackground.h"
@@ -17,7 +17,7 @@
 class GameObjectControllerFactory {
 
 public:
-    GameObjectControllerFactory(SDL_Renderer *renderer, int screenWidth_, int screenHeight_, int speedCharacter_, int jumpSpeed_);
+    GameObjectControllerFactory(int screenWidth_, int screenHeight_, int speedCharacter_, int jumpSpeed_);
     ~GameObjectControllerFactory();
 
     vector<Controller*> getGameObjectControllers_fight(); // los controllers de la ViewController fight
@@ -28,7 +28,7 @@ private:
 
     int speedCharacter, jumpSpeed;
 
-    GameObjectFactory* factory;
+    GameObjectServerFactory* factory;
     int screenWidth, screenHeight;
 
 

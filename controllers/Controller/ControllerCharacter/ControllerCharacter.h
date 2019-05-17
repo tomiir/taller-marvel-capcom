@@ -24,7 +24,6 @@ public:
     bool isJumping();
     bool isJumpingRight();
     bool isJumpingLeft();
-    Mapper_fight* getMapper();
     void setInitialPos(bool left);
     void move(DirectionVector *pVector);
     void changePosition(int changeX, int changeY);
@@ -34,6 +33,7 @@ public:
     bool isChanging();
     bool isMovingRight();
     bool isMovingLeft();
+    void flip(SDL_RendererFlip flip);
 
 private:
 

@@ -42,13 +42,7 @@ View_fight* ViewFactory::getView_fight() {
         characters_map[(*itr_character_)->getName()] = (dynamic_cast<Character*>(*itr_character_));
     }
 
-    TeamManager *team1 = new TeamManager(SDL_FLIP_HORIZONTAL);
-    TeamManager *team2 = new TeamManager(SDL_FLIP_NONE);
 
-    team1->addEnemyTeam(team2);
-    team2->addEnemyTeam(team1);
-
-    viewFight->addTeams(team1, team2);
 
     return viewFight;
 }

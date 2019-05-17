@@ -15,9 +15,6 @@ void TeamManager:: setCharacters(std::vector<ControllerCharacter*> characters){
     supportCharacter = characters[1];
 }
 
-int TeamManager::getZIndex() {
-    return currentCharacter->getZIndex();
-}
 void TeamManager::changeCharacter(){
 
     ControllerCharacter* aux;
@@ -28,10 +25,7 @@ void TeamManager::changeCharacter(){
     currentCharacter->changePosition(supportCharacter->getInfo()[0], supportCharacter->getInfo()[1]);
 }
 
-void TeamManager::render(){
-    currentCharacter->render();
-}
-void TeamManager:: handleEvent(SDL_Event event, std::vector<ControllerBackground*> backgrounds){
+void TeamManager:: handleEvent(string event, std::vector<ControllerBackground*> backgrounds){
 
     currentCharacter->handleEvent(event);
 

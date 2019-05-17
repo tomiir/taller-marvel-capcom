@@ -5,9 +5,9 @@
 #include "GameObjectControllerFactory.h"
 #include "../../../controllers/Controller/ControllerBackground/ControllerBackground.h"
 
-GameObjectControllerFactory::GameObjectControllerFactory(SDL_Renderer *renderer, int screenWidth_, int screenHeight_, int speedCharacter_, int jumpSpeed_){
+GameObjectControllerFactory::GameObjectControllerFactory(int screenWidth_, int screenHeight_, int speedCharacter_, int jumpSpeed_){
 
-    factory = new GameObjectFactory(renderer, screenWidth_, screenHeight_);
+    factory = new GameObjectServerFactory(screenWidth_, screenHeight_);
     screenWidth = screenWidth_;
     screenHeight = screenHeight_;
     speedCharacter = speedCharacter_;
@@ -19,7 +19,7 @@ GameObjectControllerFactory::~GameObjectControllerFactory() = default;
 
 std::vector<ControllerCharacter*> GameObjectControllerFactory::getControllersCharacter_fight(){
 
-    vector<GameObject*> gameObjects = factory->getGameObjectsCharacters_fight();
+    vector<GameObject_server*> gameObjects = factory->getGameObjectsServerCharacters_fight();
     vector <ControllerCharacter*> characters;
 
     //hardcodeo los z indexs
@@ -36,7 +36,7 @@ std::vector<ControllerCharacter*> GameObjectControllerFactory::getControllersCha
 
 std::vector<ControllerBackground*> GameObjectControllerFactory::getControllersBackground_fight(){
 
-    vector<GameObject*> gameObjects = factory->getGameObjectsBackgrounds_fight();
+    vector<GameObject_server*> gameObjects = factory->getGameObjectsServerBackgrounds_fight();
     vector <ControllerBackground*> backgrounds;
 
 

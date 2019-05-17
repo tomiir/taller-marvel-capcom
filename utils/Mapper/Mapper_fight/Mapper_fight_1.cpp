@@ -58,33 +58,27 @@ string Mapper_fight_1::map(SDL_Event event) {
         }
     }
 
-//    if( event.type == SDL_KEYUP){
-//
-//        switch (event.key.keysym.sym) {
-//
-//            case SDLK_l:
-//                //direction->add(2, 0);
-//                keys[0] = 0;
-//                break;
-//            case SDLK_j:
-//                //direction->add(-2, 0);
-//                keys[1] = 0;
-//                break;
-//            case SDLK_i:
-//                keys[2] = 0;
-//                break;
-//            case SDLK_k:
-//                //direction->add(0, 2);
-//                keys[3] = 0;
-//                break;
-//            case SDLK_m:
-//                keys[4] = 0;
-//                break;
-//            default:
-//                break;
-//        }
-//
-//    }
+    if( event.type == SDL_KEYUP){
+
+        switch (event.key.keysym.sym) {
+
+            case SDLK_k:
+                //direction->add(0, 2);
+                keys[3] = '2';
+                break;
+            case SDLK_j:
+                //direction->add(-2, 0);
+                keys[1] = '2';
+                break;
+            case SDLK_l:
+                //direction->add(2, 0);
+                keys[0] = '2';
+                break;
+            default:
+                break;
+        }
+
+    }
 
     return keys;
 }

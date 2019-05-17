@@ -15,7 +15,7 @@ ViewControllerFactory::ViewControllerFactory(int screenWidth_, int screenHeight_
 ViewControllerFactory::~ViewControllerFactory() = default;
 
 
-ViewController_fight* ViewControllerFactory::getView_fight() {
+ViewController_fight* ViewControllerFactory::getViewController_fight() {
 
 
     ViewController_fight *viewControllerFight = new ViewController_fight();
@@ -44,9 +44,9 @@ ViewController_fight* ViewControllerFactory::getView_fight() {
     team1->addEnemyTeam(team2);
     team2->addEnemyTeam(team1);
 
-//    FlipManager* flipManager = new FlipManager(team1, team2, backgrounds);
-//
-//    viewFight->addFlipManager(flipManager);
+    FlipManager* flipManager = new FlipManager(team1, team2, backgrounds);
+
+    viewControllerFight->addFlipManager(flipManager);
     viewControllerFight->addTeams(team1, team2);
 
 
