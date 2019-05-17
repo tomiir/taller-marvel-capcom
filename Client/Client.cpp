@@ -3,8 +3,7 @@
 //
 
 #include "Client.h"
-#include "../Json/JsonConfigs.h"
-#include "../model/Game/Game.h"
+
 
 #define NOBEAT (char*)"0"
 #define MESSAGEFROMSERVERLEN 43

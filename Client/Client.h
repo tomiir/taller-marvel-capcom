@@ -22,6 +22,8 @@
 #include "../utils/Logger/Logger.h"
 #include "../utils/Mapper/Mapper.h"
 #include <SDL_events.h>
+#include "../Json/JsonConfigs.h"
+#include "../model/Game/Game.h"
 
 
 using namespace std;

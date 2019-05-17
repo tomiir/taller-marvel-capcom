@@ -12,18 +12,16 @@
 #include "../../controllers/Controller/Renderable.h"
 
 
-class TeamManager: virtual public Renderable{
+class TeamManager{
 
 public:
     TeamManager(SDL_RendererFlip initialFlip);
 
     void handleEvent(string event, std::vector<ControllerBackground*> backgrounds);
-    void render() override;
     ControllerCharacter* getCurrentCharacter();
     void addEnemyTeam(TeamManager* enemyTeam_);
 
     void flipCurrentCharacter();
-    int getZIndex() override;
     void setCharacters(std::vector<ControllerCharacter*> characters);
     void setInitialPos(bool left);
 

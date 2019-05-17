@@ -16,7 +16,6 @@
 #include <pthread.h>
 #include <queue>
 #include "../utils/Logger/Logger.h"
-#include "../controllers/ViewController/ViewController_charSelect/ViewController_charSelect.h"
 
 #define MAXCLIENTS 2
 #define PORT 54000

@@ -4,7 +4,7 @@
 
 #include "TeamManager.h"
 
-TeamManager::TeamManager(SDL_RendererFlip initialFlip) : Renderable(){
+TeamManager::TeamManager(SDL_RendererFlip initialFlip){
 
     flip = initialFlip;
 

@@ -1,7 +1,6 @@
 
 #include <csignal>
 #include "Server.h"
-#include "../controllers/ViewController/ViewController_fight/ViewController_fight.h"
 #include "../Json/JsonConfigs.h"
 #include "Game_server/Game_server.h"
 
@@ -28,7 +27,7 @@ queue<string> serverQueue;
 
 bool on = true;
 
-Game_server* game;
+Game_server* game_server;
 
 pthread_mutex_t lock;
 
@@ -221,7 +220,7 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
 
     while(true){
 
-        if (game->haveToChangeViewController()) game->changeViewController();
+        if (game_server->haveToChangeViewController()) game_server->changeViewController();
 
         start = SDL_GetTicks();
 
@@ -316,13 +315,13 @@ void* Server::updateModel(void *arg){
         string event = serverQueue.front();
 
         //aca se realizaría todos los cambios al modelo segun las teclas que le llegaron
-        game->handleEvent(event);
+        game_server->handleEvent(event);
 
         serverQueue.pop();
 
         //aca se pide despues de hacer todos los cambios los parametros que se necesitan para enviarles a los clientes y que estos renderisen
 
-        string updates = game->giveNewParameters();
+        string updates = game_server->giveNewParameters();
 
         //cout << updates << endl;
 
@@ -475,8 +474,8 @@ void Server::connect() {
     const int SCREEN_WIDTH = config->getScreenSize()[0];
     const int SCREEN_HEIGHT = config->getScreenSize()[1];
 
-    game = new Game_server(SCREEN_WIDTH, SCREEN_HEIGHT);
-    game->init();
+    game_server = new Game_server(SCREEN_WIDTH, SCREEN_HEIGHT);
+    game_server->init();
 
     //Se arranca a enviar el conectado y el team a los clientes
 
