@@ -35,6 +35,9 @@ private:
 
     Character* getCharacter(string name);
 
+    int currentChar1;
+    int currentChar2;
+
 };
 
 

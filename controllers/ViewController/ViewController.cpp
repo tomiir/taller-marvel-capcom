@@ -28,5 +28,9 @@ string ViewController::getNextView() {
     return std::__cxx11::string();
 }
 
+string ViewController::giveNewParametes() {
+    return std::__cxx11::string();
+}
+
 
 

@@ -18,10 +18,10 @@ Character::Character(const char* imagePath,string name_,int z_index, SDL_Rendere
 
 Character::~Character() = default;
 
-void Character::move(DirectionVector* direction){
-    objRect.x += (int) direction->x;
-    objRect.y += (int) direction->y;
-}
+//void Character::move(DirectionVector* direction){
+//    objRect.x += (int) direction->x;
+//    objRect.y += (int) direction->y;
+//}
 
 void Character::render() {
 
@@ -31,11 +31,11 @@ void Character::render() {
     SDL_RenderCopyEx(renderer, objTexture, &sprite, &objRect, 0.0, nullptr, flip);
 }
 
-vector<int> Character::getInfo() {
-
-    vector<int> info = {objRect.x, objRect.y, objRect.w, objRect.h};
-    return info;
-}
+//vector<int> Character::getInfo() {
+//
+//    vector<int> info = {objRect.x, objRect.y, objRect.w, objRect.h};
+//    return info;
+//}
 
 void Character::setState(string state) {
 
@@ -48,10 +48,10 @@ void Character::flipSprite(SDL_RendererFlip flip_) {
     flip = flip_;
 }
 
-void Character::stayInFloor() {
-
-    objRect.y = initialY;
-}
+//void Character::stayInFloor() {
+//
+//    objRect.y = initialY;
+//}
 
 
 void Character::changePosition(int changeX, int changeY) {

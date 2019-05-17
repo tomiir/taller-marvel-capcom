@@ -26,9 +26,9 @@ queue<string> serverQueue;
 
 bool on = true;
 
-ViewController* currentViewController = new ViewController_charSelect();
-ViewController* nextView = new ViewController_fight();
-
+ViewController* selectCharViewController = new ViewController_charSelect();
+ViewController* fightViewController = new ViewController_fight();
+ViewController* currentViewController = selectCharViewController;
 
 
 pthread_mutex_t lock;
@@ -325,7 +325,7 @@ void* Server::updateModel(void *arg){
 
         //aca se pide despues de hacer todos los cambios los parametros que se necesitan para enviarles a los clientes y que estos renderisen
 
-        string updates = currentViewController->giveNewParametes();
+        string updates = currentViewController->giveNewParameters();
 
         //cout << updates << endl;
 
@@ -546,10 +546,9 @@ void* Server::popQueue(void* arg){
 }
 
 void Server::changeView() {
+    //Por ahora es asi, pero si hay mas views se le puede agregar mas cosas
+    fightViewController->setTeams
 
-    ViewController* aux2 = currentViewController;
-    currentViewController = nextView;
-    nextView = aux2;
 }
 
 

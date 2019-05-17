@@ -34,7 +34,7 @@ public:
     std::vector<string> getTeam2();
 
 
-    string giveNewParametes();
+    string giveNewParameters();
 
     bool haveToChangeView();
 

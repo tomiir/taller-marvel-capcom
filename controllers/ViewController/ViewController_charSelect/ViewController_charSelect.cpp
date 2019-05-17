@@ -132,9 +132,9 @@ string ViewController_charSelect::getNextView() {
     return "fight";
 }
 
-string ViewController_charSelect::giveNewParametes() {
+string ViewController_charSelect::giveNewParameters() {
 
-    string updates = "00000000000000000000000000000000000000000";
+    string updates = "0000000000000000000000000000000000000000000";
 
     if(recentlySelected == "CaptainAmerica" or recentlySelected2 == "CaptainAmerica") updates[2] = '1';
     else if(recentlySelected == "SpiderMan" or recentlySelected2 == "SpiderMan") updates[3] = '1';

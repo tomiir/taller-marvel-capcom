@@ -10,6 +10,11 @@
 #include "../../../utils/Logger/Logger.h"
 
 ViewController_fight::ViewController_fight():ViewController() {
+
+
+
+
+
 }
 
 ViewController_fight::~ViewController_fight() = default;
@@ -19,10 +24,10 @@ ViewController_fight::~ViewController_fight() = default;
 void ViewController_fight::handleEvent(string event) {
 
     CLogger* logger = CLogger::GetLogger();
-    
+
 // MODIFICAR EL HANDLEEVENT!
     try {
-        
+
         team1->handleEvent(event, backgrounds);
         team2->handleEvent(event, backgrounds);
         //flipManager->update();
@@ -61,5 +66,9 @@ void ViewController_fight::setTeam(vector<ControllerCharacter *> characters, int
         team2->setCharacters(characters);
         team2->setInitialPos(false);
     }
+
+}
+
+string ViewController_fight::giveNewParameters() {
 
 }

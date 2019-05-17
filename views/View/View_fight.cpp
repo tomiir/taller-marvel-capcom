@@ -6,7 +6,8 @@
 #include "View_fight.h"
 
 View_fight::View_fight(SDL_Renderer *renderer_) : View(renderer_) {
-
+    currentChar1 = 0;
+    currentChar2 = 0;
 }
 
 View_fight::~View_fight() = default;
@@ -26,13 +27,13 @@ void View_fight::updateView() {
     // Luego renderizo los elementos que la componen
 
 
-    for (std::vector<ControllerBackground*>::iterator controllerBackground=backgrounds.begin(); controllerBackground != backgrounds.end(); ++controllerBackground) {
-        //Creo que devuelve un puntero al puntero de controller, por eso lo desreferencio.
-        renderables.push_back((*controllerBackground));
+    for (std::vector<Background*>::iterator background=backgrounds.begin(); background != backgrounds.end(); ++background) {
+
+        renderables.push_back((*background));
     }
 
-    renderables.push_back(team1);
-    renderables.push_back(team2);
+    renderables.push_back(team1[currentChar1]);
+    renderables.push_back(team2[currentChar2]);
 
     Comp comp;
     std::make_heap(renderables.begin(),renderables.end(), comp);
@@ -81,9 +82,41 @@ View_fight::updateBackgrounds(char *posFloor_x, char *posFloor_y, char *posMoon_
 
 }
 
+string selectState(char state){
+
+    if (state == '0') return "still";
+    else if(state == '1') return "walk";
+    else if(state == '2') return  "jump";
+    else if(state == '3') return "crowchedDown";
+    else if(state == '4') return "entering";
+    else return NULL;//LOGGEAR ESTE ERROR
+}
+
+SDL_RendererFlip selectFlip(char flip){
+
+    if (flip == '0') return SDL_FLIP_NONE;
+    else if (flip == '1') return  SDL_FLIP_HORIZONTAL;
+}
+
 void View_fight::updateCharacters(char *posT1_x, char *posT1_y, char stateT1, char flip1, char currentCharT1, char *posT2_x, char *posT2_y,
                                   char stateT2, char flip2, char currentCharT2) {
 
+    int pos1_x = atoi(posT1_x);
+    int pos1_y = atoi(posT1_y);
+    int pos2_x = atoi(posT2_x);
+    int pos2_y = atoi(posT2_y);
+
+    currentChar1 = currentCharT1 - '0';
+    currentChar2 = currentCharT2 - '0';
+
+    team1[currentChar1]->changePosition(pos1_x, pos1_y);
+    team2[currentChar2]->changePosition(pos2_x, pos2_y);
+
+    team1[currentChar1]->setState(selectState(stateT1));
+    team2[currentChar2]->setState(selectState(stateT2));
+
+    team1[currentChar1]->flipSprite(selectFlip(flip1));
+    team2[currentChar2]->flipSprite(selectFlip(flip2));
 
 }
 
@@ -103,6 +136,9 @@ void View_fight::setTeams(vector<string> team1_, vector<string> team2_) {
     team1[1] = getCharacter(team1_[1]);
     team2[0] = getCharacter(team2_[0]);
     team2[1] = getCharacter(team2_[1]);
+
+    team1[0]->flipSprite(SDL_FLIP_HORIZONTAL);
+    team2[0]->flipSprite(SDL_FLIP_NONE);
 
 }
 

@@ -23,6 +23,8 @@ public:
     virtual bool end();
     virtual string getNextView();
 
+    virtual string giveNewParameters();
+
 protected:
     std::vector<ControllerBackground*> backgrounds;
 };

@@ -26,10 +26,13 @@ public:
     bool end()override;
     string getNextView()override;
     void setTeam(vector<ControllerCharacter*> characters, int team);
+    string giveNewParameters() override ;
 
 private:
     TeamManager* team1;
     TeamManager* team2;
+
+    FlipManager* flipManager;
 
 
 };
