@@ -31,9 +31,11 @@ public:
 
     void changeView();
 
-    void
-    UpdateBackgrounds(char posFloor_x[5], char PosFloor_y[4], char posMoon_x[5], char posMoon_y[4], char posGalaxy_x[5],
+    void UpdateBackgrounds(char posFloor_x[5], char PosFloor_y[4], char posMoon_x[5], char posMoon_y[4], char posGalaxy_x[5],
                       char posGalaxy_y[4]);
+
+    void updateCharacters(char posCharTeam1_x[5], char posCharTeam1_y[4], char stateCharTeam1, char flipChar1, char currentCharT1,
+                          char posCharTeam2_x[5], char posCharTeam2_y[4], char stateCharTeam2, char flipChar2, char currentCharT2);
 
 private:
     std::map<string, View* > views;

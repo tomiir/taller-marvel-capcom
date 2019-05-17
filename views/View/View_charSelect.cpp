@@ -37,7 +37,7 @@ void View_charSelect::addGameObject_square_gray(GameObject_charSelect* square){
 void View_charSelect::updateView() {
 
     //LIMPIO LA PANTALLA
-    this->view->render();
+    this->render();
 
     //RENDERIZO, EL ORDEN ES IMPORTANTE
     background->render();
@@ -71,15 +71,6 @@ void View_charSelect:: addGameObject_character_selected(GameObject_charSelect* g
     else{
         team_2_selected[gameObject->getName()] = gameObject;
     }
-}
-
-
-
-
-void View_charSelect::addBackground(ControllerBackground* controller){
-
-    // ESTE LO DEFINO POR HERENCIA PERO NO LO USA
-    backgrounds.push_back(controller);
 }
 
 
@@ -258,3 +249,4 @@ void View_charSelect::updateCharacterImages(char *selected_1_, char *selected_2_
 
 
 }
+

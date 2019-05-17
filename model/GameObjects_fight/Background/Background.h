@@ -19,6 +19,7 @@ public:
     void setSpeeds(int speedCam,double speedPercetageCam);
     int getSpeedCam();
     double getSpeedPercetageCam();
+    void updatePos(int posX, int posY);
 
 
 private:

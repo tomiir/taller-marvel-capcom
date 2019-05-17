@@ -18,20 +18,23 @@ public:
     View_fight(SDL_Renderer* renderer_);
     ~View_fight();
     void updateView() override;
-    void addFlipManager(FlipManager* flipManager_);
-    void addBackground(Background* background) override;
-    void addTeams(TeamManager* teamManager1, TeamManager* teamManager2);
+    void addBackground(Background* background);
     bool end()override;
     string getNextView()override;
-    void setTeam(vector<Character*> characters, int team);
-    void createFlipManager();
-
     void addCharacter(Character *pCharacter);
+    void updateBackgrounds(char* posFloor_x, char* posFloor_y, char* posMoon_x, char* posMoon_y, char* posGalaxy_x, char* posGalaxy_y);
+    void updateCharacters(char *posT1_x, char *posT1_y, char stateT1, char flip1, char currentCharT1, char *posT2_x, char *posT2_y, char stateT2,
+                          char flip2, char currentCharT2);
+
+
+    void setTeams(vector<string> team1, vector<string> team2);
 
 private:
-    TeamManager* team1;
-    TeamManager* team2;
-    FlipManager* flipManager;
+    vector <Character*> team1;
+    vector <Character*> team2;
+
+    Character* getCharacter(string name);
+
 };
 
 

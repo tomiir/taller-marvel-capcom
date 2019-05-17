@@ -57,3 +57,9 @@ int Background::getSpeedCam() {
 double Background::getSpeedPercetageCam() {
     return speedPercetageCam;
 }
+
+void Background::updatePos(int posX, int posY) {
+
+    camera.x = posX;
+    camera.y = posY;
+}

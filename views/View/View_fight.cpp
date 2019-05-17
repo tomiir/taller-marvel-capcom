@@ -20,7 +20,7 @@ struct Comp {
 void View_fight::updateView() {
     // Primero renderizo (limpio) la vista;
 
-    this->view->render();
+    this->render();
     std::vector<Renderable*> renderables;
 
     // Luego renderizo los elementos que la componen
@@ -48,20 +48,8 @@ void View_fight::updateView() {
 
 }
 
-
-
-void View_fight::addFlipManager(FlipManager *flipManager_) {
-    flipManager = flipManager_;
-
-}
-
 void View_fight::addBackground(Background *background) {
     backgrounds.push_back(background);
-}
-
-void View_fight::addTeams(TeamManager *teamManager1, TeamManager *teamManager2) {
-    team1 = teamManager1;
-    team2 = teamManager2;
 }
 
 bool View_fight::end() {
@@ -72,22 +60,50 @@ string View_fight::getNextView() {
     return "todavia_no_existe";
 }
 
-void View_fight::setTeam(vector<Character *> characters, int team) {
-    if (team == 1) {
-        team1->setCharacters(characters);
-        team1->setInitialPos(true);
-    }
-    else {
-
-        team2->setCharacters(characters);
-        team2->setInitialPos(false);
-    }
-}
-
-void View_fight::createFlipManager() {
-    flipManager->create();
-}
-
 void View_fight::addCharacter(Character * character) {
     characters.push_back(character);
 }
+
+void
+View_fight::updateBackgrounds(char *posFloor_x, char *posFloor_y, char *posMoon_x, char *posMoon_y, char *posGalaxy_x,
+                             char *posGalaxy_y) {
+
+    int floor_x = atoi(posFloor_x);
+    int floor_y = atoi(posFloor_y);
+    int moon_x = atoi(posMoon_x);
+    int moon_y = atoi(posMoon_y);
+    int galaxy_x = atoi(posGalaxy_x);
+    int galaxy_y = atoi(posGalaxy_y);
+
+    backgrounds[0]->updatePos(floor_x, floor_y);
+    backgrounds[1]->updatePos(moon_x, moon_y);
+    backgrounds[2]->updatePos(galaxy_x, galaxy_y);
+
+}
+
+void View_fight::updateCharacters(char *posT1_x, char *posT1_y, char stateT1, char flip1, char currentCharT1, char *posT2_x, char *posT2_y,
+                                  char stateT2, char flip2, char currentCharT2) {
+
+
+}
+
+Character* View_fight::getCharacter(string name){
+
+    if (name == "CaptainAmerica") return characters[0];
+    else if(name == "ChunLi") return characters[1];
+    else if(name == "SpiderMan") return characters[2];
+    else if(name == "Venom") return characters[3];
+    else return NULL;// LOGGEAR ESTE ERROR
+}
+
+
+void View_fight::setTeams(vector<string> team1_, vector<string> team2_) {
+
+    team1[0] = getCharacter(team1_[0]);
+    team1[1] = getCharacter(team1_[1]);
+    team2[0] = getCharacter(team2_[0]);
+    team2[1] = getCharacter(team2_[1]);
+
+}
+
+

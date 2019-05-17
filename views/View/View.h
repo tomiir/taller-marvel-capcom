@@ -16,16 +16,8 @@ public:
     virtual ~View();
     void render();
     virtual void updateView();
-    virtual void handleEvent();
-    virtual void addBackground(Background* background);
     virtual bool end();
     virtual string getNextView();
-
-    virtual void updateGreySquares(char* greySquares);
-
-    virtual void updateSelects(char *string, char *string1);
-
-    virtual void updateCharacterImages(char *string, char *string1);
 
 protected:
     SDL_Renderer* renderer;

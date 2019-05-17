@@ -106,15 +106,15 @@ View *Game::getView() {
 
 void Game::updateGreySquares(char* greySquares) {
 
-    this->view->updateGreySquares(greySquares);
+    dynamic_cast<View_charSelect*>(this->view)->updateGreySquares(greySquares);
 }
 
 void Game::updateSelects(char *selectT1, char *selectT2) {
-    this->view->updateSelects(selectT1, selectT2);
+    dynamic_cast<View_charSelect*>(this->view)->updateSelects(selectT1, selectT2);
 }
 
 void Game::updateCharactersImages(char *selected_1, char *selected_2) {
-    this->view->updateCharacterImages(selected_1, selected_2);
+    dynamic_cast<View_charSelect*>(this->view)->updateCharacterImages(selected_1, selected_2);
 }
 
 void Game::render() {
@@ -126,13 +126,23 @@ bool Game::haveToChangeView() {
 }
 
 void Game::changeView() {
+    vector<string> team1 =  dynamic_cast<View_charSelect*>(this->view)->getTeam1();
+    vector<string> team2 =  dynamic_cast<View_charSelect*>(this->view)->getTeam2();
+
     string nextViewName = (this->view)->getNextView();
     View* nextView = views.find(nextViewName)->second;
     this->view = nextView;
+    dynamic_cast<View_fight*>(this->view)->setTeams(team1, team2);
 }
 
-void Game::UpdateBackgrounds(char *posFloor_x, char *PosFloor_y, char *posMoon_x, char *posMoon_y, char *posGalaxy_x,
+void Game::UpdateBackgrounds(char *posFloor_x, char *posFloor_y, char *posMoon_x, char *posMoon_y, char *posGalaxy_x,
                              char *posGalaxy_y) {
+    dynamic_cast<View_fight*>(this->view)->updateBackgrounds(posFloor_x, posFloor_y, posMoon_x, posMoon_y, posGalaxy_x, posGalaxy_y);
+}
 
+void Game::updateCharacters(char *posCharTeam1_x, char *posCharTeam1_y, char stateCharTeam1, char flipChar1, char currentCharT1,
+                            char *posCharTeam2_x, char *posCharTeam2_y, char stateCharTeam2, char flipChar2, char currentCharT2) {
+    dynamic_cast<View_fight*>(this->view)->updateCharacters(posCharTeam1_x, posCharTeam1_y, stateCharTeam1, flipChar1, currentCharT1,
+            posCharTeam2_x, posCharTeam2_y, stateCharTeam2, flipChar2, currentCharT2);
 }
 

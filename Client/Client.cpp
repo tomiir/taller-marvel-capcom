@@ -7,6 +7,7 @@
 #include "../model/Game/Game.h"
 
 #define NOBEAT (char*)"0"
+#define MESSAGEFROMSERVERLEN 43
 #define BEAT (char*)"1"
 
 //----SERVER VARIABLES----
@@ -14,7 +15,7 @@ int serverSocket_c;
 struct sockaddr_in serverAddr_c;
 socklen_t  serverSize_c;
 
-char messageFromServer[41];
+char messageFromServer[MESSAGEFROMSERVERLEN];
 char messageToSever[4096];
 char messageFromInput[4096];
 char aux[5];
@@ -212,10 +213,10 @@ void* Client::recvFromServer(void* arg) {
 
 
     while(connect2){
-        memset(messageFromServer, 0, 41);
+        memset(messageFromServer, 0, MESSAGEFROMSERVERLEN);
 
         //Aca habrai que chequear que si no recibe por un tiempo se da por uerto el server(seria como el heartbeat)
-        int bytesReceived = recv(serverSocket_c, messageFromServer, 41, 0);
+        int bytesReceived = recv(serverSocket_c, messageFromServer, MESSAGEFROMSERVERLEN, 0);
 
         if(bytesReceived == -1){
             checkRecvFromServerError();
@@ -292,10 +293,12 @@ void* Client::render(void *arg) {
             char flipChar1 = messageReceived[39];
             char flipChar2 = messageReceived[40];
 
-            game->updateCharacters(posCharTeam1_x, posCharTeam1_y, stateCharTeam1, flipChar1, posCharTeam2_x, posCharTeam2_y, stateCharTeam2, flipChar2);
+            char currentCharT1 = messageReceived[41];
+            char currentCharT2 = messageReceived[42];
 
-            //Actualizo el flip para que queden las imagenes mirando para el lado correcto
-            game->updateFlip();
+            game->updateCharacters(posCharTeam1_x, posCharTeam1_y, stateCharTeam1, flipChar1, currentCharT1,
+                    posCharTeam2_x, posCharTeam2_y, stateCharTeam2, flipChar2, currentCharT2);
+
 
             game->render();
             queueRecv.pop();

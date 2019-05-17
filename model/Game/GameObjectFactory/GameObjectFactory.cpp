@@ -85,13 +85,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
 
         Character* C;
 
-
-        if(gameObjects.size() < 2){
-            C = new Character(path.c_str(), spriteManagerName,  zIndex, renderer, spriteManager , initialY, name, size);
-        }
-        else{
-            C = new Character(path.c_str(), spriteManagerName, zIndex, renderer, spriteManager , initialY, name, size) ;
-        }
+        C = new Character(path.c_str(), spriteManagerName,  zIndex, renderer, spriteManager , initialY, name, size);
 
         C->setInitialXPositions(width/2, (screenWidth - width) - (width/2));
 
@@ -155,8 +149,6 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsBackgrounds_fight() {
         int cameraSpeedB = speedCharacter * speedPercentageB;
         dynamic_cast<Background*>(*itr)->setSpeeds(cameraSpeedB,speedPercentageB);
     }
-
-
 
 
     return gameObjects;

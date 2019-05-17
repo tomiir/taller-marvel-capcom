@@ -17,11 +17,9 @@ public:
     explicit View_charSelect(SDL_Renderer *renderer_);
     ~View_charSelect() override;
     void updateView() override;
-    void updateGreySquares(char* greySquares ) override;
-    void updateSelects(char *selectT1, char *selectT2) override;
-    void updateCharacterImages(char* selected_1, char* selected_2) override;
-    void addBackground(ControllerBackground *controller) override;
-
+    void updateGreySquares(char* greySquares);
+    void updateSelects(char *selectT1, char *selectT2);
+    void updateCharacterImages(char* selected_1, char* selected_2);
     bool end() override;
     string getNextView() override;
 
@@ -41,8 +39,8 @@ public:
     void addGameObject_character_selected(GameObject_charSelect *gameObject, int team);
 
 
-    std::vector<string> getTeam1();
-    std::vector<string> getTeam2();
+    std::vector<string> getTeam1() ;
+    std::vector<string> getTeam2() ;
 
 
 
