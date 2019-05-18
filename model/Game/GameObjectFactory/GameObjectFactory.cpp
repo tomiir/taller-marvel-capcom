@@ -151,8 +151,11 @@ vector<GameObject_charSelect *> GameObjectFactory::getgameobjectChar_select_figh
 
     vector <int> aux;
 
+    int aux_y = (screenHeight - 600)/2;
+    int aux_x = (screenWidth - 800)/2;
+
     //FONDO
-    aux = {200,0,800,600};
+    aux = {aux_x,aux_y,800,600};
     GameObject_charSelect* background =  new GameObject_charSelect("../Images/menu_seleccion/Menu personajes.png","background", 0, renderer, aux );
     gameObjects.push_back(background);
 
@@ -234,19 +237,19 @@ vector<GameObject_charSelect *> GameObjectFactory::getgameobjectChar_select_figh
 
 
     //CUADRADITOS GRISES
-    aux = {240,296,153,117};
+    aux = {240 + aux_x,296 + aux_y,153,117};
     GameObject_charSelect* square_grey_1=  new GameObject_charSelect("../Images/menu_seleccion/Seleccionado.png","CaptainAmerica", 0, renderer, aux );
     gameObjects.push_back(square_grey_1);
 
-    aux = {403, 296,153,117};
+    aux = {403 + aux_x, 296 + aux_y,153,117};
     GameObject_charSelect* square_grey_2=  new GameObject_charSelect("../Images/menu_seleccion/Seleccionado.png","SpiderMan", 0, renderer, aux );
     gameObjects.push_back(square_grey_2);
 
-    aux = {242,422,153,117};
+    aux = {242 + aux_x,422 + aux_y,153,117};
     GameObject_charSelect* square_grey_3 =  new GameObject_charSelect("../Images/menu_seleccion/Seleccionado.png","ChunLi", 0, renderer, aux );
     gameObjects.push_back(square_grey_3);
 
-    aux = {404,422,153,117};
+    aux = {404 + aux_x,422 + aux_y,153,117};
     GameObject_charSelect* square_grey_4=  new GameObject_charSelect("../Images/menu_seleccion/Seleccionado.png","Venom", 0, renderer, aux );
     gameObjects.push_back(square_grey_4);
 

@@ -9,8 +9,8 @@ GameObject_charSelect::GameObject_charSelect(const char* folderPath, std::string
     this->posc = posc;
     // posc =  initialX, initialY, width, height
     if (strcmp(name.c_str(), "background")==0){
-        objRect_source = SDL_Rect{posc[0], posc[1], posc[2], posc[3]};
-        objRect_dest = SDL_Rect{0, 0, posc[2], posc[3]};
+        objRect_source = SDL_Rect{200, 0, posc[2], posc[3]};
+        objRect_dest = SDL_Rect{posc[0], posc[1], posc[2], posc[3]};
     }
     else{
         objRect_source = SDL_Rect{0, 0, posc[2], posc[3]};

@@ -251,6 +251,7 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
 
 
         int aux = strlen(received);
+        if(aux != 5) continue;
 
         switch (clientIter){
 
@@ -276,7 +277,10 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
         }
 
         string recv = (string)(received);
+
+        pthread_mutex_lock(&mutex);
         serverQueue.push(recv);
+        pthread_mutex_unlock(&mutex);
 
         if ((1000 / speed) > (SDL_GetTicks() - start)) {
             SDL_Delay((1000 / speed) - (SDL_GetTicks() - start));

@@ -14,7 +14,7 @@ class View_charSelect: public View {
 
 public:
 
-    explicit View_charSelect(SDL_Renderer *renderer_);
+    explicit View_charSelect(SDL_Renderer *renderer_, int screenWidth_, int screenHeight_);
     ~View_charSelect() override;
     void updateView() override;
     void updateGreySquares(char* greySquares);
@@ -98,6 +98,9 @@ private:
 
     string preselectedT1 = "CaptainAmerica";
     string preselectedT2 = "SpiderMan";
+
+    int screenWidth;
+    int screenHeight;
 
 };
 

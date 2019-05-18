@@ -5,20 +5,27 @@
 #include "View_charSelect.h"
 #include <algorithm>
 
-View_charSelect::View_charSelect(SDL_Renderer *renderer_): View(renderer_){
+View_charSelect::View_charSelect(SDL_Renderer *renderer_, int screenWidth_, int screenHeight_): View(renderer_){
 
-    squarePosition["CaptainAmerica"] = {233,291,165,127}; // FALTA AGREGAR LAS POSICIONES
-    squarePosition["SpiderMan"] = {400,291,165,127}; // FALTA AGREGAR LAS POSICIONES
-    squarePosition["ChunLi"] = {234,417,165,127}; // FALTA AGREGAR LAS POSICIONES
-    squarePosition["Venom"] = {399,417,165,127}; // FALTA AGREGAR LAS POSICIONES
+    screenWidth = screenWidth_;
+    screenHeight = screenHeight_;
 
-    std::vector<int> aux_1 = {497,0,303,300};// arriba a la derecha
-    std::vector<int> aux_2 = {497,300,303,300};// abajo a la derecha
-    std::vector<int> aux_3 = {0,0,303,300};// arriba a la izquierda
-    std::vector<int> aux_4 = {0,300,303,300};// abajo a la izquierda
+    int aux_y = (screenHeight - 600)/2;
+    int aux_x = (screenWidth - 800)/2;
+
+    squarePosition["CaptainAmerica"] = {233 + aux_x,291 + aux_y,165,127}; // FALTA AGREGAR LAS POSICIONES
+    squarePosition["SpiderMan"] = {400 + aux_x,291 + aux_y,165,127}; // FALTA AGREGAR LAS POSICIONES
+    squarePosition["ChunLi"] = {234 + aux_x,417 + aux_y,165,127}; // FALTA AGREGAR LAS POSICIONES
+    squarePosition["Venom"] = {399 + aux_x,417 + aux_y,165,127}; // FALTA AGREGAR LAS POSICIONES
+
+    std::vector<int> aux_1 = {497 + aux_x,0 + aux_y,303,300};// arriba a la derecha
+    std::vector<int> aux_2 = {497 + aux_x,300 + aux_y,303,300};// abajo a la derecha
+    std::vector<int> aux_3 = {0 + aux_x,0 + aux_y,303,300};// arriba a la izquierda
+    std::vector<int> aux_4 = {0 + aux_x,300 + aux_y,303,300};// abajo a la izquierda
 
     posc_side_1 = {aux_1 , aux_2};
     posc_side_2 = {aux_3, aux_4};
+
 }
 
 void View_charSelect::addGameObject_square(GameObject_charSelect* square, int team){

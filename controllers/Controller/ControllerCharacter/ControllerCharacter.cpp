@@ -22,51 +22,43 @@ DirectionVector* giveDirectionVect(string event){
 
     DirectionVector* direction = new DirectionVector();
 
-    if (event == "00000") return direction;
+    if (event == "00000"){
+      direction->add(3, 0);
+    }
     else if (event == "10000") {
         direction->add(1, 0);
-        return direction;
     }
     else if (event == "01000") {
         direction->add(-1, 0);
-        return direction;
     }
     else if (event == "00100") {
         direction->add(0, -1);
-        return direction;
     }
     else if (event == "00010") {
         direction->add(0, 1);
-        return direction;
     }
     else if (event == "00001") {
         direction->add(4, 0);
-        return direction;
     }
     else if (event == "10100") {
         direction->setDiagonal(1);
         direction->setY(-1);
-        return direction;
     }
     else if (event == "01100"){
         direction->setDiagonal(-1);
         direction->setY(-1);
-        return direction;
     }
     else if (event[3] == '2'){
         direction->add(0, 2);
-        return direction;
     }
     else if (event[1] == '2'){
         direction->add(-2, 0);
-        return direction;
     }
     else if (event[0] == '2'){
         direction->add(2, 0);
-        return direction;
     }
 
-    cout << event << endl;
+    return direction;
 }
 
 
@@ -97,7 +89,7 @@ void ControllerCharacter::handleEvent(string event) {
     if (direction->isEqual(STOPLEFT)  || inAir) movingLeft = false;
     if(direction->isEqual(KEYSRELEASED) and !inAir and !crowchedDown and !movingLeft and !movingRight) state = "still";
 
-    bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal;
+    bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal - 200;
     bool characterIsntInLeftBoundary = info[0] >= 0;
 
 
@@ -155,7 +147,7 @@ void ControllerCharacter::handleEvent(string event) {
 
         gameObject->move(step);
 
-        bool characterInFloor = info[1] >= (screenHeight - info[3] - jumpDistance);
+        bool characterInFloor = info[1] >= (screenHeight - info[3] - jumpDistance) - 280;
 
         if ( characterInFloor ) {
             inAir = jumpRight = jumpLeft = entering = false;

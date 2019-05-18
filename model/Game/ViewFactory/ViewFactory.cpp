@@ -56,7 +56,7 @@ View_charSelect * ViewFactory:: getView_charSelect(){
     GameObjectFactory* factory = new GameObjectFactory(renderer, screenWidth, screenHeight);
     vector <GameObject_charSelect*> gameObjects = factory->getgameobjectChar_select_fight();
 
-    View_charSelect* viewCharSelect = new View_charSelect(renderer);
+    View_charSelect* viewCharSelect = new View_charSelect(renderer, screenWidth, screenHeight);
     viewCharSelect->addGameObject_background(gameObjects[0]);
 
 
