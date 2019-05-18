@@ -263,3 +263,7 @@ vector<int> ControllerCharacter::getPosInfo() {
 string ControllerCharacter::getState() {
     return dynamic_cast<Character_server*>(gameObject)->getState();
 }
+
+SDL_RendererFlip ControllerCharacter::getFlip() {
+    return dynamic_cast<Character_server*>(gameObject)->getFlip();
+}

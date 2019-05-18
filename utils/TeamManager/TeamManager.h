@@ -30,6 +30,8 @@ public:
 
     char getStateCurrentCharacter();
 
+    char getFlipCurrentCharacter();
+
 private:
 
 

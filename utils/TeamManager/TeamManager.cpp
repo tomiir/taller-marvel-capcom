@@ -82,3 +82,11 @@ char TeamManager::getStateCurrentCharacter() {
     else if (state == "entering") return '4';
 
 }
+
+char TeamManager::getFlipCurrentCharacter() {
+
+    SDL_RendererFlip flip = currentCharacter->getFlip();
+
+    if(flip == SDL_FLIP_NONE) return '0';
+    if(flip == SDL_FLIP_HORIZONTAL) return '1';
+}

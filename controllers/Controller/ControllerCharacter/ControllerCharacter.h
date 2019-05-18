@@ -39,6 +39,8 @@ public:
 
     string getState();
 
+    SDL_RendererFlip getFlip();
+
 private:
 
     int screenWidth, screenHeight, speedCharacter;

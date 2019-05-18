@@ -71,3 +71,7 @@ vector<int> Character_server::getPosInfo() {
 string Character_server::getState() {
     return state;
 }
+
+SDL_RendererFlip Character_server::getFlip() {
+    return flip;
+}
