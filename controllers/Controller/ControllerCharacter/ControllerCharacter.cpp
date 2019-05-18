@@ -217,7 +217,7 @@ void ControllerCharacter::flip(SDL_RendererFlip flip) {
 
 void ControllerCharacter::changePosition(int changeX, int changeY) {
 
-    dynamic_cast<Character*> (gameObject)->changePosition(changeX, changeY);
+    dynamic_cast<Character_server*> (gameObject)->changePosition(changeX, changeY);
 
 }
 

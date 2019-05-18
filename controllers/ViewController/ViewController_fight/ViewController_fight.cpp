@@ -66,6 +66,8 @@ void ViewController_fight::handleEvent(string event) {
 
     CLogger* logger = CLogger::GetLogger();
 
+    if (event == "") return;
+
 // MODIFICAR EL HANDLEEVENT!
     try {
         if ((event[5] == '0' and event[6] == '0') or (event[5] == '1' and event[6] == '0')){
