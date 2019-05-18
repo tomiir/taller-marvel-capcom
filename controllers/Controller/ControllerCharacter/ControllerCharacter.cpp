@@ -255,3 +255,11 @@ void ControllerCharacter::setInitialPos(bool left) {
     dynamic_cast<Character*>(gameObject)->setInitialPos(left);
 
 }
+
+vector<int> ControllerCharacter::getPosInfo() {
+    return gameObject->getPosInfo();
+}
+
+string ControllerCharacter::getState() {
+    return dynamic_cast<Character_server*>(gameObject)->getState();
+}

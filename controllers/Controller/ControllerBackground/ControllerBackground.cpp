@@ -115,3 +115,8 @@ void ControllerBackground::update(ControllerCharacter *controllerCharacterOnLeft
     characterOnRightInfo = characterOnRightInfo_;
 
 }
+
+vector<int> ControllerBackground::getPosCamera() {
+
+     return gameObject->getPosInfo();
+}

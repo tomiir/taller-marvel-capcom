@@ -22,7 +22,7 @@ public:
     virtual vector<int> getInfo();
     virtual void stayInFloor();
     string getName();
-
+    virtual vector<int> getPosInfo();
 
 protected:
     string name;

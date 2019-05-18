@@ -21,3 +21,6 @@ void GameObject_server::stayInFloor() {}
 string GameObject_server::getName() {
     return name;
 }
+
+vector<int> GameObject_server::getPosInfo() {
+}

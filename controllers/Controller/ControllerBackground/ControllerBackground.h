@@ -20,6 +20,7 @@ class ControllerBackground : public Controller {
             ~ControllerBackground();
             void handleEvent(string event, ControllerCharacter* controllerCharacter1, ControllerCharacter* controllerCharacter2);
             void update(ControllerCharacter* controllerCharacterOnLeft,const vector<int>& characterOnLeftInfo, ControllerCharacter* controllerCharacterOnRight,const vector<int>& characterOnRightInfo);
+            vector<int> getPosCamera();
 
     private:
 

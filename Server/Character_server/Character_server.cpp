@@ -59,3 +59,15 @@ void Character_server::flipSprite(SDL_RendererFlip flip_) {
 
     flip = flip_;
 }
+
+vector<int> Character_server::getPosInfo() {
+    vector<int> positions;
+    positions[0] = objRect.x;
+    positions[1] = objRect.y;
+
+    return positions;
+}
+
+string Character_server::getState() {
+    return state;
+}

@@ -67,3 +67,18 @@ void TeamManager::setInitialPos(bool left) {
     currentCharacter->setInitialPos(left);
 
 }
+
+vector<int> TeamManager::getPosCurrentCharacter() {
+    return currentCharacter->getPosInfo();
+}
+
+char TeamManager::getStateCurrentCharacter() {
+
+    string state = currentCharacter->getState();
+    if (state == "still") return '0';
+    else if (state == "walk") return '1';
+    else if (state == "jump") return '2';
+    else if (state == "crowchedDown") return '3';
+    else if (state == "entering") return '4';
+
+}

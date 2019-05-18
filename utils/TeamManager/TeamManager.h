@@ -26,6 +26,10 @@ public:
     void setInitialPos(bool left);
 
 
+    vector<int> getPosCurrentCharacter();
+
+    char getStateCurrentCharacter();
+
 private:
 
 
