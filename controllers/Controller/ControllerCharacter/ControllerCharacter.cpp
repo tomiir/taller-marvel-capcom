@@ -23,7 +23,7 @@ DirectionVector* giveDirectionVect(string event){
     DirectionVector* direction = new DirectionVector();
 
     if (event == "00000"){
-      direction->add(3, 0);
+      direction->add(0, 0);
     }
     else if (event == "10000") {
         direction->add(1, 0);
@@ -84,9 +84,18 @@ void ControllerCharacter::handleEvent(string event) {
         crowchedDown = true;
     }
 
-    if (direction->isEqual(GETTINGUP)) crowchedDown = false;
-    if (direction->isEqual(STOPRIGHT) || inAir) movingRight = false;
-    if (direction->isEqual(STOPLEFT)  || inAir) movingLeft = false;
+    if (direction->isEqual(GETTINGUP)) {
+        state = "still";
+        crowchedDown = false;
+    }
+    if (direction->isEqual(STOPRIGHT) || inAir) {
+        movingRight = false;
+        state = "still";
+    }
+    if (direction->isEqual(STOPLEFT)  || inAir) {
+        movingLeft = false;
+        state = "still";
+    }
     if(direction->isEqual(KEYSRELEASED) and !inAir and !crowchedDown and !movingLeft and !movingRight) state = "still";
 
     bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal - 200;

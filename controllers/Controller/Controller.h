@@ -32,7 +32,7 @@ protected:
     DirectionVector* GETTINGUP = new DirectionVector(0, 2);
     DirectionVector* STOPRIGHT = new DirectionVector(2, 0);
     DirectionVector* STOPLEFT = new DirectionVector(-2, 0);
-    DirectionVector* KEYSRELEASED = new DirectionVector(3, 0);
+    DirectionVector* KEYSRELEASED = new DirectionVector(0, 0);
     DirectionVector* CHANGECHARACTER = new DirectionVector(4, 0);
 
 
