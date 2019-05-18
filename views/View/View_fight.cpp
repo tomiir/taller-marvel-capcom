@@ -130,12 +130,10 @@ Character* View_fight::getCharacter(string name){
 }
 
 
-void View_fight::setTeams(vector<string> team1_, vector<string> team2_) {
+void View_fight::setTeams(Character* characterT1_1, Character* characterT1_2, Character* characterT2_1, Character* characterT2_2) {
 
-    team1[0] = getCharacter(team1_[0]);
-    team1[1] = getCharacter(team1_[1]);
-    team2[0] = getCharacter(team2_[0]);
-    team2[1] = getCharacter(team2_[1]);
+    team1 = {characterT1_1, characterT1_2};
+    team2 = {characterT2_1, characterT2_2};
 
     team1[0]->flipSprite(SDL_FLIP_HORIZONTAL);
     team2[0]->flipSprite(SDL_FLIP_NONE);

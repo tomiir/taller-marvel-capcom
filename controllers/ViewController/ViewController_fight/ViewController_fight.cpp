@@ -69,10 +69,10 @@ void ViewController_fight::handleEvent(string event) {
 // MODIFICAR EL HANDLEEVENT!
     try {
         if ((event[5] == '0' and event[6] == '0') or (event[5] == '1' and event[6] == '0')){
-            team1->handleEvent(event.substr(0, 4), backgrounds);
+            team1->handleEvent(event.substr(0, 5), backgrounds);
         }
         else if ((event[5] == '0' and event[6] == '1') or (event[5] == '1' and event[6] == '1')){
-            team2->handleEvent(event.substr(0, 4), backgrounds);
+            team2->handleEvent(event.substr(0, 5), backgrounds);
         }
 
         flipManager->update();

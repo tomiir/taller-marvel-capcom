@@ -45,12 +45,12 @@ void Game_server::changeViewController() {
         vector<string> team2 = dynamic_cast<ViewController_charSelect*>(viewsController["char_select"]) -> getTeam2();
 
         vector<ControllerCharacter*> aux = {(characters.find(team1[0])->second), (characters.find(team1[1])->second)};
-        dynamic_cast<ViewController_fight*>(viewsController["figth"])->setTeam(aux,1);
+        dynamic_cast<ViewController_fight*>(viewsController["fight"])->setTeam(aux,1);
 
         aux =  {(characters.find(team2[0])->second), (characters.find(team2[1])->second)};
-        dynamic_cast<ViewController_fight*>(viewsController["figth"])->setTeam(aux,2);
+        dynamic_cast<ViewController_fight*>(viewsController["fight"])->setTeam(aux,2);
 
-        dynamic_cast<ViewController_fight*>(viewsController["figth"])->createFlipManager();
+        dynamic_cast<ViewController_fight*>(viewsController["fight"])->createFlipManager();
     }
 
     this->currentViewController = nextViewController;

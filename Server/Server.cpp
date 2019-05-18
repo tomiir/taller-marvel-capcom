@@ -140,10 +140,9 @@ void Server::brokeConnection(int arg){
 
 
 
-
-
 void *Server::Send(void *clientIter_){
 
+    signal(SIGPIPE, SIG_IGN);
 
     int clientIter = *(int *) clientIter_;
 
@@ -227,6 +226,7 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
         signal(SIGINT, brokeConnection);
         signal(SIGTSTP, brokeConnection);
         signal(SIGQUIT, brokeConnection);
+
 
         if(serverBrokeConnection == 1){
 
@@ -350,7 +350,6 @@ void* Server::updateModel(void *arg){
                 readThread = pthread_create(&clientUpdateThreads[client4], nullptr, Send,
                                             &client4);
             }
-
 
 
             if(readThread != 0) {

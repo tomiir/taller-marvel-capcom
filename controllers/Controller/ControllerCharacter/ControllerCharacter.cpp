@@ -65,9 +65,9 @@ DirectionVector* giveDirectionVect(string event){
         direction->add(2, 0);
         return direction;
     }
+
+    cout << event << endl;
 }
-
-
 
 
 
@@ -186,7 +186,7 @@ void ControllerCharacter::handleEvent(string event) {
 
 
 
-    dynamic_cast<Character*>(gameObject)->setState(state);
+    dynamic_cast<Character_server*>(gameObject)->setState(state);
 
 }
 
@@ -252,7 +252,7 @@ bool ControllerCharacter::isMovingLeft() {
 
 void ControllerCharacter::setInitialPos(bool left) {
 
-    dynamic_cast<Character*>(gameObject)->setInitialPos(left);
+    dynamic_cast<Character_server*>(gameObject)->setInitialPos(left);
 
 }
 

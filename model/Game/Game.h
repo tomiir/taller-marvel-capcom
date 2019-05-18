@@ -42,6 +42,7 @@ private:
     std::map<string, View*>::iterator itr_views= views.begin();
 
     std::map<string, Character*> characters;
+    std::map<string, Character*>::iterator itr_characters= characters.begin();
 
     bool isRunning;
     SDL_Window* window;
@@ -49,7 +50,8 @@ private:
     View* view;
     ViewFactory * factory; //Lo agrego para crear la primera ViewController
     int screenWidth, screenHeight;
-    void setControllerCharacters(View_fight *view, map<string, ControllerCharacter *> controllers);
+
+    Character* getCharacter(string character);
 
 };
 

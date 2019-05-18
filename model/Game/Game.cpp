@@ -94,6 +94,14 @@ bool Game::haveToChangeView() {
     return this->view->end();
 }
 
+
+Character *Game::getCharacter(string character){
+
+    itr_characters = characters.find(character);
+    return itr_characters->second;
+}
+
+
 void Game::changeView() {
     vector<string> team1 =  dynamic_cast<View_charSelect*>(this->view)->getTeam1();
     vector<string> team2 =  dynamic_cast<View_charSelect*>(this->view)->getTeam2();
@@ -101,7 +109,8 @@ void Game::changeView() {
     string nextViewName = (this->view)->getNextView();
     View* nextView = views.find(nextViewName)->second;
     this->view = nextView;
-    dynamic_cast<View_fight*>(this->view)->setTeams(team1, team2);
+
+    dynamic_cast<View_fight*>(this->view)->setTeams(getCharacter(team1[0]), getCharacter(team1[1]), getCharacter(team2[0]), getCharacter(team2[1]));
 }
 
 void Game::UpdateBackgrounds(char *posFloor_x, char *posFloor_y, char *posMoon_x, char *posMoon_y, char *posGalaxy_x,

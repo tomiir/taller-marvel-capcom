@@ -27,7 +27,7 @@ public:
                           char flip2, char currentCharT2);
 
 
-    void setTeams(vector<string> team1, vector<string> team2);
+    void setTeams(Character* characterT1_1, Character* characterT1_2, Character* characterT2_1, Character* characterT2_2);
 
 private:
     vector <Character*> team1;

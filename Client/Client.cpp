@@ -128,6 +128,7 @@ void Client::checkSendToServerError(){
 
 void Client::Send(char* message) {
 
+    signal(SIGPIPE, SIG_IGN);
 
     ssize_t bytesSent = send(serverSocket_c, message, strlen(message), 0);
 
@@ -232,9 +233,16 @@ void* Client::recvFromServer(void* arg) {
 
 void* Client::render(void *arg) {
 
+    bool fight_view = false;
 
    //Aca empieza el loop que va a ir renderizando. Las view ay deberian estar cargadas y se renderiza lo que se tenga que renderizar
     while(connect2){
+
+        if (game->haveToChangeView()){
+            changeCurrentMapper();
+            game->changeView();
+            fight_view = true;
+        }
 
         if(queueRecv.empty()) continue;
 
@@ -242,7 +250,7 @@ void* Client::render(void *arg) {
         const char* messageReceived = message.c_str();
         char view[] = {messageReceived[0], messageReceived[1], '\0'};
 
-        if(strcmp(view, "00") == 0){ //view selected
+        if(strcmp(view, "00") == 0 and !fight_view){ //view selected
 
             //Te devuelve 1 en el cuadrado gris que si se tenga que renderizar
             char greySquaresSelected[] = {messageReceived[2], messageReceived[3], messageReceived[4], messageReceived[5], '\0'};
@@ -322,10 +330,7 @@ void* Client::sendEventToServer(void* arg){
     while(true){
 
         start = SDL_GetTicks();
-        if (game->haveToChangeView()){
-            changeCurrentMapper();
-            game->changeView();
-        }
+
 
         SDL_Event event;
         SDL_PollEvent(&event);

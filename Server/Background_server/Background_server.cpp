@@ -24,7 +24,6 @@ void Background_server::move(DirectionVector* moveDirection) {
 
     camera.x += (int) moveDirection->x;
     camera.y += (int) moveDirection->y;
-    //render();  NO SE PORQUE ESTABA ACA ESTE RENDER (SOY ARI HACIENDO LA SEGUNDA PARTE DEL TP)
 }
 
 
@@ -55,9 +54,8 @@ double Background_server::getSpeedPercetageCam() {
 }
 
 vector<int> Background_server::getPosInfo() {
-    vector<int> positions;
-    positions[0] = camera.x;
-    positions[1] = camera.y;
+
+    vector<int> positions = {camera.x, camera.y};
 
     return positions;
 }
