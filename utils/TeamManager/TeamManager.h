@@ -32,6 +32,8 @@ public:
 
     char getFlipCurrentCharacter();
 
+    char getCurrentCharacterNumber();
+
 private:
 
 
@@ -41,6 +43,8 @@ private:
     SDL_RendererFlip flip = SDL_FLIP_HORIZONTAL;
 
     void changeCharacter();
+
+    int cantChangeChar;
 };
 
 #endif //TALLER_MARVEL_CAPCOM_TEAMMANAGER_H

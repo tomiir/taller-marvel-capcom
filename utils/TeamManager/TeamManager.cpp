@@ -7,6 +7,7 @@
 TeamManager::TeamManager(SDL_RendererFlip initialFlip){
 
     flip = initialFlip;
+    cantChangeChar = 0;
 
 }
 
@@ -23,6 +24,8 @@ void TeamManager::changeCharacter(){
     supportCharacter = aux;
 
     currentCharacter->changePosition(supportCharacter->getInfo()[0], supportCharacter->getInfo()[1]);
+
+    cantChangeChar++;
 }
 
 void TeamManager:: handleEvent(string event, std::vector<ControllerBackground*> backgrounds){
@@ -89,4 +92,10 @@ char TeamManager::getFlipCurrentCharacter() {
 
     if(flip == SDL_FLIP_NONE) return '0';
     if(flip == SDL_FLIP_HORIZONTAL) return '1';
+}
+
+char TeamManager::getCurrentCharacterNumber() {
+
+    if ((cantChangeChar % 2) == 0) return '0';
+    else return '1';
 }

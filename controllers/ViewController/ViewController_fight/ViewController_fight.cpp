@@ -84,6 +84,21 @@ void ViewController_fight::handleEvent(string event) {
     }
 }
 
+string intToString(int value, int posNum, int cantNum, string updates){
+
+    string aux = "";
+    aux = std::to_string(value);
+
+    int len = aux.size();
+
+    for(int i = 0; i < len ;i++){
+        updates[posNum + cantNum - 1 - i] = aux[len - 1 - i];
+    }
+
+    return updates;
+}
+
+
 
 string ViewController_fight::giveNewParameters() {
 
@@ -103,39 +118,21 @@ string ViewController_fight::giveNewParameters() {
     updates[40] = team2->getFlipCurrentCharacter();
 
     updates[41] = team1->getCurrentCharacterNumber();
-    updates[42] = team2->getCurrentCharacterNumber();
-
-    string pos_floor_x = "";
-    pos_floor_x = std::to_string(pos_floor[0]);
-
-    string pos_floor_y = "";
-    pos_floor_y = std::to_string(pos_floor[1]);
-
-    string pos_moon_x = "";
-    pos_moon_x = std::to_string(pos_moon[0]);
-
-    string pos_moon_y = "";
-    pos_moon_y = std::to_string(pos_moon[1]);
-
-    string pos_galaxy_x = "";
-    pos_galaxy_x = std::to_string(pos_galaxy[0]);
-
-    string pos_galaxy_y = "";
-    pos_floor_y = std::to_string(pos_galaxy[1]);
-
-    string pos_charT1_x = "";
-    pos_charT1_x = std::to_string(posCharT1[0]);
-
-    string pos_charT1_y = "";
-    pos_charT1_y = std::to_string(posCharT1[1]);
-
-    string pos_charT2_x = "";
-    pos_charT2_x = std::to_string(posCharT2[0]);
-
-    string pos_charT2_y = "";
-    pos_charT2_y = std::to_string(posCharT2[1]);
+    updates[42] = team2->getCurrentCharacterNumber();  //No entiendo porque me aparece value is never used
 
 
+    updates = intToString(pos_floor[0], 2, 4, updates);
+    updates = intToString(pos_floor[1], 6, 3, updates);
+    updates = intToString(pos_moon[0], 9, 4, updates);
+    updates = intToString(pos_moon[1], 13, 3, updates);
+    updates = intToString(pos_galaxy[0], 16, 4, updates);
+    updates = intToString(pos_galaxy[1], 20, 3, updates);
+    updates = intToString(posCharT1[0], 23, 4, updates);
+    updates = intToString(posCharT1[1], 27, 3, updates);
+    updates = intToString(posCharT2[0], 31, 4, updates);
+    updates = intToString(posCharT2[1], 35, 3, updates);
+
+    return updates;
 }
 
 
