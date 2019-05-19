@@ -16,6 +16,9 @@
 #include <pthread.h>
 #include <queue>
 #include "../utils/Logger/Logger.h"
+#include "../Json/JsonConfigs.h"
+#include <csignal>
+
 
 #define MAXCLIENTS 2
 #define PORT 54000

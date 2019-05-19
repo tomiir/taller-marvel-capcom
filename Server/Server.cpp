@@ -1,8 +1,9 @@
 
-#include <csignal>
 #include "Server.h"
-#include "../Json/JsonConfigs.h"
 #include "Game_server/Game_server.h"
+
+#define MESSAGEFROMCLIENTLEN 512
+#define MESSAGETOCLIENTLEN 512
 
 //----SERVER VARIABLES----
 int serverSocket_s;
@@ -15,12 +16,12 @@ int clientSocket[MAXCLIENTS];
 struct sockaddr_in clientAddr[MAXCLIENTS];
 socklen_t clientSize[MAXCLIENTS];
 
-char messageFromClient[4096];
-char messageFromClient2[4096];
-char messageFromClient3[4096];
-char messageFromClient4[4096];
+char messageFromClient[MESSAGEFROMCLIENTLEN];
+char messageFromClient2[MESSAGEFROMCLIENTLEN];
+char messageFromClient3[MESSAGEFROMCLIENTLEN];
+char messageFromClient4[MESSAGEFROMCLIENTLEN];
 
-char messageToClient[4096];
+char messageToClient[MESSAGETOCLIENTLEN];
 
 
 queue<string> serverQueue;
@@ -163,8 +164,8 @@ void *Server::Send(void *clientIter_){
 char* Server::update(int clientIter){
 
     if(clientIter == 0){
-        memset(messageFromClient, 0, 4096);
-        int bytesReceived = recv(clientSocket[clientIter], messageFromClient, 4096,0);
+        memset(messageFromClient, 0, MESSAGEFROMCLIENTLEN);
+        int bytesReceived = recv(clientSocket[clientIter], messageFromClient, MESSAGEFROMCLIENTLEN,0);
 
         if (bytesReceived == -1) {
             checkRecvFromClientError(clientSocket[clientIter]);
@@ -173,8 +174,8 @@ char* Server::update(int clientIter){
         return messageFromClient;
 
     }else if(clientIter == 1){
-        memset(messageFromClient2, 0, 4096);
-        int bytesReceived = recv(clientSocket[clientIter], messageFromClient2, 4096,0);
+        memset(messageFromClient2, 0, MESSAGEFROMCLIENTLEN);
+        int bytesReceived = recv(clientSocket[clientIter], messageFromClient2, MESSAGEFROMCLIENTLEN,0);
 
         if (bytesReceived == -1) {
             checkRecvFromClientError(clientSocket[clientIter]);
@@ -183,8 +184,8 @@ char* Server::update(int clientIter){
         return messageFromClient2;
 
     }else if(clientIter == 2){
-        memset(messageFromClient3, 0, 4096);
-        int bytesReceived = recv(clientSocket[clientIter], messageFromClient3, 4096,0);
+        memset(messageFromClient3, 0, MESSAGEFROMCLIENTLEN);
+        int bytesReceived = recv(clientSocket[clientIter], messageFromClient3, MESSAGEFROMCLIENTLEN,0);
 
         if (bytesReceived == -1) {
             checkRecvFromClientError(clientSocket[clientIter]);
@@ -193,8 +194,8 @@ char* Server::update(int clientIter){
         return messageFromClient3;
 
     }else if(clientIter == 3){
-        memset(messageFromClient4, 0, 4096);
-        int bytesReceived = recv(clientSocket[clientIter], messageFromClient4, 4096,0);
+        memset(messageFromClient4, 0, MESSAGEFROMCLIENTLEN);
+        int bytesReceived = recv(clientSocket[clientIter], messageFromClient4, MESSAGEFROMCLIENTLEN,0);
 
         if (bytesReceived == -1) {
             checkRecvFromClientError(clientSocket[clientIter]);
@@ -237,7 +238,7 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
 
         if(serverBrokeConnection == 1){
 
-            memset(messageToClient,0, 4096);
+            memset(messageToClient,0, MESSAGETOCLIENTLEN);
             strcpy(messageToClient, "El servidor se desconecto");
             Send(&clientIter);
             close(serverSocket_s);
@@ -258,12 +259,16 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
             break;
         }
 
-        //ESTA ES LA LOGICA QUE SE ME OCURRIO PARA NO ENCOLAR LOS MENSAJES DE LOS CLEINTES QUE NO ESTAN JUGANDO. SI SE PONEN 2 CLIENTES NO FUNCIONA
-        //CON ESTA PARTE DEL CODIGO. HAY QUE PrOBARLO CON MAS COMPUS PORQUE LA MIA CASI MUERE CON CUATRO CLIENTES xD.
+//        ESTA ES LA LOGICA QUE SE ME OCURRIO PARA NO ENCOLAR LOS MENSAJES DE LOS CLEINTES QUE NO ESTAN JUGANDO.
+//        HAY QUE PROBARLO CON MAS COMPUS PORQUE LA MIA CASI MUERE CON CUATRO CLIENTES xD.
 //        if (viewControllerFight){
-//            if (((game_server->currentClientT1() == 1 and clientIter == 2) or (game_server->currentClientT1() == 3 and clientIter == 0)) and nonOfTeam1Disconnected) continue;
-//
-//            if (((game_server->currentClientT2() == 2 and clientIter == 3) or (game_server->currentClientT2() == 4 and clientIter == 1)) and nonOfTeam2Disconnected) continue;
+//            if (MAXCLIENTS == 4){
+//                if (((game_server->currentClientT1() == 1 and clientIter == 2) or (game_server->currentClientT1() == 3 and clientIter == 0)) and nonOfTeam1Disconnected) continue;
+//                if (((game_server->currentClientT2() == 2 and clientIter == 3) or (game_server->currentClientT2() == 4 and clientIter == 1)) and nonOfTeam2Disconnected) continue;
+//            }
+//            if (MAXCLIENTS == 3){
+//                if (((game_server->currentClientT1() == 1 and clientIter == 2) or (game_server->currentClientT1() == 3 and clientIter == 0)) and nonOfTeam1Disconnected) continue;
+//            }
 //        }
 
 
@@ -346,7 +351,7 @@ void* Server::updateModel(void *arg){
 
         //cout << updates << endl;
 
-        memset(messageToClient,0, 4096);
+        memset(messageToClient,0, MESSAGETOCLIENTLEN);
         strcpy(messageToClient, updates.c_str());
 
         int clientsIter = 0;
@@ -441,7 +446,7 @@ void Server::connect() {
     clientsIter = 0;
     for(; clientsIter < MAXCLIENTS; clientsIter++){
 
-        memset(messageToClient,0, 4096);
+        memset(messageToClient,0, MESSAGETOCLIENTLEN);
         if (clientsIter == client1){
             strcpy(messageToClient, "team1");
             Send(&client1);
@@ -463,7 +468,7 @@ void Server::connect() {
     clientsIter = 0;
 
     for(; clientsIter < MAXCLIENTS; clientsIter++){
-        memset(messageToClient,0, 4096);
+        memset(messageToClient,0, MESSAGETOCLIENTLEN);
         if (clientsIter == client1){
             strcpy(messageToClient, "cnect");
             Send(&client1);

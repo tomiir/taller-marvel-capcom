@@ -130,16 +130,6 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsBackgrounds_fight() {
         gameObjects.push_back(B);
     }
 
-//    vector <GameObject*>::iterator itr = gameObjects.begin();
-//
-//    for (itr; itr != gameObjects.end(); ++itr){
-//
-//        vector<int> info = (*itr)->getInfo();
-//        double speedPercentageB = cameraSpeedPercentage(maxWidth, info[0]);
-//        int cameraSpeedB = speedCharacter * speedPercentageB;
-//        dynamic_cast<Background*>(*itr)->setSpeeds(cameraSpeedB,speedPercentageB);
-//    }
-
 
     return gameObjects;
 

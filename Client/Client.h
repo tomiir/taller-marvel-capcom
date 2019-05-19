@@ -14,7 +14,6 @@
 #include <string.h>
 #include <string>
 #include <pthread.h>
-#include <future>
 #include <chrono>
 #include <netinet/tcp.h>
 #include <queue>
