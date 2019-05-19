@@ -137,4 +137,12 @@ string ViewController_fight::giveNewParameters() {
     return updates;
 }
 
+int ViewController_fight::currentCharacterT1() {
+    return team1->currentCharacterPlaying();
+}
+
+int ViewController_fight::currentCharacterT2() {
+    return team2->currentCharacterPlaying();
+}
+
 

@@ -98,3 +98,9 @@ char TeamManager::getCurrentCharacterNumber() {
     if ((cantChangeChar % 2) == 0) return '0';
     else return '1';
 }
+
+int TeamManager::currentCharacterPlaying() {
+
+    if ((cantChangeChar % 2) == 0) return 0;
+    else return 1;
+}

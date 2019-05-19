@@ -26,6 +26,10 @@ char messageToClient[4096];
 queue<string> serverQueue;
 
 bool on = true;
+bool nonOfTeam1Disconnected = true;
+bool nonOfTeam2Disconnected = true;
+
+bool viewControllerFight = false;
 
 Game_server* game_server;
 
@@ -219,7 +223,10 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
 
     while(true){
 
-        if (game_server->haveToChangeViewController()) game_server->changeViewController();
+        if (game_server->haveToChangeViewController()) {
+            game_server->changeViewController();
+            viewControllerFight = true;
+        }
 
         start = SDL_GetTicks();
 
@@ -239,6 +246,8 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
         //Aca habria que analizar lo de si no recibe por un tiempo nada darlo por muerto(seria el heartbeat)
         //
 
+
+
         pthread_mutex_lock(&lock);
         char* received = update(clientIter);
         pthread_mutex_unlock(&lock);
@@ -248,6 +257,14 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
             close(clientSocket[clientIter]);
             break;
         }
+
+        //ESTA ES LA LOGICA QUE SE ME OCURRIO PARA NO ENCOLAR LOS MENSAJES DE LOS CLEINTES QUE NO ESTAN JUGANDO. SI SE PONEN 2 CLIENTES NO FUNCIONA
+        //CON ESTA PARTE DEL CODIGO. HAY QUE PrOBARLO CON MAS COMPUS PORQUE LA MIA CASI MUERE CON CUATRO CLIENTES xD.
+//        if (viewControllerFight){
+//            if (((game_server->currentClientT1() == 1 and clientIter == 2) or (game_server->currentClientT1() == 3 and clientIter == 0)) and nonOfTeam1Disconnected) continue;
+//
+//            if (((game_server->currentClientT2() == 2 and clientIter == 3) or (game_server->currentClientT2() == 4 and clientIter == 1)) and nonOfTeam2Disconnected) continue;
+//        }
 
 
         int aux = strlen(received);

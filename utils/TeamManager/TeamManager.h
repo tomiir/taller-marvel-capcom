@@ -34,6 +34,8 @@ public:
 
     char getCurrentCharacterNumber();
 
+    int currentCharacterPlaying();
+
 private:
 
 

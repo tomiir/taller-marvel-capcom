@@ -29,6 +29,10 @@ public:
 
     string giveNewParameters();
 
+    int currentClientT1();
+
+    int currentClientT2();
+
 private:
     int screenWidth;
     int screenHeight;
