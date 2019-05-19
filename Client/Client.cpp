@@ -6,7 +6,7 @@
 
 
 #define NOBEAT (char*)"0"
-#define MESSAGEFROMSERVERLEN 43
+#define MESSAGEFROMSERVERLEN 45
 #define BEAT (char*)"1"
 
 //----SERVER VARIABLES----
@@ -290,18 +290,18 @@ void* Client::render(void *arg) {
 
             //Recibo las nuevas posiciones de los characters y sus estados y lo actualizo
             char posCharTeam1_x[] = {messageReceived[23], messageReceived[24], messageReceived[25], messageReceived[26], '\0'};
-            char posCharTeam1_y[] = {messageReceived[27], messageReceived[28], messageReceived[29], '\0'};
-            char stateCharTeam1 = messageReceived[30];
+            char posCharTeam1_y[] = {messageReceived[27], messageReceived[28], messageReceived[29], messageReceived[30], '\0'};
+            char stateCharTeam1 = messageReceived[31];
 
-            char posCharTeam2_x[] = {messageReceived[31], messageReceived[32], messageReceived[33], messageReceived[34], '\0'};
-            char posCharTeam2_y[] = {messageReceived[35], messageReceived[36], messageReceived[37], '\0'};
-            char stateCharTeam2 = messageReceived[38];
+            char posCharTeam2_x[] = {messageReceived[32], messageReceived[33], messageReceived[34], messageReceived[35], '\0'};
+            char posCharTeam2_y[] = {messageReceived[36], messageReceived[37], messageReceived[38], messageReceived[39], '\0'};
+            char stateCharTeam2 = messageReceived[40];
 
-            char flipChar1 = messageReceived[39];
-            char flipChar2 = messageReceived[40];
+            char flipChar1 = messageReceived[41];
+            char flipChar2 = messageReceived[42];
 
-            char currentCharT1 = messageReceived[41];
-            char currentCharT2 = messageReceived[42];
+            char currentCharT1 = messageReceived[43];
+            char currentCharT2 = messageReceived[44];
 
             game->updateCharacters(posCharTeam1_x, posCharTeam1_y, stateCharTeam1, flipChar1, currentCharT1,
                     posCharTeam2_x, posCharTeam2_y, stateCharTeam2, flipChar2, currentCharT2);
