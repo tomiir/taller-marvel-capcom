@@ -4,8 +4,8 @@
 
 #include "Character_server.h"
 
-Character_server::Character_server(int initialY, std::string name) :
-        GameObject_server(name, 0, initialY, 0, 0) {
+Character_server::Character_server(int initialY, std::string name, int width, int height) :
+        GameObject_server(name, 0, initialY, width, height) {
 
     this->initialY = initialY;
     logger->Log("Creando personaje: " + name, DEBUG, "");

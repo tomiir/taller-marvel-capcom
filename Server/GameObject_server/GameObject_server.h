@@ -27,7 +27,6 @@ public:
 protected:
     string name;
     SDL_Rect objRect;
-    int z_index;
 };
 
 #endif //TALLER_MARVEL_CAPCOM_GAMEOBJECT_SERVER_H

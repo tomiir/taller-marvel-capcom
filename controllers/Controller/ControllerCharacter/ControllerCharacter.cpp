@@ -98,7 +98,7 @@ void ControllerCharacter::handleEvent(string event) {
     }
     if(direction->isEqual(KEYSRELEASED) and !inAir and !crowchedDown and !movingLeft and !movingRight) state = "still";
 
-    bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal - 200;
+    bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal;
     bool characterIsntInLeftBoundary = info[0] >= 0;
 
 
@@ -156,7 +156,7 @@ void ControllerCharacter::handleEvent(string event) {
 
         gameObject->move(step);
 
-        bool characterInFloor = info[1] >= (screenHeight - info[3] - jumpDistance) - 280;
+        bool characterInFloor = info[1] >= (screenHeight - info[3] - jumpDistance);
 
         if ( characterInFloor ) {
             inAir = jumpRight = jumpLeft = entering = false;

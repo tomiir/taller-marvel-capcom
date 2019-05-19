@@ -67,6 +67,22 @@ string Game_server::giveNewParameters() {
     return currentViewController->giveNewParameters();
 }
 
+int Game_server::currentClientT1() {
+
+    int character = dynamic_cast<ViewController_fight*>(this->currentViewController)->currentCharacterT1() ;
+
+    if (character == 0) return 1;
+    if (character == 1) return 3;
+}
+
+int Game_server::currentClientT2() {
+
+    int character = dynamic_cast<ViewController_fight*>(this->currentViewController)->currentCharacterT2() ;
+
+    if (character == 0) return 2;
+    if (character == 1) return 4;
+}
+
 
 
 

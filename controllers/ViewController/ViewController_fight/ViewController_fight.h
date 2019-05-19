@@ -34,6 +34,10 @@ public:
 
     void createFlipManager();
 
+    int currentCharacterT2();
+
+    int currentCharacterT1();
+
 private:
     TeamManager* team1;
     TeamManager* team2;

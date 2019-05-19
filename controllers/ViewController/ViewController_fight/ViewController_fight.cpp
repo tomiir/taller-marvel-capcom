@@ -104,7 +104,7 @@ string intToString(int value, int posNum, int cantNum, string updates){
 
 string ViewController_fight::giveNewParameters() {
 
-    string updates = "0100000000000000000000000000000000000000000";
+    string updates = "010000000000000000000000000000000000000000000";
 
     vector<int> pos_floor = backgrounds[0]->getPosCamera();
     vector<int> pos_moon = backgrounds[1]->getPosCamera();
@@ -113,14 +113,14 @@ string ViewController_fight::giveNewParameters() {
     vector<int> posCharT1 = team1->getPosCurrentCharacter();
     vector<int> posCharT2 = team2->getPosCurrentCharacter();
 
-    updates[30] = team1->getStateCurrentCharacter();
-    updates[38] = team2->getStateCurrentCharacter();
+    updates[31] = team1->getStateCurrentCharacter();
+    updates[40] = team2->getStateCurrentCharacter();
 
-    updates[39] = team1->getFlipCurrentCharacter();
-    updates[40] = team2->getFlipCurrentCharacter();
+    updates[41] = team1->getFlipCurrentCharacter();
+    updates[42] = team2->getFlipCurrentCharacter();
 
-    updates[41] = team1->getCurrentCharacterNumber();
-    updates[42] = team2->getCurrentCharacterNumber();  //No entiendo porque me aparece value is never used
+    updates[43] = team1->getCurrentCharacterNumber();
+    updates[44] = team2->getCurrentCharacterNumber();  //No entiendo porque me aparece value is never used
 
 
     updates = intToString(pos_floor[0], 2, 4, updates);
@@ -130,11 +130,19 @@ string ViewController_fight::giveNewParameters() {
     updates = intToString(pos_galaxy[0], 16, 4, updates);
     updates = intToString(pos_galaxy[1], 20, 3, updates);
     updates = intToString(posCharT1[0], 23, 4, updates);
-    updates = intToString(posCharT1[1], 27, 3, updates);
-    updates = intToString(posCharT2[0], 31, 4, updates);
-    updates = intToString(posCharT2[1], 35, 3, updates);
+    updates = intToString(posCharT1[1], 27, 4, updates);
+    updates = intToString(posCharT2[0], 32, 4, updates);
+    updates = intToString(posCharT2[1], 36, 4, updates);
 
     return updates;
+}
+
+int ViewController_fight::currentCharacterT1() {
+    return team1->currentCharacterPlaying();
+}
+
+int ViewController_fight::currentCharacterT2() {
+    return team2->currentCharacterPlaying();
 }
 
 

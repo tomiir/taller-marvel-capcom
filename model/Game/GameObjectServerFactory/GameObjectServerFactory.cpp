@@ -34,7 +34,7 @@ vector<GameObject_server *> GameObjectServerFactory::getGameObjectsServerCharact
         string name = (*iter).getName();
 
 
-        Character_server* C = new Character_server(initialY, name);
+        Character_server* C = new Character_server(initialY, name, width, height);
 
         C->setInitialXPositions(width/2, (screenWidth - width) - (width/2));
 
