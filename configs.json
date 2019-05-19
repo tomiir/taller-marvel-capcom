@@ -211,6 +211,13 @@
 			"height":800,
 			"width": 600
 		},
+		{"name":"square_2",
+			"filepath": "../Images/menu_seleccion/Team2",
+			"x": 200,
+			"y":0,
+			"height":800,
+			"width": 600
+		},
 		{"name":"CaptainAmerica",
 			"filepath": "../Images/menu_seleccion/Seleccionado.png",
 			"x": 240,
