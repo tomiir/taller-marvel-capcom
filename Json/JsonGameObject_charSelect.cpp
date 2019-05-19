@@ -8,6 +8,7 @@ JsonGameObject_charSelect::JsonGameObject_charSelect(const char *path, std::vect
     this->path = path;
     this->posc = posc;
     this->name = name;
+    this->error = false;
 }
 
 const char *JsonGameObject_charSelect::getFilePath() {

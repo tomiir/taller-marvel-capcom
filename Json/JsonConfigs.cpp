@@ -94,7 +94,7 @@ std::list<JsonCharacter> JsonConfigs::getCharacters() {
         ++iter;
         ++fIter;
     }
-    iter=jsonChars.begin();
+
     return retVal;
 }
 
@@ -192,6 +192,6 @@ std::list<JsonGameObject_charSelect> JsonConfigs::getGameObjectCharSelect() {
         ++iter;
         ++fIter;
     }
-    iter=jsonGO.begin();
+
     return retVal;
 }

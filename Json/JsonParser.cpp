@@ -171,19 +171,19 @@ std::list<JsonGameObject_charSelect> JsonParser:: getJsonGameobject_charSelect()
             error = true;
             errors.push_back("filepath");
         }
-        if( !((*it)["x"]).isInt()  || ((*it)["x"]).asInt() <= 0){
+        if( !((*it)["x"]).isInt()  || ((*it)["x"]).asInt() < 0){
             error = true;
             errors.push_back("x");
         }
-        if( !((*it)["y"]).isInt()  || ((*it)["y"]).asInt() <= 0){
+        if( !((*it)["y"]).isInt()  || ((*it)["y"]).asInt() < 0){
             error = true;
             errors.push_back("y");
         }
-        if( !((*it)["height"]).isInt() || ((*it)["height"]).asInt() <= 0){
+        if( !((*it)["height"]).isInt() || ((*it)["height"]).asInt() < 0){
             error = true;
             errors.push_back("height");
         }
-        if( !((*it)["width"]).isInt() || ((*it)["width"]).asInt() <= 0){
+        if( !((*it)["width"]).isInt() || ((*it)["width"]).asInt() < 0){
             error = true;
             errors.push_back("width");
         }
@@ -191,15 +191,27 @@ std::list<JsonGameObject_charSelect> JsonParser:: getJsonGameobject_charSelect()
 
         else
         {
-            std::vector<int> posc = {((*it)["x"]).asInt(),
-                                     ((*it)["y"]).asInt(),
-                                     ((*it)["height"]).asInt(),
-                                     ((*it)["width"]).asInt()};
 
-            JsonGameObject_charSelect gameObject(
-                    (((*it)["filepath"]).asString()).c_str(),
-                    posc,
-                    ((*it)["name"]).asString());
+            //std::vector<int> posc = {((*it)["x"]).asInt(),
+            //                         ((*it)["y"]).asInt(),
+            //                         ((*it)["height"]).asInt(),
+            //                         ((*it)["width"]).asInt()};
+            std::string name = ((*it)["name"]).asString();
+            const char* path = (((*it)["filepath"]).asString()).c_str();
+
+            std::vector<int> posc;
+            int x = ((*it)["x"]).asInt();
+            posc.push_back(x);
+            int y = ((*it)["y"]).asInt();
+            posc.push_back(y);
+            int height = ((*it)["height"]).asInt();
+            posc.push_back(height);
+            int width = ((*it)["width"]).asInt();
+            posc.push_back(width);
+
+
+
+            JsonGameObject_charSelect gameObject(path,posc,name);
 
             gameObjects.push_back(gameObject);
         }
