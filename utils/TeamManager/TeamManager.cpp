@@ -24,8 +24,6 @@ void TeamManager::changeCharacter(){
     supportCharacter = aux;
 
     currentCharacter->changePosition(supportCharacter->getInfo()[0], supportCharacter->getInfo()[1]);
-
-    cantChangeChar++;
 }
 
 void TeamManager:: handleEvent(string event, std::vector<ControllerBackground*> backgrounds){
@@ -35,6 +33,7 @@ void TeamManager:: handleEvent(string event, std::vector<ControllerBackground*> 
     if (currentCharacter->getInfo()[1] < -300){
         changeCharacter();
         supportCharacter->gone();
+        cantChangeChar++;
         currentCharacter->entry();
         currentCharacter->flip(flip);
     }
