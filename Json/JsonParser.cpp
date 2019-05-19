@@ -154,10 +154,12 @@ std::list<JsonCharacter> JsonParser::getCharacter() {
 std::list<JsonGameObject_charSelect> JsonParser:: getJsonGameobject_charSelect(){
 
     std::list<JsonGameObject_charSelect> gameObjects;
-    Json::Value json = this->json["gameObjectCharSelect"];
+    Json::Value json_ = this->json["caca"];
 
 
-    for(Json::Value::iterator it=json.begin();it!=json.end();++it){
+    Json::Value::iterator it=json_.begin();
+
+    for(;it!=json_.end();++it){
         std::list<std::string> errors;
         bool error = false;
 
