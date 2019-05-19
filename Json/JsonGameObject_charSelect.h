@@ -10,9 +10,9 @@
 
 class JsonGameObject_charSelect {
 public:
-    JsonGameObject_charSelect(const char* path, std::vector<int> posc, std::string name);
+    JsonGameObject_charSelect(std::string path, std::vector<int> posc, std::string name);
     ~JsonGameObject_charSelect() =default;
-    const char* getFilePath();
+    std::string getFilePath();
     std::string getName();
     std::vector <int> getPosc();
     JsonGameObject_charSelect() = default;
@@ -22,7 +22,7 @@ public:
     bool getError();
 
 private:
-    const char* path;
+    std::string path;
     std::vector <int> posc;
     std::string name;
     bool error;

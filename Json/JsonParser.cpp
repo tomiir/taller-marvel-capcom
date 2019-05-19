@@ -197,7 +197,7 @@ std::list<JsonGameObject_charSelect> JsonParser:: getJsonGameobject_charSelect()
             //                         ((*it)["height"]).asInt(),
             //                         ((*it)["width"]).asInt()};
             std::string name = ((*it)["name"]).asString();
-            const char* path = (((*it)["filepath"]).asString()).c_str();
+            std::string path = ((*it)["filepath"]).asString();
 
             std::vector<int> posc;
             int x = ((*it)["x"]).asInt();

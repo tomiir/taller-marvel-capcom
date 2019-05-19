@@ -4,14 +4,14 @@
 
 #include "JsonGameObject_charSelect.h"
 
-JsonGameObject_charSelect::JsonGameObject_charSelect(const char *path, std::vector<int> posc, std::string name) {
+JsonGameObject_charSelect::JsonGameObject_charSelect(std::string path, std::vector<int> posc, std::string name) {
     this->path = path;
     this->posc = posc;
     this->name = name;
     this->error = false;
 }
 
-const char *JsonGameObject_charSelect::getFilePath() {
+std::string JsonGameObject_charSelect::getFilePath() {
     return path;
 }
 

@@ -174,19 +174,19 @@ vector<GameObject_charSelect *> GameObjectFactory::getgameobjectChar_select_figh
         if (i == 0){
             //FONDO
             aux = {aux_x,aux_y,posc[2],posc[3]};
-            GameObject_charSelect* background =  new GameObject_charSelect("path",name, 0, renderer, aux );
+            GameObject_charSelect* background =  new GameObject_charSelect(path.c_str(),name, 0, renderer, aux );
             gameObjects.push_back(background);
         }
         else if (i <= 18){
             //IMAGENES LATERALES
-            GameObject_charSelect* go =  new GameObject_charSelect("path",name, 0, renderer, posc );
+            GameObject_charSelect* go =  new GameObject_charSelect(path.c_str(),name, 0, renderer, posc );
             gameObjects.push_back(go);
 
         }
 
         else{
             aux = {posc[0]+aux_x,posc[1]+aux_y,posc[2],posc[3]};
-            GameObject_charSelect* go =  new GameObject_charSelect("path",name, 0, renderer, aux );
+            GameObject_charSelect* go =  new GameObject_charSelect(path.c_str(),name, 0, renderer, aux );
             gameObjects.push_back(go);
         }
 
