@@ -160,7 +160,7 @@ JsonConfigs* JsonConfigs::getJson() {
     return this_json;
 }
 
-std::list<JsonGameObject_charSelect> JsonConfigs::getGameobjectCharSelect() {
+std::list<JsonGameObject_charSelect> JsonConfigs::getGameObjectCharSelect() {
     std::list<JsonGameObject_charSelect> retVal;
     std::list<JsonGameObject_charSelect> fJsonGO = fallbackJson.getJsonGameobject_charSelect();
     std::list<JsonGameObject_charSelect> jsonGO = json.getJsonGameobject_charSelect();

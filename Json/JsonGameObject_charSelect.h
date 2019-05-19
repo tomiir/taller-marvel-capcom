@@ -16,15 +16,17 @@ public:
     std::string getName();
     std::vector <int> getPosc();
     JsonGameObject_charSelect() = default;
+    std::list<std::string> getErrorList();
 
     JsonGameObject_charSelect(std::list<std::string> errors);
-
+    bool getError();
 
 private:
     const char* path;
     std::vector <int> posc;
     std::string name;
-
+    bool error;
+    std::list<std::string> errorsList;
 };
 
 

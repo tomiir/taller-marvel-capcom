@@ -21,3 +21,16 @@ std::string JsonGameObject_charSelect::getName() {
 std::vector<int> JsonGameObject_charSelect::getPosc() {
     return posc;
 }
+
+JsonGameObject_charSelect::JsonGameObject_charSelect(std::list<std::string> errors) {
+    this->error = true;
+    this->errorsList = errors;
+
+}
+std::list<std::string> JsonGameObject_charSelect:: getErrorList(){
+    return this->errorsList;
+}
+
+bool JsonGameObject_charSelect::getError(){
+    return error;
+}

@@ -18,7 +18,7 @@ public:
 
     std::vector<int> getScreenSize();
 
-    std::list<JsonGameObject_charSelect> getGameobjectCharSelect();
+    std::list<JsonGameObject_charSelect> getGameObjectCharSelect();
 
     int getCharactersSpeed();
 

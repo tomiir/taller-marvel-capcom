@@ -185,7 +185,7 @@ std::list<JsonGameObject_charSelect> JsonParser:: getJsonGameobject_charSelect()
             error = true;
             errors.push_back("width");
         }
-        //if(error) gameObjects.push_back(JsonCharacter(errors)); FALTA COMPLETAR ACA < ========
+        if(error) gameObjects.push_back(JsonGameObject_charSelect(errors));
 
         else
         {
