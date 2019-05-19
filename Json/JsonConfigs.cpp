@@ -159,3 +159,39 @@ JsonConfigs* JsonConfigs::getJson() {
     }
     return this_json;
 }
+
+std::list<JsonGameObject_charSelect> JsonConfigs::getGameobjectCharSelect() {
+    std::list<JsonGameObject_charSelect> retVal;
+    std::list<JsonGameObject_charSelect> fJsonGO = fallbackJson.getJsonGameobject_charSelect();
+    std::list<JsonGameObject_charSelect> jsonGO = json.getJsonGameobject_charSelect();
+    std::list<JsonGameObject_charSelect>::iterator iter = jsonGO.begin();
+    std::list<JsonGameObject_charSelect>::iterator fIter = fJsonGO.begin();
+
+    auto fJsonEnd = fJsonGO.end();
+    auto jsonEnd = jsonGO.end();
+
+    while(iter != jsonEnd && fIter != fJsonEnd) {
+
+        JsonGameObject_charSelect GO;
+        if((*iter).getError() || (*iter).getName() != (*fIter).getName() || (*iter).getFilePath() != (*fIter).getFilePath()){
+
+
+            std::list<std::string> errorsList = (*iter).getErrorList();
+            std::list<std::string>::iterator errorIter = errorsList.begin();
+
+            if( (*iter).getFilePath() != (*fIter).getFilePath() ) logger->LogError("filepath", (*fIter).getName());
+
+            for(; errorIter != errorsList.end(); ++errorIter){
+                logger->LogError( (*errorIter), (*fIter).getName());
+            }
+            GO = (*fIter);
+        }
+        else GO = (*iter);
+
+        retVal.push_back(GO);
+        ++iter;
+        ++fIter;
+    }
+    iter=jsonGO.begin();
+    return retVal;
+}

@@ -162,7 +162,7 @@ add_executable(
         model/Game/GameObjectServerFactory/GameObjectServerFactory.h
 
 
-)
+        Json/JsonGameObject_charSelect.cpp Json/JsonGameObject_charSelect.h)
 
 
 

@@ -6,6 +6,7 @@
 #include <fstream>
 #include <list>
 #include <vector>
+#include "JsonGameObject_charSelect.h"
 #ifndef JSON_2_JSONPARSER_H
 #define JSON_2_JSONPARSER_H
 
@@ -34,6 +35,8 @@ public:
     int getJumpSpeed();
 
     CLogger* logger = CLogger::GetLogger();
+
+    std::list<JsonGameObject_charSelect> getJsonGameobject_charSelect();
 
 };
 

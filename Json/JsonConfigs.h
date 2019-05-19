@@ -3,6 +3,7 @@
 #include <jsoncpp/json/json.h>
 #include "JsonParser.h"
 #include "../utils/Logger/Logger.h"
+#include "JsonGameObject_charSelect.h"
 
 class JsonConfigs {
     JsonParser json = JsonParser(std::string());
@@ -16,6 +17,8 @@ public:
     std::list<JsonCharacter> getCharacters();
 
     std::vector<int> getScreenSize();
+
+    std::list<JsonGameObject_charSelect> getGameobjectCharSelect();
 
     int getCharactersSpeed();
 
