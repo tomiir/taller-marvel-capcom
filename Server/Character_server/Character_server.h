@@ -15,7 +15,7 @@ using namespace std;
 class Character_server : public GameObject_server {
 
 public:
-    Character_server(int initialY, string name);
+    Character_server(int initialY, string name, int width, int height);
     ~Character_server();
 
     void move(DirectionVector* direction) override ;

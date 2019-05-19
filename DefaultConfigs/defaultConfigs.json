@@ -61,7 +61,7 @@
 			{"name":"Venom",
 			 "filepath":"../Images/Characters/Venom.png",
 			 "height":300,
-			 "width":200,
+			 "width":300,
 			 "zindex":98,
 			 "spriteManagerName": "Venom",
 			 "size": 2.5
