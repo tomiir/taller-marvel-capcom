@@ -248,10 +248,7 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
         //
 
 
-
-        pthread_mutex_lock(&lock);
         char* received = update(clientIter);
-        pthread_mutex_unlock(&lock);
 
         if( strcmp(received, "0") == 0) {
             logger->Log( "El cliente: " + to_string(clientSocket[clientIter]) + " se desconecto" , NETWORK, "");
@@ -259,18 +256,17 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
             break;
         }
 
-//        ESTA ES LA LOGICA QUE SE ME OCURRIO PARA NO ENCOLAR LOS MENSAJES DE LOS CLEINTES QUE NO ESTAN JUGANDO.
+        //        ESTA ES LA LOGICA QUE SE ME OCURRIO PARA NO ENCOLAR LOS MENSAJES DE LOS CLEINTES QUE NO ESTAN JUGANDO.
 //        HAY QUE PROBARLO CON MAS COMPUS PORQUE LA MIA CASI MUERE CON CUATRO CLIENTES xD.
-//        if (viewControllerFight){
-//            if (MAXCLIENTS == 4){
-//                if (((game_server->currentClientT1() == 1 and clientIter == 2) or (game_server->currentClientT1() == 3 and clientIter == 0)) and nonOfTeam1Disconnected) continue;
-//                if (((game_server->currentClientT2() == 2 and clientIter == 3) or (game_server->currentClientT2() == 4 and clientIter == 1)) and nonOfTeam2Disconnected) continue;
-//            }
-//            if (MAXCLIENTS == 3){
-//                if (((game_server->currentClientT1() == 1 and clientIter == 2) or (game_server->currentClientT1() == 3 and clientIter == 0)) and nonOfTeam1Disconnected) continue;
-//            }
-//        }
-
+        if (viewControllerFight){
+            if (MAXCLIENTS == 4){
+                if (((game_server->currentClientT1() == 1 and clientIter == 2) or (game_server->currentClientT1() == 3 and clientIter == 0)) and nonOfTeam1Disconnected) continue;
+                if (((game_server->currentClientT2() == 2 and clientIter == 3) or (game_server->currentClientT2() == 4 and clientIter == 1)) and nonOfTeam2Disconnected) continue;
+            }
+            if (MAXCLIENTS == 3){
+                if (((game_server->currentClientT1() == 1 and clientIter == 2) or (game_server->currentClientT1() == 3 and clientIter == 0)) and nonOfTeam1Disconnected) continue;
+            }
+        }
 
         int aux = strlen(received);
         if(aux != 5) continue;

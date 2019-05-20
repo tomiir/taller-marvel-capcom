@@ -20,7 +20,7 @@
 #include <csignal>
 
 
-#define MAXCLIENTS 2
+#define MAXCLIENTS 4
 #define PORT 54000
 
 using namespace std;

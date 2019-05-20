@@ -236,7 +236,8 @@ void* Client::render(void *arg) {
             queueRecv.pop();
 
         }
-        if(strcmp(view, "01") == 0) { //view fight
+        if(strcmp(view, "01") == 0 or fight_view) { //view fight
+
 
             //Recibo las nuevas posiciones de los backgrounds y los actaulizo
             char posFloor_x[] = {messageReceived[2], messageReceived[3], messageReceived[4], messageReceived[5], '\0'};
