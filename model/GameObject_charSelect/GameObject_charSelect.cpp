@@ -25,7 +25,7 @@ GameObject_charSelect::GameObject_charSelect(const char* folderPath, std::string
 }
 
 void GameObject_charSelect::setPosc(std::vector<int> posc){
-    this->posc = posc;
+    //this->posc = posc;
     objRect_dest = SDL_Rect{posc[0], posc[1], posc[2], posc[3]};
 
 }

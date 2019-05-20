@@ -1,105 +1,105 @@
 {
-"debug":"DEBUG",
-"battlefield":
+	"debug":"DEBUG",
+	"battlefield":
 	[
 		{"background":
-			{
-				"name": "Floor",
-				"filepath":"../Images/Backgrounds/Background3.png",
-				"zindex":3,
-				"width": 3000,
-				"height": 900
-			}
+		{
+			"name" : "Floor",
+			"filepath":"../Images/Backgrounds/Background3.png",
+			"zindex":3,
+			"width": 3000,
+			"height": 900
+		}
 		},
 
 		{"background":
-			{
-				"name": "Moon",
-				"filepath":"../Images/Backgrounds/Background2.png",
-				"zindex":2,
-				"width": 2450,
-				"height": 900
-			}
+		{
+			"name": "Moon",
+			"filepath":"../Images/Backgrounds/Background2.png",
+			"zindex":2,
+			"width": 2450,
+			"height": 900
+		}
 		},
 
 		{"background":
-			{
-				"name": "Galaxy",
-				"filepath":"../Images/Backgrounds/Background1.png",
-				"zindex":1,
-				"width": 1900,
-				"height": 900
-			}
+		{
+			"name": "Galaxy",
+			"filepath":"../Images/Backgrounds/Background1.png",
+			"zindex":1,
+			"width": 1900,
+			"height": 900
+		}
 		}
 	],
 	"characters":
-		[
-			{"name":"CaptainAmerica",
-			 "filepath":"../Images/Characters/CaptainAmerica.png",
-			 "height":280,
-			 "width":200,
-			 "zindex":99,
-			 "spriteManagerName": "CaptainAmerica",
-			 "size": 2.5
-			},
-			{"name":"ChunLi",
-			 "filepath":"../Images/Characters/ChunLi.png",
-			 "height":220,
-			 "width":200,
-			 "zindex":99,
-			 "spriteManagerName": "ChunLi",
-			 "size": 2.5
-			},
-			{"name":"SpiderMan",
-			 "filepath":"../Images/Characters/SpiderMan.png",
-			 "height":245,
-			 "width":200,
-			 "zindex":98,
-			 "spriteManagerName": "SpiderMan",
-			 "size": 2.5
-			},
-			{"name":"Venom",
-			 "filepath":"../Images/Characters/Venom.png",
-			 "height":300,
-			 "width":300,
-			 "zindex":98,
-			 "spriteManagerName": "Venom",
-			 "size": 2.5
-			}
-		],
+	[
+		{"name":"CaptainAmerica",
+			"filepath":"../Images/Characters/CaptainAmerica.png",
+			"height":280,
+			"width":200,
+			"zindex":99,
+			"spriteManagerName": "CaptainAmerica",
+			"size": 2.5
+		},
+		{"name":"ChunLi",
+			"filepath":"../Images/Characters/ChunLi.png",
+			"height":220,
+			"width":200,
+			"zindex":99,
+			"spriteManagerName": "ChunLi",
+			"size": 2.5
+		},
+		{"name":"SpiderMan",
+			"filepath":"../Images/Characters/SpiderMan.png",
+			"height":245,
+			"width":200,
+			"zindex":98,
+			"spriteManagerName": "SpiderMan",
+			"size": 2.5
+		},
+		{"name":"Venom",
+			"filepath":"../Images/Characters/Venom.png",
+			"height":300,
+			"width":300,
+			"zindex":98,
+			"spriteManagerName": "Venom",
+			"size": 2.5
+		}
+	],
 	"window":
-		{
-			"width":1200,
-		 	"height":700
-		 },
+	{
+		"width":1200,
+		"height":700
+	},
 	"gameParameters": {
 		"charactersSpeed": 6,
-		"jumpSpeed": 13
-		},
+		"jumpSpeed":13
+	},
 
 	"Graphics": {
 		"FPS": 60
-		},
+	},
 	"Title": {
 		"title": "Marvel vs Capcom"
-		},
+	},
 	"caca":
 	[
 		{"name":"background",
-			"filepath":"../Images/menu_seleccion/Menu personajes.png",
+			"filepath":"../Images/menu_seleccion/background.png",
 			"x":0,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"Spiderman",
+		{"name":"SpiderMan",
 			"filepath":"../Images/menu_seleccion/SM2.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"Spiderman",
+		{"name":"SpiderMan",
 			"filepath":"../Images/menu_seleccion/SM.png",
 			"x": 200,
 			"y":0,
@@ -127,7 +127,7 @@
 			"height":800,
 			"width": 600
 		},
-		{"name":"CaptainAmerica",
+		{"name":"ChunLi",
 			"filepath": "../Images/menu_seleccion/CL.png",
 			"x": 200,
 			"y":0,
@@ -148,14 +148,14 @@
 			"height":800,
 			"width": 600
 		},
-		{"name":"Spiderman",
+		{"name":"SpiderMan",
 			"filepath":"../Images/menu_seleccion/SM2.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"Spiderman",
+		{"name":"SpiderMan",
 			"filepath":"../Images/menu_seleccion/SM.png",
 			"x": 200,
 			"y":0,
@@ -205,14 +205,14 @@
 			"width": 600
 		},
 		{"name":"square_1",
-			"filepath": "../Images/menu_seleccion/Team1",
+			"filepath": "../Images/menu_seleccion/Team1 select.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
 		{"name":"square_2",
-			"filepath": "../Images/menu_seleccion/Team2",
+			"filepath": "../Images/menu_seleccion/Team2 select.png",
 			"x": 200,
 			"y":0,
 			"height":800,
@@ -225,7 +225,7 @@
 			"height":153,
 			"width": 117
 		},
-		{"name":"Spiderman",
+		{"name":"SpiderMan",
 			"filepath": "../Images/menu_seleccion/Seleccionado.png",
 			"x": 403,
 			"y": 296,
@@ -248,5 +248,4 @@
 		}
 	]
 }
-
 

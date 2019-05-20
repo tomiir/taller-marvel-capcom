@@ -86,20 +86,20 @@
 	"caca":
 	[
 		{"name":"background",
-		"filepath":"../Images/menu_seleccion/Menu personajes.png",
+		"filepath":"../Images/menu_seleccion/background.png",
 		"x":0,
 		"y":0,
 		"height":800,
 		"width": 600
 		},
-		{"name":"Spiderman",
+		{"name":"SpiderMan",
 			"filepath":"../Images/menu_seleccion/SM2.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"Spiderman",
+		{"name":"SpiderMan",
 			"filepath":"../Images/menu_seleccion/SM.png",
 			"x": 200,
 			"y":0,
@@ -148,14 +148,14 @@
 			"height":800,
 			"width": 600
 		},
-		{"name":"Spiderman",
+		{"name":"SpiderMan",
 			"filepath":"../Images/menu_seleccion/SM2.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"Spiderman",
+		{"name":"SpiderMan",
 			"filepath":"../Images/menu_seleccion/SM.png",
 			"x": 200,
 			"y":0,
@@ -183,7 +183,7 @@
 			"height":800,
 			"width": 600
 		},
-		{"name":"CaptainAmerica",
+		{"name":"ChunLi",
 			"filepath": "../Images/menu_seleccion/CL.png",
 			"x": 200,
 			"y":0,
@@ -205,14 +205,14 @@
 			"width": 600
 		},
 		{"name":"square_1",
-			"filepath": "../Images/menu_seleccion/Team1",
+			"filepath": "../Images/menu_seleccion/Team1 select.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
 		{"name":"square_2",
-			"filepath": "../Images/menu_seleccion/Team2",
+			"filepath": "../Images/menu_seleccion/Team2 select.png",
 			"x": 200,
 			"y":0,
 			"height":800,
@@ -225,7 +225,7 @@
 			"height":153,
 			"width": 117
 		},
-		{"name":"Spiderman",
+		{"name":"SpiderMan",
 			"filepath": "../Images/menu_seleccion/Seleccionado.png",
 			"x": 403,
 			"y": 296,
