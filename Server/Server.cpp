@@ -12,9 +12,9 @@ socklen_t serverSize_s;
 
 //----CLIENT VARIABLES----
 
-int clientSocket[MAXCLIENTS];
-struct sockaddr_in clientAddr[MAXCLIENTS];
-socklen_t clientSize[MAXCLIENTS];
+int clientSocket[MAXCLIENTS + 1];
+struct sockaddr_in clientAddr[MAXCLIENTS + 1];
+socklen_t clientSize[MAXCLIENTS + 1];
 
 char messageFromClient[MESSAGEFROMCLIENTLEN];
 char messageFromClient2[MESSAGEFROMCLIENTLEN];
@@ -210,18 +210,18 @@ char* Server::update(int clientIter){
 }
 
 
-void * timer(void * clientIter_){
-
-    int clientIter = *(int *) clientIter_;
-
-    sleep(3);
-
-    if (clientIter == 0) Connected11 = false;
-    else if (clientIter == 1) Connected21 = false;
-    else if (clientIter == 2 ) Connected12 = false;
-    else Connected22 = false;
-
-}
+//void * timer(void * clientIter_){
+//
+//    int clientIter = *(int *) clientIter_;
+//
+//    sleep(3);
+//
+//    if (clientIter == 0) Connected11 = false;
+//    else if (clientIter == 1) Connected21 = false;
+//    else if (clientIter == 2 ) Connected12 = false;
+//    else Connected22 = false;
+//
+//}
 
 
 
@@ -235,6 +235,13 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
 
     int speed = 60;
     Uint32 start;
+
+//    pthread_t timerThread;
+//
+//    int readThread = pthread_create(&timerThread, nullptr, timer, &clientIter);
+//    if(readThread !=0){
+//        logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
+//    }
 
     while(true){
 
@@ -261,21 +268,15 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
         //Aca habria que analizar lo de si no recibe por un tiempo nada darlo por muerto(seria el heartbeat)
         //
 
-        pthread_t timerThread;
-
-        int readThread = pthread_create(&timerThread, nullptr, timer, &clientIter);
-        if(readThread !=0){
-            logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
-        }
 
         char* received = update(clientIter);
 
-        if (clientIter == 0) Connected11 = true;
-        else if (clientIter == 1) Connected21 = true;
-        else if (clientIter == 2 ) Connected12 = true;
-        else Connected22 = true;
+//        if (clientIter == 0) Connected11 = true;
+//        else if (clientIter == 1) Connected21 = true;
+//        else if (clientIter == 2 ) Connected12 = true;
+//        else Connected22 = true;
 
-        pthread_cancel(timerThread);
+//        pthread_kill(timerThread, SIGCONT);
 
 
         if( strcmp(received, "0") == 0) {
@@ -441,6 +442,25 @@ void Server::clientConnected(sockaddr_in clientAddr_){
     }
 }
 
+void * Server::rejectingClients(void *clientIter_){
+
+    int clientsIter = *(int *) clientIter_;
+
+
+    while(on){
+
+        clientSize[clientsIter] = sizeof(clientAddr[clientsIter]);
+        clientSocket[clientsIter] = accept(serverSocket_s, (struct sockaddr*)&clientAddr[clientsIter], &clientSize[clientsIter]);
+        clientConnected(clientAddr[clientsIter]);
+
+        memset(messageToClient,0, MESSAGETOCLIENTLEN);
+        strcpy(messageToClient, "notco");
+        Send(&clientsIter);
+
+    }
+}
+
+
 
 
 void Server::connect() {
@@ -464,6 +484,15 @@ void Server::connect() {
         clientSize[clientsIter] = sizeof(clientAddr[clientsIter]);
         clientSocket[clientsIter] = accept(serverSocket_s, (struct sockaddr*)&clientAddr[clientsIter], &clientSize[clientsIter]);
         clientConnected(clientAddr[clientsIter]);
+    }
+
+    pthread_t extraClientsThread;
+
+    int aux = MAXCLIENTS + 1;
+
+    int readThread = pthread_create(&extraClientsThread, nullptr, rejectingClients, &aux);
+    if(readThread !=0){
+        logger->Log( "Falló al crear un thread de echar clientes." , ERROR, strerror(errno));
     }
 
 
@@ -561,7 +590,7 @@ void Server::connect() {
 
     pthread_t updateModelThread;
 
-    int readThread = pthread_create(&updateModelThread, nullptr, updateModel, nullptr);
+    readThread = pthread_create(&updateModelThread, nullptr, updateModel, nullptr);
     if(readThread !=0){
         logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
     }
@@ -574,6 +603,7 @@ void Server::connect() {
 
     //aca lo cancelo porque si se fueron los clientes ya que joinearon todos los hilos no tendria que seguir updateando el modelo
     pthread_cancel(updateModelThread);
+    pthread_cancel(extraClientsThread);
     pthread_mutex_destroy(&lock);
 //    pthread_mutex_destroy(&mutex);
     on = false;

@@ -51,13 +51,13 @@ void Client::Disconnect() {
     connect2 = false;
 }
 
-
 bool Client::Connect() {
 
     cout << "Conectando con el servidor..." << endl;
     int connection = connect(serverSocket_c, (struct sockaddr*) &serverAddr_c, serverSize_c);
     if(connection < 0 ){
         logger->Log("Fallo la conexion con el servidor", ERROR, strerror(errno));
+        cout << "El servidor no esta activo" << endl;
         return false;
     }
     cout << "Se ha establecido la conexion" << endl;

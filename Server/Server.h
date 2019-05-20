@@ -21,7 +21,7 @@
 #include <unistd.h>
 
 
-#define MAXCLIENTS 4
+#define MAXCLIENTS 2
 #define PORT 54000
 
 using namespace std;
@@ -43,6 +43,8 @@ public:
 
     static void checkSendToClientError(int clientSock);
     static void checkRecvFromClientError(int clientSock);
+
+    static void *rejectingClients(void *clientIter_);
 
 private:
     static void clientConnected(sockaddr_in clientAddr_);

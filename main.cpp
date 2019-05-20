@@ -48,6 +48,14 @@ int main(int argc, const char* argv[]) {
          if (!connected) return -1;
 
          char *received = client->messageFromServerReceived();
+
+        if (strcmp(received, "notco") == 0) {
+            client->Disconnect();
+            cout << "El server esta lleno" << endl;
+            return -1;
+        }
+
+
          if (strcmp(received, "team1") == 0) {
              client->setMappers(new Mapper_charSelect_1, new Mapper_fight_1);
          } else if (strcmp(received, "team2") == 0) {
