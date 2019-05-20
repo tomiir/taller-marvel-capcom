@@ -18,6 +18,7 @@
 #include "../utils/Logger/Logger.h"
 #include "../Json/JsonConfigs.h"
 #include <csignal>
+#include <unistd.h>
 
 
 #define MAXCLIENTS 4

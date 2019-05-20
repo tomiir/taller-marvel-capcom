@@ -27,8 +27,10 @@ char messageToClient[MESSAGETOCLIENTLEN];
 queue<string> serverQueue;
 
 bool on = true;
-bool nonOfTeam1Disconnected = true;
-bool nonOfTeam2Disconnected = true;
+bool Connected11 = true;
+bool Connected12 = true;
+bool Connected21 = true;
+bool Connected22 = true;
 
 bool viewControllerFight = false;
 
@@ -208,6 +210,18 @@ char* Server::update(int clientIter){
 }
 
 
+void * timer(void * clientIter_){
+
+    int clientIter = *(int *) clientIter_;
+
+    sleep(3);
+
+    if (clientIter == 0) Connected11 = false;
+    else if (clientIter == 1) Connected21 = false;
+    else if (clientIter == 2 ) Connected12 = false;
+    else Connected22 = false;
+
+}
 
 
 
@@ -247,8 +261,22 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
         //Aca habria que analizar lo de si no recibe por un tiempo nada darlo por muerto(seria el heartbeat)
         //
 
+        pthread_t timerThread;
+
+        int readThread = pthread_create(&timerThread, nullptr, timer, &clientIter);
+        if(readThread !=0){
+            logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
+        }
 
         char* received = update(clientIter);
+
+        if (clientIter == 0) Connected11 = true;
+        else if (clientIter == 1) Connected21 = true;
+        else if (clientIter == 2 ) Connected12 = true;
+        else Connected22 = true;
+
+        pthread_cancel(timerThread);
+
 
         if( strcmp(received, "0") == 0) {
             logger->Log( "El cliente: " + to_string(clientSocket[clientIter]) + " se desconecto" , NETWORK, "");
@@ -260,11 +288,11 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
 //        HAY QUE PROBARLO CON MAS COMPUS PORQUE LA MIA CASI MUERE CON CUATRO CLIENTES xD.
         if (viewControllerFight){
             if (MAXCLIENTS == 4){
-                if (((game_server->currentClientT1() == 1 and clientIter == 2) or (game_server->currentClientT1() == 3 and clientIter == 0)) and nonOfTeam1Disconnected) continue;
-                if (((game_server->currentClientT2() == 2 and clientIter == 3) or (game_server->currentClientT2() == 4 and clientIter == 1)) and nonOfTeam2Disconnected) continue;
+                if (((game_server->currentClientT1() == 1 and clientIter == 2) or (game_server->currentClientT1() == 3 and clientIter == 0)) and (Connected11 and Connected12)) continue;
+                if (((game_server->currentClientT2() == 2 and clientIter == 3) or (game_server->currentClientT2() == 4 and clientIter == 1)) and (Connected21 and Connected22)) continue;
             }
             if (MAXCLIENTS == 3){
-                if (((game_server->currentClientT1() == 1 and clientIter == 2) or (game_server->currentClientT1() == 3 and clientIter == 0)) and nonOfTeam1Disconnected) continue;
+                if (((game_server->currentClientT1() == 1 and clientIter == 2) or (game_server->currentClientT1() == 3 and clientIter == 0)) and (Connected11 and Connected12)) continue;
             }
         }
 
@@ -502,8 +530,6 @@ void Server::connect() {
 
 
     pthread_mutex_init(&lock,NULL);
-//
-//    pthread_mutex_init(&mutex,NULL);
 
     clientsIter = 0;
 

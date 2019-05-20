@@ -23,6 +23,9 @@
 #include <SDL_events.h>
 #include "../Json/JsonConfigs.h"
 #include "../model/Game/Game.h"
+#include <unistd.h>
+
+
 
 
 using namespace std;
