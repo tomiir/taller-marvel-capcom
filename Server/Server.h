@@ -21,8 +21,8 @@
 #include <unistd.h>
 
 
-//#define MAXCLIENTS 2
-//#define PORT 54000
+#define MAXCLIENTS 2
+#define PORT 54000
 
 using namespace std;
 
@@ -49,7 +49,6 @@ public:
 private:
     static void clientConnected(sockaddr_in clientAddr_);
     static void* popQueue(void* arg);
-
 
     //Despeus va a tener que ser del tipo viewController y cambiar cuando tnega que pasar a figth
     //Al usarlo en una funcion estatica me obligo a que sea estatico
