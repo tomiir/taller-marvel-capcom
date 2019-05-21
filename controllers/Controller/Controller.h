@@ -5,19 +5,25 @@
 #ifndef TALLER_MARVEL_CAPCOM_CONTROLLER_H
 #define TALLER_MARVEL_CAPCOM_CONTROLLER_H
 
-#include "../../model/GameObjects/GameObject/GameObject.h"
-#include "../../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.h"
+#include "../../model/GameObjects_fight/GameObject/GameObject.h"
+#include "../../utils/Mapper/Mapper_fight/Mapper_fight.h"
 #include "../../utils/Logger/Logger.h"
 #include "Renderable.h"
+#include "../../Server/GameObject_server/GameObject_server.h"
+
 using namespace std;
 
-class Controller: virtual public Renderable{
+class Controller{
 
 public:
     string getName();
+    Controller(GameObject_server* gameObject_, int jumpSpeed);
+    ~Controller();
+    virtual void handleEvent(string event);
+    vector<int> getInfo();
 
 protected:
-    GameObject * gameObject;
+    GameObject_server * gameObject;
 
     DirectionVector* RIGHT = new DirectionVector(1, 0);
     DirectionVector* LEFT = new DirectionVector(-1, 0);
@@ -26,6 +32,8 @@ protected:
     DirectionVector* GETTINGUP = new DirectionVector(0, 2);
     DirectionVector* STOPRIGHT = new DirectionVector(2, 0);
     DirectionVector* STOPLEFT = new DirectionVector(-2, 0);
+    DirectionVector* KEYSRELEASED = new DirectionVector(0, 0);
+    DirectionVector* CHANGECHARACTER = new DirectionVector(4, 0);
 
 
     DirectionVector* DIAGONAL_UP_RIGHT = new DirectionVector(1, -1);
@@ -34,17 +42,6 @@ protected:
     int distanceBoundaryHorizontal = 25;
     int distanceBoundaryVertical = 75;
     int jumpSpeed;
-
-
-
-
-public:
-    Controller(GameObject* gameObject_, int jumpSpeed);
-    ~Controller();
-    int getZIndex() override;
-    void render() override;
-    virtual void handleEvent(SDL_Event event);
-    vector<int> getInfo();
 
 private:
     void writeLog(string content);

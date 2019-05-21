@@ -1,16 +1,13 @@
 //
-// Created by magali on 31/03/19.
+// Created by arielpm on 16/05/19.
 //
 
 #include "ViewControllerFactory.h"
-#include "../../../utils/FlipManager/FlipManager.h"
 #include "../../../Json/JsonConfigs.h"
+#include "../GameObjectControllerFactory/GameObjectControllerFactory.h"
 
+ViewControllerFactory::ViewControllerFactory(int screenWidth_, int screenHeight_) {
 
-
-ViewControllerFactory::ViewControllerFactory(SDL_Renderer * renderer_, int screenWidth_, int screenHeight_) {
-
-    renderer = renderer_;
     screenHeight = screenHeight_;
     screenWidth = screenWidth_;
 }
@@ -21,12 +18,12 @@ ViewControllerFactory::~ViewControllerFactory() = default;
 ViewController_fight* ViewControllerFactory::getViewController_fight() {
 
 
-    ViewController_fight *viewControllerFight = new ViewController_fight(renderer);
+    ViewController_fight *viewControllerFight = new ViewController_fight();
 
     JsonConfigs* config = JsonConfigs::getJson();
     int speedCharacter = config->getCharactersSpeed();
     int jumpSpeed = config->getJumpSpeed();
-    GameObjectControllerFactory* factory = new GameObjectControllerFactory(renderer, screenWidth, screenHeight, speedCharacter, jumpSpeed);
+    GameObjectControllerFactory* factory = new GameObjectControllerFactory(screenWidth, screenHeight, speedCharacter, jumpSpeed);
 
     vector<ControllerBackground *> backgrounds = factory->getControllersBackground_fight();
 
@@ -59,56 +56,3 @@ ViewController_fight* ViewControllerFactory::getViewController_fight() {
 map<string, ControllerCharacter*> ViewControllerFactory::getControllerCharacter(){
     return characters;
 }
-
-ViewController_charSelect * ViewControllerFactory:: getViewController_charSelect(){
-
-    GameObjectFactory* factory = new GameObjectFactory(renderer, screenWidth, screenHeight);
-    vector <GameObject_charSelect*> gameObjects = factory->getgameobjectChar_select_fight();
-
-    ViewController_charSelect* viewController = new ViewController_charSelect(renderer);
-    viewController->addGameObject_background(gameObjects[0]);
-
-
-    // LOS SIDES DE CADA TEAM
-    viewController->addGameObject_character(gameObjects[1],1);
-    viewController->addGameObject_character(gameObjects[2],2);
-
-    viewController->addGameObject_character(gameObjects[3],1);
-    viewController->addGameObject_character(gameObjects[4],2);
-
-    viewController->addGameObject_character(gameObjects[5],1);
-    viewController->addGameObject_character(gameObjects[6],2);
-
-    viewController->addGameObject_character(gameObjects[7],1);
-    viewController->addGameObject_character(gameObjects[8],2);
-
-    // LOS SIDES DE CADA TEAM selected
-    viewController->addGameObject_character_selected(gameObjects[9],1);
-    viewController->addGameObject_character_selected(gameObjects[10],2);
-
-    viewController->addGameObject_character_selected(gameObjects[11],1);
-    viewController->addGameObject_character_selected(gameObjects[12],2);
-
-    viewController->addGameObject_character_selected(gameObjects[13],1);
-    viewController->addGameObject_character_selected(gameObjects[14],2);
-
-    viewController->addGameObject_character_selected(gameObjects[15],1);
-    viewController->addGameObject_character_selected(gameObjects[16],2);
-
-
-
-    // LOS CUADRADITOS DE CADA TEAM
-    viewController->addGameObject_square(gameObjects[17],1);
-    viewController->addGameObject_square(gameObjects[18],2);
-
-    // LOS CUADRADITOS GRISES
-    viewController->addGameObject_square_gray(gameObjects[19]);
-    viewController->addGameObject_square_gray(gameObjects[20]);
-    viewController->addGameObject_square_gray(gameObjects[21]);
-    viewController->addGameObject_square_gray(gameObjects[22]);
-
-    return viewController;
-
-}
-
-

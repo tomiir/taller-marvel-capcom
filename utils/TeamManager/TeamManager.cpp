@@ -4,22 +4,18 @@
 
 #include "TeamManager.h"
 
-TeamManager::TeamManager(SDL_RendererFlip initialFlip) : Renderable(){
+TeamManager::TeamManager(SDL_RendererFlip initialFlip){
 
     flip = initialFlip;
+    cantChangeChar = 0;
 
 }
 
-void TeamManager:: setCharacters(std::vector<ControllerCharacter*> characters, EventToValueMapper* mapper){
+void TeamManager:: setCharacters(std::vector<ControllerCharacter*> characters){
     currentCharacter = characters[0];
     supportCharacter = characters[1];
-    currentCharacter->setMapper(mapper);
-    supportCharacter->setMapper(mapper);
 }
 
-int TeamManager::getZIndex() {
-    return currentCharacter->getZIndex();
-}
 void TeamManager::changeCharacter(){
 
     ControllerCharacter* aux;
@@ -30,16 +26,14 @@ void TeamManager::changeCharacter(){
     currentCharacter->changePosition(supportCharacter->getInfo()[0], supportCharacter->getInfo()[1]);
 }
 
-void TeamManager::render(){
-    currentCharacter->render();
-}
-void TeamManager:: handleEvent(SDL_Event event, std::vector<ControllerBackground*> backgrounds){
+void TeamManager:: handleEvent(string event, std::vector<ControllerBackground*> backgrounds){
 
     currentCharacter->handleEvent(event);
 
     if (currentCharacter->getInfo()[1] < -300){
         changeCharacter();
         supportCharacter->gone();
+        cantChangeChar++;
         currentCharacter->entry();
         currentCharacter->flip(flip);
     }
@@ -74,4 +68,39 @@ void TeamManager::setInitialPos(bool left) {
 
     currentCharacter->setInitialPos(left);
 
+}
+
+vector<int> TeamManager::getPosCurrentCharacter() {
+    return currentCharacter->getPosInfo();
+}
+
+char TeamManager::getStateCurrentCharacter() {
+
+    string state = currentCharacter->getState();
+    if (state == "still") return '0';
+    else if (state == "walk") return '1';
+    else if (state == "jump") return '2';
+    else if (state == "crowchedDown") return '3';
+    else if (state == "entering") return '4';
+
+}
+
+char TeamManager::getFlipCurrentCharacter() {
+
+    SDL_RendererFlip flip = currentCharacter->getFlip();
+
+    if(flip == SDL_FLIP_NONE) return '0';
+    if(flip == SDL_FLIP_HORIZONTAL) return '1';
+}
+
+char TeamManager::getCurrentCharacterNumber() {
+
+    if ((cantChangeChar % 2) == 0) return '0';
+    else return '1';
+}
+
+int TeamManager::currentCharacterPlaying() {
+
+    if ((cantChangeChar % 2) == 0) return 0;
+    else return 1;
 }

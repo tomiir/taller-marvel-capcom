@@ -1,27 +1,29 @@
 #include <utility>
 
 #include "ControllerBackground.h"
+#include "../../../Server/Background_server/Background_server.h"
 
 
-ControllerBackground::ControllerBackground(GameObject* background_, int jumpSpeed) :
+ControllerBackground::ControllerBackground(GameObject_server* background_, int jumpSpeed) :
                       Controller(background_, jumpSpeed){
-    this->speedCam = dynamic_cast<Background*> (background_)->getSpeedCam();
-    this->speedPercetageCam = dynamic_cast<Background*> (background_) ->getSpeedPercetageCam();
+    this->speedCam = dynamic_cast<Background_server*> (background_)->getSpeedCam();
+    this->speedPercetageCam = dynamic_cast<Background_server*> (background_) ->getSpeedPercetageCam();
 }
 
 
 ControllerBackground::~ControllerBackground() = default;
 
-void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* controllerCharacter1, ControllerCharacter* controllerCharacter2) {
+void ControllerBackground::handleEvent(string event, ControllerCharacter* controllerCharacter1, ControllerCharacter* controllerCharacter2) {
 
-    vector<int> cameraInfo = dynamic_cast< Background* >(gameObject)->getCameraInfo();
+    vector<int> cameraInfo = dynamic_cast< Background_server* >(gameObject)->getCameraInfo();
     vector<int> infoCharacter1 = controllerCharacter1->getInfo();
     vector<int> infoCharacter2 = controllerCharacter2->getInfo();
     vector<int> infoBackgroundImg = gameObject->getInfo();
 
-    DirectionVector* dirLeft = controllerCharacterOnLeft->getMapper()->map(event);
-    DirectionVector* dirRight = controllerCharacterOnRight->getMapper()->map(event);
-    DirectionVector* dirUp = controllerCharacter1->getMapper()->map(event);
+    DirectionVector* dirLeft = new DirectionVector();
+    DirectionVector* dirRight = new DirectionVector();
+    DirectionVector* dirUp = new DirectionVector();
+
 
     int distanceBetweenCharacters = characterOnRightInfo[0]+characterOnRightInfo[2] - characterOnLeftInfo[0];
 
@@ -78,8 +80,8 @@ void ControllerBackground::handleEvent(SDL_Event event, ControllerCharacter* con
 
         dirUp->setY( jumpSpeed/2 );
         gameObject->move(dirUp);
-
     }
+
 
     if (characterOnRightIsInRightBoundary and cameraIsUnderRightLimit and controllerCharacter1->isJumpingRight() and distanceMinorCameraWidth and (controllerCharacterOnRight == controllerCharacter1)) {
 
@@ -114,4 +116,7 @@ void ControllerBackground::update(ControllerCharacter *controllerCharacterOnLeft
 
 }
 
+vector<int> ControllerBackground::getPosCamera() {
 
+     return gameObject->getPosInfo();
+}

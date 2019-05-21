@@ -14,10 +14,19 @@
 #include <string.h>
 #include <string>
 #include <pthread.h>
-#include <future>
 #include <chrono>
 #include <netinet/tcp.h>
+#include <queue>
+#include <csignal>
 #include "../utils/Logger/Logger.h"
+#include "../utils/Mapper/Mapper.h"
+#include <SDL_events.h>
+#include "../Json/JsonConfigs.h"
+#include "../model/Game/Game.h"
+#include <unistd.h>
+
+
+
 
 using namespace std;
 
@@ -37,11 +46,17 @@ public:
 
     void Send(char *message);
 
-    char *update();
-
     bool isBeating();
 
     void hearthBeat();
+
+    void Initialice();
+
+    void setMappers(Mapper* mapperSelect_, Mapper* mapperFight_);
+
+    static void* recvFromServer(void* arg);
+
+    char *messageFromServerReceived();
 
 private:
 
@@ -54,10 +69,15 @@ private:
 
     void configServer(const char* serverIp, uint16_t serverPort);
 
-    bool enable_keepalive();
+    static void* sendEventToServer(void* arg);
+    static void* render(void* arg);
 
-    void checkSendToServerError();
-    void checkRecvFromServerError();
+
+
+    static void checkSendToServerError();
+    static void checkRecvFromServerError();
+
+    static void changeCurrentMapper();
 };
 
 

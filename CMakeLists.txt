@@ -22,12 +22,12 @@ add_executable(
         Json/JsonConfigs.h
         Json/JsonConfigs.cpp
         model/Game/Game.cpp model/Game/Game.h
-        model/GameObjects/GameObject/GameObject.cpp
-        model/GameObjects/GameObject/GameObject.h
-        model/GameObjects/Character/Character.cpp
-        model/GameObjects/Character/Character.h
-        model/GameObjects/Background/Background.cpp
-        model/GameObjects/Background/Background.h
+        model/GameObjects_fight/GameObject/GameObject.cpp
+        model/GameObjects_fight/GameObject/GameObject.h
+        model/GameObjects_fight/Character/Character.cpp
+        model/GameObjects_fight/Character/Character.h
+        model/GameObjects_fight/Background/Background.cpp
+        model/GameObjects_fight/Background/Background.h
         model/GameObject_charSelect/GameObject_charSelect.cpp
         model/GameObject_charSelect/GameObject_charSelect.h
         controllers/Controller/Renderable.cpp
@@ -40,18 +40,18 @@ add_executable(
         controllers/ViewController/ViewController_fight/ViewController_fight.h
         controllers/ViewController/ViewController_charSelect/ViewController_charSelect.cpp
         controllers/ViewController/ViewController_charSelect/ViewController_charSelect.h
-        model/Game/ViewControllerFactory/ViewControllerFactory.cpp
-        model/Game/ViewControllerFactory/ViewControllerFactory.h
+        model/Game/ViewFactory/ViewFactory.cpp
+        model/Game/ViewFactory/ViewFactory.h
         model/Game/GameObjectControllerFactory/GameObjectControllerFactory.cpp
         model/Game/GameObjectControllerFactory/GameObjectControllerFactory.h
         model/Game/GameObjectFactory/GameObjectFactory.cpp
         model/Game/GameObjectFactory/GameObjectFactory.h
         model/Viewmanager/ViewManager.cpp
         model/Viewmanager/ViewManager.h
-        model/Game/ViewControllerFactory/ViewControllerFactory.cpp
-        model/Game/ViewControllerFactory/ViewControllerFactory.h
-        utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.cpp
-        utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.h
+        model/Game/ViewFactory/ViewFactory.cpp
+        model/Game/ViewFactory/ViewFactory.h
+        utils/Mapper/Mapper_fight/Mapper_fight.cpp
+        utils/Mapper/Mapper_fight/Mapper_fight.h
         controllers/Controller/ControllerCharacter/ControllerCharacter.cpp
         controllers/Controller/ControllerCharacter/ControllerCharacter.h
         controllers/Controller/ControllerBackground/ControllerBackground.cpp
@@ -82,10 +82,10 @@ add_executable(
         Animations/SpiderManAnimations/SpiderManStillAnimation.h
         Animations/SpiderManAnimations/SpiderManWalkAnimation.cpp
         Animations/SpiderManAnimations/SpiderManWalkAnimation.h
-        utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper_player1.cpp
-        utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper_player1.h
-        utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper_player2.cpp
-        utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper_player2.h
+        utils/Mapper/Mapper_fight/Mapper_fight_1.cpp
+        utils/Mapper/Mapper_fight/Mapper_fight_1.h
+        utils/Mapper/Mapper_fight/Mapper_fight_2.cpp
+        utils/Mapper/Mapper_fight/Mapper_fight_2.h
         utils/TeamManager/TeamManager.cpp
         utils/TeamManager/TeamManager.h
         Animations/VenomAnimations/VenomCrowchedDownAnimation.cpp
@@ -130,17 +130,39 @@ add_executable(
         utils/SpriteManagers/NotFoundSpriteManager.cpp
         Animations/NotFoundAnimation.h
         Animations/NotFoundAnimation.cpp
-        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect.cpp
-        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect.h
-        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect_1.cpp
-        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect_1.h
-        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect_2.cpp
-        utils/EventToValueMapper/EventToValueMapper_charSelect/EventToValueMapper_charSelect_2.h
+        utils/Mapper/Mapper_charSelect/Mapper_charSelect.cpp
+        utils/Mapper/Mapper_charSelect/Mapper_charSelect.h
+        utils/Mapper/Mapper_charSelect/Mapper_charSelect_1.cpp
+        utils/Mapper/Mapper_charSelect/Mapper_charSelect_1.h
+        utils/Mapper/Mapper_charSelect/Mapper_charSelect_2.cpp
+        utils/Mapper/Mapper_charSelect/Mapper_charSelect_2.h
         utils/TextureManager/TextureManager.cpp
         utils/TextureManager/TextureManager.h
         views/View/View.cpp
         views/View/View.h
-        Server/Server.cpp Server/Server.h Client/Client.cpp Client/Client.h)
+        Server/Server.cpp Server/Server.h
+        Client/Client.cpp
+        Client/Client.h
+        utils/Mapper/Mapper.cpp utils/Mapper/Mapper.h
+        views/View/View_charSelect.cpp
+        views/View/View_charSelect.h
+        views/View/View_fight.cpp
+        views/View/View_fight.h
+        Server/GameObject_server/GameObject_server.h
+        Server/GameObject_server/GameObject_server.cpp
+        Server/Character_server/Character_server.h
+        Server/Character_server/Character_server.cpp
+        Server/Background_server/Background_server.h
+        Server/Background_server/Background_server.cpp
+        model/Game/ViewControllerFactory/ViewControllerFactory.cpp
+        model/Game/ViewControllerFactory/ViewControllerFactory.h
+        Server/Game_server/Game_server.h
+        Server/Game_server/Game_server.cpp
+        model/Game/GameObjectServerFactory/GameObjectServerFactory.cpp
+        model/Game/GameObjectServerFactory/GameObjectServerFactory.h
+
+
+)
 
 
 

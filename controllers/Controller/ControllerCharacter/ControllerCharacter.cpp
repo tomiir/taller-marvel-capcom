@@ -7,7 +7,7 @@
 #include <thread>
 #include "../../../utils/Logger/Logger.h"
 
-ControllerCharacter::ControllerCharacter(GameObject* gameObject, int screenWidth_, int screenHeight_,  int speedCharacter_, int jumpSpeed) : Controller(gameObject, jumpSpeed){
+ControllerCharacter::ControllerCharacter(GameObject_server* gameObject, int screenWidth_, int screenHeight_,  int speedCharacter_, int jumpSpeed) : Controller(gameObject, jumpSpeed){
     screenHeight = screenHeight_;
     screenWidth = screenWidth_;
     speedCharacter = speedCharacter_;
@@ -18,9 +18,55 @@ ControllerCharacter::ControllerCharacter(GameObject* gameObject, int screenWidth
 ControllerCharacter::~ControllerCharacter() = default;
 
 
-void ControllerCharacter::handleEvent(SDL_Event event) {
+DirectionVector* giveDirectionVect(string event){
 
-    DirectionVector* direction = mapper->map(event);
+    DirectionVector* direction = new DirectionVector();
+
+    if (event == "00000"){
+      direction->add(0, 0);
+    }
+    else if (event == "10000") {
+        direction->add(1, 0);
+    }
+    else if (event == "01000") {
+        direction->add(-1, 0);
+    }
+    else if (event == "00100") {
+        direction->add(0, -1);
+    }
+    else if (event == "00010") {
+        direction->add(0, 1);
+    }
+    else if (event == "00001") {
+        direction->add(4, 0);
+    }
+    else if (event == "10100") {
+        direction->setDiagonal(1);
+        direction->setY(-1);
+    }
+    else if (event == "01100"){
+        direction->setDiagonal(-1);
+        direction->setY(-1);
+    }
+    else if (event[3] == '2'){
+        direction->add(0, 2);
+    }
+    else if (event[1] == '2'){
+        direction->add(-2, 0);
+    }
+    else if (event[0] == '2'){
+        direction->add(2, 0);
+    }
+
+    return direction;
+}
+
+
+
+void ControllerCharacter::handleEvent(string event) {
+
+    DirectionVector* direction = giveDirectionVect(event);
+
     vector<int> info = gameObject->getInfo();
 
 
@@ -38,10 +84,19 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
         crowchedDown = true;
     }
 
-    if (direction->isEqual(GETTINGUP)) crowchedDown = false;
-    if (direction->isEqual(STOPRIGHT) || inAir) movingRight = false;
-    if (direction->isEqual(STOPLEFT)  || inAir) movingLeft = false;
-    if(event.key.state == SDL_RELEASED and !inAir and !crowchedDown and !movingLeft and !movingRight) state = "still";
+    if (direction->isEqual(GETTINGUP)) {
+        state = "still";
+        crowchedDown = false;
+    }
+    if (direction->isEqual(STOPRIGHT) || inAir) {
+        movingRight = false;
+        state = "still";
+    }
+    if (direction->isEqual(STOPLEFT)  || inAir) {
+        movingLeft = false;
+        state = "still";
+    }
+    if(direction->isEqual(KEYSRELEASED) and !inAir and !crowchedDown and !movingLeft and !movingRight) state = "still";
 
     bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal;
     bool characterIsntInLeftBoundary = info[0] >= 0;
@@ -111,7 +166,7 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
 
     }
 
-    if (mapper->changeCharacter(event) and !inAir){
+    if (direction->isEqual(CHANGECHARACTER) and !inAir){
         leaving = true;
         logger->Log(character->getName() + " cambio de personaje", DEBUG, "");
     }
@@ -132,7 +187,7 @@ void ControllerCharacter::handleEvent(SDL_Event event) {
 
 
 
-    dynamic_cast<Character*>(gameObject)->setState(state);
+    dynamic_cast<Character_server*>(gameObject)->setState(state);
 
 }
 
@@ -148,9 +203,6 @@ bool ControllerCharacter::isJumpingLeft() {
     return jumpLeft;
 }
 
-EventToValueMapper* ControllerCharacter::getMapper(){
-    return mapper;
-}
 
 void ControllerCharacter::move(DirectionVector *direction) {
 
@@ -160,13 +212,13 @@ void ControllerCharacter::move(DirectionVector *direction) {
 
 void ControllerCharacter::flip(SDL_RendererFlip flip) {
 
-    dynamic_cast<Character*> (gameObject)->flipSprite(flip);
+    dynamic_cast<Character_server*> (gameObject)->flipSprite(flip);
 
 }
 
 void ControllerCharacter::changePosition(int changeX, int changeY) {
 
-    dynamic_cast<Character*> (gameObject)->changePosition(changeX, changeY);
+    dynamic_cast<Character_server*> (gameObject)->changePosition(changeX, changeY);
 
 }
 
@@ -199,13 +251,20 @@ bool ControllerCharacter::isMovingLeft() {
     return movingLeft;
 }
 
-void ControllerCharacter::setMapper(EventToValueMapper* mapper) {
-
-    this->mapper = mapper;
-}
-
 void ControllerCharacter::setInitialPos(bool left) {
 
-    dynamic_cast<Character*>(gameObject)->setInitialPos(left);
+    dynamic_cast<Character_server*>(gameObject)->setInitialPos(left);
 
+}
+
+vector<int> ControllerCharacter::getPosInfo() {
+    return gameObject->getPosInfo();
+}
+
+string ControllerCharacter::getState() {
+    return dynamic_cast<Character_server*>(gameObject)->getState();
+}
+
+SDL_RendererFlip ControllerCharacter::getFlip() {
+    return dynamic_cast<Character_server*>(gameObject)->getFlip();
 }

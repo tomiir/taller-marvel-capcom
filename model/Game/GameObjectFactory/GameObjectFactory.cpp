@@ -85,13 +85,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
 
         Character* C;
 
-
-        if(gameObjects.size() < 2){
-            C = new Character(path.c_str(), spriteManagerName,  zIndex, renderer, spriteManager , initialY, name, size);
-        }
-        else{
-            C = new Character(path.c_str(), spriteManagerName, zIndex, renderer, spriteManager , initialY, name, size) ;
-        }
+        C = new Character(path.c_str(), spriteManagerName,  zIndex, renderer, spriteManager , initialY, name, size);
 
         C->setInitialXPositions(width/2, (screenWidth - width) - (width/2));
 
@@ -99,13 +93,6 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
     }
 
     return gameObjects;
-}
-
-double GameObjectFactory::cameraSpeedPercentage(int widthMax, int widthImg) {
-
-    double a = widthImg - screenWidth;
-    double b = widthMax - screenWidth;
-    return a/b;
 }
 
 
@@ -135,28 +122,13 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsBackgrounds_fight() {
         string name = (*iter).getName();
 
         //HARCODEO EL NOMBRE, PQ NO LO USAMOS, ¿ES UNA MALA DECISIÓN? SI, LO ES, PERO ASÍ ES LA VIDA.
-        Background *B = new Background(path.c_str(),"background", zIndex, renderer, width, height, screenWidth, screenHeight);
-
-        if (!B){
-            //excepción
-        }
+        Background *B = new Background(path.c_str(),name, zIndex, renderer, width, height, screenWidth, screenHeight);
+        
 
         if (width > maxWidth) maxWidth = width;
 
         gameObjects.push_back(B);
     }
-
-    vector <GameObject*>::iterator itr = gameObjects.begin();
-
-    for (itr; itr != gameObjects.end(); ++itr){
-
-        vector<int> info = (*itr)->getInfo();
-        double speedPercentageB = cameraSpeedPercentage(maxWidth, info[0]);
-        int cameraSpeedB = speedCharacter * speedPercentageB;
-        dynamic_cast<Background*>(*itr)->setSpeeds(cameraSpeedB,speedPercentageB);
-    }
-
-
 
 
     return gameObjects;
@@ -169,8 +141,11 @@ vector<GameObject_charSelect *> GameObjectFactory::getgameobjectChar_select_figh
 
     vector <int> aux;
 
+    int aux_y = (screenHeight - 600)/2;
+    int aux_x = (screenWidth - 800)/2;
+
     //FONDO
-    aux = {200,0,800,600};
+    aux = {aux_x,aux_y,800,600};
     GameObject_charSelect* background =  new GameObject_charSelect("../Images/menu_seleccion/Menu personajes.png","background", 0, renderer, aux );
     gameObjects.push_back(background);
 
@@ -252,19 +227,19 @@ vector<GameObject_charSelect *> GameObjectFactory::getgameobjectChar_select_figh
 
 
     //CUADRADITOS GRISES
-    aux = {240,296,153,117};
+    aux = {240 + aux_x,296 + aux_y,153,117};
     GameObject_charSelect* square_grey_1=  new GameObject_charSelect("../Images/menu_seleccion/Seleccionado.png","CaptainAmerica", 0, renderer, aux );
     gameObjects.push_back(square_grey_1);
 
-    aux = {403, 296,153,117};
+    aux = {403 + aux_x, 296 + aux_y,153,117};
     GameObject_charSelect* square_grey_2=  new GameObject_charSelect("../Images/menu_seleccion/Seleccionado.png","SpiderMan", 0, renderer, aux );
     gameObjects.push_back(square_grey_2);
 
-    aux = {242,422,153,117};
+    aux = {242 + aux_x,422 + aux_y,153,117};
     GameObject_charSelect* square_grey_3 =  new GameObject_charSelect("../Images/menu_seleccion/Seleccionado.png","ChunLi", 0, renderer, aux );
     gameObjects.push_back(square_grey_3);
 
-    aux = {404,422,153,117};
+    aux = {404 + aux_x,422 + aux_y,153,117};
     GameObject_charSelect* square_grey_4=  new GameObject_charSelect("../Images/menu_seleccion/Seleccionado.png","Venom", 0, renderer, aux );
     gameObjects.push_back(square_grey_4);
 

@@ -8,8 +8,9 @@
 
 #include "../Controller.h"
 #include "../../../utils/Vector2D/DirectionVector.h"
-#include "../../../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.h"
-#include "../../../model/GameObjects/Character/Character.h"
+#include "../../../utils/Mapper/Mapper_fight/Mapper_fight.h"
+#include "../../../model/GameObjects_fight/Character/Character.h"
+#include "../../../Server/Character_server/Character_server.h"
 
 using namespace std;
 
@@ -17,16 +18,14 @@ class ControllerCharacter : public Controller{
 
 
 public:
-    ControllerCharacter(GameObject *gameObject, int screenWidth_, int screenHeight_, int speedCharacter_, int speedCharacter);
+    ControllerCharacter(GameObject_server *gameObject, int screenWidth_, int screenHeight_, int speedCharacter_, int speedCharacter);
     ~ControllerCharacter();
-    void handleEvent(SDL_Event event);
+    void handleEvent(string event);
     bool isJumping();
     bool isJumpingRight();
     bool isJumpingLeft();
-    EventToValueMapper* getMapper();
     void setInitialPos(bool left);
     void move(DirectionVector *pVector);
-    void flip(SDL_RendererFlip);
     void changePosition(int changeX, int changeY);
     bool isInAir();
     void gone();
@@ -34,17 +33,22 @@ public:
     bool isChanging();
     bool isMovingRight();
     bool isMovingLeft();
-    void setMapper(EventToValueMapper* mapper);
+    void flip(SDL_RendererFlip flip);
+
+    vector<int> getPosInfo();
+
+    string getState();
+
+    SDL_RendererFlip getFlip();
 
 private:
 
-    EventToValueMapper* mapper;
     int screenWidth, screenHeight, speedCharacter;
     int jumpDistance = 10;
     bool jump, inAir, jumpRight, jumpLeft, leaving, entering, crowchedDown, movingRight, movingLeft, moving;
     string state = "still";
     CLogger* logger = CLogger::GetLogger();
-    Character* character = dynamic_cast<Character*>(gameObject);
+    Character_server* character = dynamic_cast<Character_server*>(gameObject);
 };
 
 

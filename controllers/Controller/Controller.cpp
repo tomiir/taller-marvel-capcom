@@ -5,7 +5,7 @@
 #include "Controller.h"
 
 
-Controller::Controller(GameObject *gameObject_, int jumpSpeed): Renderable(){
+Controller::Controller(GameObject_server *gameObject_, int jumpSpeed){
 
     gameObject = gameObject_;
     this->jumpSpeed = jumpSpeed;
@@ -17,22 +17,13 @@ Controller::Controller(GameObject *gameObject_, int jumpSpeed): Renderable(){
 
 Controller::~Controller() = default;
 
-int Controller::getZIndex(){
-    return gameObject->getZIndex();
-}
-
-void Controller::render(){
-
-    gameObject->render();
-}
-
 vector<int> Controller::getInfo(){
 
     vector<int> info = gameObject->getInfo();
     return info;
 }
 
-void Controller::handleEvent(SDL_Event event) {}
+void Controller::handleEvent(string event) {}
 
 void Controller::writeLog(string content) {
 }

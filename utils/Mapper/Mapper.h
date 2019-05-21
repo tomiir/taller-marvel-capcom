@@ -1,0 +1,23 @@
+//
+// Created by magali on 08/05/19.
+//
+
+#ifndef TALLER_MARVEL_CAPCOM_MAPPER_H
+#define TALLER_MARVEL_CAPCOM_MAPPER_H
+#include <SDL_events.h>
+#include <string.h>
+#include <string>
+
+using namespace std;
+
+class Mapper {
+
+public:
+    Mapper();
+   ~Mapper();
+
+    virtual string map( SDL_Event event);
+};
+
+
+#endif //TALLER_MARVEL_CAPCOM_MAPPER_H

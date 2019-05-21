@@ -8,85 +8,13 @@
 #include <SDL2/SDL.h>
 
 #include "../../../utils/Logger/Logger.h"
-#include "../../../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper_player1.h"
-#include "../../../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper_player2.h"
 
-ViewController_fight::ViewController_fight(SDL_Renderer* renderer_):ViewController(renderer_) {
+ViewController_fight::ViewController_fight():ViewController() {
+
 }
 
 ViewController_fight::~ViewController_fight() = default;
 
-
-void ViewController_fight::addBackground(ControllerBackground* controller) {
-
-    backgrounds.push_back(controller);
-}
-
-
-void ViewController_fight::handleEvent() {
-
-    CLogger* logger = CLogger::GetLogger();
-
-    SDL_Event event;
-    SDL_PollEvent(&event);
-
-    if (event.type == SDL_QUIT) {
-        logger -> Log("Saliendo del juego", INFO, "");
-        throw -1;
-    }
-// MODIFICAR EL HANDLEEVENT!
-    try {
-        if(event.key.state != SDL_RELEASED) {
-            //logger -> Log("Manejando el evento: " + to_string(event.type), DEBUG, "");
-        }
-        team1->handleEvent(event, backgrounds);
-        team2->handleEvent(event, backgrounds);
-        flipManager->update();
-    } catch(exception e) {
-        logger -> Log("Falló al querer manejar un evento", ERROR, e.what());
-        logger -> Log("Falló al querer manejar el evento: " + to_string(event.type), DEBUG, e.what());
-        throw -1;
-    }
-}
-
-struct Comp{
-    bool operator()(Renderable*& renderable1, Renderable*& renderable2){
-        return renderable1->getZIndex() >  renderable2->getZIndex();
-    }
-};
-
-void ViewController_fight::updateView() {
-
-    //Acá debería chequear si debe cambiar de ViewController
-    // Primero renderizo (limpio) la vista;
-
-    this->view->render();
-    std::vector<Renderable*> renderables;
-
-    // Luego renderizo los elementos que la componen
-
-
-    for (std::vector<ControllerBackground*>::iterator controllerBackground=backgrounds.begin(); controllerBackground != backgrounds.end(); ++controllerBackground) {
-        //Creo que devuelve un puntero al puntero de controller, por eso lo desreferencio.
-        renderables.push_back((*controllerBackground));
-    }
-
-    renderables.push_back(team1);
-    renderables.push_back(team2);
-
-    Comp comp;
-    std::make_heap(renderables.begin(),renderables.end(), comp);
-    int size = renderables.size();
-    for (int i = 0; i < size; i++){
-        std::pop_heap(renderables.begin(), renderables.end(), comp);
-        Renderable* rend = renderables.back();
-        rend->render();
-        renderables.pop_back();
-    }
-
-    SDL_RenderPresent(renderer);
-
-}
 
 void ViewController_fight::addTeams(TeamManager* teamManager1, TeamManager* teamManager2) {
 
@@ -94,11 +22,6 @@ void ViewController_fight::addTeams(TeamManager* teamManager1, TeamManager* team
     team2 = teamManager2;
 }
 
-void ViewController_fight::addFlipManager(FlipManager *flipManager_) {
-
-    flipManager = flipManager_;
-
-}
 
 bool ViewController_fight::end() {
     //lo hardcodeo pq no tenemos otra view
@@ -112,20 +35,114 @@ string ViewController_fight::getNextView() {
 void ViewController_fight::setTeam(vector<ControllerCharacter *> characters, int team) {
 
     if (team == 1) {
-        EventToValueMapper* mapperTeam1 = new EventToValueMapper_player1();
-        team1->setCharacters(characters, mapperTeam1);
+        team1->setCharacters(characters);
         team1->setInitialPos(true);
     }
     else {
 
-        EventToValueMapper* mapperTeam2 = new EventToValueMapper_player2();
-        team2->setCharacters(characters, mapperTeam2);
+        team2->setCharacters(characters);
         team2->setInitialPos(false);
     }
 
 }
 
+void ViewController_fight::addBackground(ControllerBackground *controller) {
 
-void ViewController_fight:: createFlipManager(){
+    backgrounds.push_back(controller);
+}
+
+void ViewController_fight::addFlipManager(FlipManager *flipManager_) {
+
+    flipManager = flipManager_;
+}
+
+void ViewController_fight::createFlipManager() {
+
     flipManager->create();
 }
+
+
+void ViewController_fight::handleEvent(string event) {
+
+    CLogger* logger = CLogger::GetLogger();
+
+    if (event == "") return;
+
+// MODIFICAR EL HANDLEEVENT!
+    try {
+        if ((event[5] == '0' and event[6] == '0') or (event[5] == '1' and event[6] == '0')){
+            team1->handleEvent(event.substr(0, 5), backgrounds);
+        }
+        else if ((event[5] == '0' and event[6] == '1') or (event[5] == '1' and event[6] == '1')){
+            team2->handleEvent(event.substr(0, 5), backgrounds);
+        }
+
+        flipManager->update();
+
+    } catch(exception e) {
+        logger -> Log("Falló al querer manejar un evento", ERROR, e.what());
+        logger -> Log("Falló al querer manejar el evento: " + event, DEBUG, e.what());
+        throw -1;
+    }
+}
+
+string intToString(int value, int posNum, int cantNum, string updates){
+
+    string aux = "";
+    aux = std::to_string(value);
+
+    int len = aux.size();
+
+    for(int i = 0; i < len ;i++){
+        updates[posNum + cantNum - 1 - i] = aux[len - 1 - i];
+    }
+
+    return updates;
+}
+
+
+
+string ViewController_fight::giveNewParameters() {
+
+    string updates = "010000000000000000000000000000000000000000000";
+
+    vector<int> pos_floor = backgrounds[0]->getPosCamera();
+    vector<int> pos_moon = backgrounds[1]->getPosCamera();
+    vector<int> pos_galaxy = backgrounds[2]->getPosCamera();
+
+    vector<int> posCharT1 = team1->getPosCurrentCharacter();
+    vector<int> posCharT2 = team2->getPosCurrentCharacter();
+
+    updates[31] = team1->getStateCurrentCharacter();
+    updates[40] = team2->getStateCurrentCharacter();
+
+    updates[41] = team1->getFlipCurrentCharacter();
+    updates[42] = team2->getFlipCurrentCharacter();
+
+    updates[43] = team1->getCurrentCharacterNumber();
+    updates[44] = team2->getCurrentCharacterNumber();  //No entiendo porque me aparece value is never used
+
+
+    updates = intToString(pos_floor[0], 2, 4, updates);
+    updates = intToString(pos_floor[1], 6, 3, updates);
+    updates = intToString(pos_moon[0], 9, 4, updates);
+    updates = intToString(pos_moon[1], 13, 3, updates);
+    updates = intToString(pos_galaxy[0], 16, 4, updates);
+    updates = intToString(pos_galaxy[1], 20, 3, updates);
+    updates = intToString(posCharT1[0], 23, 4, updates);
+    updates = intToString(posCharT1[1], 27, 4, updates);
+    updates = intToString(posCharT2[0], 32, 4, updates);
+    updates = intToString(posCharT2[1], 36, 4, updates);
+
+    return updates;
+}
+
+int ViewController_fight::currentCharacterT1() {
+    return team1->currentCharacterPlaying();
+}
+
+int ViewController_fight::currentCharacterT2() {
+    return team2->currentCharacterPlaying();
+}
+
+

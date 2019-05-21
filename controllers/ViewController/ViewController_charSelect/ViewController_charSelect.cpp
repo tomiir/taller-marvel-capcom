@@ -5,90 +5,79 @@
 #include "ViewController_charSelect.h"
 #include <algorithm>
 
-ViewController_charSelect::ViewController_charSelect(SDL_Renderer *renderer_): ViewController(renderer_){
+ViewController_charSelect::ViewController_charSelect():ViewController(){
 
-    squarePosition["CaptainAmerica"] = {233,291,165,127}; // FALTA AGREGAR LAS POSICIONES
-    squarePosition["SpiderMan"] = {400,291,165,127}; // FALTA AGREGAR LAS POSICIONES
-    squarePosition["ChunLi"] = {234,417,165,127}; // FALTA AGREGAR LAS POSICIONES
-    squarePosition["Venom"] = {399,417,165,127}; // FALTA AGREGAR LAS POSICIONES
+    /* [cap_america] [spiderman]
+     * [chun_li] [venom] */
 
-    std::vector<int> aux_1 = {497,0,303,300};// arriba a la derecha
-    std::vector<int> aux_2 = {497,300,303,300};// abajo a la derecha
-    std::vector<int> aux_3 = {0,0,303,300};// arriba a la izquierda
-    std::vector<int> aux_4 = {0,300,303,300};// abajo a la izquierda
 
-    mapper_1 = new  EventToValueMapper_charSelect_1() ;
-    mapper_2 = new  EventToValueMapper_charSelect_2() ;
+    cap_america["up"] = "ChunLi" ;
+    cap_america["down"] = "ChunLi";
+    cap_america["right"] = "SpiderMan" ;
+    cap_america["left"] = "SpiderMan";
 
-    posc_side_1 = {aux_1 , aux_2};
-    posc_side_2 = {aux_3, aux_4};
+    chun_li["up"] = "CaptainAmerica";
+    chun_li["down"] = "CaptainAmerica" ;
+    chun_li["right"] = "Venom";
+    chun_li["left"] = "Venom";
+
+    spider_man["up"] = "Venom";
+    spider_man["down"] = "Venom";
+    spider_man["right"] =  "CaptainAmerica";
+    spider_man["left"] = "CaptainAmerica";
+
+    venom["up"] = "SpiderMan";
+    venom["down"] = "SpiderMan" ;
+    venom["right"] = "ChunLi" ;
+    venom["left"] = "ChunLi" ;
+
+    map_map["CaptainAmerica"] = cap_america;
+    map_map["ChunLi"] = chun_li;
+    map_map["Venom"] = venom;
+    map_map["SpiderMan"] = spider_man;
+
+    map_preselectedT1 = cap_america;
+    map_preselectedT2 = spider_man;
 }
 
-void ViewController_charSelect::addGameObject_square(GameObject_charSelect* square, int team){
-    if (team == 1 ){
-       square_team1 = square;
-    }
-    else {
-        square_team2 = square;
-    }
-}
 
-void ViewController_charSelect::addGameObject_square_gray(GameObject_charSelect* square){
-    greySquare[square->getName()] =  square;
-}
 
-void ViewController_charSelect::updateView() {
+void ViewController_charSelect:: handleEvent(string event) {
 
-    //LIMPIO LA PANTALLA
-    this->view->render();
+    recentlySelected = "";
+    recentlySelected2 = "";
 
-    //RENDERIZO, EL ORDEN ES IMPORTANTE
-    background->render();
-    renderVector(this->getSides());
-    renderVector(this->getGreysSquares());
-    renderVector(this->getSelectionSquares());
+    //pasar los strcmp a ==
+    if (event == "0000000" or event == "0000010"
+        or event == "0000001" or event == "0000011")
+        return;
 
-    //LO PRESENTO EN EL RENDER
-    SDL_RenderPresent(renderer);
 
-}
+    if (event == "1000000" or event == "1000010") preselectedT1 = map_preselectedT1["right"];
+    if (event == "0100000" or event == "0100010") preselectedT1 = map_preselectedT1["left"];
+    if (event == "0010000" or event == "0010010") preselectedT1 = map_preselectedT1["up"];
+    if (event == "0001000" or event == "0001010") preselectedT1 = map_preselectedT1["down"];
 
-void ViewController_charSelect::addGameObject_background(GameObject_charSelect *background){
-    this->background = background;
-}
+    map_preselectedT1 = map_map[preselectedT1];
 
-void ViewController_charSelect:: addGameObject_character(GameObject_charSelect* gameObject, int team){
-    if (team == 1 ){
-        team_1[gameObject->getName()] = gameObject;
-    }
-    else{
-        team_2[gameObject->getName()] = gameObject;
-    }
-}
+    if (selected_1.size() < 2){
 
-void ViewController_charSelect:: addGameObject_character_selected(GameObject_charSelect* gameObject, int team){
-    if (team == 1 ){
-        team_1_selected[gameObject->getName()] = gameObject;
-    }
-    else{
-        team_2_selected[gameObject->getName()] = gameObject;
-    }
-}
-
-void ViewController_charSelect:: handleEvent() {
-
-    SDL_Event event;
-    SDL_PollEvent(&event);
-
-    if (selected_1.size() < 2) {
-        string respuesta_1 = mapper_1->map(event);
-        if (strcmp(respuesta_1.c_str(), "no_selecciono") != 0) setTeam1(respuesta_1);
+        if (event == "0000100" or event == "0000110") setTeam1(preselectedT1);
     }
 
-    if (selected_2.size() < 2) {
-    string respuesta_2 = mapper_2->map(event);
-    if (strcmp(respuesta_2.c_str(), "no_selecciono") != 0) setTeam2(respuesta_2);
+
+    if (event == "1000001" or event == "1000011") preselectedT2 = map_preselectedT2["right"];
+    if (event == "0100001" or event == "0100011") preselectedT2 = map_preselectedT2["left"];
+    if (event == "0010001" or event == "0010011") preselectedT2 = map_preselectedT2["up"];
+    if (event == "0001001" or event == "0001011") preselectedT2 = map_preselectedT2["down"];
+
+    map_preselectedT2 = map_map[preselectedT2];
+
+    if(selected_2.size() < 2){
+
+        if (event == "0000101" or event == "0000111") setTeam2(preselectedT2);
     }
+
 }
 
 void ViewController_charSelect::setTeam1(string character){
@@ -106,6 +95,7 @@ void ViewController_charSelect::setTeam1(string character){
     if(posible) {
         selected.push_back(character);
         selected_1.push_back(character);
+        recentlySelected = character;
     }
 }
 
@@ -123,15 +113,9 @@ void ViewController_charSelect::setTeam2(string character) {
     if(posible) {
         selected.push_back(character);
         selected_2.push_back(character);
+        recentlySelected2 = character;
     }
 
-}
-
-
-void ViewController_charSelect::addBackground(ControllerBackground* controller){
-
-    // ESTE LO DEFINO POR HERENCIA PERO NO LO USA
-    backgrounds.push_back(controller);
 }
 
 
@@ -148,105 +132,87 @@ string ViewController_charSelect::getNextView() {
     return "fight";
 }
 
-std::vector<GameObject_charSelect *> ViewController_charSelect::getSides() {
+string ViewController_charSelect::giveNewParameters() {
 
-    // LOGICA DE LATERALES. to_render es un vector que tiene los laterales a renderizar.
-    std::vector<GameObject_charSelect *> to_render;
+    string updates = "000000000000000000000000000000000000000000000";
 
-    if (selected_1.size() == 0) {
-        itr_team_1 = team_1.find((mapper_1->getPreselected()));
-        (itr_team_1->second)->setPosc(posc_side_1[0]);
-        to_render.push_back(itr_team_1->second);
+    if(recentlySelected == "CaptainAmerica" or recentlySelected2 == "CaptainAmerica") updates[2] = '1';
+    else if(recentlySelected == "SpiderMan" or recentlySelected2 == "SpiderMan") updates[3] = '1';
+    else if(recentlySelected == "ChunLi" or recentlySelected2 == "ChunLi") updates[4] = '1';
+    else if(recentlySelected == "Venom" or recentlySelected2 == "Venom") updates[5] = '1';
+
+    if(preselectedT1 == "CaptainAmerica") {
+        updates[6] = '0';
+        updates[7] = '0';
+    }else if (preselectedT1 == "SpiderMan"){
+        updates[6] = '0';
+        updates[7] = '1';
+    }else if (preselectedT1 == "ChunLi"){
+        updates[6] = '1';
+        updates[7] = '0';
+    }else {
+        updates[6] = '1';
+        updates[7] = '1';
     }
 
-    if (selected_2.size() == 0) {
-        itr_team_2 = team_2.find((mapper_2->getPreselected()));
-        (itr_team_2->second)->setPosc(posc_side_2[0]);
-        to_render.push_back(itr_team_2->second);
+    if(preselectedT2 == "CaptainAmerica") {
+        updates[8] = '0';
+        updates[9] = '0';
+    }else if (preselectedT2 == "SpiderMan"){
+        updates[8] = '0';
+        updates[9] = '1';
+    }else if (preselectedT2 == "ChunLi"){
+        updates[8] = '1';
+        updates[9] = '0';
+    }else {
+        updates[8] = '1';
+        updates[9] = '1';
     }
 
-    if (selected_1.size() == 1) {
-        itr_team_1_selected = team_1_selected.find(selected_1[0]);
-        (itr_team_1_selected->second)->setPosc(posc_side_1[0]);
-        to_render.push_back(itr_team_1_selected->second);
+    if(recentlySelected == "CaptainAmerica"){
+        updates[10] = '1';
+        updates[11] = '0';
+        updates[12] = '0';
 
-        itr_team_1 = team_1.find(mapper_1->getPreselected());
-        (itr_team_1->second)->setPosc(posc_side_1[1]);
-        to_render.push_back(itr_team_1->second);
+    }else if(recentlySelected == "SpiderMan") {
+        updates[10] = '1';
+        updates[11] = '0';
+        updates[12] = '1';
+    }else if(recentlySelected == "ChunLi"){
+        updates[10] = '1';
+        updates[11] = '1';
+        updates[12] = '0';
+    } else if(recentlySelected == "Venom"){
+        updates[10] = '1';
+        updates[11] = '1';
+        updates[12] = '1';
     }
 
-    if (selected_2.size() == 1) {
-        itr_team_2_selected = team_2_selected.find(selected_2[0]);
-        (itr_team_2_selected->second)->setPosc(posc_side_2[0]);
-        to_render.push_back(itr_team_2_selected->second);
+    if(recentlySelected2 == "CaptainAmerica"){
+        updates[13] = '1';
+        updates[14] = '0';
+        updates[15] = '0';
 
-        itr_team_2 = team_2.find(mapper_2->getPreselected());
-        (itr_team_2->second)->setPosc(posc_side_2[1]);
-        to_render.push_back(itr_team_2->second);
-
+    }else if(recentlySelected2 == "SpiderMan") {
+        updates[13] = '1';
+        updates[14] = '0';
+        updates[15] = '1';
+    }else if(recentlySelected2 == "ChunLi"){
+        updates[13] = '1';
+        updates[14] = '1';
+        updates[15] = '0';
+    } else if(recentlySelected2 == "Venom"){
+        updates[13] = '1';
+        updates[14] = '1';
+        updates[15] = '1';
     }
 
-    if (selected_1.size() == 2) {
+    return updates;
 
-        itr_team_1_selected = team_1_selected.find(selected_1[0]);
-        (itr_team_1_selected->second)->setPosc(posc_side_1[0]);
-        to_render.push_back(itr_team_1_selected->second);
-
-        itr_team_1_selected = team_1_selected.find(selected_1[1]);
-        (itr_team_1_selected->second)->setPosc(posc_side_1[1]);
-        to_render.push_back(itr_team_1_selected->second);
-    }
-
-    if (selected_2.size() == 2) {
-        itr_team_2_selected = team_2_selected.find(selected_2[0]);
-        (itr_team_2_selected->second)->setPosc(posc_side_2[0]);
-        to_render.push_back(itr_team_2_selected->second);
-
-        itr_team_2_selected = team_2_selected.find(selected_2[1]);
-        (itr_team_2_selected->second)->setPosc(posc_side_2[1]);
-        to_render.push_back(itr_team_2_selected->second);
-
-    }
-    return to_render;
 }
 
-std::vector<GameObject_charSelect *> ViewController_charSelect::getGreysSquares() {
-
-    std::vector<GameObject_charSelect *> to_render;
-
-    std::vector<string>::iterator itr_selected = selected.begin();
-
-    for (itr_selected; itr_selected != selected.end(); ++itr_selected){
-        itr_greySquare= greySquare.find(*itr_selected);
-        to_render.push_back(itr_greySquare->second);
-    }
-    return to_render;
-}
-
-std::vector<GameObject_charSelect *> ViewController_charSelect::getSelectionSquares() {
-
-    std::vector<GameObject_charSelect*> to_render;
-
-    itr_squarePosition = squarePosition.find(mapper_1->getPreselected());
-    square_team1->setPosc((itr_squarePosition->second));
-
-    to_render.push_back(square_team1);
-
-    itr_squarePosition = squarePosition.find(mapper_2->getPreselected());
-    square_team2->setPosc((itr_squarePosition->second));
-
-    to_render.push_back(square_team2);
-
-    return to_render;
-}
-
-void ViewController_charSelect::renderVector(std::vector<GameObject_charSelect*> to_render) {
-
-    std::vector<GameObject_charSelect*>::iterator itr_to_render = to_render.begin();
-
-    for (itr_to_render; itr_to_render != to_render.end(); ++itr_to_render){
-        (*itr_to_render)->render();
-    }
+bool ViewController_charSelect::haveToChangeView() {
+    return selected.size() == 4;
 }
 
 std::vector<string> ViewController_charSelect::getTeam1() {
@@ -256,4 +222,6 @@ std::vector<string> ViewController_charSelect::getTeam1() {
 std::vector<string> ViewController_charSelect::getTeam2() {
     return selected_2;
 }
+
+
 

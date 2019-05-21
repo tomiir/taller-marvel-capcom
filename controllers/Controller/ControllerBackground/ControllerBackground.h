@@ -6,9 +6,9 @@
 #define TALLER_MARVEL_CAPCOM_CONTROLLERBACKGROUND_H
 
 #include "../Controller.h"
-#include "../../../model/GameObjects/Background/Background.h"
+#include "../../../model/GameObjects_fight/Background/Background.h"
 #include "../ControllerCharacter/ControllerCharacter.h"
-#include "../../../utils/EventToValueMapper/EventToValueMapper_player/EventToValueMapper.h"
+#include "../../../utils/Mapper/Mapper_fight/Mapper_fight.h"
 
 
 using namespace std;
@@ -16,10 +16,11 @@ using namespace std;
 class ControllerBackground : public Controller {
 
     public:
-            ControllerBackground(GameObject* background, int jumpSpeed);
+            ControllerBackground(GameObject_server* background, int jumpSpeed);
             ~ControllerBackground();
-            void handleEvent(SDL_Event event, ControllerCharacter* controllerCharacter1, ControllerCharacter* controllerCharacter2);
+            void handleEvent(string event, ControllerCharacter* controllerCharacter1, ControllerCharacter* controllerCharacter2);
             void update(ControllerCharacter* controllerCharacterOnLeft,const vector<int>& characterOnLeftInfo, ControllerCharacter* controllerCharacterOnRight,const vector<int>& characterOnRightInfo);
+            vector<int> getPosCamera();
 
     private:
 

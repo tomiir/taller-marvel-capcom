@@ -30,31 +30,27 @@ void Game::init(const char *title, int posX, int posY) {
                     logger -> Log("Fallo la creación del renderer", ERROR,"");
                 }
             }
-        isRunning = true;
 
-        factory = new ViewControllerFactory(renderer, screenWidth, screenHeight);
+        factory = new ViewFactory(renderer, screenWidth, screenHeight);
 
 
         // Mando viewFight pq es la unica que tenemos. Deberiamos mandar la primera, y luego, las ViewController conocerse entre
         // si para saber quien va luego o implementar el VIEW MANAGER
 
-        views["fight"] = factory -> getViewController_fight();
-        characters = factory -> getControllerCharacter();
-        views["char_select"] = factory -> getViewController_charSelect();
+        views["fight"] = factory -> getView_fight();
+        characters = factory -> getCharacter();
+        views["char_select"] = factory -> getView_charSelect();
 
-        viewController = (views.find("char_select"))->second;
+        view = (views.find("char_select"))->second;
 
         logger -> Log("Inicialización completa, ventana, renderer y vista creados correctamente", INFO, "");
 
     } else {
             logger -> Log("Fallo la creación del renderer", ERROR, "");
-            isRunning = false;
         }
 }
 
-void Game::update(){
 
-}
 
 void Game::clean(){
     CLogger* logger = CLogger::GetLogger();
@@ -69,34 +65,55 @@ void Game::clean(){
 
 }
 
-void Game::tick() {
 
-    this->viewController->handleEvent();
+void Game::updateGreySquares(char* greySquares) {
+
+    dynamic_cast<View_charSelect*>(this->view)->updateGreySquares(greySquares);
+}
+
+void Game::updateSelects(char *selectT1, char *selectT2) {
+    dynamic_cast<View_charSelect*>(this->view)->updateSelects(selectT1, selectT2);
+}
+
+void Game::updateCharactersImages(char *selected_1, char *selected_2) {
+    dynamic_cast<View_charSelect*>(this->view)->updateCharacterImages(selected_1, selected_2);
+}
+
+void Game::render() {
+    this->view->updateView();
+}
+
+bool Game::haveToChangeView() {
+    return this->view->end();
+}
 
 
-    update(); // Esto se va a usar para reconciliar data con el serve supongo. Tipo le envío el movimiento, espero resp.
-    this->viewController->updateView();
+Character *Game::getCharacter(string character){
 
-    if (this->viewController->end()) {
+    itr_characters = characters.find(character);
+    return itr_characters->second;
+}
 
-        string nextViewName = (this->viewController)->getNextView();
-        ViewController* nextView = views.find(nextViewName)->second;
 
-        if (strcmp(nextViewName.c_str(), "fight") == 0){
-            // esto significa que la anterior fue la de selección de personajes;
-            vector<string> team1 = ((ViewController_charSelect*) viewController)-> getTeam1();
-            vector<string> team2 = ((ViewController_charSelect*) viewController) -> getTeam2();
+void Game::changeView() {
+    vector<string> team1 =  dynamic_cast<View_charSelect*>(this->view)->getTeam1();
+    vector<string> team2 =  dynamic_cast<View_charSelect*>(this->view)->getTeam2();
 
-            vector<ControllerCharacter*> aux = {(characters.find(team1[0])->second), (characters.find(team1[1])->second)};
-            ((ViewController_fight*)nextView)->setTeam(aux,1);
+    string nextViewName = (this->view)->getNextView();
+    View* nextView = views.find(nextViewName)->second;
+    this->view = nextView;
 
-            aux =  {(characters.find(team2[0])->second), (characters.find(team2[1])->second)};
-            ((ViewController_fight*)nextView)->setTeam(aux,2);
+    dynamic_cast<View_fight*>(this->view)->setTeams(getCharacter(team1[0]), getCharacter(team1[1]), getCharacter(team2[0]), getCharacter(team2[1]));
+}
 
-            ((ViewController_fight*)nextView)->createFlipManager();
-        }
-        this->viewController = nextView;
-    }
+void Game::UpdateBackgrounds(char *posFloor_x, char *posFloor_y, char *posMoon_x, char *posMoon_y, char *posGalaxy_x,
+                             char *posGalaxy_y) {
+    dynamic_cast<View_fight*>(this->view)->updateBackgrounds(posFloor_x, posFloor_y, posMoon_x, posMoon_y, posGalaxy_x, posGalaxy_y);
+}
 
+void Game::updateCharacters(char *posCharTeam1_x, char *posCharTeam1_y, char stateCharTeam1, char flipChar1, char currentCharT1,
+                            char *posCharTeam2_x, char *posCharTeam2_y, char stateCharTeam2, char flipChar2, char currentCharT2) {
+    dynamic_cast<View_fight*>(this->view)->updateCharacters(posCharTeam1_x, posCharTeam1_y, stateCharTeam1, flipChar1, currentCharT1,
+            posCharTeam2_x, posCharTeam2_y, stateCharTeam2, flipChar2, currentCharT2);
 }
 

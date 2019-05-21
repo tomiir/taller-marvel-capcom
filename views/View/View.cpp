@@ -19,3 +19,16 @@ void View::render() {
     SDL_RenderClear(renderer);
 }
 
+void View::updateView() {
+
+}
+
+bool View::end() {
+    return false;
+}
+
+string View::getNextView() {
+    return std::__cxx11::string();
+}
+
+
