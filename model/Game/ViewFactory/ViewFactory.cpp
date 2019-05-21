@@ -57,7 +57,9 @@ View_charSelect * ViewFactory:: getView_charSelect(){
     vector <GameObject_charSelect*> gameObjects = factory->getgameobjectChar_select_fight();
 
     View_charSelect* viewCharSelect = new View_charSelect(renderer, screenWidth, screenHeight);
-    viewCharSelect->addGameObject_background(gameObjects[0]);
+
+    GameObject_charSelect* go = gameObjects[0];
+    viewCharSelect->addGameObject_background(go);
 
 
     // LOS SIDES DE CADA TEAM

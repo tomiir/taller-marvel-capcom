@@ -94,7 +94,7 @@ std::list<JsonCharacter> JsonConfigs::getCharacters() {
         ++iter;
         ++fIter;
     }
-    iter=jsonChars.begin();
+
     return retVal;
 }
 
@@ -142,6 +142,8 @@ std::string JsonConfigs::getTitle(){
     return retVal;
 }
 
+
+
 int JsonConfigs::getJumpSpeed() {
 
     int retVal = json.getJumpSpeed();
@@ -158,4 +160,62 @@ JsonConfigs* JsonConfigs::getJson() {
         this_json = new JsonConfigs();
     }
     return this_json;
+}
+
+std::list<JsonGameObject_charSelect> JsonConfigs::getGameObjectCharSelect() {
+    std::list<JsonGameObject_charSelect> retVal;
+    std::list<JsonGameObject_charSelect> fJsonGO = fallbackJson.getJsonGameobject_charSelect();
+    std::list<JsonGameObject_charSelect> jsonGO = json.getJsonGameobject_charSelect();
+    std::list<JsonGameObject_charSelect>::iterator iter = jsonGO.begin();
+    std::list<JsonGameObject_charSelect>::iterator fIter = fJsonGO.begin();
+
+    auto fJsonEnd = fJsonGO.end();
+    auto jsonEnd = jsonGO.end();
+
+    while(iter != jsonEnd && fIter != fJsonEnd) {
+
+        JsonGameObject_charSelect GO;
+        if((*iter).getError() || (*iter).getName() != (*fIter).getName() || (*iter).getFilePath() != (*fIter).getFilePath()){
+
+
+            std::list<std::string> errorsList = (*iter).getErrorList();
+            std::list<std::string>::iterator errorIter = errorsList.begin();
+
+            if( (*iter).getFilePath() != (*fIter).getFilePath() ) logger->LogError("filepath", (*fIter).getName());
+
+            for(; errorIter != errorsList.end(); ++errorIter){
+                logger->LogError( (*errorIter), (*fIter).getName());
+            }
+            GO = (*fIter);
+        }
+        else GO = (*iter);
+
+        retVal.push_back(GO);
+        ++iter;
+        ++fIter;
+    }
+
+    return retVal;
+}
+
+int JsonConfigs::getNumberOfClients() {
+
+    int retVal = json.getNumberOfClients();
+
+    if (retVal == -1) {
+        logger->Log("Error al querer obtener la cantidad de clients, utilizando el fallback", ERROR, "");
+        retVal = fallbackJson.getNumberOfClients();
+    }
+    return retVal;
+}
+
+int JsonConfigs::getNumberOfPort() {
+
+    int retVal = json.getNumberOfPort();
+
+    if (retVal == -1) {
+        logger->Log("Error al querer obtener el número de puerto, utilizando el fallback", ERROR, "");
+        retVal = fallbackJson.getNumberOfPort();
+    }
+    return retVal;
 }

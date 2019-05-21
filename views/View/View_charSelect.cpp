@@ -107,7 +107,8 @@ std::vector<GameObject_charSelect *> View_charSelect::getSides() {
 
     if (selected_2.empty()) {
         itr_team_2 = team_2.find((preselectedT2));
-        (itr_team_2->second)->setPosc(posc_side_2[0]);
+        vector<int> posc_prueba = posc_side_2[0];
+        (itr_team_2->second)->setPosc(posc_prueba);
         to_render.push_back(itr_team_2->second);
     }
 

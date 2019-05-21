@@ -14,11 +14,6 @@ GameObjectServerFactory::GameObjectServerFactory(int screenWidth_, int screenHei
 GameObjectServerFactory::~GameObjectServerFactory() = default;
 
 
-
-
-
-
-
 vector<GameObject_server *> GameObjectServerFactory::getGameObjectsServerCharacters_fight() {
 
     vector<GameObject_server*>  gameObjects;

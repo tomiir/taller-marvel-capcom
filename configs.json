@@ -82,7 +82,173 @@
 		},
 	"Title": {
 		"title": "Marvel vs Capcom"
+		},
+	"caca":
+	[
+		{"name":"background",
+		"filepath":"../Images/menu_seleccion/background.png",
+		"x":0,
+		"y":0,
+		"height":800,
+		"width": 600
+		},
+		{"name":"SpiderMan",
+			"filepath":"../Images/menu_seleccion/SM2.png",
+			"x": 200,
+			"y":0,
+			"height":800,
+			"width": 600
+		},
+		{"name":"SpiderMan",
+			"filepath":"../Images/menu_seleccion/SM.png",
+			"x": 200,
+			"y":0,
+			"height":800,
+			"width": 600
+		},
+		{"name":"Venom",
+			"filepath":"../Images/menu_seleccion/V2.png",
+			"x": 200,
+			"y":0,
+			"height":800,
+			"width": 600
+		},
+		{"name":"Venom",
+			"filepath": "../Images/menu_seleccion/V.png",
+			"x": 200,
+			"y":0,
+			"height":800,
+			"width": 600
+		},
+		{"name":"ChunLi",
+			"filepath": "../Images/menu_seleccion/CL2.png",
+			"x": 200,
+			"y":0,
+			"height":800,
+			"width": 600
+		},
+		{"name":"CaptainAmerica",
+			"filepath": "../Images/menu_seleccion/CL.png",
+			"x": 200,
+			"y":0,
+			"height":800,
+			"width": 600
+		},
+		{"name":"CaptainAmerica",
+			"filepath": "../Images/menu_seleccion/CA2.png",
+			"x": 200,
+			"y":0,
+			"height":800,
+			"width": 600
+		},
+		{"name":"CaptainAmerica",
+			"filepath": "../Images/menu_seleccion/CA.png",
+			"x": 200,
+			"y":0,
+			"height":800,
+			"width": 600
+		},
+		{"name":"SpiderMan",
+			"filepath":"../Images/menu_seleccion/SM2.png",
+			"x": 200,
+			"y":0,
+			"height":800,
+			"width": 600
+		},
+		{"name":"SpiderMan",
+			"filepath":"../Images/menu_seleccion/SM.png",
+			"x": 200,
+			"y":0,
+			"height":800,
+			"width": 600
+		},
+		{"name":"Venom",
+			"filepath":"../Images/menu_seleccion/V2.png",
+			"x": 200,
+			"y":0,
+			"height":800,
+			"width": 600
+		},
+		{"name":"Venom",
+			"filepath": "../Images/menu_seleccion/V.png",
+			"x": 200,
+			"y":0,
+			"height":800,
+			"width": 600
+		},
+		{"name":"ChunLi",
+			"filepath": "../Images/menu_seleccion/CL2.png",
+			"x": 200,
+			"y":0,
+			"height":800,
+			"width": 600
+		},
+		{"name":"ChunLi",
+			"filepath": "../Images/menu_seleccion/CL.png",
+			"x": 200,
+			"y":0,
+			"height":800,
+			"width": 600
+		},
+		{"name":"CaptainAmerica",
+			"filepath": "../Images/menu_seleccion/CA2.png",
+			"x": 200,
+			"y":0,
+			"height":800,
+			"width": 600
+		},
+		{"name":"CaptainAmerica",
+			"filepath": "../Images/menu_seleccion/CA.png",
+			"x": 200,
+			"y":0,
+			"height":800,
+			"width": 600
+		},
+		{"name":"square_1",
+			"filepath": "../Images/menu_seleccion/Team1 select.png",
+			"x": 200,
+			"y":0,
+			"height":800,
+			"width": 600
+		},
+		{"name":"square_2",
+			"filepath": "../Images/menu_seleccion/Team2 select.png",
+			"x": 200,
+			"y":0,
+			"height":800,
+			"width": 600
+		},
+		{"name":"CaptainAmerica",
+			"filepath": "../Images/menu_seleccion/Seleccionado.png",
+			"x": 240,
+			"y": 296,
+			"height":153,
+			"width": 117
+		},
+		{"name":"SpiderMan",
+			"filepath": "../Images/menu_seleccion/Seleccionado.png",
+			"x": 403,
+			"y": 296,
+			"height":153,
+			"width": 117
+		},
+		{"name":"ChunLi",
+			"filepath": "../Images/menu_seleccion/Seleccionado.png",
+			"x": 242,
+			"y": 422,
+			"height":153,
+			"width": 117
+		},
+		{"name":"Venom",
+			"filepath": "../Images/menu_seleccion/Seleccionado.png",
+			"x": 404,
+			"y": 422,
+			"height":153,
+			"width": 117
 		}
-
-
+	],
+	"server":{
+		"clients": 2,
+		"port": 54000
+	}
 }

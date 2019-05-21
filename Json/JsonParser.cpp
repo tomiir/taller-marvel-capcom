@@ -151,6 +151,77 @@ std::list<JsonCharacter> JsonParser::getCharacter() {
 
 }
 
+std::list<JsonGameObject_charSelect> JsonParser:: getJsonGameobject_charSelect(){
+
+    std::list<JsonGameObject_charSelect> gameObjects;
+    Json::Value json_ = this->json["caca"];
+
+
+    Json::Value::iterator it=json_.begin();
+
+    for(;it!=json_.end();++it){
+        std::list<std::string> errors;
+        bool error = false;
+
+        if( !((*it)["name"]).isString() || ((*it)["name"]).asString() == "null"){
+            error = true;
+            errors.push_back("name");
+        }
+        if( !((*it)["filepath"]).isString() || ((*it)["filepath"]).asString() == "null"){
+            error = true;
+            errors.push_back("filepath");
+        }
+        if( !((*it)["x"]).isInt()  || ((*it)["x"]).asInt() < 0){
+            error = true;
+            errors.push_back("x");
+        }
+        if( !((*it)["y"]).isInt()  || ((*it)["y"]).asInt() < 0){
+            error = true;
+            errors.push_back("y");
+        }
+        if( !((*it)["height"]).isInt() || ((*it)["height"]).asInt() < 0){
+            error = true;
+            errors.push_back("height");
+        }
+        if( !((*it)["width"]).isInt() || ((*it)["width"]).asInt() < 0){
+            error = true;
+            errors.push_back("width");
+        }
+        if(error) gameObjects.push_back(JsonGameObject_charSelect(errors));
+
+        else
+        {
+
+            //std::vector<int> posc = {((*it)["x"]).asInt(),
+            //                         ((*it)["y"]).asInt(),
+            //                         ((*it)["height"]).asInt(),
+            //                         ((*it)["width"]).asInt()};
+            std::string name = ((*it)["name"]).asString();
+            std::string path = ((*it)["filepath"]).asString();
+
+            std::vector<int> posc;
+            int x = ((*it)["x"]).asInt();
+            posc.push_back(x);
+            int y = ((*it)["y"]).asInt();
+            posc.push_back(y);
+            int height = ((*it)["height"]).asInt();
+            posc.push_back(height);
+            int width = ((*it)["width"]).asInt();
+            posc.push_back(width);
+
+
+
+            JsonGameObject_charSelect gameObject(path,posc,name);
+
+            gameObjects.push_back(gameObject);
+        }
+    }
+
+    return gameObjects;
+
+
+}
+
 std::vector<int> JsonParser::getScreenSize() {
 
     std::vector<int> screen;
@@ -195,6 +266,20 @@ int JsonParser::getJumpSpeed() {
     if( !(json["jumpSpeed"]).asInt() || (json["jumpSpeed"]).asInt() <= 0) return -1;
     return (json["jumpSpeed"]).asInt();
 
+}
+
+int JsonParser::getNumberOfClients() {
+    Json::Value json = this->json["server"];
+
+    if( !(json["clients"]).asInt() || (json["clients"]).asInt() < 2  || (json["clients"]).asInt() > 4) return -1;
+    return (json["clients"]).asInt();
+}
+
+int JsonParser::getNumberOfPort() {
+    Json::Value json = this->json["server"];
+
+    if( !(json["port"]).asInt() || (json["port"]).asInt() < 0) return -1;
+    return (json["port"]).asInt();
 }
 
 

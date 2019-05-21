@@ -3,6 +3,7 @@
 #include <jsoncpp/json/json.h>
 #include "JsonParser.h"
 #include "../utils/Logger/Logger.h"
+#include "JsonGameObject_charSelect.h"
 
 class JsonConfigs {
     JsonParser json = JsonParser(std::string());
@@ -17,6 +18,8 @@ public:
 
     std::vector<int> getScreenSize();
 
+    std::list<JsonGameObject_charSelect> getGameObjectCharSelect();
+
     int getCharactersSpeed();
 
     int getFPS();
@@ -26,6 +29,11 @@ public:
     CLogger* logger = CLogger::GetLogger();
 
     int getJumpSpeed();
+
+    int getNumberOfClients();
+
+    int getNumberOfPort();
+
 
 private:
     JsonConfigs();
