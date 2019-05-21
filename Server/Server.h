@@ -16,6 +16,10 @@
 #include <pthread.h>
 #include <queue>
 #include "../utils/Logger/Logger.h"
+#include "../Json/JsonConfigs.h"
+#include <csignal>
+#include <unistd.h>
+
 
 //#define MAXCLIENTS 2
 //#define PORT 54000
@@ -39,6 +43,8 @@ public:
 
     static void checkSendToClientError(int clientSock);
     static void checkRecvFromClientError(int clientSock);
+
+    static void *rejectingClients(void *clientIter_);
 
 private:
     static void clientConnected(sockaddr_in clientAddr_);

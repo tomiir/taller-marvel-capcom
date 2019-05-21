@@ -14,10 +14,7 @@ public:
     ~Game();
 
     void init(const char* title, int posX, int posY);
-    void tick();
-    void update();
     void clean();
-    View* getView();
 
     void updateGreySquares(char* greySquares);
 
@@ -44,7 +41,6 @@ private:
     std::map<string, Character*> characters;
     std::map<string, Character*>::iterator itr_characters= characters.begin();
 
-    bool isRunning;
     SDL_Window* window;
     SDL_Renderer* renderer;
     View* view;

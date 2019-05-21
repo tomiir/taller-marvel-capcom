@@ -7,7 +7,7 @@
 
 #define NOBEAT (char*)"0"
 #define MESSAGEFROMSERVERLEN 45
-#define BEAT (char*)"1"
+#define MESSAGEFROMSERVERLEN2 5
 
 //----SERVER VARIABLES----
 int serverSocket_c;
@@ -15,9 +15,7 @@ struct sockaddr_in serverAddr_c;
 socklen_t  serverSize_c;
 
 char messageFromServer[MESSAGEFROMSERVERLEN];
-char messageToSever[4096];
-char messageFromInput[4096];
-char aux[5];
+char messageToKnowTheTeam[MESSAGEFROMSERVERLEN2];
 
 bool connect2 = true;
 
@@ -47,12 +45,11 @@ Client::Client(const char* serverIp, uint16_t serverPort) {
 
 void Client::Disconnect() {
 
-    Send( NOBEAT );
+    Send(NOBEAT);
     logger->Log("Desconectando al cliente", NETWORK, "");
     close(serverSocket_c);
     connect2 = false;
 }
-
 
 bool Client::Connect() {
 
@@ -60,6 +57,7 @@ bool Client::Connect() {
     int connection = connect(serverSocket_c, (struct sockaddr*) &serverAddr_c, serverSize_c);
     if(connection < 0 ){
         logger->Log("Fallo la conexion con el servidor", ERROR, strerror(errno));
+        cout << "El servidor no esta activo" << endl;
         return false;
     }
     cout << "Se ha establecido la conexion" << endl;
@@ -136,8 +134,6 @@ void Client::Send(char* message) {
         checkSendToServerError();
     }
 
-    //logger->Log("Se envio correctamente el mensaje: " + string(message) , NETWORK, "");
-
 
 }
 
@@ -148,44 +144,6 @@ void Client::brokeConnection(int arg){
 }
 
 
-void Client::hearthBeat(){
-
-    signal(SIGINT, brokeConnection);
-    signal(SIGQUIT, brokeConnection);
-    signal(SIGTSTP, brokeConnection);
-    signal(SIGPIPE, SIG_IGN);
-
-
-    memset(messageFromInput, 0, 4096);
-    //future<int> scanning = async(scanf,"%s",messageFromInput);
-    //chrono::milliseconds waitTime (2000);
-
-    scanf("%s", messageFromInput);
-
-    //while(scanning.wait_for(waitTime) == future_status::timeout){
-
-        if(clientBrokeConnection){
-            beating = false;
-            this->Disconnect();
-            exit(0);
-        }
-        //Send(BEAT);
-    //}
-
-    if(strcmp(messageFromInput, "quit") == 0) {
-        beating = false;
-        this->Disconnect();
-        exit(0);
-    }
-
-    Send(messageFromInput);
-}
-
-bool Client::isBeating() {
-
-    return beating;
-}
-
 
 
 
@@ -193,15 +151,15 @@ bool Client::isBeating() {
 
 char *Client::messageFromServerReceived(){
 
-    memset(aux, 0, 5);
+    memset(messageToKnowTheTeam, 0, MESSAGEFROMSERVERLEN2);
 
-    int bytesReceived = recv(serverSocket_c, aux, 5, 0);
+    int bytesReceived = recv(serverSocket_c, messageToKnowTheTeam, MESSAGEFROMSERVERLEN2, 0);
 
     if(bytesReceived == -1){
         checkRecvFromServerError();
     }
 
-    return aux;
+    return messageToKnowTheTeam;
 }
 
 
@@ -234,9 +192,13 @@ void* Client::recvFromServer(void* arg) {
 void* Client::render(void *arg) {
 
     bool fight_view = false;
+    int speed = 60;
+    Uint32 start;
 
    //Aca empieza el loop que va a ir renderizando. Las view ay deberian estar cargadas y se renderiza lo que se tenga que renderizar
     while(connect2){
+
+        start = SDL_GetTicks();
 
         if (game->haveToChangeView()){
             changeCurrentMapper();
@@ -274,7 +236,8 @@ void* Client::render(void *arg) {
             queueRecv.pop();
 
         }
-        if(strcmp(view, "01") == 0) { //view fight
+        if(strcmp(view, "01") == 0 or fight_view) { //view fight
+
 
             //Recibo las nuevas posiciones de los backgrounds y los actaulizo
             char posFloor_x[] = {messageReceived[2], messageReceived[3], messageReceived[4], messageReceived[5], '\0'};
@@ -309,6 +272,10 @@ void* Client::render(void *arg) {
 
             game->render();
             queueRecv.pop();
+
+//            if ((1000 / speed) > (SDL_GetTicks() - start)) {
+//                SDL_Delay((1000 / speed) - (SDL_GetTicks() - start));
+//            }
         }
     }
     game->clean();
@@ -327,7 +294,9 @@ void* Client::sendEventToServer(void* arg){
 
     string mapEvent;
 
-    while(true){
+    bool sending = true;
+
+    while(sending){
 
         start = SDL_GetTicks();
 
@@ -340,7 +309,7 @@ void* Client::sendEventToServer(void* arg){
         if (event.type == SDL_QUIT) {
             logger -> Log("Saliendo del juego", INFO, "");
             connect2 = false;
-            break;
+            sending = false;
         }
 
 
@@ -409,9 +378,9 @@ void Client::setMappers(Mapper* mapperSelect_, Mapper* mapperFight_){
 
 void Client::changeCurrentMapper(){
 
-    Mapper* aux2 = currentMapper;
+    Mapper* aux = currentMapper;
     currentMapper = notCurrentMapper;
-    notCurrentMapper = aux2;
+    notCurrentMapper = aux;
 
 }
 

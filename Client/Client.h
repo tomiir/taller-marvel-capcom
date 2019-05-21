@@ -14,7 +14,6 @@
 #include <string.h>
 #include <string>
 #include <pthread.h>
-#include <future>
 #include <chrono>
 #include <netinet/tcp.h>
 #include <queue>
@@ -24,6 +23,9 @@
 #include <SDL_events.h>
 #include "../Json/JsonConfigs.h"
 #include "../model/Game/Game.h"
+#include <unistd.h>
+
+
 
 
 using namespace std;

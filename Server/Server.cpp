@@ -5,7 +5,10 @@
 #include "Game_server/Game_server.h"
 
 
-#define MAXCLIENTS 5
+#define MAXCLIENTS 4
+
+#define MESSAGEFROMCLIENTLEN 512
+#define MESSAGETOCLIENTLEN 512
 
 //----SERVER VARIABLES----
 int serverSocket_s;
@@ -16,23 +19,25 @@ static int port;
 
 //----CLIENT VARIABLES----
 
-int clientSocket[MAXCLIENTS];
-struct sockaddr_in clientAddr[MAXCLIENTS];
-socklen_t clientSize[MAXCLIENTS];
+int clientSocket[MAXCLIENTS + 1];
+struct sockaddr_in clientAddr[MAXCLIENTS + 1];
+socklen_t clientSize[MAXCLIENTS + 1];
 
-char messageFromClient[4096];
-char messageFromClient2[4096];
-char messageFromClient3[4096];
-char messageFromClient4[4096];
+char messageFromClient[MESSAGEFROMCLIENTLEN];
+char messageFromClient2[MESSAGEFROMCLIENTLEN];
+char messageFromClient3[MESSAGEFROMCLIENTLEN];
+char messageFromClient4[MESSAGEFROMCLIENTLEN];
 
-char messageToClient[4096];
+char messageToClient[MESSAGETOCLIENTLEN];
 
 
 queue<string> serverQueue;
 
 bool on = true;
-bool nonOfTeam1Disconnected = true;
-bool nonOfTeam2Disconnected = true;
+bool Connected11 = true;
+bool Connected12 = true;
+bool Connected21 = true;
+bool Connected22 = true;
 
 bool viewControllerFight = false;
 
@@ -55,7 +60,7 @@ Server::Server() {
     JsonConfigs *config = JsonConfigs::getJson();
     max_clients = config->getNumberOfClients();
     port = config->getNumberOfPort();
-    
+
     serverAddr_s.sin_family = AF_INET;
     serverAddr_s.sin_port = htons(port);
     inet_pton(AF_INET, "0.0.0.0" , &serverAddr_s.sin_addr);
@@ -172,8 +177,8 @@ void *Server::Send(void *clientIter_){
 char* Server::update(int clientIter){
 
     if(clientIter == 0){
-        memset(messageFromClient, 0, 4096);
-        int bytesReceived = recv(clientSocket[clientIter], messageFromClient, 4096,0);
+        memset(messageFromClient, 0, MESSAGEFROMCLIENTLEN);
+        int bytesReceived = recv(clientSocket[clientIter], messageFromClient, MESSAGEFROMCLIENTLEN,0);
 
         if (bytesReceived == -1) {
             checkRecvFromClientError(clientSocket[clientIter]);
@@ -182,8 +187,8 @@ char* Server::update(int clientIter){
         return messageFromClient;
 
     }else if(clientIter == 1){
-        memset(messageFromClient2, 0, 4096);
-        int bytesReceived = recv(clientSocket[clientIter], messageFromClient2, 4096,0);
+        memset(messageFromClient2, 0, MESSAGEFROMCLIENTLEN);
+        int bytesReceived = recv(clientSocket[clientIter], messageFromClient2, MESSAGEFROMCLIENTLEN,0);
 
         if (bytesReceived == -1) {
             checkRecvFromClientError(clientSocket[clientIter]);
@@ -192,8 +197,8 @@ char* Server::update(int clientIter){
         return messageFromClient2;
 
     }else if(clientIter == 2){
-        memset(messageFromClient3, 0, 4096);
-        int bytesReceived = recv(clientSocket[clientIter], messageFromClient3, 4096,0);
+        memset(messageFromClient3, 0, MESSAGEFROMCLIENTLEN);
+        int bytesReceived = recv(clientSocket[clientIter], messageFromClient3, MESSAGEFROMCLIENTLEN,0);
 
         if (bytesReceived == -1) {
             checkRecvFromClientError(clientSocket[clientIter]);
@@ -202,8 +207,8 @@ char* Server::update(int clientIter){
         return messageFromClient3;
 
     }else if(clientIter == 3){
-        memset(messageFromClient4, 0, 4096);
-        int bytesReceived = recv(clientSocket[clientIter], messageFromClient4, 4096,0);
+        memset(messageFromClient4, 0, MESSAGEFROMCLIENTLEN);
+        int bytesReceived = recv(clientSocket[clientIter], messageFromClient4, MESSAGEFROMCLIENTLEN,0);
 
         if (bytesReceived == -1) {
             checkRecvFromClientError(clientSocket[clientIter]);
@@ -216,6 +221,18 @@ char* Server::update(int clientIter){
 }
 
 
+//void * timer(void * clientIter_){
+//
+//    int clientIter = *(int *) clientIter_;
+//
+//    sleep(3);
+//
+//    if (clientIter == 0) Connected11 = false;
+//    else if (clientIter == 1) Connected21 = false;
+//    else if (clientIter == 2 ) Connected12 = false;
+//    else Connected22 = false;
+//
+//}
 
 
 
@@ -229,6 +246,13 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
 
     int speed = 60;
     Uint32 start;
+
+//    pthread_t timerThread;
+//
+//    int readThread = pthread_create(&timerThread, nullptr, timer, &clientIter);
+//    if(readThread !=0){
+//        logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
+//    }
 
     while(true){
 
@@ -246,7 +270,7 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
 
         if(serverBrokeConnection == 1){
 
-            memset(messageToClient,0, 4096);
+            memset(messageToClient,0, MESSAGETOCLIENTLEN);
             strcpy(messageToClient, "El servidor se desconecto");
             Send(&clientIter);
             close(serverSocket_s);
@@ -256,10 +280,15 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
         //
 
 
-
-        pthread_mutex_lock(&lock);
         char* received = update(clientIter);
-        pthread_mutex_unlock(&lock);
+
+//        if (clientIter == 0) Connected11 = true;
+//        else if (clientIter == 1) Connected21 = true;
+//        else if (clientIter == 2 ) Connected12 = true;
+//        else Connected22 = true;
+
+//        pthread_kill(timerThread, SIGCONT);
+
 
         if( strcmp(received, "0") == 0) {
             logger->Log( "El cliente: " + to_string(clientSocket[clientIter]) + " se desconecto" , NETWORK, "");
@@ -267,14 +296,17 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
             break;
         }
 
-        //ESTA ES LA LOGICA QUE SE ME OCURRIO PARA NO ENCOLAR LOS MENSAJES DE LOS CLEINTES QUE NO ESTAN JUGANDO. SI SE PONEN 2 CLIENTES NO FUNCIONA
-        //CON ESTA PARTE DEL CODIGO. HAY QUE PrOBARLO CON MAS COMPUS PORQUE LA MIA CASI MUERE CON CUATRO CLIENTES xD.
-//        if (viewControllerFight){
-//            if (((game_server->currentClientT1() == 1 and clientIter == 2) or (game_server->currentClientT1() == 3 and clientIter == 0)) and nonOfTeam1Disconnected) continue;
-//
-//            if (((game_server->currentClientT2() == 2 and clientIter == 3) or (game_server->currentClientT2() == 4 and clientIter == 1)) and nonOfTeam2Disconnected) continue;
-//        }
-
+        //        ESTA ES LA LOGICA QUE SE ME OCURRIO PARA NO ENCOLAR LOS MENSAJES DE LOS CLEINTES QUE NO ESTAN JUGANDO.
+//        HAY QUE PROBARLO CON MAS COMPUS PORQUE LA MIA CASI MUERE CON CUATRO CLIENTES xD.
+        if (viewControllerFight){
+            if (MAXCLIENTS == 4){
+                if (((game_server->currentClientT1() == 1 and clientIter == 2) or (game_server->currentClientT1() == 3 and clientIter == 0)) and (Connected11 and Connected12)) continue;
+                if (((game_server->currentClientT2() == 2 and clientIter == 3) or (game_server->currentClientT2() == 4 and clientIter == 1)) and (Connected21 and Connected22)) continue;
+            }
+            if (MAXCLIENTS == 3){
+                if (((game_server->currentClientT1() == 1 and clientIter == 2) or (game_server->currentClientT1() == 3 and clientIter == 0)) and (Connected11 and Connected12)) continue;
+            }
+        }
 
         int aux = strlen(received);
         if(aux != 5) continue;
@@ -355,7 +387,7 @@ void* Server::updateModel(void *arg){
 
         //cout << updates << endl;
 
-        memset(messageToClient,0, 4096);
+        memset(messageToClient,0, MESSAGETOCLIENTLEN);
         strcpy(messageToClient, updates.c_str());
 
         int clientsIter = 0;
@@ -421,6 +453,25 @@ void Server::clientConnected(sockaddr_in clientAddr_){
     }
 }
 
+void * Server::rejectingClients(void *clientIter_){
+
+    int clientsIter = *(int *) clientIter_;
+
+
+    while(on){
+
+        clientSize[clientsIter] = sizeof(clientAddr[clientsIter]);
+        clientSocket[clientsIter] = accept(serverSocket_s, (struct sockaddr*)&clientAddr[clientsIter], &clientSize[clientsIter]);
+        clientConnected(clientAddr[clientsIter]);
+
+        memset(messageToClient,0, MESSAGETOCLIENTLEN);
+        strcpy(messageToClient, "notco");
+        Send(&clientsIter);
+
+    }
+}
+
+
 
 
 void Server::connect() {
@@ -446,11 +497,20 @@ void Server::connect() {
         clientConnected(clientAddr[clientsIter]);
     }
 
+    pthread_t extraClientsThread;
+
+    int aux = max_clients + 1;
+
+    int readThread = pthread_create(&extraClientsThread, nullptr, rejectingClients, &aux);
+    if(readThread !=0){
+        logger->Log( "Falló al crear un thread de echar clientes." , ERROR, strerror(errno));
+    }
+
 
     clientsIter = 0;
     for(; clientsIter < max_clients; clientsIter++){
 
-        memset(messageToClient,0, 4096);
+        memset(messageToClient,0, MESSAGETOCLIENTLEN);
         if (clientsIter == client1){
             strcpy(messageToClient, "team1");
             Send(&client1);
@@ -472,7 +532,7 @@ void Server::connect() {
     clientsIter = 0;
 
     for(; clientsIter < max_clients; clientsIter++){
-        memset(messageToClient,0, 4096);
+        memset(messageToClient,0, MESSAGETOCLIENTLEN);
         if (clientsIter == client1){
             strcpy(messageToClient, "cnect");
             Send(&client1);
@@ -510,8 +570,6 @@ void Server::connect() {
 
 
     pthread_mutex_init(&lock,NULL);
-//
-//    pthread_mutex_init(&mutex,NULL);
 
     clientsIter = 0;
 
@@ -543,7 +601,7 @@ void Server::connect() {
 
     pthread_t updateModelThread;
 
-    int readThread = pthread_create(&updateModelThread, nullptr, updateModel, nullptr);
+    readThread = pthread_create(&updateModelThread, nullptr, updateModel, nullptr);
     if(readThread !=0){
         logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
     }
@@ -556,6 +614,7 @@ void Server::connect() {
 
     //aca lo cancelo porque si se fueron los clientes ya que joinearon todos los hilos no tendria que seguir updateando el modelo
     pthread_cancel(updateModelThread);
+    pthread_cancel(extraClientsThread);
     pthread_mutex_destroy(&lock);
 //    pthread_mutex_destroy(&mutex);
     on = false;

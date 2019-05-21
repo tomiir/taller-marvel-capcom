@@ -30,7 +30,6 @@ void Game::init(const char *title, int posX, int posY) {
                     logger -> Log("Fallo la creación del renderer", ERROR,"");
                 }
             }
-        isRunning = true;
 
         factory = new ViewFactory(renderer, screenWidth, screenHeight);
 
@@ -48,13 +47,10 @@ void Game::init(const char *title, int posX, int posY) {
 
     } else {
             logger -> Log("Fallo la creación del renderer", ERROR, "");
-            isRunning = false;
         }
 }
 
-void Game::update(){
 
-}
 
 void Game::clean(){
     CLogger* logger = CLogger::GetLogger();
@@ -69,9 +65,6 @@ void Game::clean(){
 
 }
 
-View *Game::getView() {
-    return this->view;
-}
 
 void Game::updateGreySquares(char* greySquares) {
 

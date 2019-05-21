@@ -3,7 +3,6 @@
 //
 
 #include "Game_server.h"
-#include "../../controllers/ViewController/ViewController_charSelect/ViewController_charSelect.h"
 
 
 Game_server::Game_server(int screenWidth_, int screenHeight_) {
