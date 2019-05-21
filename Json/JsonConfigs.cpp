@@ -1,5 +1,6 @@
 #include "JsonConfigs.h"
 #include <string.h>
+#include "JsonSintax.h"
 
 JsonConfigs* JsonConfigs::this_json = NULL;
 
@@ -17,14 +18,41 @@ bool existFile(const char* path){
 
 JsonConfigs::JsonConfigs() {
 
-    string defaultJson = "../DefaultConfigs/defaultConfigs.json";
-    string baseRoute = "../configs.json";
-    if(!existFile(baseRoute.c_str())) {
+    bool error = false;
+    const char *defaultJson = "../DefaultConfigs/defaultConfigs.json";
+    const char *baseRoute = "../configs.json";
+    if(!existFile(baseRoute)) {
         baseRoute =  defaultJson;
-        logger -> Log("Falló la carga del Json, utilizando el fallback", ERROR, "File " + baseRoute +" does not exist");
+        logger -> Log("Falló la carga del Json, utilizando el fallback", ERROR, "File doesnt exist" );
     }
+
+    char my_character;
+    FILE *jsonptr;
+    jsonptr = fopen(baseRoute, "r");
+    JSON_checker jc = new_JSON_checker(5000);
+    while ( (my_character = getc(jsonptr) )!= EOF){
+
+        if (my_character <= 0) {
+            break;
+        }
+        if (!JSON_checker_char(jc, my_character)) {
+            logger -> Log("Error de formato en configs.json ,utilizando el fallback", ERROR, "");
+            this->json = JsonParser(defaultJson);
+            error = true;
+        }
+    }
+    if (!JSON_checker_done(jc)) {
+        logger -> Log("Error de formato en configs.json ,utilizando el fallback", ERROR, "");
+        fprintf(stderr, "JSON_checker_end: syntax error\n");
+        this->json = JsonParser(defaultJson);
+        error = true;
+    }
+
+
     this->fallbackJson  = JsonParser(defaultJson);
-    this->json = JsonParser(baseRoute);
+    if( !error ){
+        this->json = JsonParser(baseRoute);
+    }
 }
 
 
