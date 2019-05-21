@@ -142,6 +142,8 @@ std::string JsonConfigs::getTitle(){
     return retVal;
 }
 
+
+
 int JsonConfigs::getJumpSpeed() {
 
     int retVal = json.getJumpSpeed();
@@ -193,5 +195,27 @@ std::list<JsonGameObject_charSelect> JsonConfigs::getGameObjectCharSelect() {
         ++fIter;
     }
 
+    return retVal;
+}
+
+int JsonConfigs::getNumberOfClients() {
+
+    int retVal = json.getNumberOfClients();
+
+    if (retVal == -1) {
+        logger->Log("Error al querer obtener la cantidad de clients, utilizando el fallback", ERROR, "");
+        retVal = fallbackJson.getNumberOfClients();
+    }
+    return retVal;
+}
+
+int JsonConfigs::getNumberOfPort() {
+
+    int retVal = json.getNumberOfPort();
+
+    if (retVal == -1) {
+        logger->Log("Error al querer obtener el número de puerto, utilizando el fallback", ERROR, "");
+        retVal = fallbackJson.getNumberOfPort();
+    }
     return retVal;
 }

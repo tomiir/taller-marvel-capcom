@@ -30,6 +30,11 @@ public:
 
     int getJumpSpeed();
 
+    int getNumberOfClients();
+
+    int getNumberOfPort();
+
+
 private:
     JsonConfigs();
     JsonConfigs(const JsonConfigs&) = default;

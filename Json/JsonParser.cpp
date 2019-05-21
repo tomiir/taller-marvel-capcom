@@ -268,6 +268,20 @@ int JsonParser::getJumpSpeed() {
 
 }
 
+int JsonParser::getNumberOfClients() {
+    Json::Value json = this->json["server"];
+
+    if( !(json["clients"]).asInt() || (json["clients"]).asInt() < 2  || (json["clients"]).asInt() > 4) return -1;
+    return (json["clients"]).asInt();
+}
+
+int JsonParser::getNumberOfPort() {
+    Json::Value json = this->json["server"];
+
+    if( !(json["port"]).asInt() || (json["port"]).asInt() < 0) return -1;
+    return (json["port"]).asInt();
+}
+
 
 
 

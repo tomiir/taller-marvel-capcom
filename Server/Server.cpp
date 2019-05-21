@@ -4,10 +4,15 @@
 #include "../Json/JsonConfigs.h"
 #include "Game_server/Game_server.h"
 
+
+#define MAXCLIENTS 5
+
 //----SERVER VARIABLES----
 int serverSocket_s;
 struct sockaddr_in serverAddr_s;
 socklen_t serverSize_s;
+static int max_clients;
+static int port;
 
 //----CLIENT VARIABLES----
 
@@ -47,8 +52,12 @@ Server::Server() {
         logger->Log( "No se pudo crear el socket del servidor, saliendo..." , ERROR, strerror(errno));
     }
 
+    JsonConfigs *config = JsonConfigs::getJson();
+    max_clients = config->getNumberOfClients();
+    port = config->getNumberOfPort();
+    
     serverAddr_s.sin_family = AF_INET;
-    serverAddr_s.sin_port = htons(PORT);
+    serverAddr_s.sin_port = htons(port);
     inet_pton(AF_INET, "0.0.0.0" , &serverAddr_s.sin_addr);
 
     int option = 1;
@@ -353,7 +362,7 @@ void* Server::updateModel(void *arg){
         pthread_t clientUpdateThreads[MAXCLIENTS];
 
 
-        for(; clientsIter < MAXCLIENTS; clientsIter++){
+        for(; clientsIter < max_clients; clientsIter++){
 
             int readThread;
             if (clientsIter == client1){
@@ -380,7 +389,7 @@ void* Server::updateModel(void *arg){
 
         clientsIter = 0;
 
-        for(; clientsIter < MAXCLIENTS; clientsIter++){
+        for(; clientsIter < max_clients; clientsIter++){
             pthread_join(clientUpdateThreads[clientsIter], nullptr);
         }
 
@@ -424,14 +433,14 @@ void Server::connect() {
     int client4 = 3;
 
 
-    if(listen(serverSocket_s, MAXCLIENTS) < 0 ) {
+    if(listen(serverSocket_s, max_clients) < 0 ) {
         logger->Log( "No se puede escuchar", ERROR, strerror(errno));
     }
 
     int clientsIter = 0;
     pthread_t clientThreads[MAXCLIENTS];
 
-    for(; clientsIter < MAXCLIENTS; clientsIter++){
+    for(; clientsIter < max_clients; clientsIter++){
         clientSize[clientsIter] = sizeof(clientAddr[clientsIter]);
         clientSocket[clientsIter] = accept(serverSocket_s, (struct sockaddr*)&clientAddr[clientsIter], &clientSize[clientsIter]);
         clientConnected(clientAddr[clientsIter]);
@@ -439,7 +448,7 @@ void Server::connect() {
 
 
     clientsIter = 0;
-    for(; clientsIter < MAXCLIENTS; clientsIter++){
+    for(; clientsIter < max_clients; clientsIter++){
 
         memset(messageToClient,0, 4096);
         if (clientsIter == client1){
@@ -462,7 +471,7 @@ void Server::connect() {
 
     clientsIter = 0;
 
-    for(; clientsIter < MAXCLIENTS; clientsIter++){
+    for(; clientsIter < max_clients; clientsIter++){
         memset(messageToClient,0, 4096);
         if (clientsIter == client1){
             strcpy(messageToClient, "cnect");
@@ -506,7 +515,7 @@ void Server::connect() {
 
     clientsIter = 0;
 
-    for(; clientsIter < MAXCLIENTS; clientsIter++){
+    for(; clientsIter < max_clients; clientsIter++){
         int readThread;
         if (clientsIter == client1){
             readThread = pthread_create(&clientThreads[client1], nullptr, receivingEventsFromClient,
@@ -541,7 +550,7 @@ void Server::connect() {
 
     clientsIter = 0;
 
-    for(; clientsIter < MAXCLIENTS; clientsIter++){
+    for(; clientsIter < max_clients; clientsIter++){
         pthread_join(clientThreads[clientsIter], nullptr);
     }
 

@@ -246,6 +246,10 @@
 			"height":153,
 			"width": 117
 		}
-	]
+	],
+	"server":{
+		"clients": 2,
+		"port": 54000
+	}
 }
 

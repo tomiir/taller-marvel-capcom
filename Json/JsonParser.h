@@ -38,6 +38,10 @@ public:
 
     std::list<JsonGameObject_charSelect> getJsonGameobject_charSelect();
 
+    int getNumberOfClients();
+
+    int getNumberOfPort();
+
 };
 
 #endif //JSON_2_JSONPARSER_H
