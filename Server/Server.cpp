@@ -251,20 +251,20 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
         }
 
         start = SDL_GetTicks();
+//
+//        signal(SIGINT, brokeConnection);
+//        signal(SIGTSTP, brokeConnection);
+//        signal(SIGQUIT, brokeConnection);
 
-        signal(SIGINT, brokeConnection);
-        signal(SIGTSTP, brokeConnection);
-        signal(SIGQUIT, brokeConnection);
 
-
-        if(serverBrokeConnection == 1){
-
-            memset(messageToClient,0, MESSAGETOCLIENTLEN);
-            strcpy(messageToClient, "El servidor se desconecto");
-            Send(&clientIter);
-            close(serverSocket_s);
-            return nullptr;
-        }
+//        if(serverBrokeConnection == 1){
+//
+//            memset(messageToClient,0, MESSAGETOCLIENTLEN);
+//            strcpy(messageToClient, "El servidor se desconecto");
+//            Send(&clientIter);
+//            close(serverSocket_s);
+//            return nullptr;
+//        }
         //Aca habria que analizar lo de si no recibe por un tiempo nada darlo por muerto(seria el heartbeat)
         //
 
@@ -282,7 +282,14 @@ void* Server::receivingEventsFromClient(void *clientIter_) {
         if( strcmp(received, "0") == 0) {
             logger->Log( "El cliente: " + to_string(clientSocket[clientIter]) + " se desconecto" , NETWORK, "");
             close(clientSocket[clientIter]);
-            break;
+
+            if (clientIter == 0) Connected11 = false;
+            else if(clientIter == 1) Connected21 = false;
+            else if(clientIter == 2) Connected12 = false;
+            else Connected22 = false;
+
+
+            return nullptr;
         }
 
         //        ESTA ES LA LOGICA QUE SE ME OCURRIO PARA NO ENCOLAR LOS MENSAJES DE LOS CLEINTES QUE NO ESTAN JUGANDO.
@@ -419,6 +426,8 @@ void* Server::updateModel(void *arg){
 //        }
 
     }
+
+    return nullptr;
 }
 
 
@@ -615,16 +624,6 @@ void Server::connect() {
 }
 
 
-
-
-
-void* Server::popQueue(void* arg){
-    CLogger* logger = CLogger::GetLogger();
-    string messagePop = serverQueue.front();
-    logger->Log("Se desencolo el mensaje: " + messagePop, INFO, "");
-    cout << "Se desencolo el mensaje: " + messagePop << endl;
-    serverQueue.pop();
-}
 
 
 

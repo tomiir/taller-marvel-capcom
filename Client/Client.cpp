@@ -177,14 +177,14 @@ void* Client::recvFromServer(void* arg) {
 
         if(bytesReceived == -1){
             checkRecvFromServerError();
-            break;  //No estoy seguro si habria que hacer este break.
         }
-        //string messageReceived = string(messageFromServer, 0, bytesReceived);
 
         string message = (string)(messageFromServer);
         queueRecv.push(message);
 
     }
+
+    return nullptr;
 
 }
 
@@ -278,12 +278,15 @@ void* Client::render(void *arg) {
         }
     }
     game->clean();
+    return nullptr;
 }
 
 
 
 
 void* Client::sendEventToServer(void* arg){
+
+    signal(SIGPIPE, SIG_IGN);
 
     CLogger* logger = CLogger::GetLogger();
 
@@ -306,18 +309,18 @@ void* Client::sendEventToServer(void* arg){
         if (event.type == SDL_QUIT) {
             logger -> Log("Saliendo del juego", INFO, "");
             connect2 = false;
-            break;
+            pthread_exit(nullptr);
         }
 
-
-        if ((1000 / speed) > (SDL_GetTicks() - start)) {
-            SDL_Delay((1000 / speed) - (SDL_GetTicks() - start));
-        }
 
 
         //Esto no se tendria que mandar a penas cae un evento. Cada tantos milisegundos tendria que crearse un char* mas grande unido por varias events y enviarse
         ssize_t bytesSent = send(serverSocket_c, mapEvent.c_str(), sizeof(mapEvent.c_str()), 0);
         if(bytesSent < 0) checkSendToServerError();
+
+        if ((1000 / speed) > (SDL_GetTicks() - start)) {
+            SDL_Delay((1000 / speed) - (SDL_GetTicks() - start));
+        }
 
 
     }

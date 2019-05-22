@@ -43,7 +43,6 @@ JsonConfigs::JsonConfigs() {
     }
     if (!JSON_checker_done(jc)) {
         logger -> Log("Error de formato en configs.json ,utilizando el fallback", ERROR, "");
-        fprintf(stderr, "JSON_checker_end: syntax error\n");
         this->json = JsonParser(defaultJson);
         error = true;
     }
