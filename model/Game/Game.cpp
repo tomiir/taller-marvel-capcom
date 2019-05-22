@@ -4,6 +4,7 @@
 
 #include "Game.h"
 #include "../../utils/Logger/Logger.h"
+#include "../../Json/JsonConfigs.h"
 
 
 Game::Game(int screenWidth_, int screenHeight_){
@@ -17,7 +18,14 @@ Game::~Game() = default;
 void Game::init(const char *title, int posX, int posY) {
 
     CLogger* logger = CLogger::GetLogger();
-
+    JsonConfigs* config = JsonConfigs::getJson();
+    JsonDisconection probando = config->getJsonDisconection();
+    cout<<probando.getName();
+    cout<<probando.getPath();
+    cout<<probando.getX();
+    cout<<probando.getY();
+    cout<<probando.getWidth();
+    cout<<probando.getHeight();
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0){
 
         window = SDL_CreateWindow(title, posX, posY, screenWidth, screenHeight, SDL_WINDOW_SHOWN);

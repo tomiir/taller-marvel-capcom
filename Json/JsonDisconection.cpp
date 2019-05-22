@@ -15,6 +15,7 @@ JsonDisconection::JsonDisconection(std::string name, std::string path, int x, in
     this->y = y;
     this->width = width;
     this->height = height;
+    this->error = false;
 }
 
 std::string JsonDisconection::getName() {

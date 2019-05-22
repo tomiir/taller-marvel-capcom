@@ -284,7 +284,7 @@ int JsonParser::getNumberOfPort() {
 
 JsonDisconection JsonParser:: getJsonDisconection(){
 
-    Json::Value json_ = this->json["desconection"];
+    Json::Value json_ = this->json["disconected"];
 
 
     std::list<std::string> errors;

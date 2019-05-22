@@ -18,6 +18,7 @@ GameObjectFactory::GameObjectFactory(SDL_Renderer *renderer_, int screenWidth_, 
     screenWidth = screenWidth_;
     screenHeight = screenHeight_;
 
+
 }
 
 GameObjectFactory::~GameObjectFactory() = default;
