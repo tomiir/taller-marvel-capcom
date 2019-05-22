@@ -21,15 +21,20 @@
 #include <unistd.h>
 
 
-#define MAXCLIENTS 2
+#define MAXCLIENTS 4
 #define PORT 54000
 
 using namespace std;
 
+typedef struct {
+    int cantClients_;
+    int client;
+} clientStruct;
+
 class Server {
 
 public:
-    Server();
+    Server(int cantClients_);
     ~Server() = default;
     void connect();
     static void* receivingEventsFromClient(void *clientSock_);
@@ -48,6 +53,9 @@ public:
 
 private:
     static void clientConnected(sockaddr_in clientAddr_);
+
+    int cantClients;
+
 };
 
 
