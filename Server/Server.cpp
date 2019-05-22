@@ -42,7 +42,9 @@ pthread_mutex_t mutex;
 
 
 
-Server::Server(int cantClients_) {
+Server::Server(int cantClients_, int port_) {
+
+    port = port_;
 
     CLogger* logger = CLogger::GetLogger();
     serverSocket_s = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
@@ -51,7 +53,7 @@ Server::Server(int cantClients_) {
     }
 
     serverAddr_s.sin_family = AF_INET;
-    serverAddr_s.sin_port = htons(PORT);
+    serverAddr_s.sin_port = htons(port);
     inet_pton(AF_INET, "0.0.0.0" , &serverAddr_s.sin_addr);
 
     cantClients = cantClients_;

@@ -22,7 +22,7 @@
 
 
 #define MAXCLIENTS 4
-#define PORT 54000
+//#define PORT 54000
 
 using namespace std;
 
@@ -34,7 +34,7 @@ typedef struct {
 class Server {
 
 public:
-    Server(int cantClients_);
+    Server(int cantClients_, int port_);
     ~Server() = default;
     void connect();
     static void* receivingEventsFromClient(void *clientSock_);
@@ -55,6 +55,7 @@ private:
     static void clientConnected(sockaddr_in clientAddr_);
 
     int cantClients;
+    int port;
 
 };
 
