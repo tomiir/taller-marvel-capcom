@@ -145,9 +145,6 @@ void Client::brokeConnection(int arg){
 
 
 
-
-
-
 char *Client::messageFromServerReceived(){
 
     memset(messageToKnowTheTeam, 0, MESSAGEFROMSERVERLEN2);

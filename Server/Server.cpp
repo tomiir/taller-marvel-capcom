@@ -214,20 +214,28 @@ char* Server::update(int clientIter){
 }
 
 
-//void * timer(void * clientIter_){
-//
-//    int clientIter = *(int *) clientIter_;
-//
-//    sleep(3);
-//
-//    if (clientIter == 0) Connected11 = false;
-//    else if (clientIter == 1) Connected21 = false;
-//    else if (clientIter == 2 ) Connected12 = false;
-//    else Connected22 = false;
-//
-//}
+void* timer(void * clientIter_){
 
+    clock_t start;
+    double duration;
+    int clientIter = *(int *) clientIter_;
 
+    start = clock();
+    duration = 0;
+
+    while(duration <= 3){
+
+        duration = ( clock() - start ) / (double) CLOCKS_PER_SEC;
+    }
+
+    if (clientIter == 0) Connected11 = false;
+    else if (clientIter == 1) Connected21 = false;
+    else if (clientIter == 2 ) Connected12 = false;
+    else Connected22 = false;
+
+    pthread_exit(0);
+
+}
 
 
 void* Server::receivingEventsFromClient(void *client_) {
@@ -243,13 +251,6 @@ void* Server::receivingEventsFromClient(void *client_) {
     int speed = 60;
     Uint32 start;
 
-//    pthread_t timerThread;
-//
-//    int readThread = pthread_create(&timerThread, nullptr, timer, &clientIter);
-//    if(readThread !=0){
-//        logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
-//    }
-
     while(true){
 
         if (game_server->haveToChangeViewController()) {
@@ -258,6 +259,13 @@ void* Server::receivingEventsFromClient(void *client_) {
         }
 
         start = SDL_GetTicks();
+
+        pthread_t timerThread;
+        int readThread = pthread_create(&timerThread, nullptr, timer, &clientIter);
+
+        if(readThread !=0){
+            logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
+        }
 //
 //        signal(SIGINT, brokeConnection);
 //        signal(SIGTSTP, brokeConnection);
@@ -272,16 +280,19 @@ void* Server::receivingEventsFromClient(void *client_) {
 //            close(serverSocket_s);
 //            return nullptr;
 //        }
+
         //Aca habria que analizar lo de si no recibe por un tiempo nada darlo por muerto(seria el heartbeat)
         //
 
 
         char* received = update(clientIter);
 
-//        if (clientIter == 0) Connected11 = true;
-//        else if (clientIter == 1) Connected21 = true;
-//        else if (clientIter == 2 ) Connected12 = true;
-//        else Connected22 = true;
+        if (clientIter == 0) Connected11 = true;
+        else if (clientIter == 1) Connected21 = true;
+        else if (clientIter == 2 ) Connected12 = true;
+        else Connected22 = true;
+
+        pthread_cancel(timerThread);
 
 //        pthread_kill(timerThread, SIGCONT);
 
