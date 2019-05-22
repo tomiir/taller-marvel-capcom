@@ -250,6 +250,14 @@
 	"server":{
 		"clients": 4,
 		"port": 54000
+	},
+	"disconected":{
+		"name":"disconected",
+		"filepath": "../Images/disconected/disconected.png",
+		"x": 0,
+		"y": 0,
+		"height":1200,
+		"width": 700
 	}
 }
 

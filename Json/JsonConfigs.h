@@ -34,6 +34,8 @@ public:
 
     int getNumberOfPort();
 
+    JsonDisconection getJsonDisconection();
+
 
 private:
     JsonConfigs();

@@ -246,3 +246,25 @@ int JsonConfigs::getNumberOfPort() {
     }
     return retVal;
 }
+
+JsonDisconection JsonConfigs::getJsonDisconection() {
+    JsonDisconection fJsonGO = fallbackJson.getJsonDisconection();
+    JsonDisconection jsonGO = json.getJsonDisconection();
+
+
+    if(jsonGO.getError() || jsonGO.getName() != fJsonGO.getName() || jsonGO.getPath() != fJsonGO.getPath()){
+
+        std::list<std::string> errorsList = jsonGO.getErrorList();
+        std::list<std::string>::iterator errorIter = errorsList.begin();
+
+            if( jsonGO.getPath() != fJsonGO.getPath() ) logger->LogError("filepath", jsonGO.getName());
+
+            for(; errorIter != errorsList.end(); ++errorIter){
+                logger->LogError( (*errorIter), jsonGO.getName());
+            }
+            return fJsonGO;
+    }
+    return jsonGO;
+
+
+}

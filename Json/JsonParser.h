@@ -7,6 +7,7 @@
 #include <list>
 #include <vector>
 #include "JsonGameObject_charSelect.h"
+#include "JsonDisconection.h"
 #ifndef JSON_2_JSONPARSER_H
 #define JSON_2_JSONPARSER_H
 
@@ -42,6 +43,7 @@ public:
 
     int getNumberOfPort();
 
+    JsonDisconection getJsonDisconection();
 };
 
 #endif //JSON_2_JSONPARSER_H

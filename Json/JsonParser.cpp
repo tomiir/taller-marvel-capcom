@@ -282,7 +282,54 @@ int JsonParser::getNumberOfPort() {
     return (json["port"]).asInt();
 }
 
+JsonDisconection JsonParser:: getJsonDisconection(){
 
+    Json::Value json_ = this->json["desconection"];
+
+
+    std::list<std::string> errors;
+    bool error = false;
+
+    if( !(json_["name"]).isString() || (json_["name"]).asString() == "null"){
+        error = true;
+        errors.push_back("name");
+    }
+    if( !(json_["filepath"]).isString() || (json_["filepath"]).asString() == "null"){
+        error = true;
+        errors.push_back("filepath");
+    }
+    if( !(json_["x"]).isInt()  || (json_["x"]).asInt() < 0){
+        error = true;
+        errors.push_back("x");
+    }
+    if( !(json_["y"]).isInt()  || (json_["y"]).asInt() < 0){
+        error = true;
+        errors.push_back("y");
+    }
+    if( !(json_["height"]).isInt() || (json_["height"]).asInt() < 0){
+        error = true;
+        errors.push_back("height");
+    }
+    if( !(json_["width"]).isInt() || (json_["width"]).asInt() < 0){
+        error = true;
+        errors.push_back("width");
+    }
+    if(error) return JsonDisconection(errors);
+
+    else
+    {
+        std::string name = (json_["name"]).asString();
+        std::string path = (json_["filepath"]).asString();
+
+        int x = (json_["x"]).asInt();
+        int y = (json_["y"]).asInt();
+        int height = (json_["height"]).asInt();
+        int width = (json_["width"]).asInt();
+        return JsonDisconection(name,path,x,y,height,width);
+
+    }
+
+}
 
 
 
