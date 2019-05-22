@@ -154,7 +154,7 @@ std::list<JsonCharacter> JsonParser::getCharacter() {
 std::list<JsonGameObject_charSelect> JsonParser:: getJsonGameobject_charSelect(){
 
     std::list<JsonGameObject_charSelect> gameObjects;
-    Json::Value json_ = this->json["caca"];
+    Json::Value json_ = this->json["selectImage"];
 
 
     Json::Value::iterator it=json_.begin();

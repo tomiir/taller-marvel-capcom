@@ -83,7 +83,7 @@
 	"Title": {
 		"title": "Marvel vs Capcom"
 		},
-	"caca":
+	"selectImage":
 	[
 		{"name":"background",
 		"filepath":"../Images/menu_seleccion/background.png",

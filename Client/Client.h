@@ -46,10 +46,6 @@ public:
 
     void Send(char *message);
 
-    bool isBeating();
-
-    void hearthBeat();
-
     void Initialice();
 
     void setMappers(Mapper* mapperSelect_, Mapper* mapperFight_);
@@ -62,10 +58,6 @@ private:
 
     CLogger* logger = CLogger::GetLogger();
 
-    pthread_t clientThread;
-    bool beating;
-
-    static void brokeConnection(int num);
 
     void configServer(const char* serverIp, uint16_t serverPort);
 

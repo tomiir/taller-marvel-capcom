@@ -18,6 +18,7 @@ char messageFromServer[MESSAGEFROMSERVERLEN];
 char messageToKnowTheTeam[MESSAGEFROMSERVERLEN2];
 
 bool connect2 = true;
+bool serverConnected = true;
 
 queue<string> queueRecv;
 
@@ -40,7 +41,6 @@ void Client::configServer(const char* serverIp, uint16_t serverPort){
 Client::Client(const char* serverIp, uint16_t serverPort) {
 
     configServer(serverIp, serverPort);
-    beating = true;
 }
 
 void Client::Disconnect() {
@@ -136,12 +136,6 @@ void Client::Send(char* message) {
 
 }
 
-sig_atomic_t clientBrokeConnection = 0;
-
-void Client::brokeConnection(int arg){
-    clientBrokeConnection = 1;
-}
-
 
 
 
@@ -161,16 +155,38 @@ char *Client::messageFromServerReceived(){
 
 
 
+void* timerClient(void * arg){
+
+    sleep(5);
+
+    cout << "Server desconectado" << endl;
+
+    serverConnected = false;
+}
 
 
 void* Client::recvFromServer(void* arg) {
 
+    CLogger* logger = CLogger::GetLogger();
 
     while(connect2){
+
+        pthread_t timerThread;
+        int readThread = pthread_create(&timerThread, nullptr, timerClient, nullptr);
+
+        if(readThread !=0){
+            logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
+        }
+
+
         memset(messageFromServer, 0, MESSAGEFROMSERVERLEN);
 
-        //Aca habrai que chequear que si no recibe por un tiempo se da por uerto el server(seria como el heartbeat)
+        //Aca habrai que chequear que si no recibe por un tiempo se da por puerto el server(seria como el heartbeat)
         int bytesReceived = recv(serverSocket_c, messageFromServer, MESSAGEFROMSERVERLEN, 0);
+
+        pthread_cancel(timerThread);
+
+        serverConnected = true;
 
         if(bytesReceived == -1){
             checkRecvFromServerError();
@@ -188,19 +204,17 @@ void* Client::recvFromServer(void* arg) {
 void* Client::render(void *arg) {
 
     bool fight_view = false;
-    int speed = 60;
-    Uint32 start;
 
    //Aca empieza el loop que va a ir renderizando. Las view ay deberian estar cargadas y se renderiza lo que se tenga que renderizar
     while(connect2){
-
-        start = SDL_GetTicks();
 
         if (game->haveToChangeView()){
             changeCurrentMapper();
             game->changeView();
             fight_view = true;
         }
+
+        //if (!serverConnected)
 
         if(queueRecv.empty()) continue;
 
@@ -269,9 +283,7 @@ void* Client::render(void *arg) {
             game->render();
             queueRecv.pop();
 
-//            if ((1000 / speed) > (SDL_GetTicks() - start)) {
-//                SDL_Delay((1000 / speed) - (SDL_GetTicks() - start));
-//            }
+
         }
     }
     game->clean();
@@ -297,6 +309,7 @@ void* Client::sendEventToServer(void* arg){
 
         start = SDL_GetTicks();
 
+        if (!serverConnected) continue;
 
         SDL_Event event;
         SDL_PollEvent(&event);
@@ -338,16 +351,6 @@ void Client::Initialice() {
 
     game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
     game->init(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
-
-//        Uint32 start;
-
-//        start = SDL_GetTicks();
-//        try { game->tick(); }
-//        catch (int e) { break; }
-//
-//        if ((1000 / FPS) > (SDL_GetTicks() - start)) {
-//            SDL_Delay((1000 / FPS) - (SDL_GetTicks() - start));
-//        }
 
 
     pthread_t sendEventThread;
