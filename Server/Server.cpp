@@ -281,6 +281,7 @@ void* Server::receivingEventsFromClient(void *client_) {
             }
         }
 
+
         int receivedLen = strlen(received);
         if(receivedLen != 5) {
             continue;
