@@ -21,15 +21,20 @@
 #include <unistd.h>
 
 
-#define MAXCLIENTS 2
-#define PORT 54000
+#define MAXCLIENTS 4
+//#define PORT 54000
 
 using namespace std;
+
+typedef struct {
+    int cantClients_;
+    int client;
+} clientStruct;
 
 class Server {
 
 public:
-    Server();
+    Server(int cantClients_, int port_);
     ~Server() = default;
     void connect();
     static void* receivingEventsFromClient(void *clientSock_);
@@ -48,12 +53,10 @@ public:
 
 private:
     static void clientConnected(sockaddr_in clientAddr_);
-    static void* popQueue(void* arg);
 
-    //Despeus va a tener que ser del tipo viewController y cambiar cuando tnega que pasar a figth
-    //Al usarlo en una funcion estatica me obligo a que sea estatico
+    int cantClients;
+    int port;
 
-    static void changeView();
 };
 
 

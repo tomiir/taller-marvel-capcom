@@ -33,7 +33,11 @@ int main(int argc, const char* argv[]) {
     if (argc == 2 and string(argv[1]) == "server") {
         logger->Log("------------------------Logger del server --------------------------", DEBUG, "");
         logger->Log("Escuchando con el server", INFO, "");
-        Server *server = new Server();
+
+        int cantClients = config->getNumberOfClients();
+        int port = config->getNumberOfPort();
+
+        Server *server = new Server(cantClients, port);
         server->connect();
 
     } else if (argc == 4 and string(argv[1]) == "client") {
