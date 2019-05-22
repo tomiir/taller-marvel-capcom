@@ -216,24 +216,28 @@ char* Server::update(int clientIter){
 
 void* timer(void * clientIter_){
 
-    clock_t start;
-    double duration;
+//    clock_t start;
+//    double duration;
+//
+//    start = clock();
+//    duration = 0;
+
+//    while(duration < 20 ){
+//
+//        duration = ( clock() - start ) / (double) CLOCKS_PER_SEC;
+//    }
+
+    sleep(5);
+
     int clientIter = *(int *) clientIter_;
-
-    start = clock();
-    duration = 0;
-
-    while(duration <= 3){
-
-        duration = ( clock() - start ) / (double) CLOCKS_PER_SEC;
-    }
 
     if (clientIter == 0) Connected11 = false;
     else if (clientIter == 1) Connected21 = false;
     else if (clientIter == 2 ) Connected12 = false;
-    else Connected22 = false;
+    else if (clientIter == 3) Connected22 = false;
 
-    pthread_exit(0);
+    cout << "Se desconecto: " << clientIter +1 << endl;
+//    pthread_exit(0);
 
 }
 
@@ -260,39 +264,22 @@ void* Server::receivingEventsFromClient(void *client_) {
 
         start = SDL_GetTicks();
 
-        pthread_t timerThread;
-        int readThread = pthread_create(&timerThread, nullptr, timer, &clientIter);
+        pthread_t timerThread[cantClients];
+        int readThread = pthread_create(&timerThread[clientIter], nullptr, timer, &clientIter);
 
         if(readThread !=0){
             logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
         }
-//
-//        signal(SIGINT, brokeConnection);
-//        signal(SIGTSTP, brokeConnection);
-//        signal(SIGQUIT, brokeConnection);
-
-
-//        if(serverBrokeConnection == 1){
-//
-//            memset(messageToClient,0, MESSAGETOCLIENTLEN);
-//            strcpy(messageToClient, "El servidor se desconecto");
-//            Send(&clientIter);
-//            close(serverSocket_s);
-//            return nullptr;
-//        }
-
-        //Aca habria que analizar lo de si no recibe por un tiempo nada darlo por muerto(seria el heartbeat)
-        //
 
 
         char* received = update(clientIter);
+        pthread_cancel(timerThread[clientIter]);
 
         if (clientIter == 0) Connected11 = true;
         else if (clientIter == 1) Connected21 = true;
         else if (clientIter == 2 ) Connected12 = true;
-        else Connected22 = true;
+        else if (clientIter == 3) Connected22 = true;
 
-        pthread_cancel(timerThread);
 
 //        pthread_kill(timerThread, SIGCONT);
 
@@ -304,7 +291,7 @@ void* Server::receivingEventsFromClient(void *client_) {
             if (clientIter == 0) Connected11 = false;
             else if(clientIter == 1) Connected21 = false;
             else if(clientIter == 2) Connected12 = false;
-            else Connected22 = false;
+            else if (clientIter == 3) Connected22 = false;
 
             return nullptr;
         }
@@ -312,6 +299,7 @@ void* Server::receivingEventsFromClient(void *client_) {
         //        ESTA ES LA LOGICA QUE SE ME OCURRIO PARA NO ENCOLAR LOS MENSAJES DE LOS CLEINTES QUE NO ESTAN JUGANDO.
 //        HAY QUE PROBARLO CON MAS COMPUS PORQUE LA MIA CASI MUERE CON CUATRO CLIENTES xD.
         if (viewControllerFight){
+
             if (cantClients == 4){
                 if (((game_server->currentClientT1() == 1 and clientIter == 2) or (game_server->currentClientT1() == 3 and clientIter == 0)) and (Connected11 and Connected12)) continue;
                 if (((game_server->currentClientT2() == 2 and clientIter == 3) or (game_server->currentClientT2() == 4 and clientIter == 1)) and (Connected21 and Connected22)) continue;
@@ -321,26 +309,28 @@ void* Server::receivingEventsFromClient(void *client_) {
             }
         }
 
-        int aux = strlen(received);
-        if(aux != 5) continue;
+        int receivedLen = strlen(received);
+        if(receivedLen != 5) {
+            continue;
+        }
 
         switch (clientIter){
 
             case 0:
-                received[aux] = '0';
-                received[aux + 1] = '0';
+                received[receivedLen] = '0';
+                received[receivedLen + 1] = '0';
                 break;
             case 1:
-                received[aux] = '0';
-                received[aux + 1] = '1';
+                received[receivedLen] = '0';
+                received[receivedLen + 1] = '1';
                 break;
             case 2:
-                received[aux] = '1';
-                received[aux + 1] = '0';
+                received[receivedLen] = '1';
+                received[receivedLen + 1] = '0';
                 break;
             case 3:
-                received[aux] = '1';
-                received[aux + 1] = '1';
+                received[receivedLen] = '1';
+                received[receivedLen + 1] = '1';
                 break;
             default:
                 cout << "ERROR AGREGANDO CHARS PARA DISTINGUIR CLIENTES" << endl;
@@ -412,18 +402,18 @@ void* Server::updateModel(void *cantClients_){
         for(; clientsIter < cantClients; clientsIter++){
 
             int readThread;
-            if (clientsIter == client1){
+            if (clientsIter == client1 and Connected11){
                 readThread = pthread_create(&clientUpdateThreads[client1], nullptr, Send,
                                             &client1);
             }
-            if (clientsIter == client2){
+            if (clientsIter == client2 and Connected21){
                 readThread = pthread_create(&clientUpdateThreads[client2], nullptr, Send,
                                             &client2);
             }
-            if (clientsIter == client3){
+            if (clientsIter == client3 and Connected12){
                 readThread = pthread_create(&clientUpdateThreads[client3], nullptr, Send,
                                             &client3);
-            }if (clientsIter == client4){
+            }if (clientsIter == client4 and Connected22){
                 readThread = pthread_create(&clientUpdateThreads[client4], nullptr, Send,
                                             &client4);
             }

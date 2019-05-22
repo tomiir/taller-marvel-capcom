@@ -69,8 +69,8 @@
 		],
 	"window":
 		{
-			"width":1200,
-		 	"height":700
+			"width":800,
+		 	"height":600
 		 },
 	"gameParameters": {
 		"charactersSpeed": 6,
@@ -248,7 +248,7 @@
 		}
 	],
 	"server":{
-		"clients": 2,
+		"clients": 4,
 		"port": 54000
 	}
 }
