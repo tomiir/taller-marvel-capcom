@@ -22,7 +22,6 @@
 
 
 #define MAXCLIENTS 4
-//#define PORT 54000
 
 using namespace std;
 
@@ -39,8 +38,6 @@ public:
     void connect();
     static void* receivingEventsFromClient(void *clientSock_);
     static void *updateModel(void* arg);
-
-    static void brokeConnection(int arg);
 
     static void *Send(void *clientSock_);
 

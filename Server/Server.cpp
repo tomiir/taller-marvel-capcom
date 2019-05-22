@@ -8,7 +8,6 @@
 //----SERVER VARIABLES----
 int serverSocket_s;
 struct sockaddr_in serverAddr_s;
-socklen_t serverSize_s;
 
 //----CLIENT VARIABLES----
 
@@ -140,16 +139,6 @@ void Server::checkRecvFromClientError(int clientSock) {
     }
 }
 
-sig_atomic_t serverBrokeConnection = 0;
-
-
-
-
-void Server::brokeConnection(int arg){
-    serverBrokeConnection = 1;
-}
-
-
 
 void *Server::Send(void *clientIter_){
 
@@ -161,9 +150,6 @@ void *Server::Send(void *clientIter_){
         checkSendToClientError(clientSocket[clientIter]);
     }
 }
-
-
-
 
 
 
@@ -216,17 +202,6 @@ char* Server::update(int clientIter){
 
 void* timer(void * clientIter_){
 
-//    clock_t start;
-//    double duration;
-//
-//    start = clock();
-//    duration = 0;
-
-//    while(duration < 20 ){
-//
-//        duration = ( clock() - start ) / (double) CLOCKS_PER_SEC;
-//    }
-
     sleep(5);
 
     int clientIter = *(int *) clientIter_;
@@ -237,7 +212,6 @@ void* timer(void * clientIter_){
     else if (clientIter == 3) Connected22 = false;
 
     cout << "Se desconecto: " << clientIter +1 << endl;
-//    pthread_exit(0);
 
 }
 
@@ -281,23 +255,21 @@ void* Server::receivingEventsFromClient(void *client_) {
         else if (clientIter == 3) Connected22 = true;
 
 
-//        pthread_kill(timerThread, SIGCONT);
-
-
         if( strcmp(received, "0") == 0) {
             logger->Log( "El cliente: " + to_string(clientSocket[clientIter]) + " se desconecto" , NETWORK, "");
-            close(clientSocket[clientIter]);
+
 
             if (clientIter == 0) Connected11 = false;
             else if(clientIter == 1) Connected21 = false;
             else if(clientIter == 2) Connected12 = false;
             else if (clientIter == 3) Connected22 = false;
 
+            close(clientSocket[clientIter]);
+
             return nullptr;
         }
 
-        //        ESTA ES LA LOGICA QUE SE ME OCURRIO PARA NO ENCOLAR LOS MENSAJES DE LOS CLEINTES QUE NO ESTAN JUGANDO.
-//        HAY QUE PROBARLO CON MAS COMPUS PORQUE LA MIA CASI MUERE CON CUATRO CLIENTES xD.
+
         if (viewControllerFight){
 
             if (cantClients == 4){
@@ -352,9 +324,6 @@ void* Server::receivingEventsFromClient(void *client_) {
 
 
 
-
-
-
 //esta funcion se encarga de desencolar las cosas que le llegan de los clientes, actualizar el
 // modelo y enviar los nuevos parametros a todos los clientes.
 void* Server::updateModel(void *cantClients_){
@@ -363,9 +332,6 @@ void* Server::updateModel(void *cantClients_){
 
     CLogger* logger = CLogger::GetLogger();
 
-    int speed = 60;
-    Uint32 start;
-
     int client1 = 0;
     int client2 = 1;
     int client3 = 2;
@@ -373,10 +339,8 @@ void* Server::updateModel(void *cantClients_){
 
     while(on){
 
-        start = SDL_GetTicks();
-
         //En este caso cada elemneto de la cola es una serie de eventos de 5 chars cada uno(y cada elemento es de un cleinte solo)
-        //Habria que evaluar cauntas veces habria que desencolar o si simplemente procesando lo de un cleinte solo a la vez serviria.
+        //Habria que evaluar cuantas veces habria que desencolar o si simplemente procesando lo de un cleinte solo a la vez serviria.
         if(serverQueue.empty()) continue;
 
         string event = serverQueue.front();
@@ -389,8 +353,6 @@ void* Server::updateModel(void *cantClients_){
         //aca se pide despues de hacer todos los cambios los parametros que se necesitan para enviarles a los clientes y que estos renderisen
 
         string updates = game_server->giveNewParameters();
-
-        //cout << updates << endl;
 
         memset(messageToClient,0, MESSAGETOCLIENTLEN);
         strcpy(messageToClient, updates.c_str());
@@ -429,11 +391,6 @@ void* Server::updateModel(void *cantClients_){
         for(; clientsIter < cantClients; clientsIter++){
             pthread_join(clientUpdateThreads[clientsIter], nullptr);
         }
-
-//        if ((1000 / speed) > (SDL_GetTicks() - start)) {
-//            SDL_Delay((1000 / speed) - (SDL_GetTicks() - start));
-//        }
-
     }
 
     return nullptr;
@@ -563,8 +520,6 @@ void Server::connect() {
     logger->Log( "Ya se conectaron los clientes" , INFO, "");
 
 
-    //ACA SE DEBERIA INICIALIZAR TODOO EL MODELO
-
     logger->Log("Inicializando juego", INFO, "");
     JsonConfigs *config = JsonConfigs::getJson();
 
@@ -632,7 +587,6 @@ void Server::connect() {
     pthread_cancel(updateModelThread);
     pthread_cancel(extraClientsThread);
     pthread_mutex_destroy(&lock);
-//    pthread_mutex_destroy(&mutex);
     on = false;
 
     logger->Log( "Se desconectaron todos los clientes, saliendo del juego." , INFO, "");
