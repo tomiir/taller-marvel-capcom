@@ -48,7 +48,6 @@ void Client::Disconnect() {
     Send(NOBEAT);
     logger->Log("Desconectando al cliente", NETWORK, "");
     close(serverSocket_c);
-    connect2 = false;
 }
 
 bool Client::Connect() {
@@ -294,9 +293,7 @@ void* Client::sendEventToServer(void* arg){
 
     string mapEvent;
 
-    bool sending = true;
-
-    while(sending){
+    while(true){
 
         start = SDL_GetTicks();
 
@@ -309,7 +306,7 @@ void* Client::sendEventToServer(void* arg){
         if (event.type == SDL_QUIT) {
             logger -> Log("Saliendo del juego", INFO, "");
             connect2 = false;
-            sending = false;
+            break;
         }
 
 
