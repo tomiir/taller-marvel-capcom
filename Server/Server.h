@@ -50,7 +50,8 @@ public:
 
 private:
     static void clientConnected(sockaddr_in clientAddr_);
-
+    static void* quit(void* arg);
+    static void quit(int arg);
     int cantClients;
     int port;
 

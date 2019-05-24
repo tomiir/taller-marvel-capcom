@@ -9,7 +9,7 @@
 #define MESSAGEFROMSERVERLEN 45
 #define MESSAGEFROMSERVERLEN2 5
 
-//----SERVER VARIABLES----
+
 int serverSocket_c;
 struct sockaddr_in serverAddr_c;
 socklen_t  serverSize_c;
@@ -43,12 +43,14 @@ Client::Client(const char* serverIp, uint16_t serverPort) {
     configServer(serverIp, serverPort);
 }
 
+
 void Client::Disconnect() {
 
     Send(NOBEAT);
     logger->Log("Desconectando al cliente", NETWORK, "");
     close(serverSocket_c);
 }
+
 
 bool Client::Connect() {
 
@@ -93,6 +95,7 @@ void Client::checkRecvFromServerError(){
     }
 }
 
+
 void Client::checkSendToServerError(){
     CLogger* logger = CLogger::GetLogger();
 
@@ -123,6 +126,7 @@ void Client::checkSendToServerError(){
     }
 }
 
+
 void Client::Send(char* message) {
 
     signal(SIGPIPE, SIG_IGN);
@@ -137,8 +141,6 @@ void Client::Send(char* message) {
 }
 
 
-
-
 char *Client::messageFromServerReceived(){
 
     memset(messageToKnowTheTeam, 0, MESSAGEFROMSERVERLEN2);
@@ -151,8 +153,6 @@ char *Client::messageFromServerReceived(){
 
     return messageToKnowTheTeam;
 }
-
-
 
 
 void* timerClient(void * arg){
@@ -178,7 +178,6 @@ void* Client::recvFromServer(void* arg) {
             logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
         }
 
-
         memset(messageFromServer, 0, MESSAGEFROMSERVERLEN);
 
         //Aca habrai que chequear que si no recibe por un tiempo se da por puerto el server(seria como el heartbeat)
@@ -192,14 +191,16 @@ void* Client::recvFromServer(void* arg) {
             checkRecvFromServerError();
         }
 
+        if(strcmp(messageFromServer, "serverDisconnect") == 0){
+            cout << "El server se apago" << endl;
+        }
         string message = (string)(messageFromServer);
         queueRecv.push(message);
-
     }
-
     return nullptr;
 
 }
+
 
 void* Client::render(void *arg) {
 
@@ -291,8 +292,6 @@ void* Client::render(void *arg) {
 }
 
 
-
-
 void* Client::sendEventToServer(void* arg){
 
     signal(SIGPIPE, SIG_IGN);
@@ -336,6 +335,7 @@ void* Client::sendEventToServer(void* arg){
     }
 }
 
+
 void Client::Initialice() {
 
     //Aca habria antes que cargar las views
@@ -370,11 +370,13 @@ void Client::Initialice() {
     Disconnect();
 }
 
+
 void Client::setMappers(Mapper* mapperSelect_, Mapper* mapperFight_){
 
     currentMapper = mapperSelect_;
     notCurrentMapper = mapperFight_;
 }
+
 
 void Client::changeCurrentMapper(){
 

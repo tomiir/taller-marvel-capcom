@@ -22,6 +22,7 @@ char messageFromClient4[MESSAGEFROMCLIENTLEN];
 
 char messageToClient[MESSAGETOCLIENTLEN];
 
+pthread_t clientThreads[MAXCLIENTS];
 
 queue<string> serverQueue;
 
@@ -35,9 +36,9 @@ bool viewControllerFight = false;
 
 Game_server* game_server;
 
-pthread_mutex_t lock;
+pthread_mutex_t lock, mutex;
 
-pthread_mutex_t mutex;
+sig_atomic_t quitFlag = 0;
 
 
 
@@ -72,9 +73,6 @@ Server::Server(int cantClients_, int port_) {
 }
 
 
-
-
-
 void Server::checkSendToClientError(int clientSock) {
 
     CLogger* logger = CLogger::GetLogger();
@@ -105,9 +103,6 @@ void Server::checkSendToClientError(int clientSock) {
             exit(0);
     }
 }
-
-
-
 
 
 void Server::checkRecvFromClientError(int clientSock) {
@@ -150,7 +145,6 @@ void *Server::Send(void *clientIter_){
         checkSendToClientError(clientSocket[clientIter]);
     }
 }
-
 
 
 char* Server::update(int clientIter){
@@ -324,6 +318,24 @@ void* Server::receivingEventsFromClient(void *client_) {
 }
 
 
+void Server::quit(int arg){
+    quitFlag = 1;
+}
+
+
+void* Server::quit(void* cantClients_){
+
+    char message[4096];
+
+    while(true){
+        scanf("%s", message);
+
+        if(strcmp(message, "quit") == 0){
+            quitFlag = 1;
+            break;
+        }
+    }
+}
 
 //esta funcion se encarga de desencolar las cosas que le llegan de los clientes, actualizar el
 // modelo y enviar los nuevos parametros a todos los clientes.
@@ -333,12 +345,40 @@ void* Server::updateModel(void *cantClients_){
 
     CLogger* logger = CLogger::GetLogger();
 
+    pthread_t quitThread;
+    pthread_create(&quitThread, nullptr, quit, &cantClients);
+
     int client1 = 0;
     int client2 = 1;
     int client3 = 2;
     int client4 = 3;
 
     while(on){
+
+        signal(SIGTERM, &quit);
+        signal(SIGABRT, &quit);
+        signal(SIGINT, &quit);
+
+        if(quitFlag == 1){
+
+            cout << "Cerrando server" << endl;
+
+            strcpy(messageToClient, "serverDisconnect");
+
+            while(!serverQueue.empty()){
+                serverQueue.pop();
+            }
+            sleep(3);
+
+            for(int i = 0; i < cantClients; i++){
+                Send(&i);
+                pthread_mutex_lock(&lock);
+                close(clientSocket[i]);
+                pthread_cancel(clientThreads[i]);
+                pthread_mutex_unlock(&lock);
+            }
+            return nullptr;
+        }
 
         //En este caso cada elemneto de la cola es una serie de eventos de 5 chars cada uno(y cada elemento es de un cleinte solo)
         //Habria que evaluar cuantas veces habria que desencolar o si simplemente procesando lo de un cleinte solo a la vez serviria.
@@ -398,9 +438,6 @@ void* Server::updateModel(void *cantClients_){
 }
 
 
-
-
-
 void Server::clientConnected(sockaddr_in clientAddr_){
 
     CLogger* logger = CLogger::GetLogger();
@@ -418,10 +455,10 @@ void Server::clientConnected(sockaddr_in clientAddr_){
     }
 }
 
+
 void * Server::rejectingClients(void *clientIter_){
 
     int clientsIter = *(int *) clientIter_;
-
 
     while(on){
 
@@ -437,8 +474,6 @@ void * Server::rejectingClients(void *clientIter_){
 }
 
 
-
-
 void Server::connect() {
 
     CLogger* logger = CLogger::GetLogger();
@@ -449,13 +484,11 @@ void Server::connect() {
     int client4 = 3;
 
 
-
     if(listen(serverSocket_s, cantClients) < 0 ) {
         logger->Log( "No se puede escuchar", ERROR, strerror(errno));
     }
 
     int clientsIter = 0;
-    pthread_t clientThreads[MAXCLIENTS];
 
     for(; clientsIter < cantClients; clientsIter++){
         clientSize[clientsIter] = sizeof(clientAddr[clientsIter]);
@@ -562,8 +595,6 @@ void Server::connect() {
             readThread = pthread_create(&clientThreads[client4], nullptr, receivingEventsFromClient,
                                         &C4);
         }
-
-
 
         if(readThread != 0) {
             logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));

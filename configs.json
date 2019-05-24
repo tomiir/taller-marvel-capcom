@@ -248,7 +248,7 @@
 		}
 	],
 	"server":{
-		"clients": 4,
+		"clients": 2,
 		"port": 54000
 	}
 }
