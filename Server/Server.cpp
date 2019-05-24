@@ -374,6 +374,7 @@ void* Server::updateModel(void *cantClients_){
                 Send(&i);
                 pthread_mutex_lock(&lock);
                 close(clientSocket[i]);
+                close(serverSocket_s);
                 pthread_cancel(clientThreads[i]);
                 pthread_mutex_unlock(&lock);
             }

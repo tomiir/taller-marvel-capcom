@@ -14,6 +14,10 @@ int serverSocket_c;
 struct sockaddr_in serverAddr_c;
 socklen_t  serverSize_c;
 
+pthread_t sendEventThread;
+pthread_t recvFromServerThread;
+pthread_t renderThread;
+
 char messageFromServer[MESSAGEFROMSERVERLEN];
 char messageToKnowTheTeam[MESSAGEFROMSERVERLEN2];
 
@@ -192,7 +196,12 @@ void* Client::recvFromServer(void* arg) {
         }
 
         if(strcmp(messageFromServer, "serverDisconnect") == 0){
-            cout << "El server se apago" << endl;
+            cout << "El server se cayo" << endl;
+            close(serverSocket_c);
+            pthread_cancel(sendEventThread);
+            pthread_cancel(renderThread);
+            cout << "Desconectando..." << endl;
+            return nullptr;
         }
         string message = (string)(messageFromServer);
         queueRecv.push(message);
@@ -353,9 +362,7 @@ void Client::Initialice() {
     game->init(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 
 
-    pthread_t sendEventThread;
-    pthread_t recvFromServerThread;
-    pthread_t renderThread;
+
 
     int error = pthread_create(&sendEventThread, nullptr, &sendEventToServer, nullptr);
     if(error == -1) cout << "SE ROMPIO " << endl;
