@@ -23,6 +23,7 @@ char messageToKnowTheTeam[MESSAGEFROMSERVERLEN2];
 
 bool connect2 = true;
 bool serverConnected = true;
+bool serverDown = false;
 
 queue<string> queueRecv;
 
@@ -158,14 +159,20 @@ char *Client::messageFromServerReceived(){
     return messageToKnowTheTeam;
 }
 
+void messageBox(){
+    SDL_ShowSimpleMessageBox (SDL_MESSAGEBOX_INFORMATION ,
+                              "Desconexion",
+                              "El server se ha desconectado",
+                              NULL);
+}
 
 void* timerClient(void * arg){
 
     sleep(5);
 
     cout << "Server desconectado" << endl;
-
     serverConnected = false;
+    messageBox();
 }
 
 
@@ -197,11 +204,17 @@ void* Client::recvFromServer(void* arg) {
 
         if(strcmp(messageFromServer, "serverDisconnect") == 0){
             cout << "El server se cayo" << endl;
+            serverConnected = false;
+            serverDown = true;
+            while(!queueRecv.empty()){
+                queueRecv.pop();
+            }
+            messageBox();
             close(serverSocket_c);
             pthread_cancel(sendEventThread);
             pthread_cancel(renderThread);
             cout << "Desconectando..." << endl;
-            return nullptr;
+            pthread_exit(0);
         }
         string message = (string)(messageFromServer);
         queueRecv.push(message);
@@ -223,8 +236,6 @@ void* Client::render(void *arg) {
             game->changeView();
             fight_view = true;
         }
-
-        //if (!serverConnected)
 
         if(queueRecv.empty()) continue;
 
@@ -292,8 +303,6 @@ void* Client::render(void *arg) {
 
             game->render();
             queueRecv.pop();
-
-
         }
     }
     game->clean();
@@ -317,12 +326,16 @@ void* Client::sendEventToServer(void* arg){
 
         start = SDL_GetTicks();
 
-        if (!serverConnected) continue;
+        if (!serverConnected){
+            if(serverDown) break;
+            continue;
+        }
+
 
         SDL_Event event;
         SDL_PollEvent(&event);
+
         //timmer para no enviar tantos eventos
-        //Habria que ver como saber que hay que cambiar el mapper y hacerlo. Tambien se podria usar un solo mapper y fue.
         mapEvent = currentMapper->map(event);
         if (event.type == SDL_QUIT) {
             logger -> Log("Saliendo del juego", INFO, "");
@@ -331,8 +344,6 @@ void* Client::sendEventToServer(void* arg){
         }
 
 
-
-        //Esto no se tendria que mandar a penas cae un evento. Cada tantos milisegundos tendria que crearse un char* mas grande unido por varias events y enviarse
         ssize_t bytesSent = send(serverSocket_c, mapEvent.c_str(), sizeof(mapEvent.c_str()), 0);
         if(bytesSent < 0) checkSendToServerError();
 
@@ -356,12 +367,9 @@ void Client::Initialice() {
 
     std::string aux2 = config->getTitle();
     const char *title = aux2.c_str();
-    const int FPS = config->getFPS();
 
     game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
     game->init(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
-
-
 
 
     int error = pthread_create(&sendEventThread, nullptr, &sendEventToServer, nullptr);
@@ -373,7 +381,7 @@ void Client::Initialice() {
 
     pthread_join(sendEventThread, nullptr);
     pthread_cancel(recvFromServerThread);
-    pthread_cancel(renderThread);    //igual si se cierra en realidad habria que tomar mas medidas como limpiar el render que por ahi se pueden tomar en disconnect
+    pthread_cancel(renderThread);    //igual si se cierra en realidad habria que tomar mas medidas como limpiar el clearWindow que por ahi se pueden tomar en disconnect
     Disconnect();
 }
 

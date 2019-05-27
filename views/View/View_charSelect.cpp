@@ -43,10 +43,8 @@ void View_charSelect::addGameObject_square_gray(GameObject_charSelect* square){
 
 void View_charSelect::updateView() {
 
-    //LIMPIO LA PANTALLA
-    this->render();
+    this->clearWindow();
 
-    //RENDERIZO, EL ORDEN ES IMPORTANTE
     background->render();
     renderVector(this->getGreysSquares());
     renderVector(this->getSelectionSquares());

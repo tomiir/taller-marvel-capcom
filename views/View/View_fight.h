@@ -20,7 +20,7 @@ public:
     void updateView() override;
     void addBackground(Background* background);
     bool end()override;
-    string getNextView()override;
+    string getNextView() override;
     void addCharacter(Character *pCharacter);
     void updateBackgrounds(char* posFloor_x, char* posFloor_y, char* posMoon_x, char* posMoon_y, char* posGalaxy_x, char* posGalaxy_y);
     void updateCharacters(char *posT1_x, char *posT1_y, char stateT1, char flip1, char currentCharT1, char *posT2_x, char *posT2_y, char stateT2,
