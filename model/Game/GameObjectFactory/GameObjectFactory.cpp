@@ -191,11 +191,11 @@ GameObject *GameObjectFactory::getGameObjectDisconnected() {
     string path = "../Images/Disconnected/Disconnected.png";
     int zIndex = 99;
     string name = "Disconnected";
-    int width = 1200;
-    int height = 700;
+    int initialX = (1200 - screenWidth)/2;
+    int initialY = (700 - screenHeight)/2;
 
 
-    GameObject *disconnected = new GameObject(path.c_str(),name, zIndex, renderer, 0, 0, screenWidth, screenHeight);
+    GameObject *disconnected = new GameObject(path.c_str(),name, zIndex, renderer, initialX, initialY, screenWidth, screenHeight);
 
     return  disconnected;
 }
