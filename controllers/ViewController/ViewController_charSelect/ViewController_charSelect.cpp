@@ -132,14 +132,25 @@ string ViewController_charSelect::getNextView() {
     return "fight";
 }
 
+bool ViewController_charSelect::selectedContains(string name){
+
+    std::vector<string>::iterator itr_selected = selected.begin();
+
+    for (itr_selected; itr_selected != selected.end(); ++itr_selected){
+
+        if (*itr_selected == name) return true;
+    }
+    return false;
+}
+
 string ViewController_charSelect::giveNewParameters() {
 
     string updates = "000000000000000000000000000000000000000000000";
 
-    if(recentlySelected == "CaptainAmerica" or recentlySelected2 == "CaptainAmerica") updates[2] = '1';
-    else if(recentlySelected == "SpiderMan" or recentlySelected2 == "SpiderMan") updates[3] = '1';
-    else if(recentlySelected == "ChunLi" or recentlySelected2 == "ChunLi") updates[4] = '1';
-    else if(recentlySelected == "Venom" or recentlySelected2 == "Venom") updates[5] = '1';
+    if(selectedContains("CaptainAmerica")) updates[2] = '1';
+    if(selectedContains("SpiderMan")) updates[3] = '1';
+    if(selectedContains("ChunLi")) updates[4] = '1';
+    if(selectedContains("Venom")) updates[5] = '1';
 
     if(preselectedT1 == "CaptainAmerica") {
         updates[6] = '0';

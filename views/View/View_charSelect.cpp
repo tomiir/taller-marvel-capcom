@@ -202,12 +202,23 @@ std::vector<string> View_charSelect::getTeam2() {
     return selected_2;
 }
 
+bool View_charSelect::selectedNotContains(string name){
+
+    std::vector<string>::iterator itr_selected = selected.begin();
+
+    for (itr_selected; itr_selected != selected.end(); ++itr_selected){
+
+        if (*itr_selected == name) return false;
+    }
+    return true;
+}
+
 void View_charSelect::updateGreySquares(char* greySquares ) {
 
-    if (greySquares[0] == '1') selected.push_back("CaptainAmerica");
-    if (greySquares[1] == '1') selected.push_back("SpiderMan");
-    if (greySquares[2] == '1') selected.push_back("ChunLi");
-    if (greySquares[3] == '1') selected.push_back("Venom");
+    if (greySquares[0] == '1' and selectedNotContains("CaptainAmerica")) selected.push_back("CaptainAmerica");
+    if (greySquares[1] == '1' and selectedNotContains("SpiderMan")) selected.push_back("SpiderMan");
+    if (greySquares[2] == '1' and selectedNotContains("ChunLi")) selected.push_back("ChunLi");
+    if (greySquares[3] == '1' and selectedNotContains("Venom")) selected.push_back("Venom");
 
 
 }

@@ -102,6 +102,7 @@ private:
     int screenWidth;
     int screenHeight;
 
+    bool selectedNotContains(string name);
 };
 
 

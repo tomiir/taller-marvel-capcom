@@ -63,6 +63,7 @@ private:
     string recentlySelected = "";
     string recentlySelected2 = "";
 
+    bool selectedContains(string name);
 };
 
 #endif //TALLER_MARVEL_CAPCOM_VIEWCONTROLLER_CHARSELECT_H
