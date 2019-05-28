@@ -173,19 +173,8 @@ void* timerClient(void * arg){
     cout << "Server desconectado" << endl;
     serverConnected = false;
 
-    int speed = 60;
-    Uint32 start;
+    game->renderDisconnected();
 
-
-    while(!serverConnected){
-        start = SDL_GetTicks();
-
-        game->renderDisconnected();
-
-        if ((1000 / speed) > (SDL_GetTicks() - start)) {
-            SDL_Delay((1000 / speed) - (SDL_GetTicks() - start));
-        }
-    }
 }
 
 
