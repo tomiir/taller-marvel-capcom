@@ -42,7 +42,10 @@ public:
     std::vector<string> getTeam1() ;
     std::vector<string> getTeam2() ;
 
+    void renderDisconnected() override;
 
+
+    void addGameObject_disconnected(GameObject *disconnected_);
 
 private:
 
@@ -103,6 +106,8 @@ private:
     int screenHeight;
 
     bool selectedNotContains(string name);
+
+    GameObject* disconnected;
 };
 
 

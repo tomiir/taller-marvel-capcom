@@ -27,6 +27,8 @@ public:
     void updateCharacters(char posCharTeam1_x[5], char posCharTeam1_y[4], char stateCharTeam1, char flipChar1, char currentCharT1,
                           char posCharTeam2_x[5], char posCharTeam2_y[4], char stateCharTeam2, char flipChar2, char currentCharT2);
 
+    void renderDisconnected();
+
 private:
     std::map<string, View* > views;
     std::map<string, View*>::iterator itr_views= views.begin();

@@ -23,7 +23,12 @@ void GameObject::move(DirectionVector* direction){}
 
 vector<int> GameObject::getInfo() {}
 
-void GameObject::render() {}
+void GameObject::render() {
+    int error = SDL_RenderCopy(renderer, objTexture, &objRect, &objRect);
+    if( error < 0){
+        cout << "error: " << SDL_GetError() << endl;
+    }
+}
 
 void GameObject::stayInFloor() {}
 

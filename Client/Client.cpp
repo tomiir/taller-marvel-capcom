@@ -172,7 +172,20 @@ void* timerClient(void * arg){
 
     cout << "Server desconectado" << endl;
     serverConnected = false;
-    messageBox();
+
+    int speed = 60;
+    Uint32 start;
+
+
+    while(!serverConnected){
+        start = SDL_GetTicks();
+
+        game->renderDisconnected();
+
+        if ((1000 / speed) > (SDL_GetTicks() - start)) {
+            SDL_Delay((1000 / speed) - (SDL_GetTicks() - start));
+        }
+    }
 }
 
 
@@ -236,6 +249,7 @@ void* Client::render(void *arg) {
             game->changeView();
             fight_view = true;
         }
+
 
         if(queueRecv.empty()) continue;
 
@@ -304,6 +318,7 @@ void* Client::render(void *arg) {
             game->render();
             queueRecv.pop();
         }
+
     }
     game->clean();
     return nullptr;

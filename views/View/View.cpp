@@ -29,4 +29,8 @@ string View::getNextView() {
     return std::__cxx11::string();
 }
 
+void View::renderDisconnected() {
+
+}
+
 

@@ -19,11 +19,12 @@ public:
     virtual bool end();
     virtual string getNextView();
 
+    virtual void renderDisconnected();
+
 protected:
     SDL_Renderer* renderer;
     std::vector<Background*> backgrounds;
     std::vector<Character*> characters;
-    Background* errorLayer;
 };
 
 

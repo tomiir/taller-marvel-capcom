@@ -185,3 +185,17 @@ vector<GameObject_charSelect *> GameObjectFactory::getgameobjectChar_select_figh
 
     return gameObjects;
 }
+
+GameObject *GameObjectFactory::getGameObjectDisconnected() {
+
+    string path = "../Images/Disconnected/Disconnected.png";
+    int zIndex = 99;
+    string name = "Disconnected";
+    int width = 1200;
+    int height = 700;
+
+
+    GameObject *disconnected = new GameObject(path.c_str(),name, zIndex, renderer, 0, 0, screenWidth, screenHeight);
+
+    return  disconnected;
+}

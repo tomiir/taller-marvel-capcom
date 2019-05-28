@@ -30,6 +30,8 @@ public:
     vector<GameObject_charSelect*> getgameobjectChar_select_fight();
 
 
+    GameObject *getGameObjectDisconnected();
+
 private:
     bool existFile(const char* path);
     int screenWidth, screenHeight;

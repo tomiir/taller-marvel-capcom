@@ -142,4 +142,17 @@ void View_fight::setTeams(Character* characterT1_1, Character* characterT1_2, Ch
 
 }
 
+void View_fight::renderDisconnected() {
+
+    disconnected->render();
+    SDL_RenderPresent(renderer);
+}
+
+void View_fight::addDisconnected(GameObject *disconnected_) {
+
+    disconnected = disconnected_;
+}
+
+
+
 

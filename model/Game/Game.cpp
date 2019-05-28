@@ -123,4 +123,9 @@ void Game::updateCharacters(char *posCharTeam1_x, char *posCharTeam1_y, char sta
             posCharTeam2_x, posCharTeam2_y, stateCharTeam2, flipChar2, currentCharT2);
 }
 
+void Game::renderDisconnected() {
+
+    view->renderDisconnected();
+}
+
 

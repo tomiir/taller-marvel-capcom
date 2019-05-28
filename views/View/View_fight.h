@@ -29,6 +29,10 @@ public:
 
     void setTeams(Character* characterT1_1, Character* characterT1_2, Character* characterT2_1, Character* characterT2_2);
 
+    void renderDisconnected() override;
+
+    void addDisconnected(GameObject *disconnected_s);
+
 private:
     vector <Character*> team1;
     vector <Character*> team2;
@@ -38,6 +42,7 @@ private:
     int currentChar1;
     int currentChar2;
 
+    GameObject* disconnected;
 };
 
 

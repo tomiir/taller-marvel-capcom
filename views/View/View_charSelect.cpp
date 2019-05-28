@@ -267,3 +267,17 @@ void View_charSelect::updateCharacterImages(char *selected_1_, char *selected_2_
 
 }
 
+void View_charSelect::renderDisconnected() {
+
+    disconnected->render();
+    SDL_RenderPresent(renderer);
+}
+
+void View_charSelect::addGameObject_disconnected(GameObject *disconnected_) {
+
+    disconnected = disconnected_;
+}
+
+
+
+
