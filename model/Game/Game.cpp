@@ -53,6 +53,7 @@ void Game::init(const char *title, int posX, int posY) {
 }
 
 
+
 void Game::clean(){
     CLogger* logger = CLogger::GetLogger();
 
@@ -72,21 +73,17 @@ void Game::updateGreySquares(char* greySquares) {
     dynamic_cast<View_charSelect*>(this->view)->updateGreySquares(greySquares);
 }
 
-
 void Game::updateSelects(char *selectT1, char *selectT2) {
     dynamic_cast<View_charSelect*>(this->view)->updateSelects(selectT1, selectT2);
 }
-
 
 void Game::updateCharactersImages(char *selected_1, char *selected_2) {
     dynamic_cast<View_charSelect*>(this->view)->updateCharacterImages(selected_1, selected_2);
 }
 
-
 void Game::render() {
     this->view->updateView();
 }
-
 
 bool Game::haveToChangeView() {
     return this->view->end();
@@ -110,7 +107,6 @@ void Game::changeView() {
 
     dynamic_cast<View_fight*>(this->view)->setTeams(getCharacter(team1[0]), getCharacter(team1[1]), getCharacter(team2[0]), getCharacter(team2[1]));
 }
-
 
 void Game::UpdateBackgrounds(char *posFloor_x, char *posFloor_y, char *posMoon_x, char *posMoon_y, char *posGalaxy_x,
                              char *posGalaxy_y) {

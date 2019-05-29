@@ -18,6 +18,7 @@ GameObjectFactory::GameObjectFactory(SDL_Renderer *renderer_, int screenWidth_, 
     screenWidth = screenWidth_;
     screenHeight = screenHeight_;
 
+
 }
 
 GameObjectFactory::~GameObjectFactory() = default;
@@ -188,11 +189,13 @@ vector<GameObject_charSelect *> GameObjectFactory::getgameobjectChar_select_figh
 
 GameObject *GameObjectFactory::getGameObjectDisconnected() {
 
-    string path = "../Images/Disconnected/Disconnected.png";
-    int zIndex = 99;
-    string name = "Disconnected";
-    int initialX = (1200 - screenWidth)/2;
-    int initialY = (700 - screenHeight)/2;
+    JsonConfigs* config = JsonConfigs::getJson();
+    JsonDisconection disconection = config->getJsonDisconection();
+    string path = disconection.getPath();
+    int zIndex = disconection.getZ_index();
+    string name = disconection.getName();
+    int initialX = (disconection.getX() - disconection.getWidth())/2;
+    int initialY = (disconection.getY() - disconection.getHeight())/2;
 
 
     GameObject *disconnected = new GameObject(path.c_str(),name, zIndex, renderer, initialX, initialY, screenWidth, screenHeight);
