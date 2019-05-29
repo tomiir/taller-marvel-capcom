@@ -368,11 +368,9 @@ void* Server::updateModel(void *cantClients_){
 
             for(int i = 0; i < cantClients; i++){
                 Send(&i);
-                pthread_mutex_lock(&lock);
                 close(clientSocket[i]);
                 close(serverSocket_s);
                 pthread_cancel(clientThreads[i]);
-                pthread_mutex_unlock(&lock);
             }
             return nullptr;
         }
