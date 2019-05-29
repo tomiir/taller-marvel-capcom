@@ -252,8 +252,8 @@
 		"port": 54000
 	},
 	"disconected":{
-		"name":"disconected",
-		"filepath": "../Images/disconected/disconected.png",
+		"name":"Disconected",
+		"filepath": "../Images/Disconnected/Disconnected.png",
 		"x": 1200,
 		"y": 700,
 		"height":1200,

@@ -194,8 +194,8 @@ GameObject *GameObjectFactory::getGameObjectDisconnected() {
     string path = disconection.getPath();
     int zIndex = disconection.getZ_index();
     string name = disconection.getName();
-    int initialX = (disconection.getX() - disconection.getWidth())/2;
-    int initialY = (disconection.getY() - disconection.getHeight())/2;
+    int initialX = (disconection.getWidth() - screenWidth)/2;
+    int initialY = (disconection.getHeight() - screenHeight)/2;
 
 
     GameObject *disconnected = new GameObject(path.c_str(),name, zIndex, renderer, initialX, initialY, screenWidth, screenHeight);
