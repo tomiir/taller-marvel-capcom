@@ -241,7 +241,9 @@ void* Server::receivingEventsFromClient(void *client_) {
 
 
         char* received = update(clientIter);
+
         pthread_cancel(timerThread[clientIter]);
+        pthread_detach(timerThread[clientIter]);
 
         if (clientIter == 0) Connected11 = true;
         else if (clientIter == 1) Connected21 = true;
@@ -613,6 +615,10 @@ void Server::connect() {
     //aca lo cancelo porque si se fueron los clientes ya que joinearon todos los hilos no tendria que seguir updateando el modelo
     pthread_cancel(updateModelThread);
     pthread_cancel(extraClientsThread);
+
+    pthread_detach(updateModelThread);
+    pthread_detach(extraClientsThread);
+
     pthread_mutex_destroy(&lock);
     on = false;
 

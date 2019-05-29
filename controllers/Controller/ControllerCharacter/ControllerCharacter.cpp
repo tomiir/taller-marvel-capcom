@@ -144,6 +144,8 @@ void ControllerCharacter::handleEvent(string event) {
 
         bool characterTopOfJump = info[1] <= jumpDistance;
         if( characterTopOfJump ) jump = false;
+
+        delete step;
     }
 
     if( !jump and inAir and !leaving){
@@ -164,6 +166,7 @@ void ControllerCharacter::handleEvent(string event) {
             state = "still";
         }
 
+        delete step;
     }
 
     if (direction->isEqual(CHANGECHARACTER) and !inAir){
@@ -179,6 +182,7 @@ void ControllerCharacter::handleEvent(string event) {
 
         gameObject->move( step );
 
+        delete step;
     }
 
     if (entering){
@@ -188,6 +192,8 @@ void ControllerCharacter::handleEvent(string event) {
 
 
     dynamic_cast<Character_server*>(gameObject)->setState(state);
+
+    delete direction;
 
 }
 

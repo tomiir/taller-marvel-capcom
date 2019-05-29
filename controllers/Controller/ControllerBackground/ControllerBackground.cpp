@@ -103,6 +103,9 @@ void ControllerBackground::handleEvent(string event, ControllerCharacter* contro
 
     }
 
+    delete dirUp;
+    delete dirLeft;
+    delete dirRight;
 }
 
 void ControllerBackground::update(ControllerCharacter *controllerCharacterOnLeft_,const vector<int>& characterOnLeftInfo_,

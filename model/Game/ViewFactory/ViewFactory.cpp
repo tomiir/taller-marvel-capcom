@@ -46,6 +46,8 @@ View_fight* ViewFactory::getView_fight() {
         characters_map[(*itr_character_)->getName()] = (dynamic_cast<Character*>(*itr_character_));
     }
 
+    delete factory;
+
     return viewFight;
 }
 

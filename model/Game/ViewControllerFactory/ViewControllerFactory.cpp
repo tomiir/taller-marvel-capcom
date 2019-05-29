@@ -49,6 +49,7 @@ ViewController_fight* ViewControllerFactory::getViewController_fight() {
     viewControllerFight->addFlipManager(flipManager);
     viewControllerFight->addTeams(team1, team2);
 
+    delete factory;
 
     return viewControllerFight;
 }

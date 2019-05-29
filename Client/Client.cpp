@@ -197,6 +197,7 @@ void* Client::recvFromServer(void* arg) {
         int bytesReceived = recv(serverSocket_c, messageFromServer, MESSAGEFROMSERVERLEN, 0);
 
         pthread_cancel(timerThread);
+        pthread_detach(timerThread);
 
         serverConnected = true;
 
