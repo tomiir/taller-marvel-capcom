@@ -6,12 +6,9 @@
 
 string Mapper_fight_1::map(SDL_Event event) {
 
-    //changeCharacter_ = false;
-
     const Uint8* keyboardStateArray = SDL_GetKeyboardState(nullptr);
 
-    //DirectionVector* direction = new DirectionVector(0,0);
-    string keys = "00000";
+    string keys = "h";
 
 
     if( event.type == SDL_KEYDOWN) {
@@ -19,42 +16,30 @@ string Mapper_fight_1::map(SDL_Event event) {
         switch (event.key.keysym.sym) {
 
             case SDLK_l:
-                //direction->add(1, 0);
-                keys[0] = '1';
+                keys = 'd';
                 break;
             case SDLK_j:
-                //direction->add(-1, 0);
-                keys[1] = '1';
+                keys = 'a';
                 break;
             case SDLK_i:
-                //direction->add(0, -1);
-                keys[2] = '1';
+                keys = 'w';
                 break;
             case SDLK_k:
-                //direction->add(0, 1);
-                keys[3] = '1';
+                keys = 's';
                 break;
             case SDLK_m:
-                //changeCharacter_= true;
-                keys[4] = '1';
+                keys = 'c';
                 break;
             default:
                 break;
         }
 
         if ( keyboardStateArray[SDL_SCANCODE_L] and keyboardStateArray[SDL_SCANCODE_I] ) {
-            //direction->setDiagonal(1);
-            //direction->setY(-1);
-            keys[0] = '1';
-            keys[2] = '1';
-
+            keys = 'e';
         }
 
         if ( keyboardStateArray[SDL_SCANCODE_J] and keyboardStateArray[SDL_SCANCODE_I] ) {
-        //    direction->setDiagonal(-1);
-        //    direction->setY(-1);
-            keys[1] = '1';
-            keys[2] = '1';
+            keys = 'q';
         }
     }
 
@@ -63,16 +48,13 @@ string Mapper_fight_1::map(SDL_Event event) {
         switch (event.key.keysym.sym) {
 
             case SDLK_k:
-                //direction->add(0, 2);
-                keys[3] = '2';
+                keys = 'r';
                 break;
             case SDLK_j:
-                //direction->add(-2, 0);
-                keys[1] = '2';
+                keys = 't';
                 break;
             case SDLK_l:
-                //direction->add(2, 0);
-                keys[0] = '2';
+                keys = 'y';
                 break;
             default:
                 break;

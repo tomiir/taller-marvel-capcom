@@ -277,27 +277,23 @@ void* Server::receivingEventsFromClient(void *client_) {
 
 
         int receivedLen = strlen(received);
-        if(receivedLen != 5) {
+        if(receivedLen != 1) {
             continue;
         }
 
         switch (clientIter){
 
             case 0:
-                received[receivedLen] = '0';
-                received[receivedLen + 1] = '0';
+                received[receivedLen] = '1';
                 break;
             case 1:
-                received[receivedLen] = '0';
-                received[receivedLen + 1] = '1';
+                received[receivedLen] = '2';
                 break;
             case 2:
-                received[receivedLen] = '1';
-                received[receivedLen + 1] = '0';
+                received[receivedLen] = '3';
                 break;
             case 3:
-                received[receivedLen] = '1';
-                received[receivedLen + 1] = '1';
+                received[receivedLen] = '4';
                 break;
             default:
                 cout << "ERROR AGREGANDO CHARS PARA DISTINGUIR CLIENTES" << endl;
