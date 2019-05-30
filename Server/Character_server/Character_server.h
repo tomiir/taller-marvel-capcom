@@ -9,13 +9,14 @@
 #include <SDL_render.h>
 #include "../GameObject_server/GameObject_server.h"
 #include "../../utils/Logger/Logger.h"
+#include "../../utils/HitboxManager/HitboxManager.h"
 
 using namespace std;
 
 class Character_server : public GameObject_server {
 
 public:
-    Character_server(int initialY, string name, int width, int height);
+    Character_server(int initialY, string name, int width, int height, HitboxManager* hitbox_);
     ~Character_server();
 
     void move(DirectionVector* direction) override ;
@@ -34,6 +35,8 @@ public:
 
     SDL_RendererFlip getFlip();
 
+    SDL_Rect getHitboxInfo();
+
 private:
 
     int initialY;
@@ -42,6 +45,8 @@ private:
     int posInitialRight;
     string state;
     SDL_RendererFlip flip;
+
+    HitboxManager* hitbox;
 
 };
 

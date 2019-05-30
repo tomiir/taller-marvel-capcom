@@ -160,6 +160,18 @@ add_executable(
         Server/Game_server/Game_server.cpp
         model/Game/GameObjectServerFactory/GameObjectServerFactory.cpp
         model/Game/GameObjectServerFactory/GameObjectServerFactory.h
+        utils/HitboxManager/HitboxManager.h
+        utils/HitboxManager/HitboxManager.cpp
+        utils/HitboxManager/ChunLiHitboxManager/ChunLiHitboxManager.cpp
+        utils/HitboxManager/VenomHitBoxManager/VenomHitboxManager.cpp
+        utils/HitboxManager/ChunLiHitboxManager/ChunLiHitboxManager.h
+        utils/HitboxManager/SpiderManHitboxManager/SpiderManHitboxManager.h
+        utils/HitboxManager/CaptainAmericaHitboxManager/CaptainAmericaHitboxManager.h
+        utils/HitboxManager/VenomHitBoxManager/VenomHitboxManager.h
+        utils/HitboxManager/SpiderManHitboxManager/SpiderManHitboxManager.cpp
+        utils/HitboxManager/CaptainAmericaHitboxManager/CaptainAmericaHitboxManager.cpp
+        utils/CollisionManager/CollisionManager.cpp
+        utils/CollisionManager/CollisionManager.h
 
 
         Json/JsonGameObject_charSelect.cpp Json/JsonGameObject_charSelect.h Json/JsonSintax.cpp Json/JsonSintax.h Json/JsonDisconection.cpp Json/JsonDisconection.h)

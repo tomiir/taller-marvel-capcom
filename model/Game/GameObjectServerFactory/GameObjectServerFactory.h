@@ -12,6 +12,10 @@
 #include "../../../Json/JsonConfigs.h"
 #include "../../../Server/Character_server/Character_server.h"
 #include "../../../Server/Background_server/Background_server.h"
+#include "../../../utils/HitboxManager/CaptainAmericaHitboxManager/CaptainAmericaHitboxManager.h"
+#include "../../../utils/HitboxManager/SpiderManHitboxManager/SpiderManHitboxManager.h"
+#include "../../../utils/HitboxManager/VenomHitBoxManager/VenomHitboxManager.h"
+#include "../../../utils/HitboxManager/ChunLiHitboxManager/ChunLiHitboxManager.h"
 
 
 

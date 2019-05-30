@@ -13,6 +13,8 @@ ControllerCharacter::ControllerCharacter(GameObject_server* gameObject, int scre
     speedCharacter = speedCharacter_;
     jump = jumpRight = jumpLeft = inAir = leaving = entering = crowchedDown = movingRight = movingLeft = moving = false;
 
+    collisionManager = new CollisionManager();
+
 }
 
 ControllerCharacter::~ControllerCharacter() = default;
@@ -63,7 +65,7 @@ DirectionVector* giveDirectionVect(string event){
 
 
 
-void ControllerCharacter::handleEvent(string event) {
+void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
 
     DirectionVector* direction = giveDirectionVect(event);
 
@@ -102,7 +104,7 @@ void ControllerCharacter::handleEvent(string event) {
     bool characterIsntInLeftBoundary = info[0] >= 0;
 
 
-    if (movingRight and characterIsntInRightBoundary and !inAir and !crowchedDown and !direction->isEqual(UP) and !direction->isEqual(GETTINGUP)){
+    if (movingRight and characterIsntInRightBoundary and !inAir and !crowchedDown and !direction->isEqual(UP) and !direction->isEqual(GETTINGUP) and !collisionManager->Collisioning(gameObject, enemy)){
 
         direction->setX(speedCharacter);
         logger -> LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
@@ -110,7 +112,7 @@ void ControllerCharacter::handleEvent(string event) {
 
     }
 
-    if (movingLeft and characterIsntInLeftBoundary and !inAir and !crowchedDown and !direction->isEqual(UP) and !direction->isEqual(GETTINGUP)){
+    if (movingLeft and characterIsntInLeftBoundary and !inAir and !crowchedDown and !direction->isEqual(UP) and !direction->isEqual(GETTINGUP) and !collisionManager->Collisioning(gameObject, enemy)){
 
         direction->setX(-speedCharacter);
         logger -> LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
@@ -273,4 +275,8 @@ string ControllerCharacter::getState() {
 
 SDL_RendererFlip ControllerCharacter::getFlip() {
     return dynamic_cast<Character_server*>(gameObject)->getFlip();
+}
+
+GameObject_server *ControllerCharacter::getGameObject() {
+    return gameObject;
 }

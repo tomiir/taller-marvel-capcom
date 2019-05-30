@@ -11,6 +11,7 @@
 #include "../../../utils/Mapper/Mapper_fight/Mapper_fight.h"
 #include "../../../model/GameObjects_fight/Character/Character.h"
 #include "../../../Server/Character_server/Character_server.h"
+#include "../../../utils/CollisionManager/CollisionManager.h"
 
 using namespace std;
 
@@ -20,7 +21,7 @@ class ControllerCharacter : public Controller{
 public:
     ControllerCharacter(GameObject_server *gameObject, int screenWidth_, int screenHeight_, int speedCharacter_, int speedCharacter);
     ~ControllerCharacter();
-    void handleEvent(string event);
+    void handleEvent(string event, GameObject_server* enemy);
     bool isJumping();
     bool isJumpingRight();
     bool isJumpingLeft();
@@ -41,6 +42,8 @@ public:
 
     SDL_RendererFlip getFlip();
 
+    GameObject_server *getGameObject();
+
 private:
 
     int screenWidth, screenHeight, speedCharacter;
@@ -49,6 +52,7 @@ private:
     string state = "still";
     CLogger* logger = CLogger::GetLogger();
     Character_server* character = dynamic_cast<Character_server*>(gameObject);
+    CollisionManager* collisionManager;
 };
 
 

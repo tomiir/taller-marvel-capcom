@@ -4,12 +4,13 @@
 
 #include "Character_server.h"
 
-Character_server::Character_server(int initialY, std::string name, int width, int height) :
+Character_server::Character_server(int initialY, std::string name, int width, int height, HitboxManager* hitbox_) :
         GameObject_server(name, 0, initialY, width, height) {
 
     this->initialY = initialY;
     logger->Log("Creando personaje: " + name, DEBUG, "");
     this->state = "still";
+    hitbox = hitbox_;
 
 }
 
@@ -18,6 +19,8 @@ Character_server::~Character_server() = default;
 void Character_server::move(DirectionVector* direction){
     objRect.x += (int) direction->x;
     objRect.y += (int) direction->y;
+
+    hitbox->move(direction);
 }
 
 vector<int> Character_server::getInfo() {
@@ -29,6 +32,8 @@ vector<int> Character_server::getInfo() {
 void Character_server::setState(string state) {
 
     this->state = state;
+
+    if(state == "still" or state == "walk") hitbox->setHitbox(state);  // pongo con estos dos poque por ahora estan estos dos solos
 
 }
 
@@ -53,6 +58,8 @@ void Character_server::setInitialXPositions(int positionLeft, int positionRight)
 void Character_server::setInitialPos(bool left){
 
     objRect.x = left ? posInitialLeft : posInitialRight;
+
+    hitbox->setInitialPos(objRect.x, objRect.y);
 }
 
 void Character_server::flipSprite(SDL_RendererFlip flip_) {
@@ -73,4 +80,8 @@ string Character_server::getState() {
 
 SDL_RendererFlip Character_server::getFlip() {
     return flip;
+}
+
+SDL_Rect Character_server::getHitboxInfo() {
+    return hitbox->getCurrentHitbox();
 }

@@ -5,6 +5,7 @@
 #include "GameObjectServerFactory.h"
 
 
+
 GameObjectServerFactory::GameObjectServerFactory(int screenWidth_, int screenHeight_) {
 
     screenWidth = screenWidth_;
@@ -18,6 +19,15 @@ vector<GameObject_server *> GameObjectServerFactory::getGameObjectsServerCharact
 
     vector<GameObject_server*>  gameObjects;
     CLogger* logger = CLogger::GetLogger();
+
+    map<string, HitboxManager*> hitboxManager;
+    map<string, HitboxManager*>::iterator itrHitbox;
+
+
+    hitboxManager["CaptainAmerica"] = new CaptainAmericaHitboxManager();
+    hitboxManager["SpiderMan"] = new SpiderManHitboxManager();
+    hitboxManager["ChunLi"] = new ChunLiHitboxManager();
+    hitboxManager["Venom"] = new VenomHitboxManager();
 
 
     JsonConfigs* config = JsonConfigs::getJson();
@@ -33,8 +43,10 @@ vector<GameObject_server *> GameObjectServerFactory::getGameObjectsServerCharact
         int initialY = screenHeight - height;
         string name = (*iter).getName();
 
+        itrHitbox = hitboxManager.find(name);
+        HitboxManager* hitbox = itrHitbox->second;
 
-        Character_server* C = new Character_server(initialY, name, width, height);
+        Character_server* C = new Character_server(initialY, name, width, height, hitbox);
 
         C->setInitialXPositions(width/2, (screenWidth - width) - (width/2));
 
