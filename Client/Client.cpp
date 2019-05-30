@@ -252,20 +252,20 @@ void* Client::render(void *arg) {
             //Te devuelve 1 en el cuadrado gris que si se tenga que renderizar
             char greySquaresSelected[] = {messageReceived[2], messageReceived[3], messageReceived[4], messageReceived[5], '\0'};
 
-            game->updateGreySquares(greySquaresSelected);
 
             //0  1
             //2  3
             char selectT1[] = {messageReceived[6], messageReceived[7], '\0'};
             char selectT2[] = {messageReceived[8], messageReceived[9], '\0'};
 
-            game->updateSelects(selectT1, selectT2);
 
             //Esto setea los selected de ambos equipos para saber que imagenes de los costados renderizar
-            char selected_1[] = {messageReceived[10], messageReceived[11], messageReceived[12], '\0'};
-            char selected_2[] = {messageReceived[13], messageReceived[14], messageReceived[15], '\0'};
+            char selected_1[] = {messageReceived[10], messageReceived[11], '\0'};
+            char selected_2[] = {messageReceived[12], messageReceived[13], '\0'};
 
+            game->updateSelects(selectT1, selectT2);
             game->updateCharactersImages(selected_1, selected_2);
+            game->updateGreySquares(greySquaresSelected);
 
             game->render();
             queueRecv.pop();

@@ -242,28 +242,43 @@ void View_charSelect::updateSelects(char *selectT1, char *selectT2) {
     } else preselectedT2 = "Venom";
 }
 
+
+
+string getCharacter(char name){
+
+    if (name == 'C') return "CaptainAmerica";
+    else if (name == 'S') return "SpiderMan";
+    else if (name == 'H') return "ChunLi";
+    else if (name == 'V') return "Venom";
+    else {
+        cout << "Error recibir personajes seleccionados view CharSelect" << endl;
+        return nullptr;
+    }
+}
+
+
+
 void View_charSelect::updateCharacterImages(char *selected_1_, char *selected_2_) {
 
-    if (strcmp(selected_1_, "100") == 0){
-        this->selected_1.push_back("CaptainAmerica");
-    } else if (strcmp(selected_1_, "101") == 0){
-        this->selected_1.push_back("SpiderMan");
-    } else if (strcmp(selected_1_, "110") == 0){
-        this->selected_1.push_back("ChunLi");
-    } else if (strcmp(selected_1_, "111") == 0) {
-        this->selected_1.push_back("Venom");
+    if (selected_1_[0] != '0'){
+        string pj = getCharacter(selected_1_[0]);
+        if (selectedNotContains(pj)) this->selected_1.push_back(pj);
     }
 
-    if (strcmp(selected_2_, "100") == 0){
-        this->selected_2.push_back("CaptainAmerica");
-    } else if (strcmp(selected_2_, "101") == 0){
-        this->selected_2.push_back("SpiderMan");
-    } else if (strcmp(selected_2_, "110") == 0){
-        this->selected_2.push_back("ChunLi");
-    } else if (strcmp(selected_2_, "111") == 0){
-        this->selected_2.push_back("Venom");
+    if (selected_1_[1] != '0'){
+        string pj = getCharacter(selected_1_[1]);
+        if (selectedNotContains(pj)) this->selected_1.push_back(pj);
     }
 
+    if (selected_2_[0] != '0'){
+        string pj = getCharacter(selected_2_[0]);
+        if (selectedNotContains(pj)) this->selected_2.push_back(pj);
+    }
+
+    if (selected_2_[1] != '0'){
+        string pj = getCharacter(selected_2_[1]);
+        if (selectedNotContains(pj)) this->selected_2.push_back(pj);
+    }
 
 }
 

@@ -44,9 +44,6 @@ ViewController_charSelect::ViewController_charSelect():ViewController(){
 
 void ViewController_charSelect:: handleEvent(string event) {
 
-    recentlySelected = "";
-    recentlySelected2 = "";
-
     if (event == "h1" or event == "h3"
         or event == "h2" or event == "h4")
         return;
@@ -94,7 +91,6 @@ void ViewController_charSelect::setTeam1(string character){
     if(posible) {
         selected.push_back(character);
         selected_1.push_back(character);
-        recentlySelected = character;
     }
 }
 
@@ -112,7 +108,6 @@ void ViewController_charSelect::setTeam2(string character) {
     if(posible) {
         selected.push_back(character);
         selected_2.push_back(character);
-        recentlySelected2 = character;
     }
 
 }
@@ -141,6 +136,23 @@ bool ViewController_charSelect::selectedContains(string name){
     }
     return false;
 }
+
+
+char setCharacter(string name){
+
+    if (name == "CaptainAmerica") return 'C';
+    else if (name == "SpiderMan") return 'S';
+    else if (name == "ChunLi") return 'H';
+    else if (name == "Venom") return 'V';
+    else{
+        cout << "Error setenado characters en view controller char select" << endl;
+        return '0';
+    }
+}
+
+
+
+
 
 string ViewController_charSelect::giveNewParameters() {
 
@@ -179,42 +191,20 @@ string ViewController_charSelect::giveNewParameters() {
         updates[9] = '1';
     }
 
-    if(recentlySelected == "CaptainAmerica"){
-        updates[10] = '1';
-        updates[11] = '0';
-        updates[12] = '0';
+    std::vector<string>::iterator itr_selected_1 = selected_1.begin();
 
-    }else if(recentlySelected == "SpiderMan") {
-        updates[10] = '1';
-        updates[11] = '0';
-        updates[12] = '1';
-    }else if(recentlySelected == "ChunLi"){
-        updates[10] = '1';
-        updates[11] = '1';
-        updates[12] = '0';
-    } else if(recentlySelected == "Venom"){
-        updates[10] = '1';
-        updates[11] = '1';
-        updates[12] = '1';
+    int i = 0;
+    for (itr_selected_1; itr_selected_1 != selected_1.end(); ++itr_selected_1, i++) {
+
+        updates[10 + i] = setCharacter(*itr_selected_1);
     }
 
-    if(recentlySelected2 == "CaptainAmerica"){
-        updates[13] = '1';
-        updates[14] = '0';
-        updates[15] = '0';
+    std::vector<string>::iterator itr_selected_2 = selected_2.begin();
 
-    }else if(recentlySelected2 == "SpiderMan") {
-        updates[13] = '1';
-        updates[14] = '0';
-        updates[15] = '1';
-    }else if(recentlySelected2 == "ChunLi"){
-        updates[13] = '1';
-        updates[14] = '1';
-        updates[15] = '0';
-    } else if(recentlySelected2 == "Venom"){
-        updates[13] = '1';
-        updates[14] = '1';
-        updates[15] = '1';
+    i = 0;
+    for (itr_selected_2; itr_selected_2 != selected_2.end(); ++itr_selected_2, i++) {
+
+        updates[12 + i] = setCharacter(*itr_selected_2);
     }
 
     return updates;
