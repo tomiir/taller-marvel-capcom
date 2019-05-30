@@ -21,7 +21,7 @@ pthread_t renderThread;
 char messageFromServer[MESSAGEFROMSERVERLEN];
 char messageToKnowTheTeam[MESSAGEFROMSERVERLEN2];
 
-bool connect2 = true;
+bool connected = true;
 bool serverConnected = true;
 bool serverDown = false;
 
@@ -182,7 +182,7 @@ void* Client::recvFromServer(void* arg) {
 
     CLogger* logger = CLogger::GetLogger();
 
-    while(connect2){
+    while(connected){
 
         pthread_t timerThread;
         int readThread = pthread_create(&timerThread, nullptr, timerClient, nullptr);
@@ -232,7 +232,7 @@ void* Client::render(void *arg) {
     bool fight_view = false;
 
    //Aca empieza el loop que va a ir renderizando. Las view ay deberian estar cargadas y se renderiza lo que se tenga que renderizar
-    while(connect2){
+    while(connected){
 
         if (game->haveToChangeView()){
             changeCurrentMapper();
@@ -344,7 +344,7 @@ void* Client::sendEventToServer(void* arg){
         mapEvent = currentMapper->map(event);
         if (event.type == SDL_QUIT) {
             logger -> Log("Saliendo del juego", INFO, "");
-            connect2 = false;
+            connected = false;
             pthread_exit(nullptr);
         }
 
