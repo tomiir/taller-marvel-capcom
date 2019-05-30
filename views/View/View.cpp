@@ -4,8 +4,6 @@
 
 
 #include "View.h"
-//#include "../../Clases/Character.h"
-//#include "../../Clases/Background.h"
 
 using namespace std;
 
@@ -15,7 +13,7 @@ View::View(SDL_Renderer* renderer) {
 
 View::~View() = default;
 
-void View::render() {
+void View::clearWindow() {
     SDL_RenderClear(renderer);
 }
 
@@ -29,6 +27,10 @@ bool View::end() {
 
 string View::getNextView() {
     return std::__cxx11::string();
+}
+
+void View::renderDisconnected() {
+
 }
 
 

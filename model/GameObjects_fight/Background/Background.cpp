@@ -9,6 +9,7 @@ Background::Background(const char* imagePath, string name_, int z_index, SDL_Ren
 
                 imgHeight = heightImage;
                 imgWight = widthImage;
+                renderer = rend;
 
                 CAMERA_WIDTH = screenWidth;
                 CAMERA_HEIGHT = screenHeight;
@@ -23,7 +24,11 @@ Background::~Background() = default;
 
 void Background::render(){
 
-    SDL_RenderCopy(renderer, objTexture, &camera, &objRect);
+    int error = SDL_RenderCopy(renderer, objTexture, &camera, &objRect);
+    if( error < 0){
+        cout << "error: " << SDL_GetError() << endl;
+    }
+
 }
 
 

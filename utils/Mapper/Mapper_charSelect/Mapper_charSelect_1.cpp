@@ -12,26 +12,26 @@ Mapper_charSelect_1::Mapper_charSelect_1():Mapper_charSelect(){
 
 string Mapper_charSelect_1:: map( SDL_Event event) {
 
-    string keys = "00000";
+    string keys = "h";
 
     if (event.type == SDL_KEYDOWN) {
 
         switch (event.key.keysym.sym) {
 
             case SDLK_l:
-                keys[0] = '1';
+                keys = 'd';
                 break;
             case SDLK_j:
-                keys[1] = '1';
+                keys = 'a';
                 break;
             case SDLK_i:
-                keys[2] = '1';
+                keys = 'w';
                 break;
             case SDLK_k:
-                keys[3] = '1';
+                keys = 's';
                 break;
             case SDLK_m:
-                keys[4] = '1';
+                keys = 'c';
             default:
                 break;
         }

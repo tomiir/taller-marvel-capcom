@@ -44,38 +44,34 @@ ViewController_charSelect::ViewController_charSelect():ViewController(){
 
 void ViewController_charSelect:: handleEvent(string event) {
 
-    recentlySelected = "";
-    recentlySelected2 = "";
-
-    //pasar los strcmp a ==
-    if (event == "0000000" or event == "0000010"
-        or event == "0000001" or event == "0000011")
+    if (event == "h1" or event == "h3"
+        or event == "h2" or event == "h4")
         return;
 
 
-    if (event == "1000000" or event == "1000010") preselectedT1 = map_preselectedT1["right"];
-    if (event == "0100000" or event == "0100010") preselectedT1 = map_preselectedT1["left"];
-    if (event == "0010000" or event == "0010010") preselectedT1 = map_preselectedT1["up"];
-    if (event == "0001000" or event == "0001010") preselectedT1 = map_preselectedT1["down"];
+    if (event == "d1" or event == "d3") preselectedT1 = map_preselectedT1["right"];
+    if (event == "a1" or event == "a3") preselectedT1 = map_preselectedT1["left"];
+    if (event == "w1" or event == "w3") preselectedT1 = map_preselectedT1["up"];
+    if (event == "s1" or event == "s3") preselectedT1 = map_preselectedT1["down"];
 
     map_preselectedT1 = map_map[preselectedT1];
 
     if (selected_1.size() < 2){
 
-        if (event == "0000100" or event == "0000110") setTeam1(preselectedT1);
+        if (event == "c1" or event == "c3") setTeam1(preselectedT1);
     }
 
 
-    if (event == "1000001" or event == "1000011") preselectedT2 = map_preselectedT2["right"];
-    if (event == "0100001" or event == "0100011") preselectedT2 = map_preselectedT2["left"];
-    if (event == "0010001" or event == "0010011") preselectedT2 = map_preselectedT2["up"];
-    if (event == "0001001" or event == "0001011") preselectedT2 = map_preselectedT2["down"];
+    if (event == "d2" or event == "d4") preselectedT2 = map_preselectedT2["right"];
+    if (event == "a2" or event == "a4") preselectedT2 = map_preselectedT2["left"];
+    if (event == "w2" or event == "w4") preselectedT2 = map_preselectedT2["up"];
+    if (event == "s2" or event == "s4") preselectedT2 = map_preselectedT2["down"];
 
     map_preselectedT2 = map_map[preselectedT2];
 
     if(selected_2.size() < 2){
 
-        if (event == "0000101" or event == "0000111") setTeam2(preselectedT2);
+        if (event == "c2" or event == "c4") setTeam2(preselectedT2);
     }
 
 }
@@ -95,7 +91,6 @@ void ViewController_charSelect::setTeam1(string character){
     if(posible) {
         selected.push_back(character);
         selected_1.push_back(character);
-        recentlySelected = character;
     }
 }
 
@@ -113,7 +108,6 @@ void ViewController_charSelect::setTeam2(string character) {
     if(posible) {
         selected.push_back(character);
         selected_2.push_back(character);
-        recentlySelected2 = character;
     }
 
 }
@@ -132,14 +126,42 @@ string ViewController_charSelect::getNextView() {
     return "fight";
 }
 
+bool ViewController_charSelect::selectedContains(string name){
+
+    std::vector<string>::iterator itr_selected = selected.begin();
+
+    for (itr_selected; itr_selected != selected.end(); ++itr_selected){
+
+        if (*itr_selected == name) return true;
+    }
+    return false;
+}
+
+
+char setCharacter(string name){
+
+    if (name == "CaptainAmerica") return 'C';
+    else if (name == "SpiderMan") return 'S';
+    else if (name == "ChunLi") return 'H';
+    else if (name == "Venom") return 'V';
+    else{
+        cout << "Error setenado characters en view controller char select" << endl;
+        return '0';
+    }
+}
+
+
+
+
+
 string ViewController_charSelect::giveNewParameters() {
 
     string updates = "000000000000000000000000000000000000000000000";
 
-    if(recentlySelected == "CaptainAmerica" or recentlySelected2 == "CaptainAmerica") updates[2] = '1';
-    else if(recentlySelected == "SpiderMan" or recentlySelected2 == "SpiderMan") updates[3] = '1';
-    else if(recentlySelected == "ChunLi" or recentlySelected2 == "ChunLi") updates[4] = '1';
-    else if(recentlySelected == "Venom" or recentlySelected2 == "Venom") updates[5] = '1';
+    if(selectedContains("CaptainAmerica")) updates[2] = '1';
+    if(selectedContains("SpiderMan")) updates[3] = '1';
+    if(selectedContains("ChunLi")) updates[4] = '1';
+    if(selectedContains("Venom")) updates[5] = '1';
 
     if(preselectedT1 == "CaptainAmerica") {
         updates[6] = '0';
@@ -169,42 +191,20 @@ string ViewController_charSelect::giveNewParameters() {
         updates[9] = '1';
     }
 
-    if(recentlySelected == "CaptainAmerica"){
-        updates[10] = '1';
-        updates[11] = '0';
-        updates[12] = '0';
+    std::vector<string>::iterator itr_selected_1 = selected_1.begin();
 
-    }else if(recentlySelected == "SpiderMan") {
-        updates[10] = '1';
-        updates[11] = '0';
-        updates[12] = '1';
-    }else if(recentlySelected == "ChunLi"){
-        updates[10] = '1';
-        updates[11] = '1';
-        updates[12] = '0';
-    } else if(recentlySelected == "Venom"){
-        updates[10] = '1';
-        updates[11] = '1';
-        updates[12] = '1';
+    int i = 0;
+    for (itr_selected_1; itr_selected_1 != selected_1.end(); ++itr_selected_1, i++) {
+
+        updates[10 + i] = setCharacter(*itr_selected_1);
     }
 
-    if(recentlySelected2 == "CaptainAmerica"){
-        updates[13] = '1';
-        updates[14] = '0';
-        updates[15] = '0';
+    std::vector<string>::iterator itr_selected_2 = selected_2.begin();
 
-    }else if(recentlySelected2 == "SpiderMan") {
-        updates[13] = '1';
-        updates[14] = '0';
-        updates[15] = '1';
-    }else if(recentlySelected2 == "ChunLi"){
-        updates[13] = '1';
-        updates[14] = '1';
-        updates[15] = '0';
-    } else if(recentlySelected2 == "Venom"){
-        updates[13] = '1';
-        updates[14] = '1';
-        updates[15] = '1';
+    i = 0;
+    for (itr_selected_2; itr_selected_2 != selected_2.end(); ++itr_selected_2, i++) {
+
+        updates[12 + i] = setCharacter(*itr_selected_2);
     }
 
     return updates;

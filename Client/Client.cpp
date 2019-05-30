@@ -9,15 +9,21 @@
 #define MESSAGEFROMSERVERLEN 45
 #define MESSAGEFROMSERVERLEN2 5
 
-//----SERVER VARIABLES----
+
 int serverSocket_c;
 struct sockaddr_in serverAddr_c;
 socklen_t  serverSize_c;
 
+pthread_t sendEventThread;
+pthread_t recvFromServerThread;
+pthread_t renderThread;
+
 char messageFromServer[MESSAGEFROMSERVERLEN];
 char messageToKnowTheTeam[MESSAGEFROMSERVERLEN2];
 
-bool connect2 = true;
+bool connected = true;
+bool serverConnected = true;
+bool serverDown = false;
 
 queue<string> queueRecv;
 
@@ -40,8 +46,8 @@ void Client::configServer(const char* serverIp, uint16_t serverPort){
 Client::Client(const char* serverIp, uint16_t serverPort) {
 
     configServer(serverIp, serverPort);
-    beating = true;
 }
+
 
 void Client::Disconnect() {
 
@@ -49,6 +55,7 @@ void Client::Disconnect() {
     logger->Log("Desconectando al cliente", NETWORK, "");
     close(serverSocket_c);
 }
+
 
 bool Client::Connect() {
 
@@ -93,6 +100,7 @@ void Client::checkRecvFromServerError(){
     }
 }
 
+
 void Client::checkSendToServerError(){
     CLogger* logger = CLogger::GetLogger();
 
@@ -123,6 +131,7 @@ void Client::checkSendToServerError(){
     }
 }
 
+
 void Client::Send(char* message) {
 
     signal(SIGPIPE, SIG_IGN);
@@ -135,17 +144,6 @@ void Client::Send(char* message) {
 
 
 }
-
-sig_atomic_t clientBrokeConnection = 0;
-
-void Client::brokeConnection(int arg){
-    clientBrokeConnection = 1;
-}
-
-
-
-
-
 
 
 char *Client::messageFromServerReceived(){
@@ -161,49 +159,87 @@ char *Client::messageFromServerReceived(){
     return messageToKnowTheTeam;
 }
 
+void messageBox(){
+    SDL_ShowSimpleMessageBox (SDL_MESSAGEBOX_INFORMATION ,
+                              "Desconexion",
+                              "El server se ha desconectado",
+                              NULL);
+}
 
+void* timerClient(void * arg){
 
+    sleep(5);
 
+    cout << "Server desconectado" << endl;
+    serverConnected = false;
+
+    game->renderDisconnected();
+
+}
 
 
 void* Client::recvFromServer(void* arg) {
 
+    CLogger* logger = CLogger::GetLogger();
 
-    while(connect2){
+    while(connected){
+
+        pthread_t timerThread;
+        int readThread = pthread_create(&timerThread, nullptr, timerClient, nullptr);
+
+        if(readThread !=0){
+            logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
+        }
+
         memset(messageFromServer, 0, MESSAGEFROMSERVERLEN);
 
-        //Aca habrai que chequear que si no recibe por un tiempo se da por uerto el server(seria como el heartbeat)
+        //Aca habrai que chequear que si no recibe por un tiempo se da por puerto el server(seria como el heartbeat)
         int bytesReceived = recv(serverSocket_c, messageFromServer, MESSAGEFROMSERVERLEN, 0);
+
+        pthread_cancel(timerThread);
+        pthread_detach(timerThread);
+
+        serverConnected = true;
 
         if(bytesReceived == -1){
             checkRecvFromServerError();
         }
 
+        if(strcmp(messageFromServer, "serverDisconnect") == 0){
+            cout << "El server se cayo" << endl;
+            serverConnected = false;
+            serverDown = true;
+            while(!queueRecv.empty()){
+                queueRecv.pop();
+            }
+            messageBox();
+            close(serverSocket_c);
+            pthread_cancel(sendEventThread);
+            pthread_cancel(renderThread);
+            cout << "Desconectando..." << endl;
+            pthread_exit(0);
+        }
         string message = (string)(messageFromServer);
         queueRecv.push(message);
-
     }
-
     return nullptr;
 
 }
 
+
 void* Client::render(void *arg) {
 
     bool fight_view = false;
-    int speed = 60;
-    Uint32 start;
 
    //Aca empieza el loop que va a ir renderizando. Las view ay deberian estar cargadas y se renderiza lo que se tenga que renderizar
-    while(connect2){
-
-        start = SDL_GetTicks();
+    while(connected){
 
         if (game->haveToChangeView()){
             changeCurrentMapper();
             game->changeView();
             fight_view = true;
         }
+
 
         if(queueRecv.empty()) continue;
 
@@ -216,20 +252,20 @@ void* Client::render(void *arg) {
             //Te devuelve 1 en el cuadrado gris que si se tenga que renderizar
             char greySquaresSelected[] = {messageReceived[2], messageReceived[3], messageReceived[4], messageReceived[5], '\0'};
 
-            game->updateGreySquares(greySquaresSelected);
 
             //0  1
             //2  3
             char selectT1[] = {messageReceived[6], messageReceived[7], '\0'};
             char selectT2[] = {messageReceived[8], messageReceived[9], '\0'};
 
-            game->updateSelects(selectT1, selectT2);
 
             //Esto setea los selected de ambos equipos para saber que imagenes de los costados renderizar
-            char selected_1[] = {messageReceived[10], messageReceived[11], messageReceived[12], '\0'};
-            char selected_2[] = {messageReceived[13], messageReceived[14], messageReceived[15], '\0'};
+            char selected_1[] = {messageReceived[10], messageReceived[11], '\0'};
+            char selected_2[] = {messageReceived[12], messageReceived[13], '\0'};
 
+            game->updateSelects(selectT1, selectT2);
             game->updateCharactersImages(selected_1, selected_2);
+            game->updateGreySquares(greySquaresSelected);
 
             game->render();
             queueRecv.pop();
@@ -271,17 +307,12 @@ void* Client::render(void *arg) {
 
             game->render();
             queueRecv.pop();
-
-//            if ((1000 / speed) > (SDL_GetTicks() - start)) {
-//                SDL_Delay((1000 / speed) - (SDL_GetTicks() - start));
-//            }
         }
+
     }
     game->clean();
     return nullptr;
 }
-
-
 
 
 void* Client::sendEventToServer(void* arg){
@@ -300,21 +331,24 @@ void* Client::sendEventToServer(void* arg){
 
         start = SDL_GetTicks();
 
+        if (!serverConnected){
+            if(serverDown) break;
+            continue;
+        }
+
 
         SDL_Event event;
         SDL_PollEvent(&event);
+
         //timmer para no enviar tantos eventos
-        //Habria que ver como saber que hay que cambiar el mapper y hacerlo. Tambien se podria usar un solo mapper y fue.
         mapEvent = currentMapper->map(event);
         if (event.type == SDL_QUIT) {
             logger -> Log("Saliendo del juego", INFO, "");
-            connect2 = false;
+            connected = false;
             pthread_exit(nullptr);
         }
 
 
-
-        //Esto no se tendria que mandar a penas cae un evento. Cada tantos milisegundos tendria que crearse un char* mas grande unido por varias events y enviarse
         ssize_t bytesSent = send(serverSocket_c, mapEvent.c_str(), sizeof(mapEvent.c_str()), 0);
         if(bytesSent < 0) checkSendToServerError();
 
@@ -325,6 +359,7 @@ void* Client::sendEventToServer(void* arg){
 
     }
 }
+
 
 void Client::Initialice() {
 
@@ -337,25 +372,10 @@ void Client::Initialice() {
 
     std::string aux2 = config->getTitle();
     const char *title = aux2.c_str();
-    const int FPS = config->getFPS();
 
     game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
     game->init(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 
-//        Uint32 start;
-
-//        start = SDL_GetTicks();
-//        try { game->tick(); }
-//        catch (int e) { break; }
-//
-//        if ((1000 / FPS) > (SDL_GetTicks() - start)) {
-//            SDL_Delay((1000 / FPS) - (SDL_GetTicks() - start));
-//        }
-
-
-    pthread_t sendEventThread;
-    pthread_t recvFromServerThread;
-    pthread_t renderThread;
 
     int error = pthread_create(&sendEventThread, nullptr, &sendEventToServer, nullptr);
     if(error == -1) cout << "SE ROMPIO " << endl;
@@ -366,15 +386,17 @@ void Client::Initialice() {
 
     pthread_join(sendEventThread, nullptr);
     pthread_cancel(recvFromServerThread);
-    pthread_cancel(renderThread);    //igual si se cierra en realidad habria que tomar mas medidas como limpiar el render que por ahi se pueden tomar en disconnect
+    pthread_cancel(renderThread);    //igual si se cierra en realidad habria que tomar mas medidas como limpiar el clearWindow que por ahi se pueden tomar en disconnect
     Disconnect();
 }
+
 
 void Client::setMappers(Mapper* mapperSelect_, Mapper* mapperFight_){
 
     currentMapper = mapperSelect_;
     notCurrentMapper = mapperFight_;
 }
+
 
 void Client::changeCurrentMapper(){
 

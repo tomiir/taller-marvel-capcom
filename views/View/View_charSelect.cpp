@@ -43,10 +43,8 @@ void View_charSelect::addGameObject_square_gray(GameObject_charSelect* square){
 
 void View_charSelect::updateView() {
 
-    //LIMPIO LA PANTALLA
-    this->render();
+    this->clearWindow();
 
-    //RENDERIZO, EL ORDEN ES IMPORTANTE
     background->render();
     renderVector(this->getGreysSquares());
     renderVector(this->getSelectionSquares());
@@ -204,12 +202,23 @@ std::vector<string> View_charSelect::getTeam2() {
     return selected_2;
 }
 
+bool View_charSelect::selectedNotContains(string name){
+
+    std::vector<string>::iterator itr_selected = selected.begin();
+
+    for (itr_selected; itr_selected != selected.end(); ++itr_selected){
+
+        if (*itr_selected == name) return false;
+    }
+    return true;
+}
+
 void View_charSelect::updateGreySquares(char* greySquares ) {
 
-    if (greySquares[0] == '1') selected.push_back("CaptainAmerica");
-    if (greySquares[1] == '1') selected.push_back("SpiderMan");
-    if (greySquares[2] == '1') selected.push_back("ChunLi");
-    if (greySquares[3] == '1') selected.push_back("Venom");
+    if (greySquares[0] == '1' and selectedNotContains("CaptainAmerica")) selected.push_back("CaptainAmerica");
+    if (greySquares[1] == '1' and selectedNotContains("SpiderMan")) selected.push_back("SpiderMan");
+    if (greySquares[2] == '1' and selectedNotContains("ChunLi")) selected.push_back("ChunLi");
+    if (greySquares[3] == '1' and selectedNotContains("Venom")) selected.push_back("Venom");
 
 
 }
@@ -233,28 +242,57 @@ void View_charSelect::updateSelects(char *selectT1, char *selectT2) {
     } else preselectedT2 = "Venom";
 }
 
+
+
+string getCharacter(char name){
+
+    if (name == 'C') return "CaptainAmerica";
+    else if (name == 'S') return "SpiderMan";
+    else if (name == 'H') return "ChunLi";
+    else if (name == 'V') return "Venom";
+    else {
+        cout << "Error recibir personajes seleccionados view CharSelect" << endl;
+        return nullptr;
+    }
+}
+
+
+
 void View_charSelect::updateCharacterImages(char *selected_1_, char *selected_2_) {
 
-    if (strcmp(selected_1_, "100") == 0){
-        this->selected_1.push_back("CaptainAmerica");
-    } else if (strcmp(selected_1_, "101") == 0){
-        this->selected_1.push_back("SpiderMan");
-    } else if (strcmp(selected_1_, "110") == 0){
-        this->selected_1.push_back("ChunLi");
-    } else if (strcmp(selected_1_, "111") == 0) {
-        this->selected_1.push_back("Venom");
+    if (selected_1_[0] != '0'){
+        string pj = getCharacter(selected_1_[0]);
+        if (selectedNotContains(pj)) this->selected_1.push_back(pj);
     }
 
-    if (strcmp(selected_2_, "100") == 0){
-        this->selected_2.push_back("CaptainAmerica");
-    } else if (strcmp(selected_2_, "101") == 0){
-        this->selected_2.push_back("SpiderMan");
-    } else if (strcmp(selected_2_, "110") == 0){
-        this->selected_2.push_back("ChunLi");
-    } else if (strcmp(selected_2_, "111") == 0){
-        this->selected_2.push_back("Venom");
+    if (selected_1_[1] != '0'){
+        string pj = getCharacter(selected_1_[1]);
+        if (selectedNotContains(pj)) this->selected_1.push_back(pj);
     }
 
+    if (selected_2_[0] != '0'){
+        string pj = getCharacter(selected_2_[0]);
+        if (selectedNotContains(pj)) this->selected_2.push_back(pj);
+    }
+
+    if (selected_2_[1] != '0'){
+        string pj = getCharacter(selected_2_[1]);
+        if (selectedNotContains(pj)) this->selected_2.push_back(pj);
+    }
 
 }
+
+void View_charSelect::renderDisconnected() {
+
+    disconnected->render();
+    SDL_RenderPresent(renderer);
+}
+
+void View_charSelect::addGameObject_disconnected(GameObject *disconnected_) {
+
+    disconnected = disconnected_;
+}
+
+
+
 

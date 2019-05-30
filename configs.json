@@ -83,7 +83,7 @@
 	"Title": {
 		"title": "Marvel vs Capcom"
 		},
-	"caca":
+	"selectImage":
 	[
 		{"name":"background",
 		"filepath":"../Images/menu_seleccion/background.png",
@@ -250,5 +250,14 @@
 	"server":{
 		"clients": 2,
 		"port": 54000
+	},
+	"disconected":{
+		"name":"Disconected",
+		"filepath": "../Images/Disconnected/Disconnected.png",
+		"x": 1200,
+		"y": 700,
+		"height":1200,
+		"width": 700,
+        "z-index": 99
 	}
 }

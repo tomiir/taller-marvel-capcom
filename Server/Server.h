@@ -22,7 +22,6 @@
 
 
 #define MAXCLIENTS 4
-//#define PORT 54000
 
 using namespace std;
 
@@ -40,8 +39,6 @@ public:
     static void* receivingEventsFromClient(void *clientSock_);
     static void *updateModel(void* arg);
 
-    static void brokeConnection(int arg);
-
     static void *Send(void *clientSock_);
 
     static char * update(int clientSock);
@@ -53,7 +50,8 @@ public:
 
 private:
     static void clientConnected(sockaddr_in clientAddr_);
-
+    static void* quit(void* arg);
+    static void quit(int arg);
     int cantClients;
     int port;
 

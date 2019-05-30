@@ -8,7 +8,6 @@
 //----SERVER VARIABLES----
 int serverSocket_s;
 struct sockaddr_in serverAddr_s;
-socklen_t serverSize_s;
 
 //----CLIENT VARIABLES----
 
@@ -23,6 +22,7 @@ char messageFromClient4[MESSAGEFROMCLIENTLEN];
 
 char messageToClient[MESSAGETOCLIENTLEN];
 
+pthread_t clientThreads[MAXCLIENTS];
 
 queue<string> serverQueue;
 
@@ -36,9 +36,9 @@ bool viewControllerFight = false;
 
 Game_server* game_server;
 
-pthread_mutex_t lock;
+pthread_mutex_t lock, mutex;
 
-pthread_mutex_t mutex;
+sig_atomic_t quitFlag = 0;
 
 
 
@@ -73,9 +73,6 @@ Server::Server(int cantClients_, int port_) {
 }
 
 
-
-
-
 void Server::checkSendToClientError(int clientSock) {
 
     CLogger* logger = CLogger::GetLogger();
@@ -108,9 +105,6 @@ void Server::checkSendToClientError(int clientSock) {
 }
 
 
-
-
-
 void Server::checkRecvFromClientError(int clientSock) {
 
     CLogger* logger = CLogger::GetLogger();
@@ -140,16 +134,6 @@ void Server::checkRecvFromClientError(int clientSock) {
     }
 }
 
-sig_atomic_t serverBrokeConnection = 0;
-
-
-
-
-void Server::brokeConnection(int arg){
-    serverBrokeConnection = 1;
-}
-
-
 
 void *Server::Send(void *clientIter_){
 
@@ -161,10 +145,6 @@ void *Server::Send(void *clientIter_){
         checkSendToClientError(clientSocket[clientIter]);
     }
 }
-
-
-
-
 
 
 char* Server::update(int clientIter){
@@ -214,20 +194,20 @@ char* Server::update(int clientIter){
 }
 
 
-//void * timer(void * clientIter_){
-//
-//    int clientIter = *(int *) clientIter_;
-//
-//    sleep(3);
-//
-//    if (clientIter == 0) Connected11 = false;
-//    else if (clientIter == 1) Connected21 = false;
-//    else if (clientIter == 2 ) Connected12 = false;
-//    else Connected22 = false;
-//
-//}
+void* timer(void * clientIter_){
 
+    sleep(5);
 
+    int clientIter = *(int *) clientIter_;
+
+    if (clientIter == 0) Connected11 = false;
+    else if (clientIter == 1) Connected21 = false;
+    else if (clientIter == 2 ) Connected12 = false;
+    else if (clientIter == 3) Connected22 = false;
+
+    cout << "Se desconecto: " << clientIter +1 << endl;
+
+}
 
 
 void* Server::receivingEventsFromClient(void *client_) {
@@ -243,13 +223,6 @@ void* Server::receivingEventsFromClient(void *client_) {
     int speed = 60;
     Uint32 start;
 
-//    pthread_t timerThread;
-//
-//    int readThread = pthread_create(&timerThread, nullptr, timer, &clientIter);
-//    if(readThread !=0){
-//        logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
-//    }
-
     while(true){
 
         if (game_server->haveToChangeViewController()) {
@@ -258,49 +231,43 @@ void* Server::receivingEventsFromClient(void *client_) {
         }
 
         start = SDL_GetTicks();
-//
-//        signal(SIGINT, brokeConnection);
-//        signal(SIGTSTP, brokeConnection);
-//        signal(SIGQUIT, brokeConnection);
 
+        pthread_t timerThread[cantClients];
+        int readThread = pthread_create(&timerThread[clientIter], nullptr, timer, &clientIter);
 
-//        if(serverBrokeConnection == 1){
-//
-//            memset(messageToClient,0, MESSAGETOCLIENTLEN);
-//            strcpy(messageToClient, "El servidor se desconecto");
-//            Send(&clientIter);
-//            close(serverSocket_s);
-//            return nullptr;
-//        }
-        //Aca habria que analizar lo de si no recibe por un tiempo nada darlo por muerto(seria el heartbeat)
-        //
+        if(readThread !=0){
+            logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
+        }
 
 
         char* received = update(clientIter);
 
-//        if (clientIter == 0) Connected11 = true;
-//        else if (clientIter == 1) Connected21 = true;
-//        else if (clientIter == 2 ) Connected12 = true;
-//        else Connected22 = true;
+        pthread_cancel(timerThread[clientIter]);
+        pthread_detach(timerThread[clientIter]);
 
-//        pthread_kill(timerThread, SIGCONT);
+        if (clientIter == 0) Connected11 = true;
+        else if (clientIter == 1) Connected21 = true;
+        else if (clientIter == 2 ) Connected12 = true;
+        else if (clientIter == 3) Connected22 = true;
 
 
         if( strcmp(received, "0") == 0) {
             logger->Log( "El cliente: " + to_string(clientSocket[clientIter]) + " se desconecto" , NETWORK, "");
-            close(clientSocket[clientIter]);
+
 
             if (clientIter == 0) Connected11 = false;
             else if(clientIter == 1) Connected21 = false;
             else if(clientIter == 2) Connected12 = false;
-            else Connected22 = false;
+            else if (clientIter == 3) Connected22 = false;
+
+            close(clientSocket[clientIter]);
 
             return nullptr;
         }
 
-        //        ESTA ES LA LOGICA QUE SE ME OCURRIO PARA NO ENCOLAR LOS MENSAJES DE LOS CLEINTES QUE NO ESTAN JUGANDO.
-//        HAY QUE PROBARLO CON MAS COMPUS PORQUE LA MIA CASI MUERE CON CUATRO CLIENTES xD.
+
         if (viewControllerFight){
+
             if (cantClients == 4){
                 if (((game_server->currentClientT1() == 1 and clientIter == 2) or (game_server->currentClientT1() == 3 and clientIter == 0)) and (Connected11 and Connected12)) continue;
                 if (((game_server->currentClientT2() == 2 and clientIter == 3) or (game_server->currentClientT2() == 4 and clientIter == 1)) and (Connected21 and Connected22)) continue;
@@ -310,26 +277,25 @@ void* Server::receivingEventsFromClient(void *client_) {
             }
         }
 
-        int aux = strlen(received);
-        if(aux != 5) continue;
+
+        int receivedLen = strlen(received);
+        if(receivedLen != 1) {
+            continue;
+        }
 
         switch (clientIter){
 
             case 0:
-                received[aux] = '0';
-                received[aux + 1] = '0';
+                received[receivedLen] = '1';
                 break;
             case 1:
-                received[aux] = '0';
-                received[aux + 1] = '1';
+                received[receivedLen] = '2';
                 break;
             case 2:
-                received[aux] = '1';
-                received[aux + 1] = '0';
+                received[receivedLen] = '3';
                 break;
             case 3:
-                received[aux] = '1';
-                received[aux + 1] = '1';
+                received[receivedLen] = '4';
                 break;
             default:
                 cout << "ERROR AGREGANDO CHARS PARA DISTINGUIR CLIENTES" << endl;
@@ -350,9 +316,24 @@ void* Server::receivingEventsFromClient(void *client_) {
 }
 
 
+void Server::quit(int arg){
+    quitFlag = 1;
+}
 
 
+void* Server::quit(void* cantClients_){
 
+    char message[4096];
+
+    while(true){
+        scanf("%s", message);
+
+        if(strcmp(message, "quit") == 0){
+            quitFlag = 1;
+            break;
+        }
+    }
+}
 
 //esta funcion se encarga de desencolar las cosas que le llegan de los clientes, actualizar el
 // modelo y enviar los nuevos parametros a todos los clientes.
@@ -362,8 +343,8 @@ void* Server::updateModel(void *cantClients_){
 
     CLogger* logger = CLogger::GetLogger();
 
-    int speed = 60;
-    Uint32 start;
+    pthread_t quitThread;
+    pthread_create(&quitThread, nullptr, quit, &cantClients);
 
     int client1 = 0;
     int client2 = 1;
@@ -372,10 +353,32 @@ void* Server::updateModel(void *cantClients_){
 
     while(on){
 
-        start = SDL_GetTicks();
+        signal(SIGTERM, &quit);
+        signal(SIGABRT, &quit);
+        signal(SIGINT, &quit);
+
+        if(quitFlag == 1){
+
+            cout << "Cerrando server" << endl;
+
+            strcpy(messageToClient, "serverDisconnect");
+
+            while(!serverQueue.empty()){
+                serverQueue.pop();
+            }
+            sleep(3);
+
+            for(int i = 0; i < cantClients; i++){
+                Send(&i);
+                close(clientSocket[i]);
+                close(serverSocket_s);
+                pthread_cancel(clientThreads[i]);
+            }
+            return nullptr;
+        }
 
         //En este caso cada elemneto de la cola es una serie de eventos de 5 chars cada uno(y cada elemento es de un cleinte solo)
-        //Habria que evaluar cauntas veces habria que desencolar o si simplemente procesando lo de un cleinte solo a la vez serviria.
+        //Habria que evaluar cuantas veces habria que desencolar o si simplemente procesando lo de un cleinte solo a la vez serviria.
         if(serverQueue.empty()) continue;
 
         string event = serverQueue.front();
@@ -389,8 +392,6 @@ void* Server::updateModel(void *cantClients_){
 
         string updates = game_server->giveNewParameters();
 
-        //cout << updates << endl;
-
         memset(messageToClient,0, MESSAGETOCLIENTLEN);
         strcpy(messageToClient, updates.c_str());
 
@@ -401,18 +402,18 @@ void* Server::updateModel(void *cantClients_){
         for(; clientsIter < cantClients; clientsIter++){
 
             int readThread;
-            if (clientsIter == client1){
+            if (clientsIter == client1 and Connected11){
                 readThread = pthread_create(&clientUpdateThreads[client1], nullptr, Send,
                                             &client1);
             }
-            if (clientsIter == client2){
+            if (clientsIter == client2 and Connected21){
                 readThread = pthread_create(&clientUpdateThreads[client2], nullptr, Send,
                                             &client2);
             }
-            if (clientsIter == client3){
+            if (clientsIter == client3 and Connected12){
                 readThread = pthread_create(&clientUpdateThreads[client3], nullptr, Send,
                                             &client3);
-            }if (clientsIter == client4){
+            }if (clientsIter == client4 and Connected22){
                 readThread = pthread_create(&clientUpdateThreads[client4], nullptr, Send,
                                             &client4);
             }
@@ -428,18 +429,10 @@ void* Server::updateModel(void *cantClients_){
         for(; clientsIter < cantClients; clientsIter++){
             pthread_join(clientUpdateThreads[clientsIter], nullptr);
         }
-
-//        if ((1000 / speed) > (SDL_GetTicks() - start)) {
-//            SDL_Delay((1000 / speed) - (SDL_GetTicks() - start));
-//        }
-
     }
 
     return nullptr;
 }
-
-
-
 
 
 void Server::clientConnected(sockaddr_in clientAddr_){
@@ -459,10 +452,10 @@ void Server::clientConnected(sockaddr_in clientAddr_){
     }
 }
 
+
 void * Server::rejectingClients(void *clientIter_){
 
     int clientsIter = *(int *) clientIter_;
-
 
     while(on){
 
@@ -478,8 +471,6 @@ void * Server::rejectingClients(void *clientIter_){
 }
 
 
-
-
 void Server::connect() {
 
     CLogger* logger = CLogger::GetLogger();
@@ -490,13 +481,11 @@ void Server::connect() {
     int client4 = 3;
 
 
-
     if(listen(serverSocket_s, cantClients) < 0 ) {
         logger->Log( "No se puede escuchar", ERROR, strerror(errno));
     }
 
     int clientsIter = 0;
-    pthread_t clientThreads[MAXCLIENTS];
 
     for(; clientsIter < cantClients; clientsIter++){
         clientSize[clientsIter] = sizeof(clientAddr[clientsIter]);
@@ -562,8 +551,6 @@ void Server::connect() {
     logger->Log( "Ya se conectaron los clientes" , INFO, "");
 
 
-    //ACA SE DEBERIA INICIALIZAR TODOO EL MODELO
-
     logger->Log("Inicializando juego", INFO, "");
     JsonConfigs *config = JsonConfigs::getJson();
 
@@ -606,8 +593,6 @@ void Server::connect() {
                                         &C4);
         }
 
-
-
         if(readThread != 0) {
             logger->Log( "Falló al crear un thread, saliendo del juego." , ERROR, strerror(errno));
         }
@@ -630,8 +615,11 @@ void Server::connect() {
     //aca lo cancelo porque si se fueron los clientes ya que joinearon todos los hilos no tendria que seguir updateando el modelo
     pthread_cancel(updateModelThread);
     pthread_cancel(extraClientsThread);
+
+    pthread_detach(updateModelThread);
+    pthread_detach(extraClientsThread);
+
     pthread_mutex_destroy(&lock);
-//    pthread_mutex_destroy(&mutex);
     on = false;
 
     logger->Log( "Se desconectaron todos los clientes, saliendo del juego." , INFO, "");

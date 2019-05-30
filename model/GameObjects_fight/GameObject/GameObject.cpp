@@ -9,7 +9,8 @@ GameObject::GameObject(const char* folderPath, string name_, int z_index, SDL_Re
 
     name = name_;
     renderer = rend;
-    objRect = SDL_Rect{initialX, initialY, width, height};
+    objRect = SDL_Rect{0, 0, width, height};
+    objRect2 = SDL_Rect{initialX, initialY, width, height};
     objTexture = TextureManager::LoadTexture(folderPath, renderer);
     this->z_index = z_index;
 }
@@ -23,7 +24,12 @@ void GameObject::move(DirectionVector* direction){}
 
 vector<int> GameObject::getInfo() {}
 
-void GameObject::render() {}
+void GameObject::render() {
+    int error = SDL_RenderCopy(renderer, objTexture, &objRect2, &objRect);
+    if( error < 0){
+        cout << "error: " << SDL_GetError() << endl;
+    }
+}
 
 void GameObject::stayInFloor() {}
 

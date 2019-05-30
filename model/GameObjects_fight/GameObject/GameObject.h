@@ -29,7 +29,7 @@ protected:
     string name;
     SDL_Texture* objTexture;
     SDL_Renderer* renderer;
-    SDL_Rect objRect;
+    SDL_Rect objRect, objRect2;
     int z_index;
 };
 

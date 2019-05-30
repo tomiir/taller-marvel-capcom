@@ -22,39 +22,39 @@ DirectionVector* giveDirectionVect(string event){
 
     DirectionVector* direction = new DirectionVector();
 
-    if (event == "00000"){
+    if (event == "h"){
       direction->add(0, 0);
     }
-    else if (event == "10000") {
+    else if (event == "d") {
         direction->add(1, 0);
     }
-    else if (event == "01000") {
+    else if (event == "a") {
         direction->add(-1, 0);
     }
-    else if (event == "00100") {
+    else if (event == "w") {
         direction->add(0, -1);
     }
-    else if (event == "00010") {
+    else if (event == "s") {
         direction->add(0, 1);
     }
-    else if (event == "00001") {
+    else if (event == "c") {
         direction->add(4, 0);
     }
-    else if (event == "10100") {
+    else if (event == "e") {
         direction->setDiagonal(1);
         direction->setY(-1);
     }
-    else if (event == "01100"){
+    else if (event == "q"){
         direction->setDiagonal(-1);
         direction->setY(-1);
     }
-    else if (event[3] == '2'){
+    else if (event == "r"){
         direction->add(0, 2);
     }
-    else if (event[1] == '2'){
+    else if (event == "t"){
         direction->add(-2, 0);
     }
-    else if (event[0] == '2'){
+    else if (event == "y"){
         direction->add(2, 0);
     }
 
@@ -144,6 +144,8 @@ void ControllerCharacter::handleEvent(string event) {
 
         bool characterTopOfJump = info[1] <= jumpDistance;
         if( characterTopOfJump ) jump = false;
+
+        delete step;
     }
 
     if( !jump and inAir and !leaving){
@@ -164,6 +166,7 @@ void ControllerCharacter::handleEvent(string event) {
             state = "still";
         }
 
+        delete step;
     }
 
     if (direction->isEqual(CHANGECHARACTER) and !inAir){
@@ -179,6 +182,7 @@ void ControllerCharacter::handleEvent(string event) {
 
         gameObject->move( step );
 
+        delete step;
     }
 
     if (entering){
@@ -188,6 +192,8 @@ void ControllerCharacter::handleEvent(string event) {
 
 
     dynamic_cast<Character_server*>(gameObject)->setState(state);
+
+    delete direction;
 
 }
 

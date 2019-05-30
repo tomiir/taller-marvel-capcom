@@ -14,10 +14,12 @@ class View {
 public:
     View(SDL_Renderer* renderer); //Saco el id que es para el jason, pq no se si debería estar en ViewController_fight!
     virtual ~View();
-    void render();
+    void clearWindow();
     virtual void updateView();
     virtual bool end();
     virtual string getNextView();
+
+    virtual void renderDisconnected();
 
 protected:
     SDL_Renderer* renderer;

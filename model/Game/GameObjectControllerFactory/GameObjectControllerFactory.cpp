@@ -31,6 +31,8 @@ std::vector<ControllerCharacter*> GameObjectControllerFactory::getControllersCha
 
     characters = { controllerCharacter1, controllerCharacter2,controllerCharacter3,controllerCharacter4 };
 
+    delete factory;
+
     return characters;
 }
 

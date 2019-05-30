@@ -27,6 +27,10 @@ View_fight* ViewFactory::getView_fight() {
 
     vector<GameObject *> backgrounds = factory->getGameObjectsBackgrounds_fight();
 
+    GameObject* disconnected = factory->getGameObjectDisconnected();
+
+    viewFight->addDisconnected(disconnected);
+
     for (auto & background : backgrounds){
         viewFight->addBackground(dynamic_cast<Background*>(background));
     }
@@ -42,7 +46,7 @@ View_fight* ViewFactory::getView_fight() {
         characters_map[(*itr_character_)->getName()] = (dynamic_cast<Character*>(*itr_character_));
     }
 
-
+    delete factory;
 
     return viewFight;
 }
@@ -56,10 +60,13 @@ View_charSelect * ViewFactory:: getView_charSelect(){
     GameObjectFactory* factory = new GameObjectFactory(renderer, screenWidth, screenHeight);
     vector <GameObject_charSelect*> gameObjects = factory->getgameobjectChar_select_fight();
 
+    GameObject* disconnected = factory->getGameObjectDisconnected();
+
     View_charSelect* viewCharSelect = new View_charSelect(renderer, screenWidth, screenHeight);
 
     GameObject_charSelect* go = gameObjects[0];
     viewCharSelect->addGameObject_background(go);
+    viewCharSelect->addGameObject_disconnected(disconnected);
 
 
     // LOS SIDES DE CADA TEAM

@@ -8,6 +8,7 @@
 View_fight::View_fight(SDL_Renderer *renderer_) : View(renderer_) {
     currentChar1 = 0;
     currentChar2 = 0;
+
 }
 
 View_fight::~View_fight() = default;
@@ -21,7 +22,7 @@ struct Comp {
 void View_fight::updateView() {
     // Primero renderizo (limpio) la vista;
 
-    this->render();
+    this->clearWindow();
     std::vector<Renderable*> renderables;
 
     // Luego renderizo los elementos que la componen
@@ -38,6 +39,7 @@ void View_fight::updateView() {
     Comp comp;
     std::make_heap(renderables.begin(),renderables.end(), comp);
     int size = renderables.size();
+
     for (int i = 0; i < size; i++){
         std::pop_heap(renderables.begin(), renderables.end(), comp);
         Renderable* rend = renderables.back();
@@ -139,5 +141,18 @@ void View_fight::setTeams(Character* characterT1_1, Character* characterT1_2, Ch
     team2[0]->flipSprite(SDL_FLIP_NONE);
 
 }
+
+void View_fight::renderDisconnected() {
+
+    disconnected->render();
+    SDL_RenderPresent(renderer);
+}
+
+void View_fight::addDisconnected(GameObject *disconnected_) {
+
+    disconnected = disconnected_;
+}
+
+
 
 

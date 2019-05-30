@@ -4,6 +4,8 @@
 
 #include "Game.h"
 #include "../../utils/Logger/Logger.h"
+#include <unistd.h>
+
 
 
 Game::Game(int screenWidth_, int screenHeight_){
@@ -116,4 +118,10 @@ void Game::updateCharacters(char *posCharTeam1_x, char *posCharTeam1_y, char sta
     dynamic_cast<View_fight*>(this->view)->updateCharacters(posCharTeam1_x, posCharTeam1_y, stateCharTeam1, flipChar1, currentCharT1,
             posCharTeam2_x, posCharTeam2_y, stateCharTeam2, flipChar2, currentCharT2);
 }
+
+void Game::renderDisconnected() {
+
+    view->renderDisconnected();
+}
+
 
