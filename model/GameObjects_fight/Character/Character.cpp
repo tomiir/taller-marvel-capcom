@@ -88,16 +88,16 @@ SDL_Rect Character::getHitbox() {
     if(name == "Venom"){
 
         if (state == "still"){
-            hitbox = SDL_Rect{objRect.x + 40, objRect.y + 35, 295, 257};
+            hitbox = SDL_Rect{objRect.x + 55, objRect.y + 35, 265, 257};
         }
         else if (state == "walk"){
-            hitbox = SDL_Rect{objRect.x + 40, objRect.y + 35, 315, 280};
+            hitbox = SDL_Rect{objRect.x + 55, objRect.y + 35, 182, 270};
         }
         else if (state == "jump"){
-            hitbox = SDL_Rect{objRect.x + 40, objRect.y + 35, 332, 257};
+            hitbox = SDL_Rect{objRect.x + 55, objRect.y + 35, 260, 200};
         }
         else if (state == "crowchedDown"){
-            hitbox = SDL_Rect{objRect.x + 40, objRect.y + 45 + 35, 280, 212};
+            hitbox = SDL_Rect{objRect.x + 55, objRect.y + 45 + 35, 280, 212};
         }
     }
 

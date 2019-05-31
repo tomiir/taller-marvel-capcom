@@ -8,9 +8,9 @@ VenomHitboxManager::VenomHitboxManager() : HitboxManager(){
 
     currentState = "still";
 
-    SDL_Rect hitboxStill = SDL_Rect{0, 0, 295, 257};
-    SDL_Rect hitboxWalk = SDL_Rect{0, 0, 315, 280};
-    SDL_Rect hitboxJump = SDL_Rect{0, 0, 332, 257};
+    SDL_Rect hitboxStill = SDL_Rect{0, 0, 265, 257};
+    SDL_Rect hitboxWalk = SDL_Rect{0, 0, 182, 270};
+    SDL_Rect hitboxJump = SDL_Rect{0, 0, 260, 200};
     SDL_Rect hitboxCrowchedDown = SDL_Rect{0, 0, 280, 212};
 
 
@@ -50,6 +50,6 @@ void VenomHitboxManager::setHitbox(string state) {
 
 void VenomHitboxManager::setInitialPos(int x, int y) {
 
-    currentHitbox.x = x + 40;
+    currentHitbox.x = x + 55;
     currentHitbox.y = y + 35;
 }
