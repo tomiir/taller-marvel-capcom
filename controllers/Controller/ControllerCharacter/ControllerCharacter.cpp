@@ -70,6 +70,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
     DirectionVector* direction = giveDirectionVect(event);
 
     vector<int> info = gameObject->getInfo();
+    vector<int> enemyInfo = enemy->getInfo();
 
 
     if(direction->isEqual(RIGHT) and !inAir and !crowchedDown) {
@@ -189,6 +190,21 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
 
     if (entering){
         state = "entering";
+    }
+
+
+    if (collisionManager->Collisioning(gameObject, enemy) and characterIsntInRightBoundary and characterIsntInLeftBoundary){
+
+        if(info[0] >= enemyInfo[0]){
+            direction->setX(speedCharacter);
+            logger -> LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
+            gameObject->move(direction);
+        }else{
+            direction->setX(-speedCharacter);
+            logger -> LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
+            gameObject->move(direction);
+        }
+
     }
 
 

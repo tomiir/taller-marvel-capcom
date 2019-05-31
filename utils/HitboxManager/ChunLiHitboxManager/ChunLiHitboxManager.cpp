@@ -9,12 +9,14 @@ ChunLiHitboxManager::ChunLiHitboxManager() : HitboxManager(){
     currentState = "still";
 
     SDL_Rect hitboxStill = SDL_Rect{0, 0, 201, 217};
-
     SDL_Rect hitboxWalk = SDL_Rect{0, 0, 162, 210};
+    SDL_Rect hitboxJump = SDL_Rect{0, 0, 130, 185};
+    SDL_Rect hitboxCrowchedDown = SDL_Rect{0, 0, 215, 175};
 
-
-    hitBoxes["still"] = {hitboxStill};
-    hitBoxes["walk"] = {hitboxWalk};
+    hitBoxes["still"] = hitboxStill;
+    hitBoxes["walk"] = hitboxWalk;
+    hitBoxes["jump"] = hitboxJump;
+    hitBoxes["crowchedDown"] = hitboxCrowchedDown;
 
 
     iterHitboxes = hitBoxes.find(currentState);
@@ -26,8 +28,19 @@ void ChunLiHitboxManager::setHitbox(string state) {
     int x = currentHitbox.x;
     int y = currentHitbox.y;
 
-    currentState = state;
     iterHitboxes = hitBoxes.find(state);
+
+    if(state == "crowchedDown"){
+        int aux = currentHitbox.h - iterHitboxes->second.h;
+        y = y + aux;
+    }
+
+    if(currentState == "crowchedDown"){
+        int aux = iterHitboxes->second.h - currentHitbox.h;
+        y = y - aux;
+    }
+
+    currentState = state;
     currentHitbox = iterHitboxes->second;
 
     currentHitbox.x = x;

@@ -33,13 +33,15 @@ void Character_server::setState(string state) {
 
     this->state = state;
 
-    if(state == "still" or state == "walk") hitbox->setHitbox(state);  // pongo con estos dos poque por ahora estan estos dos solos
+    if(state == "still" or state == "walk" or state == "jump" or state == "crowchedDown") hitbox->setHitbox(state);  // pongo con estos dos poque por ahora estan estos dos solos
 
 }
 
 void Character_server::stayInFloor() {
 
     objRect.y = initialY;
+
+    hitbox->stayInFloor(initialY);
 }
 
 

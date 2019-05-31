@@ -26,6 +26,8 @@ public:
 
     SDL_Rect getCurrentHitbox();
 
+    void stayInFloor(int initialY);
+
 protected:
 
     string currentState;

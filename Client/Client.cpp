@@ -231,8 +231,13 @@ void* Client::render(void *arg) {
 
     bool fight_view = false;
 
+    int speed = 130;
+    Uint32 start;
+
    //Aca empieza el loop que va a ir renderizando. Las view ay deberian estar cargadas y se renderiza lo que se tenga que renderizar
     while(connected){
+
+        start = SDL_GetTicks();
 
         if (game->haveToChangeView()){
             changeCurrentMapper();
@@ -309,6 +314,9 @@ void* Client::render(void *arg) {
             queueRecv.pop();
         }
 
+        if ((1000 / speed) > (SDL_GetTicks() - start)) {
+            SDL_Delay((1000 / speed) - (SDL_GetTicks() - start));
+        }
     }
     game->clean();
     return nullptr;

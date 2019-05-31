@@ -34,3 +34,8 @@ void HitboxManager::setInitialPos(int x, int y) {
 SDL_Rect HitboxManager::getCurrentHitbox() {
     return currentHitbox;
 }
+
+void HitboxManager::stayInFloor(int initialY) {
+
+    currentHitbox.y = initialY;
+}
