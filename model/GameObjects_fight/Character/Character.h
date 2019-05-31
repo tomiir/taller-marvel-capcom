@@ -14,7 +14,7 @@ using namespace std;
 class Character : public GameObject {
 
 public:
-    Character(const char* imagePath,string name_, int z_index, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialY, string name, double size);
+    Character(const char* imagePath, int z_index, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialY, string name, double size);
     ~Character();
 
     void render() override ;
@@ -33,7 +33,9 @@ private:
     double size;
     int posInitialLeft;
     int posInitialRight;
+    string state;
 
+    SDL_Rect getHitbox();
 };
 
 

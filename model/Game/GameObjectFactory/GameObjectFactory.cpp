@@ -86,7 +86,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
 
         Character* C;
 
-        C = new Character(path.c_str(), spriteManagerName,  zIndex, renderer, spriteManager , initialY, name, size);
+        C = new Character(path.c_str(),  zIndex, renderer, spriteManager , initialY, name, size);
 
         C->setInitialXPositions(width/2, (screenWidth - width) - (width/2));
 
