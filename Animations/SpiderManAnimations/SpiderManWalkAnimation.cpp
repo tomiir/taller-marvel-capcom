@@ -22,7 +22,7 @@ void SpiderManWalkAnimation::init() {
     vector<int> frame8 = {710, 121, 76, 90};
     vector<int> frame9 = {796, 122, 74, 92};
     vector<int> frame10 = {881, 123, 72, 92};
-    vector<int> frame11 = {956, 121, 76, 89};
+    vector<int> frame11 = {956, 121, 83, 89};
 
 
 

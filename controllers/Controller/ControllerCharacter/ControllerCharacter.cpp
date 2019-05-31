@@ -195,11 +195,12 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
 
     if (collisionManager->Collisioning(gameObject, enemy) and characterIsntInRightBoundary and characterIsntInLeftBoundary){
 
-        if(info[0] >= enemyInfo[0]){
+        if(info[0] - 40 >= enemyInfo[0]){
+
             direction->setX(speedCharacter);
             logger -> LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
             gameObject->move(direction);
-        }else{
+        }else if (info[0] + 40 <= enemyInfo[0]){
             direction->setX(-speedCharacter);
             logger -> LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
             gameObject->move(direction);

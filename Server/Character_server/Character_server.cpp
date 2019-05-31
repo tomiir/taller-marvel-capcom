@@ -50,6 +50,8 @@ void Character_server::changePosition(int changeX, int changeY) {
     objRect.x = changeX;
     objRect.y = changeY;
 
+    hitbox->setInitialPos(changeX, changeY);
+
 }
 
 void Character_server::setInitialXPositions(int positionLeft, int positionRight){
