@@ -33,8 +33,7 @@ void Character_server::setState(string state) {
 
     this->state = state;
 
-    hitbox->setHitbox(state);  // pongo con estos dos poque por ahora estan estos dos solos
-
+    hitbox->setHitboxes(state, horizontalFlip);  // pongo con estos dos poque por ahora estan estos dos solos
 }
 
 void Character_server::stayInFloor() {
@@ -69,6 +68,7 @@ void Character_server::setInitialPos(bool left){
 void Character_server::flipSprite(SDL_RendererFlip flip_) {
 
     flip = flip_;
+    horizontalFlip = flip == SDL_FLIP_HORIZONTAL;
 }
 
 vector<int> Character_server::getPosInfo() {
@@ -87,6 +87,9 @@ SDL_RendererFlip Character_server::getFlip() {
 }
 
 SDL_Rect Character_server::getHitboxInfo() {
-    return hitbox->getCurrentHitbox();
+    return hitbox->getCurrentHitboxes();
 }
 
+bool Character_server::getHorizontalFlip() {
+    return horizontalFlip;
+}

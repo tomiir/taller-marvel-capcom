@@ -20,21 +20,22 @@ public:
     ~HitboxManager();
 
     void move(DirectionVector* direction);
-    virtual void setHitbox(string state);
+    virtual void setHitboxes(string state, bool horizontalFlip);
 
     virtual void setInitialPos(int x, int y);
 
-    SDL_Rect getCurrentHitbox();
+    vector<SDL_Rect> getCurrentHitboxes();
 
     void stayInFloor(int initialY);
+    void updateHitboxes(bool flipH);
 
 protected:
 
     string currentState;
-    SDL_Rect currentHitbox;
+    vector<SDL_Rect> hitboxes;
 
-    map<string, SDL_Rect> hitBoxes;
-    map<string, SDL_Rect>::iterator iterHitboxes = hitBoxes.begin();
+    map<string, vector<SDL_Rect>> stateHitBoxes;
+    map<string, vector<SDL_Rect>>::iterator stateIterHitboxes = stateHitBoxes.begin();
 
 
 };

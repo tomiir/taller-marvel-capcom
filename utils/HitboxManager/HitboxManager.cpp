@@ -12,30 +12,35 @@ HitboxManager::~HitboxManager() = default;
 
 void HitboxManager::move(DirectionVector *direction) {
 
-    currentHitbox.x += (int) direction->x;
-    currentHitbox.y += (int) direction->y;
-
+    for(int i = 0; i< hitboxes.size(); i++) {
+        SDL_Rect currentHitbox = hitboxes[i];
+        currentHitbox.x += (int) direction->x;
+        currentHitbox.y += (int) direction->y;
+    }
 }
 
-void HitboxManager::setHitbox(string state) {
+void HitboxManager::setHitboxes(string state, bool horizontalFlip) {
 
     //Aca habría que ver como setear bien la x y la y de las nuevos estados
     //Por ejemplo si pasa a estar agachado vamos a tener que cambia la y
 
     currentState = state;
-    iterHitboxes = hitBoxes.find(state);
-    currentHitbox = iterHitboxes->second;
+    stateIterHitboxes = stateHitBoxes.find(state);
+    hitboxes = stateIterHitboxes->second;
 }
 
 void HitboxManager::setInitialPos(int x, int y) {
 
 }
 
-SDL_Rect HitboxManager::getCurrentHitbox() {
-    return currentHitbox;
+vector<SDL_Rect> HitboxManager::getCurrentHitboxes() {
+    return hitboxes;
 }
 
 void HitboxManager::stayInFloor(int initialY) {
-
-    currentHitbox.y = initialY;
+    for (int i = 0; i < hitboxes.size(); i++) {
+        SDL_Rect currentHitbox = hitboxes[i];
+        currentHitbox.y = initialY;
+    }
 }
+

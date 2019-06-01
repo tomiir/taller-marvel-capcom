@@ -14,7 +14,7 @@ public:
     CaptainAmericaHitboxManager();
     ~CaptainAmericaHitboxManager() = default;
 
-    void setHitbox(string state) override ;
+    void setHitboxes(string state, bool hFlip) override ;
 
     void setInitialPos(int x, int y) override ;
 };

@@ -33,7 +33,7 @@ public:
     SDL_RendererFlip getFlip();
     SDL_Rect getHitboxInfo();
 
-
+    bool getHorizontalFlip;
 
 private:
 
@@ -43,6 +43,7 @@ private:
     int posInitialRight;
     string state;
     SDL_RendererFlip flip;
+    bool horizontalFlip = false;
 
     HitboxManager* hitbox;
 
