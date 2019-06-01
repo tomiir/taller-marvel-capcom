@@ -8,10 +8,10 @@ VenomHitboxManager::VenomHitboxManager() : HitboxManager(){
 
     currentState = "still";
 
-    SDL_Rect hitboxStill = SDL_Rect{0, 0, 265, 257};
-    SDL_Rect hitboxWalk = SDL_Rect{0, 0, 182, 270};
-    SDL_Rect hitboxJump = SDL_Rect{0, 0, 260, 200};
-    SDL_Rect hitboxCrowchedDown = SDL_Rect{0, 0, 280, 212};
+    SDL_Rect hitboxStill = SDL_Rect{0, 0, 245, 230};
+    SDL_Rect hitboxWalk = SDL_Rect{0, 0, 182, 295};
+    SDL_Rect hitboxJump = SDL_Rect{0, 0, 230, 170};
+    SDL_Rect hitboxCrowchedDown = SDL_Rect{0, 0, 280, 200};
 
 
     hitBoxes["still"] = hitboxStill;
@@ -32,14 +32,28 @@ void VenomHitboxManager::setHitbox(string state) {
     iterHitboxes = hitBoxes.find(state);
 
     if(state == "crowchedDown"){
-        int aux = currentHitbox.h - iterHitboxes->second.h;
+        int aux = abs(currentHitbox.h - iterHitboxes->second.h);
         y = y + aux;
+        x = x - 65;
     }
 
     if(currentState == "crowchedDown"){
-        int aux = iterHitboxes->second.h - currentHitbox.h;
+        int aux = abs(iterHitboxes->second.h - currentHitbox.h);
+        y = y - aux;
+        x = x + 65;
+
+    }
+
+    if (currentState == "walk"){
+        int aux = abs(currentHitbox.h - iterHitboxes->second.h);
+        y = y + aux;
+    }
+
+    if(state == "walk"){
+        int aux = abs(iterHitboxes->second.h - currentHitbox.h);
         y = y - aux;
     }
+
 
     currentState = state;
     currentHitbox = iterHitboxes->second;
@@ -50,6 +64,6 @@ void VenomHitboxManager::setHitbox(string state) {
 
 void VenomHitboxManager::setInitialPos(int x, int y) {
 
-    currentHitbox.x = x + 55;
-    currentHitbox.y = y + 35;
+    currentHitbox.x = x + 65;
+    currentHitbox.y = y + 65;
 }

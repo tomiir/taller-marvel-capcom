@@ -75,7 +75,7 @@ SDL_Rect Character::getHitbox() {
            hitbox = SDL_Rect{objRect.x + 6, objRect.y, 200, 277};
        }
        else if (state == "walk"){
-           hitbox = SDL_Rect{objRect.x + 6, objRect.y, 145, 282};
+           hitbox = SDL_Rect{objRect.x + 6, objRect.y , 145, 282};
        }
        else if (state == "jump"){
            hitbox = SDL_Rect{objRect.x + 6, objRect.y, 187, 215};
@@ -88,48 +88,48 @@ SDL_Rect Character::getHitbox() {
     if(name == "Venom"){
 
         if (state == "still"){
-            hitbox = SDL_Rect{objRect.x + 55, objRect.y + 35, 265, 257};
+            hitbox = SDL_Rect{objRect.x + 65, objRect.y + 65, 245, 230};
         }
         else if (state == "walk"){
-            hitbox = SDL_Rect{objRect.x + 55, objRect.y + 35, 182, 270};
+            hitbox = SDL_Rect{objRect.x + 65, objRect.y + 65 -65, 182, 295};
         }
         else if (state == "jump"){
-            hitbox = SDL_Rect{objRect.x + 55, objRect.y + 35, 260, 200};
+            hitbox = SDL_Rect{objRect.x + 65, objRect.y + 65, 230, 170};
         }
         else if (state == "crowchedDown"){
-            hitbox = SDL_Rect{objRect.x + 55, objRect.y + 45 + 35, 280, 212};
+            hitbox = SDL_Rect{objRect.x + 65 - 65, objRect.y + 65 + 45, 280, 200};
         }
     }
 
     if(name == "SpiderMan"){
 
         if (state == "still"){
-            hitbox = SDL_Rect{objRect.x + 6, objRect.y, 263, 240};
+            hitbox = SDL_Rect{objRect.x + 26, objRect.y + 40, 223, 200};
         }
         else if (state == "walk"){
-            hitbox = SDL_Rect{objRect.x + 6, objRect.y, 200, 225};
+            hitbox = SDL_Rect{objRect.x + 26, objRect.y + 40, 160, 185};
         }
         else if (state == "jump"){
-            hitbox = SDL_Rect{objRect.x + 6, objRect.y, 247, 167};
+            hitbox = SDL_Rect{objRect.x + 26, objRect.y + 40, 207, 167};
         }
         else if (state == "crowchedDown"){
-            hitbox = SDL_Rect{objRect.x + 6, objRect.y + 110, 238, 130};
+            hitbox = SDL_Rect{objRect.x + 26, objRect.y + 40 + 70, 238, 130};
         }
     }
 
     if(name == "ChunLi"){
 
         if (state == "still"){
-            hitbox = SDL_Rect{objRect.x + 7, objRect.y, 201, 217};
+            hitbox = SDL_Rect{objRect.x + 32, objRect.y, 141, 217};
         }
         else if (state == "walk"){
-            hitbox = SDL_Rect{objRect.x + 7, objRect.y, 162, 210};
+            hitbox = SDL_Rect{objRect.x + 32, objRect.y, 122, 210};
         }
         else if (state == "jump"){
-            hitbox = SDL_Rect{objRect.x + 7, objRect.y, 130, 185};
+            hitbox = SDL_Rect{objRect.x + 32, objRect.y, 130, 185};
         }
         else if (state == "crowchedDown"){
-            hitbox = SDL_Rect{objRect.x + 7, objRect.y + 42, 215, 175};
+            hitbox = SDL_Rect{objRect.x + 32, objRect.y + 42, 165, 175};
         }
     }
 
