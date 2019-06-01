@@ -82,6 +82,7 @@ char TeamManager::getStateCurrentCharacter() {
     else if (state == "jump") return '2';
     else if (state == "crowchedDown") return '3';
     else if (state == "entering") return '4';
+    else if (state == "punch") return '5';
 
 }
 

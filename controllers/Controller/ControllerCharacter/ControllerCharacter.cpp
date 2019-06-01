@@ -6,6 +6,7 @@
 #include <chrono>
 #include <thread>
 #include "../../../utils/Logger/Logger.h"
+#include <unistd.h>
 
 ControllerCharacter::ControllerCharacter(GameObject_server* gameObject, int screenWidth_, int screenHeight_,  int speedCharacter_, int jumpSpeed) : Controller(gameObject, jumpSpeed){
     screenHeight = screenHeight_;
@@ -59,7 +60,13 @@ DirectionVector* giveDirectionVect(string event){
     else if (event == "y"){
         direction->add(2, 0);
     }
-
+    //Punch
+    else if (event == "p") {
+        direction ->add(-5,-5);
+    }
+    else if (event == "u") {
+        direction ->add(-5,-6);
+    }
     return direction;
 }
 
@@ -67,22 +74,22 @@ DirectionVector* giveDirectionVect(string event){
 
 void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
 
-    DirectionVector* direction = giveDirectionVect(event);
+    DirectionVector *direction = giveDirectionVect(event);
 
     vector<int> info = gameObject->getInfo();
     vector<int> enemyInfo = enemy->getInfo();
 
 
-    if(direction->isEqual(RIGHT) and !inAir and !crowchedDown) {
+    if (direction->isEqual(RIGHT) and !inAir and !crowchedDown) {
         state = "walk";
         movingRight = true;
     }
-    if(direction->isEqual(LEFT) and !inAir and !crowchedDown) {
+    if (direction->isEqual(LEFT) and !inAir and !crowchedDown) {
         state = "walk";
         movingLeft = true;
     }
-    if( direction->isEqual(DOWN) and !inAir) {
-        if(state != "crowchedDown") logger->Log("El personaje " + character->getName() + " se agacho.", DEBUG, "" );
+    if (direction->isEqual(DOWN) and !inAir) {
+        if (state != "crowchedDown") logger->Log("El personaje " + character->getName() + " se agacho.", DEBUG, "");
         state = "crowchedDown";
         crowchedDown = true;
     }
@@ -95,75 +102,78 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
         movingRight = false;
         state = "still";
     }
-    if (direction->isEqual(STOPLEFT)  || inAir) {
+    if (direction->isEqual(STOPLEFT) || inAir) {
         movingLeft = false;
         state = "still";
     }
-    if(direction->isEqual(KEYSRELEASED) and !inAir and !crowchedDown and !movingLeft and !movingRight) state = "still";
+    if (direction->isEqual(KEYSRELEASED) and !inAir and !crowchedDown and !movingLeft and !movingRight)
+        state = "still";
 
     bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal;
     bool characterIsntInLeftBoundary = info[0] >= 0;
 
 
-    if (movingRight and characterIsntInRightBoundary and !inAir and !crowchedDown and !direction->isEqual(UP) and !direction->isEqual(GETTINGUP) and !collisionManager->Collisioning(gameObject, enemy)){
+    if (movingRight and characterIsntInRightBoundary and !inAir and !crowchedDown and !direction->isEqual(UP) and
+        !direction->isEqual(GETTINGUP) and !collisionManager->Collisioning(gameObject, enemy)) {
 
         direction->setX(speedCharacter);
-        logger -> LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
+        logger->LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
         gameObject->move(direction);
 
     }
 
-    if (movingLeft and characterIsntInLeftBoundary and !inAir and !crowchedDown and !direction->isEqual(UP) and !direction->isEqual(GETTINGUP) and !collisionManager->Collisioning(gameObject, enemy)){
+    if (movingLeft and characterIsntInLeftBoundary and !inAir and !crowchedDown and !direction->isEqual(UP) and
+        !direction->isEqual(GETTINGUP) and !collisionManager->Collisioning(gameObject, enemy)) {
 
         direction->setX(-speedCharacter);
-        logger -> LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
+        logger->LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
         gameObject->move(direction);
 
     }
 
-    if( direction->isDiagonalRight() and !inAir  and !crowchedDown) jumpRight = true;
-    if( direction->isDiagonalLeft() and !inAir  and !crowchedDown) jumpLeft = true;
-    if( direction->isEqual(UP) and !inAir  and !crowchedDown){
-        logger->Log("El personaje " + character->getName() + " salto.", DEBUG, "" );
+    if (direction->isDiagonalRight() and !inAir and !crowchedDown) jumpRight = true;
+    if (direction->isDiagonalLeft() and !inAir and !crowchedDown) jumpLeft = true;
+    if (direction->isEqual(UP) and !inAir and !crowchedDown) {
+        logger->Log("El personaje " + character->getName() + " salto.", DEBUG, "");
         jump = true;
     }
 
-    if( direction->isEqual(DOWN) and !inAir) {
+    if (direction->isEqual(DOWN) and !inAir) {
         state = "crowchedDown";
     }
 
-    if ( direction->isEqual(GETTINGUP) and !inAir) gameObject->stayInFloor();
+    if (direction->isEqual(GETTINGUP) and !inAir) gameObject->stayInFloor();
 
-    if(jump){
+    if (jump) {
 
         state = "jump";
         inAir = true;
-        DirectionVector* step = new DirectionVector(0, -jumpSpeed);
+        DirectionVector *step = new DirectionVector(0, -jumpSpeed);
 
-        if( jumpRight and characterIsntInRightBoundary ) step->setX( jumpSpeed/2 );
-        if( jumpLeft and characterIsntInLeftBoundary ) step->setX( -jumpSpeed/2 );
+        if (jumpRight and characterIsntInRightBoundary) step->setX(jumpSpeed / 2);
+        if (jumpLeft and characterIsntInLeftBoundary) step->setX(-jumpSpeed / 2);
 
-        gameObject->move( step );
+        gameObject->move(step);
 
         bool characterTopOfJump = info[1] <= jumpDistance;
-        if( characterTopOfJump ) jump = false;
+        if (characterTopOfJump) jump = false;
 
         delete step;
     }
 
-    if( !jump and inAir and !leaving){
+    if (!jump and inAir and !leaving) {
 
         state = "jump";
 
-        DirectionVector* step = new DirectionVector(0, jumpSpeed);
-        if( jumpRight and characterIsntInRightBoundary ) step->setX( jumpSpeed/2 );
-        if( jumpLeft and characterIsntInLeftBoundary ) step->setX( -jumpSpeed/2 );
+        DirectionVector *step = new DirectionVector(0, jumpSpeed);
+        if (jumpRight and characterIsntInRightBoundary) step->setX(jumpSpeed / 2);
+        if (jumpLeft and characterIsntInLeftBoundary) step->setX(-jumpSpeed / 2);
 
         gameObject->move(step);
 
         bool characterInFloor = info[1] >= (screenHeight - info[3] - jumpDistance);
 
-        if ( characterInFloor ) {
+        if (characterInFloor) {
             inAir = jumpRight = jumpLeft = entering = false;
             gameObject->stayInFloor();
             state = "still";
@@ -172,47 +182,54 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
         delete step;
     }
 
-    if (direction->isEqual(CHANGECHARACTER) and !inAir){
+    if (direction->isEqual(CHANGECHARACTER) and !inAir) {
         leaving = true;
         logger->Log(character->getName() + " cambio de personaje", DEBUG, "");
     }
 
-    if (leaving){
+    if(direction -> isEqual(PUNCH)) {
+        logger->Log("Pegando", INFO, "");
+        state = "punch";
+        usleep(50000);
+    }
+
+    if (leaving) {
 
         state = "jump";
         inAir = true;
-        DirectionVector* step = new DirectionVector(0, -jumpSpeed);
+        DirectionVector *step = new DirectionVector(0, -jumpSpeed);
 
-        gameObject->move( step );
+        gameObject->move(step);
 
         delete step;
     }
 
-    if (entering){
+    if (entering) {
         state = "entering";
     }
 
 
-    if (collisionManager->Collisioning(gameObject, enemy) and characterIsntInRightBoundary and characterIsntInLeftBoundary){
+    if (collisionManager->Collisioning(gameObject, enemy) and characterIsntInRightBoundary and
+        characterIsntInLeftBoundary) {
 
-        if(info[0] - 40 >= enemyInfo[0]){
+        if (info[0] - 40 >= enemyInfo[0]) {
 
             direction->setX(speedCharacter);
-            logger -> LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
+            logger->LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
             gameObject->move(direction);
-        }else if (info[0] + 40 <= enemyInfo[0]){
+        } else if (info[0] + 40 <= enemyInfo[0]) {
             direction->setX(-speedCharacter);
-            logger -> LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
+            logger->LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
             gameObject->move(direction);
         }
 
     }
-
-
-
-    dynamic_cast<Character_server*>(gameObject)->setState(state);
-
     delete direction;
+
+
+    dynamic_cast<Character_server *>(gameObject)->setState(state);
+
+
 
 }
 

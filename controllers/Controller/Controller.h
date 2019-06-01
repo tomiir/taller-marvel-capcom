@@ -34,7 +34,8 @@ protected:
     DirectionVector* STOPLEFT = new DirectionVector(-2, 0);
     DirectionVector* KEYSRELEASED = new DirectionVector(0, 0);
     DirectionVector* CHANGECHARACTER = new DirectionVector(4, 0);
-
+    DirectionVector* PUNCH = new DirectionVector(-5, -5);
+    DirectionVector* STOP_PUNCH = new DirectionVector(-5, -6);
 
     DirectionVector* DIAGONAL_UP_RIGHT = new DirectionVector(1, -1);
     DirectionVector* DIAGONAL_UP_LEFT = new DirectionVector(-1, -1);

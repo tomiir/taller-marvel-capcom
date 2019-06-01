@@ -27,15 +27,13 @@ public:
     void setInitialXPositions(int positionLeft, int positionRight);
     void setInitialPos(bool left);
     string name;
-
     void flipSprite(SDL_RendererFlip flip);
     vector<int> getPosInfo() override;
-
     string getState();
-
     SDL_RendererFlip getFlip();
-
     SDL_Rect getHitboxInfo();
+
+
 
 private:
 
