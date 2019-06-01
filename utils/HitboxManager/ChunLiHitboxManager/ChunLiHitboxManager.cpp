@@ -16,6 +16,8 @@ ChunLiHitboxManager::ChunLiHitboxManager() : HitboxManager(){
     hitBoxes["still"] = hitboxStill;
     hitBoxes["walk"] = hitboxWalk;
     hitBoxes["jump"] = hitboxJump;
+    hitBoxes["entering"] = hitboxJump;
+    hitBoxes["leaving"] = hitboxJump;
     hitBoxes["crowchedDown"] = hitboxCrowchedDown;
 
 

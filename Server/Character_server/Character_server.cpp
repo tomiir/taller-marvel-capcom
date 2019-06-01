@@ -33,7 +33,7 @@ void Character_server::setState(string state) {
 
     this->state = state;
 
-    if(state == "still" or state == "walk" or state == "jump" or state == "crowchedDown") hitbox->setHitbox(state);  // pongo con estos dos poque por ahora estan estos dos solos
+    hitbox->setHitbox(state);  // pongo con estos dos poque por ahora estan estos dos solos
 
 }
 
