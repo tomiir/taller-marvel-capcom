@@ -94,22 +94,22 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
         crowchedDown = true;
     }
 
-    if (direction->isEqual(GETTINGUP)) {
+    if (direction->isEqual(GETTINGUP) and !punching) {
         state = "still";
         crowchedDown = false;
     }
-    if (direction->isEqual(STOPRIGHT) || inAir) {
+    if (direction->isEqual(STOPRIGHT) or inAir and !punching) {
         movingRight = false;
         state = "still";
     }
-    if (direction->isEqual(STOPLEFT) || inAir) {
+    if (direction->isEqual(STOPLEFT) or inAir and !punching) {
         movingLeft = false;
         state = "still";
     }
-    if (direction->isEqual(KEYSRELEASED) and !inAir and !crowchedDown and !movingLeft and !movingRight )
+    if (direction->isEqual(KEYSRELEASED) and !inAir and !crowchedDown and !movingLeft and !movingRight and !punching)
         state = "still";
 
-    if(direction -> isEqual(PUNCH)) {
+    if(direction -> isEqual(PUNCH) and !punching) {
         logger->Log("Pegando", INFO, "");
         state = "punch";
         punching = true;
@@ -181,7 +181,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
 
         bool characterInFloor = info[1] >= (screenHeight - info[3] - jumpDistance);
 
-        if (characterInFloor) {
+        if (characterInFloor and !punching) {
             inAir = jumpRight = jumpLeft = entering = false;
             gameObject->stayInFloor();
             state = "still";
@@ -224,9 +224,10 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
             logger->LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
             gameObject->move(direction);
         }
-
     }
-
+    if(punching) {
+        punching = ++punching_timer != 10;
+    }
 
     delete direction;
 
