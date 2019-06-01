@@ -72,16 +72,16 @@ SDL_Rect Character::getHitbox() {
     if(name == "CaptainAmerica"){
 
        if (state == "still"){
-           hitbox = SDL_Rect{objRect.x + 6, objRect.y, 200, 277};
+           hitbox = SDL_Rect{objRect.x + 26, objRect.y, 160, 277};
        }
        else if (state == "walk"){
-           hitbox = SDL_Rect{objRect.x + 6, objRect.y , 145, 282};
+           hitbox = SDL_Rect{objRect.x + 26 + 30, objRect.y , 145, 282};
        }
        else if (state == "jump"){
-           hitbox = SDL_Rect{objRect.x + 6, objRect.y, 187, 215};
+           hitbox = SDL_Rect{objRect.x + 26, objRect.y, 157, 215};
        }
        else if (state == "crowchedDown"){
-           hitbox = SDL_Rect{objRect.x + 6, objRect.y + 82, 192, 195};
+           hitbox = SDL_Rect{objRect.x + 26, objRect.y + 82, 162, 195};
        }
     }
 

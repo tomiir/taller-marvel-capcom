@@ -8,10 +8,10 @@ CaptainAmericaHitboxManager::CaptainAmericaHitboxManager() : HitboxManager(){
 
     currentState = "still";
 
-    SDL_Rect hitboxStill = SDL_Rect{0, 0, 200, 277};
+    SDL_Rect hitboxStill = SDL_Rect{0, 0, 160, 277};
     SDL_Rect hitboxWalk = SDL_Rect{0, 0, 145, 282};
-    SDL_Rect hitboxJump = SDL_Rect{0, 0, 187, 215};
-    SDL_Rect hitboxCrowchedDown = SDL_Rect{0, 0, 192, 195};
+    SDL_Rect hitboxJump = SDL_Rect{0, 0, 157, 215};
+    SDL_Rect hitboxCrowchedDown = SDL_Rect{0, 0, 162, 195};
 
 
     hitBoxes["still"] = hitboxStill;
@@ -41,6 +41,14 @@ void CaptainAmericaHitboxManager::setHitbox(string state) {
         y = y - aux;
     }
 
+    if (state == "walk"){
+        x = x + 30;
+    }
+
+    if(currentState == "walk"){
+        x = x - 30;
+    }
+
     currentState = state;
     currentHitbox = iterHitboxes->second;
 
@@ -50,7 +58,7 @@ void CaptainAmericaHitboxManager::setHitbox(string state) {
 
 void CaptainAmericaHitboxManager::setInitialPos(int x, int y) {
 
-    currentHitbox.x = x + 6;
+    currentHitbox.x = x + 26;
     currentHitbox.y = y;
 }
 
