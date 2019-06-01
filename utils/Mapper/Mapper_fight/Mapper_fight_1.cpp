@@ -30,6 +30,10 @@ string Mapper_fight_1::map(SDL_Event event) {
             case SDLK_m:
                 keys = 'c';
                 break;
+//Fijense si les parece esto, sino iría la O, pero como está el punch siempre se usa con el indice
+            case SDLK_u:
+                keys = 'e';
+                break;
             default:
                 break;
         }

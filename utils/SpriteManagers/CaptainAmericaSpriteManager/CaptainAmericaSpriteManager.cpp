@@ -2,13 +2,7 @@
 // Created by fer on 07/04/19.
 //
 
-#include <iostream>
 #include "CaptainAmericaSpriteManager.h"
-#include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaStillAnimation.h"
-#include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaWalkFowardAnimation.h"
-#include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaJumpAnimation.h"
-#include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaCrowchedDownAnimation.h"
-#include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaEnteringAnimation.h"
 
 
 using namespace std;
@@ -21,6 +15,7 @@ void CaptainAmericaSpriteManager::init(){
     animationMap["jump"] = new CaptainAmericaJumpAnimation();
     animationMap["crowchedDown"] = new CaptainAmericaCrowchedDownAnimation();
     animationMap["entering"] = new CaptainAmericaEnteringAnimation();
+    animationMap["punch"] = new CaptainAmericaPunchAnimation();
 
 }
 

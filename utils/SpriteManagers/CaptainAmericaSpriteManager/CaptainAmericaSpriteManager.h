@@ -5,8 +5,14 @@
 #ifndef TALLER_MARVEL_CAPCOM_CAPTAINAMERICASPRITEMANAGER_H
 #define TALLER_MARVEL_CAPCOM_CAPTAINAMERICASPRITEMANAGER_H
 
-
+#include <iostream>
 #include "../SpriteManager.h"
+#include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaStillAnimation.h"
+#include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaWalkFowardAnimation.h"
+#include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaJumpAnimation.h"
+#include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaCrowchedDownAnimation.h"
+#include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaEnteringAnimation.h"
+#include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaPunchAnimation.h"
 
 class CaptainAmericaSpriteManager : public SpriteManager {
 
