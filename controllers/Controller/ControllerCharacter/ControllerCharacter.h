@@ -49,6 +49,7 @@ private:
     int screenWidth, screenHeight, speedCharacter;
     int jumpDistance = 10;
     bool jump, inAir, jumpRight, jumpLeft, leaving, entering, crowchedDown, movingRight, movingLeft, moving;
+    int punching;
     string state = "still";
     CLogger* logger = CLogger::GetLogger();
     Character_server* character = dynamic_cast<Character_server*>(gameObject);

@@ -12,7 +12,7 @@ ControllerCharacter::ControllerCharacter(GameObject_server* gameObject, int scre
     screenHeight = screenHeight_;
     screenWidth = screenWidth_;
     speedCharacter = speedCharacter_;
-    jump = jumpRight = jumpLeft = inAir = leaving = entering = crowchedDown = movingRight = movingLeft = moving = false;
+    jump = jumpRight = jumpLeft = inAir = leaving = entering = crowchedDown = movingRight = punching =  movingLeft = moving = false;
 
     collisionManager = new CollisionManager();
 
@@ -106,8 +106,16 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
         movingLeft = false;
         state = "still";
     }
-    if (direction->isEqual(KEYSRELEASED) and !inAir and !crowchedDown and !movingLeft and !movingRight)
+    if (direction->isEqual(KEYSRELEASED) and !inAir and !crowchedDown and !movingLeft and !movingRight )
         state = "still";
+
+    if(direction -> isEqual(PUNCH)) {
+        logger->Log("Pegando", INFO, "");
+        state = "punch";
+        punching = true;
+        punching_timer = 0;
+    }
+
 
     bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal;
     bool characterIsntInLeftBoundary = info[0] >= 0;
@@ -187,12 +195,6 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
         logger->Log(character->getName() + " cambio de personaje", DEBUG, "");
     }
 
-    if(direction -> isEqual(PUNCH)) {
-        logger->Log("Pegando", INFO, "");
-        state = "punch";
-        usleep(50000);
-    }
-
     if (leaving) {
 
         state = "jump";
@@ -224,6 +226,8 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
         }
 
     }
+
+
     delete direction;
 
 
