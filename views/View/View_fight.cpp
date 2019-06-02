@@ -153,6 +153,11 @@ void View_fight::addDisconnected(GameObject *disconnected_) {
     disconnected = disconnected_;
 }
 
+void View_fight::addLifeManagers(LifeManager* team1, LifeManager* team2) {
+    lifeManagerTeam1 = team1;
+    lifeManagerTeam2 = team2;
+}
+
 
 
 

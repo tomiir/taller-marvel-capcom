@@ -8,7 +8,7 @@
 
 #include <vector>
 #include "../../controllers/ViewController/ViewController.h"
-
+#include "../../utils/LifeManager/LifeManager.h"
 
 
 class View_fight: public View {
@@ -19,6 +19,7 @@ public:
     ~View_fight();
     void updateView() override;
     void addBackground(Background* background);
+    void addLifeManagers(LifeManager* team1, LifeManager* team2);
     bool end()override;
     string getNextView() override;
     void addCharacter(Character *pCharacter);
@@ -36,6 +37,11 @@ public:
 private:
     vector <Character*> team1;
     vector <Character*> team2;
+
+    LifeManager* lifeManagerTeam1;
+    LifeManager* lifeManagerTeam2;
+
+
 
     Character* getCharacter(string name);
 

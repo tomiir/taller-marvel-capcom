@@ -162,7 +162,7 @@ add_executable(
         model/Game/GameObjectServerFactory/GameObjectServerFactory.h
 
 
-        Json/JsonGameObject_charSelect.cpp Json/JsonGameObject_charSelect.h Json/JsonSintax.cpp Json/JsonSintax.h Json/JsonDisconection.cpp Json/JsonDisconection.h)
+        Json/JsonGameObject_charSelect.cpp Json/JsonGameObject_charSelect.h Json/JsonSintax.cpp Json/JsonSintax.h Json/JsonDisconection.cpp Json/JsonDisconection.h utils/LifeManager/LifeManager.cpp utils/LifeManager/LifeManager.h)
 
 
 
