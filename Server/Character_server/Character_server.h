@@ -31,9 +31,9 @@ public:
     vector<int> getPosInfo() override;
     string getState();
     SDL_RendererFlip getFlip();
-    SDL_Rect getHitboxInfo();
+    vector<SDL_Rect> getHitboxInfo();
 
-    bool getHorizontalFlip;
+    bool getHorizontalFlip();
 
 private:
 

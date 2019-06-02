@@ -32,7 +32,7 @@ public:
 protected:
 
     string currentState;
-    vector<SDL_Rect> hitboxes;
+    vector<SDL_Rect> currentHitboxes;
 
     map<string, vector<SDL_Rect>> stateHitBoxes;
     map<string, vector<SDL_Rect>>::iterator stateIterHitboxes = stateHitBoxes.begin();

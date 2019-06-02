@@ -12,8 +12,8 @@ HitboxManager::~HitboxManager() = default;
 
 void HitboxManager::move(DirectionVector *direction) {
 
-    for(int i = 0; i< hitboxes.size(); i++) {
-        SDL_Rect currentHitbox = hitboxes[i];
+    for(int i = 0; i< currentHitboxes.size(); i++) {
+        SDL_Rect currentHitbox = currentHitboxes[i];
         currentHitbox.x += (int) direction->x;
         currentHitbox.y += (int) direction->y;
     }
@@ -26,7 +26,7 @@ void HitboxManager::setHitboxes(string state, bool horizontalFlip) {
 
     currentState = state;
     stateIterHitboxes = stateHitBoxes.find(state);
-    hitboxes = stateIterHitboxes->second;
+    currentHitboxes = stateIterHitboxes->second;
 }
 
 void HitboxManager::setInitialPos(int x, int y) {
@@ -34,12 +34,12 @@ void HitboxManager::setInitialPos(int x, int y) {
 }
 
 vector<SDL_Rect> HitboxManager::getCurrentHitboxes() {
-    return hitboxes;
+    return currentHitboxes;
 }
 
 void HitboxManager::stayInFloor(int initialY) {
-    for (int i = 0; i < hitboxes.size(); i++) {
-        SDL_Rect currentHitbox = hitboxes[i];
+    for (int i = 0; i < currentHitboxes.size(); i++) {
+        SDL_Rect currentHitbox = currentHitboxes[i];
         currentHitbox.y = initialY;
     }
 }

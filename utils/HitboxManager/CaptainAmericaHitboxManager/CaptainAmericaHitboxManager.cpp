@@ -23,61 +23,58 @@ CaptainAmericaHitboxManager::CaptainAmericaHitboxManager() : HitboxManager(){
     stateHitBoxes["crowchedDown"] = { hitboxCrowchedDown };
     stateHitBoxes["punch"] = { hitboxPunchBody, hitboxPunchArm };
 
-
-    stateIterHitboxes = stateHitBoxes.find(currentState);
-    hitboxes = stateIterHitboxes->second;
+    currentHitboxes = { hitboxStill };
 }
 
 
-void CaptainAmericaHitboxManager::setHitboxes(string state, bool hFlip) {
+void CaptainAmericaHitboxManager::setHitboxes(string newState, bool hFlip) {
 
-    SDL_Rect currentHitbox = hitboxes[0];
+    //Guarda la posicion del hitbox anterior
+    SDL_Rect currentHitbox = currentHitboxes[0];
+    int currentX = currentHitbox.x;
+    int currentY = currentHitbox.y;
 
-    int x = currentHitbox.x;
-    int y = currentHitbox.y;
-    stateIterHitboxes = stateHitBoxes.find(state);
+    //Busco el nuevo hitbox
+    stateIterHitboxes = stateHitBoxes.find(newState);
+    vector<SDL_Rect> newHitboxes = stateIterHitboxes->second;
+    SDL_Rect newHitbox = newHitboxes[0];
 
-    if(state == "crowchedDown"){
-        int aux = currentHitbox.h - stateIterHitboxes->second[0].h;
-        y = y + aux;
-    }
+    int difHeight =  abs(currentHitbox.h - newHitbox.h);
 
-    if(currentState == "crowchedDown"){
-        int aux = stateIterHitboxes->second[0].h - currentHitbox.h;
-        y = y - aux;
-    }
+    if(newState == "crowchedDown") currentY += difHeight;
+    if(currentState == "crowchedDown") currentY -= difHeight;
 
-    if (state == "walk"){
-        x = x + 30;
-    }
 
-    if(currentState == "walk"){
-        x = x - 30;
-    }
+    //Esto es porque el sprite de capitan es bastante raro
 
-    currentState = state;
-    if(state == "punch") {
-        vector<SDL_Rect> hitboxes = stateIterHitboxes ->second;
-        SDL_Rect body = hitboxes[0];
-        SDL_Rect arm = hitboxes[1];
+    if(newState == "walk") currentX += 30;
+    if(currentState == "walk") currentX -= 30;
 
-        body.x = x;
-        body.y = y;
+    currentState = newState;
 
-        arm.x = hFlip ? (body.x - arm.w) : (body.w + x);
+    if(currentState == "punch") {
+        SDL_Rect body = newHitboxes[0];
+        SDL_Rect arm = newHitboxes[1];
+
+        body.x = currentX;
+        body.y = currentY;
+
+        arm.x = hFlip ? (body.x - arm.w) : (body.w + currentX);
         arm.y = body.y;
 
-        hitboxes = { body, arm };
-
+        currentHitboxes = { body, arm };
     } else {
-        currentHitbox.x = x;
-        currentHitbox.y = y;
+        newHitbox.x = currentX;
+        newHitbox.y = currentY;
+        currentHitboxes = { newHitbox };
     }
+//    currentHitboxes = newHitboxes;
+
 }
 
 void CaptainAmericaHitboxManager::setInitialPos(int x, int y) {
-    hitboxes[0].x = x + 26;
-    hitboxes[0].y = y;
+    currentHitboxes[0].x = x + 26;
+    currentHitboxes[0].y = y;
 }
 
 

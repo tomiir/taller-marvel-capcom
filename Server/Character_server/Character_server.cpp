@@ -86,7 +86,7 @@ SDL_RendererFlip Character_server::getFlip() {
     return flip;
 }
 
-SDL_Rect Character_server::getHitboxInfo() {
+vector<SDL_Rect> Character_server::getHitboxInfo() {
     return hitbox->getCurrentHitboxes();
 }
 
