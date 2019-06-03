@@ -17,6 +17,8 @@ private:
 
 
     int life;
+    int lifeSecond;
+
 
     // estos se settearan cuando se seleccionen, así podemos hacer
     // barras de vida personalizadas
@@ -30,9 +32,8 @@ private:
     GameObject* firstCharacter;
     GameObject* secondCharacter;
 
-    int lifeSecond;
-
     vector <int> currentColor;
+    vector <int> secondColor;
     vector <int> red;
     vector <int> green;
     vector <int> yellow;

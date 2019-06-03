@@ -245,8 +245,8 @@ LifeManager *GameObjectFactory::getLifeManagerTeam1() {
                                        lifeSpiderManSecond,
                                        lifeChunLiSecond};
     // se debe completar con el x y w h del rectángulo de la barra de vida
-    vector <int> aux1 = {0,0,0,0};
-    vector <int> aux2 = {0,0,0,0};
+    vector <int> aux1 = {85,30,392,25};
+    vector <int> aux2 = {45,167,202,16};
     LifeManager* lifeManager = new LifeManager(renderer,50,aux1, aux2);
 
     lifeManager->addCharacters(lifeFrames);
@@ -257,19 +257,19 @@ LifeManager *GameObjectFactory::getLifeManagerTeam1() {
 
 LifeManager *GameObjectFactory::getLifeManagerTeam2() {
 
-    GameObject* lifeCaptainAmerica = new GameObject("../Images/life_frame/vida-captainamerica.png","CaptainAmerica",99,renderer, 700, 10, 489, 104);
+    GameObject* lifeCaptainAmerica = new GameObject("../Images/life_frame/vida-captainamerica.png","CaptainAmerica",99,renderer, 710, 10, 489, 104);
     vector <int> aux= {507,12,489,104};
     lifeCaptainAmerica->setOriginRect(aux);
 
-    GameObject* lifeVenom = new GameObject("../Images/life_frame/vida-venom.png","Venom",99,renderer, 700, 10, 489, 104);
+    GameObject* lifeVenom = new GameObject("../Images/life_frame/vida-venom.png","Venom",99,renderer, 710, 10, 489, 104);
     aux= {507,12,489,104};
     lifeVenom->setOriginRect(aux);
 
-    GameObject* lifeSpiderMan = new GameObject("../Images/life_frame/vida-spiderman.png","SpiderMan",99,renderer, 700, 10, 489, 104);
+    GameObject* lifeSpiderMan = new GameObject("../Images/life_frame/vida-spiderman.png","SpiderMan",99,renderer, 710, 10, 489, 104);
     aux= {507,12,489,104};
     lifeSpiderMan->setOriginRect(aux);
 
-    GameObject* lifeChunLi = new GameObject("../Images/life_frame/vida-chunli.png","ChunLi",99,renderer, 700, 10, 489, 104);
+    GameObject* lifeChunLi = new GameObject("../Images/life_frame/vida-chunli.png","ChunLi",99,renderer, 710, 10, 489, 104);
     aux= {507,12,489,104};
     lifeChunLi->setOriginRect(aux);
 
@@ -279,19 +279,19 @@ LifeManager *GameObjectFactory::getLifeManagerTeam2() {
                                        lifeChunLi};
 
 
-    GameObject* lifeCaptainAmericaSecond = new GameObject("../Images/life_frame/vida-captainamerica.png","CaptainAmerica",99,renderer, 933,143, 257,55);
+    GameObject* lifeCaptainAmericaSecond = new GameObject("../Images/life_frame/vida-captainamerica.png","CaptainAmerica",99,renderer, 943,143, 257,55);
     aux = {739,133, 257, 55};
     lifeCaptainAmericaSecond->setOriginRect(aux);
 
-    GameObject* lifeVenomSecond = new GameObject("../Images/life_frame/vida-venom.png","Venom",99, renderer, 933,143, 257,55);
+    GameObject* lifeVenomSecond = new GameObject("../Images/life_frame/vida-venom.png","Venom",99, renderer, 943,143, 257,55);
     aux = {739,133, 257, 55};
     lifeVenomSecond->setOriginRect(aux);
 
-    GameObject* lifeSpiderManSecond = new GameObject("../Images/life_frame/vida-spiderman.png","SpiderMan",99, renderer, 933,143, 257,55);
+    GameObject* lifeSpiderManSecond = new GameObject("../Images/life_frame/vida-spiderman.png","SpiderMan",99, renderer, 943,143, 257,55);
     aux = {739,133, 257, 55};
     lifeSpiderManSecond->setOriginRect(aux);
 
-    GameObject* lifeChunLiSecond = new GameObject("../Images/life_frame/vida-chunli.png","ChunLi",99,renderer, 933,143, 257,55);
+    GameObject* lifeChunLiSecond = new GameObject("../Images/life_frame/vida-chunli.png","ChunLi",99,renderer, 943,143, 257,55);
     aux = {739,133, 257, 55};
     lifeChunLiSecond->setOriginRect(aux);
 
@@ -301,8 +301,8 @@ LifeManager *GameObjectFactory::getLifeManagerTeam2() {
                                              lifeChunLiSecond};
 
     // se debe completar con el x y w h del rectángulo de la barra de vida
-    vector <int> aux1 = {0,0,0,0};
-    vector <int> aux2 = {0,0,0,0};
+    vector <int> aux1 = {714,31,392,25};
+    vector <int> aux2 = {944,167,202,16};
     LifeManager* lifeManager = new LifeManager(renderer,50,aux1, aux2);
     lifeManager->addCharacters(lifeFrames);
     lifeManager->addCharactersSecond(lifeFramesSecond);

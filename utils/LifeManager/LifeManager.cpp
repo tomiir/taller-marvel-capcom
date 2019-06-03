@@ -5,11 +5,16 @@
 #include "LifeManager.h"
 
 LifeManager::LifeManager(SDL_Renderer* renderer, int z,vector <int> first, vector <int> second):Renderable() {
-    life = 1; // este es un porcentaje
+
     green = {0x00, 0xFF, 0x00};
     red = {0xFF, 0x00, 0x00};
     yellow  =  {0xFF, 0xFF, 0x00};
+
+    life = 1; // este es un porcentaje
+    // les pongo estos valores al segundo personaje para probar, en realidad empieza con verde y 1.
     lifeSecond = 20;
+
+    secondColor = red;
 
     this->renderer = renderer;
     this->z = z;
@@ -36,12 +41,21 @@ void LifeManager::render() {
     rectangle.w = w * life;
     rectangle.h = h;
 
-    firstCharacter->render(); // renderizo el marco y luego la barra de vida
-    secondCharacter->render();
     SDL_RenderFillRect(renderer, &rectangle);
+    firstCharacter->render(); // renderizo el marco y luego la barra de vida
 
 
+    SDL_SetRenderDrawColor(renderer, secondColor[0], secondColor[1], secondColor[2], 255);
 
+    SDL_Rect rectangle_second;
+
+    rectangle_second.x = x_second;
+    rectangle_second.y = y_second;
+    rectangle_second.w = w_second * lifeSecond;
+    rectangle_second.h = h_second;
+
+    SDL_RenderFillRect(renderer, &rectangle_second);
+    secondCharacter->render();
 
 }
 
@@ -67,21 +81,12 @@ void LifeManager::updateCurrentCharacter(string current) {
 void LifeManager::addCharacters(vector<GameObject *> characters) {
 
     for(auto character : characters) lifeFrames[character->getName()] = character;
-//    lifeFrames[characters[0]->getName()] = characters[0];
-//    lifeFrames[characters[1]->getName()] = characters[1];
-//    lifeFrames[characters[2]->getName()] = characters[2];
-//    lifeFrames[characters[3]->getName()] = characters[3];
 
 }
 
 void LifeManager::addCharactersSecond(vector<GameObject*> charactersSecond){
 
     for(auto characterSecond : charactersSecond) lifeFramesSecond[characterSecond->getName()] = characterSecond;
-//    lifeFramesSecond[charactersSecond[0]->getName()] = charactersSecond[0];
-//    lifeFramesSecond[charactersSecond[1]->getName()] = charactersSecond[1];
-//    lifeFramesSecond[charactersSecond[2]->getName()] = charactersSecond[2];
-//    lifeFramesSecond[charactersSecond[3]->getName()] = charactersSecond[3];
-
 
 }
 
