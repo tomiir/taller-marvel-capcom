@@ -56,7 +56,7 @@ void LifeManager::updateLife(int newLife) {
 // siempre se debe cambiar el personajes primero, antes que la vida.
 void LifeManager::updateCurrentCharacter(string current) {
     if (strcmp(current.c_str(), (firstCharacter->getName()).c_str()) != 0){
-        lifeFramesSecond_iter = lifeFrames.find(current);
+        lifeFramesSecond_iter = lifeFramesSecond.find(current);
         secondCharacter = lifeFramesSecond_iter->second;
         lifeSecond = life;
     }
