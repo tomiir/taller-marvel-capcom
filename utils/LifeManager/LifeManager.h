@@ -10,35 +10,57 @@
 #include "../../model/GameObjects_fight/GameObject/GameObject.h"
 #include <vector>
 #include <map>
+#include "../../controllers/Controller/Renderable.h"
 
-class LifeManager {
+class LifeManager: public Renderable {
 private:
-    //SDL_Renderer* renderer;
+
+
     int life;
 
     // estos se settearan cuando se seleccionen, así podemos hacer
     // barras de vida personalizadas
     std::map<string, GameObject* > lifeFrames;
     map<string, GameObject*>::iterator lifeFrames_iter = lifeFrames.begin();
-    GameObject* currentCharacter;
+
+    // barras de vida secundarias
+    std::map<string, GameObject*> lifeFramesSecond;
+    map<string, GameObject*>::iterator lifeFramesSecond_iter;
+
+    GameObject* firstCharacter;
+    GameObject* secondCharacter;
+
+    int lifeSecond;
 
     vector <int> currentColor;
     vector <int> red;
     vector <int> green;
     vector <int> yellow;
+
+    SDL_Renderer* renderer;
+    int z;
     int x;
     int y;
     int w;
     int h;
-
+    int z_second;
+    int x_second;
+    int y_second;
+    int h_second;
+    int w_second;
 
 public:
-    LifeManager(int x, int y, int w, int h);
+    LifeManager(SDL_Renderer* renderer,int z,vector <int> first, vector <int> second);
     ~LifeManager() = default;
-    void render(SDL_Renderer* renderer);
+    void render() override ;
     void updateLife(int newLife);
     void updateCurrentCharacter(string current);
     void addCharacters(vector <GameObject*> characters);
+    int getZIndex() override;
+    void addCharactersSecond(vector<GameObject *> charactersSecond);
+    void setFirstCharacter(string name);
+    void setSecondCharacter(string name);
+
 
 };
 

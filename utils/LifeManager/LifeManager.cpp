@@ -4,18 +4,28 @@
 
 #include "LifeManager.h"
 
-LifeManager::LifeManager(int x, int y, int w, int h) {
+LifeManager::LifeManager(SDL_Renderer* renderer, int z,vector <int> first, vector <int> second):Renderable() {
     life = 1; // este es un porcentaje
     green = {0x00, 0xFF, 0x00};
     red = {0xFF, 0x00, 0x00};
     yellow  =  {0xFF, 0xFF, 0x00};
-    this->x = x;
-    this->y = y;
-    this->h = h;
-    this->w = w;
+    lifeSecond = 20;
+
+    this->renderer = renderer;
+    this->z = z;
+    this->x = first[0];
+    this->y = first[1];
+    this->h = first[2];
+    this->w = first[3];
+
+    this->z_second = z;
+    this->x_second = second[0];
+    this->y_second = second[1];
+    this->h_second = second[2];
+    this->w_second = second[3];
 }
 
-void LifeManager::render(SDL_Renderer *renderer) {
+void LifeManager::render() {
 
     SDL_SetRenderDrawColor(renderer, currentColor[0], currentColor[1], currentColor[2], 255);
 
@@ -26,8 +36,10 @@ void LifeManager::render(SDL_Renderer *renderer) {
     rectangle.w = w * life;
     rectangle.h = h;
 
-    currentCharacter->render(); // renderizo el marco y luego la barra de vida
+    firstCharacter->render(); // renderizo el marco y luego la barra de vida
     SDL_RenderFillRect(renderer, &rectangle);
+
+
 
 
 }
@@ -40,9 +52,14 @@ void LifeManager::updateLife(int newLife) {
 
 }
 
+// siempre se debe cambiar el personajes primero, antes que la vida.
 void LifeManager::updateCurrentCharacter(string current) {
+    if (strcmp(current.c_str(), (firstCharacter->getName()).c_str()) != 0){
+        secondCharacter = firstCharacter;
+        lifeSecond = life;
+    }
     lifeFrames_iter = lifeFrames.find(current);
-    currentCharacter = lifeFrames_iter->second;
+    firstCharacter = lifeFrames_iter->second;
 }
 
 void LifeManager::addCharacters(vector<GameObject *> characters) {
@@ -52,4 +69,27 @@ void LifeManager::addCharacters(vector<GameObject *> characters) {
     lifeFrames[characters[2]->getName()] = characters[2];
     lifeFrames[characters[3]->getName()] = characters[3];
 
+}
+
+void LifeManager::addCharactersSecond(vector<GameObject*> charactersSecond){
+    lifeFramesSecond[charactersSecond[0]->getName()] = charactersSecond[0];
+    lifeFramesSecond[charactersSecond[1]->getName()] = charactersSecond[1];
+    lifeFrames[charactersSecond[2]->getName()] = charactersSecond[2];
+    lifeFrames[charactersSecond[3]->getName()] = charactersSecond[3];
+
+
+}
+
+int LifeManager::getZIndex() {
+    return z;
+}
+
+void LifeManager::setFirstCharacter(string name) {
+    lifeFrames_iter = lifeFrames.find(name);
+    firstCharacter = lifeFrames_iter->second;
+}
+
+void LifeManager::setSecondCharacter(string name) {
+    lifeFramesSecond_iter = lifeFramesSecond.find(name);
+    secondCharacter = lifeFramesSecond_iter->second;
 }

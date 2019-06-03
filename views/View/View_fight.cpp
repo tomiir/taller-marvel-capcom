@@ -20,6 +20,16 @@ struct Comp {
 };
 
 void View_fight::updateView() {
+
+    //Esto habría que agregarlo en otro lado, por ahora lo dejo acá para probar.
+    lifeManagerTeam1->updateCurrentCharacter(team1[currentChar1]->getName());
+    lifeManagerTeam2->updateCurrentCharacter(team2[currentChar2]->getName());
+
+    lifeManagerTeam1->updateLife(1);
+    lifeManagerTeam2->updateLife(1);
+
+
+
     // Primero renderizo (limpio) la vista;
 
     this->clearWindow();
@@ -27,6 +37,8 @@ void View_fight::updateView() {
 
     // Luego renderizo los elementos que la componen
 
+    renderables.push_back(lifeManagerTeam1);
+    renderables.push_back(lifeManagerTeam2);
 
     for (std::vector<Background*>::iterator background=backgrounds.begin(); background != backgrounds.end(); ++background) {
 
@@ -47,14 +59,6 @@ void View_fight::updateView() {
         renderables.pop_back();
     }
 
-    lifeManagerTeam1->updateCurrentCharacter(team1[currentChar1]->getName());
-    lifeManagerTeam2->updateCurrentCharacter(team2[currentChar2]->getName());
-
-    lifeManagerTeam1->updateLife(1);
-    lifeManagerTeam2->updateLife(2);
-
-    lifeManagerTeam1->render(renderer);
-    lifeManagerTeam2->render(renderer);
 
     SDL_RenderPresent(renderer);
 
@@ -148,6 +152,12 @@ void View_fight::setTeams(Character* characterT1_1, Character* characterT1_2, Ch
 
     team1[0]->flipSprite(SDL_FLIP_HORIZONTAL);
     team2[0]->flipSprite(SDL_FLIP_NONE);
+
+    lifeManagerTeam1->setFirstCharacter(team1[0]->getName());
+    lifeManagerTeam1->setSecondCharacter(team1[1]->getName());
+
+    lifeManagerTeam2->setFirstCharacter(team2[0]->getName());
+    lifeManagerTeam2->setSecondCharacter(team2[1]->getName());
 
 }
 
