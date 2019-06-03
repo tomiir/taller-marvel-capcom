@@ -23,8 +23,8 @@ ChunLiHitboxManager::ChunLiHitboxManager() :  HitboxManager(){
     stateHitBoxes["crowchedDown"] = { hitboxCrowchedDown };
     stateHitBoxes["punch"] = { hitboxPunchBody, hitboxPunchArm };
 
-    currentHitboxes = { hitboxStill };
-
+    stateIterHitboxes = stateHitBoxes.find(currentState);
+    currentHitboxes = stateIterHitboxes->second;
 }
 
 void ChunLiHitboxManager::setHitboxes(string newState, bool hFlip) {

@@ -23,8 +23,8 @@ SpiderManHitboxManager::SpiderManHitboxManager() : HitboxManager(){
     stateHitBoxes["crowchedDown"] = { hitboxCrowchedDown };
     stateHitBoxes["punch"] = { hitboxPunchBody, hitboxPunchArm };
 
-    currentHitboxes = { hitboxStill };
-}
+    stateIterHitboxes = stateHitBoxes.find(currentState);
+    currentHitboxes = stateIterHitboxes->second;}
 
 void SpiderManHitboxManager::setHitboxes(string newState, bool hFlip) {
 
@@ -56,6 +56,7 @@ void SpiderManHitboxManager::setHitboxes(string newState, bool hFlip) {
         arm.y = body.y;
 
         currentHitboxes = { body, arm };
+
     } else {
         newHitbox.x = currentX;
         newHitbox.y = currentY;

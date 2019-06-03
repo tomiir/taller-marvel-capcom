@@ -23,7 +23,8 @@ CaptainAmericaHitboxManager::CaptainAmericaHitboxManager() : HitboxManager(){
     stateHitBoxes["crowchedDown"] = { hitboxCrowchedDown };
     stateHitBoxes["punch"] = { hitboxPunchBody, hitboxPunchArm };
 
-    currentHitboxes = { hitboxStill };
+    stateIterHitboxes = stateHitBoxes.find(currentState);
+    currentHitboxes = stateIterHitboxes->second;
 }
 
 
