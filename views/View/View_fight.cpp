@@ -47,6 +47,15 @@ void View_fight::updateView() {
         renderables.pop_back();
     }
 
+    lifeManagerTeam1->updateCurrentCharacter(team1[currentChar1]->getName());
+    lifeManagerTeam2->updateCurrentCharacter(team2[currentChar2]->getName());
+
+    lifeManagerTeam1->updateLife(1);
+    lifeManagerTeam2->updateLife(2);
+
+    lifeManagerTeam1->render(renderer);
+    lifeManagerTeam2->render(renderer);
+
     SDL_RenderPresent(renderer);
 
 }

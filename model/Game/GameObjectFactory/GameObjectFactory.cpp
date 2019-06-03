@@ -202,3 +202,38 @@ GameObject *GameObjectFactory::getGameObjectDisconnected() {
 
     return  disconnected;
 }
+
+LifeManager *GameObjectFactory::getLifeManagerTeam1() {
+    GameObject* lifeCaptainAmerica = new GameObject();
+    GameObject* lifeVenom = new GameObject();
+    GameObject* lifeSpiderMan = new GameObject();
+    GameObject* lifeChunLi = new GameObject();
+
+    vector <GameObject*> lifeFrames = {lifeCaptainAmerica,
+                                       lifeVenom,
+                                       lifeSpiderMan,
+                                       lifeChunLi};
+
+    // se debe completar con el x y w h del rectángulo de la barra de vida
+    LifeManager* lifeManager = new LifeManager(0,0,0,0);
+    lifeManager->addCharacters(lifeFrames);
+    return lifeManager;
+}
+
+LifeManager *GameObjectFactory::getLifeManagerTeam2() {
+
+    GameObject* lifeCaptainAmerica = new GameObject();
+    GameObject* lifeVenom = new GameObject();
+    GameObject* lifeSpiderMan = new GameObject();
+    GameObject* lifeChunLi = new GameObject();
+
+    vector <GameObject*> lifeFrames = {lifeCaptainAmerica,
+                                       lifeVenom,
+                                       lifeSpiderMan,
+                                       lifeChunLi};
+
+    // se debe completar con el x y w h del rectángulo de la barra de vida
+    LifeManager* lifeManager = new LifeManager(0,0,0,0);
+    lifeManager->addCharacters(lifeFrames);
+    return lifeManager;
+}

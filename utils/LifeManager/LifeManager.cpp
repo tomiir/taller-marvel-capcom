@@ -32,7 +32,7 @@ void LifeManager::render(SDL_Renderer *renderer) {
 
 }
 
-void LifeManager::updateLive(int newLife) {
+void LifeManager::updateLife(int newLife) {
     if (newLife > 0.60) currentColor = green;
     else if(newLife > 0.40) currentColor = yellow;
     else currentColor = red;

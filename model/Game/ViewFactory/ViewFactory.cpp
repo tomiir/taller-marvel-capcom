@@ -46,6 +46,13 @@ View_fight* ViewFactory::getView_fight() {
         characters_map[(*itr_character_)->getName()] = (dynamic_cast<Character*>(*itr_character_));
     }
 
+
+
+    LifeManager* lifeManagerTeam1 = factory->getLifeManagerTeam1();
+    LifeManager* lifeManagerTeam2 = factory->getLifeManagerTeam2();
+
+    viewFight->addLifeManagers(lifeManagerTeam1, lifeManagerTeam2);
+
     delete factory;
 
     return viewFight;

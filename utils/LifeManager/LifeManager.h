@@ -36,7 +36,7 @@ public:
     LifeManager(int x, int y, int w, int h);
     ~LifeManager() = default;
     void render(SDL_Renderer* renderer);
-    void updateLive(int newLife);
+    void updateLife(int newLife);
     void updateCurrentCharacter(string current);
     void addCharacters(vector <GameObject*> characters);
 
