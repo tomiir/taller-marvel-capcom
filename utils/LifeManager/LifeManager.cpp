@@ -37,6 +37,7 @@ void LifeManager::render() {
     rectangle.h = h;
 
     firstCharacter->render(); // renderizo el marco y luego la barra de vida
+    secondCharacter->render();
     SDL_RenderFillRect(renderer, &rectangle);
 
 
@@ -64,18 +65,21 @@ void LifeManager::updateCurrentCharacter(string current) {
 
 void LifeManager::addCharacters(vector<GameObject *> characters) {
 
-    lifeFrames[characters[0]->getName()] = characters[0];
-    lifeFrames[characters[1]->getName()] = characters[1];
-    lifeFrames[characters[2]->getName()] = characters[2];
-    lifeFrames[characters[3]->getName()] = characters[3];
+    for(auto character : characters) lifeFrames[character->getName()] = character;
+//    lifeFrames[characters[0]->getName()] = characters[0];
+//    lifeFrames[characters[1]->getName()] = characters[1];
+//    lifeFrames[characters[2]->getName()] = characters[2];
+//    lifeFrames[characters[3]->getName()] = characters[3];
 
 }
 
 void LifeManager::addCharactersSecond(vector<GameObject*> charactersSecond){
-    lifeFramesSecond[charactersSecond[0]->getName()] = charactersSecond[0];
-    lifeFramesSecond[charactersSecond[1]->getName()] = charactersSecond[1];
-    lifeFrames[charactersSecond[2]->getName()] = charactersSecond[2];
-    lifeFrames[charactersSecond[3]->getName()] = charactersSecond[3];
+
+    for(auto characterSecond : charactersSecond) lifeFramesSecond[characterSecond->getName()] = characterSecond;
+//    lifeFramesSecond[charactersSecond[0]->getName()] = charactersSecond[0];
+//    lifeFramesSecond[charactersSecond[1]->getName()] = charactersSecond[1];
+//    lifeFramesSecond[charactersSecond[2]->getName()] = charactersSecond[2];
+//    lifeFramesSecond[charactersSecond[3]->getName()] = charactersSecond[3];
 
 
 }

@@ -205,21 +205,18 @@ GameObject *GameObjectFactory::getGameObjectDisconnected() {
 
 LifeManager *GameObjectFactory::getLifeManagerTeam1() {
 
-    GameObject* lifeCaptainAmerica = new GameObject("Images/life_frame/vida-spiderman.png","CaptainAmerica",99,renderer ,0,10, 491, 104);
-    vector <int> aux = {10,12,491,104};
-    lifeCaptainAmerica->setOriginRect(aux);
+    GameObject* lifeCaptainAmerica = new GameObject("../Images/life_frame/vida-captainamerica.png","CaptainAmerica",99,renderer ,0,10, 491, 104);
+    vector <int> infoSource = {10,12,491,104};
+    lifeCaptainAmerica->setOriginRect(infoSource);
 
-    GameObject* lifeVenom = new GameObject("Images/life_frame/vida-spiderman.png","Venom",99,renderer ,0,10, 491, 104);
-    aux = {10,12,491,104};
-    lifeVenom->setOriginRect(aux);
+    GameObject* lifeVenom = new GameObject("../Images/life_frame/vida-venom.png","Venom",99,renderer ,0,10, 491, 104);
+    lifeVenom->setOriginRect(infoSource);
 
-    GameObject* lifeSpiderMan = new GameObject("Images/life_frame/vida-spiderman.png","SpiderMan",99,renderer ,0,10, 491, 104);
-    aux = {10,12,491,104};
-    lifeSpiderMan->setOriginRect(aux);
+    GameObject* lifeSpiderMan = new GameObject("../Images/life_frame/vida-spiderman.png","SpiderMan",99,renderer ,0,10, 491, 104);
+    lifeSpiderMan->setOriginRect(infoSource);
 
-    GameObject* lifeChunLi = new GameObject("Images/life_frame/vida-spiderman.png","ChunLi",99,renderer ,0,10, 491, 104);
-    aux = {10,12,491,104};
-    lifeChunLi->setOriginRect(aux);
+    GameObject* lifeChunLi = new GameObject("../Images/life_frame/vida-chunli.png","ChunLi",99,renderer ,0,10, 491, 104);
+    lifeChunLi->setOriginRect(infoSource);
 
     vector <GameObject*> lifeFrames = {lifeCaptainAmerica,
                                        lifeVenom,
@@ -227,21 +224,21 @@ LifeManager *GameObjectFactory::getLifeManagerTeam1() {
                                        lifeChunLi};
 
 
-    GameObject* lifeCaptainAmericaSecond = new GameObject("Images/life_frame/vida-spiderman.png","CaptainAmerica",99, renderer, 0, 143, 258, 55);
-    aux = {10,133,258,55};
-    lifeCaptainAmericaSecond->setOriginRect(aux);
+    GameObject* lifeCaptainAmericaSecond = new GameObject("../Images/life_frame/vida-captainamerica.png","CaptainAmerica",99, renderer, 0, 143, 258, 55);
+    infoSource = {10,133,258,55};
+    lifeCaptainAmericaSecond->setOriginRect(infoSource);
 
-    GameObject* lifeVenomSecond = new GameObject("Images/life_frame/vida-spiderman.png","Venom",99, renderer, 0, 143, 258, 55);
-    aux = {10,133,258,55};
-    lifeVenomSecond->setOriginRect(aux);
+    GameObject* lifeVenomSecond = new GameObject("../Images/life_frame/vida-venom.png","Venom",99, renderer, 0, 143, 258, 55);
+    infoSource = {10,133,258,55};
+    lifeVenomSecond->setOriginRect(infoSource);
 
-    GameObject* lifeSpiderManSecond = new GameObject("Images/life_frame/vida-spiderman.png","SpiderMan",99,renderer, 0, 143, 258, 55);
-    aux = {10,133,258,55};
-    lifeSpiderManSecond->setOriginRect(aux);
+    GameObject* lifeSpiderManSecond = new GameObject("../Images/life_frame/vida-spiderman.png","SpiderMan",99,renderer, 0, 143, 258, 55);
+    infoSource = {10,133,258,55};
+    lifeSpiderManSecond->setOriginRect(infoSource);
 
-    GameObject* lifeChunLiSecond = new GameObject("Images/life_frame/vida-spiderman.png","ChunLi",99,renderer, 0, 143, 258, 55);
-    aux = {10,133,258,55};
-    lifeChunLiSecond->setOriginRect(aux);
+    GameObject* lifeChunLiSecond = new GameObject("../Images/life_frame/vida-chunli.png","ChunLi",99,renderer, 0, 143, 258, 55);
+    infoSource = {10,133,258,55};
+    lifeChunLiSecond->setOriginRect(infoSource);
 
     vector <GameObject*> lifeFramesSecond = {lifeCaptainAmericaSecond,
                                        lifeVenomSecond,
@@ -252,28 +249,27 @@ LifeManager *GameObjectFactory::getLifeManagerTeam1() {
     vector <int> aux2 = {0,0,0,0};
     LifeManager* lifeManager = new LifeManager(renderer,50,aux1, aux2);
 
-
+    lifeManager->addCharacters(lifeFrames);
     lifeManager->addCharactersSecond(lifeFramesSecond);
-
 
     return lifeManager;
 }
 
 LifeManager *GameObjectFactory::getLifeManagerTeam2() {
 
-    GameObject* lifeCaptainAmerica = new GameObject("Images/life_frame/vida-spiderman.png","CaptainAmerica",99,renderer, 700, 10, 189, 104);
+    GameObject* lifeCaptainAmerica = new GameObject("../Images/life_frame/vida-captainamerica.png","CaptainAmerica",99,renderer, 700, 10, 489, 104);
     vector <int> aux= {507,12,489,104};
     lifeCaptainAmerica->setOriginRect(aux);
 
-    GameObject* lifeVenom = new GameObject("Images/life_frame/vida-spiderman.png","Venom",99,renderer, 700, 10, 189, 104);
+    GameObject* lifeVenom = new GameObject("../Images/life_frame/vida-venom.png","Venom",99,renderer, 700, 10, 489, 104);
     aux= {507,12,489,104};
     lifeVenom->setOriginRect(aux);
 
-    GameObject* lifeSpiderMan = new GameObject("Images/life_frame/vida-spiderman.png","SpiderMan",99,renderer, 700, 10, 189, 104);
+    GameObject* lifeSpiderMan = new GameObject("../Images/life_frame/vida-spiderman.png","SpiderMan",99,renderer, 700, 10, 489, 104);
     aux= {507,12,489,104};
     lifeSpiderMan->setOriginRect(aux);
 
-    GameObject* lifeChunLi = new GameObject("Images/life_frame/vida-spiderman.png","ChunLi",99,renderer, 700, 10, 189, 104);
+    GameObject* lifeChunLi = new GameObject("../Images/life_frame/vida-chunli.png","ChunLi",99,renderer, 700, 10, 489, 104);
     aux= {507,12,489,104};
     lifeChunLi->setOriginRect(aux);
 
@@ -283,19 +279,19 @@ LifeManager *GameObjectFactory::getLifeManagerTeam2() {
                                        lifeChunLi};
 
 
-    GameObject* lifeCaptainAmericaSecond = new GameObject("Images/life_frame/vida-spiderman.png","CaptainAmerica",99,renderer, 933,599, 257,55);
+    GameObject* lifeCaptainAmericaSecond = new GameObject("../Images/life_frame/vida-captainamerica.png","CaptainAmerica",99,renderer, 933,143, 257,55);
     aux = {739,133, 257, 55};
     lifeCaptainAmericaSecond->setOriginRect(aux);
 
-    GameObject* lifeVenomSecond = new GameObject("Images/life_frame/vida-spiderman.png","Venom",99, renderer, 933,599, 257,55);
+    GameObject* lifeVenomSecond = new GameObject("../Images/life_frame/vida-venom.png","Venom",99, renderer, 933,143, 257,55);
     aux = {739,133, 257, 55};
     lifeVenomSecond->setOriginRect(aux);
 
-    GameObject* lifeSpiderManSecond = new GameObject("Images/life_frame/vida-spiderman.png","SpiderMan",99, renderer, 933,599, 257,55);
+    GameObject* lifeSpiderManSecond = new GameObject("../Images/life_frame/vida-spiderman.png","SpiderMan",99, renderer, 933,143, 257,55);
     aux = {739,133, 257, 55};
     lifeSpiderManSecond->setOriginRect(aux);
 
-    GameObject* lifeChunLiSecond = new GameObject("Images/life_frame/vida-spiderman.png","ChunLi",99,renderer, 933,599, 257,55);
+    GameObject* lifeChunLiSecond = new GameObject("../Images/life_frame/vida-chunli.png","ChunLi",99,renderer, 933,143, 257,55);
     aux = {739,133, 257, 55};
     lifeChunLiSecond->setOriginRect(aux);
 
@@ -308,7 +304,7 @@ LifeManager *GameObjectFactory::getLifeManagerTeam2() {
     vector <int> aux1 = {0,0,0,0};
     vector <int> aux2 = {0,0,0,0};
     LifeManager* lifeManager = new LifeManager(renderer,50,aux1, aux2);
-
+    lifeManager->addCharacters(lifeFrames);
     lifeManager->addCharactersSecond(lifeFramesSecond);
     return lifeManager;
 }
