@@ -117,9 +117,14 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
     }
 
 
+
     bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal;
     bool characterIsntInLeftBoundary = info[0] >= 0;
     bool collision = collisionManager->Collisioning(gameObject, enemy);
+
+    if(punching and collision){
+        cout << "TE ESTOY PEGANDO GIL LABURANTE" << endl;
+    }
 
     if (movingRight and characterIsntInRightBoundary and !inAir and !crowchedDown and !direction->isEqual(UP) and
         !direction->isEqual(GETTINGUP) and !collision) {

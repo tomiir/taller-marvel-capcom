@@ -12,9 +12,9 @@ HitboxManager::~HitboxManager() = default;
 
 void HitboxManager::move(DirectionVector *direction) {
 
-    for(auto hitbox : currentHitboxes) {
-        hitbox.x += (int) direction->x;
-        hitbox.y += (int) direction->y;
+    for(int i = 0; i < currentHitboxes.size(); i++) {
+        currentHitboxes[i].x += (int) direction->x;
+        currentHitboxes[i].y += (int) direction->y;
     }
 }
 
@@ -37,8 +37,8 @@ vector<SDL_Rect> HitboxManager::getCurrentHitboxes() {
 }
 
 void HitboxManager::stayInFloor(int initialY) {
-    for (auto hitbox : currentHitboxes) {
-        hitbox.y = initialY;
+    for (int i = 0; i < currentHitboxes.size(); i++) {
+        currentHitboxes[i].y = initialY;
     }
 }
 
