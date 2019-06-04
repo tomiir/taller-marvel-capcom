@@ -11,6 +11,7 @@ Character_server::Character_server(int initialY, std::string name, int width, in
     logger->Log("Creando personaje: " + name, DEBUG, "");
     this->state = "still";
     hitbox = hitbox_;
+    this->name = name;
 
 }
 
@@ -99,24 +100,23 @@ void Character_server::correctPunch(bool punching) {
     if (punching){
 
         if(name == "CaptainAmerica"){
-            objRect.x -= 40;
+            objRect.x -= 120;
         }else if(name == "SpiderMan"){
-            objRect.x -= 70;
-            cout << "la chucha" << endl;
+            objRect.x -= 100;
         }else if(name == "ChunLi"){
-            objRect.x -= 40;
+            objRect.x -= 110;
         }else if(name == "Venom"){
-            objRect.x -= 70;
+            objRect.x -= 140;
         }
     }else{
         if(name == "CaptainAmerica"){
-            objRect.x += 40;
+            objRect.x += 120;
         }else if(name == "SpiderMan"){
-            objRect.x += 70;
+            objRect.x += 100;
         }else if(name == "ChunLi"){
-            objRect.x += 40;
+            objRect.x += 110;
         }else if(name == "Venom"){
-            objRect.x += 70;
+            objRect.x += 140;
         }
     }
 }
