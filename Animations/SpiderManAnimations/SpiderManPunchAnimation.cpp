@@ -8,7 +8,7 @@
 void SpiderManPunchAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 5;
+    animationRate = 6;
     animationLength = 3;
 
 
