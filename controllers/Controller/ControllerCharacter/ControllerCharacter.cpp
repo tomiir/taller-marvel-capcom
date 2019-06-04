@@ -86,7 +86,12 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
 
     if(punching) {
         punching = ++punching_timer != 15;
-        if(!punching) state = "walk";
+        if(!punching) {
+            state = "walk";
+            if (info[0] > enemyInfo[0]) {
+                dynamic_cast<Character_server *>(gameObject)->correctPunch(punching);
+            }
+        }
     }
 
     if (direction->isEqual(RIGHT) and !inAir and !crowchedDown) {
@@ -107,11 +112,11 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
         state = "still";
         crowchedDown = false;
     }
-    if ((direction->isEqual(STOPRIGHT) or inAir) and !punching) {
+    if ((direction->isEqual(STOPRIGHT) or inAir)) {
         movingRight = false;
         state = "still";
     }
-    if ((direction->isEqual(STOPLEFT) or inAir) and !punching) {
+    if ((direction->isEqual(STOPLEFT) or inAir)) {
         movingLeft = false;
         state = "still";
     }
@@ -127,6 +132,9 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
         collision = collisionManager->Collisioning(gameObject, enemy);
         if(collision){
             cout << gameObject->getName() << " golpeo a " << enemy->getName() << endl;
+        }
+        if (info[0] > enemyInfo[0]) {
+            dynamic_cast<Character_server *>(gameObject)->correctPunch(punching);
         }
     }
 
@@ -227,11 +235,11 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
 
         if (info[0] - 40 >= enemyInfo[0]) {
 
-            direction->setX(2);
+            direction->setX(speedCharacter);
             logger->LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
             gameObject->move(direction);
         } else if (info[0] + 40 <= enemyInfo[0]) {
-            direction->setX(-2);
+            direction->setX(-speedCharacter);
             logger->LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
             gameObject->move(direction);
         }

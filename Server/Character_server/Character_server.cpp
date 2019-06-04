@@ -93,3 +93,30 @@ vector<SDL_Rect> Character_server::getHitboxInfo() {
 bool Character_server::getHorizontalFlip() {
     return horizontalFlip;
 }
+
+void Character_server::correctPunch(bool punching) {
+
+    if (punching){
+
+        if(name == "CaptainAmerica"){
+            objRect.x -= 40;
+        }else if(name == "SpiderMan"){
+            objRect.x -= 70;
+            cout << "la chucha" << endl;
+        }else if(name == "ChunLi"){
+            objRect.x -= 40;
+        }else if(name == "Venom"){
+            objRect.x -= 70;
+        }
+    }else{
+        if(name == "CaptainAmerica"){
+            objRect.x += 40;
+        }else if(name == "SpiderMan"){
+            objRect.x += 70;
+        }else if(name == "ChunLi"){
+            objRect.x += 40;
+        }else if(name == "Venom"){
+            objRect.x += 70;
+        }
+    }
+}

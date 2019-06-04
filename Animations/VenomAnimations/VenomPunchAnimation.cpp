@@ -8,12 +8,12 @@ void VenomPunchAnimation::init() {
 
     startTime = SDL_GetTicks();
     animationRate = 4;
-    animationLength = 2;
+    animationLength = 1;
 
-    vector<int> frame1 = {4, 843, 131, 93};
-    vector<int> frame2 = {168, 843, 215, 93};
+//    vector<int> frame1 = {4, 843, 131, 93};
+    vector<int> frame2 = {168, 818, 215, 118};
 
-    animation.push_back(frame1);
+//    animation.push_back(frame1);
     animation.push_back(frame2);
 
 }
