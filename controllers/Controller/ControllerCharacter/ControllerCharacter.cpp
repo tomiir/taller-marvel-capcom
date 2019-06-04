@@ -79,6 +79,15 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
     vector<int> info = gameObject->getInfo();
     vector<int> enemyInfo = enemy->getInfo();
 
+    bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal;
+    bool characterIsntInLeftBoundary = info[0] >= 0;
+    bool collision = collisionManager->Collisioning(gameObject, enemy);
+
+
+    if(punching) {
+        punching = ++punching_timer != 15;
+        if(!punching) state = "walk";
+    }
 
     if (direction->isEqual(RIGHT) and !inAir and !crowchedDown) {
         state = "walk";
@@ -98,11 +107,11 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
         state = "still";
         crowchedDown = false;
     }
-    if (direction->isEqual(STOPRIGHT) or inAir and !punching) {
+    if ((direction->isEqual(STOPRIGHT) or inAir) and !punching) {
         movingRight = false;
         state = "still";
     }
-    if (direction->isEqual(STOPLEFT) or inAir and !punching) {
+    if ((direction->isEqual(STOPLEFT) or inAir) and !punching) {
         movingLeft = false;
         state = "still";
     }
@@ -112,22 +121,19 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
     if(direction -> isEqual(PUNCH) and !punching) {
         logger->Log("Pegando", INFO, "");
         state = "punch";
+        dynamic_cast<Character_server *>(gameObject)->setState(state);
         punching = true;
         punching_timer = 0;
+        collision = collisionManager->Collisioning(gameObject, enemy);
+        if(collision){
+            cout << gameObject->getName() << " golpeo a " << enemy->getName() << endl;
+        }
     }
 
 
-
-    bool characterIsntInRightBoundary = info[0] <= screenWidth - info[2] - distanceBoundaryHorizontal;
-    bool characterIsntInLeftBoundary = info[0] >= 0;
-    bool collision = collisionManager->Collisioning(gameObject, enemy);
-
-    if(punching and collision){
-        cout << "TE ESTOY PEGANDO GIL LABURANTE" << endl;
-    }
 
     if (movingRight and characterIsntInRightBoundary and !inAir and !crowchedDown and !direction->isEqual(UP) and
-        !direction->isEqual(GETTINGUP) and !collision) {
+        !direction->isEqual(GETTINGUP) and !collision and !punching) {
 
         direction->setX(speedCharacter);
         logger->LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
@@ -136,7 +142,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
     }
 
     if (movingLeft and characterIsntInLeftBoundary and !inAir and !crowchedDown and !direction->isEqual(UP) and
-        !direction->isEqual(GETTINGUP) and !collision) {
+        !direction->isEqual(GETTINGUP) and !collision and !punching) {
 
         direction->setX(-speedCharacter);
         logger->LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
@@ -144,18 +150,18 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
 
     }
 
-    if (direction->isDiagonalRight() and !inAir and !crowchedDown) jumpRight = true;
-    if (direction->isDiagonalLeft() and !inAir and !crowchedDown) jumpLeft = true;
-    if (direction->isEqual(UP) and !inAir and !crowchedDown) {
+    if (direction->isDiagonalRight() and !inAir and !crowchedDown and !punching) jumpRight = true;
+    if (direction->isDiagonalLeft() and !inAir and !crowchedDown and !punching) jumpLeft = true;
+    if (direction->isEqual(UP) and !inAir and !crowchedDown and !punching) {
         logger->Log("El personaje " + character->getName() + " salto.", DEBUG, "");
         jump = true;
     }
 
-    if (direction->isEqual(DOWN) and !inAir) {
+    if (direction->isEqual(DOWN) and !inAir and !punching) {
         state = "crowchedDown";
     }
 
-    if (direction->isEqual(GETTINGUP) and !inAir) gameObject->stayInFloor();
+    if (direction->isEqual(GETTINGUP) and !inAir and !punching) gameObject->stayInFloor();
 
     if (jump) {
 
@@ -217,22 +223,20 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
 
 
     if (collisionManager->Collisioning(gameObject, enemy) and characterIsntInRightBoundary and
-        characterIsntInLeftBoundary) {
+        characterIsntInLeftBoundary and !punching) {
 
         if (info[0] - 40 >= enemyInfo[0]) {
 
-            direction->setX(speedCharacter);
+            direction->setX(2);
             logger->LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
             gameObject->move(direction);
         } else if (info[0] + 40 <= enemyInfo[0]) {
-            direction->setX(-speedCharacter);
+            direction->setX(-2);
             logger->LogMovement(character->getName(), direction, character->getInfo()[0], character->getInfo()[1]);
             gameObject->move(direction);
         }
     }
-    if(punching) {
-        punching = ++punching_timer != 10;
-    }
+
 
     delete direction;
 
