@@ -35,7 +35,7 @@ public:
 
     bool getHorizontalFlip();
 
-    void correctPunch(bool punching);
+//    void correctPunch(bool punching);
 
 private:
 

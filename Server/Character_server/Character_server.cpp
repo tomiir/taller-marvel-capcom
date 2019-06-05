@@ -95,28 +95,28 @@ bool Character_server::getHorizontalFlip() {
     return horizontalFlip;
 }
 
-void Character_server::correctPunch(bool punching) {
-
-    if (punching){
-
-        if(name == "CaptainAmerica"){
-            objRect.x -= 120;
-        }else if(name == "SpiderMan"){
-            objRect.x -= 100;
-        }else if(name == "ChunLi"){
-            objRect.x -= 110;
-        }else if(name == "Venom"){
-            objRect.x -= 140;
-        }
-    }else{
-        if(name == "CaptainAmerica"){
-            objRect.x += 120;
-        }else if(name == "SpiderMan"){
-            objRect.x += 100;
-        }else if(name == "ChunLi"){
-            objRect.x += 110;
-        }else if(name == "Venom"){
-            objRect.x += 140;
-        }
-    }
-}
+//void Character_server::correctPunch(bool punching) {
+//
+//    if (punching){
+//
+//        if(name == "CaptainAmerica"){
+//            objRect.x -= 120;
+//        }else if(name == "SpiderMan"){
+//            objRect.x -= 100;
+//        }else if(name == "ChunLi"){
+//            objRect.x -= 110;
+//        }else if(name == "Venom"){
+//            objRect.x -= 140;
+//        }
+//    }else{
+//        if(name == "CaptainAmerica"){
+//            objRect.x += 120;
+//        }else if(name == "SpiderMan"){
+//            objRect.x += 100;
+//        }else if(name == "ChunLi"){
+//            objRect.x += 110;
+//        }else if(name == "Venom"){
+//            objRect.x += 140;
+//        }
+//    }
+//}
