@@ -11,6 +11,7 @@
 class Audio {
 public:
     ~Audio();
+    explicit Audio(const char* fileName);
     void load(const char* fileName);
     void play();
 

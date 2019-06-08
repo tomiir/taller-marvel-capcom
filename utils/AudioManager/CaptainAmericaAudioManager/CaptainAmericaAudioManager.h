@@ -5,9 +5,15 @@
 #ifndef TALLER_MARVEL_CAPCOM_CAPTAINAMERICAAUDIOMANAGER_H
 #define TALLER_MARVEL_CAPCOM_CAPTAINAMERICAAUDIOMANAGER_H
 
+#include "../AudioManager.h"
 
-class CaptainAmericaAudioManager {
 
+class CaptainAmericaAudioManager : public AudioManager {
+public:
+    CaptainAmericaAudioManager();
+    ~CaptainAmericaAudioManager() = default;
+
+    void init() override ;
 };
 
 

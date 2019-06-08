@@ -7,22 +7,23 @@
 
 
 #include "Audio.h"
-#include <vector>
+#include <map>
 #include <string>
 
-class AudioManager_Fight {
-public:
-    ~AudioManager_Fight();
-    AudioManager_Fight(const char* punch_, const char* jump_, const char* dmg_);
+using namespace std;
 
+class AudioManager {
+public:
+    ~AudioManager();
+    AudioManager();
+
+    virtual void init();
+    virtual void playAudio(string name);
     void setState(std::string state);
-private:
-    Audio punch;
-    Audio jump;
-    Audio dmg;
+protected:
+    map<string,Audio*> audios;
     std::string state;
 
 };
-
 
 #endif //TALLER_MARVEL_CAPCOM_AUDIOMANAGER_H

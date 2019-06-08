@@ -172,9 +172,11 @@ add_executable(
         utils/HitboxManager/CaptainAmericaHitboxManager/CaptainAmericaHitboxManager.cpp
         utils/CollisionManager/CollisionManager.cpp
         utils/CollisionManager/CollisionManager.h
-
-
-        Json/JsonGameObject_charSelect.cpp Json/JsonGameObject_charSelect.h Json/JsonSintax.cpp Json/JsonSintax.h Json/JsonDisconection.cpp Json/JsonDisconection.h Animations/CaptainAmericaAnimations/CaptainAmericaPunchAnimation.cpp Animations/CaptainAmericaAnimations/CaptainAmericaPunchAnimation.h Animations/ChunLiAnimations/ChunLiPunchAnimation.cpp Animations/ChunLiAnimations/ChunLiPunchAnimation.h Animations/SpiderManAnimations/SpiderManPunchAnimation.cpp Animations/SpiderManAnimations/SpiderManPunchAnimation.h Animations/VenomAnimations/VenomPunchAnimation.cpp Animations/VenomAnimations/VenomPunchAnimation.h)
+        utils/AudioManager/Audio.h
+        utils/AudioManager/Audio.cpp
+        utils/AudioManager/AudioManager.cpp
+        utils/AudioManager/AudioManager.h
+        Json/JsonGameObject_charSelect.cpp Json/JsonGameObject_charSelect.h Json/JsonSintax.cpp Json/JsonSintax.h Json/JsonDisconection.cpp Json/JsonDisconection.h Animations/CaptainAmericaAnimations/CaptainAmericaPunchAnimation.cpp Animations/CaptainAmericaAnimations/CaptainAmericaPunchAnimation.h Animations/ChunLiAnimations/ChunLiPunchAnimation.cpp Animations/ChunLiAnimations/ChunLiPunchAnimation.h Animations/SpiderManAnimations/SpiderManPunchAnimation.cpp Animations/SpiderManAnimations/SpiderManPunchAnimation.h Animations/VenomAnimations/VenomPunchAnimation.cpp Animations/VenomAnimations/VenomPunchAnimation.h utils/AudioManager/AudioManager.cpp utils/AudioManager/AudioManager.h utils/AudioManager/CaptainAmericaAudioManager/CaptainAmericaAudioManager.cpp utils/AudioManager/CaptainAmericaAudioManager/CaptainAmericaAudioManager.h utils/AudioManager/SpiderManAudioManager/SpiderManAudioManager.cpp utils/AudioManager/SpiderManAudioManager/SpiderManAudioManager.h)
 
 
 

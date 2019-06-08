@@ -19,3 +19,8 @@ void Audio::play() {
     SDL_QueueAudio(deviceID, waveBuffer, waveLength);
     SDL_PauseAudioDevice(deviceID, 0);
 }
+
+Audio::Audio(const char *fileName) {
+    this->load(fileName);
+}
+

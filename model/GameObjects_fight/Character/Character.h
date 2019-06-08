@@ -6,6 +6,7 @@
 #include "../../../utils/TextureManager/TextureManager.h"
 #include "../../../utils/SpriteManagers/SpriteManager.h"
 #include "../../../utils/Logger/Logger.h"
+#include "../../../utils/AudioManager/AudioManager.h"
 #include <string.h>
 
 using namespace std;
@@ -23,10 +24,13 @@ public:
     void changePosition(int changeX, int changeY);
     void setInitialXPositions(int positionLeft, int positionRight);
     void setInitialPos(bool left);
+    void setAudioManager(AudioManager* audioManager);
     string name;
 
 private:
     SpriteManager* spriteManager;
+    AudioManager* audioManager;
+
     SDL_RendererFlip flip;
     int initialY;
     CLogger* logger = CLogger::GetLogger();

@@ -309,7 +309,6 @@ void* Client::render(void *arg) {
             game->updateCharacters(posCharTeam1_x, posCharTeam1_y, stateCharTeam1, flipChar1, currentCharT1,
                     posCharTeam2_x, posCharTeam2_y, stateCharTeam2, flipChar2, currentCharT2);
 
-
             game->render();
             queueRecv.pop();
         }
