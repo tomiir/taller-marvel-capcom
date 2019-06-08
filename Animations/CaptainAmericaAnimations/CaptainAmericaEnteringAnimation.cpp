@@ -13,9 +13,9 @@ void CaptainAmericaEnteringAnimation::init() {
     animationRate = 2;
     animationLength = 3;
 
-    vector<int> frame0 = {383, 848, 383, 212};
-    vector<int> frame1 = {766, 848, 383, 212};
-    vector<int> frame2 = {1149, 848, 383, 212};
+    vector<int> frame0 = {322, 980, 322, 245};
+    vector<int> frame1 = {644, 980, 322, 245};
+    vector<int> frame2 = {966, 980, 322, 245};
 
 
     animation.push_back(frame0);

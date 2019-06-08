@@ -8,15 +8,15 @@ void CaptainAmericaStillAnimation::init() {
     animationRate = 10;
     animationLength = 9;
 
-    vector<int> frame0 = {0, 0, 383, 212};
-    vector<int> frame1 = {383, 0, 383, 212};
-    vector<int> frame2 = {766, 0, 383, 212};
-    vector<int> frame3 = {1149, 0, 383, 212};
-    vector<int> frame4 = {1532, 0, 383, 212};
-    vector<int> frame5 = {1915, 0, 383, 212};
-    vector<int> frame6 = {2298, 0, 383, 212};
-    vector<int> frame7 = {2681, 0, 383, 212};
-    vector<int> frame8 = {3064, 0, 383, 212};
+    vector<int> frame0 = {0, 0, 322, 245};
+    vector<int> frame1 = {322, 0, 322, 245};
+    vector<int> frame2 = {644, 0, 322, 245};
+    vector<int> frame3 = {966, 0, 322, 245};
+    vector<int> frame4 = {1288, 0, 322, 245};
+    vector<int> frame5 = {1610, 0, 322, 245};
+    vector<int> frame6 = {1932, 0, 322, 245};
+    vector<int> frame7 = {2254, 0, 322, 245};
+    vector<int> frame8 = {2576, 0, 322, 245};
 
 
 

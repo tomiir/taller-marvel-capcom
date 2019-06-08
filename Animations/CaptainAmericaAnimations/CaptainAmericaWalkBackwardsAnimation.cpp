@@ -9,13 +9,13 @@ void CaptainAmericaWalkBackwardsAnimation::init() {
     animationRate = 8;
     animationLength = 7;
 
-    vector<int> frame0 = {0, 424, 383, 212};
-    vector<int> frame1 = {383, 424, 383, 212};
-    vector<int> frame2 = {766, 424, 383, 212};
-    vector<int> frame3 = {1149, 424, 383, 212};
-    vector<int> frame4 = {1532, 424, 383, 212};
-    vector<int> frame5 = {1915, 424, 383, 212};
-    vector<int> frame6 = {2298, 424, 383, 212};
+    vector<int> frame0 = {0, 490, 322, 245};
+    vector<int> frame1 = {322, 490, 322, 245};
+    vector<int> frame2 = {644, 490, 322, 245};
+    vector<int> frame3 = {966, 490, 322, 245};
+    vector<int> frame4 = {1288, 490, 322, 245};
+    vector<int> frame5 = {1610, 490, 322, 245};
+    vector<int> frame6 = {1932, 490, 322, 245};
 
 
 

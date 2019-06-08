@@ -10,7 +10,7 @@ void CaptainAmericaPunchAnimation::init() {
     animationRate = 4;
     animationLength = 1;
 
-    vector<int> frame1 = {766, 2968, 383, 212};
+    vector<int> frame1 = {644, 3430, 322, 245};
 //    vector<int> frame2 = {98, 2968, 383, 212};
 //    vector<int> frame3 = {239, 878, 98, 108};
 

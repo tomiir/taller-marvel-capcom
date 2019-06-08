@@ -11,11 +11,11 @@ void CaptainAmericaWalkFowardAnimation::init() {
     animationRate = 6;
     animationLength = 5;
 
-    vector<int> frame0 = {0, 212, 383, 212};
-    vector<int> frame1 = {383, 212, 383, 212};
-    vector<int> frame2 = {766, 212, 383, 212};
-    vector<int> frame3 = {1149, 212, 383, 212};
-    vector<int> frame4 = {1532, 212, 383, 212};
+    vector<int> frame0 = {0, 245, 322, 245};
+    vector<int> frame1 = {322, 245, 322, 245};
+    vector<int> frame2 = {644, 245, 322, 245};
+    vector<int> frame3 = {966, 245, 322, 245};
+    vector<int> frame4 = {1288, 245, 322, 245};
 
 
     animation.push_back(frame0);

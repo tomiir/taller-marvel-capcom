@@ -11,11 +11,11 @@ void CaptainAmericaJumpAnimation::init() {
     animationRate = 5;
     animationLength = 5;
 
-    vector<int> frame0 = {383, 848, 383, 212};
-    vector<int> frame1 = {766, 848, 383, 212};
-    vector<int> frame2 = {1149, 848, 383, 212};
-    vector<int> frame3 = {1532, 848, 383, 212};
-    vector<int> frame4 = {1915, 848, 383, 212};
+    vector<int> frame0 = {322, 980, 322, 245};
+    vector<int> frame1 = {644, 980, 322, 245};
+    vector<int> frame2 = {966, 980, 322, 245};
+    vector<int> frame3 = {1288, 980, 322, 245};
+    vector<int> frame4 = {1610, 980, 322, 245};
     //vector<int> frame5 = {499, 428, 89, 157};
 
 

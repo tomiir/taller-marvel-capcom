@@ -33,6 +33,13 @@ void Game::init(const char *title, int posX, int posY) {
                 }
             }
 
+        SDL_Rect loading = SDL_Rect{0,0, screenWidth, screenHeight};
+
+        SDL_SetRenderDrawColor(renderer, 0,0,0,255);
+        SDL_RenderFillRect(renderer, &loading);
+
+        SDL_RenderPresent(renderer);
+
         factory = new ViewFactory(renderer, screenWidth, screenHeight);
 
 
