@@ -8,17 +8,14 @@
 void SpiderManPunchAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 6;
+    animationRate = 2;
     animationLength = 1;
 
 
-//    vector<int> frame1 = {582, 649, 103, 68};
-//    vector<int> frame2 = {17, 613, 109, 102};
-    vector<int> frame3 = {129, 616, 152, 99};
 
-//    animation.push_back(frame1);
-//    animation.push_back(frame2);
-    animation.push_back(frame3);
+    vector<int> frame0 = {491, 3752, 491, 268};
+
+    animation.push_back(frame0);
 
 }
 

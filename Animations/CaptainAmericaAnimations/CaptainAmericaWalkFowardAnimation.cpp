@@ -9,14 +9,13 @@ void CaptainAmericaWalkFowardAnimation::init() {
 
     startTime = SDL_GetTicks();
     animationRate = 6;
-    animationLength = 6;
+    animationLength = 5;
 
-    vector<int> frame0 = {0, 163, 97, 114};
-    vector<int> frame1 = {99, 160, 97,116};
-    vector<int> frame2 = {196, 162, 97, 114};
-    vector<int> frame3 = {300, 161, 97, 111};
-    vector<int> frame4 = {402, 160, 97, 113};
-    vector<int> frame5 = {504, 161, 95, 114};
+    vector<int> frame0 = {0, 212, 383, 212};
+    vector<int> frame1 = {383, 212, 383, 212};
+    vector<int> frame2 = {766, 212, 383, 212};
+    vector<int> frame3 = {1149, 212, 383, 212};
+    vector<int> frame4 = {1532, 212, 383, 212};
 
 
     animation.push_back(frame0);
@@ -24,7 +23,6 @@ void CaptainAmericaWalkFowardAnimation::init() {
     animation.push_back(frame2);
     animation.push_back(frame3);
     animation.push_back(frame4);
-    animation.push_back(frame5);
 
 
 }

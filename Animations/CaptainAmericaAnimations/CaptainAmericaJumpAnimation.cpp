@@ -8,19 +8,19 @@
 void CaptainAmericaJumpAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 6;
-    animationLength = 4;
+    animationRate = 5;
+    animationLength = 5;
 
-    //vector<int> frame0 = {5, 498, 77, 90};
-    vector<int> frame1 = {112, 428, 71, 152};
-    vector<int> frame2 = {210, 427, 71, 152};
-    vector<int> frame3 = {304, 430, 89, 68};
-    vector<int> frame4 = {414, 431, 75, 86};
+    vector<int> frame0 = {383, 848, 383, 212};
+    vector<int> frame1 = {766, 848, 383, 212};
+    vector<int> frame2 = {1149, 848, 383, 212};
+    vector<int> frame3 = {1532, 848, 383, 212};
+    vector<int> frame4 = {1915, 848, 383, 212};
     //vector<int> frame5 = {499, 428, 89, 157};
 
 
 
-    //animation.push_back(frame0);
+    animation.push_back(frame0);
     animation.push_back(frame1);
     animation.push_back(frame2);
     animation.push_back(frame3);

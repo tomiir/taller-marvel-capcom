@@ -9,23 +9,21 @@
 void VenomJumpAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 4;
+    animationRate = 6;
     animationLength = 8;
 
-    //vector<int> frame0 = {4, 5480, 129, 88};
-    vector<int> frame1 = {206, 5415, 133, 153};
-    vector<int> frame2 = {354, 5406, 127, 162};
-    vector<int> frame3 = {558, 5424, 153, 111};
-    vector<int> frame4 = {725, 5421, 133, 103};
-    vector<int> frame5 = {877, 5421, 115, 85};
-    vector<int> frame6 = {1011, 5422, 133, 103};
-    vector<int> frame7 = {3, 5588, 131, 136};
-    vector<int> frame8 = {148, 5581, 130, 144};
-    //vector<int> frame9 = {444, 5637, 129, 88};
-    //vector<int> frame10 = {597, 5645, 112, 82};
+    vector<int> frame0 = {0, 952, 560, 238};
+    vector<int> frame1 = {560, 952, 560, 238};
+    vector<int> frame2 = {1120, 952, 560, 238};
+    vector<int> frame3 = {1680, 952, 560, 238};
+    vector<int> frame4 = {2240, 952, 560, 238};
+    vector<int> frame5 = {2800, 952, 560, 238};
+    vector<int> frame6 = {3360, 952, 560, 238};
+    vector<int> frame7 = {3920, 952, 560, 238};
 
 
-    //animation.push_back(frame0);
+
+    animation.push_back(frame0);
     animation.push_back(frame1);
     animation.push_back(frame2);
     animation.push_back(frame3);
@@ -33,9 +31,6 @@ void VenomJumpAnimation::init() {
     animation.push_back(frame5);
     animation.push_back(frame6);
     animation.push_back(frame7);
-    animation.push_back(frame8);
-    //animation.push_back(frame9);
-    //animation.push_back(frame10);
 
 }
 

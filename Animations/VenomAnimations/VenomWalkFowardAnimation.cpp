@@ -12,16 +12,16 @@ void VenomWalkFowardAnimation::init() {
     animationRate = 11;
     animationLength = 10;
 
-    vector<int> frame0 = {7, 2918, 148, 112};
-    vector<int> frame1 = {186, 2916, 134, 113};
-    vector<int> frame2 = {348, 2915, 120, 111};
-    vector<int> frame3 = {495, 2914, 97, 111};
-    vector<int> frame4 = {614, 2913, 126, 112};
-    vector<int> frame5 = {769, 2915, 149, 113};
-    vector<int> frame6 = {942, 2913, 130, 115};
-    vector<int> frame7 = {1096, 2912, 98, 116};
-    vector<int> frame8 = {7, 3043, 104, 115};
-    vector<int> frame9 = {143, 3045, 129, 113};
+    vector<int> frame0 = {0, 560, 560, 238};
+    vector<int> frame1 = {560, 560, 560, 238};
+    vector<int> frame2 = {1120, 560, 560, 238};
+    vector<int> frame3 = {1680, 560, 560, 238};
+    vector<int> frame4 = {2240, 560, 560, 238};
+    vector<int> frame5 = {2800, 560, 560, 238};
+    vector<int> frame6 = {3360, 560, 560, 238};
+    vector<int> frame7 = {3920, 560, 560, 238};
+    vector<int> frame8 = {4480, 560, 560, 238};
+    vector<int> frame9 = {5040, 560, 560, 238};
 
 
     animation.push_back(frame0);

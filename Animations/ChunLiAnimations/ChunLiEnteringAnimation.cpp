@@ -12,9 +12,9 @@ void ChunLiEnteringAnimation::init() {
     animationLength = 3;
 
 
-    vector<int> frame0 = {514, 535, 50, 94};
-    vector<int> frame1 = {579, 539, 42, 107};
-    vector<int> frame2 = {633, 539, 54, 107};
+    vector<int> frame0 = {0, 840, 407, 210};
+    vector<int> frame1 = {407, 840, 407, 210};
+    vector<int> frame2 = {814, 840, 407, 210};
 
 
     animation.push_back(frame0);

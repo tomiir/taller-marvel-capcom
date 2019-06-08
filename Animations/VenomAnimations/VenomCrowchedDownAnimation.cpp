@@ -12,28 +12,25 @@ void VenomCrowchedDownAnimation::init() {
     animationRate = 9;
     animationLength = 8;
 
-    //vector<int> frame0 = {6, 3584, 126, 113};
-    //vector<int> frame1 = {170, 3585, 112, 115};
-    vector<int> frame2 = {5, 3719, 112, 115};
-    vector<int> frame3 = {144, 3719, 112, 115};
-    vector<int> frame4 = {284, 3719, 112, 115};
-    vector<int> frame5 = {428, 3719, 112, 115};
-    vector<int> frame6 = {570, 3719, 112, 115};
-    vector<int> frame7 = {705, 3719, 112, 115};
-    vector<int> frame8 = {842, 3719, 112, 115};
-    vector<int> frame9 = {981, 3719, 112, 115};
+    vector<int> frame0 = {0, 714, 560, 238};
+    vector<int> frame1 = {560, 714, 560, 238};
+    vector<int> frame2 = {1120, 714, 560, 238};
+    vector<int> frame3 = {1680, 714, 560, 238};
+    vector<int> frame4 = {2240, 714, 560, 238};
+    vector<int> frame5 = {2800, 714, 560, 238};
+    vector<int> frame6 = {3360, 714, 560, 238};
+    vector<int> frame7 = {3920, 714, 560, 238};
 
 
-    //animation.push_back(frame0);
-    //animation.push_back(frame1);
+
+    animation.push_back(frame0);
+    animation.push_back(frame1);
     animation.push_back(frame2);
     animation.push_back(frame3);
     animation.push_back(frame4);
     animation.push_back(frame5);
     animation.push_back(frame6);
     animation.push_back(frame7);
-    animation.push_back(frame8);
-    animation.push_back(frame9);
 
 }
 

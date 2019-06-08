@@ -10,10 +10,8 @@ void VenomPunchAnimation::init() {
     animationRate = 4;
     animationLength = 1;
 
-//    vector<int> frame1 = {4, 843, 131, 93};
-    vector<int> frame2 = {168, 818, 215, 118};
+    vector<int> frame2 = {560, 3332, 560, 238};
 
-//    animation.push_back(frame1);
     animation.push_back(frame2);
 
 }

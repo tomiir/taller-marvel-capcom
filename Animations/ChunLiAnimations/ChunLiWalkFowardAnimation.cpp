@@ -8,25 +8,26 @@
 void ChunLiWalkFowardAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 12;
-    animationLength = 11;
-    vector<vector<int>> frames = {
-            {32, 328, 80, 82},
-            {131, 330, 65, 84},
-            {209, 330, 64, 85},
-            {287, 333, 65, 84},
-            {369, 332, 74, 83},
-            {447, 336, 79, 82},
-            {533, 335, 74, 83},
-            {613, 336, 65, 84},
-            {685, 336, 64, 85},
-            {756, 337, 65, 84},
-            {823, 337, 73, 83}
-    };
+    animationRate = 8;
+    animationLength = 7;
 
-    for (int i = 0; i< animationLength; i++) {
-        animation.push_back(frames[i]);
-    }
+    vector<int> frame0 = {0, 210, 407, 210};
+    vector<int> frame1 = {407, 210, 407, 210};
+    vector<int> frame2 = {814, 210, 407, 210};
+    vector<int> frame3 = {1221, 210, 407, 210};
+    vector<int> frame4 = {1628, 210, 407, 210};
+    vector<int> frame5 = {2035, 210, 407, 210};
+    vector<int> frame6 = {2442, 210, 407, 210};
+
+
+
+    animation.push_back(frame0);
+    animation.push_back(frame1);
+    animation.push_back(frame2);
+    animation.push_back(frame3);
+    animation.push_back(frame4);
+    animation.push_back(frame5);
+    animation.push_back(frame6);
 }
 
 ChunLiWalkFowardAnimation::ChunLiWalkFowardAnimation() : Animation() {

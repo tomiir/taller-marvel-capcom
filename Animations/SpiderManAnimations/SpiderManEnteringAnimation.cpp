@@ -11,8 +11,8 @@ void SpiderManEnteringAnimation::init() {
     animationRate = 1;
     animationLength = 2;
 
-    vector<int> frame0 = {1367, 4298, 73, 139};
-    vector<int> frame1 = {1452, 4292, 65, 144};
+    vector<int> frame0 = {3437, 5896, 491, 268};
+    vector<int> frame1 = {3928, 5896, 491, 268};
 
 
     animation.push_back(frame0);

@@ -12,7 +12,7 @@ void ChunLiPunchAnimation::init() {
     animationLength = 1;
 
 //    vector<int> frame1 = {116, 1236, 115, 80};
-    vector<int> frame2 = {241, 1233, 131, 84};
+    vector<int> frame2 = {407, 2940, 407, 210};
 
 //    animation.push_back(frame1);
     animation.push_back(frame2);
