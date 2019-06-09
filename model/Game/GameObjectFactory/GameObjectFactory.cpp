@@ -386,8 +386,8 @@ TimeManager *GameObjectFactory::getTimeManager() {
                                        tenFour, tenFive, tenSix, tenSeven,
                                        tenEight, tenNine};
 
-    int xRound = (screenWidth - 258)/2;
-    int yRound = (screenHeight - 91)/2;
+    int xRound = (screenWidth - 258*2)/2;
+    int yRound = (screenHeight - 91*2)/2;
 
     GameObject* roundOne    = new GameObject("../Images/timer/timer-rounds.png","roundOne",99,renderer, xRound, yRound, 258*2 ,91*2);
     positionToTake = {0,60, 258,91};
