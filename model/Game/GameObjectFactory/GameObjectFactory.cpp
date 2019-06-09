@@ -308,6 +308,7 @@ LifeManager *GameObjectFactory::getLifeManagerTeam2() {
     vector <int> aux1 = {716,32,394,31};
     vector <int> aux2 = {946,167,208,17};
     LifeManager* lifeManager = new LifeManager(renderer,50,aux1, aux2);
+    lifeManager->setAsRight();
     lifeManager->addCharacters(lifeFrames);
     lifeManager->addCharactersSecond(lifeFramesSecond);
     return lifeManager;

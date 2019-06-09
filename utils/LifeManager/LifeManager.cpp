@@ -36,8 +36,10 @@ void LifeManager::render() {
 
     SDL_Rect rectangle;
 
+    double delta;
     if (isRight){
-        rectangle.x = x + life*x;
+        delta = w*(1-life);
+        rectangle.x = x + delta;
     }
     else{
         rectangle.x = x;
@@ -55,14 +57,13 @@ void LifeManager::render() {
 
     SDL_Rect rectangle_second;
     if (isRight){
-        rectangle_second.x = x_second + lifeSecond*x_second;
+        delta = w_second * ( 1 - lifeSecond);
+        rectangle_second.x = x_second + delta;
     }
     else{
         rectangle_second.x = x_second;
     }
 
-
-    rectangle_second.x = x_second;
     rectangle_second.y = y_second;
     rectangle_second.w = w_second * lifeSecond;
     rectangle_second.h = h_second;
@@ -125,4 +126,9 @@ void LifeManager::setSecondCharacter(string name) {
 
 void LifeManager::setAsRight() {
     isRight = true;
+
+    //double delta = w * (1 - life);
+    //x = x + delta;
+    //double deltaSecond = w_second * (1 - lifeSecond);
+    //x_second = x_second + deltaSecond;
 }
