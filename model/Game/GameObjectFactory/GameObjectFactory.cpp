@@ -229,19 +229,19 @@ LifeManager *GameObjectFactory::getLifeManagerTeam1() {
 
 
     GameObject* lifeCaptainAmericaSecond = new GameObject("../Images/life_frame/vida-captainamerica.png","CaptainAmerica",99, renderer, 0, 110, 258, 55);
-    infoSource = {10,133,258,55};
+    infoSource = {10,100,258,55};
     lifeCaptainAmericaSecond->setOriginRect(infoSource);
 
     GameObject* lifeVenomSecond = new GameObject("../Images/life_frame/vida-venom.png","Venom",99, renderer, 0, 110, 258, 55);
-    infoSource = {10,133,258,55};
+    infoSource = {10,100,258,55};
     lifeVenomSecond->setOriginRect(infoSource);
 
     GameObject* lifeSpiderManSecond = new GameObject("../Images/life_frame/vida-spiderman.png","SpiderMan",99,renderer, 0, 110, 258, 55);
-    infoSource = {10,133,258,55};
+    infoSource = {10,100,258,55};
     lifeSpiderManSecond->setOriginRect(infoSource);
 
     GameObject* lifeChunLiSecond = new GameObject("../Images/life_frame/vida-chunli.png","ChunLi",99,renderer, 0, 110, 258, 55);
-    infoSource = {10,133,258,55};
+    infoSource = {10,100,258,55};
     lifeChunLiSecond->setOriginRect(infoSource);
 
     vector <GameObject*> lifeFramesSecond = {lifeCaptainAmericaSecond,
@@ -284,19 +284,19 @@ LifeManager *GameObjectFactory::getLifeManagerTeam2() {
 
 
     GameObject* lifeCaptainAmericaSecond = new GameObject("../Images/life_frame/vida-captainamerica.png","CaptainAmerica",99,renderer, 943,110, 257,55);
-    aux = {739,133, 257, 55};
+    aux = {739,100, 257, 55};
     lifeCaptainAmericaSecond->setOriginRect(aux);
 
     GameObject* lifeVenomSecond = new GameObject("../Images/life_frame/vida-venom.png","Venom",99, renderer, 943,105, 110,55);
-    aux = {739,133, 257, 55};
+    aux = {739,100, 257, 55};
     lifeVenomSecond->setOriginRect(aux);
 
     GameObject* lifeSpiderManSecond = new GameObject("../Images/life_frame/vida-spiderman.png","SpiderMan",99, renderer, 943,110, 257,55);
-    aux = {739,133, 257, 55};
+    aux = {739,100, 257, 55};
     lifeSpiderManSecond->setOriginRect(aux);
 
     GameObject* lifeChunLiSecond = new GameObject("../Images/life_frame/vida-chunli.png","ChunLi",99,renderer, 943,110, 257,55);
-    aux = {739,133, 257, 55};
+    aux = {739,100, 257, 55};
     lifeChunLiSecond->setOriginRect(aux);
 
     vector <GameObject*> lifeFramesSecond = {lifeCaptainAmericaSecond,
