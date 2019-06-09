@@ -122,7 +122,7 @@ string ViewController_fight::giveNewParameters() {
     updates[44] = team2->getCurrentCharacterNumber();  //No entiendo porque me aparece value is never used
     updates[45] = '9'; //ten
     updates[46] = '8'; //unity
-    updates[47] = '1'; //round
+    updates[47] = '0'; //round
 
     updates = intToString(pos_floor[0], 2, 4, updates);
     updates = intToString(pos_floor[1], 6, 3, updates);

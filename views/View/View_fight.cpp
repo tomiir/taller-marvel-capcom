@@ -174,10 +174,10 @@ void View_fight::addTimeManager(TimeManager *timeManager) {
     this->timeManager = timeManager;
 }
 
-void View_fight::updateTime(char ten, char unity, char round) {
-    timeManager->setRound((int)round);
-    timeManager->setUnity((int)unity);
-    timeManager->setTen((int)ten);
+void View_fight::updateTime(char* ten, char* unity, char* round) {
+    timeManager->setRound(atoi(round));
+    timeManager->setUnity(atoi(unity));
+    timeManager->setTen(atoi(ten));
 
 }
 
