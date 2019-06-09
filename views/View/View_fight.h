@@ -36,6 +36,10 @@ public:
 
     void addDisconnected(GameObject *disconnected_s);
 
+    void updateTime(char ten, char unity, char round);
+
+    //void updateLife(char )
+
 private:
     vector <Character*> team1;
     vector <Character*> team2;

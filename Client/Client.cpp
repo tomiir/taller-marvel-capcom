@@ -6,7 +6,7 @@
 
 
 #define NOBEAT (char*)"0"
-#define MESSAGEFROMSERVERLEN 45
+#define MESSAGEFROMSERVERLEN 48
 #define MESSAGEFROMSERVERLEN2 5
 
 
@@ -301,8 +301,15 @@ void* Client::render(void *arg) {
             char currentCharT1 = messageReceived[43];
             char currentCharT2 = messageReceived[44];
 
+
             game->updateCharacters(posCharTeam1_x, posCharTeam1_y, stateCharTeam1, flipChar1, currentCharT1,
                     posCharTeam2_x, posCharTeam2_y, stateCharTeam2, flipChar2, currentCharT2);
+
+            char ten = messageReceived[45];
+            char unity = messageReceived[46];
+            char round = messageReceived[47];
+
+            game->updateTime(ten,unity,round);
 
 
             game->render();

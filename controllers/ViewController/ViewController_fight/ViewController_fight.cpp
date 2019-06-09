@@ -103,7 +103,7 @@ string intToString(int value, int posNum, int cantNum, string updates){
 
 string ViewController_fight::giveNewParameters() {
 
-    string updates = "010000000000000000000000000000000000000000000";
+    string updates = "010000000000000000000000000000000000000000000000";
 
     vector<int> pos_floor = backgrounds[0]->getPosCamera();
     vector<int> pos_moon = backgrounds[1]->getPosCamera();
@@ -120,7 +120,9 @@ string ViewController_fight::giveNewParameters() {
 
     updates[43] = team1->getCurrentCharacterNumber();
     updates[44] = team2->getCurrentCharacterNumber();  //No entiendo porque me aparece value is never used
-
+    updates[45] = '9'; //ten
+    updates[46] = '8'; //unity
+    updates[47] = '1'; //round
 
     updates = intToString(pos_floor[0], 2, 4, updates);
     updates = intToString(pos_floor[1], 6, 3, updates);

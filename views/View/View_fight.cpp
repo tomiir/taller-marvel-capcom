@@ -21,14 +21,6 @@ struct Comp {
 
 void View_fight::updateView() {
 
-    //Esto habría que agregarlo en otro lado, por ahora lo dejo acá para probar.
-    lifeManagerTeam1->updateCurrentCharacter(team1[currentChar1]->getName());
-    lifeManagerTeam2->updateCurrentCharacter(team2[currentChar2]->getName());
-
-//    lifeManagerTeam1->updateLife(1);
-//    lifeManagerTeam2->updateLife(1);
-
-
 
     // Primero renderizo (limpio) la vista;
 
@@ -182,7 +174,19 @@ void View_fight::addTimeManager(TimeManager *timeManager) {
     this->timeManager = timeManager;
 }
 
+void View_fight::updateTime(char ten, char unity, char round) {
+    timeManager->setRound((int)round);
+    timeManager->setUnity((int)unity);
+    timeManager->setTen((int)ten);
+
+}
 
 
+//Esto habría que agregarlo en otro lado, por ahora lo dejo acá para probar.
+//lifeManagerTeam1->updateCurrentCharacter(team1[currentChar1]->getName());
+//lifeManagerTeam2->updateCurrentCharacter(team2[currentChar2]->getName());
+
+//    lifeManagerTeam1->updateLife(1);
+//    lifeManagerTeam2->updateLife(1);
 
 

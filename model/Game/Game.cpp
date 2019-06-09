@@ -124,4 +124,8 @@ void Game::renderDisconnected() {
     view->renderDisconnected();
 }
 
+void Game::updateTime(char ten, char unity, char round) {
+    dynamic_cast<View_fight*>(this->view)->updateTime(ten, unity, round);
+}
+
 
