@@ -386,13 +386,16 @@ TimeManager *GameObjectFactory::getTimeManager() {
                                        tenFour, tenFive, tenSix, tenSeven,
                                        tenEight, tenNine};
 
-    GameObject* roundOne    = new GameObject("../Images/timer/timer-rounds.png","roundOne",99,renderer, 490, 80, 258,91);
+    int xRound = (screenWidth - 258)/2;
+    int yRound = (screenHeight - 91)/2;
+
+    GameObject* roundOne    = new GameObject("../Images/timer/timer-rounds.png","roundOne",99,renderer, 490, 80, xRound,yRound);
     positionToTake = {0,60, 258,91};
     roundOne->setOriginRect(positionToTake);
-    GameObject* roundTwo    = new GameObject("../Images/timer/timer-rounds.png","roundTwo",99,renderer, 490, 80, 258,91);
+    GameObject* roundTwo    = new GameObject("../Images/timer/timer-rounds.png","roundTwo",99,renderer, 490, 80, xRound,yRound);
     positionToTake = {0,318, 258,91};
     roundTwo->setOriginRect(positionToTake);
-    GameObject* roundThree  = new GameObject("../Images/timer/timer-rounds.png","roundThree",99,renderer, 490, 80, 258,91);
+    GameObject* roundThree  = new GameObject("../Images/timer/timer-rounds.png","roundThree",99,renderer, 490, 80, xRound,yRound);
     positionToTake = {0,576,258,91};
     roundThree->setOriginRect(positionToTake);
 
