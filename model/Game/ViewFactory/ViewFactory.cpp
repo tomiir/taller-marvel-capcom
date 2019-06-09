@@ -50,8 +50,10 @@ View_fight* ViewFactory::getView_fight() {
 
     LifeManager* lifeManagerTeam1 = factory->getLifeManagerTeam1();
     LifeManager* lifeManagerTeam2 = factory->getLifeManagerTeam2();
-
     viewFight->addLifeManagers(lifeManagerTeam1, lifeManagerTeam2);
+
+    TimeManager* timeManager = factory->getTimeManager();
+    viewFight->addTimeManager(timeManager);
 
     delete factory;
 

@@ -9,6 +9,7 @@
 #include <vector>
 #include "../../controllers/ViewController/ViewController.h"
 #include "../../utils/LifeManager/LifeManager.h"
+#include "../../utils/TimeManager/TimeManager.h"
 
 
 class View_fight: public View {
@@ -20,6 +21,7 @@ public:
     void updateView() override;
     void addBackground(Background* background);
     void addLifeManagers(LifeManager* team1, LifeManager* team2);
+    void addTimeManager(TimeManager* timeManager);
     bool end()override;
     string getNextView() override;
     void addCharacter(Character *pCharacter);
@@ -40,6 +42,8 @@ private:
 
     LifeManager* lifeManagerTeam1;
     LifeManager* lifeManagerTeam2;
+
+    TimeManager* timeManager;
 
 
 

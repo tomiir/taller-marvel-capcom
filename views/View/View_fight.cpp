@@ -39,6 +39,7 @@ void View_fight::updateView() {
 
     renderables.push_back(lifeManagerTeam1);
     renderables.push_back(lifeManagerTeam2);
+    renderables.push_back(timeManager);
 
     for (std::vector<Background*>::iterator background=backgrounds.begin(); background != backgrounds.end(); ++background) {
 
@@ -176,6 +177,11 @@ void View_fight::addLifeManagers(LifeManager* team1, LifeManager* team2) {
     lifeManagerTeam1 = team1;
     lifeManagerTeam2 = team2;
 }
+
+void View_fight::addTimeManager(TimeManager *timeManager) {
+    this->timeManager = timeManager;
+}
+
 
 
 

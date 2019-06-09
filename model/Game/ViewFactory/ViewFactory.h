@@ -9,6 +9,7 @@
 #include "../../../controllers/ViewController/ViewController_fight/ViewController_fight.h"
 #include "../../../views/View/View.h"
 #include "../../../utils/TeamManager/TeamManager.h"
+#include "../../../utils/TimeManager/TimeManager.h"
 #include "../../../views/View/View_charSelect.h"
 #include "../../../views/View/View_fight.h"
 
