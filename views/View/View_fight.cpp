@@ -176,9 +176,11 @@ void View_fight::addTimeManager(TimeManager *timeManager) {
 
 void View_fight::updateTime(char* ten, char* unity, char* round) {
     timeManager->setRound(atoi(round));
+    //cout<<round;
     timeManager->setUnity(atoi(unity));
+    //cout<<unity;
     timeManager->setTen(atoi(ten));
-
+    //cout<<ten;
 }
 
 
