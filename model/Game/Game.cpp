@@ -33,13 +33,25 @@ void Game::init(const char *title, int posX, int posY) {
                 }
             }
 
-        SDL_Rect loading = SDL_Rect{0,0, screenWidth, screenHeight};
 
-        SDL_SetRenderDrawColor(renderer, 0,0,0,255);
-        SDL_RenderFillRect(renderer, &loading);
+        //Aca se pone la imagen de Loading
+        SDL_Rect black = SDL_Rect{0,0, screenWidth, screenHeight};
+
+        SDL_SetRenderDrawColor(renderer, 1,1,1,255);
+        SDL_RenderFillRect(renderer, &black);
+
+        const char *folderPath = "../Images/Loading Screen/Loading.png";
+
+        SDL_Rect  dest = SDL_Rect{(screenWidth - 800)/2, (screenHeight - 600)/2, 800, 600};
+        SDL_Rect source = SDL_Rect{0, 0, 800, 600};
+        SDL_Texture* loading = TextureManager::LoadTexture(folderPath, renderer);
+
+        SDL_RenderCopy(renderer, loading, &source, &dest);
 
         SDL_RenderPresent(renderer);
 
+
+        //aca termina el cargado de la imagen de Loading
         factory = new ViewFactory(renderer, screenWidth, screenHeight);
 
 
