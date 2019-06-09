@@ -14,7 +14,6 @@ void AudioManager::init() {}
 
 void AudioManager::setState(std::string state) {
     if(state != this->state) {
-        cout << "Prev State: " << this->state << " - New state: " << state << endl;
         playAudio(state);
     }
     this->state = state;

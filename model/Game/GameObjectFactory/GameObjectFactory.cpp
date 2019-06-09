@@ -12,6 +12,8 @@
 #include "../../../utils/SpriteManagers/NotFoundSpriteManager.h"
 #include "../../../utils/AudioManager/CaptainAmericaAudioManager/CaptainAmericaAudioManager.h"
 #include "../../../utils/AudioManager/SpiderManAudioManager/SpiderManAudioManager.h"
+#include "../../../utils/AudioManager/VenomAudioManager/VenomAudioManager.h"
+#include "../../../utils/AudioManager/ChunLiAudioManager/ChunLiAudioManager.h"
 #include <map>
 
 GameObjectFactory::GameObjectFactory(SDL_Renderer *renderer_, int screenWidth_, int screenHeight_) {
@@ -57,6 +59,8 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
 
     audioManagers["CaptainAmerica"] = new CaptainAmericaAudioManager();
     audioManagers["SpiderMan"] = new SpiderManAudioManager();
+    audioManagers["Venom"] = new VenomAudioManager();
+    audioManagers["ChunLi"] = new ChunLiAudioManager();
 
     map<string, SpriteManager*>::iterator itrSprites;
     JsonConfigs* config = JsonConfigs::getJson();
@@ -91,8 +95,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
         itrSprites = spriteManagers.find(spriteManagerName);
         SpriteManager* spriteManager = itrSprites->second;
 
-        string audioManagerName = audioManagers.count(spriteManagerName) ? spriteManagerName : "SpiderMan"; //Esto setea por default a CA
-        AudioManager* audioManager = audioManagers[audioManagerName];
+        AudioManager* audioManager = audioManagers[spriteManagerName]; //Uso el mismo que el spriteManager
         Character* C;
 
         C = new Character(path.c_str(),  zIndex, renderer, spriteManager , initialY, name, size);
