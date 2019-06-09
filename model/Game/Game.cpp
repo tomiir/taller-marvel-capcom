@@ -44,6 +44,7 @@ void Game::init(const char *title, int posX, int posY) {
         views["char_select"] = factory -> getView_charSelect();
 
         view = (views.find("char_select"))->second;
+        viewAudioManager = new ViewAudioManager();
 
         logger -> Log("Inicialización completa, ventana, renderer y vista creados correctamente", INFO, "");
 
@@ -104,6 +105,7 @@ void Game::changeView() {
     string nextViewName = (this->view)->getNextView();
     View* nextView = views.find(nextViewName)->second;
     this->view = nextView;
+    viewAudioManager->setState(nextViewName);
 
     dynamic_cast<View_fight*>(this->view)->setTeams(getCharacter(team1[0]), getCharacter(team1[1]), getCharacter(team2[0]), getCharacter(team2[1]));
 }

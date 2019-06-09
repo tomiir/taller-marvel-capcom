@@ -6,6 +6,7 @@
 #include <iostream>
 #include "../../controllers/ViewController/ViewController_fight/ViewController_fight.h"
 #include "ViewFactory/ViewFactory.h"
+#include "../../utils/AudioManager/ViewAudioManager/ViewAudioManager.h"
 
 class Game {
 
@@ -44,6 +45,7 @@ private:
 
     Character* getCharacter(string character);
 
+    ViewAudioManager* viewAudioManager;
 };
 
 

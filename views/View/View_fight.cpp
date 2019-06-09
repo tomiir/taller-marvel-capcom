@@ -8,7 +8,6 @@
 View_fight::View_fight(SDL_Renderer *renderer_) : View(renderer_) {
     currentChar1 = 0;
     currentChar2 = 0;
-
 }
 
 View_fight::~View_fight() = default;

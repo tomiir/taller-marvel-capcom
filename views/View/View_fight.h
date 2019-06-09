@@ -5,11 +5,8 @@
 #ifndef TALLER_MARVEL_CAPCOM_VIEW_FIGHT_H
 #define TALLER_MARVEL_CAPCOM_VIEW_FIGHT_H
 
-
 #include <vector>
 #include "../../controllers/ViewController/ViewController.h"
-
-
 
 class View_fight: public View {
 
@@ -36,7 +33,6 @@ public:
 private:
     vector <Character*> team1;
     vector <Character*> team2;
-
     Character* getCharacter(string name);
 
     int currentChar1;
