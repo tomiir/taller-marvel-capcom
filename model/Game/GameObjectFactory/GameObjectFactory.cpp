@@ -228,19 +228,19 @@ LifeManager *GameObjectFactory::getLifeManagerTeam1() {
                                        lifeChunLi};
 
 
-    GameObject* lifeCaptainAmericaSecond = new GameObject("../Images/life_frame/vida-captainamerica.png","CaptainAmerica",99, renderer, 0, 105, 258, 55);
+    GameObject* lifeCaptainAmericaSecond = new GameObject("../Images/life_frame/vida-captainamerica.png","CaptainAmerica",99, renderer, 0, 110, 258, 55);
     infoSource = {10,133,258,55};
     lifeCaptainAmericaSecond->setOriginRect(infoSource);
 
-    GameObject* lifeVenomSecond = new GameObject("../Images/life_frame/vida-venom.png","Venom",99, renderer, 0, 105, 258, 55);
+    GameObject* lifeVenomSecond = new GameObject("../Images/life_frame/vida-venom.png","Venom",99, renderer, 0, 110, 258, 55);
     infoSource = {10,133,258,55};
     lifeVenomSecond->setOriginRect(infoSource);
 
-    GameObject* lifeSpiderManSecond = new GameObject("../Images/life_frame/vida-spiderman.png","SpiderMan",99,renderer, 0, 105, 258, 55);
+    GameObject* lifeSpiderManSecond = new GameObject("../Images/life_frame/vida-spiderman.png","SpiderMan",99,renderer, 0, 110, 258, 55);
     infoSource = {10,133,258,55};
     lifeSpiderManSecond->setOriginRect(infoSource);
 
-    GameObject* lifeChunLiSecond = new GameObject("../Images/life_frame/vida-chunli.png","ChunLi",99,renderer, 0, 105, 258, 55);
+    GameObject* lifeChunLiSecond = new GameObject("../Images/life_frame/vida-chunli.png","ChunLi",99,renderer, 0, 110, 258, 55);
     infoSource = {10,133,258,55};
     lifeChunLiSecond->setOriginRect(infoSource);
 
@@ -283,19 +283,19 @@ LifeManager *GameObjectFactory::getLifeManagerTeam2() {
                                        lifeChunLi};
 
 
-    GameObject* lifeCaptainAmericaSecond = new GameObject("../Images/life_frame/vida-captainamerica.png","CaptainAmerica",99,renderer, 943,105, 257,55);
+    GameObject* lifeCaptainAmericaSecond = new GameObject("../Images/life_frame/vida-captainamerica.png","CaptainAmerica",99,renderer, 943,110, 257,55);
     aux = {739,133, 257, 55};
     lifeCaptainAmericaSecond->setOriginRect(aux);
 
-    GameObject* lifeVenomSecond = new GameObject("../Images/life_frame/vida-venom.png","Venom",99, renderer, 943,105, 257,55);
+    GameObject* lifeVenomSecond = new GameObject("../Images/life_frame/vida-venom.png","Venom",99, renderer, 943,105, 110,55);
     aux = {739,133, 257, 55};
     lifeVenomSecond->setOriginRect(aux);
 
-    GameObject* lifeSpiderManSecond = new GameObject("../Images/life_frame/vida-spiderman.png","SpiderMan",99, renderer, 943,105, 257,55);
+    GameObject* lifeSpiderManSecond = new GameObject("../Images/life_frame/vida-spiderman.png","SpiderMan",99, renderer, 943,110, 257,55);
     aux = {739,133, 257, 55};
     lifeSpiderManSecond->setOriginRect(aux);
 
-    GameObject* lifeChunLiSecond = new GameObject("../Images/life_frame/vida-chunli.png","ChunLi",99,renderer, 943,105, 257,55);
+    GameObject* lifeChunLiSecond = new GameObject("../Images/life_frame/vida-chunli.png","ChunLi",99,renderer, 943,110, 257,55);
     aux = {739,133, 257, 55};
     lifeChunLiSecond->setOriginRect(aux);
 
@@ -316,34 +316,34 @@ LifeManager *GameObjectFactory::getLifeManagerTeam2() {
 
 TimeManager *GameObjectFactory::getTimeManager() {
 
-    GameObject* unityZero   = new GameObject("../Images/timer/timer-rounds.png","unityZero",99,renderer, 596, 10, 60, 60);
+    GameObject* unityZero   = new GameObject("../Images/timer/timer-rounds.png","unityZero",99,renderer, 591, 10, 60, 60);
     vector <int> positionToTake = {0,0, 60, 60};
     unityZero->setOriginRect(positionToTake);
-    GameObject* unityOne    = new GameObject("../Images/timer/timer-rounds.png","unityOne",99,renderer, 596, 10, 60, 60);
+    GameObject* unityOne    = new GameObject("../Images/timer/timer-rounds.png","unityOne",99,renderer, 591, 10, 60, 60);
     positionToTake = {60,0, 60, 60};
     unityOne->setOriginRect(positionToTake);
-    GameObject* unityTwo    = new GameObject("../Images/timer/timer-rounds.png","unityTwo",99,renderer, 596, 10, 60, 60);
+    GameObject* unityTwo    = new GameObject("../Images/timer/timer-rounds.png","unityTwo",99,renderer, 591, 10, 60, 60);
     positionToTake = {120,0, 60, 60};
     unityTwo->setOriginRect(positionToTake);
-    GameObject* unityThree  = new GameObject("../Images/timer/timer-rounds.png","unityThree",99,renderer, 596, 10, 60, 60);
+    GameObject* unityThree  = new GameObject("../Images/timer/timer-rounds.png","unityThree",99,renderer, 591, 10, 60, 60);
     positionToTake = {180,0, 60, 60};
     unityThree->setOriginRect(positionToTake);
-    GameObject* unityFour   = new GameObject("../Images/timer/timer-rounds.png","unityFour",99,renderer, 596, 10, 60, 60);
+    GameObject* unityFour   = new GameObject("../Images/timer/timer-rounds.png","unityFour",99,renderer, 591, 10, 60, 60);
     positionToTake = {240,0, 60, 60};
     unityFour->setOriginRect(positionToTake);
-    GameObject* unityFive   = new GameObject("../Images/timer/timer-rounds.png","unityFive",99,renderer, 596, 10, 60, 60);
+    GameObject* unityFive   = new GameObject("../Images/timer/timer-rounds.png","unityFive",99,renderer, 591, 10, 60, 60);
     positionToTake = {300,0, 60, 60};
     unityFive->setOriginRect(positionToTake);
-    GameObject* unitySix    = new GameObject("../Images/timer/timer-rounds.png","unitySix",99,renderer, 596, 10, 60, 60);
+    GameObject* unitySix    = new GameObject("../Images/timer/timer-rounds.png","unitySix",99,renderer, 591, 10, 60, 60);
     positionToTake = {360,0, 60, 60};
     unitySix->setOriginRect(positionToTake);
-    GameObject* unitySeven  = new GameObject("../Images/timer/timer-rounds.png","unitySeven",99,renderer, 596, 10, 60, 60);
+    GameObject* unitySeven  = new GameObject("../Images/timer/timer-rounds.png","unitySeven",99,renderer, 591, 10, 60, 60);
     positionToTake = {420,0, 60, 60};
     unitySeven->setOriginRect(positionToTake);
-    GameObject* unityEight  = new GameObject("../Images/timer/timer-rounds.png","unityEight",99,renderer, 596, 10, 60, 60);
+    GameObject* unityEight  = new GameObject("../Images/timer/timer-rounds.png","unityEight",99,renderer, 591, 10, 60, 60);
     positionToTake = {480,0, 60, 60};
     unityEight->setOriginRect(positionToTake);
-    GameObject* unityNine   = new GameObject("../Images/timer/timer-rounds.png","unityNine",99,renderer, 596, 10, 60, 60);
+    GameObject* unityNine   = new GameObject("../Images/timer/timer-rounds.png","unityNine",99,renderer, 591, 10, 60, 60);
     positionToTake = {540,0, 60, 60};
     unityNine->setOriginRect(positionToTake);
 
@@ -351,34 +351,34 @@ TimeManager *GameObjectFactory::getTimeManager() {
                                          unityFour, unityFive, unitySix, unitySeven,
                                          unityEight, unityNine};
 
-    GameObject* tenZero     = new GameObject("../Images/timer/timer-rounds.png","tenZero",99,renderer, 560, 10, 60, 60);
+    GameObject* tenZero     = new GameObject("../Images/timer/timer-rounds.png","tenZero",99,renderer, 555, 10, 60, 60);
     positionToTake= {60,0,  60, 60};
     tenZero->setOriginRect(positionToTake);
-    GameObject* tenOne      = new GameObject("../Images/timer/timer-rounds.png","tenOne",99,renderer, 560, 10,  60, 60);
+    GameObject* tenOne      = new GameObject("../Images/timer/timer-rounds.png","tenOne",99,renderer, 555, 10,  60, 60);
     positionToTake = {120,0,  60, 60};
     tenOne->setOriginRect(positionToTake);
-    GameObject* tenTwo      = new GameObject("../Images/timer/timer-rounds.png","tenTwo",99,renderer, 560, 10, 60, 60);
+    GameObject* tenTwo      = new GameObject("../Images/timer/timer-rounds.png","tenTwo",99,renderer, 555, 10, 60, 60);
     positionToTake = {180,0,  60, 60};
     tenTwo->setOriginRect(positionToTake);
-    GameObject* tenThree    = new GameObject("../Images/timer/timer-rounds.png","tenThree",99,renderer, 560, 10,  60, 60);
+    GameObject* tenThree    = new GameObject("../Images/timer/timer-rounds.png","tenThree",99,renderer, 555, 10,  60, 60);
     positionToTake = {240,0,  60, 60};
     tenThree->setOriginRect(positionToTake);
-    GameObject* tenFour     = new GameObject("../Images/timer/timer-rounds.png","tenFour",99,renderer, 560, 10,  60, 60);
+    GameObject* tenFour     = new GameObject("../Images/timer/timer-rounds.png","tenFour",99,renderer, 555, 10,  60, 60);
     positionToTake = {300,0,  60, 60};
     tenFour->setOriginRect(positionToTake);
-    GameObject* tenFive     = new GameObject("../Images/timer/timer-rounds.png","tenFive",99,renderer, 560, 10,  60, 60);
+    GameObject* tenFive     = new GameObject("../Images/timer/timer-rounds.png","tenFive",99,renderer, 555, 10,  60, 60);
     positionToTake = {360,0,  60, 60};
     tenFive->setOriginRect(positionToTake);
-    GameObject* tenSix      = new GameObject("../Images/timer/timer-rounds.png","tenSix",99,renderer, 560, 10,  60, 60);
+    GameObject* tenSix      = new GameObject("../Images/timer/timer-rounds.png","tenSix",99,renderer, 555, 10,  60, 60);
     positionToTake = {420,0,  60, 60};
     tenSix->setOriginRect(positionToTake);
-    GameObject* tenSeven    = new GameObject("../Images/timer/timer-rounds.png","tenSeven",99,renderer, 560, 10,  60, 60);
+    GameObject* tenSeven    = new GameObject("../Images/timer/timer-rounds.png","tenSeven",99,renderer, 555, 10,  60, 60);
     positionToTake = {480,03,  60, 60};
     tenSeven->setOriginRect(positionToTake);
-    GameObject* tenEight    = new GameObject("../Images/timer/timer-rounds.png","tenEight",99,renderer, 560, 10, 60, 60);
+    GameObject* tenEight    = new GameObject("../Images/timer/timer-rounds.png","tenEight",99,renderer, 555, 10, 60, 60);
     positionToTake = {739,133,  60, 60};
     tenEight->setOriginRect(positionToTake);
-    GameObject* tenNine     = new GameObject("../Images/timer/timer-rounds.png","tenNine",99,renderer, 560, 10, 60, 60);
+    GameObject* tenNine     = new GameObject("../Images/timer/timer-rounds.png","tenNine",99,renderer, 555, 10, 60, 60);
     positionToTake = {540,0,  60, 60};
     tenNine->setOriginRect(positionToTake);
 
