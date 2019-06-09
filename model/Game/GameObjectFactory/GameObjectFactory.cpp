@@ -351,34 +351,34 @@ TimeManager *GameObjectFactory::getTimeManager() {
                                          unityFour, unityFive, unitySix, unitySeven,
                                          unityEight, unityNine};
 
-    GameObject* tenZero     = new GameObject("../Images/timer/timer-rounds.png","tenZero",99,renderer, 540, 10, 60, 60);
+    GameObject* tenZero     = new GameObject("../Images/timer/timer-rounds.png","tenZero",99,renderer, 564, 10, 60, 60);
     positionToTake= {60,0,  60, 60};
     tenZero->setOriginRect(positionToTake);
-    GameObject* tenOne      = new GameObject("../Images/timer/timer-rounds.png","tenOne",99,renderer, 540, 10,  60, 60);
+    GameObject* tenOne      = new GameObject("../Images/timer/timer-rounds.png","tenOne",99,renderer, 564, 10,  60, 60);
     positionToTake = {120,0,  60, 60};
     tenOne->setOriginRect(positionToTake);
-    GameObject* tenTwo      = new GameObject("../Images/timer/timer-rounds.png","tenTwo",99,renderer, 540, 10, 60, 60);
+    GameObject* tenTwo      = new GameObject("../Images/timer/timer-rounds.png","tenTwo",99,renderer, 564, 10, 60, 60);
     positionToTake = {180,0,  60, 60};
     tenTwo->setOriginRect(positionToTake);
-    GameObject* tenThree    = new GameObject("../Images/timer/timer-rounds.png","tenThree",99,renderer, 540, 10,  60, 60);
+    GameObject* tenThree    = new GameObject("../Images/timer/timer-rounds.png","tenThree",99,renderer, 564, 10,  60, 60);
     positionToTake = {240,0,  60, 60};
     tenThree->setOriginRect(positionToTake);
-    GameObject* tenFour     = new GameObject("../Images/timer/timer-rounds.png","tenFour",99,renderer, 540, 10,  60, 60);
+    GameObject* tenFour     = new GameObject("../Images/timer/timer-rounds.png","tenFour",99,renderer, 564, 10,  60, 60);
     positionToTake = {300,0,  60, 60};
     tenFour->setOriginRect(positionToTake);
-    GameObject* tenFive     = new GameObject("../Images/timer/timer-rounds.png","tenFive",99,renderer, 540, 10,  60, 60);
+    GameObject* tenFive     = new GameObject("../Images/timer/timer-rounds.png","tenFive",99,renderer, 564, 10,  60, 60);
     positionToTake = {360,0,  60, 60};
     tenFive->setOriginRect(positionToTake);
-    GameObject* tenSix      = new GameObject("../Images/timer/timer-rounds.png","tenSix",99,renderer, 540, 10,  60, 60);
+    GameObject* tenSix      = new GameObject("../Images/timer/timer-rounds.png","tenSix",99,renderer, 564, 10,  60, 60);
     positionToTake = {420,0,  60, 60};
     tenSix->setOriginRect(positionToTake);
-    GameObject* tenSeven    = new GameObject("../Images/timer/timer-rounds.png","tenSeven",99,renderer, 540, 10,  60, 60);
+    GameObject* tenSeven    = new GameObject("../Images/timer/timer-rounds.png","tenSeven",99,renderer, 564, 10,  60, 60);
     positionToTake = {480,03,  60, 60};
     tenSeven->setOriginRect(positionToTake);
-    GameObject* tenEight    = new GameObject("../Images/timer/timer-rounds.png","tenEight",99,renderer, 540, 10, 60, 60);
+    GameObject* tenEight    = new GameObject("../Images/timer/timer-rounds.png","tenEight",99,renderer, 564, 10, 60, 60);
     positionToTake = {739,133,  60, 60};
     tenEight->setOriginRect(positionToTake);
-    GameObject* tenNine     = new GameObject("../Images/timer/timer-rounds.png","tenNine",99,renderer, 540, 10, 60, 60);
+    GameObject* tenNine     = new GameObject("../Images/timer/timer-rounds.png","tenNine",99,renderer, 564, 10, 60, 60);
     positionToTake = {540,0,  60, 60};
     tenNine->setOriginRect(positionToTake);
 
@@ -389,13 +389,13 @@ TimeManager *GameObjectFactory::getTimeManager() {
     int xRound = (screenWidth - 258)/2;
     int yRound = (screenHeight - 91)/2;
 
-    GameObject* roundOne    = new GameObject("../Images/timer/timer-rounds.png","roundOne",99,renderer, xRound, yRound, 258 ,91);
+    GameObject* roundOne    = new GameObject("../Images/timer/timer-rounds.png","roundOne",99,renderer, xRound, yRound, 258*2 ,91*2);
     positionToTake = {0,60, 258,91};
     roundOne->setOriginRect(positionToTake);
-    GameObject* roundTwo    = new GameObject("../Images/timer/timer-rounds.png","roundTwo",99,renderer, xRound, yRound, 258,91);
+    GameObject* roundTwo    = new GameObject("../Images/timer/timer-rounds.png","roundTwo",99,renderer, xRound, yRound, 258*2,91*2);
     positionToTake = {0,318, 258,91};
     roundTwo->setOriginRect(positionToTake);
-    GameObject* roundThree  = new GameObject("../Images/timer/timer-rounds.png","roundThree",99,renderer, xRound, yRound, 258,91);
+    GameObject* roundThree  = new GameObject("../Images/timer/timer-rounds.png","roundThree",99,renderer, xRound, yRound, 258*2,91*2);
     positionToTake = {0,576,258,91};
     roundThree->setOriginRect(positionToTake);
 
