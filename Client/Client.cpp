@@ -333,7 +333,6 @@ void* Client::sendEventToServer(void* arg){
 
         if (!serverConnected){
             if(serverDown) break;
-            continue;
         }
 
 
