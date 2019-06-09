@@ -53,10 +53,6 @@ void Character::render() {
 
     SDL_Rect hitbox = getHitbox();
 
-    hitbox.y += auxY;
-    if (flip == SDL_FLIP_NONE){
-        hitbox.x += auxLeft;
-    }else hitbox.x += auxRight;
 
     SDL_SetRenderDrawColor(renderer, 0,255,0,255);
     SDL_RenderDrawRect(renderer, &hitbox);
@@ -78,29 +74,15 @@ void Character::flipSprite(SDL_RendererFlip flip_) {
 
 void Character::changePosition(int changeX, int changeY) {
 
-    objRect.x = changeX;
-    objRect.y = changeY;
+    if (flip == SDL_FLIP_NONE){
+        objRect.x = changeX - auxLeft;
+    }else objRect.x = changeX - auxRight;
+
+    objRect.y = changeY - auxY;
 
 }
 
 void Character::setInitialXPositions(int positionLeft, int positionRight){
-
-//    if (name == "CaptainAmerica"){
-//        positionLeft -= 237;
-//        positionRight -= 411;
-//    }
-//    if (name == "SpiderMan"){
-//        positionLeft -= 424;
-//        positionRight -= 527;
-//    }
-//    if (name == "ChunLi"){
-//        positionLeft -= 423;
-//        positionRight -= 376;
-//    }
-//    if (name == "Venom"){
-//        positionLeft -= 575;
-//        positionRight -= 527;
-//    }
 
     posInitialLeft = positionLeft;
     posInitialRight = positionRight;

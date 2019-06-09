@@ -88,9 +88,6 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
         punching = ++punching_timer != 15;
         if(!punching) {
             state = "walk";
-//            if (info[0] > enemyInfo[0]) {
-//                dynamic_cast<Character_server *>(gameObject)->correctPunch(punching);
-//            }
         }
     }
 
@@ -133,9 +130,6 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
         if(collision){
             cout << gameObject->getName() << " golpeo a " << enemy->getName() << endl;
         }
-//        if (info[0] > enemyInfo[0]) {
-//            dynamic_cast<Character_server *>(gameObject)->correctPunch(punching);
-//        }
     }
 
 
@@ -321,8 +315,8 @@ void ControllerCharacter::setInitialPos(bool left) {
 
 }
 
-vector<int> ControllerCharacter::getPosInfo(char side) {
-    return gameObject->getPosInfo(side);
+vector<int> ControllerCharacter::getPosInfo() {
+    return gameObject->getPosInfo();
 }
 
 string ControllerCharacter::getState() {

@@ -28,7 +28,7 @@ public:
     void setInitialPos(bool left);
     string name;
     void flipSprite(SDL_RendererFlip flip);
-    vector<int> getPosInfo(char side) override;
+    vector<int> getPosInfo() override;
     string getState();
     SDL_RendererFlip getFlip();
     vector<SDL_Rect> getHitboxInfo();

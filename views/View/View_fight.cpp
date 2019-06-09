@@ -112,14 +112,14 @@ void View_fight::updateCharacters(char *posT1_x, char *posT1_y, char stateT1, ch
     currentChar1 = currentCharT1 - '0';
     currentChar2 = currentCharT2 - '0';
 
+    team1[currentChar1]->flipSprite(selectFlip(flip1));
+    team2[currentChar2]->flipSprite(selectFlip(flip2));
+
     team1[currentChar1]->changePosition(pos1_x, pos1_y);
     team2[currentChar2]->changePosition(pos2_x, pos2_y);
 
     team1[currentChar1]->setState(selectState(stateT1));
     team2[currentChar2]->setState(selectState(stateT2));
-
-    team1[currentChar1]->flipSprite(selectFlip(flip1));
-    team2[currentChar2]->flipSprite(selectFlip(flip2));
 
 }
 
