@@ -15,7 +15,7 @@
 class LifeManager: public Renderable {
 private:
 
-
+    bool isRight;
     double life;
     double lifeSecond;
 
@@ -61,7 +61,7 @@ public:
     void addCharactersSecond(vector<GameObject *> charactersSecond);
     void setFirstCharacter(string name);
     void setSecondCharacter(string name);
-
+    void setAsRight();
 
 };
 

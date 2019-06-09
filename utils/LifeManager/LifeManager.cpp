@@ -15,7 +15,7 @@ LifeManager::LifeManager(SDL_Renderer* renderer, int z,vector <int> first, vecto
     lifeSecond = 0.5;
     currentColor = green;
     secondColor = yellow;
-
+    isRight = false;
     this->renderer = renderer;
     this->z = z;
     this->x = first[0];
@@ -36,9 +36,15 @@ void LifeManager::render() {
 
     SDL_Rect rectangle;
 
-    rectangle.x = x;
-    rectangle.y = y;
+    if (isRight){
+        rectangle.x = x + life*x;
+    }
+    else{
+        rectangle.x = x;
+    }
+
     rectangle.w = w * life;
+    rectangle.y = y;
     rectangle.h = h;
 
     SDL_RenderFillRect(renderer, &rectangle);
@@ -48,6 +54,13 @@ void LifeManager::render() {
     SDL_SetRenderDrawColor(renderer, secondColor[0], secondColor[1], secondColor[2], 255);
 
     SDL_Rect rectangle_second;
+    if (isRight){
+        rectangle_second.x = x_second + lifeSecond*x_second;
+    }
+    else{
+        rectangle_second.x = x_second;
+    }
+
 
     rectangle_second.x = x_second;
     rectangle_second.y = y_second;
@@ -108,4 +121,8 @@ void LifeManager::setFirstCharacter(string name) {
 void LifeManager::setSecondCharacter(string name) {
     lifeFramesSecond_iter = lifeFramesSecond.find(name);
     secondCharacter = lifeFramesSecond_iter->second;
+}
+
+void LifeManager::setAsRight() {
+    isRight = true;
 }
