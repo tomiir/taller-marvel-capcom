@@ -287,7 +287,7 @@ LifeManager *GameObjectFactory::getLifeManagerTeam2() {
     aux = {739,143, 257, 55};
     lifeCaptainAmericaSecond->setOriginRect(aux);
 
-    GameObject* lifeVenomSecond = new GameObject("../Images/life_frame/vida-venom.png","Venom",99, renderer, 943,105, 110,55);
+    GameObject* lifeVenomSecond = new GameObject("../Images/life_frame/vida-venom.png","Venom",99, renderer, 943,105, 257,55);
     aux = {739,143, 257, 55};
     lifeVenomSecond->setOriginRect(aux);
 
