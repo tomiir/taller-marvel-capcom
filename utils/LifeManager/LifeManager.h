@@ -16,8 +16,8 @@ class LifeManager: public Renderable {
 private:
 
 
-    int life;
-    int lifeSecond;
+    double life;
+    double lifeSecond;
 
 
     // estos se settearan cuando se seleccionen, así podemos hacer

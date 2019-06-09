@@ -12,22 +12,22 @@ LifeManager::LifeManager(SDL_Renderer* renderer, int z,vector <int> first, vecto
 
     life = 1; // este es un porcentaje
     // les pongo estos valores al segundo personaje para probar, en realidad empieza con verde y 1.
-    lifeSecond = 20;
-
-    secondColor = red;
+    lifeSecond = 0.5;
+    currentColor = green;
+    secondColor = yellow;
 
     this->renderer = renderer;
     this->z = z;
     this->x = first[0];
     this->y = first[1];
-    this->h = first[2];
-    this->w = first[3];
+    this->w = first[2];
+    this->h = first[3];
 
     this->z_second = z;
     this->x_second = second[0];
     this->y_second = second[1];
-    this->h_second = second[2];
-    this->w_second = second[3];
+    this->w_second = second[2];
+    this->h_second = second[3];
 }
 
 void LifeManager::render() {
@@ -42,7 +42,7 @@ void LifeManager::render() {
     rectangle.h = h;
 
     SDL_RenderFillRect(renderer, &rectangle);
-    firstCharacter->render(); // renderizo el marco y luego la barra de vida
+    firstCharacter->render();
 
 
     SDL_SetRenderDrawColor(renderer, secondColor[0], secondColor[1], secondColor[2], 255);
@@ -53,7 +53,6 @@ void LifeManager::render() {
     rectangle_second.y = y_second;
     rectangle_second.w = w_second * lifeSecond;
     rectangle_second.h = h_second;
-
     SDL_RenderFillRect(renderer, &rectangle_second);
     secondCharacter->render();
 
@@ -69,13 +68,20 @@ void LifeManager::updateLife(int newLife) {
 
 // siempre se debe cambiar el personajes primero, antes que la vida.
 void LifeManager::updateCurrentCharacter(string current) {
-    if (strcmp(current.c_str(), (firstCharacter->getName()).c_str()) != 0){
-        lifeFramesSecond_iter = lifeFramesSecond.find(firstCharacter->getName());
-        secondCharacter = lifeFramesSecond_iter->second;
-        lifeSecond = life;
-    }
+    if (strcmp(current.c_str(), (firstCharacter->getName()).c_str()) == 0) return;
+    //el actual (first) va a ser el secundario
+    lifeFramesSecond_iter = lifeFramesSecond.find(firstCharacter->getName());
+    secondCharacter = lifeFramesSecond_iter->second;
+    //el que reciba sera el actual
     lifeFrames_iter = lifeFrames.find(current);
     firstCharacter = lifeFrames_iter->second;
+    double aux  = life;
+    life = lifeSecond;
+    lifeSecond = aux;
+    vector<int> aux_color = currentColor;
+    currentColor = secondColor;
+    secondColor = aux_color;
+
 }
 
 void LifeManager::addCharacters(vector<GameObject *> characters) {

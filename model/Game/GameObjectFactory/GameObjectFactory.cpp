@@ -202,6 +202,10 @@ GameObject *GameObjectFactory::getGameObjectDisconnected() {
 
     return  disconnected;
 }
+/*
+ * EL TEAM 2 ES EL DE LA DERECHA (FRAMES DE VIDA), PERO USA ASDWC
+ * EL TEAM 1 ES EL DE LA IZQUIERDA  (FRAMES DE VIDA), EL QUE USA JKLIM
+*/
 
 LifeManager *GameObjectFactory::getLifeManagerTeam1() {
 
@@ -245,8 +249,8 @@ LifeManager *GameObjectFactory::getLifeManagerTeam1() {
                                        lifeSpiderManSecond,
                                        lifeChunLiSecond};
     // se debe completar con el x y w h del rectángulo de la barra de vida
-    vector <int> aux1 = {85,30,392,25};
-    vector <int> aux2 = {45,167,202,16};
+    vector <int> aux1 = {87,32,397,34};
+    vector <int> aux2 = {46,167,206,17};
     LifeManager* lifeManager = new LifeManager(renderer,50,aux1, aux2);
 
     lifeManager->addCharacters(lifeFrames);
@@ -301,8 +305,8 @@ LifeManager *GameObjectFactory::getLifeManagerTeam2() {
                                              lifeChunLiSecond};
 
     // se debe completar con el x y w h del rectángulo de la barra de vida
-    vector <int> aux1 = {714,31,392,25};
-    vector <int> aux2 = {944,167,202,16};
+    vector <int> aux1 = {716,32,394,31};
+    vector <int> aux2 = {946,167,206,17};
     LifeManager* lifeManager = new LifeManager(renderer,50,aux1, aux2);
     lifeManager->addCharacters(lifeFrames);
     lifeManager->addCharactersSecond(lifeFramesSecond);
