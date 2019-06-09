@@ -109,8 +109,8 @@ string ViewController_fight::giveNewParameters() {
     vector<int> pos_moon = backgrounds[1]->getPosCamera();
     vector<int> pos_galaxy = backgrounds[2]->getPosCamera();
 
-    vector<int> posCharT1 = team1->getPosCurrentCharacter();
-    vector<int> posCharT2 = team2->getPosCurrentCharacter();
+    vector<int> posCharT1 = team1->getPosCurrentCharacter(updates[41]);
+    vector<int> posCharT2 = team2->getPosCurrentCharacter(updates[42]);
 
     updates[31] = team1->getStateCurrentCharacter();
     updates[40] = team2->getStateCurrentCharacter();

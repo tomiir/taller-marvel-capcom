@@ -19,10 +19,10 @@ void SpiderManWalkAnimation::init() {
     vector<int> frame5 = {2455, 268, 491, 268};
     vector<int> frame6 = {2946, 268, 491, 268};
     vector<int> frame7 = {3437, 268, 491, 268};
-    vector<int> frame8 = {3828, 268, 491, 268};
-    vector<int> frame9 = {4319, 268, 491, 268};
-    vector<int> frame10 = {4810, 268, 491, 268};
-    vector<int> frame11 = {5301, 268, 491, 268};
+    vector<int> frame8 = {3928, 268, 491, 268};
+    vector<int> frame9 = {4419, 268, 491, 268};
+    vector<int> frame10 = {4910, 268, 491, 268};
+    vector<int> frame11 = {5401, 268, 491, 268};
 
 
 

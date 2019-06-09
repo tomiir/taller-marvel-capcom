@@ -58,11 +58,17 @@ void Game::init(const char *title, int posX, int posY) {
         // Mando viewFight pq es la unica que tenemos. Deberiamos mandar la primera, y luego, las ViewController conocerse entre
         // si para saber quien va luego o implementar el VIEW MANAGER
 
+        SDL_RenderCopy(renderer, loading, &source, &dest);
+        SDL_RenderPresent(renderer);
+
         views["fight"] = factory -> getView_fight();
         characters = factory -> getCharacter();
         views["char_select"] = factory -> getView_charSelect();
 
         view = (views.find("char_select"))->second;
+
+        SDL_RenderCopy(renderer, loading, &source, &dest);
+        SDL_RenderPresent(renderer);
 
         logger -> Log("Inicialización completa, ventana, renderer y vista creados correctamente", INFO, "");
 

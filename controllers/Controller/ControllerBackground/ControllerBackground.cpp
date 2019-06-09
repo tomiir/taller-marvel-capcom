@@ -121,5 +121,5 @@ void ControllerBackground::update(ControllerCharacter *controllerCharacterOnLeft
 
 vector<int> ControllerBackground::getPosCamera() {
 
-     return gameObject->getPosInfo();
+     return gameObject->getPosInfo('0');
 }

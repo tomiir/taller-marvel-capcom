@@ -36,7 +36,7 @@ public:
     bool isMovingLeft();
     void flip(SDL_RendererFlip flip);
 
-    vector<int> getPosInfo();
+    vector<int> getPosInfo(char side);
 
     string getState();
 

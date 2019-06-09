@@ -19,7 +19,7 @@ void SpiderManStillAnimation::init() {
     vector<int> frame5 = {2455, 0, 491, 268};
     vector<int> frame6 = {2946, 0, 491, 268};
     vector<int> frame7 = {3437, 0, 491, 268};
-    vector<int> frame8 = {3828, 0, 491, 268};
+    vector<int> frame8 = {3928, 0, 491, 268};
 
 
     animation.push_back(frame0);

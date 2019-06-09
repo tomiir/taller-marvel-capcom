@@ -26,7 +26,7 @@ public:
     void setInitialPos(bool left);
 
 
-    vector<int> getPosCurrentCharacter();
+    vector<int> getPosCurrentCharacter(char side);
 
     char getStateCurrentCharacter();
 

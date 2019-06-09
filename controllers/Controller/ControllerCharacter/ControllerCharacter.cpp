@@ -321,8 +321,8 @@ void ControllerCharacter::setInitialPos(bool left) {
 
 }
 
-vector<int> ControllerCharacter::getPosInfo() {
-    return gameObject->getPosInfo();
+vector<int> ControllerCharacter::getPosInfo(char side) {
+    return gameObject->getPosInfo(side);
 }
 
 string ControllerCharacter::getState() {

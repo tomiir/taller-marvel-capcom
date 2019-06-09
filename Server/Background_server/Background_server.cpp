@@ -53,7 +53,7 @@ double Background_server::getSpeedPercetageCam() {
     return speedPercetageCam;
 }
 
-vector<int> Background_server::getPosInfo() {
+vector<int> Background_server::getPosInfo(char side) {
 
     vector<int> positions = {camera.x, camera.y};
 

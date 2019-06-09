@@ -70,8 +70,8 @@ void TeamManager::setInitialPos(bool left) {
 
 }
 
-vector<int> TeamManager::getPosCurrentCharacter() {
-    return currentCharacter->getPosInfo();
+vector<int> TeamManager::getPosCurrentCharacter(char side) {
+    return currentCharacter->getPosInfo(side);
 }
 
 char TeamManager::getStateCurrentCharacter() {

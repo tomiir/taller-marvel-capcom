@@ -22,7 +22,7 @@ public:
     void setSpeeds(int speedCam,double speedPercetageCam);
     int getSpeedCam();
     double getSpeedPercetageCam();
-    vector<int> getPosInfo() override ;
+    vector<int> getPosInfo(char side) override ;
 
 private:
     int speedCam;

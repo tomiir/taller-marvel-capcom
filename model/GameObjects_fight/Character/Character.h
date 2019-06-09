@@ -28,7 +28,7 @@ public:
 private:
     SpriteManager* spriteManager;
     SDL_RendererFlip flip;
-    int initialY;
+    int initialY, auxLeft, auxRight, auxY;
     CLogger* logger = CLogger::GetLogger();
     double size;
     int posInitialLeft;

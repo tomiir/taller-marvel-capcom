@@ -16,6 +16,29 @@ Character::Character(const char* imagePath, int z_index, SDL_Renderer* rend, Spr
     state = "still";
 
     this->name = name;
+
+    if (name == "CaptainAmerica"){
+        auxY = 205;
+        auxLeft = 237;
+        auxRight = 411;
+    }
+    if (name == "SpiderMan"){
+        auxY = 307;
+        auxLeft = 424;
+        auxRight = 527;
+    }
+    if (name == "ChunLi"){
+        auxY = 240;
+        auxLeft = 423;
+        auxRight = 376;
+    }
+    if (name == "Venom"){
+        auxY = 180;
+        auxLeft = 575;
+        auxRight = 527;
+    }
+
+
 }
 
 Character::~Character() = default;
@@ -29,6 +52,11 @@ void Character::render() {
     SDL_RenderCopyEx(renderer, objTexture, &sprite, &objRect, 0.0, nullptr, flip);
 
     SDL_Rect hitbox = getHitbox();
+
+    hitbox.y += auxY;
+    if (flip == SDL_FLIP_NONE){
+        hitbox.x += auxLeft;
+    }else hitbox.x += auxRight;
 
     SDL_SetRenderDrawColor(renderer, 0,255,0,255);
     SDL_RenderDrawRect(renderer, &hitbox);
@@ -56,6 +84,24 @@ void Character::changePosition(int changeX, int changeY) {
 }
 
 void Character::setInitialXPositions(int positionLeft, int positionRight){
+
+//    if (name == "CaptainAmerica"){
+//        positionLeft -= 237;
+//        positionRight -= 411;
+//    }
+//    if (name == "SpiderMan"){
+//        positionLeft -= 424;
+//        positionRight -= 527;
+//    }
+//    if (name == "ChunLi"){
+//        positionLeft -= 423;
+//        positionRight -= 376;
+//    }
+//    if (name == "Venom"){
+//        positionLeft -= 575;
+//        positionRight -= 527;
+//    }
+
     posInitialLeft = positionLeft;
     posInitialRight = positionRight;
 }

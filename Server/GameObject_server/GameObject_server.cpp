@@ -22,5 +22,5 @@ string GameObject_server::getName() {
     return name;
 }
 
-vector<int> GameObject_server::getPosInfo() {
+vector<int> GameObject_server::getPosInfo(char side) {
 }
