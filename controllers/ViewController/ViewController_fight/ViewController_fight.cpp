@@ -119,10 +119,12 @@ void ViewController_fight::startCounting(){
     countTime = true;
     second = 99;
     pthread_create(&countSeconds, nullptr, restSeconds, nullptr);
-    pthread_detach(countSeconds);
-    //pthread_join(&countSeconds, nullptr);
 
-    if (second == 60 && round == 2) return;
+
+    if (second == 60 && round == 2) {
+        pthread_detach(countSeconds);
+        return;
+    }
     if (second == 60) {
         round++;
         countTime = false;
@@ -157,10 +159,15 @@ string ViewController_fight::giveNewParameters() {
     //int unity = second - second/10;
 
     char seconds_string[2];
-
     sprintf(seconds_string, "%d",second);
-    updates[45] = seconds_string[0]; //ten
-    updates[46] = seconds_string[1]; //unity
+    if (second < 10){
+        updates[45] = '0';
+        updates[46] = seconds_string[0];
+    }
+    else {
+        updates[45] = seconds_string[0]; //ten
+        updates[46] = seconds_string[1]; //unity
+    }
     //updates = intToString(ten,45,1,updates);
     //updates = intToString(unity, 46, 1, updates);
     char round_string [1];
