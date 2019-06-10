@@ -183,12 +183,17 @@ void View_fight::updateTime(char* ten, char* unity, char* round) {
     //cout<<ten;
 }
 
-
-//Esto habría que agregarlo en otro lado, por ahora lo dejo acá para probar.
-//lifeManagerTeam1->updateCurrentCharacter(team1[currentChar1]->getName());
-//lifeManagerTeam2->updateCurrentCharacter(team2[currentChar2]->getName());
-
+void View_fight::updateLife() {
+    // se puede reulitizar otro mensaje para el jugador actual
+    lifeManagerTeam1->updateCurrentCharacter(team1[currentChar1]->getName());
+    lifeManagerTeam2->updateCurrentCharacter(team2[currentChar2]->getName());
+// este método debería recibir la vida del jugador actual de los 2 teams
 //    lifeManagerTeam1->updateLife(1);
 //    lifeManagerTeam2->updateLife(1);
+}
+
+
+
+
 
 

@@ -393,10 +393,10 @@ TimeManager *GameObjectFactory::getTimeManager() {
     positionToTake = {0,60, 258,91};
     roundOne->setOriginRect(positionToTake);
     GameObject* roundTwo    = new GameObject("../Images/timer/timer-rounds.png","roundTwo",99,renderer, xRound, yRound, 258*2,91*2);
-    positionToTake = {0,318, 258,91};
+    positionToTake = {0,152, 258,91};
     roundTwo->setOriginRect(positionToTake);
     GameObject* roundThree  = new GameObject("../Images/timer/timer-rounds.png","roundThree",99,renderer, xRound, yRound, 258*2,91*2);
-    positionToTake = {0,576,258,91};
+    positionToTake = {0,244,258,91};
     roundThree->setOriginRect(positionToTake);
 
     vector <GameObject*> rounds = {roundOne, roundTwo, roundThree};

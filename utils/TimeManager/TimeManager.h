@@ -27,8 +27,8 @@ private:
     //uso un vector para la decena y otro para la unidad, pq no se puede renderizar dos veces un mismo GO.
     vector<GameObject*> tenNumbers;
     vector<GameObject*> unityNumbers;
-    int round;
     vector <GameObject*> rounds;
+    int round;
     int unity;
     int ten;
     int roundTimer;

@@ -38,7 +38,7 @@ public:
 
     void updateTime(char* ten, char* unity, char* round);
 
-    //void updateLife(char )
+    void updateLife();
 
 private:
     vector <Character*> team1;

@@ -28,6 +28,7 @@ public:
                           char posCharTeam2_x[5], char posCharTeam2_y[4], char stateCharTeam2, char flipChar2, char currentCharT2);
 
     void updateTime(char* ten, char* unity, char* round);
+    void updateLife();
     void renderDisconnected();
 
 private:
