@@ -120,9 +120,13 @@ void ViewController_fight::startCounting(){
     second = 99;
     pthread_create(&countSeconds, nullptr, restSeconds, nullptr);
     pthread_detach(countSeconds);
-    if (round == 2) return;
-    round ++;
-    countTime = false;
+    //pthread_join(&countSeconds, nullptr);
+
+    if (second == 60 && round == 2) return;
+    if (second == 60) {
+        round++;
+        countTime = false;
+    }
 }
 
 string ViewController_fight::giveNewParameters() {
