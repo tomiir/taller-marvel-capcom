@@ -12,8 +12,8 @@ ChunLiHitboxManager::ChunLiHitboxManager() :  HitboxManager(){
     SDL_Rect hitboxWalk = SDL_Rect{0, 0, 200, 217};
     SDL_Rect hitboxJump = SDL_Rect{0, 0, 190, 185};
     SDL_Rect hitboxCrowchedDown = SDL_Rect{0, 0, 195, 175};
-    SDL_Rect hitboxPunchBody = SDL_Rect{0, 0, 48, 77};
-    SDL_Rect hitboxPunchArm = SDL_Rect{0,0, 31, 19 };
+    SDL_Rect hitboxPunchBody = SDL_Rect{0, 0, 185, 217};
+    SDL_Rect hitboxPunchArm = SDL_Rect{0,0, 100, 30};
 
     stateHitBoxes["still"] = { hitboxStill };
     stateHitBoxes["walk"] = { hitboxWalk };

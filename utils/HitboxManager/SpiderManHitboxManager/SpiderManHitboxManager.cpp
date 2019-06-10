@@ -12,8 +12,8 @@ SpiderManHitboxManager::SpiderManHitboxManager() : HitboxManager(){
     SDL_Rect hitboxWalk = SDL_Rect{0, 0, 240, 240};
     SDL_Rect hitboxJump = SDL_Rect{0, 0, 207, 167};
     SDL_Rect hitboxCrowchedDown = SDL_Rect{0, 0, 238, 130};
-    SDL_Rect hitboxPunchBody = SDL_Rect{0, 0, 86, 109};
-    SDL_Rect hitboxPunchArm = SDL_Rect{0,0, 40, 20 };
+    SDL_Rect hitboxPunchBody = SDL_Rect{0, 0, 200, 240};
+    SDL_Rect hitboxPunchArm = SDL_Rect{0,0, 150, 30};
 
     stateHitBoxes["still"] = { hitboxStill };
     stateHitBoxes["walk"] = { hitboxWalk };
