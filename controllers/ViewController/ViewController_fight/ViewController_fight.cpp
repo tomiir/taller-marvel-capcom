@@ -121,20 +121,24 @@ void ViewController_fight::startCounting(){
     pthread_create(&countSeconds, nullptr, restSeconds, nullptr);
 
 
-    if (second == 0 && round == 2) {
-        pthread_detach(countSeconds);
-        return;
-    }
-    if (second == 0) {
-        round++;
-        countTime = false;
-    }
+    pthread_detach(countSeconds);
+
+
 }
 
 string ViewController_fight::giveNewParameters() {
 
     if (!countTime ) {
         this->startCounting();
+    }
+
+    if (second == 0 && round == 2){
+        round == 2; // que siga indefinidamente hasta que definamos el 0
+    }
+
+    if (second == 0) {
+        round++;
+        countTime = false;
     }
 
     string updates = "010000000000000000000000000000000000000000000000";
