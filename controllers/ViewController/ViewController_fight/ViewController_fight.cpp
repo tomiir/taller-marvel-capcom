@@ -123,7 +123,7 @@ void ViewController_fight::startCounting(){
     pthread_mutex_init(&mutex_second,NULL);
     pthread_create(&countSeconds, nullptr, restSeconds, nullptr);
     pthread_detach(countSeconds);
-    pthread_mutex_destroy(&mutex_second);
+    pthread_mutex_destroy(&mutex_secondd);
 }
 
 string ViewController_fight::giveNewParameters() {
