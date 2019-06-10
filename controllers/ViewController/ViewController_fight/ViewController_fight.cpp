@@ -6,12 +6,16 @@
 #include <algorithm> // for heap operations
 
 #include <SDL2/SDL.h>
-
+#include <pthread.h>
+#include <unistd.h>
 #include "../../../utils/Logger/Logger.h"
 
+pthread_t countSeconds;
 
+int second;
 
 ViewController_fight::ViewController_fight():ViewController() {
+    countTime = false;
     time(&start);
 }
 
@@ -101,9 +105,30 @@ string intToString(int value, int posNum, int cantNum, string updates){
     return updates;
 }
 
+void* ViewController_fight::restSeconds(void *pVoid){
 
+    while (second >= 0){
+        sleep(1);
+        second --;
+    }
+    return nullptr;
+
+}
+
+void ViewController_fight::startCounting(){
+    countTime = true;
+    second = 99;
+    pthread_create(&countSeconds, nullptr, restSeconds, nullptr);
+    if(second == 0) {
+        pthread_detach(countSeconds);
+    }
+}
 
 string ViewController_fight::giveNewParameters() {
+
+    if (!countTime ) {
+        this->startCounting();
+    }
 
     string updates = "010000000000000000000000000000000000000000000000";
 
@@ -121,11 +146,16 @@ string ViewController_fight::giveNewParameters() {
     updates[42] = team2->getFlipCurrentCharacter();
 
     updates[43] = team1->getCurrentCharacterNumber();
-    updates[44] = team2->getCurrentCharacterNumber();  //No entiendo porque me aparece value is never used
-    updates[45] = '9'; //ten
-    updates[46] = '8'; //unity
+    updates[44] = team2->getCurrentCharacterNumber();//No entiendo porque me aparece value is never used
+
+    int ten = second/10;
+    int unity = second - second/10;
+   // updates[45] = '9'; //ten
+   // updates[46] = '8'; //unity
+    updates = intToString(ten,45,1,updates);
+    updates = intToString(unity, 46, 1, updates);
     updates[47] = '0'; //round
-    cout<<start;
+
 
     updates = intToString(pos_floor[0], 2, 4, updates);
     updates = intToString(pos_floor[1], 6, 3, updates);

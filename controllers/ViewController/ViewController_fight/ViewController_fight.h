@@ -39,16 +39,17 @@ public:
 
     int currentCharacterT1();
 
+
 private:
     TeamManager* team1;
     TeamManager* team2;
-
+    bool countTime;
     FlipManager* flipManager;
 
     std::vector<ControllerBackground*> backgrounds;
-
+    void startCounting();
     time_t start;
-
+    static void * restSeconds(void *pVoid);
 };
 
 

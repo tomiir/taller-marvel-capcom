@@ -48,7 +48,6 @@ void Game_server::changeViewController() {
 
         aux =  {(characters.find(team2[0])->second), (characters.find(team2[1])->second)};
         dynamic_cast<ViewController_fight*>(viewsController["fight"])->setTeam(aux,2);
-
         dynamic_cast<ViewController_fight*>(viewsController["fight"])->createFlipManager();
     }
 
