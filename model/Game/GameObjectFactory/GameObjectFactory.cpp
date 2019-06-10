@@ -373,10 +373,10 @@ TimeManager *GameObjectFactory::getTimeManager() {
     positionToTake = {360,0,  60, 60};
     tenSix->setOriginRect(positionToTake);
     GameObject* tenSeven    = new GameObject("../Images/timer/timer-rounds.png","tenSeven",99,renderer, 555, 10,  60, 60);
-    positionToTake = {420,03,  60, 60};
+    positionToTake = {420,0,  60, 60};
     tenSeven->setOriginRect(positionToTake);
     GameObject* tenEight    = new GameObject("../Images/timer/timer-rounds.png","tenEight",99,renderer, 555, 10, 60, 60);
-    positionToTake = {480,133,  60, 60};
+    positionToTake = {480,0,  60, 60};
     tenEight->setOriginRect(positionToTake);
     GameObject* tenNine     = new GameObject("../Images/timer/timer-rounds.png","tenNine",99,renderer, 555, 10, 60, 60);
     positionToTake = {540,0,  60, 60};
