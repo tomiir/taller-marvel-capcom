@@ -13,6 +13,7 @@
 #include "../../Controller/ControllerBackground/ControllerBackground.h"
 #include "../../../utils/TeamManager/TeamManager.h"
 #include "../../../utils/FlipManager/FlipManager.h"
+#include <time.h>
 
 
 class ViewController_fight: public ViewController {
@@ -46,6 +47,7 @@ private:
 
     std::vector<ControllerBackground*> backgrounds;
 
+    time_t start;
 
 };
 

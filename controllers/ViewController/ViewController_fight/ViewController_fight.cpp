@@ -9,8 +9,10 @@
 
 #include "../../../utils/Logger/Logger.h"
 
-ViewController_fight::ViewController_fight():ViewController() {
 
+
+ViewController_fight::ViewController_fight():ViewController() {
+    time(&start);
 }
 
 ViewController_fight::~ViewController_fight() = default;
@@ -123,6 +125,7 @@ string ViewController_fight::giveNewParameters() {
     updates[45] = '9'; //ten
     updates[46] = '8'; //unity
     updates[47] = '0'; //round
+    cout<<start;
 
     updates = intToString(pos_floor[0], 2, 4, updates);
     updates = intToString(pos_floor[1], 6, 3, updates);
