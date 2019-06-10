@@ -310,7 +310,7 @@ void* Client::render(void *arg) {
             char round[] = {messageReceived[47],'\0'};
 
             game->updateTime(ten,unity,round);
-
+            game->updateLife();
 
             game->render();
             queueRecv.pop();
