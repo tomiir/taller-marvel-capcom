@@ -46,6 +46,7 @@ private:
     bool countTime;
     FlipManager* flipManager;
     int round;
+    bool endOfRounds;
     std::vector<ControllerBackground*> backgrounds;
     void startCounting();
     time_t start;

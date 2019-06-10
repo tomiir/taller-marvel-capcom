@@ -14,6 +14,7 @@ pthread_t countSeconds;
 int second;
 
 ViewController_fight::ViewController_fight():ViewController() {
+    endOfRounds = false;
     countTime = false;
     time(&start);
     round = 0;
@@ -133,10 +134,10 @@ string ViewController_fight::giveNewParameters() {
     }
 
     if (second == 0 && round == 2){
-        round == 2; // que siga indefinidamente hasta que definamos el 0
+        endOfRounds = true; // que siga indefinidamente hasta que definamos el 0
     }
 
-    if (second == 0) {
+    if (second == 0 && endOfRounds == false) {
         round++;
         countTime = false;
     }
