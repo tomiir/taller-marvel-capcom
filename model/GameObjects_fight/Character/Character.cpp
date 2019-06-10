@@ -18,24 +18,24 @@ Character::Character(const char* imagePath, int z_index, SDL_Renderer* rend, Spr
     this->name = name;
 
     if (name == "CaptainAmerica"){
-        auxY = 205;
-        auxLeft = 237;
-        auxRight = 411;
+        auxY = 196;
+        auxLeft = 234;
+        auxRight = 372;
     }
     if (name == "SpiderMan"){
         auxY = 307;
-        auxLeft = 424;
-        auxRight = 527;
+        auxLeft = 428;
+        auxRight = 528;
     }
     if (name == "ChunLi"){
         auxY = 240;
-        auxLeft = 423;
-        auxRight = 376;
+        auxLeft = 421;
+        auxRight = 397;
     }
     if (name == "Venom"){
-        auxY = 180;
-        auxLeft = 575;
-        auxRight = 527;
+        auxY = 227;
+        auxLeft = 578;
+        auxRight = 529;
     }
 
 
@@ -53,6 +53,10 @@ void Character::render() {
 
     SDL_Rect hitbox = getHitbox();
 
+    hitbox.y += auxY;
+    if (flip == SDL_FLIP_NONE){
+        hitbox.x += auxLeft;
+    }else hitbox.x += auxRight;
 
     SDL_SetRenderDrawColor(renderer, 0,255,0,255);
     SDL_RenderDrawRect(renderer, &hitbox);
