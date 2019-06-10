@@ -121,11 +121,11 @@ void ViewController_fight::startCounting(){
     pthread_create(&countSeconds, nullptr, restSeconds, nullptr);
 
 
-    if (second == 60 && round == 2) {
+    if (second == 0 && round == 2) {
         pthread_detach(countSeconds);
         return;
     }
-    if (second == 60) {
+    if (second == 0) {
         round++;
         countTime = false;
     }

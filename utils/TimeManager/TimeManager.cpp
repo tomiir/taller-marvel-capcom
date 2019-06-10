@@ -43,6 +43,7 @@ void TimeManager::setTen(int ten) {
 
 void TimeManager::setRound(int roundNew) {
     if(roundNew == round) return;
+    round = roundNew;
     roundTimer = 0;
 
 }
