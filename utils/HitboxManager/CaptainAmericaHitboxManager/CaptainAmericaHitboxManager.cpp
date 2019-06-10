@@ -9,11 +9,11 @@ CaptainAmericaHitboxManager::CaptainAmericaHitboxManager() : HitboxManager(){
     currentState = "still";
 
     SDL_Rect hitboxStill = SDL_Rect{0, 0, 160, 277};
-    SDL_Rect hitboxWalk = SDL_Rect{0, 0, 145, 282};
+    SDL_Rect hitboxWalk = SDL_Rect{0, 0, 130, 277};
     SDL_Rect hitboxJump = SDL_Rect{0, 0, 157, 215};
     SDL_Rect hitboxCrowchedDown = SDL_Rect{0, 0, 162, 195};
-    SDL_Rect hitboxPunchBody = SDL_Rect{0, 0, 86, 109};
-    SDL_Rect hitboxPunchArm = SDL_Rect{0,0, 40, 20 };
+    SDL_Rect hitboxPunchBody = SDL_Rect{0, 0, 160, 277};
+    SDL_Rect hitboxPunchArm = SDL_Rect{0,0, 90, 40};
 
     stateHitBoxes["still"] = { hitboxStill };
     stateHitBoxes["walk"] = { hitboxWalk };
@@ -48,8 +48,8 @@ void CaptainAmericaHitboxManager::setHitboxes(string newState, bool hFlip) {
 
     //Esto es porque el sprite de capitan es bastante raro
 
-    if(newState == "walk") currentX += 30;
-    if(currentState == "walk") currentX -= 30;
+    if(newState == "walk") currentX += 15;
+    if(currentState == "walk") currentX -= 15;
 
     currentState = newState;
 
@@ -74,7 +74,7 @@ void CaptainAmericaHitboxManager::setHitboxes(string newState, bool hFlip) {
 }
 
 void CaptainAmericaHitboxManager::setInitialPos(int x, int y) {
-    currentHitboxes[0].x = x + 26;
+    currentHitboxes[0].x = x + 20;
     currentHitboxes[0].y = y;
 }
 

@@ -8,10 +8,10 @@ ChunLiHitboxManager::ChunLiHitboxManager() :  HitboxManager(){
 
     currentState = "still";
 
-    SDL_Rect hitboxStill = SDL_Rect{0, 0, 141, 217};
-    SDL_Rect hitboxWalk = SDL_Rect{0, 0, 122, 210};
-    SDL_Rect hitboxJump = SDL_Rect{0, 0, 130, 185};
-    SDL_Rect hitboxCrowchedDown = SDL_Rect{0, 0, 165, 175};
+    SDL_Rect hitboxStill = SDL_Rect{0, 0, 170, 217};
+    SDL_Rect hitboxWalk = SDL_Rect{0, 0, 200, 217};
+    SDL_Rect hitboxJump = SDL_Rect{0, 0, 190, 185};
+    SDL_Rect hitboxCrowchedDown = SDL_Rect{0, 0, 195, 175};
     SDL_Rect hitboxPunchBody = SDL_Rect{0, 0, 48, 77};
     SDL_Rect hitboxPunchArm = SDL_Rect{0,0, 31, 19 };
 
@@ -66,6 +66,6 @@ void ChunLiHitboxManager::setHitboxes(string newState, bool hFlip) {
 }
 
 void ChunLiHitboxManager::setInitialPos(int x, int y) {
-    currentHitboxes[0].x = x + 32;
+    currentHitboxes[0].x = x;
     currentHitboxes[0].y = y;
 }

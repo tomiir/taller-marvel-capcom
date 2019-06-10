@@ -8,10 +8,10 @@ VenomHitboxManager::VenomHitboxManager() : HitboxManager(){
 
     currentState = "still";
 
-    SDL_Rect hitboxStill = SDL_Rect{0, 0, 245, 230};
-    SDL_Rect hitboxWalk = SDL_Rect{0, 0, 182, 295};
-    SDL_Rect hitboxJump = SDL_Rect{0, 0, 230, 170};
-    SDL_Rect hitboxCrowchedDown = SDL_Rect{0, 0, 280, 200};
+    SDL_Rect hitboxStill = SDL_Rect{0, 0, 310, 250};
+    SDL_Rect hitboxWalk = SDL_Rect{0, 0, 270, 295};
+    SDL_Rect hitboxJump = SDL_Rect{0, 0, 295, 170};
+    SDL_Rect hitboxCrowchedDown = SDL_Rect{0, 0, 250, 200};
     SDL_Rect hitboxPunchBody = SDL_Rect{0, 0, 62, 74};
     SDL_Rect hitboxPunchArm = SDL_Rect{0,0, 86, 28 };
 
@@ -45,11 +45,11 @@ void VenomHitboxManager::setHitboxes(string newState, bool hFlip) {
 
     if(newState == "crowchedDown") {
         currentY += difHeight;
-        currentX -= 65;
+        currentX += 20;
     }
     if(currentState == "crowchedDown"){
         currentY -= difHeight;
-        currentX += 65;
+        currentX -= 20;
     }
 
     //Esto es porque el sprite de venom es bastante raro
@@ -79,6 +79,6 @@ void VenomHitboxManager::setHitboxes(string newState, bool hFlip) {
 }
 
 void VenomHitboxManager::setInitialPos(int x, int y) {
-    currentHitboxes[0].x = x + 65;
-    currentHitboxes[0].y = y + 65;
+    currentHitboxes[0].x = x;
+    currentHitboxes[0].y = y;
 }

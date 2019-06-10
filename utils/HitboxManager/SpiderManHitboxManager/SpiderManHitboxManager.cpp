@@ -8,8 +8,8 @@ SpiderManHitboxManager::SpiderManHitboxManager() : HitboxManager(){
 
     currentState = "still";
 
-    SDL_Rect hitboxStill = SDL_Rect{0, 0, 223, 200};
-    SDL_Rect hitboxWalk = SDL_Rect{0, 0, 160, 185};
+    SDL_Rect hitboxStill = SDL_Rect{0, 0, 223, 240};
+    SDL_Rect hitboxWalk = SDL_Rect{0, 0, 240, 240};
     SDL_Rect hitboxJump = SDL_Rect{0, 0, 207, 167};
     SDL_Rect hitboxCrowchedDown = SDL_Rect{0, 0, 238, 130};
     SDL_Rect hitboxPunchBody = SDL_Rect{0, 0, 86, 109};
@@ -66,6 +66,6 @@ void SpiderManHitboxManager::setHitboxes(string newState, bool hFlip) {
 }
 
 void SpiderManHitboxManager::setInitialPos(int x, int y) {
-    currentHitboxes[0].x = x + 26;
-    currentHitboxes[0].y = y + 40;
+    currentHitboxes[0].x = x + 20;
+    currentHitboxes[0].y = y;
 }
