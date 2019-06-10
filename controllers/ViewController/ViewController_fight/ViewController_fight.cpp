@@ -122,9 +122,6 @@ void ViewController_fight::startCounting(){
     pthread_create(&countSeconds, nullptr, restSeconds, nullptr);
 
 
-    pthread_detach(countSeconds);
-
-
 }
 
 string ViewController_fight::giveNewParameters() {
@@ -138,6 +135,7 @@ string ViewController_fight::giveNewParameters() {
     }
 
     if (second == 0 && endOfRounds == false) {
+        pthread_join(countSeconds,nullptr);
         round++;
         countTime = false;
     }
