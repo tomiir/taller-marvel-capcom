@@ -20,7 +20,7 @@ TimeManager::TimeManager(int z, vector<GameObject*> unityNumbers, vector<GameObj
 void TimeManager::render() {
     tenNumbers[ten]->render();
     unityNumbers[unity]->render();
-    if (roundTimer < 6){
+    if (roundTimer < 3){
         rounds[round]->render();
     }
 

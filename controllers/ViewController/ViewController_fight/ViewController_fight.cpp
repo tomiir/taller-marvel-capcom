@@ -11,7 +11,7 @@
 #include "../../../utils/Logger/Logger.h"
 
 pthread_t countSeconds;
-
+pthread_mutex_t  mutex_second;
 int second;
 
 ViewController_fight::ViewController_fight():ViewController() {
@@ -109,7 +109,9 @@ void* ViewController_fight::restSeconds(void *pVoid){
 
     while (second >= 0){
         sleep(1);
+        pthread_mutex_lock(&mutex_second);
         second --;
+        pthread_mutex_unlock(&mutex_second);
     }
     return nullptr;
 
@@ -118,10 +120,10 @@ void* ViewController_fight::restSeconds(void *pVoid){
 void ViewController_fight::startCounting(){
     countTime = true;
     second = 99;
+    pthread_mutex_init(&mutex_second,NULL);
     pthread_create(&countSeconds, nullptr, restSeconds, nullptr);
-    if(second == 0) {
-        pthread_detach(countSeconds);
-    }
+    pthread_detach(countSeconds);
+    pthread_mutex_destroy(&mutex_second);
 }
 
 string ViewController_fight::giveNewParameters() {
@@ -152,7 +154,11 @@ string ViewController_fight::giveNewParameters() {
     //int unity = second - second/10;
 
     char seconds_string[2];
+
+    pthread_mutex_lock(&mutex_second);
     sprintf(seconds_string, "%d",second);
+    pthread_mutex_unlock(&mutex_second);
+
     updates[45] = seconds_string[0]; //ten
     updates[46] = seconds_string[1]; //unity
     //updates = intToString(ten,45,1,updates);
