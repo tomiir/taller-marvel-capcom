@@ -148,12 +148,15 @@ string ViewController_fight::giveNewParameters() {
     updates[43] = team1->getCurrentCharacterNumber();
     updates[44] = team2->getCurrentCharacterNumber();//No entiendo porque me aparece value is never used
 
-    int ten = second/10;
-    int unity = second - second/10;
-   // updates[45] = '9'; //ten
-   // updates[46] = '8'; //unity
-    updates = intToString(ten,45,1,updates);
-    updates = intToString(unity, 46, 1, updates);
+    //int ten = second / 10;
+    //int unity = second - second/10;
+
+    char seconds_string[2];
+    sprintf(seconds_string, "%d",second);
+    updates[45] = seconds_string[0]; //ten
+    updates[46] = seconds_string[1]; //unity
+    //updates = intToString(ten,45,1,updates);
+    //updates = intToString(unity, 46, 1, updates);
     updates[47] = '0'; //round
 
 
