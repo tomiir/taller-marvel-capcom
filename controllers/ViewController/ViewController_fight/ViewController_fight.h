@@ -45,7 +45,7 @@ private:
     TeamManager* team2;
     bool countTime;
     FlipManager* flipManager;
-
+    int round;
     std::vector<ControllerBackground*> backgrounds;
     void startCounting();
     time_t start;
