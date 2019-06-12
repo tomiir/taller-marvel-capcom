@@ -210,9 +210,37 @@ add_executable(
         Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandKickAnimation.h
         Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandPunchAnimation.cpp
         Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandPunchAnimation.h
+        Animations/VenomAnimations/VenomStronDownPunchAnimation.cpp
+        Animations/VenomAnimations/VenomStronDownPunchAnimation.h
+        Animations/VenomAnimations/VenomStrongAirKickAnimation.cpp
+        Animations/VenomAnimations/VenomStrongAirKickAnimation.h
+        Animations/VenomAnimations/VenomStrongAirPunchAnimation.cpp
+        Animations/VenomAnimations/VenomStrongAirPunchAnimation.h
+        Animations/VenomAnimations/VenomStrongDownKickAnimation.cpp
+        Animations/VenomAnimations/VenomStrongDownKickAnimation.h
+        Animations/VenomAnimations/VenomStrongStandKickAnimation.cpp
+        Animations/VenomAnimations/VenomStrongStandKickAnimation.h
+        Animations/VenomAnimations/VenomStrongStandPunchAnimation.cpp
+        Animations/VenomAnimations/VenomStrongStandPunchAnimation.h
+        Animations/VenomAnimations/VenomWeakKickAnimation.h
+        Animations/VenomAnimations/VenomWeakKickAnimation.cpp
+        Animations/VenomAnimations/VenomWeakDownPunchAnimation.h
+        Animations/VenomAnimations/VenomWeakDownPunchAnimation.cpp
+        Animations/VenomAnimations/VenomWeakAirPunchAnimation.h
+        Animations/VenomAnimations/VenomWeakAirPunchAnimation.cpp
+        Animations/VenomAnimations/VenomStandGuardAnimation.h
+        Animations/VenomAnimations/VenomStandGuardAnimation.cpp
+        Animations/VenomAnimations/VenomKickedAnimation.h
+        Animations/VenomAnimations/VenomKickedAnimation.cpp
+        Animations/VenomAnimations/VenomGrabAnimation.h
+        Animations/VenomAnimations/VenomGrabAnimation.cpp
+        Animations/VenomAnimations/VenomDownGuardAnimation.h
+        Animations/VenomAnimations/VenomDownGuardAnimation.cpp
+        Animations/VenomAnimations/VenomAirGuardAnimation.h
+        Animations/VenomAnimations/VenomAirGuardAnimation.cpp
 
 
-        Json/JsonGameObject_charSelect.cpp Json/JsonGameObject_charSelect.h Json/JsonSintax.cpp Json/JsonSintax.h Json/JsonDisconection.cpp Json/JsonDisconection.h Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandPunchAnimation.cpp Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandPunchAnimation.h Animations/ChunLiAnimations/ChunLiPunchAnimation.cpp Animations/ChunLiAnimations/ChunLiPunchAnimation.h Animations/SpiderManAnimations/SpiderManPunchAnimation.cpp Animations/SpiderManAnimations/SpiderManPunchAnimation.h Animations/VenomAnimations/VenomPunchAnimation.cpp Animations/VenomAnimations/VenomPunchAnimation.h)
+        Json/JsonGameObject_charSelect.cpp Json/JsonGameObject_charSelect.h Json/JsonSintax.cpp Json/JsonSintax.h Json/JsonDisconection.cpp Json/JsonDisconection.h Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandPunchAnimation.cpp Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandPunchAnimation.h Animations/ChunLiAnimations/ChunLiPunchAnimation.cpp Animations/ChunLiAnimations/ChunLiPunchAnimation.h Animations/SpiderManAnimations/SpiderManPunchAnimation.cpp Animations/SpiderManAnimations/SpiderManPunchAnimation.h Animations/VenomAnimations/VenomWeakStandPunchAnimation.cpp Animations/VenomAnimations/VenomWeakStandPunchAnimation.h)
 
 
 

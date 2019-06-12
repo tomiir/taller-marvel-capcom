@@ -2,9 +2,9 @@
 // Created by fer on 01/06/19.
 //
 
-#include "VenomPunchAnimation.h"
+#include "VenomWeakStandPunchAnimation.h"
 
-void VenomPunchAnimation::init() {
+void VenomWeakStandPunchAnimation::init() {
 
     startTime = SDL_GetTicks();
     animationRate = 4;
@@ -16,7 +16,7 @@ void VenomPunchAnimation::init() {
 
 }
 
-VenomPunchAnimation::VenomPunchAnimation() : Animation() {
+VenomWeakStandPunchAnimation::VenomWeakStandPunchAnimation() : Animation() {
 
     this->init();
 

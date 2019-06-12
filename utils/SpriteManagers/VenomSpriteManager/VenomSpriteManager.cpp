@@ -8,7 +8,7 @@
 #include "../../../Animations/VenomAnimations/VenomCrowchedDownAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomJumpAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomEnteringAnimation.h"
-#include "../../../Animations/VenomAnimations/VenomPunchAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomWeakStandPunchAnimation.h"
 
 using namespace std;
 
@@ -19,7 +19,7 @@ void VenomSpriteManager::init(){
     animationMap["jump"] = new VenomJumpAnimation();
     animationMap["crowchedDown"] = new VenomCrowchedDownAnimation();
     animationMap["entering"] = new VenomEnteringAnimation();
-    animationMap["punch"] = new VenomPunchAnimation();
+    animationMap["punch"] = new VenomWeakStandPunchAnimation();
 
 }
 
