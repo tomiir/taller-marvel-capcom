@@ -13,7 +13,7 @@ VenomHitboxManager::VenomHitboxManager() : HitboxManager(){
     SDL_Rect hitboxJump = SDL_Rect{0, 0, 295, 170};
     SDL_Rect hitboxCrowchedDown = SDL_Rect{0, 0, 250, 200};
     SDL_Rect hitboxPunchBody = SDL_Rect{0, 0, 310, 250};
-    SDL_Rect hitboxPunchArm = SDL_Rect{0,0, 240, 50};
+    SDL_Rect hitboxPunchArm = SDL_Rect{0,0, 230, 70};
 
 
     stateHitBoxes["still"] = { hitboxStill };

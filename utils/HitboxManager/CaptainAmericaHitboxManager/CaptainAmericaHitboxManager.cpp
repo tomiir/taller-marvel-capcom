@@ -12,8 +12,8 @@ CaptainAmericaHitboxManager::CaptainAmericaHitboxManager() : HitboxManager(){
     SDL_Rect hitboxWalk = SDL_Rect{0, 0, 130, 277};
     SDL_Rect hitboxJump = SDL_Rect{0, 0, 157, 215};
     SDL_Rect hitboxCrowchedDown = SDL_Rect{0, 0, 162, 195};
-    SDL_Rect hitboxPunchBody = SDL_Rect{0, 0, 175, 277};
-    SDL_Rect hitboxPunchArm = SDL_Rect{0,0, 160, 40};
+    SDL_Rect hitboxPunchBody = SDL_Rect{0, 0, 167, 277};
+    SDL_Rect hitboxPunchArm = SDL_Rect{0,0, 153, 57};
 
     stateHitBoxes["still"] = { hitboxStill };
     stateHitBoxes["walk"] = { hitboxWalk };

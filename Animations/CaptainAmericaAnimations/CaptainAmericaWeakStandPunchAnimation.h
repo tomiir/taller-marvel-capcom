@@ -8,11 +8,11 @@
 #include "../Animation.h"
 #include <SDL_timer.h>
 
-class CaptainAmericaPunchAnimation: public Animation {
+class CaptainAmericaWeakStandPunchAnimation: public Animation {
 
 public:
-    CaptainAmericaPunchAnimation();
-    ~CaptainAmericaPunchAnimation() = default;
+    CaptainAmericaWeakStandPunchAnimation();
+    ~CaptainAmericaWeakStandPunchAnimation() = default;
     void init() override ;
 };
 

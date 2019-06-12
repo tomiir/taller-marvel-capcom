@@ -2,9 +2,11 @@
 // Created by trocchi on 6/1/19.
 //
 
-#include "CaptainAmericaPunchAnimation.h"
+#include "CaptainAmericaWeakStandPunchAnimation.h"
+#include <SDL_timer.h>
 
-void CaptainAmericaPunchAnimation::init() {
+
+void CaptainAmericaWeakStandPunchAnimation::init() {
 
     startTime = SDL_GetTicks();
     animationRate = 4;
@@ -20,7 +22,7 @@ void CaptainAmericaPunchAnimation::init() {
 
 }
 
-CaptainAmericaPunchAnimation::CaptainAmericaPunchAnimation() : Animation() {
+CaptainAmericaWeakStandPunchAnimation::CaptainAmericaWeakStandPunchAnimation() : Animation() {
 
     this->init();
 

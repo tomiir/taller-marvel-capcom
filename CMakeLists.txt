@@ -174,7 +174,7 @@ add_executable(
         utils/CollisionManager/CollisionManager.h
 
 
-        Json/JsonGameObject_charSelect.cpp Json/JsonGameObject_charSelect.h Json/JsonSintax.cpp Json/JsonSintax.h Json/JsonDisconection.cpp Json/JsonDisconection.h Animations/CaptainAmericaAnimations/CaptainAmericaPunchAnimation.cpp Animations/CaptainAmericaAnimations/CaptainAmericaPunchAnimation.h Animations/ChunLiAnimations/ChunLiPunchAnimation.cpp Animations/ChunLiAnimations/ChunLiPunchAnimation.h Animations/SpiderManAnimations/SpiderManPunchAnimation.cpp Animations/SpiderManAnimations/SpiderManPunchAnimation.h Animations/VenomAnimations/VenomPunchAnimation.cpp Animations/VenomAnimations/VenomPunchAnimation.h)
+        Json/JsonGameObject_charSelect.cpp Json/JsonGameObject_charSelect.h Json/JsonSintax.cpp Json/JsonSintax.h Json/JsonDisconection.cpp Json/JsonDisconection.h Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandPunchAnimation.cpp Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandPunchAnimation.h Animations/ChunLiAnimations/ChunLiPunchAnimation.cpp Animations/ChunLiAnimations/ChunLiPunchAnimation.h Animations/SpiderManAnimations/SpiderManPunchAnimation.cpp Animations/SpiderManAnimations/SpiderManPunchAnimation.h Animations/VenomAnimations/VenomPunchAnimation.cpp Animations/VenomAnimations/VenomPunchAnimation.h)
 
 
 

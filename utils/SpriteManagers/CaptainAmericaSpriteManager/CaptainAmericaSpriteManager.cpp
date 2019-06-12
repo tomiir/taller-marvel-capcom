@@ -15,7 +15,7 @@ void CaptainAmericaSpriteManager::init(){
     animationMap["jump"] = new CaptainAmericaJumpAnimation();
     animationMap["crowchedDown"] = new CaptainAmericaCrowchedDownAnimation();
     animationMap["entering"] = new CaptainAmericaEnteringAnimation();
-    animationMap["punch"] = new CaptainAmericaPunchAnimation();
+    animationMap["punch"] = new CaptainAmericaWeakStandPunchAnimation();
 
 }
 

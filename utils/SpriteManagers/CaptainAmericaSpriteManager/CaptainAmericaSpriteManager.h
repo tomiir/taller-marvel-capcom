@@ -12,7 +12,7 @@
 #include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaJumpAnimation.h"
 #include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaCrowchedDownAnimation.h"
 #include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaEnteringAnimation.h"
-#include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaPunchAnimation.h"
+#include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandPunchAnimation.h"
 
 class CaptainAmericaSpriteManager : public SpriteManager {
 
