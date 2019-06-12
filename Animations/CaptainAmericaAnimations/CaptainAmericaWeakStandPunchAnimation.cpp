@@ -11,15 +11,16 @@ void CaptainAmericaWeakStandPunchAnimation::init() {
     startTime = SDL_GetTicks();
     animationRate = 4;
     animationLength = 1;
+    int width = 322;
+    int height = 245;
+    int initialX = 2 * width;
+    int initialY = 14 * height;
 
-    vector<int> frame1 = {644, 3430, 322, 245};
-//    vector<int> frame2 = {98, 2968, 383, 212};
-//    vector<int> frame3 = {239, 878, 98, 108};
-
-    animation.push_back(frame1);
-//    animation.push_back(frame2);
-   // animation.push_back(frame3);
-
+    for(int i = 0; i < animationLength; i++){
+        vector<int> frame = {initialX, initialY, height, width};
+        initialX += width;
+        animation.push_back(frame);
+    }
 }
 
 CaptainAmericaWeakStandPunchAnimation::CaptainAmericaWeakStandPunchAnimation() : Animation() {

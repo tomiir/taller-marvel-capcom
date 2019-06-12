@@ -12,12 +12,16 @@ void CaptainAmericaWeakDownPunchAnimation::init() {
     startTime = SDL_GetTicks();
     animationRate = 1;
     animationLength = 1;
+    int width = 322;
+    int height = 245;
+    int initialX = width;
+    int initialY = 13 * height;
 
-    vector<int> frame0 = {322, 3185, 322, 245};
-
-    animation.push_back(frame0);
-
-
+    for(int i = 0; i < animationLength; i++){
+        vector<int> frame = {initialX, initialY, height, width};
+        initialX += width;
+        animation.push_back(frame);
+    }
 }
 
 CaptainAmericaWeakDownPunchAnimation::CaptainAmericaWeakDownPunchAnimation() : Animation() {

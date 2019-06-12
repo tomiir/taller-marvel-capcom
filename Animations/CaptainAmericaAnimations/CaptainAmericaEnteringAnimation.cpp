@@ -12,16 +12,16 @@ void CaptainAmericaEnteringAnimation::init() {
     startTime = SDL_GetTicks();
     animationRate = 2;
     animationLength = 3;
+    int width = 322;
+    int height = 245;
+    int initialX = width;
+    int initialY = 4 * height;
 
-    vector<int> frame0 = {322, 980, 322, 245};
-    vector<int> frame1 = {644, 980, 322, 245};
-    vector<int> frame2 = {966, 980, 322, 245};
-
-
-    animation.push_back(frame0);
-    animation.push_back(frame1);
-    animation.push_back(frame2);
-
+    for(int i = 0; i < animationLength; i++){
+        vector<int> frame = {initialX, initialY, height, width};
+        initialX += width;
+        animation.push_back(frame);
+    }
 }
 
 CaptainAmericaEnteringAnimation::CaptainAmericaEnteringAnimation() : Animation() {

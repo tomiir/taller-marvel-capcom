@@ -1,21 +1,21 @@
 //
-// Created by arielpm on 12/06/19.
+// Created by fer on 12/06/19.
 //
 
-#include "CaptainAmericaGrabAnimation.h"
+#include "CaptainAmericaDownKickedAnimation.h"
 #include <SDL_timer.h>
 
 
 
-void CaptainAmericaGrabAnimation::init() {
+void CaptainAmericaDownKickedAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 5;
-    animationLength = 7;
+    animationRate = 1;
+    animationLength = 1;
     int width = 322;
     int height = 245;
     int initialX = 0;
-    int initialY = 21 * height;
+    int initialY = 5 * height;
 
     for(int i = 0; i < animationLength; i++){
         vector<int> frame = {initialX, initialY, height, width};
@@ -24,7 +24,7 @@ void CaptainAmericaGrabAnimation::init() {
     }
 }
 
-CaptainAmericaGrabAnimation::CaptainAmericaGrabAnimation() : Animation() {
+CaptainAmericaDownKickedAnimation::CaptainAmericaDownKickedAnimation() : Animation() {
 
     this->init();
 

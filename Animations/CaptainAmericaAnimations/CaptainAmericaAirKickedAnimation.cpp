@@ -1,11 +1,13 @@
 //
-// Created by arielpm on 12/06/19.
+// Created by fer on 12/06/19.
 //
 
-#include "CaptainAmericaWeakStandKickAnimation.h"
+#include "CaptainAmericaAirKickedAnimation.h"
+#include <SDL_timer.h>
 
 
-void CaptainAmericaWeakStandKickAnimation::init() {
+
+void CaptainAmericaAirKickedAnimation::init() {
 
     startTime = SDL_GetTicks();
     animationRate = 1;
@@ -13,17 +15,16 @@ void CaptainAmericaWeakStandKickAnimation::init() {
     int width = 322;
     int height = 245;
     int initialX = width;
-    int initialY = 15 * height;
+    int initialY = 5 * height;
 
     for(int i = 0; i < animationLength; i++){
         vector<int> frame = {initialX, initialY, height, width};
         initialX += width;
         animation.push_back(frame);
     }
-
 }
 
-CaptainAmericaWeakStandKickAnimation::CaptainAmericaWeakStandKickAnimation() : Animation() {
+CaptainAmericaAirKickedAnimation::CaptainAmericaAirKickedAnimation() : Animation() {
 
     this->init();
 
