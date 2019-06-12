@@ -10,7 +10,7 @@
 
 
 
-class CaptainAmericaStandGuardAnimation {
+class CaptainAmericaStandGuardAnimation : public Animation{
 
 public:
     CaptainAmericaStandGuardAnimation();

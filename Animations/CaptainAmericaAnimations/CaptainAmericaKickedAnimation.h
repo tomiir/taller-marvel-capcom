@@ -9,7 +9,7 @@
 
 
 
-class CaptainAmericaKickedAnimation {
+class CaptainAmericaKickedAnimation : public Animation{
 
 public:
     CaptainAmericaKickedAnimation();

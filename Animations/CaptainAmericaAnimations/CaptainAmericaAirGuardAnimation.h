@@ -9,7 +9,7 @@
 
 
 
-class CaptainAmericaAirGuardAnimation {
+class CaptainAmericaAirGuardAnimation : public Animation{
 
 public:
     CaptainAmericaAirGuardAnimation();

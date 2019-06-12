@@ -2,7 +2,7 @@
 // Created by arielpm on 12/06/19.
 //
 
-#include "CaptainAmericaStrongAirPunch.h"
+#include "CaptainAmericaStrongAirPunchAnimation.h"
 #include <SDL_timer.h>
 
 

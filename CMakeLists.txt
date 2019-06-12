@@ -172,6 +172,44 @@ add_executable(
         utils/HitboxManager/CaptainAmericaHitboxManager/CaptainAmericaHitboxManager.cpp
         utils/CollisionManager/CollisionManager.cpp
         utils/CollisionManager/CollisionManager.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaAirGuardAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaAirGuardAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaDownGuardAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaDownGuardAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaGrabAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaGrabAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaKickedAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaKickedAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaStandGuardAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaStandGuardAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaStrongAirKickAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaStrongAirKickAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaStrongAirPunchAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaStrongAirPunchAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaStrongDownKickAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaStrongDownKickAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaStrongDownPunchAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaStrongDownPunchAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaStrongStandKickAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaStrongStandKickAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaStrongStandPunchAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaStrongStandPunchAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaWalkBackwardsAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaWalkBackwardsAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaWalkFowardAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaWalkFowardAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaWeakAirKickAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaWeakAirKickAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaWeakAirPunchAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaWeakAirPunchAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaWeakDownKickAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaWeakDownKickAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaWeakDownPunchAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaWeakDownPunchAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandKickAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandKickAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandPunchAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandPunchAnimation.h
 
 
         Json/JsonGameObject_charSelect.cpp Json/JsonGameObject_charSelect.h Json/JsonSintax.cpp Json/JsonSintax.h Json/JsonDisconection.cpp Json/JsonDisconection.h Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandPunchAnimation.cpp Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandPunchAnimation.h Animations/ChunLiAnimations/ChunLiPunchAnimation.cpp Animations/ChunLiAnimations/ChunLiPunchAnimation.h Animations/SpiderManAnimations/SpiderManPunchAnimation.cpp Animations/SpiderManAnimations/SpiderManPunchAnimation.h Animations/VenomAnimations/VenomPunchAnimation.cpp Animations/VenomAnimations/VenomPunchAnimation.h)

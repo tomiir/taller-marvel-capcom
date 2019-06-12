@@ -9,7 +9,7 @@
 
 
 
-class CaptainAmericaDownGuardAnimation {
+class CaptainAmericaDownGuardAnimation : public Animation{
 
 public:
     CaptainAmericaDownGuardAnimation();

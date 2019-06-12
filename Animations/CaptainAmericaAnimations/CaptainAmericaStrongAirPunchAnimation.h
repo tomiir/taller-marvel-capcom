@@ -6,10 +6,9 @@
 #define TALLER_MARVEL_CAPCOM_CAPTAINAMERICASTRONGAIRPUNCHANIMATION_H
 
 #include "../Animation.h"
-#include <SDL_timer.h>
 
 
-class CaptainAmericaStrongAirPunchAnimation {
+class CaptainAmericaStrongAirPunchAnimation : public Animation{
 
 public:
     CaptainAmericaStrongAirPunchAnimation();
