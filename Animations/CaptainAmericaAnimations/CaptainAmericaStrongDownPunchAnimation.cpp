@@ -12,18 +12,16 @@ void CaptainAmericaStrongDownPunchAnimation::init() {
     startTime = SDL_GetTicks();
     animationRate = 6;
     animationLength = 3;
+    int width = 322;
+    int height = 245;
+    int initialX = 0;
+    int initialY = 10 * height;
 
-    vector<int> frame0 = {0, 2450, 322, 245};
-    vector<int> frame1 = {322, 2450, 322, 245};
-    vector<int> frame2 = {644, 2450, 322, 245};
-
-
-    animation.push_back(frame0);
-    animation.push_back(frame1);
-    animation.push_back(frame2);
-
-
-
+    for(int i = 0; i < animationLength; i++){
+        vector<int> frame = {initialX, initialY, height, width};
+        initialX += width;
+        animation.push_back(frame);
+    }
 }
 
 CaptainAmericaStrongDownPunchAnimation::CaptainAmericaStrongDownPunchAnimation() : Animation() {

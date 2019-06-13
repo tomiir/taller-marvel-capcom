@@ -7,28 +7,16 @@ void CaptainAmericaStillAnimation::init() {
     startTime = SDL_GetTicks();
     animationRate = 10;
     animationLength = 9;
+    int width = 322;
+    int height = 245;
+    int initialX = 0;
+    int initialY = 0;
 
-    vector<int> frame0 = {0, 0, 322, 245};
-    vector<int> frame1 = {322, 0, 322, 245};
-    vector<int> frame2 = {644, 0, 322, 245};
-    vector<int> frame3 = {966, 0, 322, 245};
-    vector<int> frame4 = {1288, 0, 322, 245};
-    vector<int> frame5 = {1610, 0, 322, 245};
-    vector<int> frame6 = {1932, 0, 322, 245};
-    vector<int> frame7 = {2254, 0, 322, 245};
-    vector<int> frame8 = {2576, 0, 322, 245};
-
-
-
-    animation.push_back(frame0);
-    animation.push_back(frame1);
-    animation.push_back(frame2);
-    animation.push_back(frame3);
-    animation.push_back(frame4);
-    animation.push_back(frame5);
-    animation.push_back(frame6);
-    animation.push_back(frame7);
-    animation.push_back(frame8);
+    for(int i = 0; i < animationLength; i++){
+        vector<int> frame = {initialX, initialY, height, width};
+        initialX += width;
+        animation.push_back(frame);
+    }
 
 }
 
