@@ -9,7 +9,7 @@
 #include "../../../Animations/SpiderManAnimations/SpiderManCrowchedDownAnimation.h"
 #include "../../../Animations/SpiderManAnimations/SpiderManJumpAnimation.h"
 #include "../../../Animations/SpiderManAnimations/SpiderManEnteringAnimation.h"
-#include "../../../Animations/SpiderManAnimations/SpiderManPunchAnimation.h"
+#include "../../../Animations/SpiderManAnimations/SpiderManWeakStandPunchAnimation.h"
 
 
 using namespace std;
@@ -22,7 +22,7 @@ void SpiderManSpriteManager::init(){
     animationMap["jump"] = new SpiderManJumpAnimation();
     animationMap["crowchedDown"] = new SpiderManCrowchedDownAnimation();
     animationMap["entering"] = new SpiderManEnteringAnimation();
-    animationMap["punch"] = new SpiderManPunchAnimation();
+    animationMap["punch"] = new SpiderManWeakStandPunchAnimation();
 }
 
 SpiderManSpriteManager::SpiderManSpriteManager() : SpriteManager(){

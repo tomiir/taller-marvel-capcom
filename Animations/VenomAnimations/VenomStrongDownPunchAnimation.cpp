@@ -2,7 +2,7 @@
 // Created by arielpm on 12/06/19.
 //
 
-#include "VenomStronDownPunchAnimation.h"
+#include "VenomStrongDownPunchAnimation.h"
 
 void VenomStrongDownPunchAnimation::init() {
 

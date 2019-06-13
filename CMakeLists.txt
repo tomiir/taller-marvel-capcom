@@ -218,8 +218,8 @@ add_executable(
         Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandPunchAnimation.cpp
         Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandPunchAnimation.h
 
-        Animations/VenomAnimations/VenomStronDownPunchAnimation.cpp
-        Animations/VenomAnimations/VenomStronDownPunchAnimation.h
+        Animations/VenomAnimations/VenomStrongDownPunchAnimation.cpp
+        Animations/VenomAnimations/VenomStrongDownPunchAnimation.h
         Animations/VenomAnimations/VenomStrongAirKickAnimation.cpp
         Animations/VenomAnimations/VenomStrongAirKickAnimation.h
         Animations/VenomAnimations/VenomStrongAirPunchAnimation.cpp

@@ -9,7 +9,7 @@
 #include "../../../Animations/ChunLiAnimations/ChunLiJumpAnimation.h"
 #include "../../../Animations/ChunLiAnimations/ChunLiCrowchedDownAnimation.h"
 #include "../../../Animations/ChunLiAnimations/ChunLiEnteringAnimation.h"
-#include "../../../Animations/ChunLiAnimations/ChunLiPunchAnimation.h"
+#include "../../../Animations/ChunLiAnimations/ChunLiWeakStandPunchAnimation.h"
 
 
 using namespace std;
@@ -21,7 +21,7 @@ void ChunLiSpriteManager::init(){
     animationMap["jump"] = new ChunLiJumpAnimation();
     animationMap["crowchedDown"] = new ChunLiCrowchedDownAnimation();
     animationMap["entering"] = new ChunLiEnteringAnimation();
-    animationMap["punch"] = new ChunLiPunchAnimation();
+    animationMap["punch"] = new ChunLiWeakStandPunchAnimation();
 }
 
 ChunLiSpriteManager::ChunLiSpriteManager() : SpriteManager(){

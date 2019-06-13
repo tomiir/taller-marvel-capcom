@@ -14,13 +14,12 @@ void SpiderManJumpAnimation::init() {
 
     int width = 491;
     int height = 268;
-    int initialX = 0;
+    int initialX = width;
     int initialY = 4 * height;
 
     for(int i = 0; i < animationLength; i++){
         initialX += width;
-        if(i == 0) continue;
-        vector<int> frame = {initialX, initialY, height, width};
+        vector<int> frame = {initialX, initialY, width, height};
         animation.push_back(frame);
     }
 

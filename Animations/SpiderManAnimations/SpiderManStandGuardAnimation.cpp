@@ -18,7 +18,7 @@ void SpiderManStandGuardAnimation::init() {
     int initialY = 6 * height;
 
     for(int i = 0; i < animationLength; i++){
-        vector<int> frame = {initialX, initialY, height, width};
+        vector<int> frame = {initialX, initialY, width, height};
         initialX += width;
         animation.push_back(frame);
     }

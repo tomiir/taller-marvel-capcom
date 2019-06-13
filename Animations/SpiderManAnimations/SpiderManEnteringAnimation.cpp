@@ -19,7 +19,7 @@ void SpiderManEnteringAnimation::init() {
     for(int i = 0; i < animationLength; i++){
         initialX += width;
         if(i == 2 or i == 4) continue;
-        vector<int> frame = {initialX, initialY, height, width};
+        vector<int> frame = {initialX, initialY, width, height};
         animation.push_back(frame);
     }
 }
