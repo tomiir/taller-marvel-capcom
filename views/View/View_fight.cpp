@@ -91,7 +91,7 @@ string selectState(char state){
     else if(state == '2') return  "jump";
     else if(state == '3') return "crowchedDown";
     else if(state == '4') return "entering";
-    else if(state == '5') return "punch";
+    else if(state == '5') return "weakStandPunch";
     else return NULL;//LOGGEAR ESTE ERROR
 }
 

@@ -120,9 +120,9 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
     if (direction->isEqual(KEYSRELEASED) and !inAir and !crowchedDown and !movingLeft and !movingRight and !punching)
         state = "still";
 
-    if(direction -> isEqual(PUNCH) and !punching) {
+    if(direction -> isEqual(WEAK_PUNCH) and !punching) {
         logger->Log("Pegando", INFO, "");
-        state = "punch";
+        state = "weakStandPunch";
         dynamic_cast<Character_server *>(gameObject)->setState(state);
         punching = true;
         punching_timer = 0;

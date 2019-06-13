@@ -22,7 +22,7 @@ VenomHitboxManager::VenomHitboxManager() : HitboxManager(){
     stateHitBoxes["entering"] = { hitboxJump };
     stateHitBoxes["leaving"] = { hitboxJump };
     stateHitBoxes["crowchedDown"] = { hitboxCrowchedDown };
-    stateHitBoxes["punch"] = { hitboxPunchBody, hitboxPunchArm  };
+    stateHitBoxes["weakStandPunch"] = { hitboxPunchBody, hitboxPunchArm  };
 
     stateIterHitboxes = stateHitBoxes.find(currentState);
     currentHitboxes = stateIterHitboxes->second;
@@ -58,7 +58,7 @@ void VenomHitboxManager::setHitboxes(string newState, bool hFlip) {
 
     currentState = newState;
 
-    if(currentState == "punch") {
+    if(currentState == "weakStandPunch") {
         SDL_Rect body = newHitboxes[0];
         SDL_Rect arm = newHitboxes[1];
 
