@@ -6,7 +6,6 @@
 #include <SDL_timer.h>
 
 
-
 void CaptainAmericaAirKickedAnimation::init() {
 
     startTime = SDL_GetTicks();

@@ -1,22 +1,21 @@
 //
-// Created by arielpm on 13/04/19.
+// Created by fer on 12/06/19.
 //
 
-#include "ChunLiWalkFowardAnimation.h"
+#include "ChunLiStrongStandKickAnimation.h"
 #include <SDL_timer.h>
-#include <SDL_timer.h>
 
 
 
-void ChunLiWalkFowardAnimation::init() {
+void ChunLiStrongStandKickAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 8;
-    animationLength = 12;
+    animationRate = 7;
+    animationLength = 8;
     int width = 407;
     int height = 210;
     int initialX = 0;
-    int initialY = height;
+    int initialY = 18 * height;
 
     for(int i = 0; i < animationLength; i++){
         vector<int> frame = {initialX, initialY, height, width};
@@ -25,6 +24,6 @@ void ChunLiWalkFowardAnimation::init() {
     }
 }
 
-ChunLiWalkFowardAnimation::ChunLiWalkFowardAnimation() : Animation() {
+ChunLiStrongStandKickAnimation::ChunLiStrongStandKickAnimation() : Animation() {
     this->init();
 }
