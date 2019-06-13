@@ -9,6 +9,23 @@
 #include "../../../Animations/VenomAnimations/VenomJumpAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomEnteringAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomWeakStandPunchAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomWeakDownPunchAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomWeakAirPunchAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomStrongStandPunchAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomStrongDownPunchAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomStrongAirPunchAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomWeakKickAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomStrongStandKickAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomStrongDownKickAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomStrongAirKickAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomDownKickedAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomStandKickedAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomAirGuardAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomGrabAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomDownGuardAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomStandGuardAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomAirKickedAnimation.h"
+
 
 using namespace std;
 
@@ -19,7 +36,25 @@ void VenomSpriteManager::init(){
     animationMap["jump"] = new VenomJumpAnimation();
     animationMap["crowchedDown"] = new VenomCrowchedDownAnimation();
     animationMap["entering"] = new VenomEnteringAnimation();
-    animationMap["punch"] = new VenomWeakStandPunchAnimation();
+    animationMap["weakStandPunch"] = new VenomWeakStandPunchAnimation();
+    animationMap["weakDownPunch"] = new VenomWeakStandPunchAnimation();
+    animationMap["weakAirPunch"] = new VenomWeakAirPunchAnimation();
+    animationMap["strongStandPunch"] = new VenomStrongStandPunchAnimation();
+    animationMap["strongDownPunch"] = new VenomStrongDownPunchAnimation();
+    animationMap["strongAirPunch"] = new VenomStrongAirPunchAnimation();
+    animationMap["weakStandKick"] = new VenomWeakKickAnimation();
+    animationMap["weakDownKick"] = new VenomWeakKickAnimation();
+    animationMap["weakAirKick"] = new VenomWeakKickAnimation();
+    animationMap["strongStandKick"] = new VenomStrongStandKickAnimation();
+    animationMap["strongDownKick"] = new VenomStrongDownKickAnimation();
+    animationMap["strongAirKick"] = new VenomStrongAirKickAnimation();
+    animationMap["downKicked"] = new VenomDownKickedAnimation();
+    animationMap["standKicked"] = new VenomStandKickedAnimation();
+    animationMap["airKicked"] = new VenomAirKickedAnimation();
+    animationMap["grab"] = new VenomGrabAnimation();
+    animationMap["downGuard"] = new VenomDownGuardAnimation();
+    animationMap["standGuard"] = new VenomStandGuardAnimation();
+    animationMap["airGuard"] = new VenomAirGuardAnimation();
 
 }
 

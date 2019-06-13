@@ -8,6 +8,7 @@
 
 #include "../SpriteManager.h"
 
+
 class ChunLiSpriteManager : public SpriteManager {
 
 
