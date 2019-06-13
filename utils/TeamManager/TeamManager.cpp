@@ -94,9 +94,9 @@ char TeamManager::getStateCurrentCharacter() {
     else if (state == "strongStandKick") return 'e';
     else if (state == "strongDownKick") return 'f';
     else if (state == "strongAirKick") return 'g';
-    else if (state == "StandGuard") return 'h';
-    else if (state == "DownGuard") return 'i';
-    else if (state == "AirGuard") return 'j';
+    else if (state == "standGuard") return 'h';
+    else if (state == "downGuard") return 'i';
+    else if (state == "airGuard") return 'j';
 
 
 }

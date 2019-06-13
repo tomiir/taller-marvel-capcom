@@ -11,7 +11,7 @@ void VenomStrongDownKickAnimation::init() {
     animationRate = 1;
     animationLength = 1;
 
-    vector<int> frame2 = {1120, 4284, 560, 238};
+    vector<int> frame2 = {1120, 4760, 560, 238};
 
     animation.push_back(frame2);
 

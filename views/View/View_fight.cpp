@@ -103,9 +103,9 @@ string selectState(char state){
     else if (state == 'e') return "strongStandKick";
     else if (state == 'f') return "strongDownKick";
     else if (state == 'g') return "strongAirKick";
-    else if (state == 'h') return "StandGuard";
-    else if (state == 'i') return "DownGuard";
-    else if (state == 'j') return "AirGuard";
+    else if (state == 'h') return "standGuard";
+    else if (state == 'i') return "downGuard";
+    else if (state == 'j') return "airGuard";
     else return NULL;//LOGGEAR ESTE ERROR
 }
 

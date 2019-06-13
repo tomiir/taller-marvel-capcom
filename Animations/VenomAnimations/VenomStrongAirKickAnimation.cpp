@@ -10,8 +10,8 @@ void VenomStrongAirKickAnimation::init() {
     animationRate = 2;
     animationLength = 2;
 
-    vector<int> frame0 = {2800, 4046, 560, 238};
-    vector<int> frame1 = {3360, 4046, 560, 238};
+    vector<int> frame0 = {2800, 4522, 560, 238};
+    vector<int> frame1 = {3360, 4522, 560, 238};
 
 
     animation.push_back(frame0);

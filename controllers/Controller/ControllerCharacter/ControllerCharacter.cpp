@@ -100,9 +100,10 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
 
 
     if(punching) {
-        punching = ++punching_timer != 15;
+        punching = ++punching_timer != 18;
         if(!punching) {
-            state = "walk";
+            if(!inAir) state = "walk";
+            else state = "jump";
         }
     }
 
@@ -122,10 +123,10 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
 
     if (direction->isEqual(GUARD) and !punching) {
         if(state == "crowchedDown"){
-            state = "DownGuard";
+            state = "downGuard";
         }else if(inAir){
-            state = "AirGuard";
-        }else state = "StandGuard";
+            state = "airGuard";
+        }else state = "standGuard";
         guarding = true;
     }
 
@@ -136,19 +137,19 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
         guarding = false;
     }
 
-    if (direction->isEqual(GETTINGUP) and !punching) {
+    if (direction->isEqual(GETTINGUP) and !punching and !guarding) {
         state = "still";
         crowchedDown = false;
     }
-    if ((direction->isEqual(STOPRIGHT) or inAir)) {
+    if ((direction->isEqual(STOPRIGHT) or inAir)and !punching and !guarding) {
         movingRight = false;
         state = "still";
     }
-    if ((direction->isEqual(STOPLEFT) or inAir)) {
+    if ((direction->isEqual(STOPLEFT) or inAir)and !punching and !guarding) {
         movingLeft = false;
         state = "still";
     }
-    if (direction->isEqual(KEYSRELEASED) and !inAir and !crowchedDown and !movingLeft and !movingRight and !punching)
+    if (direction->isEqual(KEYSRELEASED) and !inAir and !crowchedDown and !movingLeft and !movingRight and !punching and !guarding)
         state = "still";
 
 
@@ -261,7 +262,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
 
     if (jump) {
 
-        state = "jump";
+        if(!punching and !guarding) state = "jump";
         inAir = true;
         DirectionVector *step = new DirectionVector(0, -jumpSpeed);
 
@@ -278,7 +279,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
 
     if (!jump and inAir and !leaving) {
 
-        state = "jump";
+        if(!punching and !guarding) state = "jump";
 
         DirectionVector *step = new DirectionVector(0, jumpSpeed);
         if (jumpRight and characterIsntInRightBoundary) step->setX(jumpSpeed / 2);
@@ -288,10 +289,11 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
 
         bool characterInFloor = info[1] >= (screenHeight - info[3] - jumpDistance);
 
-        if (characterInFloor and !punching) {
+        if (characterInFloor) {
             inAir = jumpRight = jumpLeft = entering = false;
             gameObject->stayInFloor();
             state = "still";
+            punching = false;
         }
 
         delete step;

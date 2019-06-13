@@ -11,7 +11,7 @@ void VenomStrongStandKickAnimation::init() {
     animationRate = 1;
     animationLength = 1;
 
-    vector<int> frame2 = {2240, 3808, 560, 238};
+    vector<int> frame2 = {2240, 4284, 560, 238};
 
     animation.push_back(frame2);
 

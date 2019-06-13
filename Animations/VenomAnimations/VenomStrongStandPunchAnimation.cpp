@@ -7,7 +7,7 @@
 void VenomStrongStandPunchAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 5;
+    animationRate = 8;
     animationLength = 7;
 
     vector<int> frame0 = {0, 2618, 560, 238};
