@@ -1,30 +1,31 @@
 //
-// Created by fer on 12/06/19.
+// Created by arielpm on 13/06/19.
 //
 
 #include "SpiderManStrongStandPunchAnimation.h"
 #include <SDL_timer.h>
 
-
 void SpiderManStrongStandPunchAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 11;
-    animationLength = 9;
+    animationRate = 4;
+    animationLength = 4;
 
-    int width = 491;
-    int height = 268;
-    int initialX = 0;
-    int initialY = 11 * height;
+    vector<int> frame0 = {982, 2948, 491, 268};
+    vector<int> frame1 = {1473, 2948, 491, 268};
+    vector<int> frame2 = {1964, 2948, 491, 268};
+    vector<int> frame3 = {2455, 2948, 491, 268};
 
-    for(int i = 0; i < animationLength; i++){
-        vector<int> frame = {initialX, initialY, width, height};
-        initialX += width;
-        animation.push_back(frame);
-    }
+
+    animation.push_back(frame0);
+    animation.push_back(frame1);
+    animation.push_back(frame2);
+    animation.push_back(frame3);
 
 }
 
 SpiderManStrongStandPunchAnimation::SpiderManStrongStandPunchAnimation() : Animation() {
+
     this->init();
+
 }

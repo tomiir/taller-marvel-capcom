@@ -1,11 +1,13 @@
 //
-// Created by fer on 12/06/19.
+// Created by fer on 01/06/19.
 //
 
 #ifndef TALLER_MARVEL_CAPCOM_SPIDERMANWEAKSTANDPUNCHANIMATION_H
 #define TALLER_MARVEL_CAPCOM_SPIDERMANWEAKSTANDPUNCHANIMATION_H
 
+#include <SDL_timer.h>
 #include "../Animation.h"
+
 
 class SpiderManWeakStandPunchAnimation: public Animation {
 
@@ -16,4 +18,7 @@ public:
 };
 
 
+
 #endif //TALLER_MARVEL_CAPCOM_SPIDERMANWEAKSTANDPUNCHANIMATION_H
+
+

@@ -1,5 +1,5 @@
 //
-// Created by fer on 12/06/19.
+// Created by arielpm on 12/06/19.
 //
 
 #include "VenomDownKickedAnimation.h"
@@ -11,19 +11,16 @@ void VenomDownKickedAnimation::init() {
     startTime = SDL_GetTicks();
     animationRate = 1;
     animationLength = 1;
-    int width = 560;
-    int height = 238;
-    int initialX = 0;
-    int initialY = 5 * height;
 
-    for(int i = 0; i < animationLength; i++){
-        vector<int> frame = {initialX, initialY, width, height};
-        initialX += width;
-        animation.push_back(frame);
-    }
+    vector<int> frame0 = {0, 1190, 560, 238};
+
+
+    animation.push_back(frame0);
 
 }
 
 VenomDownKickedAnimation::VenomDownKickedAnimation() : Animation() {
+
     this->init();
+
 }

@@ -1,29 +1,26 @@
 //
-// Created by fer on 12/06/19.
+// Created by fer on 01/06/19.
 //
 
 #include "ChunLiWeakStandPunchAnimation.h"
-#include <SDL_timer.h>
-
 
 
 void ChunLiWeakStandPunchAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 1;
-    animationLength = 3;
-    int width = 407;
-    int height = 210;
-    int initialX = 0;
-    int initialY = 14 * height;
+    animationRate = 4;
+    animationLength = 1;
 
-    for(int i = 0; i < animationLength; i++){
-        vector<int> frame = {initialX, initialY, width, height};
-        initialX += width;
-        animation.push_back(frame);
-    }
+//    vector<int> frame1 = {116, 1236, 115, 80};
+    vector<int> frame2 = {407, 2940, 407, 210};
+
+//    animation.push_back(frame1);
+    animation.push_back(frame2);
+
 }
 
 ChunLiWeakStandPunchAnimation::ChunLiWeakStandPunchAnimation() : Animation() {
+
     this->init();
+
 }

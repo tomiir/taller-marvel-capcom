@@ -1,30 +1,26 @@
 //
-// Created by fer on 12/06/19.
+// Created by fer on 01/06/19.
 //
 
 #include "SpiderManWeakStandPunchAnimation.h"
-#include <SDL_timer.h>
 
 
 void SpiderManWeakStandPunchAnimation::init() {
 
     startTime = SDL_GetTicks();
     animationRate = 2;
-    animationLength = 4;
+    animationLength = 1;
 
-    int width = 491;
-    int height = 268;
-    int initialX = 0;
-    int initialY = 14 * height;
 
-    for(int i = 0; i < animationLength; i++){
-        vector<int> frame = {initialX, initialY, width, height};
-        initialX += width;
-        animation.push_back(frame);
-    }
+
+    vector<int> frame0 = {491, 3752, 491, 268};
+
+    animation.push_back(frame0);
 
 }
 
 SpiderManWeakStandPunchAnimation::SpiderManWeakStandPunchAnimation() : Animation() {
+
     this->init();
+
 }

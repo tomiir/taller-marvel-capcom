@@ -1,31 +1,25 @@
 //
-// Created by fer on 12/06/19.
+// Created by arielpm on 13/06/19.
 //
 
 #include "SpiderManDownGuardAnimation.h"
-#include <SDL_timer.h>
-
 
 void SpiderManDownGuardAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 9;
-    animationLength = 7;
+    animationRate = 2;
+    animationLength = 1;
 
-    int width = 491;
-    int height = 268;
-    int initialX = 0;
-    int initialY = 7 * height;
 
-    for(int i = 0; i < animationLength; i++){
-        vector<int> frame = {initialX, initialY, width, height};
-        initialX += width;
-        animation.push_back(frame);
-    }
+
+    vector<int> frame0 = {491, 1876, 491, 268};
+
+    animation.push_back(frame0);
 
 }
 
 SpiderManDownGuardAnimation::SpiderManDownGuardAnimation() : Animation() {
-    this->init();
-}
 
+    this->init();
+
+}

@@ -5,27 +5,21 @@
 #include "SpiderManCrowchedDownAnimation.h"
 #include <SDL_timer.h>
 
-
 void SpiderManCrowchedDownAnimation::init() {
 
     startTime = SDL_GetTicks();
     animationRate = 2;
     animationLength = 1;
 
-    int width = 491;
-    int height = 268;
-    int initialX = 0;
-    int initialY = 3 * height;
+    vector<int> frame0 = {0, 804, 491, 268};
 
-    for(int i = 0; i < animationLength; i++){
-        vector<int> frame = {initialX, initialY, width, height};
-        initialX += width;
-        animation.push_back(frame);
-    }
+    animation.push_back(frame0);
+
 
 }
 
 SpiderManCrowchedDownAnimation::SpiderManCrowchedDownAnimation() : Animation() {
-    this->init();
-}
 
+    this->init();
+
+}

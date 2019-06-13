@@ -10,16 +10,10 @@ void CaptainAmericaWeakStandKickAnimation::init() {
     startTime = SDL_GetTicks();
     animationRate = 1;
     animationLength = 1;
-    int width = 322;
-    int height = 245;
-    int initialX = width;
-    int initialY = 15 * height;
 
-    for(int i = 0; i < animationLength; i++){
-        vector<int> frame = {initialX, initialY, width, height};
-        initialX += width;
-        animation.push_back(frame);
-    }
+    vector<int> frame0 = {322, 3675, 322, 245};
+
+    animation.push_back(frame0);
 
 }
 

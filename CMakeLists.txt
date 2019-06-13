@@ -64,40 +64,12 @@ add_executable(
         utils/SpriteManagers/SpriteManager.cpp
         utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.cpp
         utils/SpriteManagers/CaptainAmericaSpriteManager/CaptainAmericaSpriteManager.h
-        Animations/CaptainAmericaAnimations/CaptainAmericaStillAnimation.cpp
-        Animations/CaptainAmericaAnimations/CaptainAmericaStillAnimation.h
-        Animations/CaptainAmericaAnimations/CaptainAmericaWalkFowardAnimation.cpp
-        Animations/CaptainAmericaAnimations/CaptainAmericaWalkFowardAnimation.h
-        Animations/CaptainAmericaAnimations/CaptainAmericaCrowchedDownAnimation.cpp
-        Animations/CaptainAmericaAnimations/CaptainAmericaCrowchedDownAnimation.h
-        Animations/CaptainAmericaAnimations/CaptainAmericaJumpAnimation.cpp
-        Animations/CaptainAmericaAnimations/CaptainAmericaJumpAnimation.h
-        Animations/CaptainAmericaAnimations/CaptainAmericaWalkBackwardsAnimation.cpp
-        Animations/CaptainAmericaAnimations/CaptainAmericaWalkBackwardsAnimation.h
-        Animations/SpiderManAnimations/SpiderManCrowchedDownAnimation.cpp
-        Animations/SpiderManAnimations/SpiderManCrowchedDownAnimation.h
-        Animations/SpiderManAnimations/SpiderManJumpAnimation.cpp
-        Animations/SpiderManAnimations/SpiderManJumpAnimation.h
-        Animations/SpiderManAnimations/SpiderManStillAnimation.cpp
-        Animations/SpiderManAnimations/SpiderManStillAnimation.h
-        Animations/SpiderManAnimations/SpiderManWalkAnimation.cpp
-        Animations/SpiderManAnimations/SpiderManWalkAnimation.h
         utils/Mapper/Mapper_fight/Mapper_fight_1.cpp
         utils/Mapper/Mapper_fight/Mapper_fight_1.h
         utils/Mapper/Mapper_fight/Mapper_fight_2.cpp
         utils/Mapper/Mapper_fight/Mapper_fight_2.h
         utils/TeamManager/TeamManager.cpp
         utils/TeamManager/TeamManager.h
-        Animations/VenomAnimations/VenomCrowchedDownAnimation.cpp
-        Animations/VenomAnimations/VenomCrowchedDownAnimation.h
-        Animations/VenomAnimations/VenomJumpAnimation.cpp
-        Animations/VenomAnimations/VenomJumpAnimation.h
-        Animations/VenomAnimations/VenomStillAnimation.cpp
-        Animations/VenomAnimations/VenomStillAnimation.h
-        Animations/VenomAnimations/VenomWalkBackwardsAnimation.cpp
-        Animations/VenomAnimations/VenomWalkBackwardsAnimation.h
-        Animations/VenomAnimations/VenomWalkFowardAnimation.h
-        Animations/VenomAnimations/VenomWalkFowardAnimation.cpp
         utils/SpriteManagers/SpiderManSpriteManager/SpiderManSpriteManager.cpp
         utils/SpriteManagers/SpiderManSpriteManager/SpiderManSpriteManager.h
         utils/Logger/Logger.cpp utils/Logger/Logger.h
@@ -106,26 +78,8 @@ add_executable(
         utils/FlipManager/FlipManager.cpp
         utils/FlipManager/FlipManager.h
         utils/FlipManager/FlipManager.cpp utils/FlipManager/FlipManager.h
-        Animations/ChunLiAnimations/ChunLiCrowchedDownAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiCrowchedDownAnimation.h
-        Animations/ChunLiAnimations/ChunLiJumpAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiStillAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiJumpAnimation.h
-        Animations/ChunLiAnimations/ChunLiStillAnimation.h
-        Animations/ChunLiAnimations/ChunLiWalkBackwardsAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiWalkBackwardsAnimation.h
-        Animations/ChunLiAnimations/ChunLiWalkFowardAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiWalkFowardAnimation.h
         utils/SpriteManagers/ChunLiSpriteManager/ChunLiSpriteManager.cpp
         utils/SpriteManagers/ChunLiSpriteManager/ChunLiSpriteManager.h
-        Animations/VenomAnimations/VenomEnteringAnimation.h
-        Animations/VenomAnimations/VenomEnteringAnimation.cpp
-        Animations/SpiderManAnimations/SpiderManEnteringAnimation.h
-        Animations/SpiderManAnimations/SpiderManEnteringAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiEnteringAnimation.h
-        Animations/ChunLiAnimations/ChunLiEnteringAnimation.cpp
-        Animations/CaptainAmericaAnimations/CaptainAmericaEnteringAnimation.h
-        Animations/CaptainAmericaAnimations/CaptainAmericaEnteringAnimation.cpp
         utils/SpriteManagers/NotFoundSpriteManager.h
         utils/SpriteManagers/NotFoundSpriteManager.cpp
         Animations/NotFoundAnimation.h
@@ -173,20 +127,36 @@ add_executable(
         utils/CollisionManager/CollisionManager.cpp
         utils/CollisionManager/CollisionManager.h
 
+
+        Json/JsonGameObject_charSelect.cpp
+        Json/JsonGameObject_charSelect.h
+        Json/JsonSintax.cpp
+        Json/JsonSintax.h
+        Json/JsonDisconection.cpp
+        Json/JsonDisconection.h
+
         Animations/CaptainAmericaAnimations/CaptainAmericaAirGuardAnimation.cpp
         Animations/CaptainAmericaAnimations/CaptainAmericaAirGuardAnimation.h
-        Animations/CaptainAmericaAnimations/CaptainAmericaDownGuardAnimation.cpp
-        Animations/CaptainAmericaAnimations/CaptainAmericaDownGuardAnimation.h
-        Animations/CaptainAmericaAnimations/CaptainAmericaGrabAnimation.cpp
-        Animations/CaptainAmericaAnimations/CaptainAmericaGrabAnimation.h
         Animations/CaptainAmericaAnimations/CaptainAmericaAirKickedAnimation.cpp
         Animations/CaptainAmericaAnimations/CaptainAmericaAirKickedAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaCrowchedDownAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaCrowchedDownAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaDownGuardAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaDownGuardAnimation.h
         Animations/CaptainAmericaAnimations/CaptainAmericaDownKickedAnimation.cpp
         Animations/CaptainAmericaAnimations/CaptainAmericaDownKickedAnimation.h
-        Animations/CaptainAmericaAnimations/CaptainAmericaStandKickedAnimation.cpp
-        Animations/CaptainAmericaAnimations/CaptainAmericaStandKickedAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaEnteringAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaEnteringAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaGrabAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaGrabAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaJumpAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaJumpAnimation.h
         Animations/CaptainAmericaAnimations/CaptainAmericaStandGuardAnimation.cpp
         Animations/CaptainAmericaAnimations/CaptainAmericaStandGuardAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaStandKickedAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaStandKickedAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaStillAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaStillAnimation.h
         Animations/CaptainAmericaAnimations/CaptainAmericaStrongAirKickAnimation.cpp
         Animations/CaptainAmericaAnimations/CaptainAmericaStrongAirKickAnimation.h
         Animations/CaptainAmericaAnimations/CaptainAmericaStrongAirPunchAnimation.cpp
@@ -215,52 +185,74 @@ add_executable(
         Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandKickAnimation.h
         Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandPunchAnimation.cpp
         Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandPunchAnimation.h
-        Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandPunchAnimation.cpp
-        Animations/CaptainAmericaAnimations/CaptainAmericaWeakStandPunchAnimation.h
-
-        Animations/VenomAnimations/VenomStrongDownPunchAnimation.cpp
-        Animations/VenomAnimations/VenomStrongDownPunchAnimation.h
-        Animations/VenomAnimations/VenomStrongAirKickAnimation.cpp
-        Animations/VenomAnimations/VenomStrongAirKickAnimation.h
-        Animations/VenomAnimations/VenomStrongAirPunchAnimation.cpp
-        Animations/VenomAnimations/VenomStrongAirPunchAnimation.h
-        Animations/VenomAnimations/VenomStrongDownKickAnimation.cpp
-        Animations/VenomAnimations/VenomStrongDownKickAnimation.h
-        Animations/VenomAnimations/VenomStrongStandKickAnimation.cpp
-        Animations/VenomAnimations/VenomStrongStandKickAnimation.h
-        Animations/VenomAnimations/VenomStrongStandPunchAnimation.cpp
-        Animations/VenomAnimations/VenomStrongStandPunchAnimation.h
-        Animations/VenomAnimations/VenomWeakKickAnimation.h
-        Animations/VenomAnimations/VenomWeakKickAnimation.cpp
-        Animations/VenomAnimations/VenomWeakDownPunchAnimation.h
-        Animations/VenomAnimations/VenomWeakDownPunchAnimation.cpp
-        Animations/VenomAnimations/VenomWeakAirPunchAnimation.h
-        Animations/VenomAnimations/VenomWeakAirPunchAnimation.cpp
-        Animations/VenomAnimations/VenomStandGuardAnimation.h
-        Animations/VenomAnimations/VenomStandGuardAnimation.cpp
-        Animations/VenomAnimations/VenomGrabAnimation.h
-        Animations/VenomAnimations/VenomGrabAnimation.cpp
-        Animations/VenomAnimations/VenomDownGuardAnimation.h
-        Animations/VenomAnimations/VenomDownGuardAnimation.cpp
-        Animations/VenomAnimations/VenomAirGuardAnimation.h
-        Animations/VenomAnimations/VenomAirGuardAnimation.cpp
-        Animations/VenomAnimations/VenomWeakStandPunchAnimation.cpp
-        Animations/VenomAnimations/VenomWeakStandPunchAnimation.h
-        Animations/VenomAnimations/VenomAirKickedAnimation.cpp
-        Animations/VenomAnimations/VenomAirKickedAnimation.h
-        Animations/VenomAnimations/VenomDownKickedAnimation.cpp
-        Animations/VenomAnimations/VenomDownKickedAnimation.h
-        Animations/VenomAnimations/VenomStandKickedAnimation.cpp
-        Animations/VenomAnimations/VenomStandKickedAnimation.h
-
+        Animations/ChunLiAnimations/ChunLiAirGuardAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiAirGuardAnimation.h
+        Animations/ChunLiAnimations/ChunLiAirKickedAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiAirKickedAnimation.h
+        Animations/ChunLiAnimations/ChunLiCrowchedDownAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiCrowchedDownAnimation.h
+        Animations/ChunLiAnimations/ChunLiDownGuardAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiDownGuardAnimation.h
+        Animations/ChunLiAnimations/ChunLiDownKickedAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiDownKickedAnimation.h
+        Animations/ChunLiAnimations/ChunLiEnteringAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiEnteringAnimation.h
+        Animations/ChunLiAnimations/ChunLiGrabAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiGrabAnimation.h
+        Animations/ChunLiAnimations/ChunLiJumpAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiJumpAnimation.h
+        Animations/ChunLiAnimations/ChunLiStandGuardAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiStandGuardAnimation.h
+        Animations/ChunLiAnimations/ChunLiStandKickedAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiStandKickedAnimation.h
+        Animations/ChunLiAnimations/ChunLiStillAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiStillAnimation.h
+        Animations/ChunLiAnimations/ChunLiStrongAirKickAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiStrongAirKickAnimation.h
+        Animations/ChunLiAnimations/ChunLiStrongAirPunchAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiStrongAirPunchAnimation.h
+        Animations/ChunLiAnimations/ChunLiStrongDownKickAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiStrongDownKickAnimation.h
+        Animations/ChunLiAnimations/ChunLiStrongDownPunchAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiStrongDownPunchAnimation.h
+        Animations/ChunLiAnimations/ChunLiStrongStandKickAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiStrongStandKickAnimation.h
+        Animations/ChunLiAnimations/ChunLiStrongStandPunchAnimaiton.cpp
+        Animations/ChunLiAnimations/ChunLiStrongStandPunchAnimaiton.h
+        Animations/ChunLiAnimations/ChunLiWalkBackwadsAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiWalkBackwadsAnimation.h
+        Animations/ChunLiAnimations/ChunLiWalkFowardAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiWalkFowardAnimation.h
+        Animations/ChunLiAnimations/ChunLiWeakAirKickAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiWeakAirKickAnimation.h
+        Animations/ChunLiAnimations/ChunLiWeakAirPunchAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiWeakAirPunchAnimation.h
+        Animations/ChunLiAnimations/ChunLiWeakDownKickAnimartion.cpp
+        Animations/ChunLiAnimations/ChunLiWeakDownKickAnimartion.h
+        Animations/ChunLiAnimations/ChunLiWeakDownPunchAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiWeakDownPunchAnimation.h
+        Animations/ChunLiAnimations/ChunLiWeakStandKickAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiWeakStandKickAnimation.h
+        Animations/ChunLiAnimations/ChunLiWeakStandPunchAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiWeakStandPunchAnimation.h
         Animations/SpiderManAnimations/SpiderManAirGuardAnimation.cpp
         Animations/SpiderManAnimations/SpiderManAirGuardAnimation.h
+        Animations/SpiderManAnimations/SpiderManCrowchedDownAnimation.cpp
+        Animations/SpiderManAnimations/SpiderManCrowchedDownAnimation.h
         Animations/SpiderManAnimations/SpiderManDownGuardAnimation.cpp
         Animations/SpiderManAnimations/SpiderManDownGuardAnimation.h
+        Animations/SpiderManAnimations/SpiderManEnteringAnimation.cpp
+        Animations/SpiderManAnimations/SpiderManEnteringAnimation.h
         Animations/SpiderManAnimations/SpiderManGrabAnimation.cpp
         Animations/SpiderManAnimations/SpiderManGrabAnimation.h
+        Animations/SpiderManAnimations/SpiderManJumpAnimation.cpp
+        Animations/SpiderManAnimations/SpiderManJumpAnimation.h
+        Animations/SpiderManAnimations/SpiderManKickedAnimation.cpp
+        Animations/SpiderManAnimations/SpiderManKickedAnimation.h
         Animations/SpiderManAnimations/SpiderManStandGuardAnimation.cpp
         Animations/SpiderManAnimations/SpiderManStandGuardAnimation.h
+        Animations/SpiderManAnimations/SpiderManStillAnimation.cpp
+        Animations/SpiderManAnimations/SpiderManStillAnimation.h
         Animations/SpiderManAnimations/SpiderManStrongAirKickAnimation.cpp
         Animations/SpiderManAnimations/SpiderManStrongAirKickAnimation.h
         Animations/SpiderManAnimations/SpiderManStrongAirPunchAnimation.cpp
@@ -273,6 +265,8 @@ add_executable(
         Animations/SpiderManAnimations/SpiderManStrongStandKickAnimation.h
         Animations/SpiderManAnimations/SpiderManStrongStandPunchAnimation.cpp
         Animations/SpiderManAnimations/SpiderManStrongStandPunchAnimation.h
+        Animations/SpiderManAnimations/SpiderManWalkAnimation.cpp
+        Animations/SpiderManAnimations/SpiderManWalkAnimation.h
         Animations/SpiderManAnimations/SpiderManWeakAirKickAnimation.cpp
         Animations/SpiderManAnimations/SpiderManWeakAirKickAnimation.h
         Animations/SpiderManAnimations/SpiderManWeakAirPunchAnimation.cpp
@@ -285,58 +279,52 @@ add_executable(
         Animations/SpiderManAnimations/SpiderManWeakStandKickAnimation.h
         Animations/SpiderManAnimations/SpiderManWeakStandPunchAnimation.cpp
         Animations/SpiderManAnimations/SpiderManWeakStandPunchAnimation.h
-        Animations/SpiderManAnimations/SpiderManAirKickedAnimation.cpp
-        Animations/SpiderManAnimations/SpiderManAirKickedAnimation.h
-        Animations/SpiderManAnimations/SpiderManStandKickedAnimation.cpp
-        Animations/SpiderManAnimations/SpiderManStandKickedAnimation.h
-        Animations/SpiderManAnimations/SpiderManDownKickedAnimation.cpp
-        Animations/SpiderManAnimations/SpiderManDownKickedAnimation.h
-
-        Animations/ChunLiAnimations/ChunLiAirGuardAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiAirGuardAnimation.h
-        Animations/ChunLiAnimations/ChunLiDownGuardAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiDownGuardAnimation.h
-        Animations/ChunLiAnimations/ChunLiGrabAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiGrabAnimation.h
-        Animations/ChunLiAnimations/ChunLiAirKickedAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiAirKickedAnimation.h
-        Animations/ChunLiAnimations/ChunLiDownKickedAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiDownKickedAnimation.h
-        Animations/ChunLiAnimations/ChunLiStandKickedAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiStandKickedAnimation.h
-        Animations/ChunLiAnimations/ChunLiStandGuardAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiStandGuardAnimation.h
-        Animations/ChunLiAnimations/ChunLiStrongAirKickAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiStrongAirKickAnimation.h
-        Animations/ChunLiAnimations/ChunLiStrongAirPunchAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiStrongAirPunchAnimation.h
-        Animations/ChunLiAnimations/ChunLiStrongDownKickAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiStrongDownKickAnimation.h
-        Animations/ChunLiAnimations/ChunLiStrongDownPunchAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiStrongDownPunchAnimation.h
-        Animations/ChunLiAnimations/ChunLiStrongStandKickAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiStrongStandKickAnimation.h
-        Animations/ChunLiAnimations/ChunLiStrongStandPunchAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiStrongStandPunchAnimation.h
-        Animations/ChunLiAnimations/ChunLiWeakAirKickAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiWeakAirKickAnimation.h
-        Animations/ChunLiAnimations/ChunLiWeakAirPunchAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiWeakAirPunchAnimation.h
-        Animations/ChunLiAnimations/ChunLiWeakDownKickAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiWeakDownKickAnimation.h
-        Animations/ChunLiAnimations/ChunLiAmericaWeakDownPunchAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiAmericaWeakDownPunchAnimation.h
-        Animations/ChunLiAnimations/ChunLiWeakStandKickAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiWeakStandKickAnimation.h
-        Animations/ChunLiAnimations/ChunLiWeakStandPunchAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiWeakStandPunchAnimation.h
-
-        Json/JsonGameObject_charSelect.cpp
-        Json/JsonGameObject_charSelect.h
-        Json/JsonSintax.cpp
-        Json/JsonSintax.h
-        Json/JsonDisconection.cpp
-        Json/JsonDisconection.h
+        Animations/VenomAnimations/VenomAirGuardAnimation.cpp
+        Animations/VenomAnimations/VenomAirGuardAnimation.h
+        Animations/VenomAnimations/VenomAirKickedAnimation.cpp
+        Animations/VenomAnimations/VenomAirKickedAnimation.h
+        Animations/VenomAnimations/VenomCrowchedDownAnimation.cpp
+        Animations/VenomAnimations/VenomCrowchedDownAnimation.h
+        Animations/VenomAnimations/VenomDownGuardAnimation.cpp
+        Animations/VenomAnimations/VenomDownGuardAnimation.h
+        Animations/VenomAnimations/VenomDownKickedAnimation.cpp
+        Animations/VenomAnimations/VenomDownKickedAnimation.h
+        Animations/VenomAnimations/VenomEnteringAnimation.cpp
+        Animations/VenomAnimations/VenomEnteringAnimation.h
+        Animations/VenomAnimations/VenomGrabAnimation.cpp
+        Animations/VenomAnimations/VenomGrabAnimation.h
+        Animations/VenomAnimations/VenomJumpAnimation.cpp
+        Animations/VenomAnimations/VenomJumpAnimation.h
+        Animations/VenomAnimations/VenomStandGuardAnimation.cpp
+        Animations/VenomAnimations/VenomStandGuardAnimation.h
+        Animations/VenomAnimations/VenomStandKickedAnimation.cpp
+        Animations/VenomAnimations/VenomStandKickedAnimation.h
+        Animations/VenomAnimations/VenomStillAnimation.cpp
+        Animations/VenomAnimations/VenomStillAnimation.h
+        Animations/VenomAnimations/VenomStrongAirKickAnimation.cpp
+        Animations/VenomAnimations/VenomStrongAirKickAnimation.h
+        Animations/VenomAnimations/VenomStrongAirPunchAnimation.cpp
+        Animations/VenomAnimations/VenomStrongAirPunchAnimation.h
+        Animations/VenomAnimations/VenomStrongDownKickAnimation.cpp
+        Animations/VenomAnimations/VenomStrongDownKickAnimation.h
+        Animations/VenomAnimations/VenomStrongDownPunchAnimation.cpp
+        Animations/VenomAnimations/VenomStrongDownPunchAnimation.h
+        Animations/VenomAnimations/VenomStrongStandKickAnimation.cpp
+        Animations/VenomAnimations/VenomStrongStandKickAnimation.h
+        Animations/VenomAnimations/VenomStrongStandPunchAnimation.cpp
+        Animations/VenomAnimations/VenomStrongStandPunchAnimation.h
+        Animations/VenomAnimations/VenomWalkBackwardsAnimation.cpp
+        Animations/VenomAnimations/VenomWalkBackwardsAnimation.h
+        Animations/VenomAnimations/VenomWalkFowardAnimation.cpp
+        Animations/VenomAnimations/VenomWalkFowardAnimation.h
+        Animations/VenomAnimations/VenomWeakAirPunchAnimation.cpp
+        Animations/VenomAnimations/VenomWeakAirPunchAnimation.h
+        Animations/VenomAnimations/VenomWeakDownPunchAnimation.cpp
+        Animations/VenomAnimations/VenomWeakDownPunchAnimation.h
+        Animations/VenomAnimations/VenomWeakKickAnimation.cpp
+        Animations/VenomAnimations/VenomWeakKickAnimation.h
+        Animations/VenomAnimations/VenomWeakStandPunchAnimation.cpp
+        Animations/VenomAnimations/VenomWeakStandPunchAnimation.h
 
 )
 

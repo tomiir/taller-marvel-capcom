@@ -1,29 +1,23 @@
 //
-// Created by fer on 12/06/19.
+// Created by arielpm on 13/06/19.
 //
 
 #include "ChunLiStrongDownKickAnimation.h"
-#include <SDL_timer.h>
-
-
 
 void ChunLiStrongDownKickAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 5;
-    animationLength = 6;
-    int width = 407;
-    int height = 210;
-    int initialX = 0;
-    int initialY = 20 * height;
+    animationRate = 4;
+    animationLength = 1;
 
-    for(int i = 0; i < animationLength; i++){
-        vector<int> frame = {initialX, initialY, width, height};
-        initialX += width;
-        animation.push_back(frame);
-    }
+    vector<int> frame0 = {814, 4200, 407, 210};
+
+    animation.push_back(frame0);
+
 }
 
 ChunLiStrongDownKickAnimation::ChunLiStrongDownKickAnimation() : Animation() {
+
     this->init();
+
 }

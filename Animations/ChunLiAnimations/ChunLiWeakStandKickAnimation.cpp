@@ -1,29 +1,23 @@
 //
-// Created by fer on 12/06/19.
+// Created by arielpm on 13/06/19.
 //
 
 #include "ChunLiWeakStandKickAnimation.h"
-#include <SDL_timer.h>
-
-
 
 void ChunLiWeakStandKickAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 1;
-    animationLength = 4;
-    int width = 407;
-    int height = 210;
-    int initialX = 0;
-    int initialY = 15 * height;
+    animationRate = 4;
+    animationLength = 1;
 
-    for(int i = 0; i < animationLength; i++){
-        vector<int> frame = {initialX, initialY, width, height};
-        initialX += width;
-        animation.push_back(frame);
-    }
+    vector<int> frame0 = {1221, 3150, 407, 210};
+
+    animation.push_back(frame0);
+
 }
 
 ChunLiWeakStandKickAnimation::ChunLiWeakStandKickAnimation() : Animation() {
+
     this->init();
+
 }

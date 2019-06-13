@@ -5,26 +5,32 @@
 #include "SpiderManJumpAnimation.h"
 #include <SDL_timer.h>
 
-
 void SpiderManJumpAnimation::init() {
 
     startTime = SDL_GetTicks();
     animationRate = 4;
     animationLength = 5;
 
-    int width = 491;
-    int height = 268;
-    int initialX = width;
-    int initialY = 4 * height;
+    vector<int> frame0 = {491, 1072, 491, 268};
+    vector<int> frame1 = {982, 1072, 491, 268};
+    vector<int> frame2 = {1473, 1072, 491, 268};
+    vector<int> frame3 = {1964, 1072, 491, 268};
+    vector<int> frame4 = {2455, 1072, 491, 268};
 
-    for(int i = 0; i < animationLength; i++){
-        initialX += width;
-        vector<int> frame = {initialX, initialY, width, height};
-        animation.push_back(frame);
-    }
+
+
+    animation.push_back(frame0);
+    animation.push_back(frame1);
+    animation.push_back(frame2);
+    animation.push_back(frame3);
+    animation.push_back(frame4);
+
+
 
 }
 
 SpiderManJumpAnimation::SpiderManJumpAnimation() : Animation() {
+
     this->init();
+
 }
