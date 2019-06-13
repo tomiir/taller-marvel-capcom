@@ -238,8 +238,6 @@ add_executable(
         Animations/VenomAnimations/VenomWeakAirPunchAnimation.cpp
         Animations/VenomAnimations/VenomStandGuardAnimation.h
         Animations/VenomAnimations/VenomStandGuardAnimation.cpp
-        Animations/VenomAnimations/VenomKickedAnimation.h
-        Animations/VenomAnimations/VenomKickedAnimation.cpp
         Animations/VenomAnimations/VenomGrabAnimation.h
         Animations/VenomAnimations/VenomGrabAnimation.cpp
         Animations/VenomAnimations/VenomDownGuardAnimation.h
@@ -248,6 +246,12 @@ add_executable(
         Animations/VenomAnimations/VenomAirGuardAnimation.cpp
         Animations/VenomAnimations/VenomWeakStandPunchAnimation.cpp
         Animations/VenomAnimations/VenomWeakStandPunchAnimation.h
+        Animations/VenomAnimations/VenomAirKickedAnimation.cpp
+        Animations/VenomAnimations/VenomAirKickedAnimation.h
+        Animations/VenomAnimations/VenomDownKickedAnimation.cpp
+        Animations/VenomAnimations/VenomDownKickedAnimation.h
+        Animations/VenomAnimations/VenomStandKickedAnimation.cpp
+        Animations/VenomAnimations/VenomStandKickedAnimation.h
 
         Animations/SpiderManAnimations/SpiderManAirGuardAnimation.cpp
         Animations/SpiderManAnimations/SpiderManAirGuardAnimation.h
@@ -333,8 +337,6 @@ add_executable(
         Json/JsonSintax.h
         Json/JsonDisconection.cpp
         Json/JsonDisconection.h
-
-
 
 )
 
