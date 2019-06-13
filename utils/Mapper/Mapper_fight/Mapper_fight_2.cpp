@@ -31,8 +31,23 @@ string Mapper_fight_2::map(SDL_Event event){
             case SDLK_c:
                 keys = MAP_CHANGE;
                 break;
+            case SDLK_u:
+                keys = MAP_WEAKPUNCH;
+                break;
+            case SDLK_i:
+                keys = MAP_WEAKKICK;
+                break;
+            case SDLK_o:
+                keys = MAP_STRONGPUNCH;
+                break;
             case SDLK_p:
-                keys = MAP_PUNCH;
+                keys = MAP_STRONGKICK;
+                break;
+            case SDLK_m:
+                keys = MAP_GRAB;
+                break;
+            case SDLK_n:
+                keys = MAP_GUARD;
                 break;
             default:
                 break;
@@ -59,6 +74,9 @@ string Mapper_fight_2::map(SDL_Event event){
                 break;
             case SDLK_d:
                 keys = MAP_STOP_RIGHT;
+                break;
+            case SDLK_n:
+                keys = MAP_STOP_GUARD;
                 break;
             default:
                 break;

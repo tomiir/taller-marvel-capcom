@@ -32,7 +32,22 @@ string Mapper_fight_1::map(SDL_Event event) {
                 break;
 //Fijense si les parece esto, sino iría la O, pero como está el punch siempre se usa con el indice
             case SDLK_a:
-                keys = MAP_PUNCH;
+                keys = MAP_WEAKPUNCH;
+                break;
+            case SDLK_s:
+                keys = MAP_WEAKKICK;
+                break;
+            case SDLK_d:
+                keys = MAP_STRONGPUNCH;
+                break;
+            case SDLK_f:
+                keys = MAP_STRONGKICK;
+                break;
+            case SDLK_c:
+                keys = MAP_GRAB;
+                break;
+            case SDLK_v:
+                keys = MAP_GUARD;
                 break;
             default:
                 break;
@@ -59,6 +74,9 @@ string Mapper_fight_1::map(SDL_Event event) {
                 break;
             case SDLK_l:
                 keys = MAP_STOP_RIGHT;
+                break;
+            case SDLK_v:
+                keys = MAP_STOP_GUARD;
                 break;
             default:
                 break;
