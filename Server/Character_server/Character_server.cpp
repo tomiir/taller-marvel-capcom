@@ -34,6 +34,8 @@ void Character_server::setState(string state) {
 
     this->state = state;
 
+    return; //LO PONGO POR AHORA HASTA QUE AGREGUE LAS HITBOXES DE TODOS LOS ESTADOS
+
     hitbox->setHitboxes(state, horizontalFlip);  // pongo con estos dos poque por ahora estan estos dos solos
 }
 

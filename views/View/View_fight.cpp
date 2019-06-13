@@ -92,6 +92,20 @@ string selectState(char state){
     else if(state == '3') return "crowchedDown";
     else if(state == '4') return "entering";
     else if(state == '5') return "weakStandPunch";
+    else if (state == '6') return "weakDownPunch";
+    else if (state == '7') return "weakAirPunch";
+    else if (state == '8') return "weakStandKick";
+    else if (state == '9') return "weakDownKick";
+    else if (state == 'a') return "weakAirKick";
+    else if (state == 'b') return "strongStandPunch";
+    else if (state == 'c') return "strongDownPunch";
+    else if (state == 'd') return "strongAirPunch";
+    else if (state == 'e') return "strongStandKick";
+    else if (state == 'f') return "strongDownKick";
+    else if (state == 'g') return "strongAirKick";
+    else if (state == 'h') return "StandGuard";
+    else if (state == 'i') return "DownGuard";
+    else if (state == 'j') return "AirGuard";
     else return NULL;//LOGGEAR ESTE ERROR
 }
 

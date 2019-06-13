@@ -38,7 +38,6 @@ protected:
     string MAP_GET_UP = "r";
     string MAP_STOP_LEFT = "t";
     string MAP_STOP_RIGHT = "y";
-    string MAP_STOP_PUNCH = "u";
     string MAP_STOP_GUARD = "i";
 };
 

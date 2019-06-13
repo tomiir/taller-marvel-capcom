@@ -83,6 +83,21 @@ char TeamManager::getStateCurrentCharacter() {
     else if (state == "crowchedDown") return '3';
     else if (state == "entering") return '4';
     else if (state == "weakStandPunch") return '5';
+    else if (state == "weakDownPunch") return '6';
+    else if (state == "weakAirPunch") return '7';
+    else if (state == "weakStandKick") return '8';
+    else if (state == "weakDownKick") return '9';
+    else if (state == "weakAirKick") return 'a';
+    else if (state == "strongStandPunch") return 'b';
+    else if (state == "strongDownPunch") return 'c';
+    else if (state == "strongAirPunch") return 'd';
+    else if (state == "strongStandKick") return 'e';
+    else if (state == "strongDownKick") return 'f';
+    else if (state == "strongAirKick") return 'g';
+    else if (state == "StandGuard") return 'h';
+    else if (state == "DownGuard") return 'i';
+    else if (state == "AirGuard") return 'j';
+
 
 }
 

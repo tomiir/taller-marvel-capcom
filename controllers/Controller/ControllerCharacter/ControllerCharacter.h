@@ -48,7 +48,7 @@ private:
 
     int screenWidth, screenHeight, speedCharacter;
     int jumpDistance = 10;
-    bool jump, inAir, jumpRight, jumpLeft, leaving, entering, crowchedDown, movingRight, movingLeft, moving;
+    bool jump, inAir, jumpRight, jumpLeft, leaving, entering, crowchedDown, movingRight, movingLeft, moving, guarding;
     bool punching = false;
     string state = "still";
     CLogger* logger = CLogger::GetLogger();
