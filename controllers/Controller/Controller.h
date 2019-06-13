@@ -38,9 +38,9 @@ protected:
     DirectionVector* WEAK_KICK = new DirectionVector(-6, -5);
     DirectionVector* STRONG_PUNCH = new DirectionVector(-5, -7);
     DirectionVector* STRONG_KICK = new DirectionVector(-6, -7);
-    DirectionVector* GUARD = new DirectionVector(4, 4);
+    DirectionVector* GUARD = new DirectionVector(3, 0);
     DirectionVector* GRAB = new DirectionVector(-3, -3);
-    DirectionVector* STOP_GUARD = new DirectionVector(-4, -4);
+    DirectionVector* STOP_GUARD = new DirectionVector(-3, 0);
 
 
 
