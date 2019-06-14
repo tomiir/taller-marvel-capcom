@@ -8,7 +8,7 @@
 void SpiderManWalkAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 13;
+    animationRate = 8;
     animationLength = 12;
 
     vector<int> frame0 = {0, 268, 491, 268};
