@@ -20,6 +20,7 @@ protected:
     int index = 0;
     int animationLength, animationRate;
     Uint32 startTime ;
+    int frameToDraw = 0;
 
 
 public:

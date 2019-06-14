@@ -15,7 +15,7 @@ vector<int> Animation::play() {
         resetIndex();
     }
 
-    int frameToDraw = ((SDL_GetTicks() - startTime) * animationRate / 1000) % animationLength;
+    frameToDraw = ((SDL_GetTicks() - startTime) * animationRate / 1000) % animationLength;
 
     vector<int> sprite = animation[frameToDraw];
 
@@ -25,7 +25,7 @@ vector<int> Animation::play() {
 
 void Animation::resetIndex() {
 
-    index = 0;
+    frameToDraw = 0;
 
 }
 
