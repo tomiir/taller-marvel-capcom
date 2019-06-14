@@ -8,7 +8,7 @@
 void VenomStrongStandKickAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 6;
+    animationRate = 8;
     animationLength = 9;
 
 
