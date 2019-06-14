@@ -14,7 +14,7 @@ vector<int> Animation::play() {
 
 //    frameToDraw = ((SDL_GetTicks() - startTime) * animationRate / 1000) % animationLength;
 
-    if (counter == 10){
+    if (counter == animationRate){
         frameToDraw++;
         counter = 0;
     }

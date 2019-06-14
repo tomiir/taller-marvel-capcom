@@ -10,7 +10,7 @@
 void CaptainAmericaEnteringAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 2;
+    animationRate = 20;
     animationLength = 3;
 
     vector<int> frame0 = {322, 980, 322, 245};

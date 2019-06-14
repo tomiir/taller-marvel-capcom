@@ -8,12 +8,24 @@
 void CaptainAmericaWeakAirKickAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 1;
-    animationLength = 1;
+    animationRate = 10;
+    animationLength = 7;
 
-    vector<int> frame0 = {322, 3920, 322, 245};
+    vector<int> frame0 = {0, 3920, 322, 245};
+    vector<int> frame1 = {322, 3920, 322, 245};
+    vector<int> frame2 = {322, 3920, 322, 245};
+    vector<int> frame3 = {322, 3920, 322, 245};
+    vector<int> frame4 = {322, 3920, 322, 245};
+    vector<int> frame5 = {322, 3920, 322, 245};
+    vector<int> frame6 = {322, 3920, 322, 245};
 
     animation.push_back(frame0);
+    animation.push_back(frame1);
+    animation.push_back(frame2);
+    animation.push_back(frame3);
+    animation.push_back(frame4);
+    animation.push_back(frame5);
+    animation.push_back(frame6);
 
 }
 

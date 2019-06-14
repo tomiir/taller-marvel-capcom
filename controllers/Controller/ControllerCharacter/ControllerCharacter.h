@@ -48,13 +48,13 @@ private:
 
     int screenWidth, screenHeight, speedCharacter;
     int jumpDistance = 10;
-    bool jump, inAir, jumpRight, jumpLeft, leaving, entering, crowchedDown, movingRight, movingLeft, moving, guarding;
-    bool punching = false;
+    bool jump, inAir, jumpRight, jumpLeft, leaving, entering, crowchedDown, movingRight, movingLeft, moving, guarding, punching, strongPunching, alreadyPunchInAir;
     string state = "still";
     CLogger* logger = CLogger::GetLogger();
     Character_server* character = dynamic_cast<Character_server*>(gameObject);
     CollisionManager* collisionManager;
     int punching_timer = 0;
+    int strongPunching_timer = 0;
 };
 
 

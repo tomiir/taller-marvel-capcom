@@ -10,7 +10,7 @@
 void CaptainAmericaGrabAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 5;
+    animationRate = 20;
     animationLength = 7;
 
     vector<int> frame0 = {0, 5145, 322, 245};
