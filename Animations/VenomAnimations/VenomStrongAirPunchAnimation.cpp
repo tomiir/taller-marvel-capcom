@@ -7,7 +7,7 @@
 void VenomStrongAirPunchAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 10;
+    animationRate = 7;
     animationLength = 10;
 
     vector<int> frame0 = {0, 2142, 560, 238};

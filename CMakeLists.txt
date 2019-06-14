@@ -321,11 +321,14 @@ add_executable(
         Animations/VenomAnimations/VenomWeakAirPunchAnimation.h
         Animations/VenomAnimations/VenomWeakDownPunchAnimation.cpp
         Animations/VenomAnimations/VenomWeakDownPunchAnimation.h
-        Animations/VenomAnimations/VenomWeakKickAnimation.cpp
-        Animations/VenomAnimations/VenomWeakKickAnimation.h
+        Animations/VenomAnimations/VenomWeakStandKickAnimation.cpp
+        Animations/VenomAnimations/VenomWeakStandKickAnimation.h
         Animations/VenomAnimations/VenomWeakStandPunchAnimation.cpp
         Animations/VenomAnimations/VenomWeakStandPunchAnimation.h
-
+        Animations/VenomAnimations/VenomWeakDownKickAnimation.h
+        Animations/VenomAnimations/VenomWeakDownKickAnimation.cpp
+        Animations/VenomAnimations/VenomWeakAirKickAnimation.h
+        Animations/VenomAnimations/VenomWeakAirKickAnimation.cpp
 )
 
 

@@ -2,10 +2,10 @@
 // Created by arielpm on 12/06/19.
 //
 
-#include "VenomWeakKickAnimation.h"
+#include "VenomWeakStandKickAnimation.h"
 
 
-void VenomWeakKickAnimation::init() {
+void VenomWeakStandKickAnimation::init() {
 
     startTime = SDL_GetTicks();
     animationRate = 6;
@@ -34,7 +34,7 @@ void VenomWeakKickAnimation::init() {
 
 }
 
-VenomWeakKickAnimation::VenomWeakKickAnimation() : Animation() {
+VenomWeakStandKickAnimation::VenomWeakStandKickAnimation() : Animation() {
 
     this->init();
 

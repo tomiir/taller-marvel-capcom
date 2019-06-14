@@ -9,11 +9,11 @@
 #include "../Animation.h"
 
 
-class VenomWeakKickAnimation: public Animation {
+class VenomWeakStandKickAnimation: public Animation {
 
 public:
-    VenomWeakKickAnimation();
-    ~VenomWeakKickAnimation() = default;
+    VenomWeakStandKickAnimation();
+    ~VenomWeakStandKickAnimation() = default;
     void init() override ;
 };
 

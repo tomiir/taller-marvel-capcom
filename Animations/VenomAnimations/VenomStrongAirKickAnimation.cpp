@@ -7,7 +7,7 @@
 void VenomStrongAirKickAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 10;
+    animationRate = 7;
     animationLength = 8;
 
     vector<int> frame0 = {0, 4522, 560, 238};

@@ -14,7 +14,7 @@
 #include "../../../Animations/VenomAnimations/VenomStrongStandPunchAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomStrongDownPunchAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomStrongAirPunchAnimation.h"
-#include "../../../Animations/VenomAnimations/VenomWeakKickAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomWeakStandKickAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomStrongStandKickAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomStrongDownKickAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomStrongAirKickAnimation.h"
@@ -25,6 +25,8 @@
 #include "../../../Animations/VenomAnimations/VenomDownGuardAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomStandGuardAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomAirKickedAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomWeakDownKickAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomWeakAirKickAnimation.h"
 
 
 using namespace std;
@@ -37,14 +39,14 @@ void VenomSpriteManager::init(){
     animationMap["crowchedDown"] = new VenomCrowchedDownAnimation();
     animationMap["entering"] = new VenomEnteringAnimation();
     animationMap["weakStandPunch"] = new VenomWeakStandPunchAnimation();
-    animationMap["weakDownPunch"] = new VenomWeakStandPunchAnimation();
+    animationMap["weakDownPunch"] = new VenomWeakDownPunchAnimation();
     animationMap["weakAirPunch"] = new VenomWeakAirPunchAnimation();
     animationMap["strongStandPunch"] = new VenomStrongStandPunchAnimation();
     animationMap["strongDownPunch"] = new VenomStrongDownPunchAnimation();
     animationMap["strongAirPunch"] = new VenomStrongAirPunchAnimation();
-    animationMap["weakStandKick"] = new VenomWeakKickAnimation();
-    animationMap["weakDownKick"] = new VenomWeakKickAnimation();
-    animationMap["weakAirKick"] = new VenomWeakKickAnimation();
+    animationMap["weakStandKick"] = new VenomWeakStandKickAnimation();
+    animationMap["weakDownKick"] = new VenomWeakDownKickAnimation();
+    animationMap["weakAirKick"] = new VenomWeakAirKickAnimation();
     animationMap["strongStandKick"] = new VenomStrongStandKickAnimation();
     animationMap["strongDownKick"] = new VenomStrongDownKickAnimation();
     animationMap["strongAirKick"] = new VenomStrongAirKickAnimation();
