@@ -8,7 +8,7 @@
 void SpiderManEnteringAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 10;
+    animationRate = 12;
     animationLength = 10;
 
     vector<int> frame0 = {3437, 5896, 491, 268};
@@ -18,9 +18,9 @@ void SpiderManEnteringAnimation::init() {
     vector<int> frame4 = {3928, 5896, 491, 268};
     vector<int> frame5 = {3928, 5896, 491, 268};
     vector<int> frame6 = {3928, 5896, 491, 268};
-    vector<int> frame7 = {3928, 5896, 491, 268};
     vector<int> frame8 = {4419, 5896, 491, 268};
-    vector<int> frame9 = {4910, 5896, 491, 268};
+    vector<int> frame9 = {5892, 5896, 491, 268};
+    vector<int> frame10 = {6383, 5896, 491, 268};
 
 
 
@@ -31,9 +31,10 @@ void SpiderManEnteringAnimation::init() {
     animation.push_back(frame4);
     animation.push_back(frame5);
     animation.push_back(frame6);
-    animation.push_back(frame7);
+    animation.push_back(frame8);
     animation.push_back(frame8);
     animation.push_back(frame9);
+    animation.push_back(frame10);
 
 
 }

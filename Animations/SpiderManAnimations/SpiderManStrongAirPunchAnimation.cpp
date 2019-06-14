@@ -8,7 +8,7 @@
 void SpiderManStrongAirPunchAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 6;
+    animationRate = 5;
     animationLength = 12;
 
     vector<int> frame0 = {0, 2412, 491, 268};
