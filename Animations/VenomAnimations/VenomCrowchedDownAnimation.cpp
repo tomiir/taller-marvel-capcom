@@ -9,7 +9,7 @@
 void VenomCrowchedDownAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 9;
+    animationRate = 15;
     animationLength = 8;
 
     vector<int> frame0 = {0, 714, 560, 238};

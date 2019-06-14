@@ -9,7 +9,7 @@
 void VenomJumpAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 6;
+    animationRate = 30;
     animationLength = 8;
 
     vector<int> frame0 = {0, 952, 560, 238};

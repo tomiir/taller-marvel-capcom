@@ -9,7 +9,7 @@
 void VenomEnteringAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 2;
+    animationRate = 30;
     animationLength = 3;
 
     vector<int> frame0 = {2800, 952, 560, 238};

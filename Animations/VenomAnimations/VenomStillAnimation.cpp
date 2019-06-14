@@ -9,7 +9,7 @@
 void VenomStillAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 12;
+    animationRate = 10;
     animationLength = 13;
 
     vector<int> frame0 = {0, 0, 560, 238};
