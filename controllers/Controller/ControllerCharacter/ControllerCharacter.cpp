@@ -100,7 +100,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
 
 
     if(punching) {
-        punching = ++punching_timer != 15;
+        punching = ++punching_timer != 20;
         if(!punching) {
             if(!inAir) {
                 if(state != "weakDownPunch" and state != "weakDownKick" and
@@ -112,7 +112,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy) {
     }
 
     if(strongPunching) {
-        strongPunching = ++strongPunching_timer != 23;
+        strongPunching = ++strongPunching_timer != 28;
         if(!strongPunching) {
             if(!inAir) {
                 if(state != "weakDownPunch" and state != "weakDownKick" and
