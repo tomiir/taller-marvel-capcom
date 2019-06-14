@@ -8,7 +8,7 @@
 void CaptainAmericaWalkFowardAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 10;
+    animationRate = 15;
     animationLength = 5;
 
     vector<int> frame0 = {0, 250, 322, 245};
