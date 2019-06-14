@@ -8,7 +8,7 @@
 void ChunLiJumpAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 4;
+    animationRate = 20;
     animationLength = 9;
 
     vector<int> frame0 = {0, 840, 407, 210};

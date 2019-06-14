@@ -8,7 +8,7 @@
 void ChunLiCrowchedDownAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 3;
+    animationRate = 32;
     animationLength = 2;
 
     vector<int> frame0 = {407, 630, 407, 210};

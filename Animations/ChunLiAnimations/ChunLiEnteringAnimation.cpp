@@ -8,7 +8,7 @@
 void ChunLiEnteringAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 2;
+    animationRate = 25;
     animationLength = 3;
 
 
