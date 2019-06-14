@@ -10,16 +10,22 @@
 void CaptainAmericaStrongAirPunchAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 5;
-    animationLength = 7;
+    animationRate = 3;
+    animationLength = 13;
 
     vector<int> frame0 = {0, 2205, 322, 245};
     vector<int> frame1 = {322, 2205, 322, 245};
     vector<int> frame2 = {644, 2205, 322, 245};
     vector<int> frame3 = {966, 2205, 322, 245};
-    vector<int> frame4 = {1288, 2205, 322, 245};
-    vector<int> frame5 = {1610, 2205, 322, 245};
-    vector<int> frame6 = {1932, 2205, 322, 245};
+    vector<int> frame4 = {966, 2205, 322, 245};
+    vector<int> frame5 = {966, 2205, 322, 245};
+    vector<int> frame6 = {1288, 2205, 322, 245};
+    vector<int> frame7 = {1288, 2205, 322, 245};
+    vector<int> frame8 = {1288, 2205, 322, 245};
+    vector<int> frame9 = {1610, 2205, 322, 245};
+    vector<int> frame10 = {1610, 2205, 322, 245};
+    vector<int> frame11 = {1610, 2205, 322, 245};
+    vector<int> frame12 = {1932, 2205, 322, 245};
 
 
     animation.push_back(frame0);
@@ -29,7 +35,12 @@ void CaptainAmericaStrongAirPunchAnimation::init() {
     animation.push_back(frame4);
     animation.push_back(frame5);
     animation.push_back(frame6);
-
+    animation.push_back(frame7);
+    animation.push_back(frame8);
+    animation.push_back(frame9);
+    animation.push_back(frame10);
+    animation.push_back(frame11);
+    animation.push_back(frame12);
 
 
 }
