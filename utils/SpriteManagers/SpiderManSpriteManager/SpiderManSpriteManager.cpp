@@ -22,10 +22,12 @@
 #include "../../../Animations/SpiderManAnimations/SpiderManStrongDownKickAnimation.h"
 #include "../../../Animations/SpiderManAnimations/SpiderManStrongAirKickAnimation.h"
 #include "../../../Animations/SpiderManAnimations/SpiderManGrabAnimation.h"
-#include "../../../Animations/SpiderManAnimations/SpiderManKickedAnimation.h"
+#include "../../../Animations/SpiderManAnimations/SpiderManDownKickedAnimation.h"
 #include "../../../Animations/SpiderManAnimations/SpiderManDownGuardAnimation.h"
 #include "../../../Animations/SpiderManAnimations/SpiderManStandGuardAnimation.h"
 #include "../../../Animations/SpiderManAnimations/SpiderManAirGuardAnimation.h"
+#include "../../../Animations/SpiderManAnimations/SpiderManStandKickedAnimation.h"
+#include "../../../Animations/SpiderManAnimations/SpiderManAirKickedAniamtion.h"
 
 
 using namespace std;
@@ -50,9 +52,9 @@ void SpiderManSpriteManager::init(){
     animationMap["strongStandKick"] = new SpiderManStrongStandKickAnimation();
     animationMap["strongDownKick"] = new SpiderManStrongDownKickAnimation();
     animationMap["strongAirKick"] = new SpiderManStrongAirKickAnimation();
-    animationMap["downKicked"] = new SpiderManKickedAnimation();
-    animationMap["standKicked"] = new SpiderManKickedAnimation();
-    animationMap["airKicked"] = new SpiderManKickedAnimation();
+    animationMap["downKicked"] = new SpiderManDownKickedAnimation();
+    animationMap["standKicked"] = new SpiderManStandKickedAnimation();
+    animationMap["airKicked"] = new SpiderManAirKickedAnimation();
     animationMap["grab"] = new SpiderManGrabAnimation();
     animationMap["downGuard"] = new SpiderManDownGuardAnimation();
     animationMap["standGuard"] = new SpiderManStandGuardAnimation();

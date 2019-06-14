@@ -247,8 +247,8 @@ add_executable(
         Animations/SpiderManAnimations/SpiderManGrabAnimation.h
         Animations/SpiderManAnimations/SpiderManJumpAnimation.cpp
         Animations/SpiderManAnimations/SpiderManJumpAnimation.h
-        Animations/SpiderManAnimations/SpiderManKickedAnimation.cpp
-        Animations/SpiderManAnimations/SpiderManKickedAnimation.h
+        Animations/SpiderManAnimations/SpiderManDownKickedAnimation.cpp
+        Animations/SpiderManAnimations/SpiderManDownKickedAnimation.h
         Animations/SpiderManAnimations/SpiderManStandGuardAnimation.cpp
         Animations/SpiderManAnimations/SpiderManStandGuardAnimation.h
         Animations/SpiderManAnimations/SpiderManStillAnimation.cpp
@@ -329,6 +329,10 @@ add_executable(
         Animations/VenomAnimations/VenomWeakDownKickAnimation.cpp
         Animations/VenomAnimations/VenomWeakAirKickAnimation.h
         Animations/VenomAnimations/VenomWeakAirKickAnimation.cpp
+        Animations/SpiderManAnimations/SpiderManAirKickedAniamtion.cpp
+        Animations/SpiderManAnimations/SpiderManAirKickedAniamtion.h
+        Animations/SpiderManAnimations/SpiderManStandKickedAnimation.h
+        Animations/SpiderManAnimations/SpiderManStandKickedAnimation.cpp
 )
 
 

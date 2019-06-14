@@ -10,11 +10,11 @@
 #include "../Animation.h"
 
 
-class SpiderManKickedAnimation: public Animation {
+class SpiderManDownKickedAnimation: public Animation {
 
 public:
-    SpiderManKickedAnimation();
-    ~SpiderManKickedAnimation() = default;
+    SpiderManDownKickedAnimation();
+    ~SpiderManDownKickedAnimation() = default;
     void init() override ;
 };
 

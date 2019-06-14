@@ -2,10 +2,10 @@
 // Created by arielpm on 13/06/19.
 //
 
-#include "SpiderManKickedAnimation.h"
+#include "SpiderManDownKickedAnimation.h"
 
 
-void SpiderManKickedAnimation::init() {
+void SpiderManDownKickedAnimation::init() {
 
     startTime = SDL_GetTicks();
     animationRate = 2;
@@ -19,7 +19,7 @@ void SpiderManKickedAnimation::init() {
 
 }
 
-SpiderManKickedAnimation::SpiderManKickedAnimation() : Animation() {
+SpiderManDownKickedAnimation::SpiderManDownKickedAnimation() : Animation() {
 
     this->init();
 
