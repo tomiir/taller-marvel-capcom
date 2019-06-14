@@ -9,7 +9,7 @@
 void CaptainAmericaWeakStandPunchAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 15;
+    animationRate = 8;
     animationLength = 10;
 
     vector<int> frame0 = {0, 3430, 322, 245};

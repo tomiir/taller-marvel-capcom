@@ -10,7 +10,7 @@
 void CaptainAmericaStrongAirPunchAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 3;
+    animationRate = 5;
     animationLength = 13;
 
     vector<int> frame0 = {0, 2205, 322, 245};
