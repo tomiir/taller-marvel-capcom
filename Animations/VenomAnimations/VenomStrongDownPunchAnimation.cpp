@@ -7,7 +7,7 @@
 void VenomStrongDownPunchAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 5;
+    animationRate = 10;
     animationLength = 7;
 
     vector<int> frame0 = {0, 2380, 560, 238};

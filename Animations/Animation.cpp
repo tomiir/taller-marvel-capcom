@@ -11,11 +11,18 @@ Animation::~Animation() = default;
 
 vector<int> Animation::play() {
 
-    if(index == animation.size()){
+
+//    frameToDraw = ((SDL_GetTicks() - startTime) * animationRate / 1000) % animationLength;
+
+    if (counter == 10){
+        frameToDraw++;
+        counter = 0;
+    }
+    counter++;
+
+    if(frameToDraw == animation.size()){
         resetIndex();
     }
-
-    frameToDraw = ((SDL_GetTicks() - startTime) * animationRate / 1000) % animationLength;
 
     vector<int> sprite = animation[frameToDraw];
 
@@ -26,6 +33,7 @@ vector<int> Animation::play() {
 void Animation::resetIndex() {
 
     frameToDraw = 0;
+    counter = 0;
 
 }
 
