@@ -8,7 +8,7 @@
 void SpiderManStrongDownKickAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 6;
+    animationRate = 4;
     animationLength = 11;
 
     vector<int> frame0 = {0, 5360, 491, 268};

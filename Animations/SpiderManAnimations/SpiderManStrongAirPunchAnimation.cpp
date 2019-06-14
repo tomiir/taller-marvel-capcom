@@ -8,8 +8,8 @@
 void SpiderManStrongAirPunchAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 10;
-    animationLength = 6;
+    animationRate = 6;
+    animationLength = 12;
 
     vector<int> frame0 = {0, 2412, 491, 268};
     vector<int> frame1 = {491, 2412, 491, 268};
@@ -22,7 +22,13 @@ void SpiderManStrongAirPunchAnimation::init() {
     animation.push_back(frame0);
     animation.push_back(frame1);
     animation.push_back(frame2);
+    animation.push_back(frame2);
+    animation.push_back(frame2);
     animation.push_back(frame3);
+    animation.push_back(frame3);
+    animation.push_back(frame3);
+    animation.push_back(frame4);
+    animation.push_back(frame4);
     animation.push_back(frame4);
     animation.push_back(frame5);
 
