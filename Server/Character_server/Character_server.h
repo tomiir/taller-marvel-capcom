@@ -35,8 +35,6 @@ public:
 
     bool getHorizontalFlip();
 
-//    void correctPunch(bool punching);
-
 private:
 
     int initialY;

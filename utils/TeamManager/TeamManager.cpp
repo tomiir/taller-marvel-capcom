@@ -28,7 +28,7 @@ void TeamManager::changeCharacter(){
 
 void TeamManager:: handleEvent(string event, std::vector<ControllerBackground*> backgrounds){
 
-    currentCharacter->handleEvent(event, enemyTeam->getCurrentCharacter()->getGameObject());
+    currentCharacter->handleEvent(event, enemyTeam->getCurrentCharacter()->getGameObject(), enemyTeam->getCurrentCharacter());
 
     if (currentCharacter->getInfo()[1] < -300){
         changeCharacter();
@@ -97,6 +97,10 @@ char TeamManager::getStateCurrentCharacter() {
     else if (state == "standGuard") return 'h';
     else if (state == "downGuard") return 'i';
     else if (state == "airGuard") return 'j';
+    else if (state == "standKicked") return 'k';
+    else if (state == "downKicked") return 'l';
+    else if (state == "airKicked") return 'm';
+
 
 
 }

@@ -21,7 +21,7 @@ class ControllerCharacter : public Controller{
 public:
     ControllerCharacter(GameObject_server *gameObject, int screenWidth_, int screenHeight_, int speedCharacter_, int speedCharacter);
     ~ControllerCharacter();
-    void handleEvent(string event, GameObject_server* enemy);
+    void handleEvent(string event, GameObject_server* enemy, ControllerCharacter * enemyController);
     bool isJumping();
     bool isJumpingRight();
     bool isJumpingLeft();
@@ -35,26 +35,27 @@ public:
     bool isMovingRight();
     bool isMovingLeft();
     void flip(SDL_RendererFlip flip);
-
     vector<int> getPosInfo();
-
     string getState();
-
     SDL_RendererFlip getFlip();
-
     GameObject_server *getGameObject();
+    void Kicked();
+
 
 private:
 
     int screenWidth, screenHeight, speedCharacter;
     int jumpDistance = 10;
-    bool jump, inAir, jumpRight, jumpLeft, leaving, entering, crowchedDown, movingRight, movingLeft, moving, guarding, punching, strongPunching, alreadyPunchInAir;
+    bool jump, inAir, jumpRight, jumpLeft, leaving, entering,
+    crowchedDown, movingRight, movingLeft, moving, guarding, punching, strongPunching, alreadyPunchInAir, kicked;
     string state = "still";
     CLogger* logger = CLogger::GetLogger();
     Character_server* character = dynamic_cast<Character_server*>(gameObject);
     CollisionManager* collisionManager;
     int punching_timer = 0;
     int strongPunching_timer = 0;
+    int kicked_timer = 0;
+
 };
 
 
