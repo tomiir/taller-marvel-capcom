@@ -42,11 +42,13 @@ vector<GameObject_server *> GameObjectServerFactory::getGameObjectsServerCharact
         int height = (*iter).getHeight();
         int initialY = screenHeight - height;
         string name = (*iter).getName();
+        int wSprite = (*iter).getWSprite();
+        int hSprite = (*iter).getHSprite();
 
         itrHitbox = hitboxManager.find(name);
         HitboxManager* hitbox = itrHitbox->second;
 
-        Character_server* C = new Character_server(initialY, name, width, height, hitbox);
+        Character_server* C = new Character_server(initialY, name, width, height, hitbox, wSprite, hSprite);
 
         C->setInitialXPositions(width/2, (screenWidth - width) - (width/2));
         // hitbox -> updateHitboxes(C-> getHorizontalFlip());

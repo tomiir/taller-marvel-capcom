@@ -17,12 +17,14 @@ class JsonCharacter {
     int zindex;
     std::string spriteManager;
     double size;
+    int wSprite;
+    int hSprite;
 
 public:
     JsonCharacter() = default;
     ~JsonCharacter() = default;
     JsonCharacter(std::list<std::string> errors);
-    JsonCharacter(std::string name, std::string filepath, int height, int width, int zindex, std::string spriteManager, double size);
+    JsonCharacter(std::string name, std::string filepath, int height, int width, int zindex, std::string spriteManager, double size, int wSprite, int hSprite);
     std::string getName();
     std::string getFilePath();
     int getHeight();
@@ -32,6 +34,8 @@ public:
     std::string getSpriteManager();
     double getSize();
     bool getError();
+    int getWSprite();
+    int getHSprite();
 
 private:
     bool error;

@@ -128,6 +128,14 @@ std::list<JsonCharacter> JsonParser::getCharacter() {
             error = true;
             errors.push_back("size");
         }
+        if( !((*it)["wSprite"]).isInt()  || ((*it)["wSprite"]).asInt() <= 0){
+            error = true;
+            errors.push_back("wSprite");
+        }
+        if( !((*it)["hSprite"]).isInt()  || ((*it)["hSprite"]).asInt() <= 0){
+            error = true;
+            errors.push_back("hSprite");
+        }
         if(error) characters.push_back(JsonCharacter(errors));
 
         else
@@ -139,10 +147,10 @@ std::list<JsonCharacter> JsonParser::getCharacter() {
                         ((*it)["width"]).asInt(),
                         ((*it)["zindex"]).asInt(),
                         ((*it)["spriteManagerName"]).asString(),
-                        ((*it)["size"]).asDouble()
-                        );
-
-
+                        ((*it)["size"]).asDouble(),
+                        ((*it)["wSprite"]).asInt(),
+                        ((*it)["hSprite"]).asInt()
+                );
 
         characters.push_back(character);
         }

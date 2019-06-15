@@ -16,7 +16,7 @@ using namespace std;
 class Character_server : public GameObject_server {
 
 public:
-    Character_server(int initialY, string name, int width, int height, HitboxManager* hitbox_);
+    Character_server(int initialY, string name, int width, int height, HitboxManager* hitbox_, int wSprite, int hSprite);
     ~Character_server();
 
     void move(DirectionVector* direction) override ;
@@ -44,6 +44,7 @@ private:
     string state;
     SDL_RendererFlip flip;
     bool horizontalFlip = false;
+    int wSprite, hSprite;
 
     HitboxManager* hitbox;
 

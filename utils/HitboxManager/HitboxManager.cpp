@@ -18,7 +18,7 @@ void HitboxManager::move(DirectionVector *direction) {
     }
 }
 
-void HitboxManager::setHitboxes(string state, bool horizontalFlip) {
+void HitboxManager::setHitboxes(string state, bool horizontalFlip, SDL_Rect spriteRect, SDL_Rect spriteRectFlip) {
 
     //Aca habría que ver como setear bien la x y la y de las nuevos estados
     //Por ejemplo si pasa a estar agachado vamos a tener que cambia la y

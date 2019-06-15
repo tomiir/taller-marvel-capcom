@@ -28,7 +28,7 @@ CaptainAmericaHitboxManager::CaptainAmericaHitboxManager() : HitboxManager(){
 }
 
 
-void CaptainAmericaHitboxManager::setHitboxes(string newState, bool hFlip) {
+void CaptainAmericaHitboxManager::setHitboxes(string newState, bool hFlip, SDL_Rect spriteRect, SDL_Rect spriteRectFlip) {
 
     //Guarda la posicion del hitbox anterior
     SDL_Rect currentHitbox = currentHitboxes[0];

@@ -71,6 +71,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
         double size = (*iter).getSize();
 
 
+
         if(!existFile(path.c_str())){
             logger -> Log("No se encontró " + path + ", se utilizara la imagen NotFound", ERROR, "");
             path = "../DefaultConfigs/NotFound.png";

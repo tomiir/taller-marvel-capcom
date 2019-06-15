@@ -10,7 +10,7 @@ JsonCharacter::JsonCharacter(std::list<std::string> errors){
 
 }
 
-JsonCharacter::JsonCharacter(std::string name, std::string filepath, int height, int width, int zindex, std::string spriteManager, double size) {
+JsonCharacter::JsonCharacter(std::string name, std::string filepath, int height, int width, int zindex, std::string spriteManager, double size, int wSprite, int hSprite) {
 
     this->name = name;
     this->filepath = filepath;
@@ -20,6 +20,8 @@ JsonCharacter::JsonCharacter(std::string name, std::string filepath, int height,
     this->spriteManager = spriteManager;
     this->size = size;
     this->error = false;
+    this->wSprite = wSprite;
+    this->hSprite = hSprite;
 }
 
 std::string JsonCharacter::getName() {
@@ -57,3 +59,12 @@ double JsonCharacter::getSize() {
 bool JsonCharacter::getError(){
     return error;
 }
+
+int JsonCharacter::getWSprite(){
+    return wSprite;
+}
+
+int JsonCharacter::getHSprite(){
+    return hSprite;
+}
+

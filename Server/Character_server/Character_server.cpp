@@ -4,7 +4,7 @@
 
 #include "Character_server.h"
 
-Character_server::Character_server(int initialY, std::string name, int width, int height, HitboxManager* hitbox_) :
+Character_server::Character_server(int initialY, std::string name, int width, int height, HitboxManager* hitbox_, int wSprite, int hSprite) :
         GameObject_server(name, 0, initialY, width, height) {
 
     this->initialY = initialY;
@@ -12,6 +12,8 @@ Character_server::Character_server(int initialY, std::string name, int width, in
     this->state = "still";
     hitbox = hitbox_;
     this->name = name;
+    this->wSprite = int( wSprite * 2.5);
+    this->hSprite = int( hSprite * 2.5);
 
 }
 
@@ -32,11 +34,34 @@ vector<int> Character_server::getInfo() {
 
 void Character_server::setState(string state) {
 
+    int xPos, yPos, xPosFlip;
+
+    if (name == "CaptainAmerica"){
+        xPos = objRect.x - 234;
+        xPosFlip = objRect.x - 372;
+        yPos = objRect.y - 196;
+    }
+    if (name == "SpiderMan"){
+        xPos = objRect.x - 307;
+        xPosFlip = objRect.x - 428;
+        yPos = objRect.y - 528;
+    }
+    if (name == "ChunLi"){
+        xPos = objRect.x - 240;
+        xPosFlip = objRect.x - 421;
+        yPos = objRect.y - 397;
+    }
+    if (name == "Venom"){
+        xPos = objRect.x - 227;
+        xPosFlip = objRect.x - 578;
+        yPos = objRect.y - 529;
+    }
+
+    SDL_Rect spriteRect = SDL_Rect{xPos, yPos, wSprite, hSprite};
+    SDL_Rect spriteRectFlip = SDL_Rect{xPosFlip, yPos, wSprite, hSprite};
+
     this->state = state;
-
-    return; //LO PONGO POR AHORA HASTA QUE AGREGUE LAS HITBOXES DE TODOS LOS ESTADOS
-
-    hitbox->setHitboxes(state, horizontalFlip);  // pongo con estos dos poque por ahora estan estos dos solos
+    hitbox->setHitboxes(state, horizontalFlip, spriteRect, spriteRectFlip );  // pongo con estos dos poque por ahora estan estos dos solos
 }
 
 void Character_server::stayInFloor() {
