@@ -14,7 +14,7 @@ public:
     VenomHitboxManager();
     ~VenomHitboxManager() = default;
 
-    void setInitialPos(int x, int y) override ;
+    void setInitialPos(int x, int y, bool flip) override ;
 };
 
 

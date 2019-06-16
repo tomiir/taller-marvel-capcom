@@ -45,6 +45,8 @@ private:
     SDL_RendererFlip flip;
     bool horizontalFlip = false;
     int wSprite, hSprite;
+    int xPos = 0, yPos = 0, xPosFlip = 0;
+    SDL_Rect spriteRect, spriteRectFlip;
 
     HitboxManager* hitbox;
 

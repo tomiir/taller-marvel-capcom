@@ -27,13 +27,13 @@ void HitboxManager::setHitboxes(string newState, bool horizontalFlip, SDL_Rect s
     for (int i = 0; i < newHitboxes.size(); i++){
         SDL_Rect hitbox;
         if(!horizontalFlip) hitbox = SDL_Rect{spriteRect.x + newHitboxes[i].x , spriteRect.y + newHitboxes[i].y, newHitboxes[i].w, newHitboxes[i].h};
-        else hitbox = SDL_Rect{spriteRectFlip.x + newHitboxes[i].x , spriteRectFlip.y + newHitboxes[i].y, newHitboxes[i].w, newHitboxes[i].h};
+        else hitbox = SDL_Rect{spriteRectFlip.x + spriteRectFlip.w - newHitboxes[i].w - newHitboxes[i].x , spriteRectFlip.y + newHitboxes[i].y, newHitboxes[i].w, newHitboxes[i].h};
         currentHitboxes.push_back(hitbox);
     }
 }
 
 
-void HitboxManager::setInitialPos(int x, int y) {
+void HitboxManager::setInitialPos(int x, int y, bool flip) {
 
 }
 

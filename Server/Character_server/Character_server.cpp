@@ -34,7 +34,6 @@ vector<int> Character_server::getInfo() {
 
 void Character_server::setState(string state) {
 
-    int xPos, yPos, xPosFlip;
 
     if (name == "CaptainAmerica"){
         xPos = objRect.x - 234;
@@ -57,8 +56,8 @@ void Character_server::setState(string state) {
         yPos = objRect.y - 529;
     }
 
-    SDL_Rect spriteRect = SDL_Rect{xPos, yPos, wSprite, hSprite};
-    SDL_Rect spriteRectFlip = SDL_Rect{xPosFlip, yPos, wSprite, hSprite};
+    spriteRect = SDL_Rect{xPos, yPos, wSprite, hSprite};
+    spriteRectFlip = SDL_Rect{xPosFlip, yPos, wSprite, hSprite};
 
     this->state = state;
     hitbox->setHitboxes(state, horizontalFlip, spriteRect, spriteRectFlip );  // pongo con estos dos poque por ahora estan estos dos solos
@@ -76,8 +75,6 @@ void Character_server::changePosition(int changeX, int changeY) {
 
     objRect.x = changeX;
     objRect.y = changeY;
-
-    hitbox->setInitialPos(changeX, changeY);
 }
 
 void Character_server::setInitialXPositions(int positionLeft, int positionRight){
@@ -87,9 +84,14 @@ void Character_server::setInitialXPositions(int positionLeft, int positionRight)
 
 void Character_server::setInitialPos(bool left){
 
-    objRect.x = left ? posInitialLeft : posInitialRight;
-
-    hitbox->setInitialPos(objRect.x, objRect.y);
+    if (left){
+        objRect.x =  posInitialLeft;
+        hitbox->setInitialPos(objRect.x - xPos, objRect.y - yPos, !left);
+    }
+    else{
+        objRect.x = posInitialRight;
+        hitbox->setInitialPos(objRect.x - xPosFlip, objRect.y - yPos, !left);
+    }
 }
 
 void Character_server::flipSprite(SDL_RendererFlip flip_) {
@@ -116,8 +118,3 @@ SDL_RendererFlip Character_server::getFlip() {
 vector<SDL_Rect> Character_server::getHitboxInfo() {
     return hitbox->getCurrentHitboxes();
 }
-
-bool Character_server::getHorizontalFlip() {
-    return horizontalFlip;
-}
-
