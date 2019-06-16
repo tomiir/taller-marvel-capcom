@@ -51,7 +51,6 @@ vector<GameObject_server *> GameObjectServerFactory::getGameObjectsServerCharact
         Character_server* C = new Character_server(initialY, name, width, height, hitbox, wSprite, hSprite);
 
         C->setInitialXPositions(width/2, (screenWidth - width) - (width/2));
-        // hitbox -> updateHitboxes(C-> getHorizontalFlip());
         gameObjects.push_back((C));
     }
 

@@ -20,12 +20,10 @@ public:
     ~HitboxManager();
 
     void move(DirectionVector* direction);
-    virtual void setHitboxes(string state, bool horizontalFlip, SDL_Rect spriteRect, SDL_Rect spriteRectFlip);
+    void setHitboxes(string state, bool horizontalFlip, SDL_Rect spriteRect, SDL_Rect spriteRectFlip);
 
     virtual void setInitialPos(int x, int y);
-
     vector<SDL_Rect> getCurrentHitboxes();
-
     void stayInFloor(int initialY);
     void updateHitboxes(bool flipH);
 

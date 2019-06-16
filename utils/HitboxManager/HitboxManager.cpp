@@ -18,15 +18,20 @@ void HitboxManager::move(DirectionVector *direction) {
     }
 }
 
-void HitboxManager::setHitboxes(string state, bool horizontalFlip, SDL_Rect spriteRect, SDL_Rect spriteRectFlip) {
+void HitboxManager::setHitboxes(string newState, bool horizontalFlip, SDL_Rect spriteRect, SDL_Rect spriteRectFlip) {
 
-    //Aca habría que ver como setear bien la x y la y de las nuevos estados
-    //Por ejemplo si pasa a estar agachado vamos a tener que cambia la y
-
-    currentState = state;
-    stateIterHitboxes = stateHitBoxes.find(state);
-    currentHitboxes = stateIterHitboxes->second;
+    if(currentState == newState) return;
+    stateIterHitboxes = stateHitBoxes.find(newState);
+    vector<SDL_Rect> newHitboxes = stateIterHitboxes->second;
+    currentHitboxes = {};
+    for (int i = 0; i < newHitboxes.size(); i++){
+        SDL_Rect hitbox;
+        if(!horizontalFlip) hitbox = SDL_Rect{spriteRect.x + newHitboxes[i].x , spriteRect.y + newHitboxes[i].y, newHitboxes[i].w, newHitboxes[i].h};
+        else hitbox = SDL_Rect{spriteRectFlip.x + newHitboxes[i].x , spriteRectFlip.y + newHitboxes[i].y, newHitboxes[i].w, newHitboxes[i].h};
+        currentHitboxes.push_back(hitbox);
+    }
 }
+
 
 void HitboxManager::setInitialPos(int x, int y) {
 

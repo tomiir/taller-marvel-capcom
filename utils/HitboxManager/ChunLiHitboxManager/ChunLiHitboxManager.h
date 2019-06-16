@@ -14,8 +14,6 @@ public:
     ChunLiHitboxManager();
     ~ChunLiHitboxManager() = default;
 
-    void setHitboxes(string state, bool hFlip, SDL_Rect spriteRect, SDL_Rect spriteRectFlip) override ;
-
     void setInitialPos(int x, int y) override ;
 
 };
