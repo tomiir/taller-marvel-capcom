@@ -140,7 +140,7 @@ string ViewController_fight::giveNewParameters() {
         countTime = false;
     }
 
-    string updates = "01000000000000000000000000000000000000000000000000";
+    string updates = "010000000000000000000000000000000000000000000000000000";
 
     vector<int> pos_floor = backgrounds[0]->getPosCamera();
     vector<int> pos_moon = backgrounds[1]->getPosCamera();
@@ -174,13 +174,51 @@ string ViewController_fight::giveNewParameters() {
     sprintf(round_string, "%d", round);
     updates[47] = round_string[0]; //round
 
-    double lifeTeam1 = second; // uso esto para probar si las barras cambian bien de vida
-    double lifeTeam2 = 100;
-    char lifeTeam1_string[1];
-    char lifeTeam2_string[2];
+    int lifeTeam1 = second; // uso esto para probar si las barras cambian bien de vida
+    int lifeTeam2 = 100;
 
-    updates[48] = sprintf(lifeTeam1_string, "%d", lifeTeam1);
-    updates[49] = sprintf(lifeTeam2_string, "%d", lifeTeam2);
+    char lifeTeam1_string[3];
+    char lifeTeam2_string[3];
+
+    sprintf(lifeTeam1_string, "%d", lifeTeam1);
+    sprintf(lifeTeam2_string, "%d", lifeTeam2);
+
+    if (lifeTeam1 == 100){
+        updates[48] = lifeTeam1_string[0];
+        updates[49] = lifeTeam1_string[1];
+        updates[50] = lifeTeam1_string[2];
+    }
+
+    if(lifeTeam1 < 100 && lifeTeam1 > 10) {
+        updates[48] = '0';
+        updates[49] = lifeTeam1_string[0];
+        updates[50] = lifeTeam1_string[1];
+    }
+
+    if(lifeTeam1 < 10){
+        updates[48] = '0';
+        updates[49] = '0';
+        updates[50] = lifeTeam1_string[0];
+    }
+
+
+    if (lifeTeam2 == 100){
+        updates[51] = lifeTeam2_string[0];
+        updates[52] = lifeTeam2_string[1];
+        updates[53] = lifeTeam2_string[2];
+    }
+
+    if(lifeTeam2 < 100 && lifeTeam2 > 10) {
+        updates[51] = '0';
+        updates[52] = lifeTeam2_string[0];
+        updates[53] = lifeTeam2_string[1];
+    }
+
+    if(lifeTeam2 < 10){
+        updates[51] = '0';
+        updates[52] = '0';
+        updates[53] = lifeTeam2_string[0];
+    }
 
     updates = intToString(pos_floor[0], 2, 4, updates);
     updates = intToString(pos_floor[1], 6, 3, updates);
