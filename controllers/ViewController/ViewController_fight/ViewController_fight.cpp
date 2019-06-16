@@ -140,7 +140,7 @@ string ViewController_fight::giveNewParameters() {
         countTime = false;
     }
 
-    string updates = "010000000000000000000000000000000000000000000000";
+    string updates = "01000000000000000000000000000000000000000000000000";
 
     vector<int> pos_floor = backgrounds[0]->getPosCamera();
     vector<int> pos_moon = backgrounds[1]->getPosCamera();
@@ -158,8 +158,6 @@ string ViewController_fight::giveNewParameters() {
     updates[43] = team1->getCurrentCharacterNumber();
     updates[44] = team2->getCurrentCharacterNumber();//No entiendo porque me aparece value is never used
 
-    //int ten = second / 10;
-    //int unity = second - second/10;
 
     char seconds_string[2];
     sprintf(seconds_string, "%d",second);
@@ -171,12 +169,18 @@ string ViewController_fight::giveNewParameters() {
         updates[45] = seconds_string[0]; //ten
         updates[46] = seconds_string[1]; //unity
     }
-    //updates = intToString(ten,45,1,updates);
-    //updates = intToString(unity, 46, 1, updates);
+
     char round_string [1];
     sprintf(round_string, "%d", round);
     updates[47] = round_string[0]; //round
 
+    double lifeTeam1 = 100 / second; // uso esto para probar si las barras cambian bien de vida
+    double lifeTeam2 = 100;
+    char lifeTeam1_string[1];
+    char lifeTeam2_string[2];
+
+    updates[48] = sprintf(lifeTeam1_string, "%d", lifeTeam1);
+    updates[49] = sprintf(lifeTeam2_string, "%d", lifeTeam2);
 
     updates = intToString(pos_floor[0], 2, 4, updates);
     updates = intToString(pos_floor[1], 6, 3, updates);

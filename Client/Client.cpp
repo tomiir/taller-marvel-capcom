@@ -311,6 +311,11 @@ void* Client::render(void *arg) {
 
             game->updateTime(ten,unity,round);
 
+            char lifeTeam1[] = {messageReceived[48], '\0'};
+            char lifeTeam2[] = {messageReceived[49], '\0'};
+
+
+            game->updateLife(lifeTeam1, lifeTeam2);
 
             game->render();
             queueRecv.pop();

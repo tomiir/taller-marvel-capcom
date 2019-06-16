@@ -128,8 +128,8 @@ void Game::updateTime(char* ten, char* unity, char* round) {
     dynamic_cast<View_fight*>(this->view)->updateTime(ten, unity, round);
 }
 
-void Game::updateLife() {
-    dynamic_cast<View_fight*>(this->view)->updateLife();
+void Game::updateLife(char* lifeTeam1, char* lifeTeam2) {
+    dynamic_cast<View_fight*>(this->view)->updateLife(lifeTeam1, lifeTeam2);
 }
 
 
