@@ -72,7 +72,7 @@ void LifeManager::render() {
 
 }
 
-void LifeManager::updateLife(int newLife) {
+void LifeManager::updateLife(double newLife) {
     if (newLife > 0.60) currentColor = green;
     else if(newLife > 0.40) currentColor = yellow;
     else currentColor = red;

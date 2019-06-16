@@ -174,7 +174,7 @@ string ViewController_fight::giveNewParameters() {
     sprintf(round_string, "%d", round);
     updates[47] = round_string[0]; //round
 
-    double lifeTeam1 = 100 / second; // uso esto para probar si las barras cambian bien de vida
+    double lifeTeam1 = second; // uso esto para probar si las barras cambian bien de vida
     double lifeTeam2 = 100;
     char lifeTeam1_string[1];
     char lifeTeam2_string[2];
