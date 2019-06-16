@@ -39,6 +39,8 @@ public:
 
     int currentCharacterT1();
 
+    vector <char*> getWinner();
+
 
 private:
     TeamManager* team1;
@@ -51,6 +53,9 @@ private:
     void startCounting();
     time_t start;
     static void * restSeconds(void *pVoid);
+    char* winner_1;
+    char* winner_2;
+    bool endOfGame;
 };
 
 

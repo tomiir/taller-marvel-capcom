@@ -18,6 +18,7 @@ ViewController_fight::ViewController_fight():ViewController() {
     countTime = false;
     time(&start);
     round = 0;
+    endOfGame = false;
 }
 
 ViewController_fight::~ViewController_fight() = default;
@@ -31,12 +32,11 @@ void ViewController_fight::addTeams(TeamManager* teamManager1, TeamManager* team
 
 
 bool ViewController_fight::end() {
-    //lo hardcodeo pq no tenemos otra view
-    return false;
+    return endOfGame;
 }
 
 string ViewController_fight::getNextView() {
-    return "todavia_no_existe";
+    return "endGame";
 }
 
 void ViewController_fight::setTeam(vector<ControllerCharacter *> characters, int team) {
@@ -202,6 +202,11 @@ int ViewController_fight::currentCharacterT1() {
 
 int ViewController_fight::currentCharacterT2() {
     return team2->currentCharacterPlaying();
+}
+
+vector<char *> ViewController_fight::getWinner() {
+    vector <char*> winners = {winner_1, winner_2};
+    return winners;
 }
 
 

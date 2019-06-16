@@ -10,6 +10,7 @@
 #include "../../controllers/ViewController/ViewController.h"
 #include "../../model/Game/ViewControllerFactory/ViewControllerFactory.h"
 #include "../../controllers/ViewController/ViewController_charSelect/ViewController_charSelect.h"
+#include "../../controllers/ViewController/ViewController_endGame/ViewController_endGame.h"
 
 
 
