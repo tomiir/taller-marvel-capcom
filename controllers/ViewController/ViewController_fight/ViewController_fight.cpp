@@ -143,6 +143,11 @@ string ViewController_fight::giveNewParameters() {
         winner_2 = 's';
     }
 
+    if (!shouldFight && second == 0){
+        pthread_join(countSeconds, nullptr);
+        shouldFight = true;
+    }
+
     if (second == 0 && endOfRounds == false) {
         pthread_join(countSeconds,nullptr);
         round++;
