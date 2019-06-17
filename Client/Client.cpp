@@ -231,12 +231,17 @@ void* Client::render(void *arg) {
 
     bool fight_view = false;
     int viewNumber = 0;
-
+    char oldView [] = {'0','0','\n'};
    //Aca empieza el loop que va a ir renderizando. Las view ay deberian estar cargadas y se renderiza lo que se tenga que renderizar
     while(connected){
 
+        if(queueRecv.empty()) continue;
 
-        if (game->haveToChangeView()){
+        string message = queueRecv.front();
+        const char* messageReceived = message.c_str();
+        char view[] = {messageReceived[0], messageReceived[1], '\0'};
+
+        if (strcmp(view, oldView) == 1){
             changeCurrentMapper();
             viewNumber += 1;
             cout<<viewNumber;
@@ -244,11 +249,6 @@ void* Client::render(void *arg) {
         }
 
 
-        if(queueRecv.empty()) continue;
-
-        string message = queueRecv.front();
-        const char* messageReceived = message.c_str();
-        char view[] = {messageReceived[0], messageReceived[1], '\0'};
 
         if(strcmp(view, "00") == 0 and viewNumber == 0){ //view selected
 
