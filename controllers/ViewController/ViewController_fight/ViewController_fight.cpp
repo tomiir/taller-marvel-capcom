@@ -128,13 +128,6 @@ void ViewController_fight::startCounting(int timeToCount){
 }
 
 string ViewController_fight::giveNewParameters() {
-    if (!countTime && !shouldFight) {
-        this->startCounting(3);
-    }
-
-    if (!countTime && shouldFight){
-        this->startCounting(10);// esto debería ser 99
-    }
 
     if (second == 0 && round == 2){
         endOfRounds = true;// que siga indefinidamente hasta que definamos el 0
@@ -147,9 +140,18 @@ string ViewController_fight::giveNewParameters() {
         pthread_cancel(countSeconds);
         pthread_detach(countSeconds);
         shouldFight = true;
+        countTime = false;
+    }
+    if (!countTime && !shouldFight) {
+        this->startCounting(3);
     }
 
-    if (second == 0 && endOfRounds == false && shouldFight == true) {
+    if (!countTime && shouldFight){
+        this->startCounting(10);// esto debería ser 99
+    }
+
+
+    if (second == 0 && !endOfRounds && shouldFight) {
         pthread_cancel(countSeconds);
         pthread_detach(countSeconds);
         round++;
