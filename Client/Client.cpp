@@ -230,15 +230,16 @@ void* Client::recvFromServer(void* arg) {
 void* Client::render(void *arg) {
 
     bool fight_view = false;
+    int viewNumber = 0;
 
    //Aca empieza el loop que va a ir renderizando. Las view ay deberian estar cargadas y se renderiza lo que se tenga que renderizar
     while(connected){
 
-        int viewNumber = 0;
 
         if (game->haveToChangeView()){
             changeCurrentMapper();
-            fight_view ++;
+            viewNumber += 1;
+            cout<<viewNumber;
             game->changeView(viewNumber);
         }
 
@@ -273,6 +274,7 @@ void* Client::render(void *arg) {
             queueRecv.pop();
 
         }
+
         if(strcmp(view, "01") == 0 or viewNumber == 1) { //view fight
 
 

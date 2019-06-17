@@ -131,7 +131,7 @@ string ViewController_fight::giveNewParameters() {
     }
 
     if (second == 0 && round == 2){
-        //endOfRounds = true;// que siga indefinidamente hasta que definamos el 0
+        endOfRounds = true;// que siga indefinidamente hasta que definamos el 0
         endOfGame = true;
         *winner_1 = 'v';
         *winner_2 = 's';
