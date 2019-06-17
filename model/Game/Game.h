@@ -31,6 +31,7 @@ public:
     void updateLife(char* lifeTeam1, char* lifeTeam2);
     void renderDisconnected();
     void updateWinners(char* winners);
+    void updateShouldFight(char* shouldFight);
 
 private:
     std::map<string, View* > views;

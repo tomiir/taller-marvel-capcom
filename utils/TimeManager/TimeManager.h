@@ -14,10 +14,11 @@ class TimeManager: public Renderable {
 public:
     void render() override;
     int getZIndex() override;
-    TimeManager(int z, vector<GameObject*> unityNumbers, vector<GameObject*> tenNumbers, vector<GameObject*> rounds);
+    TimeManager(int z, vector<GameObject*> unityNumbers, vector<GameObject*> tenNumbers, vector<GameObject*> rounds, GameObject* fight);
     void setUnity(int unityNew);
     void setTen(int ten);
     void setRound(int roundNew);
+    void updateShouldFight(int shouldFight);
 
     ~TimeManager() = default;
 
@@ -28,10 +29,12 @@ private:
     vector<GameObject*> tenNumbers;
     vector<GameObject*> unityNumbers;
     vector <GameObject*> rounds;
+    GameObject* fight;
     int round;
     int unity;
     int ten;
     int roundTimer;
+    bool shouldFight;
 
 };
 

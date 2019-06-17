@@ -50,12 +50,13 @@ private:
     int round;
     bool endOfRounds;
     std::vector<ControllerBackground*> backgrounds;
-    void startCounting();
+    void startCounting(int timeToCount);
     time_t start;
     static void * restSeconds(void *pVoid);
     char winner_1;
     char winner_2;
     bool endOfGame;
+    bool shouldFight;
 };
 
 

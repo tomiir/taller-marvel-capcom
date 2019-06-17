@@ -40,6 +40,8 @@ public:
 
     void updateLife(char* lifeTeam1, char* lifeTeam2);
 
+    void updateShouldFight(char* shouldFight);
+
 private:
     vector <Character*> team1;
     vector <Character*> team2;

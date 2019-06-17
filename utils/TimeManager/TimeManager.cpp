@@ -4,7 +4,7 @@
 
 #include "TimeManager.h"
 
-TimeManager::TimeManager(int z, vector<GameObject*> unityNumbers, vector<GameObject*> tenNumbers, vector<GameObject*> rounds) {
+TimeManager::TimeManager(int z, vector<GameObject*> unityNumbers, vector<GameObject*> tenNumbers, vector<GameObject*> rounds, GameObject* fight) {
     this->z = z;
     this->unity = 9;
     this->ten = 9;
@@ -14,16 +14,19 @@ TimeManager::TimeManager(int z, vector<GameObject*> unityNumbers, vector<GameObj
     this->unityNumbers = unityNumbers;
     this->tenNumbers = tenNumbers;
     this->rounds = rounds;
+    this->shouldFight = false;
+    this->fight = fight;
 
 }
 
 void TimeManager::render() {
-    tenNumbers[ten]->render();
-    unityNumbers[unity]->render();
-    if (roundTimer < 3){
-        rounds[round]->render();
+    if(!shouldFight) {
+        tenNumbers[ten]->render();
+        unityNumbers[unity]->render();
     }
+    if (roundTimer < 2) rounds[round]->render();
 
+    if (roundTimer == 2) fight->render();
 }
 
 int TimeManager::getZIndex() {
@@ -46,6 +49,10 @@ void TimeManager::setRound(int roundNew) {
     round = roundNew;
     roundTimer = 0;
 
+}
+
+void TimeManager::updateShouldFight(int shouldFight) {
+    this->shouldFight = shouldFight;
 }
 
 

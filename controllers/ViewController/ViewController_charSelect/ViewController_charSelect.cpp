@@ -156,7 +156,7 @@ char setCharacter(string name){
 
 string ViewController_charSelect::giveNewParameters() {
 
-    string updates ="000000000000000000000000000000000000000000000000000000";
+    string updates ="0000000000000000000000000000000000000000000000000000000";
 
     if(selectedContains("CaptainAmerica")) updates[2] = '1';
     if(selectedContains("SpiderMan")) updates[3] = '1';

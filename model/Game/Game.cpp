@@ -172,4 +172,8 @@ void Game::updateWinners(char *winners) {
 
 }
 
+void Game::updateShouldFight(char *shouldFight) {
+    dynamic_cast<View_fight*>(this->view)->updateShouldFight(shouldFight);
+}
+
 

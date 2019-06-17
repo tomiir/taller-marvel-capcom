@@ -22,7 +22,7 @@ string ViewController_endGame::getNextView() {
 
 string ViewController_endGame::giveNewParameters() {
 
-    string updates = "020000000000000000000000000000000000000000000000000000";
+    string updates = "0200000000000000000000000000000000000000000000000000000";
 
     /*
      * a = captain America

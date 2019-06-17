@@ -19,6 +19,7 @@ ViewController_fight::ViewController_fight():ViewController() {
     time(&start);
     round = 0;
     endOfGame = false;
+    shouldFight = false;
 }
 
 ViewController_fight::~ViewController_fight() = default;
@@ -75,20 +76,22 @@ void ViewController_fight::handleEvent(string event) {
 
     if (event == "") return;
 
-    try {
-        if (event[1] == '1' or event[1] == '3'){
-            team1->handleEvent(event.substr(0, 1), backgrounds);
-        }
-        else if (event[1] == '2' or event[1] == '4'){
-            team2->handleEvent(event.substr(0, 1), backgrounds);
-        }
+    if(shouldFight) {
 
-        flipManager->update();
+        try {
+            if (event[1] == '1' or event[1] == '3') {
+                team1->handleEvent(event.substr(0, 1), backgrounds);
+            } else if (event[1] == '2' or event[1] == '4') {
+                team2->handleEvent(event.substr(0, 1), backgrounds);
+            }
 
-    } catch(exception e) {
-        logger -> Log("Falló al querer manejar un evento", ERROR, e.what());
-        logger -> Log("Falló al querer manejar el evento: " + event, DEBUG, e.what());
-        throw -1;
+            flipManager->update();
+
+        } catch (exception e) {
+            logger->Log("Falló al querer manejar un evento", ERROR, e.what());
+            logger->Log("Falló al querer manejar el evento: " + event, DEBUG, e.what());
+            throw -1;
+        }
     }
 }
 
@@ -116,18 +119,21 @@ void* ViewController_fight::restSeconds(void *pVoid){
 
 }
 
-void ViewController_fight::startCounting(){
+void ViewController_fight::startCounting(int timeToCount){
     countTime = true;
-    second = 10; // ESTO DEBE ESTAR SETTEADO EN 99
+    second = timeToCount;
     pthread_create(&countSeconds, nullptr, restSeconds, nullptr);
 
 
 }
 
 string ViewController_fight::giveNewParameters() {
+    if (!countTime && !shouldFight) {
+        this->startCounting(3);
+    }
 
-    if (!countTime ) {
-        this->startCounting();
+    if (!countTime && shouldFight){
+        this->startCounting(10);// esto debería ser 99
     }
 
     if (second == 0 && round == 2){
@@ -143,7 +149,7 @@ string ViewController_fight::giveNewParameters() {
         countTime = false;
     }
 
-    string updates = "010000000000000000000000000000000000000000000000000000";
+    string updates = "0100000000000000000000000000000000000000000000000000000";
 
     vector<int> pos_floor = backgrounds[0]->getPosCamera();
     vector<int> pos_moon = backgrounds[1]->getPosCamera();
@@ -223,6 +229,11 @@ string ViewController_fight::giveNewParameters() {
         updates[52] = '0';
         updates[53] = lifeTeam2_string[0];
     }
+
+    if(shouldFight) updates[54] = '1';
+    else updates[54] = '0';
+
+
 
     updates = intToString(pos_floor[0], 2, 4, updates);
     updates = intToString(pos_floor[1], 6, 3, updates);
