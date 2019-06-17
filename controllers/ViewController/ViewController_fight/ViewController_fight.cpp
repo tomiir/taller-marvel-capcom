@@ -148,10 +148,11 @@ string ViewController_fight::giveNewParameters() {
         shouldFight = true;
     }
 
-    if (second == 0 && endOfRounds == false) {
+    if (second == 0 && endOfRounds == false && shouldFight == true) {
         pthread_join(countSeconds,nullptr);
         round++;
         countTime = false;
+        shouldFight = false;
     }
 
     string updates = "0100000000000000000000000000000000000000000000000000000";

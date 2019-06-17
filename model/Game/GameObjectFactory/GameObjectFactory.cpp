@@ -407,7 +407,7 @@ TimeManager *GameObjectFactory::getTimeManager() {
 
     GameObject* fight  = new GameObject("../Images/timer/timer-rounds.png","fight",99,renderer, xRound, yRound, 257*2,115*2);
     positionToTake = {297,84,257,115};
-    roundThree->setOriginRect(positionToTake);
+    fight->setOriginRect(positionToTake);
 
     TimeManager* timeManager = new TimeManager(99, unityNumbers, tenNumbers, rounds, fight);
 
