@@ -246,6 +246,7 @@ void* Client::render(void *arg) {
             viewNumber += 1;
             cout<<viewNumber;
             game->changeView(viewNumber);
+            strncpy(oldView, view, 2);
         }
 
 
