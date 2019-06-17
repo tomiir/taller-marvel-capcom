@@ -9,8 +9,10 @@
 #include "../../../controllers/ViewController/ViewController_fight/ViewController_fight.h"
 #include "../../../views/View/View.h"
 #include "../../../utils/TeamManager/TeamManager.h"
+#include "../../../utils/TimeManager/TimeManager.h"
 #include "../../../views/View/View_charSelect.h"
 #include "../../../views/View/View_fight.h"
+#include "../../../views/View/View_endGame.h"
 
 using namespace std;
 
@@ -23,6 +25,7 @@ public:
     ~ViewFactory();
     View_fight * getView_fight();
     View_charSelect * getView_charSelect();
+    View_endGame* getView_endGame();
     map<string, Character *> getCharacter();
 
 private:

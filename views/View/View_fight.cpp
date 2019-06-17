@@ -20,6 +20,8 @@ struct Comp {
 };
 
 void View_fight::updateView() {
+
+
     // Primero renderizo (limpio) la vista;
 
     this->clearWindow();
@@ -27,6 +29,9 @@ void View_fight::updateView() {
 
     // Luego renderizo los elementos que la componen
 
+    renderables.push_back(lifeManagerTeam1);
+    renderables.push_back(lifeManagerTeam2);
+    renderables.push_back(timeManager);
 
     for (std::vector<Background*>::iterator background=backgrounds.begin(); background != backgrounds.end(); ++background) {
 
@@ -47,6 +52,7 @@ void View_fight::updateView() {
         renderables.pop_back();
     }
 
+
     SDL_RenderPresent(renderer);
 
 }
@@ -60,7 +66,7 @@ bool View_fight::end() {
 }
 
 string View_fight::getNextView() {
-    return "todavia_no_existe";
+    return "endGame";
 }
 
 void View_fight::addCharacter(Character * character) {
@@ -158,6 +164,12 @@ void View_fight::setTeams(Character* characterT1_1, Character* characterT1_2, Ch
     team1[0]->flipSprite(SDL_FLIP_HORIZONTAL);
     team2[0]->flipSprite(SDL_FLIP_NONE);
 
+    lifeManagerTeam1->setFirstCharacter(team1[0]->getName());
+    lifeManagerTeam1->setSecondCharacter(team1[1]->getName());
+
+    lifeManagerTeam2->setFirstCharacter(team2[0]->getName());
+    lifeManagerTeam2->setSecondCharacter(team2[1]->getName());
+
 }
 
 void View_fight::renderDisconnected() {
@@ -170,6 +182,38 @@ void View_fight::addDisconnected(GameObject *disconnected_) {
 
     disconnected = disconnected_;
 }
+
+void View_fight::addLifeManagers(LifeManager* team1, LifeManager* team2) {
+    lifeManagerTeam1 = team1;
+    lifeManagerTeam2 = team2;
+}
+
+void View_fight::addTimeManager(TimeManager *timeManager) {
+    this->timeManager = timeManager;
+}
+
+void View_fight::updateTime(char* ten, char* unity, char* round) {
+    timeManager->setRound(atoi(round));
+    //cout<<round;
+    timeManager->setUnity(atoi(unity));
+    //cout<<unity;
+    timeManager->setTen(atoi(ten));
+    //cout<<ten;
+}
+
+void View_fight::updateLife(char* lifeTeam1, char* lifeTeam2) {
+    // se puede reulitizar otro mensaje para el jugador actual
+    lifeManagerTeam1->updateCurrentCharacter(team1[currentChar1]->getName());
+    lifeManagerTeam2->updateCurrentCharacter(team2[currentChar2]->getName());
+// este método debería recibir la vida del jugador actual de los 2 teams
+// atof es como atoi para doubles.
+    double lifeTeam1_double = atof(lifeTeam1);
+    double lifeTeam2_double = atof(lifeTeam2);
+    lifeManagerTeam1->updateLife(lifeTeam1_double/100);
+    lifeManagerTeam2->updateLife(lifeTeam2_double/100);
+}
+
+
 
 
 

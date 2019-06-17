@@ -9,6 +9,8 @@
 #include "../../GameObjects_fight/Background/Background.h"
 #include "../../GameObjects_fight/GameObject/GameObject.h"
 #include "../../GameObject_charSelect/GameObject_charSelect.h"
+#include "../../../utils/LifeManager/LifeManager.h"
+#include "../../../utils/TimeManager/TimeManager.h"
 
 #include <iostream>
 
@@ -28,13 +30,18 @@ public:
     vector<GameObject*> getGameObjectsCharacters_fight();
     vector<GameObject*> getGameObjectsBackgrounds_fight();
     vector<GameObject_charSelect*> getgameobjectChar_select_fight();
-
-
+    LifeManager* getLifeManagerTeam1();
+    LifeManager* getLifeManagerTeam2();
+    TimeManager* getTimeManager();
     GameObject *getGameObjectDisconnected();
+    vector <GameObject*> getGameObject_endGame();
 
 private:
     bool existFile(const char* path);
     int screenWidth, screenHeight;
+
+    int getXCenter(int width);
+    int getYCenter(int height);
 
 };
 

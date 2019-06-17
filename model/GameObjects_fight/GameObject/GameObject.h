@@ -23,7 +23,7 @@ public:
     virtual void stayInFloor();
     int getZIndex();
     string getName();
-
+    void setOriginRect(vector<int> position);
 
 protected:
     string name;

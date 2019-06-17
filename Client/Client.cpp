@@ -6,7 +6,7 @@
 
 
 #define NOBEAT (char*)"0"
-#define MESSAGEFROMSERVERLEN 45
+#define MESSAGEFROMSERVERLEN 54
 #define MESSAGEFROMSERVERLEN2 5
 
 
@@ -235,17 +235,12 @@ void* Client::render(void *arg) {
     int speed = 130;
     Uint32 start;
 
+    int viewNumber = 0;
+    char oldView [] = {'0','0','\n'};
    //Aca empieza el loop que va a ir renderizando. Las view ay deberian estar cargadas y se renderiza lo que se tenga que renderizar
     while(connected){
 
         start = SDL_GetTicks();
-
-        if (game->haveToChangeView()){
-            changeCurrentMapper();
-            game->changeView();
-            fight_view = true;
-        }
-
 
         if(queueRecv.empty()) continue;
 
@@ -253,7 +248,17 @@ void* Client::render(void *arg) {
         const char* messageReceived = message.c_str();
         char view[] = {messageReceived[0], messageReceived[1], '\0'};
 
-        if(strcmp(view, "00") == 0 and !fight_view){ //view selected
+        if (strcmp(view, oldView) == 1){
+            changeCurrentMapper();
+            viewNumber += 1;
+            cout<<viewNumber;
+            game->changeView(viewNumber);
+            strncpy(oldView, view, 2);
+        }
+
+
+
+        if(strcmp(view, "00") == 0 and viewNumber == 0){ //view selected
 
             //Te devuelve 1 en el cuadrado gris que si se tenga que renderizar
             char greySquaresSelected[] = {messageReceived[2], messageReceived[3], messageReceived[4], messageReceived[5], '\0'};
@@ -277,7 +282,8 @@ void* Client::render(void *arg) {
             queueRecv.pop();
 
         }
-        if(strcmp(view, "01") == 0 or fight_view) { //view fight
+
+        if(strcmp(view, "01") == 0 or viewNumber == 1) { //view fight
 
 
             //Recibo las nuevas posiciones de los backgrounds y los actaulizo
@@ -307,10 +313,29 @@ void* Client::render(void *arg) {
             char currentCharT1 = messageReceived[43];
             char currentCharT2 = messageReceived[44];
 
+
             game->updateCharacters(posCharTeam1_x, posCharTeam1_y, stateCharTeam1, flipChar1, currentCharT1,
                     posCharTeam2_x, posCharTeam2_y, stateCharTeam2, flipChar2, currentCharT2);
 
+            char ten[] = {messageReceived[45],'\0'};
+            char unity[] = {messageReceived[46],'\0'};
+            char round[] = {messageReceived[47],'\0'};
 
+            game->updateTime(ten,unity,round);
+
+            char lifeTeam1[] = {messageReceived[48], messageReceived[49], messageReceived[50], '\0'};
+            char lifeTeam2[] = {messageReceived[51], messageReceived[52], messageReceived[53], '\0'};
+
+
+            game->updateLife(lifeTeam1, lifeTeam2);
+
+            game->render();
+            queueRecv.pop();
+        }
+
+        if(strcmp(view, "02") == 0 and viewNumber == 2){
+            char winners[] = {messageReceived[2],messageReceived[3],'\0'};
+            game->updateWinners(winners);
             game->render();
             queueRecv.pop();
         }

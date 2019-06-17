@@ -22,6 +22,7 @@ void Game_server::init() {
 
     viewsController["char_select"] = new ViewController_charSelect();
     viewsController["fight"] = factory->getViewController_fight();
+    viewsController["endGame"] = new ViewController_endGame;
     characters = factory->getControllerCharacter();
 
     currentViewController = (viewsController.find("char_select"))->second;
@@ -49,8 +50,14 @@ void Game_server::changeViewController() {
 
         aux =  {(characters.find(team2[0])->second), (characters.find(team2[1])->second)};
         dynamic_cast<ViewController_fight*>(viewsController["fight"])->setTeam(aux,2);
-
         dynamic_cast<ViewController_fight*>(viewsController["fight"])->createFlipManager();
+    }
+
+    if(strcmp(nextViewControllerName.c_str(),"endGame") == 0){
+        vector <char> winners = dynamic_cast<ViewController_fight*>(viewsController["fight"])-> getWinner();
+        char winner_1 = winners[0];
+        char winner_2 = winners[1];
+        dynamic_cast<ViewController_endGame*>(viewsController["endGame"])->setWinners(winner_1, winner_2);
     }
 
     this->currentViewController = nextViewController;

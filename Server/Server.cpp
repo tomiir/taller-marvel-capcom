@@ -222,12 +222,17 @@ void* Server::receivingEventsFromClient(void *client_) {
 
     int speed = 60;
     Uint32 start;
+    int viewControllerNumber = 0;
 
     while(true){
 
         if (game_server->haveToChangeViewController()) {
             game_server->changeViewController();
-            viewControllerFight = true;
+            if (viewControllerNumber == 0) {
+                viewControllerFight = true;
+            }
+            else viewControllerFight = false;
+            viewControllerNumber++;
         }
 
         start = SDL_GetTicks();
