@@ -133,8 +133,8 @@ string ViewController_fight::giveNewParameters() {
     if (second == 0 && round == 2){
         endOfRounds = true;// que siga indefinidamente hasta que definamos el 0
         endOfGame = true;
-        *winner_1 = 'v';
-        *winner_2 = 's';
+        winner_1 = 'v';
+        winner_2 = 's';
     }
 
     if (second == 0 && endOfRounds == false) {
@@ -246,8 +246,8 @@ int ViewController_fight::currentCharacterT2() {
     return team2->currentCharacterPlaying();
 }
 
-vector<char *> ViewController_fight::getWinner() {
-    vector <char*> winners = {winner_1, winner_2};
+vector<char > ViewController_fight::getWinner() {
+    vector <char> winners = {winner_1, winner_2};
     return winners;
 }
 

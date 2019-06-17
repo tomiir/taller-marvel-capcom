@@ -17,13 +17,13 @@ public:
     bool end() override;
     string getNextView() override;
 
-    void setWinners(char* winner_1, char* winner_2);
+    void setWinners(char winner_1, char winner_2);
 
     string giveNewParameters() override;
 
 private:
-    char* winner_1;
-    char* winner_2;
+    char winner_1;
+    char winner_2;
 };
 
 

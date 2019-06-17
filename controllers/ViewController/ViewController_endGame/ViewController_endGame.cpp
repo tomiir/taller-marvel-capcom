@@ -31,14 +31,14 @@ string ViewController_endGame::giveNewParameters() {
      * s = spiderman
      */
 
-    updates[2] = winner_1[0];
-    updates[3] = winner_2[0];
+    updates[2] = winner_1;
+    updates[3] = winner_2;
 
 
     return updates;
 }
 
-void ViewController_endGame::setWinners(char *winner_1, char *winner_2) {
+void ViewController_endGame::setWinners(char winner_1, char winner_2) {
     this->winner_1 = winner_1;
     this->winner_2 = winner_2;
 }

@@ -53,9 +53,9 @@ void Game_server::changeViewController() {
     }
 
     if(strcmp(nextViewControllerName.c_str(),"endGame") == 0){
-        vector <char*> winners = dynamic_cast<ViewController_fight*>(viewsController["fight"])-> getWinner();
-        char* winner_1 = winners[0];
-        char* winner_2 = winners[1];
+        vector <char> winners = dynamic_cast<ViewController_fight*>(viewsController["fight"])-> getWinner();
+        char winner_1 = winners[0];
+        char winner_2 = winners[1];
         dynamic_cast<ViewController_endGame*>(viewsController["endGame"])->setWinners(winner_1, winner_2);
     }
 

@@ -39,7 +39,7 @@ public:
 
     int currentCharacterT1();
 
-    vector <char*> getWinner();
+    vector <char> getWinner();
 
 
 private:
@@ -53,8 +53,8 @@ private:
     void startCounting();
     time_t start;
     static void * restSeconds(void *pVoid);
-    char* winner_1;
-    char* winner_2;
+    char winner_1;
+    char winner_2;
     bool endOfGame;
 };
 
