@@ -109,6 +109,9 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
                 else state = "crowchedDown";
             }
             else state = "jump";
+
+            movingLeft = false;
+            movingRight = false;
         }
     }
 
@@ -121,6 +124,9 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
                 else state = "crowchedDown";
             }
             else state = "jump";
+
+            movingLeft = false;
+            movingRight = false;
         }
     }
 
@@ -141,6 +147,9 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         else state = "crowchedDown";
 
         guarding = false;
+
+        movingLeft = false;
+        movingRight = false;
     }
 
     if (direction->isEqual(RIGHT) and !inAir and !crowchedDown and !punching and !guarding and !strongPunching and !kicked) {
