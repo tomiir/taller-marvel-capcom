@@ -20,7 +20,7 @@ TimeManager::TimeManager(int z, vector<GameObject*> unityNumbers, vector<GameObj
 }
 
 void TimeManager::render() {
-    if(!shouldFight) {
+    if(shouldFight) {
         tenNumbers[ten]->render();
         unityNumbers[unity]->render();
     }

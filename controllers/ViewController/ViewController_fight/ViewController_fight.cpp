@@ -144,12 +144,14 @@ string ViewController_fight::giveNewParameters() {
     }
 
     if (!shouldFight && second == 0){
-        pthread_join(countSeconds, nullptr);
+        pthread_cancel(countSeconds);
+        pthread_detach(countSeconds);
         shouldFight = true;
     }
 
     if (second == 0 && endOfRounds == false && shouldFight == true) {
-        pthread_join(countSeconds,nullptr);
+        pthread_cancel(countSeconds);
+        pthread_detach(countSeconds);
         round++;
         countTime = false;
         shouldFight = false;
