@@ -54,7 +54,7 @@ public:
     LifeManager(SDL_Renderer* renderer,int z,vector <int> first, vector <int> second);
     ~LifeManager() = default;
     void render() override ;
-    void updateLife(int newLife);
+    void updateLife(double newLife);
     void updateCurrentCharacter(string current);
     void addCharacters(vector <GameObject*> characters);
     int getZIndex() override;

@@ -189,8 +189,10 @@ void View_fight::updateLife(char* lifeTeam1, char* lifeTeam2) {
     lifeManagerTeam2->updateCurrentCharacter(team2[currentChar2]->getName());
 // este método debería recibir la vida del jugador actual de los 2 teams
 // atof es como atoi para doubles.
-    lifeManagerTeam1->updateLife(atof(lifeTeam1));
-    lifeManagerTeam2->updateLife(atof(lifeTeam2));
+    double lifeTeam1_double = atof(lifeTeam1);
+    double lifeTeam2_double = atof(lifeTeam2);
+    lifeManagerTeam1->updateLife(lifeTeam1_double/100);
+    lifeManagerTeam2->updateLife(lifeTeam2_double/100);
 }
 
 

@@ -14,7 +14,7 @@ LifeManager::LifeManager(SDL_Renderer* renderer, int z,vector <int> first, vecto
     // les pongo estos valores al segundo personaje para probar, en realidad empieza con verde y 1.
     lifeSecond = 1;
     currentColor = green;
-    secondColor = yellow;
+    secondColor = green;
     isRight = false;
     this->renderer = renderer;
     this->z = z;
@@ -72,7 +72,7 @@ void LifeManager::render() {
 
 }
 
-void LifeManager::updateLife(int newLife) {
+void LifeManager::updateLife(double newLife) {
     if (newLife > 0.60) currentColor = green;
     else if(newLife > 0.40) currentColor = yellow;
     else currentColor = red;

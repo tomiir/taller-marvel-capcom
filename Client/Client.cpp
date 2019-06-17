@@ -6,7 +6,7 @@
 
 
 #define NOBEAT (char*)"0"
-#define MESSAGEFROMSERVERLEN 48
+#define MESSAGEFROMSERVERLEN 54
 #define MESSAGEFROMSERVERLEN2 5
 
 
@@ -313,8 +313,8 @@ void* Client::render(void *arg) {
 
             game->updateTime(ten,unity,round);
 
-            char lifeTeam1[] = {messageReceived[48], '\0'};
-            char lifeTeam2[] = {messageReceived[49], '\0'};
+            char lifeTeam1[] = {messageReceived[48], messageReceived[49], messageReceived[50], '\0'};
+            char lifeTeam2[] = {messageReceived[51], messageReceived[52], messageReceived[53], '\0'};
 
 
             game->updateLife(lifeTeam1, lifeTeam2);
