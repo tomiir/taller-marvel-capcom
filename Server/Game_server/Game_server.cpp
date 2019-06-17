@@ -22,6 +22,7 @@ void Game_server::init() {
 
     viewsController["char_select"] = new ViewController_charSelect();
     viewsController["fight"] = factory->getViewController_fight();
+    viewsController["endGame"] = new ViewController_endGame;
     characters = factory->getControllerCharacter();
 
     currentViewController = (viewsController.find("char_select"))->second;
