@@ -232,6 +232,7 @@ void* Server::receivingEventsFromClient(void *client_) {
                 viewControllerFight = true;
             }
             else viewControllerFight = false;
+            viewControllerNumber++;
         }
 
         start = SDL_GetTicks();

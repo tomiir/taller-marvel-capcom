@@ -66,7 +66,7 @@ bool View_fight::end() {
 }
 
 string View_fight::getNextView() {
-    return "todavia_no_existe";
+    return "endGame";
 }
 
 void View_fight::addCharacter(Character * character) {

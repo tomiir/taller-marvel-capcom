@@ -431,7 +431,7 @@ vector<GameObject *> GameObjectFactory::getGameObject_endGame() {
     positionToTake = {81,226, 306,224};
     ac->setOriginRect(positionToTake);
 
-    GameObject* av    = new GameObject("./Images/winner/WinnerTeam.png","av",99,renderer, this->getXCenter(312), this->getYCenter(224),312,224);
+    GameObject* av    = new GameObject("../Images/winner/WinnerTeam.png","av",99,renderer, this->getXCenter(312), this->getYCenter(224),312,224);
     positionToTake = {81,0, 312,224};
     av->setOriginRect(positionToTake);
 
@@ -439,15 +439,15 @@ vector<GameObject *> GameObjectFactory::getGameObject_endGame() {
     positionToTake = {561,226,306,224};
     as->setOriginRect(positionToTake);
 
-    GameObject* cv  = new GameObject("./Images/winner/WinnerTeam.png", "cv",99,renderer, this->getXCenter(312), this->getYCenter(224), 312,224);
+    GameObject* cv  = new GameObject("../Images/winner/WinnerTeam.png", "cv",99,renderer, this->getXCenter(312), this->getYCenter(224), 312,224);
     positionToTake = {81,452,312,224};
     cv->setOriginRect(positionToTake);
 
-    GameObject* cs  = new GameObject("./Images/winner/WinnerTeam.png","cs",99,renderer, this->getXCenter(306), this->getYCenter(224), 306,224);
+    GameObject* cs  = new GameObject("../Images/winner/WinnerTeam.png","cs",99,renderer, this->getXCenter(306), this->getYCenter(224), 306,224);
     positionToTake = {561,452,306,224};
     cs->setOriginRect(positionToTake);
 
-    GameObject* vs  = new GameObject("./Images/winner/WinnerTeam.png","vs",99,renderer, this->getXCenter(312), this->getYCenter(224), 312,224);
+    GameObject* vs  = new GameObject("../Images/winner/WinnerTeam.png","sv",99,renderer, this->getXCenter(312), this->getYCenter(224), 312,224);
     positionToTake = {561,0,312,224};
     vs->setOriginRect(positionToTake);
 

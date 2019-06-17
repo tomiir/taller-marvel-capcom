@@ -22,7 +22,7 @@ string ViewController_endGame::getNextView() {
 
 string ViewController_endGame::giveNewParameters() {
 
-    string updates = "02000000000000000000000000000000000000000000000000";
+    string updates = "020000000000000000000000000000000000000000000000000000";
 
     /*
      * a = captain America
@@ -30,7 +30,6 @@ string ViewController_endGame::giveNewParameters() {
      * v = venom
      * s = spiderman
      */
-
     updates[2] = winner_1;
     updates[3] = winner_2;
 

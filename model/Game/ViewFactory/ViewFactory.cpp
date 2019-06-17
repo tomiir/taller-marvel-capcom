@@ -55,7 +55,7 @@ View_fight* ViewFactory::getView_fight() {
     TimeManager* timeManager = factory->getTimeManager();
     viewFight->addTimeManager(timeManager);
 
-//    delete factory;
+    delete factory;
 
     return viewFight;
 }
@@ -115,7 +115,7 @@ View_charSelect * ViewFactory:: getView_charSelect(){
     viewCharSelect->addGameObject_square_gray(gameObjects[21]);
     viewCharSelect->addGameObject_square_gray(gameObjects[22]);
 
-  //  delete(factory);
+    delete(factory);
     return viewCharSelect;
 
 }
@@ -136,7 +136,7 @@ View_endGame *ViewFactory::getView_endGame() {
 
     viewEndGame->addWinners(winners);
 
-    //delete(factory);
+    delete(factory);
     return viewEndGame;
 }
 
