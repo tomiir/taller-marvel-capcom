@@ -29,7 +29,7 @@ public:
 
 protected:
 
-    string currentState;
+    string currentState = "still";
     vector<SDL_Rect> currentHitboxes;
 
     map<string, vector<SDL_Rect>> stateHitBoxes;

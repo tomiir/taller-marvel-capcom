@@ -21,6 +21,8 @@ void HitboxManager::move(DirectionVector *direction) {
 void HitboxManager::setHitboxes(string newState, bool horizontalFlip, SDL_Rect spriteRect, SDL_Rect spriteRectFlip) {
 
     if(currentState == newState) return;
+    currentState = newState;
+    cout << currentState << endl;
     stateIterHitboxes = stateHitBoxes.find(newState);
     vector<SDL_Rect> newHitboxes = stateIterHitboxes->second;
     currentHitboxes = {};

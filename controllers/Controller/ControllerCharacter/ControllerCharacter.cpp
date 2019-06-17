@@ -487,5 +487,5 @@ void ControllerCharacter::Kicked() {
             state = "airKicked";
         }else state = "standKicked";
     }
-
+    dynamic_cast<Character_server *>(gameObject)->setState(state);
 }
