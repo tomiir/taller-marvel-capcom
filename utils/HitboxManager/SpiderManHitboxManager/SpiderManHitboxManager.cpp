@@ -86,4 +86,5 @@ SpiderManHitboxManager::SpiderManHitboxManager() : HitboxManager(){
 void SpiderManHitboxManager::setInitialPosH(int x, int y, bool flip) {
     if(flip) currentHitboxes[0].x = x + 1228 - 503 - currentHitboxes[0].w; //Hitbox de still ubicado en x del sprite + ancho del sprite - distancia del hitbox - ancho hitbox
     else currentHitboxes[0].x = x + 503;
+    currentHitboxes[0].y = y + 375;
 }

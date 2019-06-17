@@ -32,8 +32,7 @@ vector<int> Character_server::getInfo() {
     return info;
 }
 
-void Character_server::setState(string state) {
-
+void Character_server::spriteCoordinates(){
 
     if (name == "CaptainAmerica"){
         xPos = objRect.x - 234;
@@ -55,7 +54,11 @@ void Character_server::setState(string state) {
         xPosFlip = objRect.x - 578;
         yPos = objRect.y - 529;
     }
+}
 
+void Character_server::setState(string state) {
+
+    spriteCoordinates();
     spriteRect = SDL_Rect{xPos, yPos, wSprite, hSprite};
     spriteRectFlip = SDL_Rect{xPosFlip, yPos, wSprite, hSprite};
 
@@ -86,11 +89,13 @@ void Character_server::setInitialPos(bool left){
 
     if (left){
         objRect.x =  posInitialLeft;
-        hitbox->setInitialPosH(objRect.x - xPos, objRect.y - yPos, !left);
+        spriteCoordinates();
+        hitbox->setInitialPosH(xPos, yPos, left);
     }
     else{
         objRect.x = posInitialRight;
-        hitbox->setInitialPosH(objRect.x - xPosFlip, objRect.y - yPos, !left);
+        spriteCoordinates();
+        hitbox->setInitialPosH(xPosFlip, yPos, !left);
     }
 }
 

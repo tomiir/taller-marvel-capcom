@@ -46,6 +46,7 @@ void Game_server::changeViewController() {
         vector<ControllerCharacter*> aux = {(characters.find(team1[0])->second), (characters.find(team1[1])->second)};
         dynamic_cast<ViewController_fight*>(viewsController["fight"])->setTeam(aux,1);
 
+
         aux =  {(characters.find(team2[0])->second), (characters.find(team2[1])->second)};
         dynamic_cast<ViewController_fight*>(viewsController["fight"])->setTeam(aux,2);
 

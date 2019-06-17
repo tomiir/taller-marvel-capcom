@@ -32,6 +32,8 @@ public:
     string getState();
     SDL_RendererFlip getFlip();
     vector<SDL_Rect> getHitboxInfo();
+    void spriteCoordinates();
+
 
     bool getHorizontalFlip();
 

@@ -53,11 +53,6 @@ void Character::render() {
 
     SDL_Rect hitbox = getHitbox();
 
-    hitbox.y += auxY;
-    if (flip == SDL_FLIP_NONE){
-        hitbox.x += auxLeft;
-    }else hitbox.x += auxRight;
-
     SDL_SetRenderDrawColor(renderer, 0,255,0,255);
     SDL_RenderDrawRect(renderer, &hitbox);
 }
@@ -104,16 +99,16 @@ SDL_Rect Character::getHitbox() {
     if(name == "CaptainAmerica"){
 
        if (state == "still"){
-           hitbox = SDL_Rect{objRect.x + 20, objRect.y, 160, 277};
+           hitbox = SDL_Rect{objRect.x + 273, objRect.y + 200, 150, 260};
        }
        else if (state == "walk"){
-           hitbox = SDL_Rect{objRect.x + 20 + 15 , objRect.y , 130, 277};
+           hitbox = SDL_Rect{objRect.x + 273 , objRect.y + 200, 123, 278};
        }
        else if (state == "jump"){
-           hitbox = SDL_Rect{objRect.x + 20, objRect.y, 157, 215};
+           hitbox = SDL_Rect{objRect.x + 260, objRect.y + 200, 130, 203};
        }
        else if (state == "crowchedDown"){
-           hitbox = SDL_Rect{objRect.x + 20, objRect.y + 82, 162, 195};
+           hitbox = SDL_Rect{objRect.x + 260 , objRect.y + 280, 183, 185};
        }
     }
 

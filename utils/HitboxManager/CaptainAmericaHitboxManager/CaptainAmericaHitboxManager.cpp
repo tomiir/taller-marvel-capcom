@@ -88,8 +88,11 @@ CaptainAmericaHitboxManager::CaptainAmericaHitboxManager() : HitboxManager(){
 
 
 void CaptainAmericaHitboxManager::setInitialPosH(int x, int y, bool flip) {
-    if(flip) currentHitboxes[0].x = x + 805 - 273 - currentHitboxes[0].w; //Hitbox de still ubicado en x del sprite + ancho del sprite - distancia del hitbox - ancho hitbox
+    if(flip){
+        currentHitboxes[0].x = x + 805 - 273 - currentHitboxes[0].w; //Hitbox de still ubicado en x del sprite + ancho del sprite - distancia del hitbox - ancho hitbox
+    }
     else currentHitboxes[0].x = x + 273;
+    currentHitboxes[0].y = y + 200;
 }
 
 

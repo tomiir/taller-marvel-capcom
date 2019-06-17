@@ -220,6 +220,7 @@ void* Client::recvFromServer(void* arg) {
             pthread_exit(0);
         }
         string message = (string)(messageFromServer);
+        if(message == "") continue;
         queueRecv.push(message);
     }
     return nullptr;
