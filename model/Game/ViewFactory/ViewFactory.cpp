@@ -105,7 +105,6 @@ View_charSelect * ViewFactory:: getView_charSelect(){
     viewCharSelect->addGameObject_character_selected(gameObjects[16],2);
 
 
-
     // LOS CUADRADITOS DE CADA TEAM
     viewCharSelect->addGameObject_square(gameObjects[17],1);
     viewCharSelect->addGameObject_square(gameObjects[18],2);
@@ -116,8 +115,29 @@ View_charSelect * ViewFactory:: getView_charSelect(){
     viewCharSelect->addGameObject_square_gray(gameObjects[21]);
     viewCharSelect->addGameObject_square_gray(gameObjects[22]);
 
+    delete(factory);
     return viewCharSelect;
 
+}
+
+View_endGame *ViewFactory::getView_endGame() {
+
+    GameObjectFactory* factory = new GameObjectFactory(renderer, screenWidth, screenHeight);
+    vector <GameObject*> gameObjects = factory->getGameObject_endGame();
+    GameObject* disconnected = factory->getGameObjectDisconnected();
+
+    View_endGame* viewEndGame = new View_endGame(renderer);
+    viewEndGame->addGameObject_disconnected(disconnected);
+
+    viewEndGame->addBackground(gameObjects[0]);
+
+    vector<GameObject*> winners = {gameObjects[1], gameObjects[2], gameObjects[3],
+                                   gameObjects[4], gameObjects[5], gameObjects[6]};
+
+    viewEndGame->addWinners(winners);
+
+    delete(factory);
+    return nullptr;
 }
 
 

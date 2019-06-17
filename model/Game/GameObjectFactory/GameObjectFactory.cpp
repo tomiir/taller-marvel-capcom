@@ -405,3 +405,63 @@ TimeManager *GameObjectFactory::getTimeManager() {
 
     return timeManager;
 }
+
+vector<GameObject *> GameObjectFactory::getGameObject_endGame() {
+
+    vector<int> positionToTake;
+
+    /*
+     * a: captain america
+     * c: chunli
+     * v: venom
+     * s: spiderMan
+     * Posibilidades:
+     * ac
+     * av
+     * as
+     * cv
+     * cs
+     * vs
+    */
+
+    GameObject* background    = new GameObject("../Images/winner/WinnerBackground.png","background",99,renderer, 0, 0, 1200 ,700);
+
+
+    GameObject* ac    = new GameObject("../Images/winner/WinnerTeam.png","ac",99,renderer, this->getXCenter(306), this->getYCenter(224), 306,224);
+    positionToTake = {81,226, 306,224};
+    ac->setOriginRect(positionToTake);
+
+    GameObject* av    = new GameObject("./Images/winner/WinnerTeam.png","av",99,renderer, this->getXCenter(312), this->getYCenter(224),312,224);
+    positionToTake = {81,0, 312,224};
+    av->setOriginRect(positionToTake);
+
+    GameObject* as  = new GameObject("../Images/winner/WinnerTeam.png","as",99,renderer, this->getXCenter(306), this->getYCenter(224), 306,224);
+    positionToTake = {561,226,306,224};
+    as->setOriginRect(positionToTake);
+
+    GameObject* cv  = new GameObject("./Images/winner/WinnerTeam.png", "cv",99,renderer, this->getXCenter(312), this->getYCenter(224), 312,224);
+    positionToTake = {81,452,312,224};
+    cv->setOriginRect(positionToTake);
+
+    GameObject* cs  = new GameObject("./Images/winner/WinnerTeam.png","cs",99,renderer, this->getXCenter(306), this->getYCenter(224), 306,224);
+    positionToTake = {561,452,306,224};
+    cs->setOriginRect(positionToTake);
+
+    GameObject* vs  = new GameObject("./Images/winner/WinnerTeam.png","vs",99,renderer, this->getXCenter(312), this->getYCenter(224), 312,224);
+    positionToTake = {561,0,312,224};
+    vs->setOriginRect(positionToTake);
+
+
+    vector<GameObject *> gameObjects;
+    return gameObjects ;
+}
+
+
+
+int GameObjectFactory::getYCenter(int height) {
+    return (screenHeight - height*2)/2;
+}
+
+int GameObjectFactory::getXCenter(int width) {
+    return(screenWidth - width*2)/2;
+}

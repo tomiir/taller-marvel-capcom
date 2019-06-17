@@ -10,7 +10,7 @@
 class View_endGame: public View {
 public:
 
-    View_endGame() = default;
+    View_endGame(SDL_Renderer *renderer_);
     ~View_endGame() override = default;
     void addBackground(GameObject* background);
     void addWinners(vector <GameObject*> winners);

@@ -34,10 +34,14 @@ public:
     LifeManager* getLifeManagerTeam2();
     TimeManager* getTimeManager();
     GameObject *getGameObjectDisconnected();
+    vector <GameObject*> getGameObject_endGame();
 
 private:
     bool existFile(const char* path);
     int screenWidth, screenHeight;
+
+    int getXCenter(int width);
+    int getYCenter(int height);
 
 };
 

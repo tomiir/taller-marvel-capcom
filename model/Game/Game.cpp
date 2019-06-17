@@ -43,6 +43,7 @@ void Game::init(const char *title, int posX, int posY) {
         views["fight"] = factory -> getView_fight();
         characters = factory -> getCharacter();
         views["char_select"] = factory -> getView_charSelect();
+        views["endGame"] = factory->getView_endGame();
 
         view = (views.find("char_select"))->second;
 

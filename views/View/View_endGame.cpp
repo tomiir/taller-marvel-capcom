@@ -4,6 +4,8 @@
 
 #include "View_endGame.h"
 
+View_endGame::View_endGame(SDL_Renderer *renderer_) : View(renderer_){}
+
 void View_endGame::updateView() {
 
     this->clearWindow();
