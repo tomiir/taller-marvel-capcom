@@ -16,18 +16,19 @@ public:
     void addWinners(vector <GameObject*> winners);
 
     void updateView() override;
-    void updateWinner(char* winner);
+    void updateWinners(char* winner);
     bool end() override;
     string getNextView() override;
 
 
+    void addGameObject_disconnected(GameObject *disconnected_);
     void renderDisconnected() override;
 
 private:
     GameObject* background;
     map <string,GameObject*> winners;
     map <string, GameObject*>::iterator itr_winners= winners.begin();
-    string winner;
+    string winner_string;
 
 
 };

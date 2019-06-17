@@ -20,7 +20,7 @@ public:
     void updateCharactersImages(char selected_1[3], char selected_2[3]);
     void render();
     bool haveToChangeView();
-    void changeView();
+    void changeView(int viewNumber);
     void UpdateBackgrounds(char posFloor_x[5], char PosFloor_y[4], char posMoon_x[5], char posMoon_y[4], char posGalaxy_x[5],
                       char posGalaxy_y[4]);
 
@@ -30,6 +30,7 @@ public:
     void updateTime(char* ten, char* unity, char* round);
     void updateLife(char* lifeTeam1, char* lifeTeam2);
     void renderDisconnected();
+    void updateWinners(char* winners);
 
 private:
     std::map<string, View* > views;

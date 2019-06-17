@@ -234,10 +234,12 @@ void* Client::render(void *arg) {
    //Aca empieza el loop que va a ir renderizando. Las view ay deberian estar cargadas y se renderiza lo que se tenga que renderizar
     while(connected){
 
+        int viewNumber = 0;
+
         if (game->haveToChangeView()){
             changeCurrentMapper();
-            game->changeView();
-            fight_view = true;
+            fight_view ++;
+            game->changeView(viewNumber);
         }
 
 
@@ -247,7 +249,7 @@ void* Client::render(void *arg) {
         const char* messageReceived = message.c_str();
         char view[] = {messageReceived[0], messageReceived[1], '\0'};
 
-        if(strcmp(view, "00") == 0 and !fight_view){ //view selected
+        if(strcmp(view, "00") == 0 and viewNumber == 0){ //view selected
 
             //Te devuelve 1 en el cuadrado gris que si se tenga que renderizar
             char greySquaresSelected[] = {messageReceived[2], messageReceived[3], messageReceived[4], messageReceived[5], '\0'};
@@ -271,7 +273,7 @@ void* Client::render(void *arg) {
             queueRecv.pop();
 
         }
-        if(strcmp(view, "01") == 0 or fight_view) { //view fight
+        if(strcmp(view, "01") == 0 or viewNumber == 1) { //view fight
 
 
             //Recibo las nuevas posiciones de los backgrounds y los actaulizo
@@ -317,6 +319,13 @@ void* Client::render(void *arg) {
 
             game->updateLife(lifeTeam1, lifeTeam2);
 
+            game->render();
+            queueRecv.pop();
+        }
+
+        if(strcmp(view, "02") == 0 or viewNumber == 2){
+            char winners[] = {messageReceived[3],messageReceived[4],'\0'};
+            game->updateWinners(winners);
             game->render();
             queueRecv.pop();
         }
