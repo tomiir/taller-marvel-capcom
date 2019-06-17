@@ -40,7 +40,9 @@
 			"width":200,
 			"zindex":99,
 			"spriteManagerName": "CaptainAmerica",
-			"size": 2.5
+			"size": 2.5,
+			"wSprite": 322,
+			"hSprite": 245
 		},
 		{"name":"ChunLi",
 			"filepath":"../Images/Characters/ChunLi.png",
@@ -48,7 +50,9 @@
 			"width":200,
 			"zindex":99,
 			"spriteManagerName": "ChunLi",
-			"size": 2.5
+			"size": 2.5,
+			"wSprite": 407,
+			"hSprite": 210
 		},
 		{"name":"SpiderMan",
 			"filepath":"../Images/Characters/SpiderMan.png",
@@ -56,7 +60,9 @@
 			"width":274,
 			"zindex":98,
 			"spriteManagerName": "SpiderMan",
-			"size": 2.5
+			"size": 2.5,
+			"wSprite": 491,
+			"hSprite": 268
 		},
 		{"name":"Venom",
 			"filepath":"../Images/Characters/Venom.png",
@@ -64,7 +70,9 @@
 			"width":293,
 			"zindex":98,
 			"spriteManagerName": "Venom",
-			"size": 2.5
+			"size": 2.5,
+			"wSprite": 560,
+			"hSprite": 238
 		}
 	],
 	"window":

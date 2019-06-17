@@ -14,7 +14,7 @@ public:
     SpiderManHitboxManager();
     ~SpiderManHitboxManager() = default;
 
-    void setInitialPos(int x, int y, bool flip) override ;
+    void setInitialPosH(int x, int y, bool flip) override ;
 };
 
 

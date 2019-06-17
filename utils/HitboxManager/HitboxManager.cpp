@@ -33,7 +33,7 @@ void HitboxManager::setHitboxes(string newState, bool horizontalFlip, SDL_Rect s
 }
 
 
-void HitboxManager::setInitialPos(int x, int y, bool flip) {
+void HitboxManager::setInitialPosH(int x, int y, bool flip) {
 
 }
 

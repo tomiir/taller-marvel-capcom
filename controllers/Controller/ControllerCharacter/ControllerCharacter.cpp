@@ -454,7 +454,7 @@ bool ControllerCharacter::isMovingLeft() {
 
 void ControllerCharacter::setInitialPos(bool left) {
 
-    dynamic_cast<Character_server*>(gameObject)->setInitialPos(left);
+    character->setInitialPos(left);
 
 }
 
@@ -475,7 +475,6 @@ GameObject_server *ControllerCharacter::getGameObject() {
 }
 
 void ControllerCharacter::Kicked() {
-
 
     if(state != "downGuard" and state != "standGuard" and state != "airGuard"){
 

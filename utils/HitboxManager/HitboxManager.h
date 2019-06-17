@@ -22,7 +22,7 @@ public:
     void move(DirectionVector* direction);
     void setHitboxes(string state, bool horizontalFlip, SDL_Rect spriteRect, SDL_Rect spriteRectFlip);
 
-    virtual void setInitialPos(int x, int y, bool flip);
+    virtual void setInitialPosH(int x, int y, bool flip);
     vector<SDL_Rect> getCurrentHitboxes();
     void stayInFloor(int initialY);
     void updateHitboxes(bool flipH);

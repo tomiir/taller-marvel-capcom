@@ -43,8 +43,6 @@ protected:
     DirectionVector* STOP_GUARD = new DirectionVector(-3, 0);
 
 
-
-
     DirectionVector* DIAGONAL_UP_RIGHT = new DirectionVector(1, -1);
     DirectionVector* DIAGONAL_UP_LEFT = new DirectionVector(-1, -1);
 

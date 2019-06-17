@@ -86,11 +86,11 @@ void Character_server::setInitialPos(bool left){
 
     if (left){
         objRect.x =  posInitialLeft;
-        hitbox->setInitialPos(objRect.x - xPos, objRect.y - yPos, !left);
+        hitbox->setInitialPosH(objRect.x - xPos, objRect.y - yPos, !left);
     }
     else{
         objRect.x = posInitialRight;
-        hitbox->setInitialPos(objRect.x - xPosFlip, objRect.y - yPos, !left);
+        hitbox->setInitialPosH(objRect.x - xPosFlip, objRect.y - yPos, !left);
     }
 }
 
