@@ -40,19 +40,19 @@ void Character_server::spriteCoordinates(){
         yPos = objRect.y - 196;
     }
     if (name == "SpiderMan"){
-        xPos = objRect.x - 307;
-        xPosFlip = objRect.x - 428;
-        yPos = objRect.y - 528;
+        xPos = objRect.x - 428;
+        xPosFlip = objRect.x - 528;
+        yPos = objRect.y - 307;
     }
     if (name == "ChunLi"){
-        xPos = objRect.x - 240;
-        xPosFlip = objRect.x - 421;
-        yPos = objRect.y - 397;
+        xPos = objRect.x - 421;
+        xPosFlip = objRect.x - 397;
+        yPos = objRect.y - 240;
     }
     if (name == "Venom"){
-        xPos = objRect.x - 227;
-        xPosFlip = objRect.x - 578;
-        yPos = objRect.y - 529;
+        xPos = objRect.x - 578;
+        xPosFlip = objRect.x - 529;
+        yPos = objRect.y - 227;
     }
 }
 
