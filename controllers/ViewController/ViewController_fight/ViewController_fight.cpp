@@ -118,7 +118,7 @@ void* ViewController_fight::restSeconds(void *pVoid){
 
 void ViewController_fight::startCounting(){
     countTime = true;
-    second = 99;
+    second = 10; // ESTO DEBE ESTAR SETTEADO EN 99
     pthread_create(&countSeconds, nullptr, restSeconds, nullptr);
 
 
@@ -131,7 +131,10 @@ string ViewController_fight::giveNewParameters() {
     }
 
     if (second == 0 && round == 2){
-        endOfRounds = true; // que siga indefinidamente hasta que definamos el 0
+        //endOfRounds = true;// que siga indefinidamente hasta que definamos el 0
+        endOfGame = true;
+        *winner_1 = 'v';
+        *winner_2 = 's';
     }
 
     if (second == 0 && endOfRounds == false) {
@@ -174,7 +177,8 @@ string ViewController_fight::giveNewParameters() {
     sprintf(round_string, "%d", round);
     updates[47] = round_string[0]; //round
 
-    int lifeTeam1 = second; // uso esto para probar si las barras cambian bien de vida
+    //int lifeTeam1 = second; // uso esto para probar si las barras cambian bien de vida
+    int lifeTeam1 = 100;
     int lifeTeam2 = 100;
 
     char lifeTeam1_string[3];
