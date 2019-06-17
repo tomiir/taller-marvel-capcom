@@ -22,7 +22,6 @@ void HitboxManager::setHitboxes(string newState, bool horizontalFlip, SDL_Rect s
 
     if(currentState == newState) return;
     currentState = newState;
-    cout << currentState << endl;
     stateIterHitboxes = stateHitBoxes.find(newState);
     vector<SDL_Rect> newHitboxes = stateIterHitboxes->second;
     currentHitboxes = {};
@@ -43,9 +42,11 @@ vector<SDL_Rect> HitboxManager::getCurrentHitboxes() {
     return currentHitboxes;
 }
 
-void HitboxManager::stayInFloor(int initialY) {
-    for (int i = 0; i < currentHitboxes.size(); i++) {
-        currentHitboxes[i].y = initialY;
+void HitboxManager::stayInFloor(int yPos) {
+    stateIterHitboxes = stateHitBoxes.find(currentState);
+    vector<SDL_Rect> hitboxes = stateIterHitboxes->second;
+    for (int i = 0; i < hitboxes.size(); i++) {
+        currentHitboxes[i].y = yPos + hitboxes[i].y;
     }
 }
 

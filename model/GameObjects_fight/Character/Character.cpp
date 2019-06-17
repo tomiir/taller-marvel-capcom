@@ -51,10 +51,10 @@ void Character::render() {
     objRect.h = (int) (sprite.h * size);
     SDL_RenderCopyEx(renderer, objTexture, &sprite, &objRect, 0.0, nullptr, flip);
 
-    SDL_Rect hitbox = getHitbox();
-
-    SDL_SetRenderDrawColor(renderer, 0,255,0,255);
-    SDL_RenderDrawRect(renderer, &hitbox);
+//    SDL_Rect hitbox = getHitbox();
+//
+//    SDL_SetRenderDrawColor(renderer, 0,255,0,255);
+//    SDL_RenderDrawRect(renderer, &hitbox);
 }
 
 

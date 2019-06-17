@@ -69,8 +69,8 @@ void Character_server::setState(string state) {
 void Character_server::stayInFloor() {
 
     objRect.y = initialY;
-
-    hitbox->stayInFloor(initialY);
+    spriteCoordinates();
+    hitbox->stayInFloor(yPos);
 }
 
 
