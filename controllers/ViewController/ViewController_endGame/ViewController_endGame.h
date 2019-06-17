@@ -11,7 +11,7 @@
 class ViewController_endGame:  public ViewController {
 public:
 
-    ViewController_endGame();
+    ViewController_endGame() = default;
     ~ViewController_endGame() override = default;
     void handleEvent(string event) override;
     bool end() override;
