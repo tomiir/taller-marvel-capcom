@@ -452,7 +452,7 @@ vector<GameObject *> GameObjectFactory::getGameObject_endGame() {
     vs->setOriginRect(positionToTake);
 
 
-    vector<GameObject *> gameObjects;
+    vector<GameObject *> gameObjects = {background, ac, av, as, cv, cs, vs};
     return gameObjects ;
 }
 
