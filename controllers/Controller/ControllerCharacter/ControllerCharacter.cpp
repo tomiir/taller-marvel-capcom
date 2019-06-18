@@ -219,7 +219,6 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         punching_timer = 0;
         collision = collisionManager->Collisioning(gameObject, enemy);
         if(collision){
-            cout << gameObject->getName() << " golpeo a " << enemy->getName() << endl;
             enemyController->Kicked(WEAK);
         }
     }
@@ -239,7 +238,6 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         strongPunching_timer = 0;
         collision = collisionManager->Collisioning(gameObject, enemy);
         if(collision){
-            cout << gameObject->getName() << " golpeo a " << enemy->getName() << endl;
             enemyController->Kicked(STRONG);
         }
     }
@@ -259,7 +257,6 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         punching_timer = 0;
         collision = collisionManager->Collisioning(gameObject, enemy);
         if(collision){
-            cout << gameObject->getName() << " golpeo a " << enemy->getName() << endl;
             enemyController->Kicked(WEAK);
         }
     }
@@ -279,7 +276,6 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         strongPunching_timer = 0;
         collision = collisionManager->Collisioning(gameObject, enemy);
         if(collision){
-            cout << gameObject->getName() << " golpeo a " << enemy->getName() << endl;
             enemyController->Kicked(STRONG);
         }
     }

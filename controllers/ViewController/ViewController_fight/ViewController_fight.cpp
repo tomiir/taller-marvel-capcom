@@ -134,7 +134,7 @@ string ViewController_fight::giveNewParameters() {
     }
 
     if (!countTime && shouldFight){
-        this->startCounting(10);// esto debería ser 99
+        this->startCounting(50);// esto debería ser 99
     }
 
     if (second == 0 && round == 2){ //se terminaron todos los rounds
