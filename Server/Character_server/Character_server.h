@@ -37,6 +37,8 @@ public:
 
     bool getHorizontalFlip();
 
+    void resetPosition(bool initialFlip);
+
 private:
 
     int initialY;
@@ -49,7 +51,7 @@ private:
     int wSprite, hSprite;
     int xPos = 0, yPos = 0, xPosFlip = 0;
     SDL_Rect spriteRect, spriteRectFlip;
-
+    int initialX;
     HitboxManager* hitbox;
 
 };

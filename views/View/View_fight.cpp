@@ -216,6 +216,8 @@ void View_fight::updateLife(char* lifeTeam1, char* lifeTeam2) {
 void View_fight::updateShouldFight(char *shouldFight) {
     int shouldFight_int = atoi(shouldFight);
     timeManager->updateShouldFight(shouldFight_int);
+    lifeManagerTeam1->updateShouldFight(shouldFight_int);
+    lifeManagerTeam2->updateShouldFight(shouldFight_int);
 }
 
 

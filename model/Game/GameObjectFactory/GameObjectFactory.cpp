@@ -435,28 +435,28 @@ vector<GameObject *> GameObjectFactory::getGameObject_endGame() {
     GameObject* background    = new GameObject("../Images/winner/WinnerBackground.png","background",99,renderer, 0, 0, 1200 ,700);
 
 
-    GameObject* ac    = new GameObject("../Images/winner/WinnerTeam.png","ac",99,renderer, this->getXCenter(306), this->getYCenter(224), 306,224);
-    positionToTake = {81,226, 306,224};
+    GameObject* ac    = new GameObject("../Images/winner/WinnerTeam.png","ac",99,renderer, 0, 0, 1200,700);
+    positionToTake = {0,226, 480, 226};
     ac->setOriginRect(positionToTake);
 
-    GameObject* av    = new GameObject("../Images/winner/WinnerTeam.png","av",99,renderer, this->getXCenter(312), this->getYCenter(224),312,224);
-    positionToTake = {81,0, 312,224};
+    GameObject* av    = new GameObject("../Images/winner/WinnerTeam.png","av",99,renderer, 0, 0, 1200,700);
+    positionToTake = {0,0, 480, 226};
     av->setOriginRect(positionToTake);
 
-    GameObject* as  = new GameObject("../Images/winner/WinnerTeam.png","as",99,renderer, this->getXCenter(306), this->getYCenter(224), 306,224);
-    positionToTake = {561,226,306,224};
+    GameObject* as  = new GameObject("../Images/winner/WinnerTeam.png","as",99,renderer, 0, 0, 1200,700);
+    positionToTake = {480, 226, 480, 226};
     as->setOriginRect(positionToTake);
 
-    GameObject* cv  = new GameObject("../Images/winner/WinnerTeam.png", "cv",99,renderer, this->getXCenter(312), this->getYCenter(224), 312,224);
-    positionToTake = {81,452,312,224};
+    GameObject* cv  = new GameObject("../Images/winner/WinnerTeam.png", "cv",99,renderer, 0, 0, 1200,700);
+    positionToTake = {0,452, 480, 226};
     cv->setOriginRect(positionToTake);
 
-    GameObject* cs  = new GameObject("../Images/winner/WinnerTeam.png","cs",99,renderer, this->getXCenter(306), this->getYCenter(224), 306,224);
-    positionToTake = {561,452,306,224};
+    GameObject* cs  = new GameObject("../Images/winner/WinnerTeam.png","cs",99,renderer, 0, 0, 1200,700);
+    positionToTake = {480, 452, 480, 226};
     cs->setOriginRect(positionToTake);
 
-    GameObject* vs  = new GameObject("../Images/winner/WinnerTeam.png","sv",99,renderer, this->getXCenter(312), this->getYCenter(224), 312,224);
-    positionToTake = {561,0,312,224};
+    GameObject* vs  = new GameObject("../Images/winner/WinnerTeam.png","sv",99,renderer, 0, 0, 1200,700);
+    positionToTake = {480,0, 480, 226};
     vs->setOriginRect(positionToTake);
 
 

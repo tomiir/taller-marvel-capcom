@@ -44,6 +44,10 @@ public:
 
     int getLife();
 
+    void resetLife();
+
+    void resetPosition(bool initialFlip);
+
 private:
 
     int screenWidth, screenHeight, speedCharacter;

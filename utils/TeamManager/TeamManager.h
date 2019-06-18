@@ -38,13 +38,22 @@ public:
 
     int getCurrentCharacterLife();
 
+    bool getTeamLife();
+
+    void roundWin();
+
+    void resetRound();
+
 private:
 
 
     ControllerCharacter* currentCharacter;
     ControllerCharacter* supportCharacter;
+    ControllerCharacter* firstCharacter;
     TeamManager* enemyTeam;
     SDL_RendererFlip flip = SDL_FLIP_HORIZONTAL;
+    int rounds_wins = 0;
+    bool initialFlip;
 
     void changeCharacter();
 

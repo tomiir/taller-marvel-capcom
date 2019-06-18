@@ -132,3 +132,14 @@ void LifeManager::setAsRight() {
     //double deltaSecond = w_second * (1 - lifeSecond);
     //x_second = x_second + deltaSecond;
 }
+
+void LifeManager::updateShouldFight(int shouldFight) {
+
+    this->shouldFight = shouldFight;
+    if (!shouldFight){
+        life = 1;
+        lifeSecond = 1;
+        currentColor = green;
+        secondColor = green;
+    }
+}

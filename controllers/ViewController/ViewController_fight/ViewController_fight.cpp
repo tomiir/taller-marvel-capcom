@@ -129,15 +129,44 @@ void ViewController_fight::startCounting(int timeToCount){
 
 string ViewController_fight::giveNewParameters() {
 
+    if(team1->getTeamLife() == 0){
+
+        pthread_cancel(countSeconds);
+        pthread_detach(countSeconds);
+        round++;
+        countTime = false;
+        shouldFight = false;
+        second = 0;
+
+        team2->roundWin();
+        team1->resetRound();
+        team2->resetRound();
+    }
+
+    if(team2->getTeamLife() == 0){
+
+        pthread_cancel(countSeconds);
+        pthread_detach(countSeconds);
+        round++;
+        countTime = false;
+        shouldFight = false;
+        second = 0;
+
+        team1->roundWin();
+        team1->resetRound();
+        team2->resetRound();
+    }
+
+
     if (!countTime && !shouldFight) {
         this->startCounting(3);
     }
 
     if (!countTime && shouldFight){
-        this->startCounting(50);// esto debería ser 99
+        this->startCounting(25);// esto debería ser 99
     }
 
-    if (second == 0 && round == 2){ //se terminaron todos los rounds
+    if (second == 0 && round == 3){ //se terminaron todos los rounds
         endOfRounds = true;
         endOfGame = true;
         winner_1 = 'v';
@@ -150,6 +179,15 @@ string ViewController_fight::giveNewParameters() {
         round++;
         countTime = false;
         shouldFight = false;
+
+        if (team1->getTeamLife() > team2->getTeamLife()) team1->roundWin();
+        else if (team1->getTeamLife() < team2->getTeamLife()) team2->roundWin();
+        else {
+            team1->roundWin();
+            team2->roundWin();
+        }
+        team1->resetRound();
+        team2->resetRound();
     }
 
     else if (!shouldFight && second == 0){ //una vez que termina el fight me habilita a moverme

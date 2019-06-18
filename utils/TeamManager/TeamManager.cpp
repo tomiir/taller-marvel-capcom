@@ -14,6 +14,8 @@ TeamManager::TeamManager(SDL_RendererFlip initialFlip){
 void TeamManager:: setCharacters(std::vector<ControllerCharacter*> characters){
     currentCharacter = characters[0];
     supportCharacter = characters[1];
+
+    firstCharacter = characters[0];
 }
 
 void TeamManager::changeCharacter(){
@@ -68,6 +70,7 @@ void TeamManager::setInitialPos(bool left) {
 
     currentCharacter->setInitialPos(left);
 
+    initialFlip = left;
 }
 
 vector<int> TeamManager::getPosCurrentCharacter() {
@@ -128,4 +131,23 @@ int TeamManager::currentCharacterPlaying() {
 int TeamManager::getCurrentCharacterLife() {
 
     return currentCharacter->getLife();
+}
+
+bool TeamManager::getTeamLife() {
+    return currentCharacter->getLife() + supportCharacter->getLife();
+}
+
+void TeamManager::roundWin() {
+    rounds_wins++;
+}
+
+void TeamManager::resetRound() {
+
+    currentCharacter->resetLife();
+    supportCharacter->resetLife();
+
+    currentCharacter = firstCharacter;
+    currentCharacter->resetPosition(initialFlip);
+
+    if ((cantChangeChar % 2) != 0) cantChangeChar++;
 }

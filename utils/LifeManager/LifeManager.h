@@ -16,6 +16,7 @@ class LifeManager: public Renderable {
 private:
 
     bool isRight;
+    bool shouldFight = false;
     double life;
     double lifeSecond;
 
@@ -63,6 +64,7 @@ public:
     void setSecondCharacter(string name);
     void setAsRight();
 
+    void updateShouldFight(int shouldFight);
 };
 
 

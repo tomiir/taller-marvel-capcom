@@ -524,3 +524,17 @@ void ControllerCharacter::Kicked(int force) {
 int ControllerCharacter::getLife() {
     return life;
 }
+
+void ControllerCharacter::resetLife() {
+
+    life = 100;
+    defeated = false;
+    jump = false;
+}
+
+void ControllerCharacter::resetPosition(bool initialFlip) {
+
+    dynamic_cast<Character_server *>(gameObject)->resetPosition(initialFlip);
+    state = "still";
+    dynamic_cast<Character_server *>(gameObject)->setState(state);
+}

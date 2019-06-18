@@ -91,11 +91,15 @@ void Character_server::setInitialPos(bool left){
         objRect.x =  posInitialLeft;
         spriteCoordinates();
         hitbox->setInitialPosH(xPos, yPos, left);
+
+        initialX = posInitialLeft;
     }
     else{
         objRect.x = posInitialRight;
         spriteCoordinates();
         hitbox->setInitialPosH(xPosFlip, yPos, !left);
+
+        initialX = posInitialRight;
     }
 }
 
@@ -122,4 +126,13 @@ SDL_RendererFlip Character_server::getFlip() {
 
 vector<SDL_Rect> Character_server::getHitboxInfo() {
     return hitbox->getCurrentHitboxes();
+}
+
+void Character_server::resetPosition(bool initialFlip) {
+
+    objRect.x = initialX;
+    objRect.y = initialY;
+
+    if(initialFlip) flip = SDL_FLIP_NONE;
+    else flip = SDL_FLIP_HORIZONTAL;
 }
