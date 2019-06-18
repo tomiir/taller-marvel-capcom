@@ -28,7 +28,7 @@ void TeamManager::changeCharacter(){
 
 void TeamManager:: handleEvent(string event, std::vector<ControllerBackground*> backgrounds){
 
-    currentCharacter->handleEvent(event, enemyTeam->getCurrentCharacter()->getGameObject(), enemyTeam->getCurrentCharacter());
+    currentCharacter->handleEvent(event, enemyTeam->getCurrentCharacter()->getGameObject(), enemyTeam->getCurrentCharacter(), supportCharacter->getLife());
 
     if (currentCharacter->getInfo()[1] < -300){
         changeCharacter();
@@ -123,4 +123,9 @@ int TeamManager::currentCharacterPlaying() {
 
     if ((cantChangeChar % 2) == 0) return 0;
     else return 1;
+}
+
+int TeamManager::getCurrentCharacterLife() {
+
+    return currentCharacter->getLife();
 }

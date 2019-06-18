@@ -108,6 +108,14 @@ std::list<JsonCharacter> JsonParser::getCharacter() {
             error = true;
             errors.push_back("filepath");
         }
+        if( !((*it)["lifebarpath"]).isString() || ((*it)["lifebarpath"]).asString() == "null"){
+            error = true;
+            errors.push_back("lifebarpath");
+        }
+        if( !((*it)["zindexlife"]).isInt() || ((*it)["zindexlife"]).asInt() <= 0){
+            error = true;
+            errors.push_back("zindexlife");
+        }
         if( !((*it)["height"]).isInt()  || ((*it)["height"]).asInt() <= 0){
             error = true;
             errors.push_back("height");
@@ -143,6 +151,8 @@ std::list<JsonCharacter> JsonParser::getCharacter() {
                 JsonCharacter character(
                         ((*it)["name"]).asString(),
                         ((*it)["filepath"]).asString(),
+                        ((*it))["lifebarpath"].asString(),
+                        ((*it))["zindexlife"].asInt(),
                         ((*it)["height"]).asInt(),
                         ((*it)["width"]).asInt(),
                         ((*it)["zindex"]).asInt(),

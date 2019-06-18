@@ -36,6 +36,8 @@ public:
 
     int currentCharacterPlaying();
 
+    int getCurrentCharacterLife();
+
 private:
 
 

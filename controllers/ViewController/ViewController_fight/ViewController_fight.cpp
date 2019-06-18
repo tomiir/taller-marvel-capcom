@@ -195,8 +195,8 @@ string ViewController_fight::giveNewParameters() {
     updates[47] = round_string[0]; //round
 
     //int lifeTeam1 = second; // uso esto para probar si las barras cambian bien de vida
-    int lifeTeam1 = 100;
-    int lifeTeam2 = 100;
+    int lifeTeam1 = team1->getCurrentCharacterLife();
+    int lifeTeam2 = team2->getCurrentCharacterLife();
 
     char lifeTeam1_string[3];
     char lifeTeam2_string[3];
@@ -210,7 +210,7 @@ string ViewController_fight::giveNewParameters() {
         updates[50] = lifeTeam1_string[2];
     }
 
-    if(lifeTeam1 < 100 && lifeTeam1 > 10) {
+    if(lifeTeam1 < 100 && lifeTeam1 >= 10) {
         updates[48] = '0';
         updates[49] = lifeTeam1_string[0];
         updates[50] = lifeTeam1_string[1];
@@ -229,7 +229,7 @@ string ViewController_fight::giveNewParameters() {
         updates[53] = lifeTeam2_string[2];
     }
 
-    if(lifeTeam2 < 100 && lifeTeam2 > 10) {
+    if(lifeTeam2 < 100 && lifeTeam2 >= 10) {
         updates[51] = '0';
         updates[52] = lifeTeam2_string[0];
         updates[53] = lifeTeam2_string[1];

@@ -21,7 +21,7 @@ class ControllerCharacter : public Controller{
 public:
     ControllerCharacter(GameObject_server *gameObject, int screenWidth_, int screenHeight_, int speedCharacter_, int speedCharacter);
     ~ControllerCharacter();
-    void handleEvent(string event, GameObject_server* enemy, ControllerCharacter * enemyController);
+    void handleEvent(string event, GameObject_server* enemy, ControllerCharacter * enemyController, int mate_life);
     bool isJumping();
     bool isJumpingRight();
     bool isJumpingLeft();
@@ -39,15 +39,17 @@ public:
     string getState();
     SDL_RendererFlip getFlip();
     GameObject_server *getGameObject();
-    void Kicked();
+    void Kicked(int force);
 
+
+    int getLife();
 
 private:
 
     int screenWidth, screenHeight, speedCharacter;
     int jumpDistance = 10;
     bool jump, inAir, jumpRight, jumpLeft, leaving, entering,
-    crowchedDown, movingRight, movingLeft, moving, guarding, punching, strongPunching, alreadyPunchInAir, kicked;
+    crowchedDown, movingRight, movingLeft, moving, guarding, punching, strongPunching, alreadyPunchInAir, kicked, defeated;
     string state = "still";
     CLogger* logger = CLogger::GetLogger();
     Character_server* character = dynamic_cast<Character_server*>(gameObject);
@@ -55,7 +57,12 @@ private:
     int punching_timer = 0;
     int strongPunching_timer = 0;
     int kicked_timer = 0;
+    int life = 100;
+    int weak_strike_dmg = 6;
+    int strong_strike_dmg = 12;
 
+    int WEAK = 0;
+    int STRONG = 1;
 };
 
 
