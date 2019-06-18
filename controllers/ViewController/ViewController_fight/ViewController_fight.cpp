@@ -137,14 +137,14 @@ string ViewController_fight::giveNewParameters() {
         this->startCounting(10);// esto debería ser 99
     }
 
-    if (second == 0 && round == 2){
+    if (second == 0 && round == 2){ //se terminaron todos los rounds
         endOfRounds = true;
         endOfGame = true;
         winner_1 = 'v';
         winner_2 = 's';
     }
 
-    if (second == 0 && !endOfRounds && shouldFight) {
+    if (second == 0 && !endOfRounds && shouldFight) { //no me deje moverme mientras esta el fight
         pthread_cancel(countSeconds);
         pthread_detach(countSeconds);
         round++;
@@ -152,14 +152,12 @@ string ViewController_fight::giveNewParameters() {
         shouldFight = false;
     }
 
-    if (!shouldFight && second == 0){
+    else if (!shouldFight && second == 0){ //una vez que termina el fight me habilita a moverme
         pthread_cancel(countSeconds);
         pthread_detach(countSeconds);
         shouldFight = true;
         countTime = false;
     }
-
-
 
 
     string updates = "0100000000000000000000000000000000000000000000000000000";
