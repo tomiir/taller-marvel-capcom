@@ -220,6 +220,14 @@ void View_fight::updateShouldFight(char *shouldFight) {
     lifeManagerTeam2->updateShouldFight(shouldFight_int);
 }
 
+void View_fight::updateTeamsWons(char *roundsWonTeam1, char* roundsWonTeam2) {
+    int roundsWonTeam1_int = atoi(roundsWonTeam1);
+    int roundsWonTeam2_int = atoi(roundsWonTeam2);
+    lifeManagerTeam1->updateWons(roundsWonTeam1_int);
+    lifeManagerTeam2->updateWons(roundsWonTeam2_int);
+
+}
+
 
 
 

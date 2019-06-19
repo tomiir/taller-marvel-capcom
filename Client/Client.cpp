@@ -6,7 +6,7 @@
 
 
 #define NOBEAT (char*)"0"
-#define MESSAGEFROMSERVERLEN 55
+#define MESSAGEFROMSERVERLEN 57
 #define MESSAGEFROMSERVERLEN2 5
 
 
@@ -331,6 +331,10 @@ void* Client::render(void *arg) {
 
             char shouldFight [] = {messageReceived[54], '\0'};
             game->updateShouldFight(shouldFight);
+
+            char roundsWonTeam1[] = {messageReceived[55], '\0'};
+            char roundsWonTeam2[] = {messageReceived[56], '\0'};
+            game->updateTeamsWons(roundsWonTeam1, roundsWonTeam2);
 
             game->render();
             queueRecv.pop();

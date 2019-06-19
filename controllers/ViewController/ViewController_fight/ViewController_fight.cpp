@@ -208,7 +208,7 @@ string ViewController_fight::giveNewParameters() {
     }
 
 
-    string updates = "0100000000000000000000000000000000000000000000000000000";
+    string updates = "010000000000000000000000000000000000000000000000000000000";
 
     vector<int> pos_floor = backgrounds[0]->getPosCamera();
     vector<int> pos_moon = backgrounds[1]->getPosCamera();
@@ -292,6 +292,16 @@ string ViewController_fight::giveNewParameters() {
 
     if(shouldFight) updates[54] = '1';
     else updates[54] = '0';
+
+    int roundWonTeam1_int = team1->getRoundsWon();
+    char roundsWonTeam1[1];
+    sprintf(roundsWonTeam1, "%d", roundWonTeam1_int);
+    updates[55] = roundsWonTeam1[0];
+
+    int roundWonTeam2_int = team2->getRoundsWon();
+    char roundsWonTeam2[1];
+    sprintf(roundsWonTeam1, "%d", roundWonTeam2_int);
+    updates[56] = roundsWonTeam2[0];
 
 
 

@@ -19,6 +19,7 @@ private:
     bool shouldFight = false;
     double life;
     double lifeSecond;
+    int roundsWon;
 
 
     // estos se settearan cuando se seleccionen, así podemos hacer
@@ -66,7 +67,7 @@ public:
     void setFirstCharacter(string name);
     void setSecondCharacter(string name);
     void setAsRight();
-
+    void updateWons(int roundsWon);
     void updateShouldFight(int shouldFight);
 };
 

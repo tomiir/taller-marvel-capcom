@@ -19,6 +19,8 @@ LifeManager::LifeManager(SDL_Renderer* renderer,int z,  vector<int> first,
     currentColor = green;
     secondColor = green;
     isRight = false;
+    roundsWon = 0;
+
     this->renderer = renderer;
     this->z = z;
     this->x = first[0];
@@ -39,6 +41,26 @@ LifeManager::LifeManager(SDL_Renderer* renderer,int z,  vector<int> first,
 }
 
 void LifeManager::render() {
+
+    SDL_SetRenderDrawColor(renderer,240,103,8, 255);
+    SDL_Rect rectangleWons;
+
+    if(isRight){
+        rectangleWons.x = x;
+        rectangleWons.y = y + 65;
+        rectangleWons.w = 10* roundsWon;
+        rectangleWons.h = 11;
+    }
+    else{
+        rectangleWons.x = x + 460; //460
+        rectangleWons.y = y + 65; //65
+        rectangleWons.w = 10 * roundsWon;
+        rectangleWons.h = 11;
+    }
+
+    SDL_RenderFillRect(renderer, &rectangleWons);
+
+
 
     SDL_SetRenderDrawColor(renderer, currentColor[0], currentColor[1], currentColor[2], 255);
 
@@ -152,4 +174,8 @@ void LifeManager::updateShouldFight(int shouldFight) {
         currentColor = green;
         secondColor = green;
     }
+}
+
+void LifeManager::updateWons(int roundsWon){
+    this->roundsWon = roundsWon;
 }

@@ -32,6 +32,7 @@ public:
     void renderDisconnected();
     void updateWinners(char* winners);
     void updateShouldFight(char* shouldFight);
+    void updateTeamsWons(char* roundsWonTeam1,char* roundsWonTeam2);
 
 private:
     std::map<string, View* > views;
