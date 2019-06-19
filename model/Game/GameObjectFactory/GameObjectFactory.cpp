@@ -10,6 +10,10 @@
 #include "../../../utils/Logger/Logger.h"
 #include "../../../Json/JsonConfigs.h"
 #include "../../../utils/SpriteManagers/NotFoundSpriteManager.h"
+#include "../../../utils/AudioManager/CaptainAmericaAudioManager/CaptainAmericaAudioManager.h"
+#include "../../../utils/AudioManager/SpiderManAudioManager/SpiderManAudioManager.h"
+#include "../../../utils/AudioManager/VenomAudioManager/VenomAudioManager.h"
+#include "../../../utils/AudioManager/ChunLiAudioManager/ChunLiAudioManager.h"
 #include <map>
 
 GameObjectFactory::GameObjectFactory(SDL_Renderer *renderer_, int screenWidth_, int screenHeight_) {
@@ -43,6 +47,8 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
 
     logger -> Log("Creando personajes", INFO, "");
 
+
+    map<string, AudioManager*> audioManagers;
     map<string, SpriteManager*> spriteManagers;
 
     spriteManagers["CaptainAmerica"] = new CaptainAmericaSpriteManager();
@@ -50,6 +56,11 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
     spriteManagers["Venom"] = new VenomSpriteManager();
     spriteManagers["ChunLi"] = new ChunLiSpriteManager();
     spriteManagers["NotFound"] = new NotFoundSpriteManager();
+
+    audioManagers["CaptainAmerica"] = new CaptainAmericaAudioManager();
+    audioManagers["SpiderMan"] = new SpiderManAudioManager();
+    audioManagers["Venom"] = new VenomAudioManager();
+    audioManagers["ChunLi"] = new ChunLiAudioManager();
 
     map<string, SpriteManager*>::iterator itrSprites;
     JsonConfigs* config = JsonConfigs::getJson();
@@ -85,10 +96,11 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
         itrSprites = spriteManagers.find(spriteManagerName);
         SpriteManager* spriteManager = itrSprites->second;
 
+        AudioManager* audioManager = audioManagers[spriteManagerName]; //Uso el mismo que el spriteManager
         Character* C;
 
         C = new Character(path.c_str(),  zIndex, renderer, spriteManager , initialY, name, size);
-
+        C->setAudioManager(audioManager);
         C->setInitialXPositions(width/2, (screenWidth - width) - (width/2));
 
         gameObjects.push_back((C));

@@ -68,6 +68,7 @@ void Game::init(const char *title, int posX, int posY) {
         views["endGame"] = factory->getView_endGame();
 
         view = (views.find("char_select"))->second;
+        viewAudioManager = new ViewAudioManager();
 
         SDL_RenderCopy(renderer, loading, &source, &dest);
         SDL_RenderPresent(renderer);
@@ -129,9 +130,10 @@ void Game::changeView(int viewNumber) {
         vector<string> team1 =  dynamic_cast<View_charSelect*>(this->view)->getTeam1();
         vector<string> team2 =  dynamic_cast<View_charSelect*>(this->view)->getTeam2();
 
-        string nextViewName = (this->view)->getNextView();
-        View* nextView = views.find(nextViewName)->second;
-        this->view = nextView;
+    string nextViewName = (this->view)->getNextView();
+    View* nextView = views.find(nextViewName)->second;
+    this->view = nextView;
+    viewAudioManager->setState(nextViewName);
 
         dynamic_cast<View_fight*>(this->view)->setTeams(getCharacter(team1[0]), getCharacter(team1[1]), getCharacter(team2[0]), getCharacter(team2[1]));
     }

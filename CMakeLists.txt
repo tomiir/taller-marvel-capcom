@@ -126,7 +126,20 @@ add_executable(
         utils/HitboxManager/CaptainAmericaHitboxManager/CaptainAmericaHitboxManager.cpp
         utils/CollisionManager/CollisionManager.cpp
         utils/CollisionManager/CollisionManager.h
-
+        utils/AudioManager/Audio.h
+        utils/AudioManager/Audio.cpp
+        utils/AudioManager/AudioManager.cpp
+        utils/AudioManager/AudioManager.h
+        utils/AudioManager/VenomAudioManager/VenomAudioManager.cpp
+        utils/AudioManager/VenomAudioManager/VenomAudioManager.h
+        utils/AudioManager/ChunLiAudioManager/ChunLiAudioManager.cpp
+        utils/AudioManager/ChunLiAudioManager/ChunLiAudioManager.h
+        utils/AudioManager/CaptainAmericaAudioManager/CaptainAmericaAudioManager.h
+        utils/AudioManager/CaptainAmericaAudioManager/CaptainAmericaAudioManager.cpp
+        utils/AudioManager/SpiderManAudioManager/SpiderManAudioManager.cpp
+        utils/AudioManager/SpiderManAudioManager/SpiderManAudioManager.h
+        utils/AudioManager/ViewAudioManager/ViewAudioManager.cpp
+        utils/AudioManager/ViewAudioManager/ViewAudioManager.h
 
         Json/JsonGameObject_charSelect.cpp
         Json/JsonGameObject_charSelect.h
