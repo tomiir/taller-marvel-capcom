@@ -21,6 +21,7 @@ TimeManager::TimeManager(int z, GameObject* unityNumbers, GameObject* tenNumbers
 }
 
 void TimeManager::render() {
+
     if(shouldFight) {
         sourcePosition_itr = sourcePosition.find(ten);
         tenNumbers->setOriginRect(sourcePosition_itr->second);
@@ -30,6 +31,7 @@ void TimeManager::render() {
         unityNumbers->render();
     }
     else {
+
         if (roundTimer < 2) {
             switch (round) {
                 case 0:
@@ -44,14 +46,16 @@ void TimeManager::render() {
                     sourcePosition_itr = sourcePosition.find(12);
                     roundFight->setOriginRect(sourcePosition_itr->second);
                     break;
+                default:
+                    return;
             }
             roundFight->render();
         }
-
         if (roundTimer == 2 and round < 3) {
             sourcePosition_itr = sourcePosition.find(13);
             roundFight->setOriginRect(sourcePosition_itr->second);
             roundFight->render();
+
         }
     }
 }

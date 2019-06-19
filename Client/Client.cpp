@@ -336,7 +336,7 @@ void* Client::render(void *arg) {
             queueRecv.pop();
         }
 
-        if(strcmp(view, "02") == 0 and viewNumber == 2){
+        if(strcmp(view, "02") == 0 or viewNumber == 2){
             char winners[] = {messageReceived[2],messageReceived[3],'\0'};
             game->updateWinners(winners);
             game->render();
