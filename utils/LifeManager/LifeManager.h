@@ -26,12 +26,13 @@ private:
     std::map<string, GameObject* > lifeFrames;
     map<string, GameObject*>::iterator lifeFrames_iter = lifeFrames.begin();
 
-    // barras de vida secundarias
-    std::map<string, GameObject*> lifeFramesSecond;
-    map<string, GameObject*>::iterator lifeFramesSecond_iter;
+    vector<int> sourcePositionPrimary;
+    vector<int> destinyPositionPrimary;
+    vector<int> sourcePositionSecondary;
+    vector<int> destinyPositionSecondary;
 
-    GameObject* firstCharacter;
-    GameObject* secondCharacter;
+    string firstCharacter;
+    string secondCharacter;
 
     vector <int> currentColor;
     vector <int> secondColor;
@@ -52,14 +53,16 @@ private:
     int w_second;
 
 public:
-    LifeManager(SDL_Renderer* renderer,int z,vector <int> first, vector <int> second);
+    LifeManager(SDL_Renderer* renderer,int z,  vector<int> first,
+            vector<int> second,vector<int> sourcePositionPrimary,
+            vector<int> destinyPositionPrimary,vector<int> sourcePositionSecondary,
+            vector<int> destinyPositionSecondary);
     ~LifeManager() = default;
     void render() override ;
     void updateLife(double newLife);
     void updateCurrentCharacter(string current);
-    void addCharacters(vector <GameObject*> characters);
+    void addCharacters(map<string, GameObject*> characters);
     int getZIndex() override;
-    void addCharactersSecond(vector<GameObject *> charactersSecond);
     void setFirstCharacter(string name);
     void setSecondCharacter(string name);
     void setAsRight();

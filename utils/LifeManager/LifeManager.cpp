@@ -4,7 +4,10 @@
 
 #include "LifeManager.h"
 
-LifeManager::LifeManager(SDL_Renderer* renderer, int z,vector <int> first, vector <int> second):Renderable() {
+LifeManager::LifeManager(SDL_Renderer* renderer,int z,  vector<int> first,
+                         vector<int> second,vector<int> sourcePositionPrimary,
+                         vector<int> destinyPositionPrimary,vector<int> sourcePositionSecondary,
+                         vector<int> destinyPositionSecondary):Renderable() {
 
     green = {0x00, 0xFF, 0x00};
     red = {0xFF, 0x00, 0x00};
@@ -28,6 +31,11 @@ LifeManager::LifeManager(SDL_Renderer* renderer, int z,vector <int> first, vecto
     this->y_second = second[1];
     this->w_second = second[2];
     this->h_second = second[3];
+
+    this-> sourcePositionPrimary = sourcePositionPrimary;
+    this-> sourcePositionSecondary = sourcePositionSecondary;
+    this-> destinyPositionPrimary = destinyPositionPrimary;
+    this-> destinyPositionSecondary = destinyPositionSecondary;
 }
 
 void LifeManager::render() {
@@ -50,7 +58,14 @@ void LifeManager::render() {
     rectangle.h = h;
 
     SDL_RenderFillRect(renderer, &rectangle);
-    firstCharacter->render();
+
+    GameObject* firstCharacter_GO;
+
+    lifeFrames_iter = lifeFrames.find(firstCharacter);
+    firstCharacter_GO = lifeFrames_iter->second;
+    firstCharacter_GO->setOriginRect(sourcePositionPrimary);
+    firstCharacter_GO->setDestinyRect(destinyPositionPrimary);
+    firstCharacter_GO->render();
 
 
     SDL_SetRenderDrawColor(renderer, secondColor[0], secondColor[1], secondColor[2], 255);
@@ -68,7 +83,14 @@ void LifeManager::render() {
     rectangle_second.w = w_second * lifeSecond;
     rectangle_second.h = h_second;
     SDL_RenderFillRect(renderer, &rectangle_second);
-    secondCharacter->render();
+
+    GameObject* secondCharacter_GO;
+
+    lifeFrames_iter = lifeFrames.find(secondCharacter);
+    secondCharacter_GO = lifeFrames_iter->second;
+    secondCharacter_GO->setOriginRect(sourcePositionSecondary);
+    secondCharacter_GO->setDestinyRect(destinyPositionSecondary);
+    secondCharacter_GO->render();
 
 }
 
@@ -82,13 +104,11 @@ void LifeManager::updateLife(double newLife) {
 
 // siempre se debe cambiar el personajes primero, antes que la vida.
 void LifeManager::updateCurrentCharacter(string current) {
-    if (strcmp(current.c_str(), (firstCharacter->getName()).c_str()) == 0) return;
+    if (strcmp(current.c_str(), firstCharacter.c_str()) == 0) return;
     //el actual (first) va a ser el secundario
-    lifeFramesSecond_iter = lifeFramesSecond.find(firstCharacter->getName());
-    secondCharacter = lifeFramesSecond_iter->second;
+    secondCharacter = firstCharacter;
     //el que reciba sera el actual
-    lifeFrames_iter = lifeFrames.find(current);
-    firstCharacter = lifeFrames_iter->second;
+    firstCharacter = current;
     double aux  = life;
     life = lifeSecond;
     lifeSecond = aux;
@@ -98,16 +118,8 @@ void LifeManager::updateCurrentCharacter(string current) {
 
 }
 
-void LifeManager::addCharacters(vector<GameObject *> characters) {
-
-    for(auto character : characters) lifeFrames[character->getName()] = character;
-
-}
-
-void LifeManager::addCharactersSecond(vector<GameObject*> charactersSecond){
-
-    for(auto characterSecond : charactersSecond) lifeFramesSecond[characterSecond->getName()] = characterSecond;
-
+void LifeManager::addCharacters(map<string, GameObject *> characters) {
+    lifeFrames = characters;
 }
 
 int LifeManager::getZIndex() {
@@ -115,13 +127,11 @@ int LifeManager::getZIndex() {
 }
 
 void LifeManager::setFirstCharacter(string name) {
-    lifeFrames_iter = lifeFrames.find(name);
-    firstCharacter = lifeFrames_iter->second;
+    firstCharacter = name;
 }
 
 void LifeManager::setSecondCharacter(string name) {
-    lifeFramesSecond_iter = lifeFramesSecond.find(name);
-    secondCharacter = lifeFramesSecond_iter->second;
+    secondCharacter = name;
 }
 
 void LifeManager::setAsRight() {

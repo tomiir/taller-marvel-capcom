@@ -41,3 +41,7 @@ string GameObject::getName() {
 void GameObject::setOriginRect(vector<int> position) {
     objRect = SDL_Rect{position[0], position[1], position[2], position[3]};
 }
+
+void GameObject::setDestinyRect(vector<int> position) {
+    objRect2 =SDL_Rect{position[0], position[1], position[2], position[3]};
+}

@@ -24,6 +24,7 @@ public:
     int getZIndex();
     string getName();
     void setOriginRect(vector<int> position);
+    void setDestinyRect(vector<int> position);
 
 protected:
     string name;
