@@ -404,6 +404,7 @@ void Client::Initialice() {
 
     //Aca habria antes que cargar las views
     logger->Log("Inicializando juego", INFO, "");
+
     JsonConfigs *config = JsonConfigs::getJson();
 
     const int SCREEN_WIDTH = config->getScreenSize()[0];
@@ -414,7 +415,6 @@ void Client::Initialice() {
 
     game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
     game->init(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
-
 
     int error = pthread_create(&sendEventThread, nullptr, &sendEventToServer, nullptr);
     if(error == -1) cout << "SE ROMPIO " << endl;

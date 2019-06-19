@@ -15,6 +15,6 @@ void ViewAudioManager::init() {
     string file = "../Audio/Music/music" + file_id + ".wav";
     audios["fight"] = new Audio(file.c_str());
     audios["char_select"] = new Audio("../Audio/Music/char_select.wav");
-    this->state = "still";
+    this->state = "present";
 }
 
