@@ -156,4 +156,7 @@ void TeamManager::resetRound() {
     currentCharacter->resetPosition(initialFlip);
 
     if ((cantChangeChar % 2) != 0) cantChangeChar++;
+
+    if (initialFlip) flip = SDL_FLIP_NONE;
+    else flip = SDL_FLIP_HORIZONTAL;
 }

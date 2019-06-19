@@ -29,28 +29,30 @@ void TimeManager::render() {
         unityNumbers->setOriginRect(sourcePosition_itr->second);
         unityNumbers->render();
     }
-    if (roundTimer < 2){
-        switch(round) {
-            case 0:
-                sourcePosition_itr = sourcePosition.find(10);
-                roundFight->setOriginRect(sourcePosition_itr->second);
-                break;
-            case 1:
-                sourcePosition_itr = sourcePosition.find(11);
-                roundFight->setOriginRect(sourcePosition_itr->second);
-                break;
-            case 2:
-                sourcePosition_itr = sourcePosition.find(12);
-                roundFight->setOriginRect(sourcePosition_itr->second);
-                break;
+    else {
+        if (roundTimer < 2) {
+            switch (round) {
+                case 0:
+                    sourcePosition_itr = sourcePosition.find(10);
+                    roundFight->setOriginRect(sourcePosition_itr->second);
+                    break;
+                case 1:
+                    sourcePosition_itr = sourcePosition.find(11);
+                    roundFight->setOriginRect(sourcePosition_itr->second);
+                    break;
+                case 2:
+                    sourcePosition_itr = sourcePosition.find(12);
+                    roundFight->setOriginRect(sourcePosition_itr->second);
+                    break;
+            }
+            roundFight->render();
         }
-        roundFight->render();
-    }
 
-    if (roundTimer == 2){
-        sourcePosition_itr = sourcePosition.find(13);
-        roundFight->setOriginRect(sourcePosition_itr->second);
-        roundFight->render();
+        if (roundTimer == 2 and round < 3) {
+            sourcePosition_itr = sourcePosition.find(13);
+            roundFight->setOriginRect(sourcePosition_itr->second);
+            roundFight->render();
+        }
     }
 }
 
@@ -73,7 +75,6 @@ void TimeManager::setRound(int roundNew) {
     if(roundNew == round) return;
     round = roundNew;
     roundTimer = 0;
-
 }
 
 void TimeManager::updateShouldFight(int shouldFight) {
