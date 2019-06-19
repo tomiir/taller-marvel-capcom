@@ -317,11 +317,11 @@ LifeManager *GameObjectFactory::getLifeManagerTeam2() {
 
 TimeManager *GameObjectFactory::getTimeManager() {
 
-    GameObject* unity  = new GameObject("../Images/timer/timer-rounds.png","unityZero",99,renderer, 591, 10, 60, 60);
-    GameObject* ten = new GameObject("../Images/timer/timer-rounds.png","unityZero",99,renderer, 555, 10, 60, 60);
+    GameObject* unity  = new GameObject("../Images/timer/timer-rounds.png","unity",99,renderer, 591, 10, 60, 60);
+    GameObject* ten = new GameObject("../Images/timer/timer-rounds.png","ten",99,renderer, 555, 10, 60, 60);
     int xRound = (screenWidth - 258*2)/2;
     int yRound = (screenHeight - 91*2)/2;
-    GameObject* roundFight = new GameObject("../Images/timer/timer-rounds.png","unityZero",99,renderer, xRound, yRound,  258*2, 91*2);
+    GameObject* roundFight = new GameObject("../Images/timer/timer-rounds.png","timeRound",99,renderer, xRound, yRound,  258*2, 91*2);
 
     map <int, vector<int>> positionSource;
     positionSource[0] = {0,0, 60, 60};
@@ -341,7 +341,6 @@ TimeManager *GameObjectFactory::getTimeManager() {
 
 
     TimeManager* timeManager = new TimeManager(99, unity, ten, roundFight, positionSource);
-
     return timeManager;
 }
 

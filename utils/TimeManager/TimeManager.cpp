@@ -34,12 +34,15 @@ void TimeManager::render() {
             case 0:
                 sourcePosition_itr = sourcePosition.find(10);
                 roundFight->setOriginRect(sourcePosition_itr->second);
+                break;
             case 1:
                 sourcePosition_itr = sourcePosition.find(11);
                 roundFight->setOriginRect(sourcePosition_itr->second);
+                break;
             case 2:
                 sourcePosition_itr = sourcePosition.find(12);
                 roundFight->setOriginRect(sourcePosition_itr->second);
+                break;
         }
         roundFight->render();
     }
