@@ -157,3 +157,7 @@ void TeamManager::resetRound() {
 
     if ((cantChangeChar % 2) != 0) cantChangeChar++;
 }
+
+int TeamManager::getRoundWon() {
+    return rounds_wins;
+}

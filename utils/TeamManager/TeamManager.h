@@ -44,6 +44,8 @@ public:
 
     void resetRound();
 
+    int getRoundWon();
+
 private:
 
 

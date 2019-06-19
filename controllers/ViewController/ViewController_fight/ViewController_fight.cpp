@@ -291,6 +291,11 @@ string ViewController_fight::giveNewParameters() {
     if(shouldFight) updates[54] = '1';
     else updates[54] = '0';
 
+    int roundWonTeam1_int =
+    char roundsWonTeam1 [1];
+    sprintf(round_string, "%d", round);
+    updates[47] = round_string[0]; //round
+
 
 
     updates = intToString(pos_floor[0], 2, 4, updates);
