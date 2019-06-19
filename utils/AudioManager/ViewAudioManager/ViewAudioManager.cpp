@@ -16,6 +16,6 @@ void ViewAudioManager::init() {
     cout << file << endl;
     audios["fight"] = new Audio(file.c_str());
     audios["char_select"] = new Audio("../Audio/Music/char_select.wav");
-    this->state = "still";
+    this->state = "present";
 }
 
