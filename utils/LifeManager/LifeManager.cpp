@@ -109,9 +109,11 @@ void LifeManager::updateCurrentCharacter(string current) {
     secondCharacter = firstCharacter;
     //el que reciba sera el actual
     firstCharacter = current;
+    cout<<life<<endl;
     double aux  = life;
     life = lifeSecond;
     lifeSecond = aux;
+    cout<<life<<endl;
     vector<int> aux_color = currentColor;
     currentColor = secondColor;
     secondColor = aux_color;

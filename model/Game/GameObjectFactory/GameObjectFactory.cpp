@@ -317,34 +317,10 @@ vector<GameObject *> GameObjectFactory::getGameObject_endGame() {
     */
 
     GameObject* background    = new GameObject("../Images/winner/WinnerBackground.png","background",99,renderer, 0, 0, 1200 ,700);
+    GameObject* winnerTeam    = new GameObject("../Images/winner/WinnerTeam.png","ac",99,renderer, 0, 0, 1200,700);
 
 
-    GameObject* ac    = new GameObject("../Images/winner/WinnerTeam.png","ac",99,renderer, 0, 0, 1200,700);
-    positionToTake = {0,226, 480, 226};
-    ac->setOriginRect(positionToTake);
-
-    GameObject* av    = new GameObject("../Images/winner/WinnerTeam.png","av",99,renderer, 0, 0, 1200,700);
-    positionToTake = {0,0, 480, 226};
-    av->setOriginRect(positionToTake);
-
-    GameObject* as  = new GameObject("../Images/winner/WinnerTeam.png","as",99,renderer, 0, 0, 1200,700);
-    positionToTake = {480, 226, 480, 226};
-    as->setOriginRect(positionToTake);
-
-    GameObject* cv  = new GameObject("../Images/winner/WinnerTeam.png", "cv",99,renderer, 0, 0, 1200,700);
-    positionToTake = {0,452, 480, 226};
-    cv->setOriginRect(positionToTake);
-
-    GameObject* cs  = new GameObject("../Images/winner/WinnerTeam.png","cs",99,renderer, 0, 0, 1200,700);
-    positionToTake = {480, 452, 480, 226};
-    cs->setOriginRect(positionToTake);
-
-    GameObject* vs  = new GameObject("../Images/winner/WinnerTeam.png","sv",99,renderer, 0, 0, 1200,700);
-    positionToTake = {480,0, 480, 226};
-    vs->setOriginRect(positionToTake);
-
-
-    vector<GameObject *> gameObjects = {background, ac, av, as, cv, cs, vs};
+    vector<GameObject *> gameObjects = {background, winnerTeam};
     return gameObjects ;
 }
 

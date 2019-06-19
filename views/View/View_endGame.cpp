@@ -9,12 +9,14 @@ View_endGame::View_endGame(SDL_Renderer *renderer_) : View(renderer_){}
 void View_endGame::updateView() {
 
     this->clearWindow();
-
+    vector<int> position;
     background->render();
+    sourcePosition_itr= sourcePosition.find(winner_string);
+    position = sourcePosition_itr->second;
 
+    winnerTeam->setOriginRect(position);
     GameObject* winner_toRender;
-    itr_winners = winners.find(winner_string);
-    winner_toRender = itr_winners->second;
+
     winner_toRender->render();
 
 
@@ -25,15 +27,8 @@ void View_endGame::addBackground(GameObject* background){
     this->background = background;
 }
 
-void View_endGame::addWinners(vector <GameObject*> winners){
-
-   this->winners[winners[0]->getName()] = winners[0];
-   this->winners[winners[1]->getName()] = winners[1];
-   this->winners[winners[2]->getName()] = winners[2];
-   this->winners[winners[3]->getName()] = winners[3];
-   this->winners[winners[4]->getName()] = winners[4];
-   this->winners[winners[5]->getName()] = winners[5];
-
+void View_endGame::addWinner(GameObject* winnerTeam){
+   this->winnerTeam  = winnerTeam;
 }
 
 
@@ -64,4 +59,8 @@ void View_endGame::renderDisconnected() {
 
 void View_endGame::addGameObject_disconnected(GameObject *disconnected_) {
     disconnected = disconnected_;
+}
+
+void View_endGame::addSourcePositions(map<string, vector<int>> sourcePosition) {
+    this->sourcePosition = sourcePosition;
 }

@@ -131,11 +131,18 @@ View_endGame *ViewFactory::getView_endGame() {
 
     viewEndGame->addBackground(gameObjects[0]);
 
-    vector<GameObject*> winners = {gameObjects[1], gameObjects[2], gameObjects[3],
-                                   gameObjects[4], gameObjects[5], gameObjects[6]};
+    map<string, vector<int>> sourcePosition;
+    sourcePosition["ac"] = {0,226, 480, 226};
+    sourcePosition["av"] = {0,0, 480, 226};
+    sourcePosition["av"] = {480, 226, 480, 226};
+    sourcePosition["cv"] = {0,452, 480, 226};
+    sourcePosition["cs"] = {480, 452, 480, 226};
+    sourcePosition["vs"] = {480,0, 480, 226};
 
-    viewEndGame->addWinners(winners);
+    GameObject* winnerTeam = gameObjects[1];
 
+    viewEndGame->addWinner(winnerTeam);
+    viewEndGame->addSourcePositions(sourcePosition);
     delete(factory);
     return viewEndGame;
 }

@@ -13,7 +13,8 @@ public:
     View_endGame(SDL_Renderer *renderer_);
     ~View_endGame() override = default;
     void addBackground(GameObject* background);
-    void addWinners(vector <GameObject*> winners);
+    void addWinner(GameObject* winnerTeam);
+    void addSourcePositions(map<string, vector<int>> sourcePosition);
 
     void updateView() override;
     void updateWinners(char* winner);
@@ -26,8 +27,9 @@ public:
 
 private:
     GameObject* background;
-    map <string,GameObject*> winners;
-    map <string, GameObject*>::iterator itr_winners= winners.begin();
+    GameObject* winnerTeam;
+    map<string, vector<int>> sourcePosition;
+    map<string, vector<int>>::iterator sourcePosition_itr;
     string winner_string;
 
 
