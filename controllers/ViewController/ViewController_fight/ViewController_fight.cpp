@@ -129,9 +129,6 @@ void ViewController_fight::startCounting(int timeToCount){
 
 string ViewController_fight::giveNewParameters() {
 
-    cout << team1->getTeamLife() << "<--- vida team1" << endl;
-
-    cout << team2->getTeamLife() << "<--- vida team2" << endl;
     if(team1->getTeamLife() == 0){
 
         pthread_cancel(countSeconds);
@@ -181,13 +178,9 @@ string ViewController_fight::giveNewParameters() {
         int team1Life = team1->getTeamLife();
         int team2Life = team2->getTeamLife();
 
-        cout << team1Life << "<--- vida team1" << endl;
-
-        cout << team2Life << "<--- vida team2" << endl;
         if (team1Life > team2Life) team1->roundWin();
         else if (team1Life < team2Life) team2->roundWin();
         else if (team1Life == team2Life){
-            cout << "lala" << endl;
             team1->roundWin();
             team2->roundWin();
         }
