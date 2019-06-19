@@ -61,7 +61,7 @@ void Character::render() {
 void Character::setState(string state) {
 
     spriteManager->setState(state);
-
+    audioManager->setState(state);
     this->state = state;
 }
 
@@ -161,4 +161,8 @@ SDL_Rect Character::getHitbox() {
     }
 
     return hitbox;
+}
+
+void Character::setAudioManager(AudioManager *audioManager) {
+    this->audioManager = audioManager;
 }

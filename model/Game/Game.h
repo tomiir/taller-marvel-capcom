@@ -6,6 +6,7 @@
 #include <iostream>
 #include "../../controllers/ViewController/ViewController_fight/ViewController_fight.h"
 #include "ViewFactory/ViewFactory.h"
+#include "../../utils/AudioManager/ViewAudioManager/ViewAudioManager.h"
 
 class Game {
 
@@ -32,6 +33,7 @@ public:
     void renderDisconnected();
     void updateWinners(char* winners);
     void updateShouldFight(char* shouldFight);
+    ViewAudioManager* viewAudioManager;
 
 private:
     std::map<string, View* > views;
@@ -47,7 +49,6 @@ private:
     int screenWidth, screenHeight;
 
     Character* getCharacter(string character);
-
 };
 
 

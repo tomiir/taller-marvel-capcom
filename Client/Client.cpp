@@ -9,7 +9,7 @@
 #define MESSAGEFROMSERVERLEN 55
 #define MESSAGEFROMSERVERLEN2 5
 
-
+bool playedCharSelectMusic = false;
 int serverSocket_c;
 struct sockaddr_in serverAddr_c;
 socklen_t  serverSize_c;
@@ -280,7 +280,10 @@ void* Client::render(void *arg) {
 
             game->render();
             queueRecv.pop();
-
+            if(!playedCharSelectMusic) {
+                game->viewAudioManager->setState("char_select");
+                playedCharSelectMusic = true;
+            }
         }
 
         if(strcmp(view, "01") == 0 or viewNumber == 1) { //view fight
