@@ -14,7 +14,8 @@ class TimeManager: public Renderable {
 public:
     void render() override;
     int getZIndex() override;
-    TimeManager(int z, vector<GameObject*> unityNumbers, vector<GameObject*> tenNumbers, vector<GameObject*> rounds, GameObject* fight);
+    TimeManager(int z, GameObject* unityNumbers, GameObject* tenNumbers, GameObject* roundFight,
+            map<int, vector<int>> sourcePosition);
     void setUnity(int unityNew);
     void setTen(int ten);
     void setRound(int roundNew);
@@ -26,10 +27,11 @@ public:
 private:
     int z;
     //uso un vector para la decena y otro para la unidad, pq no se puede renderizar dos veces un mismo GO.
-    vector<GameObject*> tenNumbers;
-    vector<GameObject*> unityNumbers;
-    vector <GameObject*> rounds;
-    GameObject* fight;
+    GameObject* tenNumbers;
+    GameObject* unityNumbers;
+    GameObject* roundFight;
+    map <int, vector<int>> sourcePosition;
+    map<int, vector<int>>::iterator sourcePosition_itr;
     int round;
     int unity;
     int ten;

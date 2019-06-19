@@ -4,7 +4,8 @@
 
 #include "TimeManager.h"
 
-TimeManager::TimeManager(int z, vector<GameObject*> unityNumbers, vector<GameObject*> tenNumbers, vector<GameObject*> rounds, GameObject* fight) {
+TimeManager::TimeManager(int z, GameObject* unityNumbers, GameObject* tenNumbers, GameObject* roundFight,
+            map<int, vector<int>> sourcePosition){
     this->z = z;
     this->unity = 9;
     this->ten = 9;
@@ -13,20 +14,41 @@ TimeManager::TimeManager(int z, vector<GameObject*> unityNumbers, vector<GameObj
     this->roundTimer = 0;
     this->unityNumbers = unityNumbers;
     this->tenNumbers = tenNumbers;
-    this->rounds = rounds;
+    this->roundFight = roundFight;
     this->shouldFight = false;
-    this->fight = fight;
+    this->sourcePosition = sourcePosition;
 
 }
 
 void TimeManager::render() {
     if(shouldFight) {
-        tenNumbers[ten]->render();
-        unityNumbers[unity]->render();
+        sourcePosition_itr = sourcePosition.find(ten);
+        tenNumbers->setOriginRect(sourcePosition_itr->second);
+        tenNumbers->render();
+        sourcePosition_itr = sourcePosition.find(unity);
+        unityNumbers->setOriginRect(sourcePosition_itr->second);
+        unityNumbers->render();
     }
-    if (roundTimer < 2) rounds[round]->render();
+    if (roundTimer < 2){
+        switch(round) {
+            case 0:
+                sourcePosition_itr = sourcePosition.find(10);
+                roundFight->setOriginRect(sourcePosition_itr->second);
+            case 1:
+                sourcePosition_itr = sourcePosition.find(11);
+                roundFight->setOriginRect(sourcePosition_itr->second);
+            case 2:
+                sourcePosition_itr = sourcePosition.find(12);
+                roundFight->setOriginRect(sourcePosition_itr->second);
+        }
+        roundFight->render();
+    }
 
-    if (roundTimer == 2) fight->render();
+    if (roundTimer == 2){
+        sourcePosition_itr = sourcePosition.find(13);
+        roundFight->setOriginRect(sourcePosition_itr->second);
+        roundFight->render();
+    }
 }
 
 int TimeManager::getZIndex() {
