@@ -8,6 +8,7 @@ TeamManager::TeamManager(SDL_RendererFlip initialFlip){
 
     flip = initialFlip;
     cantChangeChar = 0;
+    rounds_wins = 0;
 
 }
 
