@@ -164,17 +164,14 @@ string ViewController_fight::giveNewParameters() {
     }
 
 
-    if (!countTime && !shouldFight) {
-        this->startCounting(3);
-    }
-
     if (!countTime && shouldFight){
-        this->startCounting(25);// esto debería ser 99
+        this->startCounting(5);// esto debería ser 99
     }
 
     if (second == 0 && round == 3){ //se terminaron todos los rounds
         endOfRounds = true;
         endOfGame = true;
+        shouldFight=false;
         winner_1 = 'v';
         winner_2 = 's';
     }
@@ -197,6 +194,10 @@ string ViewController_fight::giveNewParameters() {
 
         flipManager->setLeftCharacter(team1->getCurrentCharacter());
         flipManager->setRightCharacter(team2->getCurrentCharacter());
+    }
+
+    if (!countTime && !shouldFight) {
+        this->startCounting(3);
     }
 
     else if (!shouldFight && second == 0){ //una vez que termina el fight me habilita a moverme
@@ -240,6 +241,7 @@ string ViewController_fight::giveNewParameters() {
     char round_string [1];
     sprintf(round_string, "%d", round);
     updates[47] = round_string[0]; //round
+
 
     //int lifeTeam1 = second; // uso esto para probar si las barras cambian bien de vida
     int lifeTeam1 = team1->getCurrentCharacterLife();

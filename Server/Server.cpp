@@ -566,7 +566,7 @@ void Server::connect() {
     game_server->init();
 
     //Se arranca a enviar el conectado y el team a los clientes
-    sleep(15); //ESTE SLEEP ES PARA DARLE TIEMPO A LOS CLIENTES A QUE CARGUEN TODAS LAS IMAGENES DEL JSON. SI NO COMO TARDAN VA A DECIR QUE SE DESCONECTARON
+    sleep(12); //ESTE SLEEP ES PARA DARLE TIEMPO A LOS CLIENTES A QUE CARGUEN TODAS LAS IMAGENES DEL JSON. SI NO COMO TARDAN VA A DECIR QUE SE DESCONECTARON
 
     pthread_mutex_init(&lock,NULL);
 
