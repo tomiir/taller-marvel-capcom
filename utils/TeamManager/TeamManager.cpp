@@ -160,3 +160,7 @@ void TeamManager::resetRound() {
     if (initialFlip) flip = SDL_FLIP_NONE;
     else flip = SDL_FLIP_HORIZONTAL;
 }
+
+int TeamManager::getRoundsWon() {
+    return rounds_wins;
+}
