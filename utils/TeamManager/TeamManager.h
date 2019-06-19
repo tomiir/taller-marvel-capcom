@@ -50,6 +50,7 @@ private:
     ControllerCharacter* currentCharacter;
     ControllerCharacter* supportCharacter;
     ControllerCharacter* firstCharacter;
+    ControllerCharacter* secondCharacter;
     TeamManager* enemyTeam;
     SDL_RendererFlip flip = SDL_FLIP_HORIZONTAL;
     int rounds_wins = 0;

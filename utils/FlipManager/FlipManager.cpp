@@ -69,5 +69,15 @@ void FlipManager::create(){
 
 }
 
+void FlipManager::setLeftCharacter(ControllerCharacter *character) {
+
+    characterOnLeft = character;
+}
+
+void FlipManager::setRightCharacter(ControllerCharacter *character) {
+
+    characterOnRight = character;
+}
+
 
 
