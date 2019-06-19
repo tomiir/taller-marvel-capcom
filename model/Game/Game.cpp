@@ -126,23 +126,25 @@ Character *Game::getCharacter(string character){
 
 
 void Game::changeView(int viewNumber) {
+    string nextViewName = "";
     if(viewNumber == 1){
         vector<string> team1 =  dynamic_cast<View_charSelect*>(this->view)->getTeam1();
         vector<string> team2 =  dynamic_cast<View_charSelect*>(this->view)->getTeam2();
 
-    string nextViewName = (this->view)->getNextView();
+    nextViewName = (this->view)->getNextView();
     View* nextView = views.find(nextViewName)->second;
     this->view = nextView;
-    viewAudioManager->setState(nextViewName);
 
-        dynamic_cast<View_fight*>(this->view)->setTeams(getCharacter(team1[0]), getCharacter(team1[1]), getCharacter(team2[0]), getCharacter(team2[1]));
+    dynamic_cast<View_fight*>(this->view)->setTeams(getCharacter(team1[0]), getCharacter(team1[1]), getCharacter(team2[0]), getCharacter(team2[1]));
+
+    viewAudioManager->setState(nextViewName);
     }
     else if (viewNumber == 2){
-        string nextViewName = (this->view)->getNextView();
+        nextViewName = (this->view)->getNextView();
         View* nextView = views.find(nextViewName)->second;
         this->view = nextView;
+        viewAudioManager->setState(nextViewName);
     }
-
 }
 
 void Game::UpdateBackgrounds(char *posFloor_x, char *posFloor_y, char *posMoon_x, char *posMoon_y, char *posGalaxy_x,

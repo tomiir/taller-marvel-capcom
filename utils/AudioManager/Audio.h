@@ -14,6 +14,7 @@ public:
     explicit Audio(const char* fileName);
     void load(const char* fileName);
     void play();
+    void stop();
 
 private:
     SDL_AudioSpec waveSpec;

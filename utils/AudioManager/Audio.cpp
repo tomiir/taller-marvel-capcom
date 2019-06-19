@@ -24,3 +24,7 @@ Audio::Audio(const char *fileName) {
     this->load(fileName);
 }
 
+void Audio::stop() {
+    SDL_PauseAudioDevice(deviceID, 1);
+}
+

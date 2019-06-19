@@ -14,6 +14,7 @@ void AudioManager::init() {}
 
 void AudioManager::setState(std::string state) {
     if(state != this->state) {
+        cout << state << endl;
         playAudio(state);
     }
     this->state = state;
@@ -21,6 +22,9 @@ void AudioManager::setState(std::string state) {
 }
 
 void AudioManager::playAudio(string name) {
+    if(audios.count(this->state)){
+        audios[this->state]->stop();
+    }
     if(audios.count(name)){
         Audio* audio = audios[name];
         audio->play();

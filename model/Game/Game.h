@@ -33,6 +33,7 @@ public:
     void renderDisconnected();
     void updateWinners(char* winners);
     void updateShouldFight(char* shouldFight);
+    ViewAudioManager* viewAudioManager;
 
 private:
     std::map<string, View* > views;
@@ -48,8 +49,6 @@ private:
     int screenWidth, screenHeight;
 
     Character* getCharacter(string character);
-
-    ViewAudioManager* viewAudioManager;
 };
 
 
