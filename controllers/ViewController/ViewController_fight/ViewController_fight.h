@@ -57,6 +57,7 @@ private:
     char winner_2;
     bool endOfGame;
     bool shouldFight;
+    int timeDuration = 10;
 };
 
 

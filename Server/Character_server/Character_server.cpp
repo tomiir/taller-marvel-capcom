@@ -136,3 +136,22 @@ void Character_server::resetPosition(bool initialFlip) {
     if(initialFlip) flip = SDL_FLIP_NONE;
     else flip = SDL_FLIP_HORIZONTAL;
 }
+
+char Character_server::getCode() {
+
+    if (name == "CaptainAmerica"){
+        return 'a';
+    }
+    else if (name == "SpiderMan"){
+        return 's';
+
+    }
+    else if (name == "ChunLi"){
+        return 'c';
+
+    }
+    else if (name == "Venom"){
+        return 'v';
+
+    }
+}

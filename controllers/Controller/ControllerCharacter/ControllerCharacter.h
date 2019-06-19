@@ -48,6 +48,8 @@ public:
 
     void resetPosition(bool initialFlip);
 
+    char getCode();
+
 private:
 
     int screenWidth, screenHeight, speedCharacter;

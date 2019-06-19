@@ -538,3 +538,8 @@ void ControllerCharacter::resetPosition(bool initialFlip) {
     state = "still";
     dynamic_cast<Character_server *>(gameObject)->setState(state);
 }
+
+char ControllerCharacter::getCode() {
+
+    return dynamic_cast<Character_server *>(gameObject)->getCode();
+}

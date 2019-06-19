@@ -129,6 +129,9 @@ void ViewController_fight::startCounting(int timeToCount){
 
 string ViewController_fight::giveNewParameters() {
 
+    cout << team1->getTeamLife() << "<--- vida team1" << endl;
+
+    cout << team2->getTeamLife() << "<--- vida team2" << endl;
     if(team1->getTeamLife() == 0){
 
         pthread_cancel(countSeconds);
@@ -165,15 +168,7 @@ string ViewController_fight::giveNewParameters() {
 
 
     if (!countTime && shouldFight){
-        this->startCounting(5);// esto debería ser 99
-    }
-
-    if (second == 0 && round == 3){ //se terminaron todos los rounds
-        endOfRounds = true;
-        endOfGame = true;
-        shouldFight=false;
-        winner_1 = 'v';
-        winner_2 = 's';
+        this->startCounting(timeDuration);// esto debería ser 99
     }
 
     if (second == 0 && !endOfRounds && shouldFight) { //no me deje moverme mientras esta el fight
@@ -183,9 +178,16 @@ string ViewController_fight::giveNewParameters() {
         countTime = false;
         shouldFight = false;
 
-        if (team1->getTeamLife() > team2->getTeamLife()) team1->roundWin();
-        else if (team1->getTeamLife() < team2->getTeamLife()) team2->roundWin();
-        else {
+        int team1Life = team1->getTeamLife();
+        int team2Life = team2->getTeamLife();
+
+        cout << team1Life << "<--- vida team1" << endl;
+
+        cout << team2Life << "<--- vida team2" << endl;
+        if (team1Life > team2Life) team1->roundWin();
+        else if (team1Life < team2Life) team2->roundWin();
+        else if (team1Life == team2Life){
+            cout << "lala" << endl;
             team1->roundWin();
             team2->roundWin();
         }
@@ -205,6 +207,31 @@ string ViewController_fight::giveNewParameters() {
         pthread_detach(countSeconds);
         shouldFight = true;
         countTime = false;
+    }
+
+    if (team1->getRoundsWon() == 2){
+        endOfRounds = true;
+        endOfGame = true;
+        shouldFight=false;
+
+        vector<char> charactersTeam1 = team1->getCharacters();
+
+        winner_1 = charactersTeam1[0];
+        winner_2 = charactersTeam1[1];
+
+        round = 3;
+    }
+    else if (team2->getRoundsWon() == 2){
+        endOfRounds = true;
+        endOfGame = true;
+        shouldFight=false;
+
+        vector<char> charactersTeam2 = team2->getCharacters();
+
+        winner_1 = charactersTeam2[0];
+        winner_2 = charactersTeam2[1];
+
+        round = 3;
     }
 
 

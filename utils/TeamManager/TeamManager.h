@@ -38,13 +38,16 @@ public:
 
     int getCurrentCharacterLife();
 
-    bool getTeamLife();
+    int getTeamLife();
 
     void roundWin();
 
     void resetRound();
 
     int getRoundsWon();
+
+    vector<char> getCharacters();
+
 private:
 
 
@@ -60,6 +63,8 @@ private:
     void changeCharacter();
 
     int cantChangeChar;
+
+    vector<char> teamNames;
 };
 
 #endif //TALLER_MARVEL_CAPCOM_TEAMMANAGER_H

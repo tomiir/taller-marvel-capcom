@@ -39,6 +39,8 @@ public:
 
     void resetPosition(bool initialFlip);
 
+    char getCode();
+
 private:
 
     int initialY;

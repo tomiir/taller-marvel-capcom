@@ -17,6 +17,9 @@ void TeamManager:: setCharacters(std::vector<ControllerCharacter*> characters){
 
     firstCharacter = characters[0];
     secondCharacter = characters[1];
+
+    teamNames.push_back(currentCharacter->getCode());
+    teamNames.push_back(supportCharacter->getCode());
 }
 
 void TeamManager::changeCharacter(){
@@ -134,12 +137,14 @@ int TeamManager::getCurrentCharacterLife() {
     return currentCharacter->getLife();
 }
 
-bool TeamManager::getTeamLife() {
+int TeamManager::getTeamLife() {
 
     int life1 = currentCharacter->getLife();
     int life2 = supportCharacter->getLife();
 
-    return life1 + life2;
+    int life = life1 + life2;
+
+    return life;
 }
 
 void TeamManager::roundWin() {
@@ -163,4 +168,9 @@ void TeamManager::resetRound() {
 
 int TeamManager::getRoundsWon() {
     return rounds_wins;
+}
+
+vector<char> TeamManager::getCharacters() {
+
+    return teamNames;
 }
