@@ -141,6 +141,9 @@ string ViewController_fight::giveNewParameters() {
         team2->roundWin();
         team1->resetRound();
         team2->resetRound();
+
+        flipManager->setLeftCharacter(team1->getCurrentCharacter());
+        flipManager->setRightCharacter(team2->getCurrentCharacter());
     }
 
     if(team2->getTeamLife() == 0){
@@ -155,6 +158,9 @@ string ViewController_fight::giveNewParameters() {
         team1->roundWin();
         team1->resetRound();
         team2->resetRound();
+
+        flipManager->setLeftCharacter(team1->getCurrentCharacter());
+        flipManager->setRightCharacter(team2->getCurrentCharacter());
     }
 
 
@@ -188,6 +194,9 @@ string ViewController_fight::giveNewParameters() {
         }
         team1->resetRound();
         team2->resetRound();
+
+        flipManager->setLeftCharacter(team1->getCurrentCharacter());
+        flipManager->setRightCharacter(team2->getCurrentCharacter());
     }
 
     else if (!shouldFight && second == 0){ //una vez que termina el fight me habilita a moverme

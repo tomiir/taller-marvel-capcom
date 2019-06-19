@@ -16,6 +16,7 @@ void TeamManager:: setCharacters(std::vector<ControllerCharacter*> characters){
     supportCharacter = characters[1];
 
     firstCharacter = characters[0];
+    secondCharacter = characters[1];
 }
 
 void TeamManager::changeCharacter(){
@@ -134,7 +135,11 @@ int TeamManager::getCurrentCharacterLife() {
 }
 
 bool TeamManager::getTeamLife() {
-    return currentCharacter->getLife() + supportCharacter->getLife();
+
+    int life1 = currentCharacter->getLife();
+    int life2 = supportCharacter->getLife();
+
+    return life1 + life2;
 }
 
 void TeamManager::roundWin() {
@@ -147,6 +152,7 @@ void TeamManager::resetRound() {
     supportCharacter->resetLife();
 
     currentCharacter = firstCharacter;
+    supportCharacter = secondCharacter;
     currentCharacter->resetPosition(initialFlip);
 
     if ((cantChangeChar % 2) != 0) cantChangeChar++;

@@ -24,6 +24,10 @@ public:
 
     //AGREGAR ESTO EN VIEWCONTROLLERFACTORY
 
+    void setLeftCharacter(ControllerCharacter *pCharacter);
+
+    void setRightCharacter(ControllerCharacter *character);
+
 private:
 
     TeamManager* teamManager1;
