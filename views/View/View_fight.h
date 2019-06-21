@@ -42,6 +42,8 @@ public:
 
     void updateShouldFight(char* shouldFight);
 
+    void updateTeamsWons(char roundsT1, char roundsT2);
+
 private:
     vector <Character*> team1;
     vector <Character*> team2;

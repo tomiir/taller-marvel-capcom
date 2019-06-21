@@ -35,6 +35,8 @@ public:
     void updateShouldFight(char* shouldFight);
     ViewAudioManager* viewAudioManager;
 
+    void updateTeamsWons(char roundsT1, char roundsT2);
+
 private:
     std::map<string, View* > views;
     std::map<string, View*>::iterator itr_views= views.begin();

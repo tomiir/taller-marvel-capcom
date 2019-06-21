@@ -180,4 +180,8 @@ void Game::updateShouldFight(char *shouldFight) {
     dynamic_cast<View_fight*>(this->view)->updateShouldFight(shouldFight);
 }
 
+void Game::updateTeamsWons(char roundsT1, char roundsT2) {
+    dynamic_cast<View_fight*>(this->view)->updateTeamsWons(roundsT1, roundsT2);
+}
+
 

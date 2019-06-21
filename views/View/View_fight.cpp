@@ -219,6 +219,12 @@ void View_fight::updateShouldFight(char *shouldFight) {
     lifeManagerTeam2->updateShouldFight(shouldFight_int);
 }
 
+void View_fight::updateTeamsWons(char roundsT1, char roundsT2) {
+
+    lifeManagerTeam1->updateWons(roundsT1 - '0');
+    lifeManagerTeam2->updateWons(roundsT2 - '0');
+}
+
 
 
 

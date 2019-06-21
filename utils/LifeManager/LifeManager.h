@@ -51,6 +51,7 @@ private:
     int y_second;
     int h_second;
     int w_second;
+    int roundsWon = 0;
 
 public:
     LifeManager(SDL_Renderer* renderer,int z,  vector<int> first,
@@ -68,6 +69,8 @@ public:
     void setAsRight();
 
     void updateShouldFight(int shouldFight);
+
+    void updateWons(char roundsWon);
 };
 
 

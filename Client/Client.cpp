@@ -221,9 +221,6 @@ void* Client::recvFromServer(void* arg) {
         }
         string message = (string)(messageFromServer);
         if(message == "") continue;
-
-        cout << message << endl;
-
         queueRecv.push(message);
     }
     return nullptr;
@@ -337,6 +334,11 @@ void* Client::render(void *arg) {
 
             char shouldFight [] = {messageReceived[54], '\0'};
             game->updateShouldFight(shouldFight);
+
+            char roundsWonTeam1 = messageReceived[55];
+            char roundsWonTeam2 = messageReceived[56];
+
+            game->updateTeamsWons(roundsWonTeam1, roundsWonTeam2);
 
             game->render();
             queueRecv.pop();

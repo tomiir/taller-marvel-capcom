@@ -244,7 +244,7 @@ string ViewController_fight::giveNewParameters() {
     updates[42] = team2->getFlipCurrentCharacter();
 
     updates[43] = team1->getCurrentCharacterNumber();
-    updates[44] = team2->getCurrentCharacterNumber();//No entiendo porque me aparece value is never used
+    updates[44] = team2->getCurrentCharacterNumber();
 
 
     char seconds_string[2];
@@ -313,6 +313,8 @@ string ViewController_fight::giveNewParameters() {
     if(shouldFight) updates[54] = '1';
     else updates[54] = '0';
 
+    updates[55] = team1->getRoundsWon() + '0';
+    updates[56] = team2->getRoundsWon() + '0';
 
 
     updates = intToString(pos_floor[0], 2, 4, updates);
