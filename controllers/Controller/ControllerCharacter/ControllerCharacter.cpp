@@ -517,6 +517,22 @@ void ControllerCharacter::Kicked(int force) {
                 defeated = true;
             }
         }
+    }else {
+        if (force == WEAK) {
+            life -= weak_strike_dmg/3;
+            if (life <= 0) {
+                life = 0;
+                defeated = true;
+            }
+        }
+
+        if (force == STRONG) {
+            life -= strong_strike_dmg/3;
+            if (life <= 0) {
+                life = 0;
+                defeated = true;
+            }
+        }
     }
     dynamic_cast<Character_server *>(gameObject)->setState(state);
 }
