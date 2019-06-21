@@ -48,6 +48,8 @@ public:
 
     vector<char> getCharacters();
 
+    void setGameMode(const char *string);
+
 private:
 
 

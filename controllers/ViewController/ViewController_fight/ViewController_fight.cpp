@@ -13,13 +13,15 @@
 pthread_t countSeconds;
 int second;
 
-ViewController_fight::ViewController_fight():ViewController() {
+ViewController_fight::ViewController_fight(const char* gameMode):ViewController() {
     endOfRounds = false;
     countTime = false;
     time(&start);
     round = 0;
     endOfGame = false;
     shouldFight = false;
+
+    this->gameMode = gameMode;
 }
 
 ViewController_fight::~ViewController_fight() = default;
@@ -45,11 +47,13 @@ void ViewController_fight::setTeam(vector<ControllerCharacter *> characters, int
     if (team == 1) {
         team1->setCharacters(characters);
         team1->setInitialPos(true);
+        team1->setGameMode(gameMode);
     }
     else {
 
         team2->setCharacters(characters);
         team2->setInitialPos(false);
+        team2->setGameMode(gameMode);
     }
 
 }
@@ -129,103 +133,103 @@ void ViewController_fight::startCounting(int timeToCount){
 
 string ViewController_fight::giveNewParameters() {
 
-    if(team1->getTeamLife() == 0){
+    if(strcmp(gameMode, "game") == 0) {
+        if (team1->getTeamLife() == 0) {
 
-        pthread_cancel(countSeconds);
-        pthread_detach(countSeconds);
-        round++;
-        countTime = false;
-        shouldFight = false;
-        second = 0;
+            pthread_cancel(countSeconds);
+            pthread_detach(countSeconds);
+            round++;
+            countTime = false;
+            shouldFight = false;
+            second = 0;
 
-        team2->roundWin();
-        team1->resetRound();
-        team2->resetRound();
-
-        flipManager->setLeftCharacter(team1->getCurrentCharacter());
-        flipManager->setRightCharacter(team2->getCurrentCharacter());
-    }
-
-    if(team2->getTeamLife() == 0){
-
-        pthread_cancel(countSeconds);
-        pthread_detach(countSeconds);
-        round++;
-        countTime = false;
-        shouldFight = false;
-        second = 0;
-
-        team1->roundWin();
-        team1->resetRound();
-        team2->resetRound();
-
-        flipManager->setLeftCharacter(team1->getCurrentCharacter());
-        flipManager->setRightCharacter(team2->getCurrentCharacter());
-    }
-
-
-    if (!countTime && shouldFight){
-        this->startCounting(timeDuration);// esto debería ser 99
-    }
-
-    if (second == 0 && !endOfRounds && shouldFight) { //no me deje moverme mientras esta el fight
-        pthread_cancel(countSeconds);
-        pthread_detach(countSeconds);
-        round++;
-        countTime = false;
-        shouldFight = false;
-
-        int team1Life = team1->getTeamLife();
-        int team2Life = team2->getTeamLife();
-
-        if (team1Life > team2Life) team1->roundWin();
-        else if (team1Life < team2Life) team2->roundWin();
-        else if (team1Life == team2Life){
-            team1->roundWin();
             team2->roundWin();
+            team1->resetRound();
+            team2->resetRound();
+
+            flipManager->setLeftCharacter(team1->getCurrentCharacter());
+            flipManager->setRightCharacter(team2->getCurrentCharacter());
         }
-        team1->resetRound();
-        team2->resetRound();
 
-        flipManager->setLeftCharacter(team1->getCurrentCharacter());
-        flipManager->setRightCharacter(team2->getCurrentCharacter());
-    }
+        if (team2->getTeamLife() == 0) {
 
-    if (!countTime && !shouldFight) {
-        this->startCounting(3);
-    }
+            pthread_cancel(countSeconds);
+            pthread_detach(countSeconds);
+            round++;
+            countTime = false;
+            shouldFight = false;
+            second = 0;
 
-    else if (!shouldFight && second == 0){ //una vez que termina el fight me habilita a moverme
-        pthread_cancel(countSeconds);
-        pthread_detach(countSeconds);
-        shouldFight = true;
-        countTime = false;
-    }
+            team1->roundWin();
+            team1->resetRound();
+            team2->resetRound();
 
-    if (team1->getRoundsWon() == 2){
-        endOfRounds = true;
-        endOfGame = true;
-        shouldFight=false;
+            flipManager->setLeftCharacter(team1->getCurrentCharacter());
+            flipManager->setRightCharacter(team2->getCurrentCharacter());
+        }
 
-        vector<char> charactersTeam1 = team1->getCharacters();
 
-        winner_1 = charactersTeam1[0];
-        winner_2 = charactersTeam1[1];
+        if (!countTime && shouldFight) {
+            this->startCounting(timeDuration);// esto debería ser 99
+        }
 
-        round = 3;
-    }
-    else if (team2->getRoundsWon() == 2){
-        endOfRounds = true;
-        endOfGame = true;
-        shouldFight=false;
+        if (second == 0 && !endOfRounds && shouldFight) { //no me deje moverme mientras esta el fight
+            pthread_cancel(countSeconds);
+            pthread_detach(countSeconds);
+            round++;
+            countTime = false;
+            shouldFight = false;
 
-        vector<char> charactersTeam2 = team2->getCharacters();
+            int team1Life = team1->getTeamLife();
+            int team2Life = team2->getTeamLife();
 
-        winner_1 = charactersTeam2[0];
-        winner_2 = charactersTeam2[1];
+            if (team1Life > team2Life) team1->roundWin();
+            else if (team1Life < team2Life) team2->roundWin();
+            else if (team1Life == team2Life) {
+                team1->roundWin();
+                team2->roundWin();
+            }
+            team1->resetRound();
+            team2->resetRound();
 
-        round = 3;
-    }
+            flipManager->setLeftCharacter(team1->getCurrentCharacter());
+            flipManager->setRightCharacter(team2->getCurrentCharacter());
+        }
+
+        if (!countTime && !shouldFight) {
+            this->startCounting(3);
+        } else if (!shouldFight && second == 0) { //una vez que termina el fight me habilita a moverme
+            pthread_cancel(countSeconds);
+            pthread_detach(countSeconds);
+            shouldFight = true;
+            countTime = false;
+        }
+
+        if (team1->getRoundsWon() == 2) {
+            endOfRounds = true;
+            endOfGame = true;
+            shouldFight = false;
+
+            vector<char> charactersTeam1 = team1->getCharacters();
+
+            winner_1 = charactersTeam1[0];
+            winner_2 = charactersTeam1[1];
+
+            round = 3;
+        } else if (team2->getRoundsWon() == 2) {
+            endOfRounds = true;
+            endOfGame = true;
+            shouldFight = false;
+
+            vector<char> charactersTeam2 = team2->getCharacters();
+
+            winner_1 = charactersTeam2[0];
+            winner_2 = charactersTeam2[1];
+
+            round = 3;
+        }
+
+    }else shouldFight = true;
 
 
     string updates = "010000000000000000000000000000000000000000000000000000000";
@@ -266,6 +270,11 @@ string ViewController_fight::giveNewParameters() {
     //int lifeTeam1 = second; // uso esto para probar si las barras cambian bien de vida
     int lifeTeam1 = team1->getCurrentCharacterLife();
     int lifeTeam2 = team2->getCurrentCharacterLife();
+
+    if (strcmp(gameMode, "training") == 0){
+        lifeTeam1 = 100;
+        lifeTeam2 = 100;
+    }
 
     char lifeTeam1_string[3];
     char lifeTeam2_string[3];

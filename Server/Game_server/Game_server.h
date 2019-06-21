@@ -21,7 +21,7 @@ class Game_server {
 public:
     Game_server(int screenWidth_, int screenHeight_);
     ~Game_server();
-    void init();
+    void init(const char* gameMode);
 
 
     bool haveToChangeViewController();

@@ -15,10 +15,10 @@ ViewControllerFactory::ViewControllerFactory(int screenWidth_, int screenHeight_
 ViewControllerFactory::~ViewControllerFactory() = default;
 
 
-ViewController_fight* ViewControllerFactory::getViewController_fight() {
+ViewController_fight* ViewControllerFactory::getViewController_fight(const char* gameMode) {
 
 
-    ViewController_fight *viewControllerFight = new ViewController_fight();
+    ViewController_fight *viewControllerFight = new ViewController_fight(gameMode);
 
     JsonConfigs* config = JsonConfigs::getJson();
     int speedCharacter = config->getCharactersSpeed();

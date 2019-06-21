@@ -174,3 +174,9 @@ vector<char> TeamManager::getCharacters() {
 
     return teamNames;
 }
+
+void TeamManager::setGameMode(const char *gameMode) {
+
+    currentCharacter->setGameMode(gameMode);
+    supportCharacter->setGameMode(gameMode);
+}

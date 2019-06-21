@@ -9,6 +9,8 @@
 int serverSocket_s;
 struct sockaddr_in serverAddr_s;
 
+const char* gameMode;
+
 //----CLIENT VARIABLES----
 
 int clientSocket[MAXCLIENTS + 1];
@@ -476,7 +478,9 @@ void * Server::rejectingClients(void *clientIter_){
 }
 
 
-void Server::connect() {
+void Server::connect(const char* mode) {
+
+    gameMode = mode;
 
     CLogger* logger = CLogger::GetLogger();
 
@@ -563,7 +567,7 @@ void Server::connect() {
     const int SCREEN_HEIGHT = config->getScreenSize()[1];
 
     game_server = new Game_server(SCREEN_WIDTH, SCREEN_HEIGHT);
-    game_server->init();
+    game_server->init(gameMode);
 
     //Se arranca a enviar el conectado y el team a los clientes
     sleep(12); //ESTE SLEEP ES PARA DARLE TIEMPO A LOS CLIENTES A QUE CARGUEN TODAS LAS IMAGENES DEL JSON. SI NO COMO TARDAN VA A DECIR QUE SE DESCONECTARON

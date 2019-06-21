@@ -16,12 +16,12 @@ Game_server::Game_server(int screenWidth_, int screenHeight_) {
 Game_server::~Game_server() = default;
 
 
-void Game_server::init() {
+void Game_server::init(const char* gameMode) {
 
     factory = new ViewControllerFactory(screenWidth, screenHeight);
 
     viewsController["char_select"] = new ViewController_charSelect();
-    viewsController["fight"] = factory->getViewController_fight();
+    viewsController["fight"] = factory->getViewController_fight(gameMode);
     viewsController["endGame"] = new ViewController_endGame;
     characters = factory->getControllerCharacter();
 

@@ -535,6 +535,8 @@ void ControllerCharacter::Kicked(int force) {
         }
     }
     dynamic_cast<Character_server *>(gameObject)->setState(state);
+
+    if(strcmp(gameMode, "training") == 0) life = 100;
 }
 
 int ControllerCharacter::getLife() {
@@ -558,4 +560,9 @@ void ControllerCharacter::resetPosition(bool initialFlip) {
 char ControllerCharacter::getCode() {
 
     return dynamic_cast<Character_server *>(gameObject)->getCode();
+}
+
+void ControllerCharacter::setGameMode(const char *gameMode) {
+
+    this->gameMode = gameMode;
 }

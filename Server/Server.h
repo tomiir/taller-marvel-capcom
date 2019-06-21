@@ -35,7 +35,7 @@ class Server {
 public:
     Server(int cantClients_, int port_);
     ~Server() = default;
-    void connect();
+    void connect(const char* mode);
     static void* receivingEventsFromClient(void *clientSock_);
     static void *updateModel(void* arg);
 

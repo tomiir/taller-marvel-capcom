@@ -20,7 +20,7 @@ class ViewController_fight: public ViewController {
 
 public:
 
-    ViewController_fight();
+    ViewController_fight(const char* gameMode);
     ~ViewController_fight();
     void handleEvent(string event) override;
     void addTeams(TeamManager* teamManager1, TeamManager* teamManager2);
@@ -58,6 +58,8 @@ private:
     bool endOfGame;
     bool shouldFight;
     int timeDuration = 60;
+
+    const char* gameMode;
 };
 
 

@@ -50,6 +50,8 @@ public:
 
     char getCode();
 
+    void setGameMode(const char *gameMode);
+
 private:
 
     int screenWidth, screenHeight, speedCharacter;
@@ -69,6 +71,8 @@ private:
 
     int WEAK = 0;
     int STRONG = 1;
+
+    const char* gameMode;
 };
 
 
