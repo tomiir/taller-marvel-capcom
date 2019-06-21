@@ -228,7 +228,7 @@ string ViewController_fight::giveNewParameters() {
     }
 
 
-    string updates = "0100000000000000000000000000000000000000000000000000000";
+    string updates = "010000000000000000000000000000000000000000000000000000000";
 
     vector<int> pos_floor = backgrounds[0]->getPosCamera();
     vector<int> pos_moon = backgrounds[1]->getPosCamera();

@@ -6,7 +6,7 @@
 
 
 #define NOBEAT (char*)"0"
-#define MESSAGEFROMSERVERLEN 55
+#define MESSAGEFROMSERVERLEN 57
 #define MESSAGEFROMSERVERLEN2 5
 
 bool playedCharSelectMusic = false;
@@ -221,6 +221,9 @@ void* Client::recvFromServer(void* arg) {
         }
         string message = (string)(messageFromServer);
         if(message == "") continue;
+
+        cout << message << endl;
+
         queueRecv.push(message);
     }
     return nullptr;
