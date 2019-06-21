@@ -44,15 +44,15 @@ void LifeManager::render() {
     SDL_Rect rectangleWons;
 
     if(isRight){
-        rectangleWons.x = 724;
-        rectangleWons.y = 63;
+        rectangleWons.x = 720;
+        rectangleWons.y = 75;
         rectangleWons.w = 23 * roundsWon;
         rectangleWons.h = 23;
     }
     else{
         rectangleWons.x = 455;
-        rectangleWons.y = 63;
-        rectangleWons.w = 26 * roundsWon;
+        rectangleWons.y = 75;
+        rectangleWons.w = 23 * roundsWon;
         rectangleWons.h = 23;
     }
 
