@@ -40,7 +40,7 @@ LifeManager::LifeManager(SDL_Renderer* renderer,int z,  vector<int> first,
 
 void LifeManager::render() {
 
-    SDL_SetRenderDrawColor(renderer,240,103,8, 255);
+    SDL_SetRenderDrawColor(renderer,24,157,3, 255);
     SDL_Rect rectangleWons;
 
     if(isRight){
