@@ -40,20 +40,20 @@ LifeManager::LifeManager(SDL_Renderer* renderer,int z,  vector<int> first,
 
 void LifeManager::render() {
 
-    SDL_SetRenderDrawColor(renderer,24,157,3, 255);
+    SDL_SetRenderDrawColor(renderer,8,255,60, 255);
     SDL_Rect rectangleWons;
 
     if(isRight){
-        rectangleWons.x = x;
-        rectangleWons.y = y + 65;
-        rectangleWons.w = 10* roundsWon;
-        rectangleWons.h = 11;
+        rectangleWons.x = 724;
+        rectangleWons.y = 63;
+        rectangleWons.w = 23 * roundsWon;
+        rectangleWons.h = 23;
     }
     else{
-        rectangleWons.x = x + 460; //460
-        rectangleWons.y = y + 65; //65
-        rectangleWons.w = 10 * roundsWon;
-        rectangleWons.h = 11;
+        rectangleWons.x = 455;
+        rectangleWons.y = 63;
+        rectangleWons.w = 26 * roundsWon;
+        rectangleWons.h = 23;
     }
 
     SDL_RenderFillRect(renderer, &rectangleWons);
