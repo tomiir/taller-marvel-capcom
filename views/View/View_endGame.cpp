@@ -16,6 +16,7 @@ void View_endGame::updateView() {
     itr_winners = winners.find(winner_string);
     winner_toRender = itr_winners->second;
     winner_toRender->render();
+    ilumination->render();
 
 
     SDL_RenderPresent(renderer);
