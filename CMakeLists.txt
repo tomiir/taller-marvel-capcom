@@ -354,6 +354,30 @@ add_executable(
         Animations/SpiderManAnimations/SpiderManThrowAnimation.cpp
         Animations/VenomAnimations/VenomThrowAnimation.cpp
         Animations/VenomAnimations/VenomThrowAnimation.h
+        utils/SpriteManagers/CaptainAmericaProjectileSpriteManager/CaptainAmericaProjectileSpriteManager.cpp
+        utils/SpriteManagers/CaptainAmericaProjectileSpriteManager/CaptainAmericaProjectileSpriteManager.h
+        utils/SpriteManagers/SpiderManProjectileSpriteManager/SpiderManProjectileSpriteManager.h
+        utils/SpriteManagers/SpiderManProjectileSpriteManager/SpiderManProjectileSpriteManager.cpp
+        utils/SpriteManagers/ChunLiProjectileSpriteManager/ChunLiProjectileSpriteManager.h
+        utils/SpriteManagers/ChunLiProjectileSpriteManager/ChunLiProjectileSpriteManager.cpp
+        utils/SpriteManagers/VenomProjectileSpriteManager/VenomProjectileSpriteManager.h
+        utils/SpriteManagers/VenomProjectileSpriteManager/VenomProjectileSpriteManager.cpp
+        Animations/VenomAnimations/VenomProjectileAnimation.cpp
+        Animations/VenomAnimations/VenomProjectileAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaProjectileAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaProjectileAnimation.h
+        Animations/SpiderManAnimations/SpiderManProjectileAnimation.cpp
+        Animations/SpiderManAnimations/SpiderManProjectileAnimation.h
+        Animations/ChunLiAnimations/ChunLiProjectileAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiProjectileAnimation.h
+        utils/HitboxManager/CaptainAmericaProjectileHitboxManager/CaptainAmericaProjectileHitboxManager.cpp
+        utils/HitboxManager/CaptainAmericaProjectileHitboxManager/CaptainAmericaProjectileHitboxManager.h
+        utils/HitboxManager/SpiderManProjectileHitboxManager/SpiderManProjectileHitboxManager.h
+        utils/HitboxManager/SpiderManProjectileHitboxManager/SpiderManProjectileHitboxManager.cpp
+        utils/HitboxManager/ChunLiProjectileHitboxManager/ChunLiProjectileHitboxManager.h
+        utils/HitboxManager/ChunLiProjectileHitboxManager/ChunLiProjectileHitboxManager.cpp
+        utils/HitboxManager/VenomProjectileHitboxManager/VenomProjectileHitboxManager.h
+        utils/HitboxManager/VenomProjectileHitboxManager/VenomProjectileHitboxManager.cpp
 
         Json/JsonGameObject_charSelect.cpp Json/JsonGameObject_charSelect.h Json/JsonSintax.cpp Json/JsonSintax.h Json/JsonDisconection.cpp Json/JsonDisconection.h utils/LifeManager/LifeManager.cpp utils/LifeManager/LifeManager.h utils/TimeManager/TimeManager.cpp utils/TimeManager/TimeManager.h controllers/ViewController/ViewController_endGame/ViewController_endGame.cpp controllers/ViewController/ViewController_endGame/ViewController_endGame.h views/View/View_endGame.cpp views/View/View_endGame.h)
 

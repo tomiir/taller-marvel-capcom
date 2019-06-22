@@ -4,7 +4,7 @@
 
 #include "Character_server.h"
 
-Character_server::Character_server(int initialY, std::string name, int width, int height, HitboxManager* hitbox_, int wSprite, int hSprite) :
+Character_server::Character_server(int initialY, std::string name, int width, int height, HitboxManager* hitbox_, int wSprite, int hSprite, Character_server* projectile_) :
         GameObject_server(name, 0, initialY, width, height) {
 
     this->initialY = initialY;
@@ -14,6 +14,7 @@ Character_server::Character_server(int initialY, std::string name, int width, in
     this->name = name;
     this->wSprite = int( wSprite * 2.5);
     this->hSprite = int( hSprite * 2.5);
+    projectile = projectile_;
 
 }
 
@@ -59,8 +60,6 @@ void Character_server::spriteCoordinates(){
 void Character_server::setState(string state) {
 
     this->state = state;
-
-    if(state == "throw") return; //ESTO LO PONGO POR AHORA MIENTRAS NO TENGAMOS HITBOX DE THROW
 
     spriteCoordinates();
     spriteRect = SDL_Rect{xPos, yPos, wSprite, hSprite};

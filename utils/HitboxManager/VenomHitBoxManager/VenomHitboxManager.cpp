@@ -49,6 +49,9 @@ VenomHitboxManager::VenomHitboxManager() : HitboxManager(){
     SDL_Rect hitboxStrongDownKickBody = SDL_Rect{605, 343, 238, 125};
     SDL_Rect hitboxStrongDownKickLeg = SDL_Rect{778, 298, 273, 70};
 
+    SDL_Rect hitboxThrowing = SDL_Rect{623, 175, 320, 293};
+
+
     stateHitBoxes["still"] = { hitboxStill };
     stateHitBoxes["walk"] = { hitboxWalkFoward };
 //    stateHitBoxes["walkFoward"] = { hitboxWalkFoward };
@@ -76,6 +79,7 @@ VenomHitboxManager::VenomHitboxManager() : HitboxManager(){
     stateHitBoxes["strongAirKick"] = {hitboxStrongAirKickBody, hitboxStrongAirKickLeg};
     stateHitBoxes["strongDownPunch"] = {hitboxStrongDownPunchBody, hitboxStrongDownPunchArm};
     stateHitBoxes["strongDownKick"] = {hitboxStrongDownKickBody, hitboxStrongDownKickLeg};
+    stateHitBoxes["throw"] = {hitboxThrowing};
 
 
 

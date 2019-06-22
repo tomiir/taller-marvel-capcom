@@ -16,7 +16,7 @@ using namespace std;
 class Character_server : public GameObject_server {
 
 public:
-    Character_server(int initialY, string name, int width, int height, HitboxManager* hitbox_, int wSprite, int hSprite);
+    Character_server(int initialY, string name, int width, int height, HitboxManager* hitbox_, int wSprite, int hSprite, Character_server* projectile_);
     ~Character_server();
 
     void move(DirectionVector* direction) override ;
@@ -55,6 +55,7 @@ private:
     SDL_Rect spriteRect, spriteRectFlip;
     int initialX;
     HitboxManager* hitbox;
+    Character_server* projectile;
 
 };
 

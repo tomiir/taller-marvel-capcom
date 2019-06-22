@@ -6,7 +6,7 @@
 #include <string.h>
 
 
-Character::Character(const char* imagePath, int z_index, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialY, string name, double size) :
+Character::Character(const char* imagePath, int z_index, SDL_Renderer* rend, SpriteManager* spriteManager_ , int initialY, string name, double size, Character* projectile_) :
            GameObject(imagePath, name, z_index, rend, 0, initialY, 0, 0) {
 
     spriteManager = spriteManager_;
@@ -14,6 +14,7 @@ Character::Character(const char* imagePath, int z_index, SDL_Renderer* rend, Spr
     logger->Log("Creando personaje: " + name, DEBUG, "");
     this->size = size;
     state = "still";
+    projectile = projectile_;
 
     this->name = name;
 

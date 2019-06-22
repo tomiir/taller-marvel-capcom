@@ -50,6 +50,8 @@ ChunLiHitboxManager::ChunLiHitboxManager() :  HitboxManager(){
     SDL_Rect hitboxStrongDownKickBody = SDL_Rect{460, 300, 153, 148};
     SDL_Rect hitboxStrongDownKickLeg = SDL_Rect{613, 293, 210, 60};
 
+    SDL_Rect hitboxThrowing = SDL_Rect{455, 235, 150, 223};
+
 
     stateHitBoxes["still"] = { hitboxStill };
     stateHitBoxes["walk"] = { hitboxWalkFoward };
@@ -78,6 +80,7 @@ ChunLiHitboxManager::ChunLiHitboxManager() :  HitboxManager(){
     stateHitBoxes["strongAirKick"] = {hitboxStrongAirKickBody, hitboxStrongAirKickLeg};
     stateHitBoxes["strongDownPunch"] = {hitboxStrongDownPunchBody, hitboxStrongDownPunchArm};
     stateHitBoxes["strongDownKick"] = {hitboxStrongDownKickBody, hitboxStrongDownKickLeg};
+    stateHitBoxes["throw"] = {hitboxThrowing};
 
 
     stateIterHitboxes = stateHitBoxes.find(currentState);

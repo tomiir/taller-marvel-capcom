@@ -3,7 +3,10 @@
 //
 
 #include "GameObjectServerFactory.h"
-
+#include "../../../utils/HitboxManager/CaptainAmericaProjectileHitboxManager/CaptainAmericaProjectileHitboxManager.h"
+#include "../../../utils/HitboxManager/SpiderManProjectileHitboxManager/SpiderManProjectileHitboxManager.h"
+#include "../../../utils/HitboxManager/ChunLiProjectileHitboxManager/ChunLiProjectileHitboxManager.h"
+#include "../../../utils/HitboxManager/VenomProjectileHitboxManager/VenomProjectileHitboxManager.h"
 
 
 GameObjectServerFactory::GameObjectServerFactory(int screenWidth_, int screenHeight_) {
@@ -23,12 +26,18 @@ vector<GameObject_server *> GameObjectServerFactory::getGameObjectsServerCharact
     map<string, HitboxManager*> hitboxManager;
     map<string, HitboxManager*>::iterator itrHitbox;
 
+    map<string, HitboxManager*> projectileHitboxManager;
+
 
     hitboxManager["CaptainAmerica"] = new CaptainAmericaHitboxManager();
     hitboxManager["SpiderMan"] = new SpiderManHitboxManager();
     hitboxManager["ChunLi"] = new ChunLiHitboxManager();
     hitboxManager["Venom"] = new VenomHitboxManager();
 
+    projectileHitboxManager["CaptainAmerica"] = new CaptainAmericaProjectileHitboxManager();
+    projectileHitboxManager["SpiderMan"] = new SpiderManProjectileHitboxManager();
+    projectileHitboxManager["ChunLi"] = new ChunLiProjectileHitboxManager();
+    projectileHitboxManager["Venom"] = new VenomProjectileHitboxManager();
 
     JsonConfigs* config = JsonConfigs::getJson();
     std::list<JsonCharacter> characters = config->getCharacters();
@@ -48,7 +57,24 @@ vector<GameObject_server *> GameObjectServerFactory::getGameObjectsServerCharact
         itrHitbox = hitboxManager.find(name);
         HitboxManager* hitbox = itrHitbox->second;
 
-        Character_server* C = new Character_server(initialY, name, width, height, hitbox, wSprite, hSprite);
+        HitboxManager* projectileHitbox = projectileHitboxManager[name];
+
+        Character_server* projectile;
+
+        if (name == "CaptainAmerica"){
+            projectile = new Character_server(0, "projectileCA", 95, 35, projectileHitbox, 322, 245, NULL);
+        }
+        else if (name == "SpiderMan"){
+            projectile = new Character_server(0, "projectileSM", 193, 53, projectileHitbox, 491, 268, NULL);
+        }
+        else if (name == "ChunLi"){
+            projectile = new Character_server(0, "projectileCL", 55, 63, projectileHitbox, 407, 210, NULL);
+        }
+        else if (name == "Venom"){
+            projectile = new Character_server(0, "projectileV", 80, 25, projectileHitbox, 560, 238, NULL);
+        }
+
+        Character_server* C = new Character_server(initialY, name, width, height, hitbox, wSprite, hSprite, projectile);
 
         C->setInitialXPositions(width/2, (screenWidth - width) - (width/2));
         gameObjects.push_back((C));

@@ -14,6 +14,10 @@
 #include "../../../utils/AudioManager/SpiderManAudioManager/SpiderManAudioManager.h"
 #include "../../../utils/AudioManager/VenomAudioManager/VenomAudioManager.h"
 #include "../../../utils/AudioManager/ChunLiAudioManager/ChunLiAudioManager.h"
+#include "../../../utils/SpriteManagers/CaptainAmericaProjectileSpriteManager/CaptainAmericaProjectileSpriteManager.h"
+#include "../../../utils/SpriteManagers/SpiderManProjectileSpriteManager/SpiderManProjectileSpriteManager.h"
+#include "../../../utils/SpriteManagers/ChunLiProjectileSpriteManager/ChunLiProjectileSpriteManager.h"
+#include "../../../utils/SpriteManagers/VenomProjectileSpriteManager/VenomProjectileSpriteManager.h"
 #include <map>
 
 GameObjectFactory::GameObjectFactory(SDL_Renderer *renderer_, int screenWidth_, int screenHeight_) {
@@ -50,6 +54,7 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
 
     map<string, AudioManager*> audioManagers;
     map<string, SpriteManager*> spriteManagers;
+    map<string, SpriteManager*> projectileManagers;
 
     spriteManagers["CaptainAmerica"] = new CaptainAmericaSpriteManager();
     spriteManagers["SpiderMan"] = new SpiderManSpriteManager();
@@ -61,6 +66,11 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
     audioManagers["SpiderMan"] = new SpiderManAudioManager();
     audioManagers["Venom"] = new VenomAudioManager();
     audioManagers["ChunLi"] = new ChunLiAudioManager();
+
+    projectileManagers["CaptainAmerica"] = new CaptainAmericaProjectileSpriteManager();
+    projectileManagers["SpiderMan"] = new SpiderManProjectileSpriteManager();
+    projectileManagers["ChunLi"] = new ChunLiProjectileSpriteManager();
+    projectileManagers["Venom"] = new VenomProjectileSpriteManager();
 
     map<string, SpriteManager*>::iterator itrSprites;
     JsonConfigs* config = JsonConfigs::getJson();
@@ -97,9 +107,28 @@ vector<GameObject*> GameObjectFactory:: getGameObjectsCharacters_fight() {
         SpriteManager* spriteManager = itrSprites->second;
 
         AudioManager* audioManager = audioManagers[spriteManagerName]; //Uso el mismo que el spriteManager
-        Character* C;
 
-        C = new Character(path.c_str(),  zIndex, renderer, spriteManager , initialY, name, size);
+        SpriteManager* projectileManager = projectileManagers[spriteManagerName]; //Uso el mismo que el spriteManager
+
+        Character* C;
+        Character* projectile;
+
+        //ESTE IF SE SACARIA CUNADO SE LEVANTE DEL JSON Y ESTE LA RUTA DEL PROYECTIL JUNTO A SU PERSONAJE
+
+        if (name == "CaptainAmerica"){
+            projectile = new Character("../Images/Characters/proyectilCA.png", 99, renderer, projectileManager, 0, "projectileCA", 2.5, NULL);
+        }
+        else if (name == "SpiderMan"){
+            projectile = new Character("../Images/Characters/proyectilSM.png", 99, renderer, projectileManager, 0, "projectileSM", 2.5, NULL);
+        }
+        else if (name == "ChunLi"){
+            projectile = new Character("../Images/Characters/proyectilCL.png", 99, renderer, projectileManager, 0, "projectileCL", 2.5, NULL);
+        }
+        else if (name == "Venom"){
+            projectile = new Character("../Images/Characters/proyectilV.png", 99, renderer, projectileManager, 0, "projectileV", 2.5, NULL);
+        }
+
+        C = new Character(path.c_str(),  zIndex, renderer, spriteManager , initialY, name, size, projectile);
         C->setAudioManager(audioManager);
         C->setInitialXPositions(width/2, (screenWidth - width) - (width/2));
 
