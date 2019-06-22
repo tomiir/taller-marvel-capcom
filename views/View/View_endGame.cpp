@@ -21,8 +21,9 @@ void View_endGame::updateView() {
     SDL_RenderPresent(renderer);
 }
 
-void View_endGame::addBackground(GameObject* background){
+void View_endGame::addBackground(GameObject* background, GameObject* ilumination){
     this->background = background;
+    this->ilumination = ilumination;
 }
 
 void View_endGame::addWinners(vector <GameObject*> winners){

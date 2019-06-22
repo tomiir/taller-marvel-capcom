@@ -330,7 +330,6 @@ vector<GameObject *> GameObjectFactory::getGameObject_endGame() {
 
     GameObject* background    = new GameObject("../Images/winner/WinnerBackground.png","background",99,renderer, 0, 0, 1200 ,700);
 
-
     GameObject* ac    = new GameObject("../Images/winner/WinnerTeam.png","ac",99,renderer, 0, 394, 1200,306);
     positionToTake = {0,0, 1200, 306};
     ac->setOriginRect(positionToTake);
@@ -348,7 +347,7 @@ vector<GameObject *> GameObjectFactory::getGameObject_endGame() {
     cv->setOriginRect(positionToTake);
 
     GameObject* cs  = new GameObject("../Images/winner/WinnerTeam.png","cs",99,renderer, 0, 394, 1200,306);
-    positionToTake = {480, 1530, 1200, 306};
+    positionToTake = {0, 1530, 1200, 306};
     cs->setOriginRect(positionToTake);
 
     GameObject* vs  = new GameObject("../Images/winner/WinnerTeam.png","sv",99,renderer, 0, 394, 1200,306);
