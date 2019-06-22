@@ -78,7 +78,7 @@ string Mapper_fight_2::map(SDL_Event event){
             case SDLK_d:
                 keys = MAP_STOP_RIGHT;
                 break;
-            case SDLK_n:
+            case SDLK_b:
                 keys = MAP_STOP_GUARD;
                 break;
             default:

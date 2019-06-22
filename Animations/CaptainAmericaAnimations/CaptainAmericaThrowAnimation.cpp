@@ -8,7 +8,7 @@
 void CaptainAmericaThrowAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 12;
+    animationRate = 14;
     animationLength = 3;
 
     vector<int> frame0 = {0, 5635, 322, 245};
