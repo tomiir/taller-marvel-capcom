@@ -232,7 +232,7 @@ string ViewController_fight::giveNewParameters() {
     }else shouldFight = true;
 
 
-    string updates = "010000000000000000000000000000000000000000000000000000000";
+    string updates = "010000000000000000000000000000000000000000000000000000000000000000000000000";
 
     vector<int> pos_floor = backgrounds[0]->getPosCamera();
     vector<int> pos_moon = backgrounds[1]->getPosCamera();
@@ -336,6 +336,21 @@ string ViewController_fight::giveNewParameters() {
     updates = intToString(posCharT1[1], 27, 4, updates);
     updates = intToString(posCharT2[0], 32, 4, updates);
     updates = intToString(posCharT2[1], 36, 4, updates);
+
+    vector<int> posProjectileCharT1 = team1->getPosCurrentProjectile();
+    vector<int> posProjectileCharT2 = team2->getPosCurrentProjectile();
+
+    updates[57] = team1->getProjectileState();
+    updates[58] = team1->getProjectileFlip();
+
+    updates[66] = team2->getProjectileState();
+    updates[67] = team2->getProjectileFlip();
+
+
+    updates = intToString(posProjectileCharT1[0], 59, 4, updates);
+    updates = intToString(posProjectileCharT1[1], 63, 3, updates);
+    updates = intToString(posProjectileCharT2[0], 68, 4, updates);
+    updates = intToString(posProjectileCharT2[1], 72, 3, updates);
 
     return updates;
 }

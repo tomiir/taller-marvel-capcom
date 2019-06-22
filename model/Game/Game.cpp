@@ -184,4 +184,10 @@ void Game::updateTeamsWons(char roundsT1, char roundsT2) {
     dynamic_cast<View_fight*>(this->view)->updateTeamsWons(roundsT1, roundsT2);
 }
 
+void Game::updateProjectiles(char *posProjectilesTeam1_x, char *posProjectilesTeam1_y, char stateProjectilesTeam1, char flipProjectiles1,
+                            char *posProjectilesTeam2_x, char *posProjectilesTeam2_y, char stateProjectilesTeam2, char flipProjectiles2) {
+    dynamic_cast<View_fight*>(this->view)->updateProjectiles(posProjectilesTeam1_x, posProjectilesTeam1_y, stateProjectilesTeam1, flipProjectiles1,
+                                                            posProjectilesTeam2_x, posProjectilesTeam2_y, stateProjectilesTeam2, flipProjectiles2);
+}
+
 

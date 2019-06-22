@@ -8,7 +8,7 @@ VenomProjectileHitboxManager::VenomProjectileHitboxManager() : HitboxManager(){
 
     currentState = "flying";
 
-    SDL_Rect hitboxFlying = SDL_Rect{718, 295, 80, 25};
+    SDL_Rect hitboxFlying = SDL_Rect{718, 295, 127, 33};
 
     stateHitBoxes["flying"] = { hitboxFlying };
 

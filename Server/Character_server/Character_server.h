@@ -43,6 +43,12 @@ public:
 
     Character_server *getProjectile();
 
+    bool isFlip();
+
+    void setNewPosition(int xPosChar, int widthChar, bool flip);
+
+    void moveFoward(DirectionVector *direction);
+
 private:
 
     int initialY;

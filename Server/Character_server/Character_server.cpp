@@ -35,22 +35,22 @@ vector<int> Character_server::getInfo() {
 
 void Character_server::spriteCoordinates(){
 
-    if (name == "CaptainAmerica"){
+    if (name == "CaptainAmerica" or name == "projectileCA"){ //ESTOS OR DESPUES LOV VOY A SACAR ES POR AHORA
         xPos = objRect.x - 234;
         xPosFlip = objRect.x - 372;
         yPos = objRect.y - 196;
     }
-    if (name == "SpiderMan"){
+    if (name == "SpiderMan" or name == "projectileSM"){
         xPos = objRect.x - 428;
         xPosFlip = objRect.x - 528;
         yPos = objRect.y - 307;
     }
-    if (name == "ChunLi"){
+    if (name == "ChunLi" or name == "projectileCL"){
         xPos = objRect.x - 421;
         xPosFlip = objRect.x - 397;
         yPos = objRect.y - 240;
     }
-    if (name == "Venom"){
+    if (name == "Venom" or name == "projectileV"){
         xPos = objRect.x - 578;
         xPosFlip = objRect.x - 529;
         yPos = objRect.y - 227;
@@ -160,4 +160,33 @@ char Character_server::getCode() {
 
 Character_server *Character_server::getProjectile() {
     return projectile;
+}
+
+bool Character_server::isFlip() {
+    return horizontalFlip;
+}
+
+void Character_server::setNewPosition(int xPosChar, int widthChar, bool flip_) {
+
+    objRect.y = initialY;
+
+    if (!flip_){
+        this->flip = SDL_FLIP_NONE;
+        objRect.x = xPosChar + widthChar;
+    }else{
+        this->flip = SDL_FLIP_HORIZONTAL;
+        objRect.x = xPosChar - objRect.w;
+    }
+
+    this->setState("flying");
+
+}
+
+void Character_server::moveFoward(DirectionVector *direction) {
+
+    if (flip == SDL_FLIP_HORIZONTAL) direction->multiply(-1);
+
+    objRect.x += (int) direction->x;
+
+    hitbox->move(direction);
 }

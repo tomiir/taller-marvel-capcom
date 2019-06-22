@@ -18,22 +18,22 @@ Character::Character(const char* imagePath, int z_index, SDL_Renderer* rend, Spr
 
     this->name = name;
 
-    if (name == "CaptainAmerica"){
+    if (name == "CaptainAmerica" or name == "projectileCA"){
         auxY = 196;
         auxLeft = 234;
         auxRight = 372;
     }
-    if (name == "SpiderMan"){
+    if (name == "SpiderMan" or name == "projectileSM"){
         auxY = 307;
         auxLeft = 428;
         auxRight = 528;
     }
-    if (name == "ChunLi"){
+    if (name == "ChunLi" or name == "projectileCL"){
         auxY = 240;
         auxLeft = 421;
         auxRight = 397;
     }
-    if (name == "Venom"){
+    if (name == "Venom" or name == "projectileV"){
         auxY = 227;
         auxLeft = 578;
         auxRight = 529;
@@ -56,6 +56,9 @@ void Character::render() {
 //
 //    SDL_SetRenderDrawColor(renderer, 0,255,0,255);
 //    SDL_RenderDrawRect(renderer, &hitbox);
+
+    if(projectile_flying) projectile->render();
+
 }
 
 
@@ -166,4 +169,20 @@ SDL_Rect Character::getHitbox() {
 
 void Character::setAudioManager(AudioManager *audioManager) {
     this->audioManager = audioManager;
+}
+
+void Character::flipProjectileSprite(SDL_RendererFlip flip) {
+
+    projectile->flipSprite(flip);
+}
+
+void Character::changeProjectilePosition(int pos_x, int pos_y) {
+
+    projectile->changePosition(pos_x, pos_y);
+}
+
+void Character::setProjectileState(char state) {
+
+    if (state == '0') projectile_flying = false;
+    else projectile_flying = true;
 }

@@ -36,6 +36,8 @@ public:
     ViewAudioManager* viewAudioManager;
 
     void updateTeamsWons(char roundsT1, char roundsT2);
+    void updateProjectiles(char *posProjectilesTeam1_x, char *posProjectilesTeam1_y, char stateProjectilesTeam1, char flipProjectiles1,
+                                 char *posProjectilesTeam2_x, char *posProjectilesTeam2_y, char stateProjectilesTeam2, char flipProjectiles2);
 
 private:
     std::map<string, View* > views;

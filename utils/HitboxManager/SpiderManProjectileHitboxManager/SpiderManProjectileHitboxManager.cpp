@@ -8,7 +8,7 @@ SpiderManProjectileHitboxManager::SpiderManProjectileHitboxManager() : HitboxMan
 
     currentState = "flying";
 
-    SDL_Rect hitboxFlying = SDL_Rect{538, 353, 193, 53};
+    SDL_Rect hitboxFlying = SDL_Rect{538, 353, 145, 48};
 
     stateHitBoxes["flying"] = { hitboxFlying };
 

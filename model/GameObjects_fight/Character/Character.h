@@ -26,6 +26,9 @@ public:
     void setInitialPos(bool left);
     void setAudioManager(AudioManager* audioManager);
     string name;
+    void flipProjectileSprite(SDL_RendererFlip flip);
+    void changeProjectilePosition(int pos_x, int pos_y);
+    void setProjectileState(char state);
 
 private:
     SpriteManager* spriteManager;
@@ -41,6 +44,8 @@ private:
     Character* projectile;
 
     SDL_Rect getHitbox();
+
+    bool projectile_flying = false;
 };
 
 

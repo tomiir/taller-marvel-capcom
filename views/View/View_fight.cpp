@@ -226,6 +226,25 @@ void View_fight::updateTeamsWons(char roundsT1, char roundsT2) {
     lifeManagerTeam2->updateWons(roundsT2 - '0');
 }
 
+void View_fight::updateProjectiles(char *posT1_x, char *posT1_y, char stateT1, char flip1, char *posT2_x, char *posT2_y,
+                                  char stateT2, char flip2) {
+
+    int pos1_x = atoi(posT1_x);
+    int pos1_y = atoi(posT1_y);
+    int pos2_x = atoi(posT2_x);
+    int pos2_y = atoi(posT2_y);
+
+    team1[currentChar1]->flipProjectileSprite(selectFlip(flip1));
+    team2[currentChar2]->flipProjectileSprite(selectFlip(flip2));
+
+    team1[currentChar1]->changeProjectilePosition(pos1_x, pos1_y);
+    team2[currentChar2]->changeProjectilePosition(pos2_x, pos2_y);
+
+    team1[currentChar1]->setProjectileState(stateT1);
+    team2[currentChar2]->setProjectileState(stateT2);
+
+}
+
 
 
 

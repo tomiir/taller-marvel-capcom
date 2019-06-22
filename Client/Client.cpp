@@ -6,7 +6,7 @@
 
 
 #define NOBEAT (char*)"0"
-#define MESSAGEFROMSERVERLEN 57
+#define MESSAGEFROMSERVERLEN 75
 #define MESSAGEFROMSERVERLEN2 5
 
 bool playedCharSelectMusic = false;
@@ -339,6 +339,20 @@ void* Client::render(void *arg) {
             char roundsWonTeam2 = messageReceived[56];
 
             game->updateTeamsWons(roundsWonTeam1, roundsWonTeam2);
+
+            char posProjectileTeam1_x[] = {messageReceived[59], messageReceived[60], messageReceived[61], messageReceived[62], '\0'};
+            char posProjectileTeam1_y[] = {messageReceived[63], messageReceived[64], messageReceived[65], '\0'};
+            char stateProjectileTeam1 = messageReceived[57];
+
+            char posProjectileTeam2_x[] = {messageReceived[68], messageReceived[69], messageReceived[70], messageReceived[71], '\0'};
+            char posProjectileTeam2_y[] = {messageReceived[72], messageReceived[73], messageReceived[74], '\0'};
+            char stateProjectileTeam2 = messageReceived[66];
+
+            char flipProjectile1 = messageReceived[58];
+            char flipProjectile2 = messageReceived[67];
+
+            game->updateProjectiles(posProjectileTeam1_x, posProjectileTeam1_y, stateProjectileTeam1, flipProjectile1,
+                                   posProjectileTeam2_x, posProjectileTeam2_y, stateProjectileTeam2, flipProjectile2);
 
             game->render();
             queueRecv.pop();

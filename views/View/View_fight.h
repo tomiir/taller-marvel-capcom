@@ -44,6 +44,9 @@ public:
 
     void updateTeamsWons(char roundsT1, char roundsT2);
 
+    void updateProjectiles(char *posT1_x, char *posT1_y, char stateT1, char flip1, char *posT2_x, char *posT2_y,
+                                       char stateT2, char flip2);
+
 private:
     vector <Character*> team1;
     vector <Character*> team2;

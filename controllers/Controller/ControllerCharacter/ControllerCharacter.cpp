@@ -13,7 +13,7 @@ ControllerCharacter::ControllerCharacter(GameObject_server* gameObject, int scre
     screenWidth = screenWidth_;
     speedCharacter = speedCharacter_;
     jump = jumpRight = jumpLeft = inAir = leaving = entering = crowchedDown = movingRight = punching =  movingLeft =
-            moving = guarding = strongPunching = alreadyPunchInAir = kicked = defeated = throwing = false;
+            moving = guarding = strongPunching = alreadyPunchInAir = kicked = defeated = throwing = projectile_flying = false;
 
     collisionManager = new CollisionManager();
 
@@ -104,17 +104,42 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
     bool collision = collisionManager->Collisioning(gameObject, enemy);
 
     if (defeated){
-        state = "standKicked"; //ACA IRIA EL STATE DE DEFEATED O DEL QUE LO TIRAN
+        state = "standKicked";
         jump = true;
         inAir = true;
         if (info[0] >= enemyInfo[0]) jumpRight = true;
         else jumpLeft = true;
     }
 
+
+    if(projectile_flying) {
+
+        DirectionVector *step = new DirectionVector(speedCharacter, 0);
+
+        projectile->moveFoward(step);
+
+        collision = collisionManager->Collisioning(projectile, enemy);
+        if(collision){
+            enemyController->Kicked(WEAK);
+            projectile_flying = false;
+        }
+
+        vector<int> projectile_info= projectile->getInfo();
+
+        if(projectile_info[0] <= (0 - projectile_info[2]) or projectile_info[0] >= screenWidth) projectile_flying = false;
+
+        delete step;
+
+    }
+
     if(throwing) {
         throwing = ++throwing_timer != 20;
         if(!throwing) {
             state = "still";
+            projectile_flying = true;
+
+            bool flip = character->isFlip();
+            projectile->setNewPosition(info[0], info[2], flip);
         }
     }
 
@@ -212,7 +237,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         state = "still";
 
     //LOGICA DE TIRAR PROYECTIL
-    if (direction->isEqual(THROW) and (state == "still" or state == "walk")){
+    if (direction->isEqual(THROW) and (state == "still" or state == "walk") and !projectile_flying){
 
         movingRight = false;
         movingLeft = false;
@@ -443,6 +468,8 @@ void ControllerCharacter::move(DirectionVector *direction) {
 
     gameObject->move(direction);
 
+    if (projectile_flying) projectile->move(direction);
+
 }
 
 void ControllerCharacter::flip(SDL_RendererFlip flip) {
@@ -586,4 +613,18 @@ char ControllerCharacter::getCode() {
 void ControllerCharacter::setGameMode(const char *gameMode) {
 
     this->gameMode = gameMode;
+}
+
+bool ControllerCharacter::projectileIsFlying() {
+    return projectile_flying;
+}
+
+bool ControllerCharacter::projectileIsFlip() {
+
+    return projectile->getFlip() == SDL_FLIP_HORIZONTAL;
+}
+
+vector<int> ControllerCharacter::getProjectilePosition() {
+
+    return projectile->getPosInfo();
 }

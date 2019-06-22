@@ -52,14 +52,20 @@ public:
 
     void setGameMode(const char *gameMode);
 
+    bool projectileIsFlying();
+
+    bool projectileIsFlip();
+
+    vector<int> getProjectilePosition();
+
 private:
 
     Character_server* projectile;
 
     int screenWidth, screenHeight, speedCharacter;
     int jumpDistance = 10;
-    bool jump, inAir, jumpRight, jumpLeft, leaving, entering,
-    crowchedDown, movingRight, movingLeft, moving, guarding, punching, strongPunching, alreadyPunchInAir, kicked, defeated, throwing;
+    bool jump, inAir, jumpRight, jumpLeft, leaving, entering, crowchedDown, movingRight,
+    movingLeft, moving, guarding, punching, strongPunching, alreadyPunchInAir, kicked, defeated, throwing, projectile_flying;
     string state = "still";
     CLogger* logger = CLogger::GetLogger();
     Character_server* character = dynamic_cast<Character_server*>(gameObject);

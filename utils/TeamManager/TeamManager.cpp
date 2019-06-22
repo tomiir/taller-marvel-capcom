@@ -181,3 +181,19 @@ void TeamManager::setGameMode(const char *gameMode) {
     currentCharacter->setGameMode(gameMode);
     supportCharacter->setGameMode(gameMode);
 }
+
+char TeamManager::getProjectileState() {
+
+    if(currentCharacter->projectileIsFlying()) return '1';
+    else return  '0';
+}
+
+char TeamManager::getProjectileFlip() {
+
+    if (currentCharacter->projectileIsFlip()) return '1';
+    else return '0';
+}
+
+vector<int> TeamManager::getPosCurrentProjectile() {
+    return currentCharacter->getProjectilePosition();
+}

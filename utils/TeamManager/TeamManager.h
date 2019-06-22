@@ -50,6 +50,12 @@ public:
 
     void setGameMode(const char *string);
 
+    char getProjectileState();
+
+    char getProjectileFlip();
+
+    vector<int> getPosCurrentProjectile();
+
 private:
 
 
