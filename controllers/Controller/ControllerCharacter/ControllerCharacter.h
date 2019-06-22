@@ -19,7 +19,7 @@ class ControllerCharacter : public Controller{
 
 
 public:
-    ControllerCharacter(GameObject_server *gameObject, int screenWidth_, int screenHeight_, int speedCharacter_, int speedCharacter);
+    ControllerCharacter(GameObject_server *gameObject, int screenWidth_, int screenHeight_, int speedCharacter_, int speedCharacter, Character_server* projectile_);
     ~ControllerCharacter();
     void handleEvent(string event, GameObject_server* enemy, ControllerCharacter * enemyController, int mate_life);
     bool isJumping();
@@ -53,6 +53,8 @@ public:
     void setGameMode(const char *gameMode);
 
 private:
+
+    Character_server* projectile;
 
     int screenWidth, screenHeight, speedCharacter;
     int jumpDistance = 10;

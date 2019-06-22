@@ -8,7 +8,7 @@
 #include "../../../utils/Logger/Logger.h"
 #include <unistd.h>
 
-ControllerCharacter::ControllerCharacter(GameObject_server* gameObject, int screenWidth_, int screenHeight_,  int speedCharacter_, int jumpSpeed) : Controller(gameObject, jumpSpeed){
+ControllerCharacter::ControllerCharacter(GameObject_server* gameObject, int screenWidth_, int screenHeight_,  int speedCharacter_, int jumpSpeed, Character_server* projectile_) : Controller(gameObject, jumpSpeed){
     screenHeight = screenHeight_;
     screenWidth = screenWidth_;
     speedCharacter = speedCharacter_;
@@ -17,6 +17,7 @@ ControllerCharacter::ControllerCharacter(GameObject_server* gameObject, int scre
 
     collisionManager = new CollisionManager();
 
+    projectile = projectile_;
 }
 
 ControllerCharacter::~ControllerCharacter() = default;

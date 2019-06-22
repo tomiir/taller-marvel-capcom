@@ -157,3 +157,7 @@ char Character_server::getCode() {
 
     }
 }
+
+Character_server *Character_server::getProjectile() {
+    return projectile;
+}

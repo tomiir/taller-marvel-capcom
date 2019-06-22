@@ -41,6 +41,8 @@ public:
 
     char getCode();
 
+    Character_server *getProjectile();
+
 private:
 
     int initialY;
