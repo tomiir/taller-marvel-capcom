@@ -13,7 +13,7 @@ ControllerCharacter::ControllerCharacter(GameObject_server* gameObject, int scre
     screenWidth = screenWidth_;
     speedCharacter = speedCharacter_;
     jump = jumpRight = jumpLeft = inAir = leaving = entering = crowchedDown = movingRight = punching =  movingLeft =
-            moving = guarding = strongPunching = alreadyPunchInAir = kicked = defeated = throwing = false;
+            moving = guarding = strongPunching = alreadyPunchInAir = kicked = defeated = throwing = grab = grabbed = false;
 
     collisionManager = new CollisionManager();
 
@@ -104,7 +104,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
     bool collision = collisionManager->Collisioning(gameObject, enemy);
 
     if (defeated){
-        state = "standKicked"; //ACA IRIA EL STATE DE DEFEATED O DEL QUE LO TIRAN
+        state = "standKicked";
         jump = true;
         inAir = true;
         if (info[0] >= enemyInfo[0]) jumpRight = true;
@@ -113,9 +113,12 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
 
     if(throwing) {
         throwing = ++throwing_timer != 20;
-        if(!throwing) {
-            state = "still";
-        }
+        if(!throwing) state = "still";
+    }
+
+    if(grab){
+        grab = ++ grabing_timer != 20;
+        if(!grab) state = "still";
     }
 
 
@@ -128,7 +131,6 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
                 else state = "crowchedDown";
             }
             else state = "jump";
-
             movingLeft = false;
             movingRight = false;
         }
@@ -221,8 +223,56 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         throwing_timer = 0;
     }
 
+    if(direction->isEqual(GRAB) and (state == "still" or state == "walk")){
+        movingRight = false;
+        movingLeft = false;
+        grab = true;
+        state = "grab";
+        throwing_timer = 0;
+        collision = collisionManager->Collisioning(gameObject, enemy);
+        if(collision){
+            enemyController->Grabbed();
+        }
+    }
 
-    //LOGICA DE GOLPES
+    if(state == "grabbed"){
+
+        inAir = true;
+        grabbed = true;
+
+        DirectionVector* step;
+        SDL_RendererFlip flip = this->getFlip();
+
+        if(flipFlag == 0){
+            if(flip == SDL_FLIP_NONE) isFliped = false;
+            if(flip == SDL_FLIP_HORIZONTAL) isFliped = true;
+            flipFlag = 1;
+        }
+
+        if( !characterIsntInLeftBoundary or !characterIsntInRightBoundary ){
+            life -= grabbed_dmg;
+            grabbed = false;
+            state = "still";
+            gameObject->stayInFloor();
+            flipFlag = 0;
+            if (life <= 0) {
+                life = 0;
+                defeated = true;
+            }
+        }
+
+        else {
+            if(isFliped) step = new DirectionVector(-jumpSpeed, 0);
+            else step = new DirectionVector(jumpSpeed, 0);
+            gameObject->move(step);
+            delete step;
+        }
+    }
+
+
+
+
+        //LOGICA DE GOLPES
     if(direction -> isEqual(WEAK_PUNCH) and !punching and !guarding and !strongPunching and !alreadyPunchInAir and !kicked and !defeated and !throwing) {
         logger->Log("Pegando", INFO, "");
 
@@ -337,6 +387,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
 
     if (direction->isEqual(GETTINGUP) and !inAir and !punching and !strongPunching and !kicked and !throwing) gameObject->stayInFloor();
 
+
     if (jump) {
 
         if(!punching and !guarding and !strongPunching and !kicked and !defeated) state = "jump";
@@ -354,7 +405,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         delete step;
     }
 
-    if (!jump and inAir and !leaving) {
+    if (!jump and inAir and !leaving and !grabbed) {
 
         if(!punching and !guarding and !strongPunching and !kicked and !defeated) state = "jump";
 
@@ -506,6 +557,14 @@ SDL_RendererFlip ControllerCharacter::getFlip() {
 
 GameObject_server *ControllerCharacter::getGameObject() {
     return gameObject;
+}
+
+void ControllerCharacter::Grabbed(){
+
+    if(!inAir){
+        grabbed = true;
+        state = "grabbed";
+    }
 }
 
 void ControllerCharacter::Kicked(int force) {

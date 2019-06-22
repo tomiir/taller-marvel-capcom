@@ -40,7 +40,7 @@ public:
     SDL_RendererFlip getFlip();
     GameObject_server *getGameObject();
     void Kicked(int force);
-
+    void Grabbed();
 
     int getLife();
 
@@ -59,7 +59,10 @@ private:
     int screenWidth, screenHeight, speedCharacter;
     int jumpDistance = 10;
     bool jump, inAir, jumpRight, jumpLeft, leaving, entering,
-    crowchedDown, movingRight, movingLeft, moving, guarding, punching, strongPunching, alreadyPunchInAir, kicked, defeated, throwing;
+         crowchedDown, movingRight, movingLeft, moving, guarding,
+         punching, strongPunching, alreadyPunchInAir, kicked,
+         defeated, throwing, grab, grabbed ;
+
     string state = "still";
     CLogger* logger = CLogger::GetLogger();
     Character_server* character = dynamic_cast<Character_server*>(gameObject);
@@ -71,6 +74,11 @@ private:
     int life = 100;
     int weak_strike_dmg = 6;
     int strong_strike_dmg = 12;
+
+    int grabbed_dmg = 12;
+    int grabing_timer = 0;
+    bool isFliped;
+    int flipFlag = 0;
 
     int WEAK = 0;
     int STRONG = 1;
