@@ -216,7 +216,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         movingRight = false;
         movingLeft = false;
         throwing = true;
-        state = "weakStandPunch"; //ESTO HAY QUE CAMBIARLO POR LA ANIMACION DE TIRAR CUANDO ESTE CARGADA
+        state = "throw";
         throwing_timer = 0;
     }
 

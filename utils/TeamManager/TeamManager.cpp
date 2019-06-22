@@ -107,6 +107,7 @@ char TeamManager::getStateCurrentCharacter() {
     else if (state == "standKicked") return 'k';
     else if (state == "downKicked") return 'l';
     else if (state == "airKicked") return 'm';
+    else if (state == "throw") return 'n';
 
 
 

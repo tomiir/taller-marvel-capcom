@@ -27,6 +27,7 @@
 #include "../../../Animations/VenomAnimations/VenomAirKickedAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomWeakDownKickAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomWeakAirKickAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomThrowAnimation.h"
 
 
 using namespace std;
@@ -57,6 +58,7 @@ void VenomSpriteManager::init(){
     animationMap["downGuard"] = new VenomDownGuardAnimation();
     animationMap["standGuard"] = new VenomStandGuardAnimation();
     animationMap["airGuard"] = new VenomAirGuardAnimation();
+    animationMap["throw"] = new VenomThrowAnimation();
 
 }
 

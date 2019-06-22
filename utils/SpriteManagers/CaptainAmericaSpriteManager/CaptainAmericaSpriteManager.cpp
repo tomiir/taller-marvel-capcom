@@ -28,6 +28,7 @@
 #include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaStrongDownKickAnimation.h"
 #include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaAirGuardAnimation.h"
 #include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaStandGuardAnimation.h"
+#include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaThrowAnimation.h"
 
 
 using namespace std;
@@ -59,9 +60,7 @@ void CaptainAmericaSpriteManager::init(){
     animationMap["downGuard"] = new CaptainAmericaDownGuardAnimation();
     animationMap["standGuard"] = new CaptainAmericaStandGuardAnimation();
     animationMap["airGuard"] = new CaptainAmericaAirGuardAnimation();
-
-
-
+    animationMap["throw"] = new CaptainAmericaThrowAnimation();
 
 }
 

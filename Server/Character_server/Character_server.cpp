@@ -58,11 +58,14 @@ void Character_server::spriteCoordinates(){
 
 void Character_server::setState(string state) {
 
+    this->state = state;
+
+    if(state == "throw") return; //ESTO LO PONGO POR AHORA MIENTRAS NO TENGAMOS HITBOX DE THROW
+
     spriteCoordinates();
     spriteRect = SDL_Rect{xPos, yPos, wSprite, hSprite};
     spriteRectFlip = SDL_Rect{xPosFlip, yPos, wSprite, hSprite};
 
-    this->state = state;
     hitbox->setHitboxes(state, horizontalFlip, spriteRect, spriteRectFlip );  // pongo con estos dos poque por ahora estan estos dos solos
 }
 
