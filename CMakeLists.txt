@@ -350,6 +350,10 @@ add_executable(
         Animations/CaptainAmericaAnimations/CaptainAmericaThrowAnimation.h
         Animations/ChunLiAnimations/ChunLiThrowAnimation.h
         Animations/ChunLiAnimations/ChunLiThrowAnimation.cpp
+        Animations/SpiderManAnimations/SpiderManThrowAnimation.h
+        Animations/SpiderManAnimations/SpiderManThrowAnimation.cpp
+        Animations/VenomAnimations/VenomThrowAnimation.cpp
+        Animations/VenomAnimations/VenomThrowAnimation.h
 
         Json/JsonGameObject_charSelect.cpp Json/JsonGameObject_charSelect.h Json/JsonSintax.cpp Json/JsonSintax.h Json/JsonDisconection.cpp Json/JsonDisconection.h utils/LifeManager/LifeManager.cpp utils/LifeManager/LifeManager.h utils/TimeManager/TimeManager.cpp utils/TimeManager/TimeManager.h controllers/ViewController/ViewController_endGame/ViewController_endGame.cpp controllers/ViewController/ViewController_endGame/ViewController_endGame.h views/View/View_endGame.cpp views/View/View_endGame.h)
 
