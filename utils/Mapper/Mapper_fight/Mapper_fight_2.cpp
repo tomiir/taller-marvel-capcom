@@ -43,11 +43,14 @@ string Mapper_fight_2::map(SDL_Event event){
             case SDLK_p:
                 keys = MAP_STRONGKICK;
                 break;
-            case SDLK_m:
+            case SDLK_n:
                 keys = MAP_GRAB;
                 break;
-            case SDLK_n:
+            case SDLK_b:
                 keys = MAP_GUARD;
+                break;
+            case SDLK_m:
+                keys = MAP_THROW;
                 break;
             default:
                 break;

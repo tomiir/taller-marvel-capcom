@@ -30,6 +30,7 @@ protected:
     string MAP_STRONGKICK ="k";
     string MAP_GUARD = "j";
     string MAP_GRAB = "m";
+    string MAP_THROW = "n";
 
     string MAP_JUMP_LEFT = "q";
     string MAP_JUMP_RIGHT = "e";

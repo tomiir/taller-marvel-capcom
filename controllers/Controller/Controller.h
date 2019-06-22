@@ -41,6 +41,7 @@ protected:
     DirectionVector* GUARD = new DirectionVector(3, 0);
     DirectionVector* GRAB = new DirectionVector(-3, -3);
     DirectionVector* STOP_GUARD = new DirectionVector(-3, 0);
+    DirectionVector* THROW = new DirectionVector(8, 8);
 
 
     DirectionVector* DIAGONAL_UP_RIGHT = new DirectionVector(1, -1);

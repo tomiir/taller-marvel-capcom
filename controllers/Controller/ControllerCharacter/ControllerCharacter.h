@@ -57,7 +57,7 @@ private:
     int screenWidth, screenHeight, speedCharacter;
     int jumpDistance = 10;
     bool jump, inAir, jumpRight, jumpLeft, leaving, entering,
-    crowchedDown, movingRight, movingLeft, moving, guarding, punching, strongPunching, alreadyPunchInAir, kicked, defeated;
+    crowchedDown, movingRight, movingLeft, moving, guarding, punching, strongPunching, alreadyPunchInAir, kicked, defeated, throwing;
     string state = "still";
     CLogger* logger = CLogger::GetLogger();
     Character_server* character = dynamic_cast<Character_server*>(gameObject);
@@ -65,6 +65,7 @@ private:
     int punching_timer = 0;
     int strongPunching_timer = 0;
     int kicked_timer = 0;
+    int throwing_timer = 0;
     int life = 100;
     int weak_strike_dmg = 6;
     int strong_strike_dmg = 12;
