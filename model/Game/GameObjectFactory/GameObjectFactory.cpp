@@ -354,9 +354,9 @@ vector<GameObject *> GameObjectFactory::getGameObject_endGame() {
     positionToTake = {0,306, 1200, 306};
     vs->setOriginRect(positionToTake);
 
-    GameObject* ilumination  = new GameObject("../Images/winner/Ilumination.png","sv",99,renderer, 0, 0, 1200,700);
+    GameObject* ilumination  = new GameObject("../Images/winner/Ilumination.png","ilumination",99,renderer, 0, 0, 1200,700);
     positionToTake = {0,0, 1200, 700};
-    vs->setOriginRect(positionToTake);
+    ilumination->setOriginRect(positionToTake);
 
     vector<GameObject *> gameObjects = {background, ac, av, as, cv, cs, vs, ilumination};
     return gameObjects ;
