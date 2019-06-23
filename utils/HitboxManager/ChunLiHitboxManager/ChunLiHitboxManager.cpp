@@ -81,6 +81,8 @@ ChunLiHitboxManager::ChunLiHitboxManager() :  HitboxManager(){
     stateHitBoxes["strongDownPunch"] = {hitboxStrongDownPunchBody, hitboxStrongDownPunchArm};
     stateHitBoxes["strongDownKick"] = {hitboxStrongDownKickBody, hitboxStrongDownKickLeg};
     stateHitBoxes["throw"] = {hitboxThrowing};
+    stateHitBoxes["grab"] = {hitboxWalkFoward};
+
 
 
     stateIterHitboxes = stateHitBoxes.find(currentState);

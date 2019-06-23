@@ -227,11 +227,16 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         movingRight = false;
         movingLeft = false;
         grab = true;
+        string oldState = state;
         state = "grab";
-        throwing_timer = 0;
         collision = collisionManager->Collisioning(gameObject, enemy);
         if(collision){
+            grabing_timer = 0;
             enemyController->Grabbed();
+        }
+        else{
+            grab = false;
+            state = oldState;
         }
     }
 

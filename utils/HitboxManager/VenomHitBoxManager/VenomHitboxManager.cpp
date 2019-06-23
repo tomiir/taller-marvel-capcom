@@ -80,6 +80,7 @@ VenomHitboxManager::VenomHitboxManager() : HitboxManager(){
     stateHitBoxes["strongDownPunch"] = {hitboxStrongDownPunchBody, hitboxStrongDownPunchArm};
     stateHitBoxes["strongDownKick"] = {hitboxStrongDownKickBody, hitboxStrongDownKickLeg};
     stateHitBoxes["throw"] = {hitboxThrowing};
+    stateHitBoxes["grab"] = {hitboxWalkFoward};
 
 
 
