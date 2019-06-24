@@ -9,19 +9,26 @@
 void ChunLiGrabbedAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 20;
-    animationLength = 4;
+    animationRate = 17;
+    animationLength = 10;
 
-    vector<int> frame0 = {0, 4620, 407, 210};
-    vector<int> frame1 = {407, 4620, 407, 210};
-    vector<int> frame2 = {814, 4620, 407, 210};
-    vector<int> frame3 = {1221, 4620, 407, 210};
+    vector<int> frame0 = {0, 4650, 407, 210};
+    vector<int> frame1 = {407, 4650, 407, 210};
+    vector<int> frame2 = {814, 4650, 407, 210};
+    vector<int> frame3 = {1221, 4650, 407, 210};
+    vector<int> frame4 = {1628, 4650, 407, 210};
 
 
     animation.push_back(frame0);
     animation.push_back(frame1);
     animation.push_back(frame2);
     animation.push_back(frame3);
+    animation.push_back(frame4);
+    animation.push_back(frame4);
+    animation.push_back(frame4);
+    animation.push_back(frame4);
+    animation.push_back(frame4);
+    animation.push_back(frame4);
 }
 
 ChunLiGrabbedAnimation::ChunLiGrabbedAnimation() : Animation() {
