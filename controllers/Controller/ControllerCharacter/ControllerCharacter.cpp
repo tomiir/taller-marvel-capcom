@@ -118,6 +118,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
 
         projectile->moveFoward(step);
 
+        projectile->setState("flying");
         collision = collisionManager->Collisioning(projectile, enemy);
         if(collision){
             enemyController->Kicked(WEAK);

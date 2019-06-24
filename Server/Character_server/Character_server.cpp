@@ -56,7 +56,7 @@ void Character_server::spriteCoordinates(){
         yPos = objRect.y - 227;
     }
     if (name == "projectileCA"){
-        xPos = objRect.x - 234;
+        xPos = objRect.x - 254;
         xPosFlip = objRect.x - 372;
         yPos = objRect.y - 270;
     }
@@ -66,8 +66,8 @@ void Character_server::spriteCoordinates(){
         yPos = objRect.y - 370;
     }
     if (name == "projectileCL"){
-        xPos = objRect.x - 410;
-        xPosFlip = objRect.x - 397;
+        xPos = objRect.x - 450;
+        xPosFlip = objRect.x - 357;
         yPos = objRect.y - 230;
     }
     if (name == "projectileV"){
@@ -85,7 +85,7 @@ void Character_server::setState(string state) {
     spriteRect = SDL_Rect{xPos, yPos, wSprite, hSprite};
     spriteRectFlip = SDL_Rect{xPosFlip, yPos, wSprite, hSprite};
 
-    hitbox->setHitboxes(state, horizontalFlip, spriteRect, spriteRectFlip );  // pongo con estos dos poque por ahora estan estos dos solos
+    hitbox->setHitboxes(state, flip == SDL_FLIP_HORIZONTAL, spriteRect, spriteRectFlip );  // pongo con estos dos poque por ahora estan estos dos solos
 }
 
 void Character_server::stayInFloor() {

@@ -8,7 +8,7 @@ ChunLiProjectileHitboxManager::ChunLiProjectileHitboxManager() : HitboxManager()
 
     currentState = "flying";
 
-    SDL_Rect hitboxFlying = SDL_Rect{510, 255, 100, 75};
+    SDL_Rect hitboxFlying = SDL_Rect{480, 255, 100, 75};
 
     stateHitBoxes["flying"] = { hitboxFlying };
 

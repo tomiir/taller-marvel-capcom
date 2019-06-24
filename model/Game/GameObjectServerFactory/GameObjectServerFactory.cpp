@@ -62,7 +62,7 @@ vector<GameObject_server *> GameObjectServerFactory::getGameObjectsServerCharact
         Character_server* projectile;
 
         if (name == "CaptainAmerica"){
-            projectile = new Character_server(485, "projectileCA", 168, 43, projectileHitbox, 322, 245, NULL);
+            projectile = new Character_server(485, "projectileCA", 148, 48, projectileHitbox, 322, 245, NULL);
         }
         else if (name == "SpiderMan"){
             projectile = new Character_server(538, "projectileSM", 145, 48, projectileHitbox, 491, 268, NULL);

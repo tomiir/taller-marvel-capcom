@@ -9,7 +9,7 @@ CaptainAmericaProjectileHitboxManager::CaptainAmericaProjectileHitboxManager() :
 
     currentState = "flying";
 
-    SDL_Rect hitboxFlying = SDL_Rect{428, 290, 168, 43};
+    SDL_Rect hitboxFlying = SDL_Rect{568, 290, 148, 48};
 
     stateHitBoxes["flying"] = { hitboxFlying };
 
