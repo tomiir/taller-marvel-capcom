@@ -8,7 +8,7 @@
 void ChunLiGrabAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 3;
+    animationRate = 15;
     animationLength = 4;
 
     vector<int> frame0 = {0, 4410, 407, 210};

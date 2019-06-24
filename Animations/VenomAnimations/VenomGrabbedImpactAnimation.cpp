@@ -11,7 +11,7 @@
 void VenomGrabbedImpactAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 7;
+    animationRate = 20;
     animationLength = 2;
 
 

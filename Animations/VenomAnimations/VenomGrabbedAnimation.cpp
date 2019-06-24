@@ -11,7 +11,7 @@
 void VenomGrabbedAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 7;
+    animationRate = 20;
     animationLength = 2;
 
     vector<int> frame0 = {0, 5236, 560, 238};

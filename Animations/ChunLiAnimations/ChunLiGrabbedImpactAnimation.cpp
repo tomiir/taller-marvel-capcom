@@ -9,7 +9,7 @@
 void ChunLiGrabbedImpactAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 3;
+    animationRate = 20;
     animationLength = 3;
 
     vector<int> frame0 = {1628, 4620, 407, 210};

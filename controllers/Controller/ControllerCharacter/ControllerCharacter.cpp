@@ -290,7 +290,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
             grabbed = false;
             grabbedImpact = true;
 
-            if(grabbed_impact_timer == 20) {
+            if(grabbed_impact_timer == 30) {
 
                 state = "still";
                 inAir = false;

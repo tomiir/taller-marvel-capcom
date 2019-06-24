@@ -11,7 +11,7 @@
 void SpiderManGrabbedImpactAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 7;
+    animationRate = 20;
     animationLength = 3;
 
     vector<int> frame0 = {982, 6164, 491, 268};

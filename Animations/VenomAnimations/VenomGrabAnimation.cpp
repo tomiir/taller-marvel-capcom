@@ -9,7 +9,7 @@
 void VenomGrabAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 8;
+    animationRate = 7;
     animationLength = 10;
 
     vector<int> frame0 = {0, 4998, 560, 238};
