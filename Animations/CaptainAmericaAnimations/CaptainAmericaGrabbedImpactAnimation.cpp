@@ -17,7 +17,7 @@ void CaptainAmericaGrabbedImpactAnimation::init() {
     animationLength = 5;
 
     vector<int> frame0 = {966, 5390, 322, 245};
-    vector<int> frame1 = {1288, 5390, 322, 245};
+    vector<int> frame1 = {1288, 5420, 322, 245};
     vector<int> frame2 = {644, 4165, 322, 245};
 
 
