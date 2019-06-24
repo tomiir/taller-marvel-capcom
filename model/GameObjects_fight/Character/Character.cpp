@@ -18,23 +18,43 @@ Character::Character(const char* imagePath, int z_index, SDL_Renderer* rend, Spr
 
     this->name = name;
 
-    if (name == "CaptainAmerica" or name == "projectileCA"){
+    if (name == "CaptainAmerica"){
         auxY = 196;
         auxLeft = 234;
         auxRight = 372;
     }
-    if (name == "SpiderMan" or name == "projectileSM"){
+    if (name == "SpiderMan"){
         auxY = 307;
         auxLeft = 428;
         auxRight = 528;
     }
-    if (name == "ChunLi" or name == "projectileCL"){
+    if (name == "ChunLi"){
         auxY = 240;
         auxLeft = 421;
         auxRight = 397;
     }
-    if (name == "Venom" or name == "projectileV"){
+    if (name == "Venom"){
         auxY = 227;
+        auxLeft = 578;
+        auxRight = 529;
+    }
+    if (name == "projectileCA"){
+        auxY = 270;
+        auxLeft = 234;
+        auxRight = 372;
+    }
+    if (name == "projectileSM"){
+        auxY = 370;
+        auxLeft = 428;
+        auxRight = 528;
+    }
+    if (name == "projectileCL"){
+        auxY = 230;
+        auxLeft = 410;
+        auxRight = 397;
+    }
+    if (name == "projectileV"){
+        auxY = 270;
         auxLeft = 578;
         auxRight = 529;
     }

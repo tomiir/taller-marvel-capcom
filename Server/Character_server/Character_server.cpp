@@ -35,25 +35,45 @@ vector<int> Character_server::getInfo() {
 
 void Character_server::spriteCoordinates(){
 
-    if (name == "CaptainAmerica" or name == "projectileCA"){ //ESTOS OR DESPUES LOV VOY A SACAR ES POR AHORA
+    if (name == "CaptainAmerica"){
         xPos = objRect.x - 234;
         xPosFlip = objRect.x - 372;
         yPos = objRect.y - 196;
     }
-    if (name == "SpiderMan" or name == "projectileSM"){
+    if (name == "SpiderMan"){
         xPos = objRect.x - 428;
         xPosFlip = objRect.x - 528;
         yPos = objRect.y - 307;
     }
-    if (name == "ChunLi" or name == "projectileCL"){
+    if (name == "ChunLi"){
         xPos = objRect.x - 421;
         xPosFlip = objRect.x - 397;
         yPos = objRect.y - 240;
     }
-    if (name == "Venom" or name == "projectileV"){
+    if (name == "Venom"){
         xPos = objRect.x - 578;
         xPosFlip = objRect.x - 529;
         yPos = objRect.y - 227;
+    }
+    if (name == "projectileCA"){
+        xPos = objRect.x - 234;
+        xPosFlip = objRect.x - 372;
+        yPos = objRect.y - 270;
+    }
+    if (name == "projectileSM"){
+        xPos = objRect.x - 428;
+        xPosFlip = objRect.x - 528;
+        yPos = objRect.y - 370;
+    }
+    if (name == "projectileCL"){
+        xPos = objRect.x - 410;
+        xPosFlip = objRect.x - 397;
+        yPos = objRect.y - 230;
+    }
+    if (name == "projectileV"){
+        xPos = objRect.x - 578;
+        xPosFlip = objRect.x - 529;
+        yPos = objRect.y - 270;
     }
 }
 

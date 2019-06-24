@@ -237,7 +237,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         state = "still";
 
     //LOGICA DE TIRAR PROYECTIL
-    if (direction->isEqual(THROW) and (state == "still" or state == "walk") and !projectile_flying){
+    if (direction->isEqual(THROW) and (state == "still" or state == "walk") and !projectile_flying and !inAir){
 
         movingRight = false;
         movingLeft = false;
@@ -482,6 +482,9 @@ void ControllerCharacter::changePosition(int changeX, int changeY) {
 
     dynamic_cast<Character_server*> (gameObject)->changePosition(changeX, changeY);
 
+    throwing = false;
+    projectile_flying = false;
+
 }
 
 bool ControllerCharacter::isInAir() {
@@ -596,6 +599,8 @@ void ControllerCharacter::resetLife() {
     life = 100;
     defeated = false;
     jump = false;
+    projectile_flying = false;
+    throwing = false;
 }
 
 void ControllerCharacter::resetPosition(bool initialFlip) {
