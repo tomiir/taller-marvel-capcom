@@ -14,8 +14,8 @@ void VenomGrabbedAnimation::init() {
     animationRate = 20;
     animationLength = 8;
 
-    vector<int> frame0 = {0, 5236, 560, 238};
-    vector<int> frame1 = {560, 5236, 560, 238};
+    vector<int> frame0 = {0, 5260, 560, 238};
+    vector<int> frame1 = {560, 5260, 560, 238};
 
     animation.push_back(frame0);
     animation.push_back(frame0);
