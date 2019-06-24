@@ -69,7 +69,8 @@ private:
     bool jump, inAir, jumpRight, jumpLeft, leaving, entering,
          crowchedDown, movingRight, movingLeft, moving, guarding,
          punching, strongPunching, alreadyPunchInAir, kicked,
-         defeated, throwing, grab, grabbed, projectile_flying ;
+         defeated, throwing, grab, grabbed, projectile_flying,
+         grabbedImpact;
 
     string state = "still";
     CLogger* logger = CLogger::GetLogger();

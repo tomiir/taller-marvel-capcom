@@ -13,7 +13,7 @@ ControllerCharacter::ControllerCharacter(GameObject_server* gameObject, int scre
     screenWidth = screenWidth_;
     speedCharacter = speedCharacter_;
     jump = jumpRight = jumpLeft = inAir = leaving = entering = crowchedDown = movingRight = punching =  movingLeft =
-            moving = guarding = strongPunching = alreadyPunchInAir = kicked = defeated = throwing = projectile_flying = grab = grabbed = false;
+            moving = guarding = strongPunching = alreadyPunchInAir = kicked = defeated = throwing = projectile_flying = grab = grabbed = grabbedImpact = false;
 
     collisionManager = new CollisionManager();
 
@@ -202,21 +202,21 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         movingRight = false;
     }
 
-    if (direction->isEqual(RIGHT) and !inAir and !crowchedDown and !punching and !guarding and !strongPunching and !kicked and !throwing) {
+    if (direction->isEqual(RIGHT) and !inAir and !crowchedDown and !punching and !guarding and !strongPunching and !kicked and !throwing and !grab and !grabbed and !grabbedImpact) {
         state = "walk";
         movingRight = true;
     }
-    if (direction->isEqual(LEFT) and !inAir and !crowchedDown and !punching and !guarding and !strongPunching and !kicked and !throwing) {
+    if (direction->isEqual(LEFT) and !inAir and !crowchedDown and !punching and !guarding and !strongPunching and !kicked and !throwing and !grab and !grabbed and !grabbedImpact) {
         state = "walk";
         movingLeft = true;
     }
-    if (direction->isEqual(DOWN) and !inAir and !punching and !guarding and !strongPunching and !kicked and !throwing) {
+    if (direction->isEqual(DOWN) and !inAir and !punching and !guarding and !strongPunching and !kicked and !throwing and !grab and !grabbed and !grabbedImpact) {
         if (state != "crowchedDown") logger->Log("El personaje " + character->getName() + " se agacho.", DEBUG, "");
         state = "crowchedDown";
         crowchedDown = true;
     }
 
-    if (direction->isEqual(GUARD) and !punching and !strongPunching and !kicked and !defeated and !throwing) {
+    if (direction->isEqual(GUARD) and !punching and !strongPunching and !kicked and !defeated and !throwing and !grab and !grabbed and !grabbedImpact) {
         if(state == "crowchedDown" or state == "downGuard"){
             state = "downGuard";
         }else if(inAir){
@@ -231,15 +231,15 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         state = "still";
         crowchedDown = false;
     }
-    if ((direction->isEqual(STOPRIGHT) or inAir)and !punching and !guarding and !strongPunching and !kicked and !defeated and !throwing) {
+    if ((direction->isEqual(STOPRIGHT) or inAir)and !punching and !guarding and !strongPunching and !kicked and !defeated and !throwing and !grab and !grabbed and !grabbedImpact) {
         movingRight = false;
         state = "still";
     }
-    if ((direction->isEqual(STOPLEFT) or inAir)and !punching and !guarding and !strongPunching and !kicked and !defeated and !throwing) {
+    if ((direction->isEqual(STOPLEFT) or inAir)and !punching and !guarding and !strongPunching and !kicked and !defeated and !throwing and !grab and !grabbed and !grabbedImpact) {
         movingLeft = false;
         state = "still";
     }
-    if (direction->isEqual(KEYSRELEASED) and !inAir and !crowchedDown and !movingLeft and !movingRight and !punching and !guarding and !strongPunching and !kicked and !throwing)
+    if (direction->isEqual(KEYSRELEASED) and !inAir and !crowchedDown and !movingLeft and !movingRight and !punching and !guarding and !strongPunching and !kicked and !throwing and !grab and !grabbed and !grabbedImpact)
         state = "still";
 
     //LOGICA DE TIRAR PROYECTIL
@@ -252,7 +252,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         throwing_timer = 0;
     }
 
-    if(direction->isEqual(GRAB) and (state == "still" or state == "walk")){
+    if(direction->isEqual(GRAB) and (state == "still" or state == "walk") and !inAir){
         movingRight = false;
         movingLeft = false;
         grab = true;
@@ -296,9 +296,11 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
                     life = 0;
                     defeated = true;
                 }
+                grabbedImpact = false;
                 grabbed_impact_timer = 0;
             } else {
                 state = "grabbedImpact";
+                grabbedImpact = true;
                 grabbed_impact_timer += 1;
             }
             character->setState(state);
@@ -316,7 +318,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
 
 
         //LOGICA DE GOLPES
-    if(direction -> isEqual(WEAK_PUNCH) and !punching and !guarding and !strongPunching and !alreadyPunchInAir and !kicked and !defeated and !throwing) {
+    if(direction -> isEqual(WEAK_PUNCH) and !punching and !guarding and !strongPunching and !alreadyPunchInAir and !kicked and !defeated and !throwing and !grab and !grabbed and !grabbedImpact) {
         logger->Log("Pegando", INFO, "");
 
         if(state == "crowchedDown"){
@@ -335,7 +337,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         }
     }
 
-    if(direction -> isEqual(STRONG_PUNCH) and !punching and !guarding and !strongPunching and !alreadyPunchInAir and !kicked and !defeated and !throwing) {
+    if(direction -> isEqual(STRONG_PUNCH) and !punching and !guarding and !strongPunching and !alreadyPunchInAir and !kicked and !defeated and !throwing and !grab and !grabbed and !grabbedImpact) {
         logger->Log("Pegando", INFO, "");
 
         if(state == "crowchedDown"){
@@ -354,7 +356,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         }
     }
 
-    if(direction -> isEqual(WEAK_KICK) and !punching and !guarding and !strongPunching and !alreadyPunchInAir and !kicked and !defeated and !throwing) {
+    if(direction -> isEqual(WEAK_KICK) and !punching and !guarding and !strongPunching and !alreadyPunchInAir and !kicked and !defeated and !throwing and !grab and !grabbed and !grabbedImpact) {
         logger->Log("Pegando", INFO, "");
 
         if(state == "crowchedDown"){
@@ -373,7 +375,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         }
     }
 
-    if(direction -> isEqual(STRONG_KICK) and !punching and !guarding and !strongPunching and !alreadyPunchInAir and !kicked and !defeated and !throwing) {
+    if(direction -> isEqual(STRONG_KICK) and !punching and !guarding and !strongPunching and !alreadyPunchInAir and !kicked and !defeated and !throwing and !grab and !grabbed and !grabbedImpact) {
         logger->Log("Pegando", INFO, "");
 
         if(state == "crowchedDown"){
@@ -396,7 +398,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
     //
 
     if (movingRight and characterIsntInRightBoundary and !inAir and !crowchedDown and !direction->isEqual(UP) and
-        !direction->isEqual(GETTINGUP) and !collision and !punching and !guarding and !strongPunching and !kicked and !throwing) {
+        !direction->isEqual(GETTINGUP) and !collision and !punching and !guarding and !strongPunching and !kicked and !throwing and !grab and !grabbed and !grabbedImpact) {
 
         state = "walk";
 
@@ -407,7 +409,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
     }
 
     if (movingLeft and characterIsntInLeftBoundary and !inAir and !crowchedDown and !direction->isEqual(UP) and
-        !direction->isEqual(GETTINGUP) and !collision and !punching and !guarding and !strongPunching and !kicked and !throwing) {
+        !direction->isEqual(GETTINGUP) and !collision and !punching and !guarding and !strongPunching and !kicked and !throwing and !grab and !grabbed and !grabbedImpact) {
 
         state = "walk";
 
@@ -417,18 +419,18 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
 
     }
 
-    if (direction->isDiagonalRight() and !inAir and !crowchedDown and !punching and !strongPunching and !kicked and !throwing) jumpRight = true;
-    if (direction->isDiagonalLeft() and !inAir and !crowchedDown and !punching and !strongPunching and !kicked and !throwing) jumpLeft = true;
-    if (direction->isEqual(UP) and !inAir and !crowchedDown and !punching and !guarding and !strongPunching and !kicked and !throwing) {
+    if (direction->isDiagonalRight() and !inAir and !crowchedDown and !punching and !strongPunching and !kicked and !throwing and !grab and !grabbed and !grabbedImpact) jumpRight = true;
+    if (direction->isDiagonalLeft() and !inAir and !crowchedDown and !punching and !strongPunching and !kicked and !throwing and !grab and !grabbed and !grabbedImpact) jumpLeft = true;
+    if (direction->isEqual(UP) and !inAir and !crowchedDown and !punching and !guarding and !strongPunching and !kicked and !throwing and !grab and !grabbed and !grabbedImpact) {
         logger->Log("El personaje " + character->getName() + " salto.", DEBUG, "");
         jump = true;
     }
 
-    if (direction->isEqual(DOWN) and !inAir and !punching and !guarding and !strongPunching and !kicked and !throwing) {
+    if (direction->isEqual(DOWN) and !inAir and !punching and !guarding and !strongPunching and !kicked and !throwing and !grab and !grabbed and !grabbedImpact) {
         state = "crowchedDown";
     }
 
-    if (direction->isEqual(GETTINGUP) and !inAir and !punching and !strongPunching and !kicked and !throwing) gameObject->stayInFloor();
+    if (direction->isEqual(GETTINGUP) and !inAir and !punching and !strongPunching and !kicked and !throwing and !grab and !grabbed and !grabbedImpact) gameObject->stayInFloor();
 
 
     if (jump) {
@@ -496,7 +498,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
 
 
     if (collisionManager->Collisioning(gameObject, enemy) and characterIsntInRightBoundary and
-        characterIsntInLeftBoundary and !punching and !strongPunching and !kicked and !throwing) {
+        characterIsntInLeftBoundary and !punching and !strongPunching and !kicked and !throwing and !grab and !grabbed and !grabbedImpact) {
 
         if (info[0] - 40 >= enemyInfo[0]) {
 

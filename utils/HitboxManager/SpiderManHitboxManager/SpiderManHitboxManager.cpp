@@ -51,7 +51,7 @@ SpiderManHitboxManager::SpiderManHitboxManager() : HitboxManager(){
     SDL_Rect hitboxStrongDownKickLeg = SDL_Rect{765, 460, 260, 78};
 
     SDL_Rect hitboxThrowing = SDL_Rect{478, 358, 290, 193};
-    SDL_Rect hitboxGrab = SDL_Rect{503, 345,  200, 198};
+    SDL_Rect hitboxGrab = SDL_Rect{475, 323, 218, 208};
     SDL_Rect hitboxNull = SDL_Rect{0, 0, 0, 0};
 
 
