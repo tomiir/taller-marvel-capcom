@@ -146,7 +146,9 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
 
     if(grab){
         grab = ++ grabing_timer != 20;
-        if(!grab) state = "still";
+        if(!grab){
+            state = "still";
+        }
     }
 
 
@@ -260,7 +262,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         state = "grab";
         character->setState(state);
         collision = collisionManager->Collisioning(gameObject, enemy);
-        if(collision){
+        if(collision and !enemyController->isInAir()){
             grabing_timer = 0;
             enemyController->Grabbed();
         }
@@ -287,20 +289,22 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
 
         if( !characterIsntInLeftBoundary or !characterIsntInRightBoundary ){
             grabbed = false;
+            grabbedImpact = true;
+
             if(grabbed_impact_timer == 20) {
-                life -= grabbed_dmg;
                 state = "still";
+                inAir = false;
+                grabbedImpact = false;
                 gameObject->stayInFloor();
+                life -= grabbed_dmg;
                 flipFlag = 0;
                 if (life <= 0) {
                     life = 0;
                     defeated = true;
                 }
-                grabbedImpact = false;
                 grabbed_impact_timer = 0;
             } else {
                 state = "grabbedImpact";
-                grabbedImpact = true;
                 grabbed_impact_timer += 1;
             }
             character->setState(state);
@@ -609,11 +613,9 @@ GameObject_server *ControllerCharacter::getGameObject() {
 
 void ControllerCharacter::Grabbed(){
 
-    if(!inAir){
-        grabbed = true;
-        state = "grabbed";
-        character->setState(state);
-    }
+    grabbed = true;
+    state = "grabbed";
+    character->setState(state);
 }
 
 void ControllerCharacter::Kicked(int force) {
