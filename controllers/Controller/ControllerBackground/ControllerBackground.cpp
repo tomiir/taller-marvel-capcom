@@ -90,6 +90,7 @@ void ControllerBackground::handleEvent(string event, ControllerCharacter* contro
         dirUp->setY( -jumpSpeed/2 );
         gameObject->move(dirUp);
 
+        dirUp->multiply(-1);
         controllerCharacter1->moveProjectile(dirUp);
         controllerCharacter2->moveProjectile(dirUp);
     }
@@ -99,6 +100,7 @@ void ControllerBackground::handleEvent(string event, ControllerCharacter* contro
         dirUp->setY( jumpSpeed/2 );
         gameObject->move(dirUp);
 
+        dirUp->multiply(-1);
         controllerCharacter1->moveProjectile(dirUp);
         controllerCharacter2->moveProjectile(dirUp);
     }
