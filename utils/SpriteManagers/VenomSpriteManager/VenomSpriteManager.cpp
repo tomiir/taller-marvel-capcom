@@ -28,6 +28,8 @@
 #include "../../../Animations/VenomAnimations/VenomWeakDownKickAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomWeakAirKickAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomThrowAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomGrabbedAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomGrabbedImpactAnimation.h"
 
 
 using namespace std;
@@ -59,6 +61,8 @@ void VenomSpriteManager::init(){
     animationMap["standGuard"] = new VenomStandGuardAnimation();
     animationMap["airGuard"] = new VenomAirGuardAnimation();
     animationMap["throw"] = new VenomThrowAnimation();
+    animationMap["grabbed"] = new VenomGrabbedAnimation();
+    animationMap["grabbedImpact"] = new VenomGrabbedImpactAnimation();
 
 }
 

@@ -87,6 +87,7 @@ CaptainAmericaHitboxManager::CaptainAmericaHitboxManager() : HitboxManager(){
 
 
 
+
     stateIterHitboxes = stateHitBoxes.find(currentState);
     currentHitboxes = stateIterHitboxes->second;
 }

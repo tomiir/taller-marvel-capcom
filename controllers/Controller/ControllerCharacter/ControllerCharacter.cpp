@@ -240,7 +240,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         }
     }
 
-    if(state == "grabbed"){
+    if(state == "grabbed" or state == "grabbedImpact"){
 
         inAir = true;
         grabbed = true;
@@ -255,14 +255,20 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         }
 
         if( !characterIsntInLeftBoundary or !characterIsntInRightBoundary ){
-            life -= grabbed_dmg;
             grabbed = false;
-            state = "still";
-            gameObject->stayInFloor();
-            flipFlag = 0;
-            if (life <= 0) {
-                life = 0;
-                defeated = true;
+            if(grabbed_impact_timer == 20) {
+                life -= grabbed_dmg;
+                state = "still";
+                gameObject->stayInFloor();
+                flipFlag = 0;
+                if (life <= 0) {
+                    life = 0;
+                    defeated = true;
+                }
+                grabbed_impact_timer = 0;
+            } else {
+                state = "grabbedImpact";
+                grabbed_impact_timer =+ 1;
             }
         }
 

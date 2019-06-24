@@ -77,6 +77,7 @@ private:
 
     int grabbed_dmg = 12;
     int grabing_timer = 0;
+    int grabbed_impact_timer = 0;
     bool isFliped;
     int flipFlag = 0;
 

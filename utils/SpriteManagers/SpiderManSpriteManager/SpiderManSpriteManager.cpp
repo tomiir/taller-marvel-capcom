@@ -29,6 +29,8 @@
 #include "../../../Animations/SpiderManAnimations/SpiderManStandKickedAnimation.h"
 #include "../../../Animations/SpiderManAnimations/SpiderManAirKickedAniamtion.h"
 #include "../../../Animations/SpiderManAnimations/SpiderManThrowAnimation.h"
+#include "../../../Animations/SpiderManAnimations/SpiderManGrabbedAnimation.h"
+#include "../../../Animations/SpiderManAnimations/SpiderManGrabbedImpactAnimation.h"
 
 
 using namespace std;
@@ -61,6 +63,8 @@ void SpiderManSpriteManager::init(){
     animationMap["standGuard"] = new SpiderManStandGuardAnimation();
     animationMap["airGuard"] = new SpiderManAirGuardAnimation();
     animationMap["throw"] = new SpiderManThrowAnimation();
+    animationMap["grabbed"] = new SpiderManGrabbedAnimation();
+    animationMap["grabbedImpact"] = new SpiderManGrabbedImpactAnimation();
 }
 
 SpiderManSpriteManager::SpiderManSpriteManager() : SpriteManager(){

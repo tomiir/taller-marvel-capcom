@@ -30,6 +30,8 @@
 #include "../../../Animations/ChunLiAnimations/ChunLiAirGuardAnimation.h"
 #include "../../../Animations/ChunLiAnimations/ChunLiWeakAirKickAnimation.h"
 #include "../../../Animations/ChunLiAnimations/ChunLiThrowAnimation.h"
+#include "../../../Animations/ChunLiAnimations/ChunLiGrabbedAnimation.h"
+#include "../../../Animations/ChunLiAnimations/ChunLiGrabbedImpactAnimation.h"
 
 
 using namespace std;
@@ -61,6 +63,8 @@ void ChunLiSpriteManager::init(){
     animationMap["standGuard"] = new ChunLiStandGuardAnimation();
     animationMap["airGuard"] = new ChunLiAirGuardAnimation();
     animationMap["throw"] = new ChunLiThrowAnimation();
+    animationMap["grabbed"] = new ChunLiGrabbedAnimation();
+    animationMap["grabbedImpact"] = new ChunLiGrabbedImpactAnimation();
 }
 
 ChunLiSpriteManager::ChunLiSpriteManager() : SpriteManager(){
