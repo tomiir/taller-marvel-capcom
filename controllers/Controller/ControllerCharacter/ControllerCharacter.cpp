@@ -229,6 +229,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         grab = true;
         string oldState = state;
         state = "grab";
+        character->setState(state);
         collision = collisionManager->Collisioning(gameObject, enemy);
         if(collision){
             grabing_timer = 0;
@@ -237,6 +238,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         else{
             grab = false;
             state = oldState;
+            character->setState(state);
         }
     }
 
@@ -268,8 +270,9 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
                 grabbed_impact_timer = 0;
             } else {
                 state = "grabbedImpact";
-                grabbed_impact_timer =+ 1;
+                grabbed_impact_timer += 1;
             }
+            character->setState(state);
         }
 
         else {
@@ -575,6 +578,7 @@ void ControllerCharacter::Grabbed(){
     if(!inAir){
         grabbed = true;
         state = "grabbed";
+        character->setState(state);
     }
 }
 
