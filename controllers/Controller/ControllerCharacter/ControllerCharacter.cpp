@@ -114,7 +114,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
 
     if(projectile_flying) {
 
-        DirectionVector *step = new DirectionVector(speedCharacter, 0);
+        DirectionVector *step = new DirectionVector(speedProjectile, 0);
 
         projectile->moveFoward(step);
 

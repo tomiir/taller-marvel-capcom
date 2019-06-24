@@ -77,6 +77,7 @@ private:
     int life = 100;
     int weak_strike_dmg = 6;
     int strong_strike_dmg = 12;
+    int speedProjectile = 8;
 
     int WEAK = 0;
     int STRONG = 1;
