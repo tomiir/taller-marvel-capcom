@@ -10,12 +10,12 @@
 void CaptainAmericaEnteringAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 2;
+    animationRate = 30;
     animationLength = 3;
 
-    vector<int> frame0 = {456, 1913, 79, 138};
-    vector<int> frame1 = {112, 428, 71, 152};
-    vector<int> frame2 = {210, 427, 71, 152};
+    vector<int> frame0 = {322, 980, 322, 245};
+    vector<int> frame1 = {644, 980, 322, 245};
+    vector<int> frame2 = {966, 980, 322, 245};
 
 
     animation.push_back(frame0);

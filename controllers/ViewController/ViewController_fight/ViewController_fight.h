@@ -13,13 +13,14 @@
 #include "../../Controller/ControllerBackground/ControllerBackground.h"
 #include "../../../utils/TeamManager/TeamManager.h"
 #include "../../../utils/FlipManager/FlipManager.h"
+#include <time.h>
 
 
 class ViewController_fight: public ViewController {
 
 public:
 
-    ViewController_fight();
+    ViewController_fight(const char* gameMode);
     ~ViewController_fight();
     void handleEvent(string event) override;
     void addTeams(TeamManager* teamManager1, TeamManager* teamManager2);
@@ -38,15 +39,27 @@ public:
 
     int currentCharacterT1();
 
+    vector <char> getWinner();
+
+
 private:
     TeamManager* team1;
     TeamManager* team2;
-
+    bool countTime;
     FlipManager* flipManager;
-
+    int round;
+    bool endOfRounds = false;
     std::vector<ControllerBackground*> backgrounds;
+    void startCounting(int timeToCount);
+    time_t start;
+    static void * restSeconds(void *pVoid);
+    char winner_1;
+    char winner_2;
+    bool endOfGame;
+    bool shouldFight;
+    int timeDuration = 60;
 
-
+    const char* gameMode;
 };
 
 

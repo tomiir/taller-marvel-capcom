@@ -4,6 +4,7 @@
 
 #include "Game.h"
 #include "../../utils/Logger/Logger.h"
+#include "../../views/View/View_endGame.h"
 #include <unistd.h>
 
 
@@ -33,17 +34,44 @@ void Game::init(const char *title, int posX, int posY) {
                 }
             }
 
+
+        //Aca se pone la imagen de Loading
+        SDL_Rect black = SDL_Rect{0,0, screenWidth, screenHeight};
+
+        SDL_SetRenderDrawColor(renderer, 1,1,1,255);
+        SDL_RenderFillRect(renderer, &black);
+
+        const char *folderPath = "../Images/Loading Screen/Loading.png";
+
+        SDL_Rect  dest = SDL_Rect{(screenWidth - 800)/2, (screenHeight - 600)/2, 800, 600};
+        SDL_Rect source = SDL_Rect{0, 0, 800, 600};
+        SDL_Texture* loading = TextureManager::LoadTexture(folderPath, renderer);
+
+        SDL_RenderCopy(renderer, loading, &source, &dest);
+
+        SDL_RenderPresent(renderer);
+
+
+        //aca termina el cargado de la imagen de Loading
         factory = new ViewFactory(renderer, screenWidth, screenHeight);
 
 
         // Mando viewFight pq es la unica que tenemos. Deberiamos mandar la primera, y luego, las ViewController conocerse entre
         // si para saber quien va luego o implementar el VIEW MANAGER
 
+        SDL_RenderCopy(renderer, loading, &source, &dest);
+        SDL_RenderPresent(renderer);
+
         views["fight"] = factory -> getView_fight();
         characters = factory -> getCharacter();
         views["char_select"] = factory -> getView_charSelect();
+        views["endGame"] = factory->getView_endGame();
 
         view = (views.find("char_select"))->second;
+        viewAudioManager = new ViewAudioManager();
+
+        SDL_RenderCopy(renderer, loading, &source, &dest);
+        SDL_RenderPresent(renderer);
 
         logger -> Log("Inicialización completa, ventana, renderer y vista creados correctamente", INFO, "");
 
@@ -97,15 +125,26 @@ Character *Game::getCharacter(string character){
 }
 
 
-void Game::changeView() {
-    vector<string> team1 =  dynamic_cast<View_charSelect*>(this->view)->getTeam1();
-    vector<string> team2 =  dynamic_cast<View_charSelect*>(this->view)->getTeam2();
+void Game::changeView(int viewNumber) {
+    string nextViewName = "";
+    if(viewNumber == 1){
+        vector<string> team1 =  dynamic_cast<View_charSelect*>(this->view)->getTeam1();
+        vector<string> team2 =  dynamic_cast<View_charSelect*>(this->view)->getTeam2();
 
-    string nextViewName = (this->view)->getNextView();
+    nextViewName = (this->view)->getNextView();
     View* nextView = views.find(nextViewName)->second;
     this->view = nextView;
 
     dynamic_cast<View_fight*>(this->view)->setTeams(getCharacter(team1[0]), getCharacter(team1[1]), getCharacter(team2[0]), getCharacter(team2[1]));
+
+    viewAudioManager->setState(nextViewName);
+    }
+    else if (viewNumber == 2){
+        nextViewName = (this->view)->getNextView();
+        View* nextView = views.find(nextViewName)->second;
+        this->view = nextView;
+        viewAudioManager->setState(nextViewName);
+    }
 }
 
 void Game::UpdateBackgrounds(char *posFloor_x, char *posFloor_y, char *posMoon_x, char *posMoon_y, char *posGalaxy_x,
@@ -122,6 +161,33 @@ void Game::updateCharacters(char *posCharTeam1_x, char *posCharTeam1_y, char sta
 void Game::renderDisconnected() {
 
     view->renderDisconnected();
+}
+
+void Game::updateTime(char* ten, char* unity, char* round) {
+    dynamic_cast<View_fight*>(this->view)->updateTime(ten, unity, round);
+}
+
+void Game::updateLife(char* lifeTeam1, char* lifeTeam2) {
+    dynamic_cast<View_fight*>(this->view)->updateLife(lifeTeam1, lifeTeam2);
+}
+
+void Game::updateWinners(char *winners) {
+    dynamic_cast<View_endGame*>(this->view)->updateWinners(winners);
+
+}
+
+void Game::updateShouldFight(char *shouldFight) {
+    dynamic_cast<View_fight*>(this->view)->updateShouldFight(shouldFight);
+}
+
+void Game::updateTeamsWons(char roundsT1, char roundsT2) {
+    dynamic_cast<View_fight*>(this->view)->updateTeamsWons(roundsT1, roundsT2);
+}
+
+void Game::updateProjectiles(char *posProjectilesTeam1_x, char *posProjectilesTeam1_y, char stateProjectilesTeam1, char flipProjectiles1,
+                            char *posProjectilesTeam2_x, char *posProjectilesTeam2_y, char stateProjectilesTeam2, char flipProjectiles2) {
+    dynamic_cast<View_fight*>(this->view)->updateProjectiles(posProjectilesTeam1_x, posProjectilesTeam1_y, stateProjectilesTeam1, flipProjectiles1,
+                                                            posProjectilesTeam2_x, posProjectilesTeam2_y, stateProjectilesTeam2, flipProjectiles2);
 }
 
 

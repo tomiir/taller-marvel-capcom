@@ -24,21 +24,27 @@ int main(int argc, const char* argv[]) {
     logger->setLevel(DEBUG_LEVEL);
 
 
-    if (argc < 2 and argc > 4) {
+    if (argc < 3 and argc > 4) {
         logger->Log("Falta el modo de inicializacion de la aplicacion serverAddr o cliente\n", ERROR, "");
         logger->closeLogger();
         exit(1);
     }
 
-    if (argc == 2 and string(argv[1]) == "server") {
+    if (argc == 3 and string(argv[1]) == "server") {
         logger->Log("------------------------Logger del server --------------------------", DEBUG, "");
         logger->Log("Escuchando con el server", INFO, "");
+
+        if (strcmp(argv[2], "game") == 1 or strcmp(argv[2], "training") == 1){
+
+            cout << "No se ingreso correctamente el modo de juego" << endl;
+            exit(0);
+        }
 
         int cantClients = config->getNumberOfClients();
         int port = config->getNumberOfPort();
 
         Server *server = new Server(cantClients, port);
-        server->connect();
+        server->connect(argv[2]);
 
     } else if (argc == 4 and string(argv[1]) == "client") {
         //chequear si es una ip

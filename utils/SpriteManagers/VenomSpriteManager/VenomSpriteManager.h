@@ -8,6 +8,7 @@
 
 #include "../SpriteManager.h"
 
+
 class VenomSpriteManager : public SpriteManager{
 
 public:

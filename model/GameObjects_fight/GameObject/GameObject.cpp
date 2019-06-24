@@ -25,7 +25,7 @@ void GameObject::move(DirectionVector* direction){}
 vector<int> GameObject::getInfo() {}
 
 void GameObject::render() {
-    int error = SDL_RenderCopy(renderer, objTexture, &objRect2, &objRect);
+    int error = SDL_RenderCopy(renderer, objTexture, &objRect, &objRect2);
     if( error < 0){
         cout << "error: " << SDL_GetError() << endl;
     }
@@ -34,7 +34,14 @@ void GameObject::render() {
 void GameObject::stayInFloor() {}
 
 
-
 string GameObject::getName() {
     return name;
+}
+
+void GameObject::setOriginRect(vector<int> position) {
+    objRect = SDL_Rect{position[0], position[1], position[2], position[3]};
+}
+
+void GameObject::setDestinyRect(vector<int> position) {
+    objRect2 =SDL_Rect{position[0], position[1], position[2], position[3]};
 }

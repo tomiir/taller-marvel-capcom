@@ -5,8 +5,9 @@
 #ifndef TALLER_MARVEL_CAPCOM_CAPTAINAMERICASPRITEMANAGER_H
 #define TALLER_MARVEL_CAPCOM_CAPTAINAMERICASPRITEMANAGER_H
 
-
+#include <iostream>
 #include "../SpriteManager.h"
+
 
 class CaptainAmericaSpriteManager : public SpriteManager {
 

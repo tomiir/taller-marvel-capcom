@@ -25,6 +25,7 @@ protected:
     SDL_Renderer* renderer;
     std::vector<Background*> backgrounds;
     std::vector<Character*> characters;
+    GameObject* disconnected;
 };
 
 

@@ -8,7 +8,8 @@
 
 #include <vector>
 #include "../../controllers/ViewController/ViewController.h"
-
+#include "../../utils/LifeManager/LifeManager.h"
+#include "../../utils/TimeManager/TimeManager.h"
 
 
 class View_fight: public View {
@@ -19,6 +20,8 @@ public:
     ~View_fight();
     void updateView() override;
     void addBackground(Background* background);
+    void addLifeManagers(LifeManager* team1, LifeManager* team2);
+    void addTimeManager(TimeManager* timeManager);
     bool end()override;
     string getNextView() override;
     void addCharacter(Character *pCharacter);
@@ -33,9 +36,27 @@ public:
 
     void addDisconnected(GameObject *disconnected_s);
 
+    void updateTime(char* ten, char* unity, char* round);
+
+    void updateLife(char* lifeTeam1, char* lifeTeam2);
+
+    void updateShouldFight(char* shouldFight);
+
+    void updateTeamsWons(char roundsT1, char roundsT2);
+
+    void updateProjectiles(char *posT1_x, char *posT1_y, char stateT1, char flip1, char *posT2_x, char *posT2_y,
+                                       char stateT2, char flip2);
+
 private:
     vector <Character*> team1;
     vector <Character*> team2;
+
+    LifeManager* lifeManagerTeam1;
+    LifeManager* lifeManagerTeam2;
+
+    TimeManager* timeManager;
+
+
 
     Character* getCharacter(string name);
 

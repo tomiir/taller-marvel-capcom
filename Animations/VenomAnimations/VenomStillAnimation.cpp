@@ -9,22 +9,22 @@
 void VenomStillAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 12;
+    animationRate = 10;
     animationLength = 13;
 
-    vector<int> frame0 = {702, 367, 154, 118};
-    vector<int> frame1 = {149, 519, 154, 118};
-    vector<int> frame2 = {312, 519, 154, 118};
-    vector<int> frame3 = {490, 520, 154, 118};
-    vector<int> frame4 = {674, 520, 154, 118};
-    vector<int> frame5 = {858, 519, 154, 118};
-    vector<int> frame6 = {1042, 520, 154, 118};
-    vector<int> frame7 = {909, 366, 154, 118};
-    vector<int> frame8 = {172, 652, 154, 118};
-    vector<int> frame9 = {340, 653, 154, 118};
-    vector<int> frame10 = {521, 653, 154, 118};
-    vector<int> frame11 = {698, 652, 154, 118};
-    vector<int> frame12 = {879, 652, 154, 118};
+    vector<int> frame0 = {0, 0, 560, 238};
+    vector<int> frame1 = {560, 0, 560, 238};
+    vector<int> frame2 = {1120, 0, 560, 238};
+    vector<int> frame3 = {1680, 0, 560, 238};
+    vector<int> frame4 = {2240, 0, 560, 238};
+    vector<int> frame5 = {2800, 0, 560, 238};
+    vector<int> frame6 = {3360, 0, 560, 238};
+    vector<int> frame7 = {3920, 0, 560, 238};
+    vector<int> frame8 = {4480, 0, 560, 238};
+    vector<int> frame9 = {5040, 0, 560, 238};
+    vector<int> frame10 = {5600, 0, 560, 238};
+    vector<int> frame11 = {6160, 0, 560, 238};
+    vector<int> frame12 = {6720, 0, 560, 238};
 
 
     animation.push_back(frame0);

@@ -16,12 +16,13 @@ Game_server::Game_server(int screenWidth_, int screenHeight_) {
 Game_server::~Game_server() = default;
 
 
-void Game_server::init() {
+void Game_server::init(const char* gameMode) {
 
     factory = new ViewControllerFactory(screenWidth, screenHeight);
 
     viewsController["char_select"] = new ViewController_charSelect();
-    viewsController["fight"] = factory->getViewController_fight();
+    viewsController["fight"] = factory->getViewController_fight(gameMode);
+    viewsController["endGame"] = new ViewController_endGame;
     characters = factory->getControllerCharacter();
 
     currentViewController = (viewsController.find("char_select"))->second;
@@ -46,10 +47,17 @@ void Game_server::changeViewController() {
         vector<ControllerCharacter*> aux = {(characters.find(team1[0])->second), (characters.find(team1[1])->second)};
         dynamic_cast<ViewController_fight*>(viewsController["fight"])->setTeam(aux,1);
 
+
         aux =  {(characters.find(team2[0])->second), (characters.find(team2[1])->second)};
         dynamic_cast<ViewController_fight*>(viewsController["fight"])->setTeam(aux,2);
-
         dynamic_cast<ViewController_fight*>(viewsController["fight"])->createFlipManager();
+    }
+
+    if(strcmp(nextViewControllerName.c_str(),"endGame") == 0){
+        vector <char> winners = dynamic_cast<ViewController_fight*>(viewsController["fight"])-> getWinner();
+        char winner_1 = winners[0];
+        char winner_2 = winners[1];
+        dynamic_cast<ViewController_endGame*>(viewsController["endGame"])->setWinners(winner_1, winner_2);
     }
 
     this->currentViewController = nextViewController;

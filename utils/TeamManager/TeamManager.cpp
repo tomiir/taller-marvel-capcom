@@ -14,6 +14,12 @@ TeamManager::TeamManager(SDL_RendererFlip initialFlip){
 void TeamManager:: setCharacters(std::vector<ControllerCharacter*> characters){
     currentCharacter = characters[0];
     supportCharacter = characters[1];
+
+    firstCharacter = characters[0];
+    secondCharacter = characters[1];
+
+    teamNames.push_back(currentCharacter->getCode());
+    teamNames.push_back(supportCharacter->getCode());
 }
 
 void TeamManager::changeCharacter(){
@@ -28,7 +34,7 @@ void TeamManager::changeCharacter(){
 
 void TeamManager:: handleEvent(string event, std::vector<ControllerBackground*> backgrounds){
 
-    currentCharacter->handleEvent(event);
+    currentCharacter->handleEvent(event, enemyTeam->getCurrentCharacter()->getGameObject(), enemyTeam->getCurrentCharacter(), supportCharacter->getLife());
 
     if (currentCharacter->getInfo()[1] < -300){
         changeCharacter();
@@ -68,6 +74,7 @@ void TeamManager::setInitialPos(bool left) {
 
     currentCharacter->setInitialPos(left);
 
+    initialFlip = left;
 }
 
 vector<int> TeamManager::getPosCurrentCharacter() {
@@ -82,6 +89,27 @@ char TeamManager::getStateCurrentCharacter() {
     else if (state == "jump") return '2';
     else if (state == "crowchedDown") return '3';
     else if (state == "entering") return '4';
+    else if (state == "weakStandPunch") return '5';
+    else if (state == "weakDownPunch") return '6';
+    else if (state == "weakAirPunch") return '7';
+    else if (state == "weakStandKick") return '8';
+    else if (state == "weakDownKick") return '9';
+    else if (state == "weakAirKick") return 'a';
+    else if (state == "strongStandPunch") return 'b';
+    else if (state == "strongDownPunch") return 'c';
+    else if (state == "strongAirPunch") return 'd';
+    else if (state == "strongStandKick") return 'e';
+    else if (state == "strongDownKick") return 'f';
+    else if (state == "strongAirKick") return 'g';
+    else if (state == "standGuard") return 'h';
+    else if (state == "downGuard") return 'i';
+    else if (state == "airGuard") return 'j';
+    else if (state == "standKicked") return 'k';
+    else if (state == "downKicked") return 'l';
+    else if (state == "airKicked") return 'm';
+    else if (state == "throw") return 'n';
+
+
 
 }
 
@@ -103,4 +131,69 @@ int TeamManager::currentCharacterPlaying() {
 
     if ((cantChangeChar % 2) == 0) return 0;
     else return 1;
+}
+
+int TeamManager::getCurrentCharacterLife() {
+
+    return currentCharacter->getLife();
+}
+
+int TeamManager::getTeamLife() {
+
+    int life1 = currentCharacter->getLife();
+    int life2 = supportCharacter->getLife();
+
+    int life = life1 + life2;
+
+    return life;
+}
+
+void TeamManager::roundWin() {
+    rounds_wins++;
+}
+
+void TeamManager::resetRound() {
+
+    currentCharacter->resetLife();
+    supportCharacter->resetLife();
+
+    currentCharacter = firstCharacter;
+    supportCharacter = secondCharacter;
+    currentCharacter->resetPosition(initialFlip);
+
+    if ((cantChangeChar % 2) != 0) cantChangeChar++;
+
+    if (initialFlip) flip = SDL_FLIP_NONE;
+    else flip = SDL_FLIP_HORIZONTAL;
+}
+
+int TeamManager::getRoundsWon() {
+    return rounds_wins;
+}
+
+vector<char> TeamManager::getCharacters() {
+
+    return teamNames;
+}
+
+void TeamManager::setGameMode(const char *gameMode) {
+
+    currentCharacter->setGameMode(gameMode);
+    supportCharacter->setGameMode(gameMode);
+}
+
+char TeamManager::getProjectileState() {
+
+    if(currentCharacter->projectileIsFlying()) return '1';
+    else return  '0';
+}
+
+char TeamManager::getProjectileFlip() {
+
+    if (currentCharacter->projectileIsFlip()) return '1';
+    else return '0';
+}
+
+vector<int> TeamManager::getPosCurrentProjectile() {
+    return currentCharacter->getProjectilePosition();
 }

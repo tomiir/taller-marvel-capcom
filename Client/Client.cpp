@@ -6,10 +6,10 @@
 
 
 #define NOBEAT (char*)"0"
-#define MESSAGEFROMSERVERLEN 45
+#define MESSAGEFROMSERVERLEN 75
 #define MESSAGEFROMSERVERLEN2 5
 
-
+bool playedCharSelectMusic = false;
 int serverSocket_c;
 struct sockaddr_in serverAddr_c;
 socklen_t  serverSize_c;
@@ -220,6 +220,7 @@ void* Client::recvFromServer(void* arg) {
             pthread_exit(0);
         }
         string message = (string)(messageFromServer);
+        if(message == "") continue;
         queueRecv.push(message);
     }
     return nullptr;
@@ -231,15 +232,15 @@ void* Client::render(void *arg) {
 
     bool fight_view = false;
 
+    int speed = 130;
+    Uint32 start;
+
+    int viewNumber = 0;
+    char oldView [] = {'0','0','\n'};
    //Aca empieza el loop que va a ir renderizando. Las view ay deberian estar cargadas y se renderiza lo que se tenga que renderizar
     while(connected){
 
-        if (game->haveToChangeView()){
-            changeCurrentMapper();
-            game->changeView();
-            fight_view = true;
-        }
-
+        start = SDL_GetTicks();
 
         if(queueRecv.empty()) continue;
 
@@ -247,7 +248,17 @@ void* Client::render(void *arg) {
         const char* messageReceived = message.c_str();
         char view[] = {messageReceived[0], messageReceived[1], '\0'};
 
-        if(strcmp(view, "00") == 0 and !fight_view){ //view selected
+        if (strcmp(view, oldView) == 1){
+            changeCurrentMapper();
+            viewNumber += 1;
+            cout<<viewNumber;
+            game->changeView(viewNumber);
+            strncpy(oldView, view, 2);
+        }
+
+
+
+        if(strcmp(view, "00") == 0 and viewNumber == 0){ //view selected
 
             //Te devuelve 1 en el cuadrado gris que si se tenga que renderizar
             char greySquaresSelected[] = {messageReceived[2], messageReceived[3], messageReceived[4], messageReceived[5], '\0'};
@@ -269,9 +280,13 @@ void* Client::render(void *arg) {
 
             game->render();
             queueRecv.pop();
-
+            if(!playedCharSelectMusic) {
+                game->viewAudioManager->setState("char_select");
+                playedCharSelectMusic = true;
+            }
         }
-        if(strcmp(view, "01") == 0 or fight_view) { //view fight
+
+        if(strcmp(view, "01") == 0 or viewNumber == 1) { //view fight
 
 
             //Recibo las nuevas posiciones de los backgrounds y los actaulizo
@@ -301,14 +316,58 @@ void* Client::render(void *arg) {
             char currentCharT1 = messageReceived[43];
             char currentCharT2 = messageReceived[44];
 
+
             game->updateCharacters(posCharTeam1_x, posCharTeam1_y, stateCharTeam1, flipChar1, currentCharT1,
                     posCharTeam2_x, posCharTeam2_y, stateCharTeam2, flipChar2, currentCharT2);
 
+            char ten[] = {messageReceived[45],'\0'};
+            char unity[] = {messageReceived[46],'\0'};
+            char round[] = {messageReceived[47],'\0'};
+
+            game->updateTime(ten,unity,round);
+
+            char lifeTeam1[] = {messageReceived[48], messageReceived[49], messageReceived[50], '\0'};
+            char lifeTeam2[] = {messageReceived[51], messageReceived[52], messageReceived[53], '\0'};
+
+            game->updateLife(lifeTeam1, lifeTeam2);
+
+
+            char shouldFight [] = {messageReceived[54], '\0'};
+            game->updateShouldFight(shouldFight);
+
+            char roundsWonTeam1 = messageReceived[55];
+            char roundsWonTeam2 = messageReceived[56];
+
+            game->updateTeamsWons(roundsWonTeam1, roundsWonTeam2);
+
+            char posProjectileTeam1_x[] = {messageReceived[59], messageReceived[60], messageReceived[61], messageReceived[62], '\0'};
+            char posProjectileTeam1_y[] = {messageReceived[63], messageReceived[64], messageReceived[65], '\0'};
+            char stateProjectileTeam1 = messageReceived[57];
+
+            char posProjectileTeam2_x[] = {messageReceived[68], messageReceived[69], messageReceived[70], messageReceived[71], '\0'};
+            char posProjectileTeam2_y[] = {messageReceived[72], messageReceived[73], messageReceived[74], '\0'};
+            char stateProjectileTeam2 = messageReceived[66];
+
+            char flipProjectile1 = messageReceived[58];
+            char flipProjectile2 = messageReceived[67];
+
+            game->updateProjectiles(posProjectileTeam1_x, posProjectileTeam1_y, stateProjectileTeam1, flipProjectile1,
+                                   posProjectileTeam2_x, posProjectileTeam2_y, stateProjectileTeam2, flipProjectile2);
 
             game->render();
             queueRecv.pop();
         }
 
+        if(strcmp(view, "02") == 0 or viewNumber == 2){
+            char winners[] = {messageReceived[2],messageReceived[3],'\0'};
+            game->updateWinners(winners);
+            game->render();
+            queueRecv.pop();
+        }
+
+        if ((1000 / speed) > (SDL_GetTicks() - start)) {
+            SDL_Delay((1000 / speed) - (SDL_GetTicks() - start));
+        }
     }
     game->clean();
     return nullptr;
@@ -364,6 +423,7 @@ void Client::Initialice() {
 
     //Aca habria antes que cargar las views
     logger->Log("Inicializando juego", INFO, "");
+
     JsonConfigs *config = JsonConfigs::getJson();
 
     const int SCREEN_WIDTH = config->getScreenSize()[0];
@@ -374,7 +434,6 @@ void Client::Initialice() {
 
     game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
     game->init(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
-
 
     int error = pthread_create(&sendEventThread, nullptr, &sendEventToServer, nullptr);
     if(error == -1) cout << "SE ROMPIO " << endl;

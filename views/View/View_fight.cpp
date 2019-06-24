@@ -8,7 +8,6 @@
 View_fight::View_fight(SDL_Renderer *renderer_) : View(renderer_) {
     currentChar1 = 0;
     currentChar2 = 0;
-
 }
 
 View_fight::~View_fight() = default;
@@ -20,6 +19,8 @@ struct Comp {
 };
 
 void View_fight::updateView() {
+
+
     // Primero renderizo (limpio) la vista;
 
     this->clearWindow();
@@ -27,6 +28,9 @@ void View_fight::updateView() {
 
     // Luego renderizo los elementos que la componen
 
+    renderables.push_back(lifeManagerTeam1);
+    renderables.push_back(lifeManagerTeam2);
+    renderables.push_back(timeManager);
 
     for (std::vector<Background*>::iterator background=backgrounds.begin(); background != backgrounds.end(); ++background) {
 
@@ -47,6 +51,7 @@ void View_fight::updateView() {
         renderables.pop_back();
     }
 
+
     SDL_RenderPresent(renderer);
 
 }
@@ -60,7 +65,7 @@ bool View_fight::end() {
 }
 
 string View_fight::getNextView() {
-    return "todavia_no_existe";
+    return "endGame";
 }
 
 void View_fight::addCharacter(Character * character) {
@@ -91,6 +96,25 @@ string selectState(char state){
     else if(state == '2') return  "jump";
     else if(state == '3') return "crowchedDown";
     else if(state == '4') return "entering";
+    else if(state == '5') return "weakStandPunch";
+    else if (state == '6') return "weakDownPunch";
+    else if (state == '7') return "weakAirPunch";
+    else if (state == '8') return "weakStandKick";
+    else if (state == '9') return "weakDownKick";
+    else if (state == 'a') return "weakAirKick";
+    else if (state == 'b') return "strongStandPunch";
+    else if (state == 'c') return "strongDownPunch";
+    else if (state == 'd') return "strongAirPunch";
+    else if (state == 'e') return "strongStandKick";
+    else if (state == 'f') return "strongDownKick";
+    else if (state == 'g') return "strongAirKick";
+    else if (state == 'h') return "standGuard";
+    else if (state == 'i') return "downGuard";
+    else if (state == 'j') return "airGuard";
+    else if (state == 'k') return "standKicked";
+    else if (state == 'l') return "downKicked";
+    else if (state == 'm') return "airKicked";
+    else if (state == 'n') return "throw";
     else return NULL;//LOGGEAR ESTE ERROR
 }
 
@@ -111,14 +135,14 @@ void View_fight::updateCharacters(char *posT1_x, char *posT1_y, char stateT1, ch
     currentChar1 = currentCharT1 - '0';
     currentChar2 = currentCharT2 - '0';
 
+    team1[currentChar1]->flipSprite(selectFlip(flip1));
+    team2[currentChar2]->flipSprite(selectFlip(flip2));
+
     team1[currentChar1]->changePosition(pos1_x, pos1_y);
     team2[currentChar2]->changePosition(pos2_x, pos2_y);
 
     team1[currentChar1]->setState(selectState(stateT1));
     team2[currentChar2]->setState(selectState(stateT2));
-
-    team1[currentChar1]->flipSprite(selectFlip(flip1));
-    team2[currentChar2]->flipSprite(selectFlip(flip2));
 
 }
 
@@ -140,6 +164,12 @@ void View_fight::setTeams(Character* characterT1_1, Character* characterT1_2, Ch
     team1[0]->flipSprite(SDL_FLIP_HORIZONTAL);
     team2[0]->flipSprite(SDL_FLIP_NONE);
 
+    lifeManagerTeam1->setFirstCharacter(team1[0]->getName());
+    lifeManagerTeam1->setSecondCharacter(team1[1]->getName());
+
+    lifeManagerTeam2->setFirstCharacter(team2[0]->getName());
+    lifeManagerTeam2->setSecondCharacter(team2[1]->getName());
+
 }
 
 void View_fight::renderDisconnected() {
@@ -152,6 +182,72 @@ void View_fight::addDisconnected(GameObject *disconnected_) {
 
     disconnected = disconnected_;
 }
+
+void View_fight::addLifeManagers(LifeManager* team1, LifeManager* team2) {
+    lifeManagerTeam1 = team1;
+    lifeManagerTeam2 = team2;
+}
+
+void View_fight::addTimeManager(TimeManager *timeManager) {
+    this->timeManager = timeManager;
+}
+
+void View_fight::updateTime(char* ten, char* unity, char* round) {
+    timeManager->setRound(atoi(round));
+    //cout<<round;
+    timeManager->setUnity(atoi(unity));
+    //cout<<unity;
+    timeManager->setTen(atoi(ten));
+    //cout<<ten;
+}
+
+void View_fight::updateLife(char* lifeTeam1, char* lifeTeam2) {
+    // se puede reulitizar otro mensaje para el jugador actual
+    lifeManagerTeam1->updateCurrentCharacter(team1[currentChar1]->getName());
+    lifeManagerTeam2->updateCurrentCharacter(team2[currentChar2]->getName());
+// este método debería recibir la vida del jugador actual de los 2 teams
+// atof es como atoi para doubles.
+    double lifeTeam1_double = atof(lifeTeam1);
+    double lifeTeam2_double = atof(lifeTeam2);
+    lifeManagerTeam1->updateLife(lifeTeam1_double/100);
+    lifeManagerTeam2->updateLife(lifeTeam2_double/100);
+}
+
+void View_fight::updateShouldFight(char *shouldFight) {
+    int shouldFight_int = atoi(shouldFight);
+    timeManager->updateShouldFight(shouldFight_int);
+    lifeManagerTeam1->updateShouldFight(shouldFight_int);
+    lifeManagerTeam2->updateShouldFight(shouldFight_int);
+}
+
+void View_fight::updateTeamsWons(char roundsT1, char roundsT2) {
+
+    lifeManagerTeam1->updateWons(roundsT1 - '0');
+    lifeManagerTeam2->updateWons(roundsT2 - '0');
+}
+
+void View_fight::updateProjectiles(char *posT1_x, char *posT1_y, char stateT1, char flip1, char *posT2_x, char *posT2_y,
+                                  char stateT2, char flip2) {
+
+    int pos1_x = atoi(posT1_x);
+    int pos1_y = atoi(posT1_y);
+    int pos2_x = atoi(posT2_x);
+    int pos2_y = atoi(posT2_y);
+
+    team1[currentChar1]->flipProjectileSprite(selectFlip(flip1));
+    team2[currentChar2]->flipProjectileSprite(selectFlip(flip2));
+
+    team1[currentChar1]->changeProjectilePosition(pos1_x, pos1_y);
+    team2[currentChar2]->changeProjectilePosition(pos2_x, pos2_y);
+
+    team1[currentChar1]->setProjectileState(stateT1);
+    team2[currentChar2]->setProjectileState(stateT2);
+
+}
+
+
+
+
 
 
 

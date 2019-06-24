@@ -9,6 +9,8 @@
 int serverSocket_s;
 struct sockaddr_in serverAddr_s;
 
+const char* gameMode;
+
 //----CLIENT VARIABLES----
 
 int clientSocket[MAXCLIENTS + 1];
@@ -222,12 +224,17 @@ void* Server::receivingEventsFromClient(void *client_) {
 
     int speed = 60;
     Uint32 start;
+    int viewControllerNumber = 0;
 
     while(true){
 
         if (game_server->haveToChangeViewController()) {
             game_server->changeViewController();
-            viewControllerFight = true;
+            if (viewControllerNumber == 0) {
+                viewControllerFight = true;
+            }
+            else viewControllerFight = false;
+            viewControllerNumber++;
         }
 
         start = SDL_GetTicks();
@@ -471,7 +478,9 @@ void * Server::rejectingClients(void *clientIter_){
 }
 
 
-void Server::connect() {
+void Server::connect(const char* mode) {
+
+    gameMode = mode;
 
     CLogger* logger = CLogger::GetLogger();
 
@@ -558,10 +567,10 @@ void Server::connect() {
     const int SCREEN_HEIGHT = config->getScreenSize()[1];
 
     game_server = new Game_server(SCREEN_WIDTH, SCREEN_HEIGHT);
-    game_server->init();
+    game_server->init(gameMode);
 
     //Se arranca a enviar el conectado y el team a los clientes
-
+    sleep(12); //ESTE SLEEP ES PARA DARLE TIEMPO A LOS CLIENTES A QUE CARGUEN TODAS LAS IMAGENES DEL JSON. SI NO COMO TARDAN VA A DECIR QUE SE DESCONECTARON
 
     pthread_mutex_init(&lock,NULL);
 

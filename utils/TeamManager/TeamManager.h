@@ -36,17 +36,43 @@ public:
 
     int currentCharacterPlaying();
 
+    int getCurrentCharacterLife();
+
+    int getTeamLife();
+
+    void roundWin();
+
+    void resetRound();
+
+    int getRoundsWon();
+
+    vector<char> getCharacters();
+
+    void setGameMode(const char *string);
+
+    char getProjectileState();
+
+    char getProjectileFlip();
+
+    vector<int> getPosCurrentProjectile();
+
 private:
 
 
     ControllerCharacter* currentCharacter;
     ControllerCharacter* supportCharacter;
+    ControllerCharacter* firstCharacter;
+    ControllerCharacter* secondCharacter;
     TeamManager* enemyTeam;
     SDL_RendererFlip flip = SDL_FLIP_HORIZONTAL;
+    int rounds_wins = 0;
+    bool initialFlip;
 
     void changeCharacter();
 
     int cantChangeChar;
+
+    vector<char> teamNames;
 };
 
 #endif //TALLER_MARVEL_CAPCOM_TEAMMANAGER_H

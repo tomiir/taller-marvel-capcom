@@ -34,6 +34,14 @@ protected:
     DirectionVector* STOPLEFT = new DirectionVector(-2, 0);
     DirectionVector* KEYSRELEASED = new DirectionVector(0, 0);
     DirectionVector* CHANGECHARACTER = new DirectionVector(4, 0);
+    DirectionVector* WEAK_PUNCH = new DirectionVector(-5, -5);
+    DirectionVector* WEAK_KICK = new DirectionVector(-6, -5);
+    DirectionVector* STRONG_PUNCH = new DirectionVector(-5, -7);
+    DirectionVector* STRONG_KICK = new DirectionVector(-6, -7);
+    DirectionVector* GUARD = new DirectionVector(3, 0);
+    DirectionVector* GRAB = new DirectionVector(-3, -3);
+    DirectionVector* STOP_GUARD = new DirectionVector(-3, 0);
+    DirectionVector* THROW = new DirectionVector(8, 8);
 
 
     DirectionVector* DIAGONAL_UP_RIGHT = new DirectionVector(1, -1);

@@ -15,7 +15,7 @@ class ViewControllerFactory{
 public:
     ViewControllerFactory(int screenWidth_, int screenHeight_);
     ~ViewControllerFactory();
-    ViewController_fight * getViewController_fight();
+    ViewController_fight * getViewController_fight(const char* gameMode);
     map<string, ControllerCharacter *> getControllerCharacter();
 
 private:

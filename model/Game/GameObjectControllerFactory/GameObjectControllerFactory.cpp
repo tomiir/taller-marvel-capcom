@@ -23,10 +23,14 @@ std::vector<ControllerCharacter*> GameObjectControllerFactory::getControllersCha
     vector <ControllerCharacter*> characters;
 
     //hardcodeo los z indexs
-    ControllerCharacter* controllerCharacter1 = new ControllerCharacter(gameObjects[0], screenWidth, screenHeight, speedCharacter, jumpSpeed);
-    ControllerCharacter* controllerCharacter2 = new ControllerCharacter(gameObjects[1], screenWidth, screenHeight, speedCharacter, jumpSpeed);
-    ControllerCharacter* controllerCharacter3 = new ControllerCharacter(gameObjects[2], screenWidth, screenHeight, speedCharacter, jumpSpeed);
-    ControllerCharacter* controllerCharacter4 = new ControllerCharacter(gameObjects[3], screenWidth, screenHeight, speedCharacter, jumpSpeed);
+    ControllerCharacter* controllerCharacter1 = new ControllerCharacter(gameObjects[0], screenWidth, screenHeight, speedCharacter, jumpSpeed,
+                                                                        dynamic_cast<Character_server*>(gameObjects[0])->getProjectile());
+    ControllerCharacter* controllerCharacter2 = new ControllerCharacter(gameObjects[1], screenWidth, screenHeight, speedCharacter, jumpSpeed,
+                                                                        dynamic_cast<Character_server*>(gameObjects[1])->getProjectile());
+    ControllerCharacter* controllerCharacter3 = new ControllerCharacter(gameObjects[2], screenWidth, screenHeight, speedCharacter, jumpSpeed,
+                                                                        dynamic_cast<Character_server*>(gameObjects[2])->getProjectile());
+    ControllerCharacter* controllerCharacter4 = new ControllerCharacter(gameObjects[3], screenWidth, screenHeight, speedCharacter, jumpSpeed,
+                                                                        dynamic_cast<Character_server*>(gameObjects[3])->getProjectile());
 
 
     characters = { controllerCharacter1, controllerCharacter2,controllerCharacter3,controllerCharacter4 };

@@ -10,6 +10,7 @@
 #include "../../controllers/ViewController/ViewController.h"
 #include "../../model/Game/ViewControllerFactory/ViewControllerFactory.h"
 #include "../../controllers/ViewController/ViewController_charSelect/ViewController_charSelect.h"
+#include "../../controllers/ViewController/ViewController_endGame/ViewController_endGame.h"
 
 
 
@@ -20,7 +21,7 @@ class Game_server {
 public:
     Game_server(int screenWidth_, int screenHeight_);
     ~Game_server();
-    void init();
+    void init(const char* gameMode);
 
 
     bool haveToChangeViewController();

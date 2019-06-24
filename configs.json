@@ -34,212 +34,262 @@
 	],
 	"characters":
 		[
-			{"name":"CaptainAmerica",
-			 "filepath":"../Images/Characters/CaptainAmerica.png",
-			 "height":280,
-			 "width":200,
-			 "zindex":99,
-			 "spriteManagerName": "CaptainAmerica",
-			 "size": 2.5
+			{
+				"name":"CaptainAmerica",
+			 	"filepath":"../Images/Characters/CaptainAmerica.png",
+				"lifebarpath" : "../Images/life_frame/vida-captainamerica.png",
+				"zindexlife" : 99,
+			 	"height":280,
+			 	"width":200,
+			 	"zindex":99,
+			 	"spriteManagerName": "CaptainAmerica",
+			 	"size": 2.5,
+			 	"wSprite": 322,
+		     	"hSprite": 245
 			},
-			{"name":"ChunLi",
-			 "filepath":"../Images/Characters/ChunLi.png",
-			 "height":220,
-			 "width":200,
-			 "zindex":99,
-			 "spriteManagerName": "ChunLi",
-			 "size": 2.5
+			{
+				"name":"ChunLi",
+			 	"filepath":"../Images/Characters/ChunLi.png",
+				"lifebarpath" : "../Images/life_frame/vida-chunli.png",
+				"zindexlife" : 99,
+				"height":220,
+			 	"width":200,
+			 	"zindex":99,
+			 	"spriteManagerName": "ChunLi",
+			 	"size": 2.5,
+				"wSprite": 407,
+				"hSprite": 210
 			},
-			{"name":"SpiderMan",
-			 "filepath":"../Images/Characters/SpiderMan.png",
-			 "height":245,
-			 "width":200,
-			 "zindex":98,
-			 "spriteManagerName": "SpiderMan",
-			 "size": 2.5
+			{
+				"name":"SpiderMan",
+			 	"filepath":"../Images/Characters/SpiderMan.png",
+				"lifebarpath" : "../Images/life_frame/vida-spiderman.png",
+				"zindexlife" : 99,
+			 	"height":245,
+			 	"width":274,
+			 	"zindex":98,
+			 	"spriteManagerName": "SpiderMan",
+			 	"size": 2.5,
+				"wSprite": 491,
+				"hSprite": 268
 			},
-			{"name":"Venom",
-			 "filepath":"../Images/Characters/Venom.png",
-			 "height":300,
-			 "width":300,
-			 "zindex":98,
-			 "spriteManagerName": "Venom",
-			 "size": 2.5
+			{
+				"name":"Venom",
+			 	"filepath":"../Images/Characters/Venom.png",
+				"lifebarpath" : "../Images/life_frame/vida-venom.png",
+				"zindexlife" : 99,
+			 	"height":249,
+			 	"width":293,
+			 	"zindex":98,
+			 	"spriteManagerName": "Venom",
+			 	"size": 2.5,
+				"wSprite": 560,
+				"hSprite": 238
 			}
 		],
+
 	"window":
 		{
 			"width":1200,
 		 	"height":700
-		 },
-	"gameParameters": {
-		"charactersSpeed": 6,
-		"jumpSpeed":13
 		},
 
-	"Graphics": {
-		"FPS": 60
+	"gameParameters":
+		{
+			"charactersSpeed": 6,
+			"jumpSpeed":13
 		},
-	"Title": {
-		"title": "Marvel vs Capcom"
+
+	"Graphics":
+		{
+			"FPS": 60
 		},
+
+	"Title":
+		{
+			"title": "Marvel vs Capcom"
+		},
+
 	"selectImage":
 	[
-		{"name":"background",
-		"filepath":"../Images/menu_seleccion/background.png",
-		"x":0,
-		"y":0,
-		"height":800,
-		"width": 600
+		{
+			"name":"background",
+			"filepath":"../Images/menu_seleccion/background.png",
+			"x":0,
+			"y":0,
+			"height":800,
+			"width": 600
 		},
-		{"name":"SpiderMan",
+		{
+			"name":"SpiderMan",
 			"filepath":"../Images/menu_seleccion/SM2.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"SpiderMan",
+		{
+			"name":"SpiderMan",
 			"filepath":"../Images/menu_seleccion/SM.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"Venom",
+		{
+			"name":"Venom",
 			"filepath":"../Images/menu_seleccion/V2.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"Venom",
+		{
+			"name":"Venom",
 			"filepath": "../Images/menu_seleccion/V.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"ChunLi",
+		{
+			"name":"ChunLi",
 			"filepath": "../Images/menu_seleccion/CL2.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"CaptainAmerica",
+		{
+			"name":"ChunLi",
 			"filepath": "../Images/menu_seleccion/CL.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"CaptainAmerica",
+		{
+			"name":"CaptainAmerica",
 			"filepath": "../Images/menu_seleccion/CA2.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"CaptainAmerica",
+		{
+			"name":"CaptainAmerica",
 			"filepath": "../Images/menu_seleccion/CA.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"SpiderMan",
+		{
+			"name":"SpiderMan",
 			"filepath":"../Images/menu_seleccion/SM2.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"SpiderMan",
+		{
+			"name":"SpiderMan",
 			"filepath":"../Images/menu_seleccion/SM.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"Venom",
+		{
+			"name":"Venom",
 			"filepath":"../Images/menu_seleccion/V2.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"Venom",
+		{
+			"name":"Venom",
 			"filepath": "../Images/menu_seleccion/V.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"ChunLi",
+		{
+			"name":"ChunLi",
 			"filepath": "../Images/menu_seleccion/CL2.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"ChunLi",
+		{
+			"name":"ChunLi",
 			"filepath": "../Images/menu_seleccion/CL.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"CaptainAmerica",
+		{
+			"name":"CaptainAmerica",
 			"filepath": "../Images/menu_seleccion/CA2.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"CaptainAmerica",
+		{
+			"name":"CaptainAmerica",
 			"filepath": "../Images/menu_seleccion/CA.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"square_1",
+		{
+			"name":"square_1",
 			"filepath": "../Images/menu_seleccion/Team1 select.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"square_2",
+		{
+			"name":"square_2",
 			"filepath": "../Images/menu_seleccion/Team2 select.png",
 			"x": 200,
 			"y":0,
 			"height":800,
 			"width": 600
 		},
-		{"name":"CaptainAmerica",
+		{
+			"name":"CaptainAmerica",
 			"filepath": "../Images/menu_seleccion/Seleccionado.png",
 			"x": 240,
 			"y": 296,
 			"height":153,
 			"width": 117
 		},
-		{"name":"SpiderMan",
+		{
+			"name":"SpiderMan",
 			"filepath": "../Images/menu_seleccion/Seleccionado.png",
 			"x": 403,
 			"y": 296,
 			"height":153,
 			"width": 117
 		},
-		{"name":"ChunLi",
+		{
+			"name":"ChunLi",
 			"filepath": "../Images/menu_seleccion/Seleccionado.png",
 			"x": 242,
 			"y": 422,
 			"height":153,
 			"width": 117
 		},
-		{"name":"Venom",
+		{
+			"name":"Venom",
 			"filepath": "../Images/menu_seleccion/Seleccionado.png",
 			"x": 404,
 			"y": 422,
@@ -247,11 +297,15 @@
 			"width": 117
 		}
 	],
-	"server":{
+
+	"server":
+	{
 		"clients": 2,
 		"port": 54000
 	},
-	"disconected":{
+
+	"disconected":
+	{
 		"name":"Disconected",
 		"filepath": "../Images/Disconnected/Disconnected.png",
 		"x": 1200,

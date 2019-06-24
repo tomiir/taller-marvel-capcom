@@ -10,16 +10,20 @@ JsonCharacter::JsonCharacter(std::list<std::string> errors){
 
 }
 
-JsonCharacter::JsonCharacter(std::string name, std::string filepath, int height, int width, int zindex, std::string spriteManager, double size) {
+JsonCharacter::JsonCharacter(std::string name, std::string filepath, std::string lifebarPath, int zindexlifebar, int height, int width, int zindex, std::string spriteManager, double size, int wSprite, int hSprite) {
 
     this->name = name;
     this->filepath = filepath;
     this-> height = height;
     this->width = width;
     this->zindex = zindex;
+    this->zindexlifebar = zindexlifebar;
     this->spriteManager = spriteManager;
     this->size = size;
     this->error = false;
+    this->wSprite = wSprite;
+    this->hSprite = hSprite;
+    this->lifebarpath = lifebarPath;
 }
 
 std::string JsonCharacter::getName() {
@@ -32,6 +36,14 @@ std::list<std::string> JsonCharacter::getErrorList(){
 
 std::string JsonCharacter::getFilePath() {
     return this->filepath;
+}
+
+std::string JsonCharacter::getLifebarpath(){
+    return this->lifebarpath;
+}
+
+int JsonCharacter::getzIndexLifebar() {
+    return this->zindexlifebar;
 }
 
 int JsonCharacter::getHeight() {
@@ -57,3 +69,12 @@ double JsonCharacter::getSize() {
 bool JsonCharacter::getError(){
     return error;
 }
+
+int JsonCharacter::getWSprite(){
+    return wSprite;
+}
+
+int JsonCharacter::getHSprite(){
+    return hSprite;
+}
+

@@ -8,21 +8,21 @@
 void SpiderManWalkAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 13;
+    animationRate = 8;
     animationLength = 12;
 
-    vector<int> frame0 = {7, 122, 81, 90};
-    vector<int> frame1 = {97, 121, 87, 91};
-    vector<int> frame2 = {191, 119, 82, 92};
-    vector<int> frame3 = {277, 119, 84, 90};
-    vector<int> frame4 = {371, 120, 79, 90};
-    vector<int> frame5 = {453, 120, 84, 90};
-    vector<int> frame6 = {540, 121, 81, 90};
-    vector<int> frame7 = {624, 122, 78, 90};
-    vector<int> frame8 = {710, 121, 76, 90};
-    vector<int> frame9 = {796, 122, 74, 92};
-    vector<int> frame10 = {881, 123, 72, 92};
-    vector<int> frame11 = {956, 121, 76, 89};
+    vector<int> frame0 = {0, 268, 491, 268};
+    vector<int> frame1 = {491, 268, 491, 268};
+    vector<int> frame2 = {982, 268, 491, 268};
+    vector<int> frame3 = {1473, 268, 491, 268};
+    vector<int> frame4 = {1964, 268, 491, 268};
+    vector<int> frame5 = {2455, 268, 491, 268};
+    vector<int> frame6 = {2946, 268, 491, 268};
+    vector<int> frame7 = {3437, 268, 491, 268};
+    vector<int> frame8 = {3928, 268, 491, 268};
+    vector<int> frame9 = {4419, 268, 491, 268};
+    vector<int> frame10 = {4910, 268, 491, 268};
+    vector<int> frame11 = {5401, 268, 491, 268};
 
 
 
