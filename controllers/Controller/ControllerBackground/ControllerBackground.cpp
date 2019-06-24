@@ -90,12 +90,17 @@ void ControllerBackground::handleEvent(string event, ControllerCharacter* contro
         dirUp->setY( -jumpSpeed/2 );
         gameObject->move(dirUp);
 
+        controllerCharacter1->moveProjectile(dirUp);
+        controllerCharacter2->moveProjectile(dirUp);
     }
 
     if( characterIsInDownBoundary and cameraIsUnderDownLimit ){
 
         dirUp->setY( jumpSpeed/2 );
         gameObject->move(dirUp);
+
+        controllerCharacter1->moveProjectile(dirUp);
+        controllerCharacter2->moveProjectile(dirUp);
     }
 
 
