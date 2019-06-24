@@ -58,6 +58,8 @@ public:
 
     vector<int> getProjectilePosition();
 
+    void moveProjectile(DirectionVector *dir);
+
 private:
 
     Character_server* projectile;

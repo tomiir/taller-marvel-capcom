@@ -468,8 +468,6 @@ void ControllerCharacter::move(DirectionVector *direction) {
 
     gameObject->move(direction);
 
-    if (projectile_flying) projectile->move(direction);
-
 }
 
 void ControllerCharacter::flip(SDL_RendererFlip flip) {
@@ -632,4 +630,9 @@ bool ControllerCharacter::projectileIsFlip() {
 vector<int> ControllerCharacter::getProjectilePosition() {
 
     return projectile->getPosInfo();
+}
+
+void ControllerCharacter::moveProjectile(DirectionVector *dir) {
+
+    if(projectile_flying) projectile->move(dir);
 }

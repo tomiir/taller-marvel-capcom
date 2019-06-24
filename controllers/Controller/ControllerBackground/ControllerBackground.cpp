@@ -56,6 +56,14 @@ void ControllerBackground::handleEvent(string event, ControllerCharacter* contro
 
         dirRight->setX(-(speedCam/5) - 0.6);
         controllerCharacterOnLeft->move(dirRight);
+
+        DirectionVector* projectileSpeed = new DirectionVector();
+        projectileSpeed->setX(-(speedCam/5) - 0.8);
+
+        controllerCharacter1->moveProjectile(projectileSpeed);
+        controllerCharacter2->moveProjectile(projectileSpeed);
+
+        delete projectileSpeed;
     }
 
     if(controllerCharacterOnLeft->isMovingLeft() and distanceMinorCameraWidth and cameraIsOverLeftLimit and characterOnLeftIsInLeftBoundary and !distanceEqualCameraWidth and !controllerCharacterOnLeft->isJumping()){
@@ -66,6 +74,14 @@ void ControllerBackground::handleEvent(string event, ControllerCharacter* contro
 
         dirLeft->setX((speedCam/5) + 0.6);
         controllerCharacterOnRight->move(dirLeft);
+
+        DirectionVector* projectileSpeed = new DirectionVector();
+        projectileSpeed->setX((speedCam/5) + 0.8);
+
+        controllerCharacter1->moveProjectile(projectileSpeed);
+        controllerCharacter2->moveProjectile(projectileSpeed);
+
+        delete projectileSpeed;
     }
 
 
