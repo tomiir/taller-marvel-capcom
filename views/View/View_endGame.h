@@ -12,7 +12,7 @@ public:
 
     View_endGame(SDL_Renderer *renderer_);
     ~View_endGame() override = default;
-    void addBackground(GameObject* background);
+    void addBackground(GameObject* background, GameObject* ilumination);
     void addWinners(vector <GameObject*> winners);
 
     void updateView() override;
@@ -26,6 +26,7 @@ public:
 
 private:
     GameObject* background;
+    GameObject* ilumination;
     map <string,GameObject*> winners;
     map <string, GameObject*>::iterator itr_winners= winners.begin();
     string winner_string;

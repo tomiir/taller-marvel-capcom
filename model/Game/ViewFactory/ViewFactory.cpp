@@ -129,7 +129,7 @@ View_endGame *ViewFactory::getView_endGame() {
     View_endGame* viewEndGame = new View_endGame(renderer);
     viewEndGame->addGameObject_disconnected(disconnected);
 
-    viewEndGame->addBackground(gameObjects[0]);
+    viewEndGame->addBackground(gameObjects[0], gameObjects[7]);
 
     vector<GameObject*> winners = {gameObjects[1], gameObjects[2], gameObjects[3],
                                    gameObjects[4], gameObjects[5], gameObjects[6]};
