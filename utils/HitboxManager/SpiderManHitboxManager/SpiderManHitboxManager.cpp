@@ -51,6 +51,8 @@ SpiderManHitboxManager::SpiderManHitboxManager() : HitboxManager(){
     SDL_Rect hitboxStrongDownKickLeg = SDL_Rect{765, 460, 260, 78};
 
     SDL_Rect hitboxThrowing = SDL_Rect{478, 358, 290, 193};
+    SDL_Rect hitboxGrab = SDL_Rect{503, 345,  200, 198};
+    SDL_Rect hitboxNull = SDL_Rect{0, 0, 0, 0};
 
 
     stateHitBoxes["still"] = { hitboxStill };
@@ -81,6 +83,10 @@ SpiderManHitboxManager::SpiderManHitboxManager() : HitboxManager(){
     stateHitBoxes["strongDownPunch"] = {hitboxStrongDownPunchBody, hitboxStrongDownPunchArm};
     stateHitBoxes["strongDownKick"] = {hitboxStrongDownKickBody, hitboxStrongDownKickLeg};
     stateHitBoxes["throw"] = {hitboxThrowing};
+
+    stateHitBoxes["grab"] = {hitboxGrab};
+    stateHitBoxes["grabbed"] = {hitboxNull};
+    stateHitBoxes["grabbedImpact"] = {hitboxNull};
 
     stateIterHitboxes = stateHitBoxes.find(currentState);
     currentHitboxes = stateIterHitboxes->second;}

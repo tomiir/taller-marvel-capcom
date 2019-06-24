@@ -53,6 +53,9 @@ CaptainAmericaHitboxManager::CaptainAmericaHitboxManager() : HitboxManager(){
     SDL_Rect hitboxStrongDownKickLeg = SDL_Rect{478, 398, 208, 65};
 
     SDL_Rect hitboxThrowing = SDL_Rect{273, 233, 448, 233};
+    SDL_Rect hitboxGrab = SDL_Rect{273, 200, 200, 278};
+    SDL_Rect hitboxNull = SDL_Rect{0, 0, 0, 0};
+
 
 
     stateHitBoxes["still"] = { hitboxStill };
@@ -83,6 +86,12 @@ CaptainAmericaHitboxManager::CaptainAmericaHitboxManager() : HitboxManager(){
     stateHitBoxes["strongDownPunch"] = {hitboxStrongDownPunchBody, hitboxStrongDownPunchArm};
     stateHitBoxes["strongDownKick"] = {hitboxStrongDownKickBody, hitboxStrongDownKickLeg};
     stateHitBoxes["throw"] = {hitboxThrowing};
+    stateHitBoxes["grab"] = {hitboxGrab};
+    stateHitBoxes["grabbed"] = {hitboxNull};
+    stateHitBoxes["grabbedImpact"] = {hitboxNull};
+
+
+
 
 
     stateIterHitboxes = stateHitBoxes.find(currentState);
