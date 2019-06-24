@@ -273,10 +273,9 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         }
     }
 
-    if(state == "grabbed" or state == "grabbedImpact"){
+    if(grabbed or grabbedImpact){
 
         inAir = true;
-        grabbed = true;
 
         DirectionVector* step;
         SDL_RendererFlip flip = this->getFlip();
@@ -292,11 +291,13 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
             grabbedImpact = true;
 
             if(grabbed_impact_timer == 20) {
+
                 state = "still";
                 inAir = false;
                 grabbedImpact = false;
                 gameObject->stayInFloor();
                 life -= grabbed_dmg;
+                if(strcmp(gameMode, "training") == 0) life = 100;
                 flipFlag = 0;
                 if (life <= 0) {
                     life = 0;
