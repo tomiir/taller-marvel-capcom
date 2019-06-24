@@ -193,7 +193,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         }
     }
 
-    if (direction->isEqual(STOP_GUARD)) {
+    if (direction->isEqual(STOP_GUARD) and !grab and !grabbed and !grabbedImpact) {
         if (inAir) state = "jump";
         else if(state != "downGuard") state = "still";  //ESTO NO SE SI ESTA BIEN. HAY QUE PROBAR
         else state = "crowchedDown";
@@ -229,7 +229,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
 
 
 
-    if (direction->isEqual(GETTINGUP)) {
+    if (direction->isEqual(GETTINGUP) and !grab and !grabbed and !grabbedImpact) {
         state = "still";
         crowchedDown = false;
     }
@@ -286,7 +286,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
             flipFlag = 1;
         }
 
-        if( !characterIsntInLeftBoundary or !characterIsntInRightBoundary ){
+        if( (!characterIsntInLeftBoundary or !characterIsntInRightBoundary) and flagGrabbed == 2) {
             grabbed = false;
             grabbedImpact = true;
 
@@ -304,6 +304,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
                     defeated = true;
                 }
                 grabbed_impact_timer = 0;
+                flagGrabbed = 0;
             } else {
                 state = "grabbedImpact";
                 grabbed_impact_timer += 1;
@@ -315,6 +316,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
             if(isFliped) step = new DirectionVector(-jumpSpeed, 0);
             else step = new DirectionVector(jumpSpeed, 0);
             gameObject->move(step);
+            if(!characterIsntInLeftBoundary or !characterIsntInRightBoundary) flagGrabbed += 1;
             delete step;
         }
     }
@@ -440,7 +442,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
 
     if (jump) {
 
-        if(!punching and !guarding and !strongPunching and !kicked and !defeated) state = "jump";
+        if(!punching and !guarding and !strongPunching and !kicked and !defeated and !grab and !grabbedImpact and !grabbed) state = "jump";
         inAir = true;
         DirectionVector *step = new DirectionVector(0, -jumpSpeed);
 
@@ -517,10 +519,9 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         }
     }
 
-
     delete direction;
 
-
+    cout << state << endl;
     dynamic_cast<Character_server *>(gameObject)->setState(state);
 
 
@@ -615,7 +616,15 @@ GameObject_server *ControllerCharacter::getGameObject() {
 void ControllerCharacter::Grabbed(){
 
     grabbed = true;
+    movingLeft = false;
+    movingRight = false;
+    crowchedDown = false;
+    throwing = false;
+    punching = false;
+    strongPunching = false;
+    guarding = false;
     state = "grabbed";
+    flagGrabbed = 1;
     character->setState(state);
 }
 
@@ -682,6 +691,9 @@ void ControllerCharacter::resetLife() {
     jump = false;
     projectile_flying = false;
     throwing = false;
+    grab = false;
+    grabbed = false;
+    grabbedImpact = false;
 }
 
 void ControllerCharacter::resetPosition(bool initialFlip) {

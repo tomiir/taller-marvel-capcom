@@ -84,7 +84,7 @@ private:
     int weak_strike_dmg = 6;
     int strong_strike_dmg = 12;
     int speedProjectile = 8;
-
+    int flagGrabbed = 0;
     int grabbed_dmg = 12;
     int grabing_timer = 0;
     int grabbed_impact_timer = 0;
