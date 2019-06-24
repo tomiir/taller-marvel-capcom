@@ -457,7 +457,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         delete step;
     }
 
-    if (!jump and inAir and !leaving and !grabbed) {
+    if (!jump and inAir and !leaving and !grabbed and !grabbedImpact) {
 
         if(!punching and !guarding and !strongPunching and !kicked and !defeated) state = "jump";
 
@@ -521,7 +521,6 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
 
     delete direction;
 
-    cout << state << endl;
     dynamic_cast<Character_server *>(gameObject)->setState(state);
 
 
