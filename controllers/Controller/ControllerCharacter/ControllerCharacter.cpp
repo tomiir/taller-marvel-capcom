@@ -259,7 +259,10 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
         movingLeft = false;
         grab = true;
         string oldState = state;
-        state = "grab";
+
+        if (info[0] <= enemyInfo[0]) state = "grabLeft";
+        else state = "grabRight";
+
         character->setState(state);
         collision = collisionManager->Collisioning(gameObject, enemy);
         if(collision and !enemyController->isInAir()){

@@ -1,12 +1,12 @@
 //
-// Created by arielpm on 12/06/19.
+// Created by arielpm on 25/06/19.
 //
 
-#include "VenomGrabAnimation.h"
+#include "VenomGrabRightAnimation.h"
 #include <SDL_timer.h>
 
 
-void VenomGrabAnimation::init() {
+void VenomGrabRightAnimation::init() {
 
     startTime = SDL_GetTicks();
     animationRate = 7;
@@ -37,7 +37,7 @@ void VenomGrabAnimation::init() {
 
 }
 
-VenomGrabAnimation::VenomGrabAnimation() : Animation() {
+VenomGrabRightAnimation::VenomGrabRightAnimation() : Animation() {
 
     this->init();
 

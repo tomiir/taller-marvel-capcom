@@ -23,7 +23,7 @@
 #include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaDownKickedAnimation.h"
 #include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaStandKickedAnimation.h"
 #include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaAirKickedAnimation.h"
-#include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaGrabAnimation.h"
+#include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaGrabLeftAnimation.h"
 #include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaDownGuardAnimation.h"
 #include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaStrongDownKickAnimation.h"
 #include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaAirGuardAnimation.h"
@@ -31,6 +31,7 @@
 #include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaThrowAnimation.h"
 #include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaGrabbedAnimation.h"
 #include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaGrabbedImpactAnimation.h"
+#include "../../../Animations/CaptainAmericaAnimations/CaptainAmericaGrabRightAnimation.h"
 
 
 using namespace std;
@@ -58,7 +59,8 @@ void CaptainAmericaSpriteManager::init(){
     animationMap["downKicked"] = new CaptainAmericaDownKickedAnimation();
     animationMap["standKicked"] = new CaptainAmericaStandKickedAnimation();
     animationMap["airKicked"] = new CaptainAmericaAirKickedAnimation();
-    animationMap["grab"] = new CaptainAmericaGrabAnimation();
+    animationMap["grabLeft"] = new CaptainAmericaGrabLeftAnimation();
+    animationMap["grabRight"] = new CaptainAmericaGrabRightAnimation();
     animationMap["downGuard"] = new CaptainAmericaDownGuardAnimation();
     animationMap["standGuard"] = new CaptainAmericaStandGuardAnimation();
     animationMap["airGuard"] = new CaptainAmericaAirGuardAnimation();

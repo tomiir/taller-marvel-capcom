@@ -160,8 +160,8 @@ add_executable(
         Animations/CaptainAmericaAnimations/CaptainAmericaDownKickedAnimation.h
         Animations/CaptainAmericaAnimations/CaptainAmericaEnteringAnimation.cpp
         Animations/CaptainAmericaAnimations/CaptainAmericaEnteringAnimation.h
-        Animations/CaptainAmericaAnimations/CaptainAmericaGrabAnimation.cpp
-        Animations/CaptainAmericaAnimations/CaptainAmericaGrabAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaGrabLeftAnimation.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaGrabLeftAnimation.h
         Animations/CaptainAmericaAnimations/CaptainAmericaJumpAnimation.cpp
         Animations/CaptainAmericaAnimations/CaptainAmericaJumpAnimation.h
         Animations/CaptainAmericaAnimations/CaptainAmericaStandGuardAnimation.cpp
@@ -210,8 +210,8 @@ add_executable(
         Animations/ChunLiAnimations/ChunLiDownKickedAnimation.h
         Animations/ChunLiAnimations/ChunLiEnteringAnimation.cpp
         Animations/ChunLiAnimations/ChunLiEnteringAnimation.h
-        Animations/ChunLiAnimations/ChunLiGrabAnimation.cpp
-        Animations/ChunLiAnimations/ChunLiGrabAnimation.h
+        Animations/ChunLiAnimations/ChunLiGrabLeftAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiGrabLeftAnimation.h
         Animations/ChunLiAnimations/ChunLiJumpAnimation.cpp
         Animations/ChunLiAnimations/ChunLiJumpAnimation.h
         Animations/ChunLiAnimations/ChunLiStandGuardAnimation.cpp
@@ -256,8 +256,8 @@ add_executable(
         Animations/SpiderManAnimations/SpiderManDownGuardAnimation.h
         Animations/SpiderManAnimations/SpiderManEnteringAnimation.cpp
         Animations/SpiderManAnimations/SpiderManEnteringAnimation.h
-        Animations/SpiderManAnimations/SpiderManGrabAnimation.cpp
-        Animations/SpiderManAnimations/SpiderManGrabAnimation.h
+        Animations/SpiderManAnimations/SpiderManGrabLeftAnimation.cpp
+        Animations/SpiderManAnimations/SpiderManGrabLeftAnimation.h
         Animations/SpiderManAnimations/SpiderManJumpAnimation.cpp
         Animations/SpiderManAnimations/SpiderManJumpAnimation.h
         Animations/SpiderManAnimations/SpiderManDownKickedAnimation.cpp
@@ -304,8 +304,8 @@ add_executable(
         Animations/VenomAnimations/VenomDownKickedAnimation.h
         Animations/VenomAnimations/VenomEnteringAnimation.cpp
         Animations/VenomAnimations/VenomEnteringAnimation.h
-        Animations/VenomAnimations/VenomGrabAnimation.cpp
-        Animations/VenomAnimations/VenomGrabAnimation.h
+        Animations/VenomAnimations/VenomGrabLeftAnimation.cpp
+        Animations/VenomAnimations/VenomGrabLeftAnimation.h
         Animations/VenomAnimations/VenomJumpAnimation.cpp
         Animations/VenomAnimations/VenomJumpAnimation.h
         Animations/VenomAnimations/VenomStandGuardAnimation.cpp
@@ -378,6 +378,14 @@ add_executable(
         utils/HitboxManager/ChunLiProjectileHitboxManager/ChunLiProjectileHitboxManager.cpp
         utils/HitboxManager/VenomProjectileHitboxManager/VenomProjectileHitboxManager.h
         utils/HitboxManager/VenomProjectileHitboxManager/VenomProjectileHitboxManager.cpp
+        Animations/CaptainAmericaAnimations/CaptainAmericaGrabRightAnimation.h
+        Animations/CaptainAmericaAnimations/CaptainAmericaGrabRightAnimation.cpp
+        Animations/ChunLiAnimations/ChunLiGrabRightAnimation.h
+        Animations/ChunLiAnimations/ChunLiGrabRightAnimation.cpp
+        Animations/SpiderManAnimations/SpiderManGrabRightAnimation.h
+        Animations/SpiderManAnimations/SpiderManGrabRightAnimation.cpp
+        Animations/VenomAnimations/VenomGrabRightAnimation.cpp
+        Animations/VenomAnimations/VenomGrabRightAnimation.h
 
         Json/JsonGameObject_charSelect.cpp Json/JsonGameObject_charSelect.h Json/JsonSintax.cpp Json/JsonSintax.h Json/JsonDisconection.cpp Json/JsonDisconection.h utils/LifeManager/LifeManager.cpp utils/LifeManager/LifeManager.h utils/TimeManager/TimeManager.cpp utils/TimeManager/TimeManager.h controllers/ViewController/ViewController_endGame/ViewController_endGame.cpp controllers/ViewController/ViewController_endGame/ViewController_endGame.h views/View/View_endGame.cpp views/View/View_endGame.h Animations/CaptainAmericaAnimations/CaptainAmericaGrabbedAnimation.cpp Animations/CaptainAmericaAnimations/CaptainAmericaGrabbedAnimation.h Animations/CaptainAmericaAnimations/CaptainAmericaGrabbedImpactAnimation.cpp Animations/CaptainAmericaAnimations/CaptainAmericaGrabbedImpactAnimation.h Animations/ChunLiAnimations/ChunLiGrabbedImpactAnimation.cpp Animations/ChunLiAnimations/ChunLiGrabbedImpactAnimation.h Animations/ChunLiAnimations/ChunLiGrabbedAnimation.cpp Animations/ChunLiAnimations/ChunLiGrabbedAnimation.h Animations/SpiderManAnimations/SpiderManGrabbedImpactAnimation.cpp Animations/SpiderManAnimations/SpiderManGrabbedImpactAnimation.h Animations/SpiderManAnimations/SpiderManGrabbedAnimation.cpp Animations/SpiderManAnimations/SpiderManGrabbedAnimation.h Animations/VenomAnimations/VenomGrabbedImpactAnimation.cpp Animations/VenomAnimations/VenomGrabbedImpactAnimation.h Animations/VenomAnimations/VenomGrabbedAnimation.cpp Animations/VenomAnimations/VenomGrabbedAnimation.h)
 

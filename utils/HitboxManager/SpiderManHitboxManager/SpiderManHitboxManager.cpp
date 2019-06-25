@@ -84,7 +84,8 @@ SpiderManHitboxManager::SpiderManHitboxManager() : HitboxManager(){
     stateHitBoxes["strongDownKick"] = {hitboxStrongDownKickBody, hitboxStrongDownKickLeg};
     stateHitBoxes["throw"] = {hitboxThrowing};
 
-    stateHitBoxes["grab"] = {hitboxGrab};
+    stateHitBoxes["grabLeft"] = {hitboxGrab};
+    stateHitBoxes["grabRight"] = {hitboxGrab};
     stateHitBoxes["grabbed"] = {hitboxNull};
     stateHitBoxes["grabbedImpact"] = {hitboxNull};
 

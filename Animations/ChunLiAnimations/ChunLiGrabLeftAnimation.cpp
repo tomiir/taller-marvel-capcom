@@ -2,10 +2,10 @@
 // Created by arielpm on 13/06/19.
 //
 
-#include "ChunLiGrabAnimation.h"
+#include "ChunLiGrabLeftAnimation.h"
 #include <SDL_timer.h>
 
-void ChunLiGrabAnimation::init() {
+void ChunLiGrabLeftAnimation::init() {
 
     startTime = SDL_GetTicks();
     animationRate = 10;
@@ -24,7 +24,7 @@ void ChunLiGrabAnimation::init() {
     animation.push_back(frame3);
 }
 
-ChunLiGrabAnimation::ChunLiGrabAnimation() : Animation() {
+ChunLiGrabLeftAnimation::ChunLiGrabLeftAnimation() : Animation() {
 
     this->init();
 

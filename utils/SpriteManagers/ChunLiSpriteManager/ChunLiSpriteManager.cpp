@@ -25,13 +25,14 @@
 #include "../../../Animations/ChunLiAnimations/ChunLiDownKickedAnimation.h"
 #include "../../../Animations/ChunLiAnimations/ChunLiStandKickedAnimation.h"
 #include "../../../Animations/ChunLiAnimations/ChunLiAirKickedAnimation.h"
-#include "../../../Animations/ChunLiAnimations/ChunLiGrabAnimation.h"
+#include "../../../Animations/ChunLiAnimations/ChunLiGrabLeftAnimation.h"
 #include "../../../Animations/ChunLiAnimations/ChunLiStandGuardAnimation.h"
 #include "../../../Animations/ChunLiAnimations/ChunLiAirGuardAnimation.h"
 #include "../../../Animations/ChunLiAnimations/ChunLiWeakAirKickAnimation.h"
 #include "../../../Animations/ChunLiAnimations/ChunLiThrowAnimation.h"
 #include "../../../Animations/ChunLiAnimations/ChunLiGrabbedAnimation.h"
 #include "../../../Animations/ChunLiAnimations/ChunLiGrabbedImpactAnimation.h"
+#include "../../../Animations/ChunLiAnimations/ChunLiGrabRightAnimation.h"
 
 
 using namespace std;
@@ -58,7 +59,8 @@ void ChunLiSpriteManager::init(){
     animationMap["downKicked"] = new ChunLiDownKickedAnimation();
     animationMap["standKicked"] = new ChunLiStandKickedAnimation();
     animationMap["airKicked"] = new ChunLiAirKickedAnimation();
-    animationMap["grab"] = new ChunLiGrabAnimation();
+    animationMap["grabLeft"] = new ChunLiGrabLeftAnimation();
+    animationMap["grabRight"] = new ChunLiGrabRightAnimation();
     animationMap["downGuard"] = new ChunLiDownGuardAnimation();
     animationMap["standGuard"] = new ChunLiStandGuardAnimation();
     animationMap["airGuard"] = new ChunLiAirGuardAnimation();

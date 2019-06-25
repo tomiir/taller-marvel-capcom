@@ -1,16 +1,17 @@
 //
-// Created by arielpm on 12/06/19.
+// Created by arielpm on 25/06/19.
 //
 
-#include "CaptainAmericaGrabAnimation.h"
+#include "CaptainAmericaGrabRightAnimation.h"
+
 #include <SDL_timer.h>
 
 
 
-void CaptainAmericaGrabAnimation::init() {
+void CaptainAmericaGrabRightAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 7;
+    animationRate = 9;
     animationLength = 14;
 
     vector<int> frame0 = {0, 5145, 322, 245};
@@ -40,7 +41,7 @@ void CaptainAmericaGrabAnimation::init() {
 
 }
 
-CaptainAmericaGrabAnimation::CaptainAmericaGrabAnimation() : Animation() {
+CaptainAmericaGrabRightAnimation::CaptainAmericaGrabRightAnimation() : Animation() {
 
     this->init();
 

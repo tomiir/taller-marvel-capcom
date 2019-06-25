@@ -50,7 +50,7 @@ VenomHitboxManager::VenomHitboxManager() : HitboxManager(){
     SDL_Rect hitboxStrongDownKickLeg = SDL_Rect{778, 298, 273, 70};
 
     SDL_Rect hitboxThrowing = SDL_Rect{623, 175, 320, 293};
-    SDL_Rect hitboxGrab = SDL_Rect{723, 215, 220, 248};
+    SDL_Rect hitboxGrab = SDL_Rect{723, 215, 210, 248};
     SDL_Rect hitboxNull = SDL_Rect{0, 0, 0, 0};
 
 
@@ -83,7 +83,8 @@ VenomHitboxManager::VenomHitboxManager() : HitboxManager(){
     stateHitBoxes["strongDownKick"] = {hitboxStrongDownKickBody, hitboxStrongDownKickLeg};
     stateHitBoxes["throw"] = {hitboxThrowing};
 
-    stateHitBoxes["grab"] = {hitboxGrab};
+    stateHitBoxes["grabLeft"] = {hitboxGrab};
+    stateHitBoxes["grabRight"] = {hitboxGrab};
     stateHitBoxes["grabbed"] = {hitboxNull};
     stateHitBoxes["grabbedImpact"] = {hitboxNull};
 

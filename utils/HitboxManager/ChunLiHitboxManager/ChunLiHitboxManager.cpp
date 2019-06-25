@@ -51,7 +51,7 @@ ChunLiHitboxManager::ChunLiHitboxManager() :  HitboxManager(){
     SDL_Rect hitboxStrongDownKickLeg = SDL_Rect{613, 293, 210, 60};
 
     SDL_Rect hitboxThrowing = SDL_Rect{455, 235, 150, 223};
-    SDL_Rect hitboxGrab = SDL_Rect{485, 220, 173, 228};
+    SDL_Rect hitboxGrab = SDL_Rect{485, 220, 165, 228};
     SDL_Rect hitboxNull = SDL_Rect{0, 0, 0, 0};
 
     stateHitBoxes["still"] = { hitboxStill };
@@ -83,7 +83,8 @@ ChunLiHitboxManager::ChunLiHitboxManager() :  HitboxManager(){
     stateHitBoxes["strongDownKick"] = {hitboxStrongDownKickBody, hitboxStrongDownKickLeg};
     stateHitBoxes["throw"] = {hitboxThrowing};
 
-    stateHitBoxes["grab"] = {hitboxGrab};
+    stateHitBoxes["grabLeft"] = {hitboxGrab};
+    stateHitBoxes["grabRight"] = {hitboxGrab};
     stateHitBoxes["grabbed"] = {hitboxNull};
     stateHitBoxes["grabbedImpact"] = {hitboxNull};
 

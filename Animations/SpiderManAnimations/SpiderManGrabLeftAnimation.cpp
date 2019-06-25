@@ -2,10 +2,10 @@
 // Created by arielpm on 13/06/19.
 //
 
-#include "SpiderManGrabAnimation.h"
+#include "SpiderManGrabLeftAnimation.h"
 #include <SDL_timer.h>
 
-void SpiderManGrabAnimation::init() {
+void SpiderManGrabLeftAnimation::init() {
 
     startTime = SDL_GetTicks();
     animationRate = 6;
@@ -37,7 +37,7 @@ void SpiderManGrabAnimation::init() {
 
 }
 
-SpiderManGrabAnimation::SpiderManGrabAnimation() : Animation() {
+SpiderManGrabLeftAnimation::SpiderManGrabLeftAnimation() : Animation() {
 
     this->init();
 
