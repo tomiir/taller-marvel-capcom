@@ -145,7 +145,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
     }
 
     if(grab){
-        grab = ++ grabing_timer != 20;
+        grab = ++ grabing_timer != 40;
         if(!grab){
             state = "still";
         }
