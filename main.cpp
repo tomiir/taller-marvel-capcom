@@ -13,7 +13,6 @@
 
 int main(int argc, const char* argv[]) {
 
-
     CLogger *logger = CLogger::GetLogger();
     logger->Log("Inicializando juego", INFO, "");
     JsonConfigs *config = JsonConfigs::getJson();
@@ -23,8 +22,8 @@ int main(int argc, const char* argv[]) {
 
     logger->setLevel(DEBUG_LEVEL);
 
-
     if (argc < 3 and argc > 4) {
+
         logger->Log("Falta el modo de inicializacion de la aplicacion serverAddr o cliente\n", ERROR, "");
         logger->closeLogger();
         exit(1);

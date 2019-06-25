@@ -2,14 +2,20 @@ cmake_minimum_required(VERSION 3.7)
 project(taller-marvel-capcom) #DEJAR COMO ESTA. Si no funca ---> renombrar la carpeta donde está el repo de git a esto
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
-set(CMAKE_CXX_FLAGS "-std=c++11 -pthread -lstdc++ -lm -ldl")
+set(CMAKE_CXX_FLAGS "-std=c++11  -pthread  -lstdc++ -lm -lSDL -lSDL_mixer -ldl ")
 set(CMAKE_CXX_STANDARD_LIBRARIES -ljsoncpp)
+
 
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
+find_package(SDL_mixer REQUIRED)
+
+
 include_directories(${SDL2_INCLUDE_DIRS})
 include_directories(${SDL2_IMAGE_INCLUDE_DIRS})
+include_directories(${SDL_MIXER_INCLUDE_DIRS})
 include_directories(${JSON_INC_PATH})
+
 
 add_executable(
         app main.cpp
@@ -379,9 +385,9 @@ add_executable(
         utils/HitboxManager/VenomProjectileHitboxManager/VenomProjectileHitboxManager.h
         utils/HitboxManager/VenomProjectileHitboxManager/VenomProjectileHitboxManager.cpp
 
-        Json/JsonGameObject_charSelect.cpp Json/JsonGameObject_charSelect.h Json/JsonSintax.cpp Json/JsonSintax.h Json/JsonDisconection.cpp Json/JsonDisconection.h utils/LifeManager/LifeManager.cpp utils/LifeManager/LifeManager.h utils/TimeManager/TimeManager.cpp utils/TimeManager/TimeManager.h controllers/ViewController/ViewController_endGame/ViewController_endGame.cpp controllers/ViewController/ViewController_endGame/ViewController_endGame.h views/View/View_endGame.cpp views/View/View_endGame.h Animations/CaptainAmericaAnimations/CaptainAmericaGrabbedAnimation.cpp Animations/CaptainAmericaAnimations/CaptainAmericaGrabbedAnimation.h Animations/CaptainAmericaAnimations/CaptainAmericaGrabbedImpactAnimation.cpp Animations/CaptainAmericaAnimations/CaptainAmericaGrabbedImpactAnimation.h Animations/ChunLiAnimations/ChunLiGrabbedImpactAnimation.cpp Animations/ChunLiAnimations/ChunLiGrabbedImpactAnimation.h Animations/ChunLiAnimations/ChunLiGrabbedAnimation.cpp Animations/ChunLiAnimations/ChunLiGrabbedAnimation.h Animations/SpiderManAnimations/SpiderManGrabbedImpactAnimation.cpp Animations/SpiderManAnimations/SpiderManGrabbedImpactAnimation.h Animations/SpiderManAnimations/SpiderManGrabbedAnimation.cpp Animations/SpiderManAnimations/SpiderManGrabbedAnimation.h Animations/VenomAnimations/VenomGrabbedImpactAnimation.cpp Animations/VenomAnimations/VenomGrabbedImpactAnimation.h Animations/VenomAnimations/VenomGrabbedAnimation.cpp Animations/VenomAnimations/VenomGrabbedAnimation.h)
+        Json/JsonGameObject_charSelect.cpp Json/JsonGameObject_charSelect.h Json/JsonSintax.cpp Json/JsonSintax.h Json/JsonDisconection.cpp Json/JsonDisconection.h utils/LifeManager/LifeManager.cpp utils/LifeManager/LifeManager.h utils/TimeManager/TimeManager.cpp utils/TimeManager/TimeManager.h controllers/ViewController/ViewController_endGame/ViewController_endGame.cpp controllers/ViewController/ViewController_endGame/ViewController_endGame.h views/View/View_endGame.cpp views/View/View_endGame.h Animations/CaptainAmericaAnimations/CaptainAmericaGrabbedAnimation.cpp Animations/CaptainAmericaAnimations/CaptainAmericaGrabbedAnimation.h Animations/CaptainAmericaAnimations/CaptainAmericaGrabbedImpactAnimation.cpp Animations/CaptainAmericaAnimations/CaptainAmericaGrabbedImpactAnimation.h Animations/ChunLiAnimations/ChunLiGrabbedImpactAnimation.cpp Animations/ChunLiAnimations/ChunLiGrabbedImpactAnimation.h Animations/ChunLiAnimations/ChunLiGrabbedAnimation.cpp Animations/ChunLiAnimations/ChunLiGrabbedAnimation.h Animations/SpiderManAnimations/SpiderManGrabbedImpactAnimation.cpp Animations/SpiderManAnimations/SpiderManGrabbedImpactAnimation.h Animations/SpiderManAnimations/SpiderManGrabbedAnimation.cpp Animations/SpiderManAnimations/SpiderManGrabbedAnimation.h Animations/VenomAnimations/VenomGrabbedImpactAnimation.cpp Animations/VenomAnimations/VenomGrabbedImpactAnimation.h Animations/VenomAnimations/VenomGrabbedAnimation.cpp Animations/VenomAnimations/VenomGrabbedAnimation.h utils/AudioManager/AudioMixer.cpp utils/AudioManager/AudioMixer.h)
 
 
 
-target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${CMAKE_DL_LIBS})
+target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${CMAKE_DL_LIBS} ${SDL2_MIXER_LIBRARIES})
 

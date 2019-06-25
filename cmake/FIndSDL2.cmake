@@ -120,6 +120,9 @@ PATHS
 /opt/local
 /opt/csw
 /opt
+/usr
+/usr/local
+/user/local/lib
 )
 endif()
 endif()

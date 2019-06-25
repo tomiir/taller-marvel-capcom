@@ -5,10 +5,11 @@
 #ifndef TALLER_MARVEL_CAPCOM_FIGHTAUDIOMANAGER_H
 #define TALLER_MARVEL_CAPCOM_FIGHTAUDIOMANAGER_H
 
+#include "SDL/SDL_mixer.h"
+#include "../AudioMixer.h"
+#include "SDL/SDL_mixer.h"
 
-#include "../AudioManager.h"
-
-class ViewAudioManager : public AudioManager {
+class ViewAudioManager : public AudioMixer {
 public:
     ~ViewAudioManager() = default;
     ViewAudioManager();
