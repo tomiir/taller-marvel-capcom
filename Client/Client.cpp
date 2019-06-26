@@ -10,6 +10,7 @@
 #define MESSAGEFROMSERVERLEN2 5
 
 bool playedCharSelectMusic = false;
+bool playedEndgameMusic = false;
 int serverSocket_c;
 struct sockaddr_in serverAddr_c;
 socklen_t  serverSize_c;
@@ -367,6 +368,11 @@ void* Client::render(void *arg) {
             game->updateWinners(winners);
             game->render();
             queueRecv.pop();
+            if(!playedEndgameMusic) {
+                game->viewAudioManager->setState("endgame");
+                playedEndgameMusic = true;
+            }
+
         }
 
         if ((1000 / speed) > (SDL_GetTicks() - start)) {

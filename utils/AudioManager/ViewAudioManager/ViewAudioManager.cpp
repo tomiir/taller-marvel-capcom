@@ -17,7 +17,7 @@ void ViewAudioManager::init() {
     audios["char_select"] = new Audio("../Audio/Music/char_select.wav");
     audios["endgame"] = new Audio("../Audio/Music/endgame.wav");
     this->state = "present";
-    this->oldValue = 1;
+    this->oldValue = -1;
 }
 
 void ViewAudioManager::resetMusic(int soundFlag) {
@@ -25,6 +25,8 @@ void ViewAudioManager::resetMusic(int soundFlag) {
         this->playAudio(this->state);
         oldValue = soundFlag;
     }
+    if (soundFlag == 1)
+        oldValue = soundFlag;
 
 }
 
