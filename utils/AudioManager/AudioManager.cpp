@@ -21,9 +21,8 @@ void AudioManager::setState(std::string state) {
         playAudio("fall");
     }
     else if(state != this->state) {
-        if(state != this->state) {
             playAudio(state);
-        }
+
     }
         this->state = state;
 

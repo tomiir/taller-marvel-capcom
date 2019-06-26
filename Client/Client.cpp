@@ -366,12 +366,13 @@ void* Client::render(void *arg) {
         if(strcmp(view, "02") == 0 or viewNumber == 2){
             char winners[] = {messageReceived[2],messageReceived[3],'\0'};
             game->updateWinners(winners);
-            game->render();
-            queueRecv.pop();
             if(!playedEndgameMusic) {
                 game->viewAudioManager->setState("endgame");
                 playedEndgameMusic = true;
             }
+            game->render();
+            queueRecv.pop();
+
 
         }
 
