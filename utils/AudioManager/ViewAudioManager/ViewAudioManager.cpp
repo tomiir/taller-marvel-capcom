@@ -17,10 +17,15 @@ void ViewAudioManager::init() {
     audios["char_select"] = new Audio("../Audio/Music/char_select.wav");
     audios["endgame"] = new Audio("../Audio/Music/endgame.wav");
     this->state = "present";
+    this->oldValue = 1;
 }
 
-void ViewAudioManager::resetMusic() {
-    this->playAudio(this->state);
+void ViewAudioManager::resetMusic(int soundFlag) {
+    if (soundFlag != oldValue && soundFlag == 0){
+        this->playAudio(this->state);
+        oldValue = soundFlag;
+    }
+
 }
 
 ViewAudioManager::~ViewAudioManager() {

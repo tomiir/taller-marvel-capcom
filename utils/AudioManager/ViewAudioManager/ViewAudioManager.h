@@ -13,7 +13,9 @@ public:
     ~ViewAudioManager();
     ViewAudioManager();
     void init() override;
-    void resetMusic();
+    void resetMusic(int soundFlag);
+private:
+    int oldValue;
 };
 
 
