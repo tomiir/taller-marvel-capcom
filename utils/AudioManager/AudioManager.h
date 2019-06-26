@@ -24,6 +24,7 @@ protected:
     map<string,Audio*> audios;
     std::string state;
 
+    bool justFell(string state);
 };
 
 #endif //TALLER_MARVEL_CAPCOM_AUDIOMANAGER_H
