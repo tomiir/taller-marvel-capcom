@@ -9,11 +9,12 @@ VenomAudioManager::VenomAudioManager() {
 }
 
 void VenomAudioManager::init() {
-    Audio* jumpAudio = new Audio("../Audio/Venom/Jump.wav");
     Audio* punchAudio =  new Audio("../Audio/Venom/punch.wav");
     Audio* dmgAudio =  new Audio("../Audio/Venom/dmg.wav");
+    Audio* fallAudio = new Audio("../Audio/Venom/fall.wav"); //--> cuando pasa de jump a still o walk
+    Audio* grabbedImpactAudio = new Audio("../Audio/Venom/grabbedImpact.wav");  //grabbedImpact hacerlo corto
+    Audio* throwAudio = new Audio("../Audio/Venom/throw.wav");
 
-    audios["jump"] = jumpAudio;
 
     audios["airKicked"] = dmgAudio;
     audios["standKicked"] = dmgAudio;
