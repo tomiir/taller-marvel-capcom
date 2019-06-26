@@ -23,6 +23,7 @@ public:
 protected:
     map<string,Audio*> audios;
     std::string state;
+    bool justFell(string state);
 
 };
 

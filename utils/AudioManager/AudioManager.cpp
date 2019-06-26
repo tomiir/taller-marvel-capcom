@@ -12,8 +12,16 @@ AudioManager::~AudioManager() {}
 AudioManager::AudioManager() {}
 void AudioManager::init() {}
 
+
+bool AudioManager::justFell(string state) {
+    return this->state == "jump" && (state == "still" || state == "walk");
+}
+
 void AudioManager::setState(std::string state) {
-    if(state != this->state) {
+    if(justFell(state)) {
+        playAudio("fall");
+    }
+    else if(state != this->state) {
         playAudio(state);
     }
     this->state = state;

@@ -5,11 +5,16 @@
 #include "SpiderManAudioManager.h"
 
 void SpiderManAudioManager::init() {
-    Audio* jumpAudio = new Audio("../Audio/Spider-man/Jump.wav");
+
     Audio* punchAudio =  new Audio("../Audio/Spider-man/punch.wav");
     Audio* dmgAudio =  new Audio("../Audio/Spider-man/dmg.wav");
+    Audio* fallAudio = new Audio("../Audio/Spider-man/fall.wav"); //--> cuando pasa de jump a still o walk
+    Audio* grabbedImpactAudio = new Audio("../Audio/Spider-man/grabbedImpact.wav");  //grabbedImpact hacerlo corto
+    Audio* throwAudio = new Audio("../Audio/Spider-man/throw.wav");
 
-    audios["jump"] = jumpAudio;
+    audios["grabbedImpact"] = grabbedImpactAudio;
+    audios["fall"] = fallAudio;
+    audios["throw"] = throwAudio;
 
     audios["airKicked"] = dmgAudio;
     audios["standKicked"] = dmgAudio;

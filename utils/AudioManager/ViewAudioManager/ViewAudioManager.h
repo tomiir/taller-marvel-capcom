@@ -13,6 +13,10 @@ public:
     ~ViewAudioManager() = default;
     ViewAudioManager();
     void init() override;
+
+private:
+    void setVolume(int volume);
+    void mute();
 };
 
 
