@@ -139,8 +139,8 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
             state = "still";
             projectile_flying = true;
 
-            bool flip = character->isFlip();
-            projectile->setNewPosition(info[0], info[2], flip);
+//            bool flip = character->isFlip();
+            projectile->setNewPosition(info[0], info[2], info[0] > enemyInfo[0]);
         }
     }
 
