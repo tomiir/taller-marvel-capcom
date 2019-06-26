@@ -8,8 +8,8 @@ void CaptainAmericaAudioManager::init() {
     Audio* punchAudio =  new Audio("../Audio/CaptainAmerica/punch.wav");
     Audio* dmgAudio =  new Audio("../Audio/CaptainAmerica/dmg.wav");
     Audio* fallAudio = new Audio("../Audio/CaptainAmerica/fall.wav"); //--> cuando pasa de jump a still o walk
-    Audio* grabbedImpactAudio = new Audio("../Audio/CaptainAmerica/grabbedImpact.wav");  //grabbedImpact hacerlo corto
     Audio* throwAudio = new Audio("../Audio/CaptainAmerica/throw.wav");
+    Audio* grabbedImpactAudio = new Audio("../Audio/Common/grabbedImpact.wav");  //grabbedImpact hacerlo corto
 
     audios["grabbedImpact"] = grabbedImpactAudio;
     audios["fall"] = fallAudio;

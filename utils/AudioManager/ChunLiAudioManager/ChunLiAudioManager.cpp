@@ -12,12 +12,12 @@ void ChunLiAudioManager::init() {
     Audio* punchAudio =  new Audio("../Audio/Chun-Li/punch.wav");
     Audio* dmgAudio =  new Audio("../Audio/Chun-Li/dmg.wav");
     Audio* fallAudio = new Audio("../Audio/Chun-Li/fall.wav"); //--> cuando pasa de jump a still o walk
-    Audio* grabbedImpactAudio = new Audio("../Audio/Chun-Li/grabbedImpact.wav");  //grabbedImpact hacerlo corto
     Audio* throwAudio = new Audio("../Audio/Chun-Li/throw.wav");
+    Audio* grabbedImpactAudio = new Audio("../Audio/Common/grabbedImpact.wav");  //grabbedImpact hacerlo corto
 
-    audios["grabbedImpact"] = grabbedImpactAudio;
     audios["fall"] = fallAudio;
     audios["throw"] = throwAudio;
+    audios["grabbedImpact"] = grabbedImpactAudio;
 
 
     audios["airKicked"] = dmgAudio;
