@@ -51,6 +51,16 @@ void Game::init(const char *title, int posX, int posY) {
 
         SDL_RenderPresent(renderer);
 
+        //---------------------------sound  intro----------------------
+        SDL_AudioSpec wavSpec;
+        Uint32 wavLength;
+        Uint8 *wavBuffer;
+
+        SDL_LoadWAV("../Audio/Intro.wav", &wavSpec, &wavBuffer, &wavLength);
+        SDL_AudioDeviceID deviceId = SDL_OpenAudioDevice(NULL, 0, &wavSpec, NULL, 0);
+        SDL_QueueAudio(deviceId, wavBuffer, wavLength);
+        SDL_PauseAudioDevice(deviceId, 0);
+        //-------------------------------------------------
 
         //aca termina el cargado de la imagen de Loading
         factory = new ViewFactory(renderer, screenWidth, screenHeight);
