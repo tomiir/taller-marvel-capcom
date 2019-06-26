@@ -18,3 +18,15 @@ void ViewAudioManager::init() {
     this->state = "present";
 }
 
+void ViewAudioManager::resetMusic() {
+    this->playAudio(this->state);
+}
+
+ViewAudioManager::~ViewAudioManager() {
+    map<string,Audio*>::iterator iter = audios.begin();
+    while(iter != audios.end()) {
+        Audio* curAudio = iter->second;
+        delete curAudio;
+    }
+}
+

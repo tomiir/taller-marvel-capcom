@@ -334,6 +334,8 @@ void* Client::render(void *arg) {
 
             char shouldFight [] = {messageReceived[54], '\0'};
             game->updateShouldFight(shouldFight);
+            int soundFlag = atoi(shouldFight);
+            if(!soundFlag) game->viewAudioManager->resetMusic();
 
             char roundsWonTeam1 = messageReceived[55];
             char roundsWonTeam2 = messageReceived[56];
