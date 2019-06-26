@@ -8,24 +8,27 @@
 void SpiderManGrabLeftAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 7;
-    animationLength = 14;
+    animationRate = 6;
+    animationLength = 17;
 
     vector<int> frame0 = {0, 5628, 491, 268};
     vector<int> frame1 = {491, 5628, 491, 268};
     vector<int> frame2 = {982, 5628, 491, 268};
     vector<int> frame3 = {1473, 5628, 491, 268};
 
-    vector<int> frame4 = {1964, 5628, 491, 268};
-    vector<int> frame5 = {2455, 5628, 491, 268};
-    vector<int> frame6 = {2946, 5628, 491, 268};
-    vector<int> frame7 = {3437, 5628, 491, 268};
+    vector<int> frame4 = {1984, 5628, 491, 268};
+    vector<int> frame5 = {2475, 5628, 491, 268};
+    vector<int> frame6 = {2966, 5628, 491, 268};
+    vector<int> frame7 = {3457, 5628, 491, 268};
 
 
 
     animation.push_back(frame0);
     animation.push_back(frame1);
+    animation.push_back(frame1);
     animation.push_back(frame2);
+    animation.push_back(frame2);
+    animation.push_back(frame3);
     animation.push_back(frame3);
     animation.push_back(frame4);
     animation.push_back(frame4);

@@ -289,7 +289,7 @@ void ControllerCharacter::handleEvent(string event, GameObject_server* enemy, Co
             flipFlag = 1;
         }
 
-        if( (!characterIsntInLeftBoundary or !characterIsntInRightBoundary) and flagGrabbed == 3) {
+        if( (!characterIsntInLeftBoundary or !characterIsntInRightBoundary) and flagGrabbed == 4) {
             grabbed = false;
             grabbedImpact = true;
 

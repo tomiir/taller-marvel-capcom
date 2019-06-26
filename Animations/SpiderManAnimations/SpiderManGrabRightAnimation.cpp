@@ -8,8 +8,8 @@
 void SpiderManGrabRightAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 7;
-    animationLength = 14;
+    animationRate = 5;
+    animationLength = 16;
 
     vector<int> frame0 = {0, 5628, 491, 268};
     vector<int> frame1 = {491, 5628, 491, 268};
@@ -26,6 +26,8 @@ void SpiderManGrabRightAnimation::init() {
     animation.push_back(frame0);
     animation.push_back(frame1);
     animation.push_back(frame2);
+    animation.push_back(frame2);
+    animation.push_back(frame3);
     animation.push_back(frame3);
     animation.push_back(frame4);
     animation.push_back(frame4);
