@@ -40,8 +40,8 @@ Character::Character(const char* imagePath, int z_index, SDL_Renderer* rend, Spr
     }
     if (name == "projectileCA"){
         auxY = 270;
-        auxLeft = 234;
-        auxRight = 372;
+        auxLeft = 240;
+        auxRight = 330;
     }
     if (name == "projectileSM"){
         auxY = 370;

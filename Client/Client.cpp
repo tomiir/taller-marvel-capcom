@@ -10,6 +10,7 @@
 #define MESSAGEFROMSERVERLEN2 5
 
 bool playedCharSelectMusic = false;
+bool playedEndgameMusic = false;
 int serverSocket_c;
 struct sockaddr_in serverAddr_c;
 socklen_t  serverSize_c;
@@ -335,6 +336,10 @@ void* Client::render(void *arg) {
             char shouldFight [] = {messageReceived[54], '\0'};
             game->updateShouldFight(shouldFight);
 
+
+            int soundFlag = atoi(shouldFight);
+            game->viewAudioManager->resetMusic(soundFlag);
+
             char roundsWonTeam1 = messageReceived[55];
             char roundsWonTeam2 = messageReceived[56];
 
@@ -361,8 +366,14 @@ void* Client::render(void *arg) {
         if(strcmp(view, "02") == 0 or viewNumber == 2){
             char winners[] = {messageReceived[2],messageReceived[3],'\0'};
             game->updateWinners(winners);
+            if(!playedEndgameMusic) {
+                game->viewAudioManager->setState("endgame");
+                playedEndgameMusic = true;
+            }
             game->render();
             queueRecv.pop();
+
+
         }
 
         if ((1000 / speed) > (SDL_GetTicks() - start)) {

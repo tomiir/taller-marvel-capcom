@@ -115,6 +115,12 @@ string selectState(char state){
     else if (state == 'l') return "downKicked";
     else if (state == 'm') return "airKicked";
     else if (state == 'n') return "throw";
+    else if (state == 'o') return "grabLeft";
+    else if (state == 'p') return "grabbed";
+    else if (state == 'q') return "grabbedImpact";
+    else if (state == 'r') return "grabRight";
+
+
     else return NULL;//LOGGEAR ESTE ERROR
 }
 

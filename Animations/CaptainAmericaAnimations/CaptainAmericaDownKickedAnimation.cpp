@@ -13,7 +13,7 @@ void CaptainAmericaDownKickedAnimation::init() {
     animationRate = 1;
     animationLength = 1;
 
-    vector<int> frame0 = {0, 1225, 322, 245};
+    vector<int> frame0 = {0, 1210, 322, 245};
 
 
     animation.push_back(frame0);

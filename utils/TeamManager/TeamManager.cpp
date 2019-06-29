@@ -108,7 +108,10 @@ char TeamManager::getStateCurrentCharacter() {
     else if (state == "downKicked") return 'l';
     else if (state == "airKicked") return 'm';
     else if (state == "throw") return 'n';
-
+    else if (state == "grabLeft") return 'o';
+    else if (state == "grabbed") return 'p';
+    else if (state == "grabbedImpact") return 'q';
+    else if (state == "grabRight") return 'r';
 
 
 }

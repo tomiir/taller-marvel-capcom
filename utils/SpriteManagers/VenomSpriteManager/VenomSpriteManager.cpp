@@ -21,13 +21,16 @@
 #include "../../../Animations/VenomAnimations/VenomDownKickedAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomStandKickedAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomAirGuardAnimation.h"
-#include "../../../Animations/VenomAnimations/VenomGrabAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomGrabLeftAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomDownGuardAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomStandGuardAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomAirKickedAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomWeakDownKickAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomWeakAirKickAnimation.h"
 #include "../../../Animations/VenomAnimations/VenomThrowAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomGrabbedAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomGrabbedImpactAnimation.h"
+#include "../../../Animations/VenomAnimations/VenomGrabRightAnimation.h"
 
 
 using namespace std;
@@ -54,11 +57,14 @@ void VenomSpriteManager::init(){
     animationMap["downKicked"] = new VenomDownKickedAnimation();
     animationMap["standKicked"] = new VenomStandKickedAnimation();
     animationMap["airKicked"] = new VenomAirKickedAnimation();
-    animationMap["grab"] = new VenomGrabAnimation();
+    animationMap["grabLeft"] = new VenomGrabLeftAnimation();
+    animationMap["grabRight"] = new VenomGrabRightAnimation();
     animationMap["downGuard"] = new VenomDownGuardAnimation();
     animationMap["standGuard"] = new VenomStandGuardAnimation();
     animationMap["airGuard"] = new VenomAirGuardAnimation();
     animationMap["throw"] = new VenomThrowAnimation();
+    animationMap["grabbed"] = new VenomGrabbedAnimation();
+    animationMap["grabbedImpact"] = new VenomGrabbedImpactAnimation();
 
 }
 

@@ -21,7 +21,7 @@
 #include "../../../Animations/SpiderManAnimations/SpiderManStrongStandKickAnimation.h"
 #include "../../../Animations/SpiderManAnimations/SpiderManStrongDownKickAnimation.h"
 #include "../../../Animations/SpiderManAnimations/SpiderManStrongAirKickAnimation.h"
-#include "../../../Animations/SpiderManAnimations/SpiderManGrabAnimation.h"
+#include "../../../Animations/SpiderManAnimations/SpiderManGrabLeftAnimation.h"
 #include "../../../Animations/SpiderManAnimations/SpiderManDownKickedAnimation.h"
 #include "../../../Animations/SpiderManAnimations/SpiderManDownGuardAnimation.h"
 #include "../../../Animations/SpiderManAnimations/SpiderManStandGuardAnimation.h"
@@ -29,6 +29,9 @@
 #include "../../../Animations/SpiderManAnimations/SpiderManStandKickedAnimation.h"
 #include "../../../Animations/SpiderManAnimations/SpiderManAirKickedAniamtion.h"
 #include "../../../Animations/SpiderManAnimations/SpiderManThrowAnimation.h"
+#include "../../../Animations/SpiderManAnimations/SpiderManGrabbedAnimation.h"
+#include "../../../Animations/SpiderManAnimations/SpiderManGrabbedImpactAnimation.h"
+#include "../../../Animations/SpiderManAnimations/SpiderManGrabRightAnimation.h"
 
 
 using namespace std;
@@ -56,11 +59,14 @@ void SpiderManSpriteManager::init(){
     animationMap["downKicked"] = new SpiderManDownKickedAnimation();
     animationMap["standKicked"] = new SpiderManStandKickedAnimation();
     animationMap["airKicked"] = new SpiderManAirKickedAnimation();
-    animationMap["grab"] = new SpiderManGrabAnimation();
+    animationMap["grabLeft"] = new SpiderManGrabLeftAnimation();
+    animationMap["grabRight"] = new SpiderManGrabRightAnimation();
     animationMap["downGuard"] = new SpiderManDownGuardAnimation();
     animationMap["standGuard"] = new SpiderManStandGuardAnimation();
     animationMap["airGuard"] = new SpiderManAirGuardAnimation();
     animationMap["throw"] = new SpiderManThrowAnimation();
+    animationMap["grabbed"] = new SpiderManGrabbedAnimation();
+    animationMap["grabbedImpact"] = new SpiderManGrabbedImpactAnimation();
 }
 
 SpiderManSpriteManager::SpiderManSpriteManager() : SpriteManager(){

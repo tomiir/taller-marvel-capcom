@@ -7,13 +7,25 @@
 void VenomDownGuardAnimation::init() {
 
     startTime = SDL_GetTicks();
-    animationRate = 1;
-    animationLength = 1;
+    animationRate = 10;
+    animationLength = 7;
 
     vector<int> frame0 = {560, 1666, 560, 238};
+    vector<int> frame1 = {1120, 1666, 560, 238};
+    vector<int> frame2 = {1680, 1666, 560, 238};
+    vector<int> frame3 = {2240, 1666, 560, 238};
+    vector<int> frame4 = {2800, 1666, 560, 238};
+    vector<int> frame5 = {3360, 1666, 560, 238};
+    vector<int> frame6 = {3920, 1666, 560, 238};
 
 
     animation.push_back(frame0);
+    animation.push_back(frame1);
+    animation.push_back(frame2);
+    animation.push_back(frame3);
+    animation.push_back(frame4);
+    animation.push_back(frame5);
+    animation.push_back(frame6);
 
 }
 

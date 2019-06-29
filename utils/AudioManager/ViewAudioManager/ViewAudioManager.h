@@ -10,9 +10,12 @@
 
 class ViewAudioManager : public AudioManager {
 public:
-    ~ViewAudioManager() = default;
+    ~ViewAudioManager();
     ViewAudioManager();
     void init() override;
+    void resetMusic(int soundFlag);
+private:
+    int oldValue;
 };
 
 
